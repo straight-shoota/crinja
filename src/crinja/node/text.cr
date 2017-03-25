@@ -2,8 +2,8 @@ class Crinja::Node
   class Text < Node
     property trim_left = false, trim_right = false
 
-    def render(io : IO, env : Crinja::Environment)
-      io << value
+    def render(env : Crinja::Environment)
+      RenderedOutput.new value
     end
 
     def value

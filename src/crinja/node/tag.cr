@@ -77,8 +77,8 @@ class Crinja::Node
       super(io, indent)
     end
 
-    def render(io : IO, env : Crinja::Environment)
-      tag.interpret(io, env, self)
+    def render(env : Crinja::Environment)
+      tag.interpret_output(env, self)
     end
 
     def validate_argument(index : Int, klass : Class? = nil, token_value : String? = nil)

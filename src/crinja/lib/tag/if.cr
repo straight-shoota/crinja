@@ -16,7 +16,7 @@ module Crinja
 
           current_branch_active = evaluate_node(tnode, env)
         else
-          node.render(io, env) if current_branch_active
+          io << node.render(env).value if current_branch_active
         end
       end
     end

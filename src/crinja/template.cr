@@ -30,8 +30,14 @@ class Crinja::Template
   end
 
   def render(io : IO, env : Environment)
+    output = Node::OutputList.new
+
     root.children.each do |node|
-      node.render(io, env)
+      output << node.render(env)
     end
+
+    puts output.inspect
+
+    output.value(io)
   end
 end

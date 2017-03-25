@@ -77,7 +77,7 @@ module Crinja
             else_branch = false
           end
 
-          node.render(io, env) unless else_branch
+          io << node.render(env).value unless else_branch
         end
       end
     end

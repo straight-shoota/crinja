@@ -8,6 +8,12 @@ module Crinja
       end
     end
 
+    def interpret_output(env : Crinja::Environment, tag_node : Node::Tag)
+      Node::RenderedOutput.new(String.build do |io|
+        interpret(io, env, tag_node)
+      end)
+    end
+
     abstract def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
 
     def end_tag : String?
@@ -24,10 +30,12 @@ module Crinja
       end
     end
 
-    def render_children(io : IO, env : Crinja::Environment, node : Node)
+    def render_children(env : Crinja::Environment, node : Node)
+      output = Node::OutputList.new
       node.children.each do |node|
-        node.render(io, env)
+        output << node.render(env)
       end
+      output
     end
 
     class Library < FeatureLibrary(Tag)

@@ -47,11 +47,11 @@ module Crinja
             "caller"  => arguments.caller,
           })
 
-          SafeString.build do |io|
-            children.each do |child|
-              child.render(io, env)
-            end
+          output = Node::OutputList.new
+          children.each do |child|
+            output << child.render(env)
           end
+          SafeString.new output.value
         end
       end
 

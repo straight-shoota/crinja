@@ -6,10 +6,8 @@ module Crinja
       if tag_node.varargs.size == 1 && (name_node = tag_node.varargs[0]).is_a?(Statement::Name)
         # block set
         name = name_node.name
-        value = String.build do |block_io|
-          render_children(block_io, env, tag_node)
-        end
-        env.context[name] = SafeString.new(value.to_s)
+        value = render_children(env, tag_node).value
+        env.context[name] = SafeString.new(value)
       elsif tag_node.kwargs.size == 1
         # expression set
         name = tag_node.kwargs.first_key

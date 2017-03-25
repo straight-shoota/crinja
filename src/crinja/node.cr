@@ -11,11 +11,7 @@ module Crinja
     def initialize(@token : Token)
     end
 
-    def render(env : Crinja::Environment)
-      String.build do |io|
-        render(io, env)
-      end
-    end
+    abstract def render(env : Crinja::Environment) : Output
 
     def root
       parent.not_nil!.root
@@ -36,8 +32,6 @@ module Crinja
     def trim_right_after_end?
       false
     end
-
-    abstract def render(io : IO, env : Crinja::Environment)
 
     def <<(child : Node)
       children << child

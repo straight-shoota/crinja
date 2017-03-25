@@ -8,7 +8,7 @@ class Crinja::Node
       @statement = Statement::Root.new(token)
     end
 
-    def render(io : IO, env : Crinja::Environment)
+    def render(env : Crinja::Environment)
       raise "Empty expression" if statement.nil?
       result = statement.not_nil!.evaluate(env)
 
@@ -16,7 +16,7 @@ class Crinja::Node
         result = SafeString.escape(result)
       end
 
-      io << result
+      RenderedOutput.new result.to_s
     end
 
     def inspect_children(io : IO, indent = 0)

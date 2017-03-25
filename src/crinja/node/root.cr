@@ -6,8 +6,8 @@ class Crinja::Node
       super(Crinja::Lexer::Token.new)
     end
 
-    def render(io : IO, env : Crinja::Environment)
-      render_children(io, env)
+    def render(env : Crinja::Environment)
+      raise "Unsupported render for root node"
     end
 
     def root
