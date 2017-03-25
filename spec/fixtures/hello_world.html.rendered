@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Value with &lt;unsafe&gt; data</title>
+  </head>
+  <body>
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  </body>
+</html>
