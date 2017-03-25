@@ -11,8 +11,8 @@ module Crinja::Lexer
       def initialize(@name : String, @end_symbol : Char, @end_kind : Kind)
       end
 
-      def to_s
-        name
+      def to_s(io : IO)
+        io << "<State:#{name}>"
       end
     end
 
@@ -107,6 +107,10 @@ module Crinja::Lexer
       end
     end
 
+    def raise(message)
+      ::raise(Crinja::TemplateSyntaxError.new(@token.dup, message))
+    end
+
     def check_for_end
       # check if current scope closes
       end_type = current_char
@@ -141,7 +145,7 @@ module Crinja::Lexer
           return true
         end
       when '\0'
-        raise "Unterminated #{@stack.last}"
+        raise "Unterminated #{@stack.last.name}"
       end
 
       return false

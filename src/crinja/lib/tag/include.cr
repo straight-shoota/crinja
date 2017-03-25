@@ -15,25 +15,25 @@ module Crinja
       ignore_missing = false
 
       if tag_node.varargs.size > vararg_index
-        expect_node(tag_node.varargs[vararg_index], name: "ignore") do
+        expect_name(tag_node.varargs[vararg_index], "ignore") do
           vararg_index += 1
-          expect_node(tag_node.varargs[vararg_index], name: "missing") do
+          expect_name(tag_node.varargs[vararg_index], "missing") do
             vararg_index += 1
             ignore_missing = true
-          end || raise TemplateSyntaxError.new(tag_node.varargs[vararg_index], "expected `missing` after `ignore`")
+          end || raise TemplateSyntaxError.new(tag_node.varargs[vararg_index].token, "expected `missing` after `ignore`")
         end
       end
 
       if tag_node.varargs.size > vararg_index
-        expect_node(tag_node.varargs[vararg_index], name: ["with", "without"]) do |with_or_without|
+        expect_name(tag_node.varargs[vararg_index], ["with", "without"]) do |with_or_without|
           vararg_index += 1
-          expect_node(tag_node.varargs[vararg_index], name: "context") do
+          expect_name(tag_node.varargs[vararg_index], "context") do
             vararg_index += 1
             if with_or_without == "without"
               context = env.global_context
             end
-          end || raise TemplateSyntaxError.new(tag_node.varargs[vararg_index], "expected `context` after `#{with_or_without}`")
-        end || raise TemplateSyntaxError.new(tag_node.varargs[vararg_index], "expected `without` or `ignore`")
+          end || raise TemplateSyntaxError.new(tag_node.varargs[vararg_index].token, "expected `context` after `#{with_or_without}`")
+        end || raise TemplateSyntaxError.new(tag_node.varargs[vararg_index].token, "expected `without` or `ignore`")
       end
 
       begin
@@ -43,17 +43,6 @@ module Crinja
       rescue error : TemplateNotFoundError
         raise error unless ignore_missing
       end
-    end
-
-    def expect_node(node, name = nil)
-      unless name.nil?
-        if node.is_a?(Statement::Name) && ((name.is_a?(Array) && name.includes?(node.name)) || name === node.name)
-          yield node.name
-          return true
-        end
-      end
-
-      false
     end
   end
 end

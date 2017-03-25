@@ -26,7 +26,7 @@ class Crinja::Node
       unless (tokens = end_tag_tokens).nil?
         tokens[:end].trim_right
       else
-        false
+        end_token.try(&.trim_right) || false
       end
     end
 

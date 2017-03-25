@@ -10,7 +10,12 @@ module Crinja::Lexer
     delegate :current_char, to: @reader
 
     def peek_char(lookahead = 1)
-      @reader.string[@reader.pos + lookahead]
+      pos = @reader.pos + lookahead
+      if @reader.string.size > pos
+        @reader.string[pos]
+      else
+        Char::ZERO
+      end
     end
 
     def next_char
@@ -36,5 +41,9 @@ module Crinja::Lexer
     property pos : Int32 = 0
     property line : Int32 = 0
     property column : Int32 = 0
+
+    def ==(other : Tuple(Int32, Int32))
+      {line, column} == other
+    end
   end
 end

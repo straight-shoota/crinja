@@ -5,6 +5,8 @@ module Crinja
     getter operators, filters, functions, tags, tests
 
     setter autoescape : Bool?
+    property parent_templates : Array(String) = [] of String
+    setter super_block : Array(Node)?
 
     def initialize(bindings : Hash(String, Type))
       initialize(nil, bindings)
@@ -62,6 +64,11 @@ module Crinja
     def unpack(vars : Array(String), values : TypeValue | Hash(Type, Type) | Tuple(Type, Type))
       raise "cannot unpack multiple values" if vars.size > 1
       self[vars.first] = values.as(Type)
+    end
+
+    def super_block
+      return @super_block unless @super_block.nil?
+      parent.try(&.super_block)
     end
 
     def inspect(io)

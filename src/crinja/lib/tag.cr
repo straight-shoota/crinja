@@ -38,9 +38,22 @@ module Crinja
       output
     end
 
+    private def expect_name(node, name = nil)
+      expect_name(node, name) { }
+    end
+
+    private def expect_name(node, name = nil)
+      if node.is_a?(Statement::Name) && (name.nil? || (name.is_a?(Array) && name.includes?(node.name)) || name === node.name)
+        yield node.name
+        return node.name
+      end
+
+      nil
+    end
+
     class Library < FeatureLibrary(Tag)
-      TAGS_WITH_BODY = [For, If, Set, Macro]
-      SINGLE_TAGS    = [Else, ElseIf, Include]
+      TAGS_WITH_BODY = [For, If, Set, Macro, Block]
+      SINGLE_TAGS    = [Else, ElseIf, Include, Extends]
 
       def register_defaults
         TAGS_WITH_BODY.each do |name|

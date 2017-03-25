@@ -13,7 +13,9 @@ module Crinja
   end
 
   class TemplateSyntaxError < Error
-    def initialize(token, msg : String)
+    getter token : Lexer::Token
+
+    def initialize(@token, msg : String)
       super("TemplateSyntaxError: #{msg} @ #{token}")
     end
   end

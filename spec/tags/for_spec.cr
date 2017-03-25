@@ -72,7 +72,7 @@ describe Crinja::Tag::For do
       {"a" => 1, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 2, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 3, "b" => [{"a" => "a"}]},
-    ]}).should eq("[1<[1][2]>][2<[1][2]>][3<[a]>]")
+    ]}, trim_blocks: true).should eq("[1<[1][2]>][2<[1][2]>][3<[a]>]")
   end
 
   it "recursive_depth0" do
@@ -88,7 +88,7 @@ describe Crinja::Tag::For do
       {"a" => 1, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 2, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 3, "b" => [{"a" => 'a'}]},
-    ]}).should eq("[0:1<[1:1][1:2]>][0:2<[1:1][1:2]>][0:3<[1:a]>]")
+    ]}, trim_blocks: true).should eq("[0:1<[1:1][1:2]>][0:2<[1:1][1:2]>][0:3<[1:a]>]")
   end
 
   it "recursive_depth" do
@@ -103,7 +103,7 @@ describe Crinja::Tag::For do
       {"a" => 1, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 2, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 3, "b" => [{"a" => "a"}]},
-    ]}).should eq("[1:1<[2:1][2:2]>][1:2<[2:1][2:2]>][1:3<[2:a]>]")
+    ]}, trim_blocks: true).should eq("[1:1<[2:1][2:2]>][1:2<[2:1][2:2]>][1:3<[2:a]>]")
   end
 
   it "looploop" do
@@ -114,7 +114,7 @@ describe Crinja::Tag::For do
       [{{ rowloop.index }}|{{ loop.index }}]
       {%- endfor %}
       {%- endfor %}
-      TPL, {"table" => ["ab", "cd"]}).should eq "[1|1][1|2][2|1][2|2]"
+      TPL, {"table" => ["ab", "cd"]}, trim_blocks: true, lstrip_blocks: true).should eq "[1|1][1|2][2|1][2|2]"
   end
 
   it "loop_errors" do

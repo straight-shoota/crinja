@@ -9,24 +9,21 @@ module Crinja
       string
     end
 
-    def self.trim(string, left = true, right = true)
+    def self.trim(string, left = true, right = true, strip_newline_left = false, strip_newline_right = false)
       return string unless left || right
 
       orig = string
       String.build do |io|
         if left
-          first_line, nl, string = string.partition("\n")
+          first_line, nl_first, string = string.partition("\n")
 
-          # if first_line == ""
-          #  first_line, nl, string = string.partition("\n")
-          # end
-          if nl.empty?
+          if nl_first.empty?
             # no newline
             string = first_line.lstrip
           else
             first_line = first_line.lstrip
             io << first_line
-            io << nl if first_line.size > 0
+            io << nl_first unless strip_newline_left
           end
         end
 
@@ -35,11 +32,12 @@ module Crinja
           io << middle
           last_trimmed = last_line.rstrip
 
-          # It is unclear wether this \n should be stripped or not. Python tests suggest yes,
-          # but it would make sense (see example hello_world.html) to keep it. Other sources
-          # seem to recognize this trailing slash.
-          # io << nl
-          io << nl if last_trimmed.size > 0
+          # use \n explicitly, so it gets even added if rpartition did not match.
+          # This way there will always be a newline included, if the initial string had one newline
+          # followed only by whitespace characters.
+          # skip_last_newline = nl_first.empty? && !last_trimmed.empty?
+          # nl = "\"
+          io << nl unless strip_newline_right # || skip_last_newline
           io << last_trimmed
         else
           io << string

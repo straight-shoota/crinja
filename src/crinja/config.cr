@@ -7,5 +7,7 @@ module Crinja
     #  default: true
     # }
     property keep_trailing_newline : Bool = false
+    property trim_blocks : Bool = false
+    property lstrip_blocks : Bool = false
   end
 end

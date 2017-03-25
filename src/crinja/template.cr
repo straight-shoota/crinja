@@ -30,14 +30,49 @@ class Crinja::Template
   end
 
   def render(io : IO, env : Environment)
-    output = Node::OutputList.new
+    output = render_nodes(env, root.children)
 
-    root.children.each do |node|
-      output << node.render(env)
+    env.extend_parent_templates.each do |parent_template|
+      output = render_nodes(env, parent_template.root.children)
+
+      env.context.parent_templates.pop
     end
 
-    puts output.inspect
+    resolve_block_stubs(env, output)
 
     output.value(io)
+  end
+
+  private def render_nodes(env, nodes)
+    Node::OutputList.new.tap do |output|
+      nodes.each do |node|
+        output << node.render(env)
+      end
+    end
+  end
+
+  private def resolve_block_stubs(env, output, block_names = Array(String).new)
+    output.blocks.each do |placeholder|
+      name = placeholder.name
+      unless block_names.includes?(name)
+        block_chain = env.blocks[name]
+
+        if block_chain.size > 0
+          block = block_chain[0]
+          super_block = block_chain[1] if block_chain.size > 1
+          env.context.super_block = super_block
+
+          output = render_nodes(env, block)
+          block_names << name
+          resolve_block_stubs(env, output, block_names)
+          block_names.pop
+
+          env.context.super_block = nil
+          placeholder.resolve(output.value)
+        end
+      end
+
+      placeholder.resolve("") unless placeholder.resolved?
+    end
   end
 end

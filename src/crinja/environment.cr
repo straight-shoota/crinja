@@ -9,6 +9,12 @@ class Crinja::Environment
   getter config : Config = Config.new
   getter logger : Logger
   property loader : Loader = Loader::FileSystemLoader.new
+  property extend_parent_templates : Array(Template) = [] of Template
+
+  property blocks : Hash(String, Array(Array(Node)))
+  @blocks = Hash(String, Array(Array(Node))).new do |hash, k|
+    hash[k] = Array(Array(Node)).new
+  end
 
   def initialize(@context = Context.new)
     @global_context = @context

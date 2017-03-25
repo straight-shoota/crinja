@@ -46,11 +46,11 @@ module Crinja::Parser
       node = Node::Text.new(token)
 
       if (sibling = last_sibling).nil?
-        if @parent.trim_right?
-          node.trim_left = true
-        end
+        node.trim_left = @parent.trim_right?
+        node.left_is_block = @parent.is_a?(Node::Tag)
       else
-        node.trim_left = true if sibling.trim_right_after_end?
+        node.trim_left = sibling.trim_right_after_end?
+        node.left_is_block = sibling.is_a?(Node::Tag)
       end
 
       node.parent = @parent.as(Node)
@@ -61,15 +61,17 @@ module Crinja::Parser
       @parent.children.last unless @parent.nil? || @parent.children.empty?
     end
 
-    def add_trim_to_last_sibling
+    def set_trim_for_last_sibling(trim, is_block = false)
       if !(sibling = last_sibling).nil? && sibling.is_a?(Node::Text)
-        sibling.trim_right = true
+        sibling.trim_right = trim
+        sibling.right_is_block = is_block
       end
     end
 
-    def add_trim_to_last_child
+    def set_trim_for_last_child(trim, is_block = false)
       if (children = last_sibling.try(&.children)) && children.size > 0 && (child = children.last).is_a?(Node::Text)
-        child.trim_right = true
+        child.trim_right = trim
+        child.right_is_block = is_block
       end
     end
   end

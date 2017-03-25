@@ -33,7 +33,7 @@ module Crinja::Parser
       node.parent = @parent.as(Node)
       node.end_token = current_token
 
-      add_trim_to_last_sibling if node.trim_left?
+      set_trim_for_last_sibling(node.trim_left?, true)
 
       unless node.end_name.nil?
         @parent << node
@@ -50,7 +50,7 @@ module Crinja::Parser
         @parent = @parent.parent.not_nil!
 
         if parent_tag.end_name == end_tag.name
-          add_trim_to_last_child if start_token.trim_left
+          set_trim_for_last_child(start_token.trim_left, true)
           parent_tag.end_tag_tokens = {start: start_token, end: end_token}
           break
         else

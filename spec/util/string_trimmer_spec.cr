@@ -11,10 +11,22 @@ describe Crinja::StringTrimmer do
   end
 
   it "trims whitespace on the same line at both ends" do
-    Crinja::StringTrimmer.trim("  \t\nfoo  \n ").should eq("foo  ")
+    Crinja::StringTrimmer.trim("  \t\nfoo  \n ").should eq("\nfoo  \n")
   end
 
-  it "test" do
-    Crinja::StringTrimmer.trim("\n        yay\n    ").should eq("        yay")
+  it "don't strip newslines" do
+    Crinja::StringTrimmer.trim("\n        yay\n    ").should eq("\n        yay\n")
+  end
+
+  it "strip newlines" do
+    Crinja::StringTrimmer.trim("\n        yay\n    ", true, true, true, true).should eq("        yay")
+  end
+
+  it "remove single newline from whitespace string" do
+    Crinja::StringTrimmer.trim("\n   ", true, true, true, false).should eq("")
+  end
+
+  it "remove single newline from whitespace string with trim_newline_" do
+    Crinja::StringTrimmer.trim("\n   ", true, true, true, true).should eq("")
   end
 end
