@@ -89,4 +89,21 @@ describe Crinja::Lexer do
       {token.kind, token.value}
     end.should eq(expected)
   end
+
+  it "tokenizes member access with single char name" do
+    lexer = Crinja::Lexer::TemplateLexer.new Crinja::Config.new, %({{ item.a }})
+
+    expected = [
+      {Kind::EXPR_START, "{{"},
+      {Kind::NAME, "item"},
+      {Kind::OPERATOR, "."},
+      {Kind::NAME, "a"},
+      {Kind::EXPR_END, "}}"},
+      {Kind::EOF, ""},
+    ]
+
+    lexer.tokenize.map do |token|
+      {token.kind, token.value}
+    end.should eq(expected)
+  end
 end

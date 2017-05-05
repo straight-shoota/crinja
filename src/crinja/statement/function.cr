@@ -9,7 +9,7 @@ class Crinja::Statement
     def evaluate(env : Crinja::Environment) : Type
       function = env.context.functions[name]
 
-      arguments = function.create_arguments
+      arguments = function.create_arguments(env)
 
       varargs.each do |stmt|
         arguments.varargs << stmt.value(env)

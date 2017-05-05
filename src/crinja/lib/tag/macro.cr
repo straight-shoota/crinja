@@ -20,7 +20,7 @@ module Crinja
         instance.defaults[arg] = value.value(env).raw
       end
 
-      tag_node.root.template.macros[name] = instance
+      tag_node.root.template.register_macro name, instance
     end
 
     class MacroInstance
@@ -35,8 +35,8 @@ module Crinja
         @caller = false
       end
 
-      def create_arguments(varargs : Array(Any) = [] of Any, kwargs : Hash(String, Any) = Hash(String, Any).new)
-        create_arguments(varargs, kwargs, defaults)
+      def create_arguments(env : Environment, varargs : Array(Any) = [] of Any, kwargs : Hash(String, Any) = Hash(String, Any).new)
+        create_arguments(env, varargs, kwargs, defaults)
       end
 
       def call(arguments : Arguments)

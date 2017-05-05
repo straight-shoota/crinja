@@ -13,6 +13,10 @@ describe Crinja do
     render("Hello, {{ user.name | lower | upper }}!", {"user" => {"name" => "John"}}).should eq("Hello, JOHN!")
   end
 
+  it "renders a simple attribute accessor" do
+    render("Hello, {{ users[id].name | upper }}!", {"users" => {"john" => {"name" => "John"}}, "id" => "john"}).should eq("Hello, JOHN!")
+  end
+
   it "renders simple literals" do
     render(%("Hello, {{ "World" ~ "\\" " }}{{ 2 }} {{ "A" | lower }}ll{{ "}}" }}!), {"name" => "John"}).should eq("\"Hello, World&quot; 2 all}}!")
   end

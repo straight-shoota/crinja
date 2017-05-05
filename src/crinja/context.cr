@@ -3,10 +3,10 @@ module Crinja
     AUTOESCAPE_DEFAULT = true
 
     getter operators, filters, functions, tags, tests
+    getter extend_path_stack, import_path_stack, include_path_stack, macro_stack
 
     setter autoescape : Bool?
-    property parent_templates : Array(String) = [] of String
-    setter super_block : Array(Node)?
+    setter block_context : NamedTuple(name: String, index: Int32)?
 
     def initialize(bindings : Hash(String, Type))
       initialize(nil, bindings)
@@ -20,14 +20,36 @@ module Crinja
       @filters = Filter::Library.new
       @tags = Tag::Library.new
       @tests = Test::Library.new
+      @macros = Hash(String, Crinja::Tag::Macro::MacroInstance).new
+
+      @extend_path_stack = CallStack.new(:extend, parent.try(&.extend_path_stack))
+      @import_path_stack = CallStack.new(:import, parent.try(&.import_path_stack))
+      @include_path_stack = CallStack.new(:include, parent.try(&.include_path_stack))
+      @macro_stack = CallStack.new(:macro, parent.try(&.macro_stack))
     end
 
     def parent : Context?
       @parent.as(Context?)
     end
 
+    def session_bindings
+      self.scope
+    end
+
+    def macros
+      if (p = parent).nil?
+        @macros
+      else
+        p.macros
+      end
+    end
+
     def merge!(bindings)
       super(Crinja::Bindings.cast(bindings).as(Hash(String, Type)))
+    end
+
+    def []=(key : String, value : Hash(String, Crinja::Type))
+      self[key] = Crinja::Bindings.cast(value)
     end
 
     def undefined
@@ -66,9 +88,9 @@ module Crinja
       self[vars.first] = values.as(Type)
     end
 
-    def super_block
-      return @super_block unless @super_block.nil?
-      parent.try(&.super_block)
+    def block_context
+      return @block_context unless @block_context.nil?
+      parent.try(&.block_context)
     end
 
     def inspect(io)
@@ -81,6 +103,35 @@ module Crinja
       end
       io << "]"
       {% end %}
+    end
+  end
+
+  class CallStack
+    @stack : Array(String) = [] of String
+
+    def initialize(@kind : Symbol, @parent : CallStack?)
+    end
+
+    def includes?(path : String)
+      @stack.includes?(path) || @parent.try(&.includes?(path))
+    end
+
+    def <<(path : String)
+      raise TagCycleException.new(@kind) if includes?(path)
+
+      push_without_check(path)
+    end
+
+    def push_without_check(path : String)
+      @stack << path
+    end
+
+    def pop
+      if @stack.empty?
+        @parent.try(&.pop)
+      else
+        @stack.pop
+      end
     end
   end
 end

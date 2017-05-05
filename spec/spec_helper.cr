@@ -4,7 +4,7 @@ require "../src/crinja"
 alias Kind = Crinja::Lexer::Token::Kind
 
 def parse(string)
-  Crinja::Template.new(Crinja::Environment.new, string)
+  Crinja::Template.new(string)
 end
 
 def render(string, bindings = nil, autoescape = nil, loader = nil, trim_blocks = nil, lstrip_blocks = nil)
@@ -13,7 +13,7 @@ def render(string, bindings = nil, autoescape = nil, loader = nil, trim_blocks =
   env.context.autoescape = autoescape unless autoescape.nil?
   env.config.trim_blocks = trim_blocks unless trim_blocks.nil?
   env.config.lstrip_blocks = lstrip_blocks unless lstrip_blocks.nil?
-  Crinja::Template.new(env, string).render(bindings)
+  env.from_string(string).render(bindings)
 end
 
 def render_load(name, bindings = nil, autoescape = nil, loader = nil, trim_blocks = nil, lstrip_blocks = nil)

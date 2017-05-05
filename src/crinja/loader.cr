@@ -19,9 +19,7 @@ module Crinja
       # TODO: Cache template parsing
       string, file_name = get_source(env, name)
 
-      string = string.rchop '\n' unless env.config.keep_trailing_newline
-
-      Template.new(env, string, file_name || "")
+      Template.new(string, env, name, file_name)
     end
 
     class FileSystemLoader < Loader

@@ -24,8 +24,6 @@ module Crinja::Parser
     end
 
     def initialize(@token_stream : TokenStream, @context : Crinja::Context, @root_statement : Statement = Statement::Root.new, @logger = Logger.new)
-      @logger.level = Logger::DEBUG
-
       @current_statement = nil
       @stack = [root_statement] of Crinja::ParentStatement
     end
@@ -40,12 +38,6 @@ module Crinja::Parser
       end
 
       @current_statement = new_statement
-
-      # if @stack.empty? || current_container.accepts_children?
-      # else
-      #  puts "#{current_container} does not accept any more children"
-      #  pop_stack
-      # end
     end
 
     def current_statement!
@@ -124,7 +116,13 @@ module Crinja::Parser
         when Kind::OPERATOR
           build_operator_node(token)
         when Kind::LIST_START
-          push_stack Statement::List.new(token)
+          if current_statement.nil? || token.whitespace_before
+            # begin a list if there is no base object or a whitespace before opening bracket `[`
+            push_stack Statement::List.new(token)
+          else
+            # attribute accessor
+            build_attribute_operator(token)
+          end
         when Kind::DICT_START
           push_stack Statement::Dict.new(token)
         when Kind::DICT_ASSIGN
@@ -145,7 +143,7 @@ module Crinja::Parser
             raise "Found list separator outside of list or dict parent=#{parent.inspect} statement=#{current_statement.inspect}"
           end
         when Kind::LIST_END
-          pop_stack Statement::List
+          pop_stack Statement::List | Statement::Attribute
         when Kind::DICT_END
           if current_container.is_a?(Statement::Dict::Entry)
             pop_stack Statement::Dict::Entry
@@ -219,13 +217,26 @@ module Crinja::Parser
       push_stack operator
     end
 
+    def build_attribute_operator(token)
+      statement = Statement::Attribute.new(token, remove_current_statement!)
+
+      push_stack statement
+    end
+
     def build_member_operator(token)
-      raise "member operator can only be called on a name" unless current_statement.is_a? Statement::Name
+      if current_statement.is_a? Statement::Name
+        member = next_token
+        raise "member operator only allows access through a name, found #{member}" unless member.kind == Kind::NAME
 
-      member = next_token
-      raise "member operator only allows access through a name" unless member.kind == Kind::NAME
-
-      current_statement.as(Statement::Name).add_member member
+        current_statement.as(Statement::Name).add_member member
+      else
+        statement = Statement::Attribute.new(token, remove_current_statement!)
+        member = next_token
+        raise "member operator only allows access through a name, found #{member}" unless member.kind == Kind::NAME
+        statement << Statement::Name.new(member)
+        statement.member_operator = true
+        self.current_statement = statement
+      end
     end
 
     def build_splash_operator(token)

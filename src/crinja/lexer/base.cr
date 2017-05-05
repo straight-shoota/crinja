@@ -145,14 +145,17 @@ module Crinja::Lexer
     end
 
     def skip_whitespace
+      skipped_whitespace = false
       while true
         case current_char
         when ' ', '\t', '\n', '\r'
+          skipped_whitespace = true
           next_char
         else
           break
         end
       end
+      skipped_whitespace
     end
 
     def raise(msg)

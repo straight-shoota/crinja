@@ -2,7 +2,7 @@ require "spec"
 require "../../src/crinja/base"
 require "../../src/crinja/lexer"
 require "../../src/crinja/parser/base"
-require "../../src/crinja/parser/statement"
+require "../../src/crinja/parser/statement_parser"
 
 def evaluate_statement(string, bindings = nil)
   env = Crinja::Environment.new

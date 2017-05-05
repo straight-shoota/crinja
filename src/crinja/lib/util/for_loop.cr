@@ -110,7 +110,7 @@ class Crinja::Util::ForLoop
       sub_loop.depth0 = self.depth
 
       SafeString.build do |io|
-        @loop_runner.run_loop(io, sub_loop)
+        io << @loop_runner.run_loop(sub_loop).value
       end
     end
 

@@ -10,9 +10,9 @@ class Crinja::Statement
     end
 
     def evaluate(env : Crinja::Environment) : Type
-      if (name_stmt = target).is_a?(Statement::Name) && !(root_node = self.root_node).nil? && root_node.template.macros.has_key?(name_stmt.name)
+      if (name_stmt = target).is_a?(Statement::Name) && env.context.macros.has_key?(name_stmt.name)
         # its a macro call
-        callable = root_node.template.macros[name_stmt.name]
+        callable = env.context.macros[name_stmt.name]
       else
         target_value = target.value(env)
         callable = target_value.raw
@@ -22,9 +22,9 @@ class Crinja::Statement
         raise "cannot call #{target_value.inspect}. Not a function"
       else
         arguments = if callable.responds_to?(:create_arguments)
-                      callable.create_arguments
+                      callable.create_arguments(env)
                     else
-                      Crinja::Callable::Arguments.new
+                      Crinja::Callable::Arguments.new(env)
                     end
 
         varargs.each do |stmt|

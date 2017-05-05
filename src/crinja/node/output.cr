@@ -14,6 +14,7 @@ module Crinja
     class BlockOutput < Output
       getter name : String
       @output : String?
+      property scope : Context?
 
       def initialize(@name)
       end
@@ -52,6 +53,18 @@ module Crinja
       def value(io : IO)
         nodes.each do |node|
           io << node.value
+        end
+      end
+
+      def each_block(&iterator : BlockOutput -> _)
+        blocks.each do |block|
+          iterator.call(block)
+        end
+
+        nodes.each do |node|
+          if node.is_a?(OutputList)
+            node.each_block(&iterator)
+          end
         end
       end
     end

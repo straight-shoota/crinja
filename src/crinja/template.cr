@@ -2,19 +2,26 @@ require "./parser"
 
 class Crinja::Template
   property macros : Hash(String, Crinja::Tag::Macro::MacroInstance) = Hash(String, Crinja::Tag::Macro::MacroInstance).new
-  getter string, name
+  getter string, name, file
   getter env : Environment
 
-  def initialize(e : Environment, @string : String, @name : String = "")
+  def initialize(@string : String, e : Environment = Environment.new, @name : String = "", @file : String? = nil)
     # duplicate environment for this template to avoid spilling to global scope, but keep current scope
     # even if render method has finished
     @env = e.dup
+
+    @string = @string.rchop '\n' unless env.config.keep_trailing_newline
     @root = Node::Root.new(self)
     Parser::TemplateParser.new(self, root).build
   end
 
   def root
     @root.not_nil!
+  end
+
+  def register_macro(name, instance)
+    macros[name] = instance
+    env.context.macros[name] = instance
   end
 
   def render(bindings = nil)
@@ -30,17 +37,25 @@ class Crinja::Template
   end
 
   def render(io : IO, env : Environment)
+    env.context.macros.merge(self.macros)
     output = render_nodes(env, root.children)
 
     env.extend_parent_templates.each do |parent_template|
       output = render_nodes(env, parent_template.root.children)
 
-      env.context.parent_templates.pop
+      env.context.extend_path_stack.pop
     end
 
     resolve_block_stubs(env, output)
 
     output.value(io)
+  end
+
+  def to_s(io : IO)
+    io << "Template"
+    io << "("
+    name.to_s(io)
+    io << ")"
   end
 
   private def render_nodes(env, nodes)
@@ -52,22 +67,32 @@ class Crinja::Template
   end
 
   private def resolve_block_stubs(env, output, block_names = Array(String).new)
-    output.blocks.each do |placeholder|
+    output.each_block do |placeholder|
       name = placeholder.name
       unless block_names.includes?(name)
         block_chain = env.blocks[name]
 
         if block_chain.size > 0
-          block = block_chain[0]
-          super_block = block_chain[1] if block_chain.size > 1
-          env.context.super_block = super_block
+          block = block_chain.first
 
-          output = render_nodes(env, block)
-          block_names << name
-          resolve_block_stubs(env, output, block_names)
-          block_names.pop
+          scope = env.context
+          unless (original_scope = placeholder.scope).nil?
+            scope = original_scope
+          end
 
-          env.context.super_block = nil
+          env.with_scope(scope) do
+            env.context.block_context = {name: name, index: 0}
+
+            output = render_nodes(env, block)
+
+            block_names << name
+            resolve_block_stubs(env, output, block_names)
+
+            block_names.pop
+
+            env.context.block_context = nil
+          end
+
           placeholder.resolve(output.value)
         end
       end

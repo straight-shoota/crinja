@@ -20,21 +20,27 @@ module Crinja
     end
   end
 
-  class RuntimeException < Error
+  class RuntimeError < Error
   end
 
-  class TypeError < RuntimeException
+  class TypeError < RuntimeError
   end
 
-  class UndefinedError < RuntimeException
+  class UndefinedError < RuntimeError
     def initialize(variable_name, msg = nil)
       super "#{variable_name} is undefined. #{msg}"
     end
   end
 
-  class InvalidArgumentException < RuntimeException
+  class InvalidArgumentException < RuntimeError
     def initialize(callee, msg)
       super "#{msg} (called: #{callee})"
+    end
+  end
+
+  class TagCycleException < RuntimeError
+    def initialize(@type : Symbol)
+      super "Tag cycle exception #{@type}"
     end
   end
 end

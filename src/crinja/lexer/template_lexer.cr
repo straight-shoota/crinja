@@ -47,10 +47,8 @@ module Crinja::Lexer
       when State::ROOT
         next_token_root
       when State::EXPRESSION
-        skip_whitespace
         check_for_end || (@token = statement_lexer.next_token)
       when State::TAG
-        skip_whitespace
         check_for_end || next_token_tag
       end
 
@@ -95,12 +93,11 @@ module Crinja::Lexer
     end
 
     def next_token_tag
-      skip_whitespace
-
       @token.position = stream.position
 
       if @token.kind == Kind::TAG_START
         # if last token is TAG_START, read tag name
+        skip_whitespace
         consume_name
       else
         @token = statement_lexer.next_token
@@ -111,34 +108,43 @@ module Crinja::Lexer
       ::raise(Crinja::TemplateSyntaxError.new(@token.dup, message))
     end
 
+    # check if current scope closes
     def check_for_end
-      # check if current scope closes
-      end_type = current_char
-      trim_whitespace = ""
-      lookahead = 1
+      trim_whitespace = false
+
+      whitespace = 0
+      while [' ', '\n', '\r', '\t'].includes?(peek_char(whitespace))
+        whitespace += 1
+      end
+
+      lookahead = 0
+      end_type = peek_char(whitespace + lookahead)
+      lookahead += 1
 
       if end_type == Symbol::TRIM_WHITESPACE
-        trim_whitespace = Symbol::TRIM_WHITESPACE.to_s
-        end_type = peek_char(lookahead)
+        trim_whitespace = true
+        end_type = peek_char(whitespace + lookahead)
         lookahead += 1
       end
 
       case end_type
       when Symbol::EXPR_END, Symbol::TAG, Symbol::NOTE
-        if Symbol::POSTFIX == peek_char(lookahead)
-          if end_type != @stack.last.end_symbol
-            raise "Terminated #{@stack.last} with '#{trim_whitespace}#{end_type}#{Symbol::POSTFIX}'"
+        if Symbol::POSTFIX == peek_char(whitespace + lookahead)
+          @token.value = String.build do |io|
+            io << Symbol::TRIM_WHITESPACE if trim_whitespace
+            io << end_type << Symbol::POSTFIX
           end
 
-          @token.value = "#{trim_whitespace}#{end_type}#{Symbol::POSTFIX}"
+          if end_type != @stack.last.end_symbol
+            raise "Terminated #{@stack.last} with '#{@token.value}'"
+          end
+
           @token.kind = @stack.last.end_kind
 
-          next_char
-          next_char
+          (whitespace + lookahead + 1).times { next_char }
 
-          if lookahead > 1
+          if trim_whitespace
             @token.trim_right = true
-            next_char
           end
 
           @stack.pop

@@ -42,6 +42,8 @@ class Crinja::Lexer::Token
 
   property trim_left = false, trim_right = false
 
+  property whitespace_before = false
+
   def initialize(@kind = Kind::INITIAL, @value = "", @position = StreamPosition.new)
   end
 
@@ -62,6 +64,9 @@ class Crinja::Lexer::Token
       preview.dump(io)
     end
     io << "[" << line << ":" << column << "]"
+    if whitespace_before
+      io << " whitespace_before"
+    end
   end
 
   def to_s(io : IO)

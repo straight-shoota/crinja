@@ -13,7 +13,7 @@ module Crinja
       validate_arguments_size 3
     end
 
-    def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
+    def interpret_output(env : Crinja::Environment, tag_node : Node::Tag)
       next_vararg = 0
       item_vars = [] of String
       while next_vararg < tag_node.varargs.size
@@ -47,12 +47,18 @@ module Crinja
         looper = Util::ForLoop.new collection
       end
 
-      runner.run_loop(io, looper)
+      result = runner.run_loop(looper)
 
       if looper.index == 0
         # no items were processed, render else branch
-        runner.render_children(io, true)
+        runner.render_children(true)
+      else
+        result
       end
+    end
+
+    def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
+      raise "Unsupported operation"
     end
 
     class Runner
@@ -61,23 +67,27 @@ module Crinja
       def initialize(@env : Crinja::Environment, @tag_node : Node::Tag, @item_vars : Array(String))
       end
 
-      def run_loop(io : IO, looper : Util::ForLoop)
-        looper.each do |value|
-          env.with_scope({LOOP_VARIABLE => looper}) do |context|
-            context.unpack item_vars, value.raw
-            render_children(io)
+      def run_loop(looper : Util::ForLoop)
+        Node::OutputList.new.tap do |output|
+          looper.each do |value|
+            env.with_scope({LOOP_VARIABLE => looper}) do |context|
+              context.unpack item_vars, value.raw
+              output << render_children
+            end
           end
         end
       end
 
-      def render_children(io : IO, else_branch = false)
-        tag_node.children.each do |node|
-          if node.is_a?(Node::Tag) && "else" == node.as(Node::Tag).name
-            return unless else_branch
-            else_branch = false
-          end
+      def render_children(else_branch = false) : Node::Output
+        Node::OutputList.new.tap do |output|
+          tag_node.children.each do |node|
+            if node.is_a?(Node::Tag) && "else" == node.as(Node::Tag).name
+              break unless else_branch
+              else_branch = false
+            end
 
-          io << node.render(env).value unless else_branch
+            output << node.render(env) unless else_branch
+          end
         end
       end
     end

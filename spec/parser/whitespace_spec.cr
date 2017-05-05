@@ -37,7 +37,6 @@ describe "whitespace" do
 
   it "trims empty text both sides correctly" do
     template = parse(%({% if true -%}\n    {%- set foo="bar" -%}\n  {%- endif %}))
-    puts template.root.inspect
     template.root.children[0].children[0].as(Crinja::Node::Text).value.should eq("")
     template.root.children[0].children[2].as(Crinja::Node::Text).value.should eq("")
     template.render.should eq ""
@@ -53,7 +52,7 @@ describe "whitespace" do
     env = Crinja::Environment.new
     env.config.trim_blocks = true
     string = %(  {%- for item in item_list -%}\n    {{ item }}{% if not loop.last %},{% endif %}\n  {%- endfor -%})
-    template = Crinja::Template.new(env, string)
+    template = Crinja::Template.new(string)
     template.root.children[1].children[0].as(Crinja::Node::Text).value.should eq("    ")
     template.root.children[1].children[3].as(Crinja::Node::Text).value.should eq("\n")
   end

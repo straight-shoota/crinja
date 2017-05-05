@@ -75,7 +75,7 @@ describe Crinja::Tag::Include do
       loader: Crinja::Loader::HashLoader.new({"o_printer" => "({{ o }})"})).strip.should eq "(FOO)"
   end
 
-  pending "import_from_with_context" do
+  it "import_from_with_context" do
     loader = Crinja::Loader::HashLoader.new({
       "a" => "{% macro x() %}{{ foobar }}{% endmacro %}",
     })

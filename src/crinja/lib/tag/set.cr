@@ -8,13 +8,13 @@ module Crinja
         name = name_node.name
         value = render_children(env, tag_node).value
         env.context[name] = SafeString.new(value)
-      elsif tag_node.kwargs.size == 1
+      elsif tag_node.kwargs.size > 0
         # expression set
-        name = tag_node.kwargs.first_key
-        value = tag_node.kwargs.first_value.value(env)
-        env.context[name] = value.raw
+        tag_node.kwargs.each do |name, value|
+          env.context[name] = value.value(env).raw
+        end
       else
-        raise TagException.new(self, "Malformed tag: Requires either a single name argument (set block) or an assignment", tag_node)
+        raise TemplateSyntaxError.new(tag_node.token, "Tag `set` requires either a single name argument (set block) or at least one assignment")
       end
     end
 

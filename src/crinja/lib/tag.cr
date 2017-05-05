@@ -2,12 +2,6 @@ module Crinja
   abstract class Tag
     include Importable
 
-    class TagException < RuntimeException
-      def initialize(tag, msg, node = nil)
-        super("#{tag}: #{msg} #{node}")
-      end
-    end
-
     def interpret_output(env : Crinja::Environment, tag_node : Node::Tag)
       Node::RenderedOutput.new(String.build do |io|
         interpret(io, env, tag_node)
@@ -53,7 +47,7 @@ module Crinja
 
     class Library < FeatureLibrary(Tag)
       TAGS_WITH_BODY = [For, If, Set, Macro, Block]
-      SINGLE_TAGS    = [Else, ElseIf, Include, Extends]
+      SINGLE_TAGS    = [Else, ElseIf, Include, Extends, From, Import]
 
       def register_defaults
         TAGS_WITH_BODY.each do |name|

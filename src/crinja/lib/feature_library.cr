@@ -1,5 +1,5 @@
 abstract class Crinja::FeatureLibrary(T)
-  class UnknownFeatureException < Crinja::RuntimeException
+  class UnknownFeatureException < Crinja::RuntimeError
     def initialize(kind, name)
       super "no #{kind.name} with name \"#{name}\" registered"
     end

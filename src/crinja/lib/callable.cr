@@ -1,7 +1,7 @@
 require "../error"
 
 module Crinja
-  class UnknownArgumentException < Crinja::RuntimeException
+  class UnknownArgumentException < Crinja::RuntimeError
     def initialize(name, arguments)
       super "unknown argument \"#{name}\" for #{arguments.inspect}"
     end
@@ -10,17 +10,17 @@ module Crinja
   module Callable
     abstract def call(arguments : Arguments) : Type
 
-    def create_arguments(varargs : Array(Any) = [] of Any, kwargs : Hash(String, Any) = Hash(String, Any).new, defaults : Hash(String, Type) = Hash(String, Type).new)
-      Arguments.new(varargs, kwargs, defaults)
+    def create_arguments(env : Environment, varargs : Array(Any) = [] of Any, kwargs : Hash(String, Any) = Hash(String, Any).new, defaults : Hash(String, Type) = Hash(String, Type).new)
+      Arguments.new(env, varargs, kwargs, defaults)
     end
 
     macro arguments(defs)
-      def create_arguments(varargs : Array(Any) = [] of Any, kwargs : Hash(String, Any) = Hash(String, Any).new)
+      def create_arguments(env : Environment, varargs : Array(Any) = [] of Any, kwargs : Hash(String, Any) = Hash(String, Any).new)
         defaults = Hash(String, Type).new
         {% for key, value in defs %}
         defaults[{{ key.id.stringify }}] = {{ value }}
         {% end %}
-        create_arguments(varargs, kwargs, defaults)
+        create_arguments(env, varargs, kwargs, defaults)
       end
     end
 
@@ -30,8 +30,9 @@ module Crinja
       property caller : Any?
       property kwargs : Hash(String, Any)
       property defaults : Hash(String, Type)
+      property env : Environment
 
-      def initialize(@varargs = [] of Any, @kwargs = Hash(String, Any).new, @defaults = Hash(String, Type).new)
+      def initialize(@env, @varargs = [] of Any, @kwargs = Hash(String, Any).new, @defaults = Hash(String, Type).new)
       end
 
       def [](name : Symbol) : Any

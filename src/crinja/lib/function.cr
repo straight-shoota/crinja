@@ -8,7 +8,7 @@ module Crinja
     include Importable
 
     class Library < FeatureLibrary(Function)
-      register_defaults [Dict, Range]
+      register_defaults [Dict, Range, Super]
     end
   end
 end

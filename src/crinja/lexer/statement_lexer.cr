@@ -1,8 +1,7 @@
 module Crinja::Lexer
   class StatementLexer < Base
     def next_token : Token
-      skip_whitespace
-
+      @token.whitespace_before = skip_whitespace
       @token.position = stream.position
 
       case current_char
