@@ -38,7 +38,7 @@ module Crinja
 
       begin
         env.logger.debug "loading include #{include_name}"
-        template = env.load(include_name)
+        template = env.get_template(include_name)
         template.render(io, context)
       rescue error : TemplateNotFoundError
         raise error unless ignore_missing

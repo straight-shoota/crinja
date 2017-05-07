@@ -1,6 +1,4 @@
 module Crinja::Parser
-  class UnknownTagException < ParserError
-  end
 
   module BuildTag
     def build_tag_node(start_token)
@@ -10,7 +8,7 @@ module Crinja::Parser
       tag = template.env.context.tags[name_token.value]
 
       if tag.nil?
-        raise UnknownTagException.new(name_token.value)
+        raise TemplateSyntaxError.new(start_token, "unknown tag: #{name_token.value}")
       end
 
       if tag.is_a?(Tag::EndTag)

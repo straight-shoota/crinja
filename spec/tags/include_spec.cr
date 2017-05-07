@@ -59,7 +59,7 @@ describe Crinja::Tag::Include do
       "main" => "{% for item in [1, 2, 3] %}{% include 'item' %}{% endfor %}",
       "item" => "{{ item }}",
     })
-    env.load("main").render.should eq "123"
+    env.get_template("main").render.should eq "123"
   end
 
   it "unoptimized_scopes" do

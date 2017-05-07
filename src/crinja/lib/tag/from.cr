@@ -32,7 +32,7 @@ module Crinja
         imports[from_name] = import_name
       end
 
-      template = env.load(template_name)
+      template = env.get_template(template_name)
 
       child = if with_context
                 Environment.new(env)

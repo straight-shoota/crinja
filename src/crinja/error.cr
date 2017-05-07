@@ -1,10 +1,10 @@
 module Crinja
-  class Error < Exception
+  class TemplateError < Exception
   end
 
-  class TemplateNotFoundError < Error
-    def initialize(template, loader)
-      super "template #{template} could not be found by #{loader}"
+  class TemplateNotFoundError < TemplateError
+    def initialize(name, loader, message = "")
+      super "template #{name} could not be found by #{loader}. #{message}"
     end
 
     def initialize(templates : Array, loader)
@@ -12,15 +12,17 @@ module Crinja
     end
   end
 
-  class TemplateSyntaxError < Error
+  class TemplateSyntaxError < TemplateError
     getter token : Lexer::Token
 
-    def initialize(@token, msg : String)
-      super("TemplateSyntaxError: #{msg} @ #{token}")
+    def initialize(@token, msg : String, name = nil, filename = nil)
+      file = ""
+      file = " #{filename}" if filename
+      super "TemplateSyntaxError: #{msg} @ #{token}#{file}"
     end
   end
 
-  class RuntimeError < Error
+  class RuntimeError < TemplateError
   end
 
   class TypeError < RuntimeError

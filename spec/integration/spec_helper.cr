@@ -8,7 +8,7 @@ def render_file(file, bindings, trim_blocks = nil)
   env = Crinja::Environment.new
   env.loader = FIXTURE_LOADER
   env.config.trim_blocks = trim_blocks unless trim_blocks.nil?
-  tmpl = env.load(file)
+  tmpl = env.get_template(file)
   tmpl.render(bindings)
 end
 

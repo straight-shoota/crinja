@@ -137,7 +137,7 @@ describe Crinja::Tag::Extends do
     })
     env = Crinja::Environment.new
     env.loader = loader
-    template = env.load("child")
+    template = env.get_template("child")
     [1, 2].each do |m|
       template.render({"master" => "master%d" % m}).should eq "MASTER%dCHILD" % m
     end
@@ -152,7 +152,7 @@ describe Crinja::Tag::Extends do
     })
     env = Crinja::Environment.new
     env.loader = loader
-    template = env.load("child")
+    template = env.get_template("child")
     template.render({"master" => "master2"}).should eq "MASTER2CHILD"
     template.render({"master" => "master1"}).should eq "MASTER1CHILD"
     template.render.should eq "MASTER1CHILD"

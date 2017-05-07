@@ -6,9 +6,6 @@ module Crinja::Parser
   alias Token = Crinja::Lexer::Token
   alias Kind = Crinja::Lexer::Token::Kind
 
-  class ParserError < Error
-  end
-
   abstract class Base
     @logger = Logger.new(STDOUT)
 

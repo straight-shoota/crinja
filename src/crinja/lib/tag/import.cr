@@ -12,7 +12,7 @@ module Crinja
         context_var = varargs.next.as(Statement::Name).name
       end
 
-      template = env.load(template_name)
+      template = env.get_template(template_name)
 
       if context_var.nil?
         template.render(env)

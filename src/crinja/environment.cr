@@ -31,8 +31,10 @@ class Crinja::Environment
     Template.new(string, self)
   end
 
-  def load(name)
-    loader.load(self, name)
+  def get_template(name, parent=nil, globals = Hash(String, Type).new)
+    template = loader.load(self, name)
+    template.globals = globals
+    template
   end
 
   def with_scope(ctx : Context)

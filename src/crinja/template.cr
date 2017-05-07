@@ -2,15 +2,18 @@ require "./parser"
 
 class Crinja::Template
   property macros : Hash(String, Crinja::Tag::Macro::MacroInstance) = Hash(String, Crinja::Tag::Macro::MacroInstance).new
-  getter string, name, file
+  getter string, name, filename
+  property globals : Hash(String, Type)
   getter env : Environment
 
-  def initialize(@string : String, e : Environment = Environment.new, @name : String = "", @file : String? = nil)
+  def initialize(@string : String, e : Environment = Environment.new, @name : String = "", @filename : String? = nil)
     # duplicate environment for this template to avoid spilling to global scope, but keep current scope
     # even if render method has finished
     @env = e.dup
 
     @string = @string.rchop '\n' unless env.config.keep_trailing_newline
+    @globals = Hash(String, Type).new
+
     @root = Node::Root.new(self)
     Parser::TemplateParser.new(self, root).build
   end
@@ -31,8 +34,10 @@ class Crinja::Template
   end
 
   def render(io : IO, bindings = nil)
-    env.with_scope(bindings) do
-      render(io, env)
+    env.with_scope(globals) do
+      env.with_scope(bindings) do
+        render(io, env)
+      end
     end
   end
 

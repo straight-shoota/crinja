@@ -159,7 +159,7 @@ module Crinja::Lexer
     end
 
     def raise(msg)
-      ::raise ParseException.new(msg, @token.dup, current_char)
+      ::raise TemplateSyntaxError.new(@token.dup, msg)
     end
   end
 end

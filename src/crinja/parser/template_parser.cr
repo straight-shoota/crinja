@@ -22,7 +22,7 @@ module Crinja::Parser
       end
 
       if @parent != root
-        raise ParserError.new "Missing end tag for #{@parent}: #{@parent.as(Node::Tag).end_name}"
+        raise TemplateSyntaxError.new token_stream.current_token, "Missing end tag for #{@parent}: #{@parent.as(Node::Tag).end_name}"
       end
 
       root
