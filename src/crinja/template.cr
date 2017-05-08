@@ -42,6 +42,8 @@ class Crinja::Template
   end
 
   def render(io : IO, env : Environment)
+    env.context.autoescape = env.config.autoescape?(filename)
+
     env.context.macros.merge(self.macros)
     output = render_nodes(env, root.children)
 

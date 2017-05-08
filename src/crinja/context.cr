@@ -5,7 +5,7 @@ module Crinja
     getter operators, filters, functions, tags, tests
     getter extend_path_stack, import_path_stack, include_path_stack, macro_stack
 
-    setter autoescape : Bool?
+    property autoescape : Bool?
     setter block_context : NamedTuple(name: String, index: Int32)?
 
     def initialize(bindings : Hash(String, Type))
