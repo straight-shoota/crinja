@@ -2,8 +2,8 @@ module Crinja
   class Tag::Import < Tag
     name "import"
 
-    def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
-      varargs = PeekIterator.new(tag_node.varargs)
+    def interpret(io : IO, env : Environment, tag_node : Node::Tag)
+      varargs = Util::PeekIterator.new(tag_node.varargs)
       template_name = varargs.next.value(env).to_s
 
       env.context.import_path_stack << template_name

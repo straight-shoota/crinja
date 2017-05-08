@@ -8,7 +8,7 @@ class Crinja::Node
     end
 
     def value(trim_blocks = false, lstrip_blocks = false)
-      Crinja::StringTrimmer.trim(token.value,
+      Crinja::Util::StringTrimmer.trim(token.value,
         trim_left || (trim_blocks && left_is_block), trim_right || (lstrip_blocks && right_is_block),
         left_is_block, right_is_block && lstrip_blocks)
     end

@@ -1,8 +1,4 @@
 module Crinja
-  def self.undefined
-    Undefined::INSTANCE
-  end
-
   class Undefined
     INSTANCE = new
 

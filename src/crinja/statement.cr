@@ -49,13 +49,14 @@ module Crinja
       io << " token="
       token.inspect(io)
     end
+
+    module ParentStatement
+      abstract def <<(new_child : Statement)
+
+      abstract def accepts_children? : Bool
+    end
   end
 
-  module ParentStatement
-    abstract def <<(new_child : Statement)
-
-    abstract def accepts_children? : Bool
-  end
 end
 
 require "./statement/*"

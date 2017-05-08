@@ -1,4 +1,4 @@
-module Crinja
+module Crinja::Util
   class PeekIterator(T)
     include Iterator(T)
 

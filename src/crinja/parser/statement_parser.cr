@@ -6,7 +6,7 @@ module Crinja::Parser
     property expected_end_token : Kind = Kind::EOF
     property parse_multiple : Bool = false
 
-    @stack : Array(Crinja::ParentStatement)
+    @stack : Array(Statement::ParentStatement)
 
     getter current_statement : Statement?
     getter context
@@ -25,7 +25,7 @@ module Crinja::Parser
 
     def initialize(@token_stream : TokenStream, @context : Crinja::Context, @root_statement : Statement = Statement::Root.new, @logger = Logger.new)
       @current_statement = nil
-      @stack = [root_statement] of Crinja::ParentStatement
+      @stack = [root_statement] of Statement::ParentStatement
     end
 
     def current_container
@@ -50,7 +50,7 @@ module Crinja::Parser
       end
     end
 
-    def push_stack(new_parent : ParentStatement)
+    def push_stack(new_parent : Statement::ParentStatement)
       unless current_statement.nil?
         if current_container.is_a?(Statement::MultiRoot)
           self.current_statement = nil

@@ -1,4 +1,4 @@
-module Crinja
+module Crinja::Util
   module StringTrimmer
     def self.trim_simple(string, left = true, right = true)
       return string unless left || right

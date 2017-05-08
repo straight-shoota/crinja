@@ -1,4 +1,4 @@
-module Crinja
+module Crinja::Util
   class ScopeMap(K, V)
     @scope : Hash(K, V) = Hash(K, V).new
     @parent : self?

@@ -2,10 +2,10 @@ module Crinja
   class Tag::From < Tag
     name "from"
 
-    def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
+    def interpret(io : IO, env : Environment, tag_node : Node::Tag)
       imports = Hash(String, String).new
 
-      varargs = PeekIterator.new(tag_node.varargs)
+      varargs = Util::PeekIterator.new(tag_node.varargs)
       template_name = varargs.next.value(env).to_s
       expect_name(varargs.next, "import")
       with_context = false

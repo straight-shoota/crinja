@@ -1,5 +1,5 @@
 module Crinja
-  class Context < ScopeMap(String, Type)
+  class Context < Util::ScopeMap(String, Type)
     AUTOESCAPE_DEFAULT = true
 
     getter operators, filters, functions, tags, tests
