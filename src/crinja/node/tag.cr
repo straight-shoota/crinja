@@ -14,6 +14,10 @@ class Crinja::Node
       tag.name
     end
 
+    def block?
+      true
+    end
+
     def end_name
       if (tag = @tag).responds_to?(:end_tag_for)
         tag.end_tag_for(self)

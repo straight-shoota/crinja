@@ -28,4 +28,12 @@ describe Crinja do
   it "renders else tag" do
     render(%("Hello, {% if world %}World{% else %}Everyone{% endif %}!), {"world" => false}).should eq("\"Hello, Everyone!")
   end
+
+  it "respects comments" do
+    render(%(Hello, \n{#- foob\nbar -#}\nWorld!)).should eq("Hello, \nWorld!")
+  end
+
+  it "renders simple test" do
+    render(%({% if 4 is even %}even{% else %}odd{% endif %})).should eq("even")
+  end
 end

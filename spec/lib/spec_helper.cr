@@ -1,2 +1,2 @@
 require "spec"
-require "../src/crinja/base"
+require "../src/crinja"

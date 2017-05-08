@@ -71,6 +71,8 @@ module Crinja::Lexer
         when Symbol::NOTE
           @token.kind = Kind::NOTE
           @stack << State::NOTE
+          @token.value = consume_note
+          return
         else
           @token.kind = Kind::FIXED
           @token.value = consume_fixed
@@ -106,6 +108,27 @@ module Crinja::Lexer
 
     def raise(message)
       ::raise(Crinja::TemplateSyntaxError.new(@token.dup, message))
+    end
+
+    def consume_note
+      String.build do |io|
+        io << current_char # = '{'
+        io << next_char # = '#'
+        next_char
+
+        if current_char == Symbol::TRIM_WHITESPACE
+          @token.trim_left = true
+        end
+
+        while current_char
+          if check_for_end
+            break
+          end
+
+          io << current_char
+          next_char
+        end
+      end
     end
 
     # check if current scope closes

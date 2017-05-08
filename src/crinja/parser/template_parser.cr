@@ -37,6 +37,8 @@ module Crinja::Parser
         build_expression_node(token)
       when Kind::TAG_START
         build_tag_node(token)
+      when Kind::NOTE
+        build_note_node(token)
       else
         raise "Unexpected token #{token}"
       end
@@ -47,11 +49,20 @@ module Crinja::Parser
 
       if (sibling = last_sibling).nil?
         node.trim_left = @parent.trim_right?
-        node.left_is_block = @parent.is_a?(Node::Tag)
+        node.left_is_block = @parent.block?
       else
         node.trim_left = sibling.trim_right_after_end?
-        node.left_is_block = sibling.is_a?(Node::Tag)
+        node.left_is_block = sibling.block?
       end
+
+      node.parent = @parent.as(Node)
+      node
+    end
+
+    def build_note_node(token)
+      node = Node::Note.new(token)
+
+      set_trim_for_last_sibling(node.trim_left?, true)
 
       node.parent = @parent.as(Node)
       node

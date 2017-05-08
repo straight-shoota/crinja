@@ -21,6 +21,10 @@ module Crinja
       {{ @type.stringify }}.rpartition("::").last.downcase
     end
 
+    def block?
+      false
+    end
+
     def trim_left?
       token.trim_left
     end
