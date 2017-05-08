@@ -113,7 +113,7 @@ module Crinja::Lexer
     def consume_note
       String.build do |io|
         io << current_char # = '{'
-        io << next_char # = '#'
+        io << next_char    # = '#'
         next_char
 
         if current_char == Symbol::TRIM_WHITESPACE

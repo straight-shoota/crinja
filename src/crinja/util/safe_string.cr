@@ -49,7 +49,7 @@ module Crinja
         SafeString.plain nil
       when SafeString
         value
-      when Int32, Float64
+      when Number
         SafeString.plain value.to_s
       when Array
         container = value.map do |v|

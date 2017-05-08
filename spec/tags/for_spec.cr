@@ -163,10 +163,10 @@ describe Crinja::Tag::For do
         TPL).should eq "[1][2][3]"
   end
 
-  pending "scoping_bug" do
+  it "scoping_bug" do
     render(<<-'TPL'
-        {%- for item in foo %}...{{ item }}...{% endfor %}
-        {%- macro item(a) %}...{{ a }}...{% endmacro %}
+        {%- for item in foo %}...{{ item }}...{% endfor -%}
+        {%- macro item(a) %}...{{ a }}...{% endmacro -%}
         {{- item(2) -}}
         TPL, {"foo" => [1]}).should eq "...1......2..."
   end

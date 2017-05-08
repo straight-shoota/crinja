@@ -10,7 +10,7 @@ module Crinja
     abstract def call(target : Any, arguments : Arguments) : Type
 
     class Library < FeatureLibrary(Filter)
-      register_defaults [Abs, Float,
+      register_defaults [Abs, Float, Filesizeformat,
                          Uppercase, Lowercase, Capitalize, Center, Format, Indent,
                          Striptags,
                          Escape, Safe,
@@ -28,7 +28,21 @@ module Crinja
     abstract def call(target : Any, arguments : Arguments) : Bool
 
     class Library < FeatureLibrary(Test)
-      register_defaults [Even]
+      register_defaults [Defined, Callable, Even, Odd]
+    end
+
+    macro test_def(name)
+      class {{ name.stringify.capitalize.id }} < Test
+        def name : String
+          {{ name.stringify }}
+        end
+
+        def call(target : Any, arguments : Arguments) : Bool
+          yield(target, arguments)
+        end
+      end
+
+      #@@defaults << {{ name.stringify.capitalize.id }}
     end
   end
 end

@@ -118,7 +118,7 @@ describe Crinja::Filter do
   end
 
   describe "filesizeformat" do
-    pending do
+    it do
       evaluate_statement(%(100|filesizeformat)).should eq "100 Bytes"
       evaluate_statement(%(1000|filesizeformat)).should eq "1.0 kB"
       evaluate_statement(%(1000000|filesizeformat)).should eq "1.0 MB"
@@ -130,7 +130,7 @@ describe Crinja::Filter do
       evaluate_statement(%(1000000000000|filesizeformat(true))).should eq "931.3 GiB"
     end
 
-    pending "issue59" do
+    it "issue59" do
       evaluate_statement(%(300|filesizeformat)).should eq "300 Bytes"
       evaluate_statement(%(3000|filesizeformat)).should eq "3.0 kB"
       evaluate_statement(%(3000000|filesizeformat)).should eq "3.0 MB"

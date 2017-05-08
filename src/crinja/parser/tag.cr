@@ -1,5 +1,4 @@
 module Crinja::Parser
-
   module BuildTag
     def build_tag_node(start_token)
       name_token = token_stream.next_token

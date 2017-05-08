@@ -134,7 +134,7 @@ module Crinja::Lexer
           @buffer << char
           raise "Invalid floating point number" if is_float
           is_float = true
-        when ' ', Char::ZERO, Symbol::PARENTHESIS_END, Symbol::LIST_END, Symbol::DICT_END, Symbol::DICT_ASSIGN, Symbol::LIST_SEPARATOR
+        when ' ', '\n', '\t', '\r', Char::ZERO, Symbol::PARENTHESIS_END, Symbol::LIST_END, Symbol::DICT_END, Symbol::DICT_ASSIGN, Symbol::LIST_SEPARATOR, Symbol::PIPE
           break
         else
           raise "Invalid number. Found char: '#{char}'(#{char.ord}) at #{stream.position}"

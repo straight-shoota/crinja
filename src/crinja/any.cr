@@ -3,7 +3,7 @@ require "./util/undefined"
 require "./lib/callable"
 
 module Crinja
-  alias TypeValue = String | Float64 | Int32 | Bool | PyObject | Undefined | Crinja::Callable | SafeString | Nil
+  alias TypeValue = String | Float64 | Int64 | Int32 | Bool | PyObject | Undefined | Crinja::Callable | SafeString | Nil
   alias TypeContainer = Hash(Type, Type) | Array(Type) | Tuple(Type, Type) # |Array(Tuple(Type, Type))
   alias Type = TypeValue | TypeContainer
 end
@@ -169,6 +169,10 @@ class Crinja::Any
     @raw.as(Hash)
   end
 
+  def as_number : Int32 | Int64 | Float64
+    @raw.as(Int32 | Int64 | Float64)
+  end
+
   # :nodoc:
   def inspect(io)
     @raw.inspect(io)
@@ -200,7 +204,7 @@ class Crinja::Any
 
     if thisraw.is_a?(String | SafeString) || otherraw.is_a?(String | SafeString)
       #  thisraw.to_s <=> otherraw.to_s
-    elsif thisraw.is_a?(Int32 | Float64) && otherraw.is_a?(Int32 | Float64)
+    elsif number? && other.number?
       #  thisraw <=> otherraw
       # elsif thisraw.is_a?(Array) && otherraw.is_a?(Array)
       #  thisraw <=> otherraw
@@ -239,6 +243,14 @@ class Crinja::Any
 
   def undefined?
     raw.is_a?(Undefined)
+  end
+
+  def callable?
+    raw.is_a?(Callable)
+  end
+
+  def number?
+    raw.is_a?(Int32 | Int64 | Float64)
   end
 
   def self.undefined

@@ -5,7 +5,7 @@ class Crinja::Statement
     def evaluate(env : Crinja::Environment) : Type
       case token.kind
       when Kind::INTEGER
-        token.value.to_i32
+        token.value.to_i64
       when Kind::FLOAT
         token.value.to_f
       when Kind::STRING

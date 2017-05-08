@@ -16,11 +16,10 @@ module Crinja
       DISABLED = AutoescapeConfig.new(enabled_extensions: [] of String, default_for_string: false, default: false)
 
       def initialize(
-          @enabled_extensions = ["html", "htm", "xml"],
-          @disabled_extensions = [] of String,
-          @default_for_string = true,
-          @default = true
-        )
+                     @enabled_extensions = ["html", "htm", "xml"],
+                     @disabled_extensions = [] of String,
+                     @default_for_string = true,
+                     @default = true)
       end
 
       def autoescape?(filename : String?)
@@ -38,7 +37,7 @@ module Crinja
       def match_extension?(extensions : Array(String), filename : String)
         extname = File.extname(filename)
         if [".jinja", ".j2"].includes?(extname)
-          extname = File.extname(filename[0..(-extname.size() -1)])
+          extname = File.extname(filename[0..(-extname.size - 1)])
         end
         extensions.includes?(extname[1..-1])
       end

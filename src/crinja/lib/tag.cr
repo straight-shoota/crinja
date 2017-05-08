@@ -46,19 +46,19 @@ module Crinja
     end
 
     class Library < FeatureLibrary(Tag)
-      TAGS_WITH_BODY = [For, If, Set, Macro, Block]
-      SINGLE_TAGS    = [Else, ElseIf, Include, Extends, From, Import]
+      TAGS = [For, If, Set, Macro, Block, Filter,
+              Else, ElseIf, Include, Extends, From, Import, Call]
 
       def register_defaults
-        TAGS_WITH_BODY.each do |name|
-          tag = name.new
-          self << tag
-          self << EndTag.new(tag)
-        end
-        SINGLE_TAGS.each do |name|
+        TAGS.each do |name|
           tag = name.new
           self << tag
         end
+      end
+
+      def <<(tag)
+        super(tag)
+        super(EndTag.new(tag)) unless tag.end_tag.nil?
       end
     end
   end

@@ -25,7 +25,7 @@ class Crinja::Operator
         end
       elsif a.is_a?(Bool) || b.is_a?(Bool)
         raise InvalidArgumentException.new self, "Cannot compare Bool value"
-      elsif a.is_a?(Float64 | Int32) && b.is_a?(Float64 | Int32)
+      elsif a.is_a?(Number) && b.is_a?(Number)
         a <=> b
       elsif a.is_a?(String | SafeString) || a.is_a?(String | SafeString)
         a.to_s <=> b.to_s

@@ -1,17 +1,17 @@
 module Crinja
-  class Test::Even < Test
-    name "even"
+  class Test::Defined < Test
+    name "defined"
 
     def call(target : Any, arguments : Arguments) : Bool
-      target.to_i.even?
+      !target.undefined?
     end
   end
 
-  class Test::Odd < Test
-    name "odd"
+  class Test::Callable < Test
+    name "callable"
 
     def call(target : Any, arguments : Arguments) : Bool
-      target.to_i.odd?
+      target.callable?
     end
   end
 end

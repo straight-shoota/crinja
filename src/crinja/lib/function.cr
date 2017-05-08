@@ -4,8 +4,8 @@ require "./feature_library"
 
 module Crinja
   abstract class Function
-    include Callable
-    include Importable
+    include Crinja::Callable
+    include Crinja::Importable
 
     class Library < FeatureLibrary(Function)
       register_defaults [Dict, Range, Super]
