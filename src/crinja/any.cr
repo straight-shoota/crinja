@@ -3,13 +3,18 @@ require "./util/undefined"
 require "./lib/callable"
 
 module Crinja
+  # :nodoc:
   alias TypeValue = String | Float64 | Int64 | Int32 | Bool | PyObject | Undefined | Crinja::Callable | SafeString | Nil
+  # :nodoc:
   alias TypeContainer = Hash(Type, Type) | Array(Type) | Tuple(Type, Type) # |Array(Tuple(Type, Type))
   alias Type = TypeValue | TypeContainer
 end
 
 # was intended to be a struct, but that crashes iterator
 
+# Any is a value object inside the Crinja runtime.
+#
+# TODO: Rename to `Value`
 class Crinja::Any
   include Enumerable(self)
   include Iterable(self)
@@ -169,6 +174,7 @@ class Crinja::Any
     @raw.as(Hash)
   end
 
+  # Checks that the underlying value is a `Int32 | Int64 | Float64`, and returns its value. Raises otherwise.
   def as_number : Int32 | Int64 | Float64
     @raw.as(Int32 | Int64 | Float64)
   end
@@ -198,6 +204,9 @@ class Crinja::Any
     raw == other
   end
 
+  # Compares this value to *other*.
+  #
+  # TODO: Enable proper comparison.
   def <=>(other : Any)
     thisraw = @raw
     otherraw = other.raw
@@ -219,10 +228,6 @@ class Crinja::Any
     raw.hash
   end
 
-  def truthy?
-    raw != false && raw != 0 && !raw.nil? && !undefined?
-  end
-
   def to_i
     raw = @raw
     if raw.responds_to?(:to_i)
@@ -241,18 +246,27 @@ class Crinja::Any
     end
   end
 
+  # Returns `true` unless this value is `false`, `0`, `nil` or `#undefined?`
+  def truthy?
+    raw != false && raw != 0 && !raw.nil? && !undefined?
+  end
+
+  # Returns `true` if this value is a `Undefined`
   def undefined?
     raw.is_a?(Undefined)
   end
 
+  # Returns `true` if this value is a `Callable`
   def callable?
     raw.is_a?(Callable)
   end
 
+  # Returns `true` if this value is a `Int32 | Int64 | Float64`
   def number?
     raw.is_a?(Int32 | Int64 | Float64)
   end
 
+  # Returns an array wrapping an instance of `Undefined`
   def self.undefined
     new(Undefined.new)
   end

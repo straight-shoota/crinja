@@ -4,24 +4,6 @@ module Crinja
   abstract class Loader
     abstract def get_source(env : Environment, template : String)
 
-    def load(env : Environment, names : Array(String))
-      names.each do |name|
-        begin
-          return load(env, name)
-        rescue TemplateNotFoundError
-        end
-      end
-
-      raise TemplateNotFoundError.new(names, self)
-    end
-
-    def load(env : Environment, name : String)
-      # TODO: Cache template parsing
-      string, file_name = get_source(env, name)
-
-      Template.new(string, env, name, file_name)
-    end
-
     class FileSystemLoader < Loader
       property searchpaths : Array(String)
 

@@ -42,7 +42,6 @@ module Crinja
         end
       end
 
-      #@@defaults << {{ name.stringify.capitalize.id }}
     end
   end
 end

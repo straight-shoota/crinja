@@ -3,6 +3,7 @@ require "./config"
 require "./loader"
 require "logger"
 
+# The core component of Crinja is the `Environment`. It contains configuration, global variables and provides an API for template loading and rendering. Instances of this class may be modified if they are not shared and if no template was loaded so far. Modifications on environments after the first template was loaded will lead to surprising effects and undefined behavior.
 class Crinja::Environment
   getter context : Context
   getter global_context : Context
@@ -27,16 +28,40 @@ class Crinja::Environment
     initialize(Context.new(original.context))
   end
 
+  # Loads a template from *string.* This parses the source given and returns a `Template` object.
   def from_string(string : String)
     Template.new(string, self)
   end
 
-  def get_template(name, parent = nil, globals = Hash(String, Type).new)
-    template = loader.load(self, name)
-    template.globals = globals
-    template
+  # Loads a template from the loader. If a loader is configured this method ask the loader for the template and returns a `Template`.
+  # *If the parent parameter is not None, join_path() is called to get the real template name before loading.
+  # TODO: *parent* parameter is not implemented.
+  # The *globals* parameter can be used to provide template wide globals. These variables are available in the context at render time.
+  # If the template does not exist a `TemplateNotFoundError` is raised.
+  # TODO: Cache template parsing
+  def get_template(name : String, parent = nil, globals = nil)
+    string, file_name = loader.get_source(self, name)
+    Template.new(string, self, name, file_name)
   end
 
+  # Works like `#get_template(String)` but tries a number of templates before it fails. If it cannot find any of the templates, it will raise a `TemplateNotFoundError`.
+  def get_template(names : Iterable(String), parent = nil, globals = nil)
+    names.each do |name|
+      begin
+        return get_template(name)
+      rescue TemplateNotFoundError
+      end
+    end
+
+    raise TemplateNotFoundError.new(names, self)
+  end
+
+  # Alias for `#get_template(Iterable(String))`.
+  def select_template(names, parent = nil, globals = nil)
+    get_template(names, parent, globals)
+  end
+
+  # Executes the block inside the context `ctx` and returns to the previous context afterwards.
   def with_scope(ctx : Context)
     former_scope = self.context
     @context = ctx
@@ -48,6 +73,8 @@ class Crinja::Environment
     result
   end
 
+  # Executes the block inside a new sub-context with optional local scoped *bindings*.
+  # Returns to the previous context afterwards.
   def with_scope(bindings = nil)
     ctx = Context.new(self.context)
 
@@ -60,6 +87,7 @@ class Crinja::Environment
     end
   end
 
+  # :nodoc:
   def inspect(io : IO)
     io << "<"
     io << "Crinja::Environment"
@@ -68,6 +96,8 @@ class Crinja::Environment
     io << ">"
   end
 
+  # Resolves an objects item.
+  # Analogous to `__getitem__` in Jinja2.
   def resolve_item(name : String, object)
     value = Undefined.new(name)
     if object.responds_to?(:getitem)
@@ -87,7 +117,7 @@ class Crinja::Environment
     value.as(Type)
   end
 
-  def resolve_with_hash_accessor(name, object)
+  private def resolve_with_hash_accessor(name, object)
     if object.responds_to?(:[]) && !object.is_a?(Array) && !object.is_a?(Tuple)
       begin
         return object[name]
@@ -98,6 +128,8 @@ class Crinja::Environment
     Undefined.new(name)
   end
 
+  # Resolves an objects attribute.
+  # Analogous to `getattr` in Jinja2.
   def resolve_attribute(name : String, object)
     value = Undefined.new(name)
     if object.responds_to?(:getattr)
@@ -117,11 +149,13 @@ class Crinja::Environment
     value.as(Type)
   end
 
+  # Resolves a variable in the current context.
   def resolve(name : String)
     logger.debug "resolving string #{name} in context"
     context[name]
   end
 
+  # Resolves a variable in the current context.
   def resolve(variable : Variable)
     logger.debug "resolving variable #{variable}"
     value = context

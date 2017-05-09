@@ -1,5 +1,8 @@
 # crinja
 
+[![Dependency Status](https://shards.rocks/badge/github/straight-shoota/crinja/status.svg)](https://shards.rocks/github/straight-shoota/crinja)
+[![devDependency Status](https://shards.rocks/badge/github/straight-shoota/crinja/dev_status.svg)](https://shards.rocks/github/straight-shoota/crinja)
+
 Crinja is an implementation of the [Jinja2 template engine](http://jinja.pocoo.org) written in [Crystal](http://crystallang.org). Templates are parsed and evaluated at runtime (see [Background](#background)). It includes a script runtime for evaluation of dynamic python-like expressions used by the Jinja2 syntax.
 
 ## Features
@@ -42,7 +45,7 @@ dependencies:
 require "crinja"
 
 template = Crinja::Template.new("Hello, {{ name }}!")
-template.render({"name" => "John"}) # "Hello, John!"
+template.render({"name" => "John"}) # => "Hello, John!"
 ```
 
 ### File loader
@@ -61,8 +64,8 @@ require "crinja"
 env = Crinja::Environment.new
 env.loader = Crinja::Loader::FileSystemLoader.new("views/")
 template = env.load("index.html.j2")
-template.render # "Hello, World!"
-template.render({ "name" => "John" }) # "Hello, John!"
+template.render # => "Hello, World!"
+template.render({ "name" => "John" }) # => "Hello, John!"
 ```
 
 ## API
@@ -93,11 +96,11 @@ Currently the following configuration options are supported:
     <p>Note: <em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default. This will most likely be changed by Jinja2 in the future, too.</em></p>
     </dd>
     <dt>keep_trailing_newline</dt>
-    <dd>Preserve the trailing newline when rendering templates. If set to `false`, a single newline, if present, to be stripped from the end of the template. Default: <code>false</code></dd>
+    <dd>Preserve the trailing newline when rendering templates. If set to `false`, a single newline, if present, will be stripped from the end of the template. Default: <code>false</code></dd>
     <dt>trim_blocks</dt>
-    <dd>If this is set to <code>true</code> the first newline after a block is removed (block, not variable tag!). Default: <code>false</code>.</dd>
+    <dd>If this is set to <code>true</code>, the first newline after a block is removed. This only applies to blocks, not expression tags. Default: <code>false</code>.</dd>
     <dt>lstrip_blocks</dt>
-    <dd>If this is set to <code>true</code> leading spaces and tabs are stripped from the start of a line to a block. Default: <code>false</code>.</dd>
+    <dd>If this is set to <code>true</code>, leading spaces and tabs are stripped from the start of a line to a block. Default: <code>false</code>.</dd>
 </dl>
 
 See also the original [Jinja2 API Documentation](http://jinja.pocoo.org/docs/2.9/api/).
@@ -127,12 +130,13 @@ env.context.filters << MyCustomFilter.new
 
 Crystal is a great programming language with a clean syntax inspired by Ruby, but it is compiled and runs incredibly fast.
 
-There are already some [template engines for crystal](https://github.com/veelenga/awesome-crystal#template-engine). They all use macros to convert templates to Crystal code and embed them into the source at compile time. So for every change in a template, you have to recompile the binary. This approach is certainly applicable for many projects and provides very fast template rendering. The downside is, you need a crystal build stack for template design. This makes it almost impossible to use dynamic user defined templates, which can be changed at runtime.
+There are already some [template engines for crystal](https://github.com/veelenga/awesome-crystal#template-engine). But if you want control structures and dynamic expressions without some sort of Domain Specific Language, there is only [Embedded Crystal (ECR)](https://crystal-lang.org/api/0.21.1/ECR.html), which is a part of Crystal's standard library. It uses macros to convert templates to Crystal code and embed them into the source at compile time. So for every change in a template, you have to recompile the binary. This approach is certainly applicable for many projects and provides very fast template rendering. The downside is, you need a crystal build stack for template design. This makes it impossible to render dynamic, user defined templates, that can be changed at runtime.
 
 Jinja2 is a powerful, mature template engine with a great syntax and proven language design. It was derived from the [Django Template Language](http://docs.djangoproject.com/en/dev/ref/templates/builtins/) and has quite a number of implementations and adaptations in other languages:
 
-* [Jinjava](https://github.com/HubSpot/jinjava) - Jinja2 implementation in Java, but uses [Unified Expression Language](https://uel.java.net/) (`javaex.el`) instead of python-like expressions
+* [Jinjava](https://github.com/HubSpot/jinjava) - Jinja2 implementation in Java, but uses [Unified Expression Language](https://uel.java.net/) (`javaex.el`) instead of python-like expressions. It served as an inspiration for some parts of Crinja.
 * [Liquid](https://shopify.github.io/liquid/) - Jinja2-inspired template engine in Ruby
+* [Liquid.cr](https://github.com/TechMagister/liquid.cr) - Liquid implementation in Crystal
 * [Twig](https://twig.sensiolabs.org/) - Jinja2-inspired template engine in PHP
 * [ginger](https://hackage.haskell.org/package/ginger) - Jinja2 implementation in Haskell
 * [Jinja-Js](https://github.com/sstur/jinja-js) - Jinja2-inspired template engin in Javascript

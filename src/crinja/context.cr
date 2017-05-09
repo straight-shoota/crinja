@@ -1,4 +1,10 @@
 module Crinja
+  # A context holds information about the state of runtime execution.
+  # This includes tracking of local variables and call stacks, access to global features and configuration settings.
+  #
+  # Contexts form a hierarchical structure, where sub-contexts inherit from their parents, but don't
+  # pollute the outer contexts with local scoped values.
+  # Creating instances is not useful as it’s created automatically at various stages of the template evaluation and should not be created by hand.
   class Context < Util::ScopeMap(String, Type)
     AUTOESCAPE_DEFAULT = true
 
@@ -28,14 +34,17 @@ module Crinja
       @macro_stack = CallStack.new(:macro, parent.try(&.macro_stack))
     end
 
+    # Returns the parent context. It must not be altered.
     def parent : Context?
       @parent.as(Context?)
     end
 
+    # Returns the local variables whose scope is this context.
     def session_bindings
       self.scope
     end
 
+    # Returns macros defined in the root context.
     def macros
       if (p = parent).nil?
         @macros
@@ -44,18 +53,22 @@ module Crinja
       end
     end
 
+    # Merges values in *bindings* into local scope.
     def merge!(bindings)
       super(Crinja::Bindings.cast(bindings).as(Hash(String, Type)))
     end
 
+    # Set variable *key* to value *value* in local scope.
     def []=(key : String, value : Hash(String, Crinja::Type))
       self[key] = Crinja::Bindings.cast(value)
     end
 
+    # Returns an undefined value.
     def undefined
       Undefined.new
     end
 
+    # Determines if autoescape is enabled in this or any parent context.
     def autoescape?
       if (autoescape = @autoescape).nil?
         if (p = parent).nil?
@@ -93,6 +106,7 @@ module Crinja
       parent.try(&.block_context)
     end
 
+    # :nodoc:
     def inspect(io)
       super(io)
       io << " libraries="
@@ -104,33 +118,33 @@ module Crinja
       io << "]"
       {% end %}
     end
-  end
 
-  class CallStack
-    @stack : Array(String) = [] of String
+    class CallStack
+      @stack : Array(String) = [] of String
 
-    def initialize(@kind : Symbol, @parent : CallStack?)
-    end
+      def initialize(@kind : Symbol, @parent : CallStack?)
+      end
 
-    def includes?(path : String)
-      @stack.includes?(path) || @parent.try(&.includes?(path))
-    end
+      def includes?(path : String)
+        @stack.includes?(path) || @parent.try(&.includes?(path))
+      end
 
-    def <<(path : String)
-      raise TagCycleException.new(@kind) if includes?(path)
+      def <<(path : String)
+        raise TagCycleException.new(@kind) if includes?(path)
 
-      push_without_check(path)
-    end
+        push_without_check(path)
+      end
 
-    def push_without_check(path : String)
-      @stack << path
-    end
+      def push_without_check(path : String)
+        @stack << path
+      end
 
-    def pop
-      if @stack.empty?
-        @parent.try(&.pop)
-      else
-        @stack.pop
+      def pop
+        if @stack.empty?
+          @parent.try(&.pop)
+        else
+          @stack.pop
+        end
       end
     end
   end

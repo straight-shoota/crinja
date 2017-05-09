@@ -1,8 +1,0 @@
-require "./util/*"
-require "./error"
-require "./lib/*"
-require "./any"
-require "./node"
-require "./statement"
-require "./template"
-require "./environment"

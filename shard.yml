@@ -1,9 +1,8 @@
 name: crinja
 version: 0.1.0
+license: MIT
 
 authors:
   - Johannes Müller <straightshoota@gmail.com>
 
-crystal: 0.20.5
-
-license: MIT
+crystal: 0.22.0
