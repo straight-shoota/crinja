@@ -12,10 +12,8 @@ end
 
 # was intended to be a struct, but that crashes iterator
 
-# Any is a value object inside the Crinja runtime.
-#
-# TODO: Rename to `Value`
-class Crinja::Any
+# Value is a value object inside the Crinja runtime.
+class Crinja::Value
   include Enumerable(self)
   include Iterable(self)
 
@@ -45,10 +43,10 @@ class Crinja::Any
   # Assumes the underlying value is an Array and returns the element
   # at the given index.
   # Raises if the underlying value is not an Array.
-  def [](index : Int) : Any
+  def [](index : Int) : Value
     case object = @raw
     when Array
-      Any.new object[index]
+      Value.new object[index]
     else
       raise "expected Array for #[](index : Int), not #{object.class}"
     end
@@ -57,11 +55,11 @@ class Crinja::Any
   # Assumes the underlying value is an Array and returns the element
   # at the given index, or `nil` if out of bounds.
   # Raises if the underlying value is not an Array.
-  def []?(index : Int) : Any?
+  def []?(index : Int) : Value?
     case object = @raw
     when Array
       value = object[index]?
-      value ? Any.new(value) : nil
+      value ? Value.new(value) : nil
     else
       raise "expected Array for #[]?(index : Int), not #{object.class}"
     end
@@ -70,10 +68,10 @@ class Crinja::Any
   # Assumes the underlying value is a Hash and returns the element
   # with the given key.
   # Raises if the underlying value is not a Hash.
-  def [](key : String) : Any
+  def [](key : String) : Value
     case object = @raw
     when Hash
-      Any.new object[key]
+      Value.new object[key]
     else
       raise "expected Hash for #[](key : String), not #{object.class}"
     end
@@ -82,28 +80,28 @@ class Crinja::Any
   # Assumes the underlying value is a Hash and returns the element
   # with the given key, or `nil` if the key is not present.
   # Raises if the underlying value is not a Hash.
-  def []?(key : String) : Any?
+  def []?(key : String) : Value?
     case object = @raw
     when Hash
       value = object[key]?
-      value ? Any.new(value) : nil
+      value ? Value.new(value) : nil
     else
       raise "expected Hash for #[]?(key : String), not #{object.class}"
     end
   end
 
   # Assumes the underlying value is an `Array` or `Hash` and yields each
-  # of the elements or key/values, always as `YAML::Any`.
+  # of the elements or key/values, always as `YAML::Value`.
   # Raises if the underlying value is not an `Array` or `Hash`.
   def __each
     case object = @raw
     when Array
       object.each do |elem|
-        yield Any.new(elem), Any.new(nil)
+        yield Value.new(elem), Value.new(nil)
       end
     when Hash
       object.each do |key, value|
-        yield Any.new(key), Any.new(value)
+        yield Value.new(key), Value.new(value)
       end
     when Crinja::Undefined
     else
@@ -114,11 +112,11 @@ class Crinja::Any
   def each
     case object = @raw
     when Iterable(Type)
-      AnyIterator.new(object.each.as(Iterator(Type)))
+      ValueIterator.new(object.each.as(Iterator(Type)))
     when Crinja::Undefined
-      AnyIterator.new
+      ValueIterator.new
     when String
-      AnyIterator.new(object.chars.map(&.to_s.as(Type)).each)
+      ValueIterator.new(object.chars.map(&.to_s.as(Type)).each)
     else
       raise TypeError.new("#{object.class} is not iterable")
     end
@@ -130,8 +128,8 @@ class Crinja::Any
     end
   end
 
-  private class AnyIterator
-    include Iterator(Any)
+  private class ValueIterator
+    include Iterator(Value)
     include IteratorWrapper
 
     def initialize(@iterator : Iterator(Type) = ([] of Type).each)
@@ -141,15 +139,15 @@ class Crinja::Any
       value = wrapped_next
 
       case value
-      when Any
+      when Value
         value
       when Type
-        Any.new value
+        Value.new value
       when stop
         stop
       else
         # TODO: should never be reached, maybe raise?
-        Any.undefined
+        Value.undefined
       end
     end
   end
@@ -195,7 +193,7 @@ class Crinja::Any
   end
 
   # Returns `true` if both `self` and *other*'s raw object are equal.
-  def ==(other : Any)
+  def ==(other : Value)
     raw == other.raw
   end
 
@@ -207,7 +205,7 @@ class Crinja::Any
   # Compares this value to *other*.
   #
   # TODO: Enable proper comparison.
-  def <=>(other : Any)
+  def <=>(other : Value)
     thisraw = @raw
     otherraw = other.raw
 
@@ -268,6 +266,19 @@ class Crinja::Any
 
   # Returns an array wrapping an instance of `Undefined`
   def self.undefined
-    new(Undefined.new)
+    UNDEFINED
+  end
+
+  TRUE      = new(true)
+  FALSE     = new(false)
+  UNDEFINED = new(Undefined.new)
+
+  # Returns a value representing boolean values `true` or `false`.
+  def self.bool(bool)
+    if bool
+      TRUE
+    else
+      FALSE
+    end
   end
 end

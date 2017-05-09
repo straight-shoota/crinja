@@ -2,16 +2,16 @@ class Crinja::Operator
   class Equals < Binary
     name "=="
 
-    def value(env : Environment, op1 : Any, op2 : Any)
-      op1.raw == op2.raw
+    def value(env : Environment, op1 : Value, op2 : Value)
+      op1 == op2
     end
   end
 
   class NotEquals < Binary
     name "!="
 
-    def value(env : Environment, op1 : Any, op2 : Any)
-      op1.raw != op2.raw
+    def value(env : Environment, op1 : Value, op2 : Value)
+      op1 != op2
     end
   end
 
@@ -48,7 +48,7 @@ class Crinja::Operator
   class GreaterThan < Comparator
     name ">"
 
-    def value(env : Environment, op1 : Any, op2 : Any)
+    def value(env : Environment, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) > 0
     end
   end
@@ -56,7 +56,7 @@ class Crinja::Operator
   class GreaterThanEquals < Comparator
     name ">="
 
-    def value(env : Environment, op1 : Any, op2 : Any)
+    def value(env : Environment, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) >= 0
     end
   end
@@ -64,7 +64,7 @@ class Crinja::Operator
   class LowerThan < Comparator
     name "<"
 
-    def value(env : Environment, op1 : Any, op2 : Any)
+    def value(env : Environment, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) < 0
     end
   end
@@ -72,7 +72,7 @@ class Crinja::Operator
   class LowerThanEquals < Comparator
     name "<="
 
-    def value(env : Environment, op1 : Any, op2 : Any)
+    def value(env : Environment, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) <= 0
     end
   end

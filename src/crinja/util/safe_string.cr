@@ -39,7 +39,7 @@ module Crinja
       '"' => "&quot;",
     }
 
-    def self.escape(value : Any) : SafeString
+    def self.escape(value : Value) : SafeString
       escape(value.raw)
     end
 

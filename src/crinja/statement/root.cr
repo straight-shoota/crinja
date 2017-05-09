@@ -5,7 +5,7 @@ class Crinja::Statement
     getter children : Array(Statement) = [] of Statement
     property parent_node : Node?
 
-    def evaluate(env : Crinja::Environment) : Type
+    def evaluate(env : Environment) : Type
       if children.empty?
         nil
       else

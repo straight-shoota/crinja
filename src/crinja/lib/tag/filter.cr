@@ -4,8 +4,8 @@ module Crinja
 
     def interpret_output(env : Crinja::Environment, tag_node : Node::Tag)
       filter_stmt = tag_node.varargs.first
-      varargs : Array(Any) = [] of Any
-      kwargs : Hash(String, Any) = Hash(String, Any).new
+      varargs : Array(Value) = [] of Value
+      kwargs : Hash(String, Value) = Hash(String, Value).new
 
       if filter_stmt.is_a?(Statement::Name)
         filter_name = filter_stmt.name
@@ -24,13 +24,13 @@ module Crinja
                   end
 
       # TODO: Wrap in OutputNode or find a better way
-      arguments.target = Any.new(render_children(env, tag_node).value)
+      arguments.target = Value.new(render_children(env, tag_node).value)
 
       if filter_stmt.is_a?(Statement::Call)
         filter_stmt.varargs.each do |stmt|
           if stmt.is_a?(Statement::SplashOperator)
             stmt.operand.not_nil!.value(env).as_a.each do |arg|
-              arguments.varargs << Any.new(arg)
+              arguments.varargs << Value.new(arg)
             end
           else
             arguments.varargs << stmt.value(env)

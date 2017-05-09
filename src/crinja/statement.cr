@@ -5,15 +5,15 @@ module Crinja
 
     property parent : ParentStatement?
 
-    alias Token = Crinja::Lexer::Token
+    alias Token = Lexer::Token
 
     def initialize(@token : Token = Token.new)
     end
 
-    abstract def evaluate(env : Crinja::Environment) : Crinja::Type
+    abstract def evaluate(env : Environment) : Type
 
-    def value(env : Crinja::Environment) : Crinja::Any
-      Any.new evaluate(env)
+    def value(env : Environment) : Value
+      Value.new evaluate(env)
     end
 
     def root
@@ -56,7 +56,6 @@ module Crinja
       abstract def accepts_children? : Bool
     end
   end
-
 end
 
 require "./statement/*"

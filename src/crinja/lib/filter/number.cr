@@ -2,7 +2,7 @@ module Crinja
   class Filter::Abs < Filter
     name "abs"
 
-    def call(target : Any, arguments : Arguments) : Type
+    def call(target : Value, arguments : Arguments) : Type
       if target.number?
         target.as_number.abs
       else
@@ -18,7 +18,7 @@ module Crinja
       :default => 0.0,
     })
 
-    def call(target : Any, arguments : Arguments) : Type
+    def call(target : Value, arguments : Arguments) : Type
       target.to_f
     rescue ArgumentError
       arguments[:default].to_f
@@ -32,7 +32,7 @@ module Crinja
       :binary => false,
     })
 
-    def call(target : Any, arguments : Arguments) : Type
+    def call(target : Value, arguments : Arguments) : Type
       self.class.filesize_to_human(target.to_f, arguments[:binary].truthy?)
     end
 

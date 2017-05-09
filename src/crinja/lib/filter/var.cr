@@ -7,7 +7,7 @@ module Crinja
       :boolean       => false,
     })
 
-    def call(target : Any, arguments : Callable::Arguments) : Type
+    def call(target : Value, arguments : Callable::Arguments) : Type
       default_value = arguments[:default_value]
 
       value = target.raw
@@ -22,7 +22,7 @@ module Crinja
   class Filter::List < Filter
     name "list"
 
-    def call(target : Any, arguments : Callable::Arguments) : Type
+    def call(target : Value, arguments : Callable::Arguments) : Type
       value = target.raw
 
       case value
@@ -44,7 +44,7 @@ module Crinja
       :fill_with => nil,
     })
 
-    def call(target : Any, arguments : Callable::Arguments) : Type
+    def call(target : Value, arguments : Callable::Arguments) : Type
       value = target.raw
       fill_with = arguments[:fill_with].raw
       linecount = arguments[:linecount].to_i
@@ -73,7 +73,7 @@ module Crinja
       :fill_with => nil,
     })
 
-    def call(target : Any, arguments : Callable::Arguments) : Type
+    def call(target : Value, arguments : Callable::Arguments) : Type
       fill_with = arguments[:fill_with].raw
       slices = arguments[:slices].to_i
       raw = target.raw
@@ -113,7 +113,7 @@ module Crinja
   class Filter::First < Filter
     name "first"
 
-    def call(target : Any, arguments : Callable::Arguments) : Type
+    def call(target : Value, arguments : Callable::Arguments) : Type
       target[0].raw
     end
   end

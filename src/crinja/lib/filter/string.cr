@@ -2,7 +2,7 @@ module Crinja
   class Filter::Uppercase < Filter
     name "upper"
 
-    def call(target : Any, arguments : Function::Arguments) : Type
+    def call(target : Value, arguments : Function::Arguments) : Type
       target.to_s.upcase
     end
   end
@@ -10,7 +10,7 @@ module Crinja
   class Filter::Lowercase < Filter
     name "lower"
 
-    def call(target : Any, arguments : Function::Arguments) : Type
+    def call(target : Value, arguments : Function::Arguments) : Type
       target.to_s.downcase
     end
   end
@@ -18,7 +18,7 @@ module Crinja
   class Filter::Capitalize < Filter
     name "capitalize"
 
-    def call(target : Any, arguments : Function::Arguments) : Type
+    def call(target : Value, arguments : Function::Arguments) : Type
       target.to_s.capitalize
     end
   end
@@ -30,7 +30,7 @@ module Crinja
       :width => 80,
     })
 
-    def call(target : Any, arguments : Function::Arguments) : Type
+    def call(target : Value, arguments : Function::Arguments) : Type
       string = target.to_s
       width = arguments[:width].to_i
       return string if string.size >= width
@@ -49,7 +49,7 @@ module Crinja
   class Filter::Striptags < Filter
     name "striptags"
 
-    def call(target : Any, arguments : Function::Arguments) : Type
+    def call(target : Value, arguments : Function::Arguments) : Type
       xml = XML.parse_html target.to_s
       xml.inner_text.gsub(/\s+/, " ").strip
     end
@@ -58,7 +58,7 @@ module Crinja
   class Filter::Format < Filter
     name "format"
 
-    def call(target : Any, arguments : Function::Arguments) : Type
+    def call(target : Value, arguments : Function::Arguments) : Type
       sprintf target.to_s, arguments.varargs
     end
   end
@@ -71,7 +71,7 @@ module Crinja
       :indentfirst => false,
     })
 
-    def call(target : Any, arguments : Function::Arguments) : Type
+    def call(target : Value, arguments : Function::Arguments) : Type
       indent = " " * arguments[:width].to_i
       nl = "\n" + indent
       string = target.to_s

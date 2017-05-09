@@ -27,7 +27,7 @@ class Crinja::Statement
         @value != nil
       end
 
-      def evaluate(env : Crinja::Environment) : Type
+      def evaluate(env : Environment) : Type
         {key.evaluate(env), value.not_nil!.evaluate(env)}.as(Tuple(Type, Type))
       end
     end
@@ -43,7 +43,7 @@ class Crinja::Statement
       entry.parent = self
     end
 
-    def evaluate(env : Crinja::Environment) : Type
+    def evaluate(env : Environment) : Type
       hash = Hash(Type, Type).new
       children.each do |entry|
         key, value = entry.evaluate(env)

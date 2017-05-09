@@ -13,7 +13,7 @@ class Crinja::Statement
       @name_token.value
     end
 
-    def evaluate(env : Crinja::Environment) : Type
+    def evaluate(env : Environment) : Type
       filter = resolve_filter(env)
 
       arguments = filter.create_arguments(env)

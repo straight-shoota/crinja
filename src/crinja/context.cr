@@ -1,3 +1,5 @@
+require "./value"
+
 module Crinja
   # A context holds information about the state of runtime execution.
   # This includes tracking of local variables and call stacks, access to global features and configuration settings.
@@ -59,7 +61,7 @@ module Crinja
     end
 
     # Set variable *key* to value *value* in local scope.
-    def []=(key : String, value : Hash(String, Crinja::Type))
+    def []=(key : String, value : Hash(String, Type))
       self[key] = Crinja::Bindings.cast(value)
     end
 
@@ -84,7 +86,7 @@ module Crinja
     def unpack(vars : Array(String), values : Array(Type))
       vars.each_with_index do |var, i|
         value = values[i]
-        self[var] = if value.is_a?(Any)
+        self[var] = if value.is_a?(Value)
                       value.raw
                     else
                       value
@@ -92,7 +94,7 @@ module Crinja
       end
     end
 
-    def unpack(vars : Array(String), values : Array(Any))
+    def unpack(vars : Array(String), values : Array(Value))
       unpack(vars, values.map(&.raw))
     end
 

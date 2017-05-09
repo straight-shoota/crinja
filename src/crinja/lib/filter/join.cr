@@ -7,7 +7,7 @@ module Crinja
       :attribute => nil,
     })
 
-    def call(target : Any, arguments : Callable::Arguments) : Type
+    def call(target : Value, arguments : Callable::Arguments) : Type
       value = target.raw
       separator = arguments[:separator].to_s
       attribute = arguments[:attribute]

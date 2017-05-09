@@ -8,14 +8,14 @@ module Crinja
   end
 
   module Callable
-    abstract def call(arguments : Arguments) : Type
+    abstract def call(arguments : Arguments) : Value
 
-    def create_arguments(env : Environment, varargs : Array(Any) = [] of Any, kwargs : Hash(String, Any) = Hash(String, Any).new, defaults : Hash(String, Type) = Hash(String, Type).new)
+    def create_arguments(env : Environment, varargs : Array(Value) = [] of Value, kwargs : Hash(String, Value) = Hash(String, Value).new, defaults : Hash(String, Type) = Hash(String, Type).new)
       Arguments.new(env, varargs, kwargs, defaults)
     end
 
     macro arguments(defs)
-      def create_arguments(env : Environment, varargs : Array(Any) = [] of Any, kwargs : Hash(String, Any) = Hash(String, Any).new)
+      def create_arguments(env : Environment, varargs : Array(Value) = [] of Value, kwargs : Hash(String, Value) = Hash(String, Value).new)
         defaults = Hash(String, Type).new
         {% for key, value in defs %}
         defaults[{{ key.id.stringify }}] = {{ value }}
@@ -25,21 +25,21 @@ module Crinja
     end
 
     class Arguments
-      property varargs : Array(Any)
-      property target : Any?
-      property caller : Any?
-      property kwargs : Hash(String, Any)
+      property varargs : Array(Value)
+      property target : Value?
+      property caller : Value?
+      property kwargs : Hash(String, Value)
       property defaults : Hash(String, Type)
       property env : Environment
 
-      def initialize(@env, @varargs = [] of Any, @kwargs = Hash(String, Any).new, @defaults = Hash(String, Type).new)
+      def initialize(@env, @varargs = [] of Value, @kwargs = Hash(String, Value).new, @defaults = Hash(String, Type).new)
       end
 
-      def [](name : Symbol) : Any
+      def [](name : Symbol) : Value
         self.[name.to_s]
       end
 
-      def [](name : String) : Any
+      def [](name : String) : Value
         if kwargs.has_key?(name)
           kwargs[name]
         elsif index = defaults.key_index(name)
@@ -54,7 +54,7 @@ module Crinja
       end
 
       def to_h
-        [@kwargs.keys, @defaults.keys].flatten.uniq.each_with_object(Hash(String, Any).new) do |key, hash|
+        [@kwargs.keys, @defaults.keys].flatten.uniq.each_with_object(Hash(String, Value).new) do |key, hash|
           hash[key] = self[key]
         end
       end
@@ -72,7 +72,7 @@ module Crinja
       end
 
       def default(name : String)
-        Any.new defaults[name]
+        Value.new defaults[name]
       end
     end
   end

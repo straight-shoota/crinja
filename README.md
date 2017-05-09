@@ -118,7 +118,7 @@ class MyCustomFilter < Crinja::Filter
     arguments({
         :attribute => "great"
     })
-    def call(target : Crinja::Any, arguments : Crinja::Callable::Arguments) : Crinja::Type
+    def call(target : Crinja::Value, arguments : Crinja::Callable::Arguments) : Crinja::Type
         "Crystal is #{arguments[:attribute]}! (orginally: #{target.to_s})"
     end
 end

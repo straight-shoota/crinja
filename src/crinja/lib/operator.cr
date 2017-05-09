@@ -49,7 +49,7 @@ module Crinja
         value(env, op1, op2)
       end
 
-      abstract def value(env : Environment, op1 : Any, op2 : Any) : Type
+      abstract def value(env : Environment, op1 : Value, op2 : Value) : Type
     end
 
     abstract class Unary < Operator
@@ -61,7 +61,7 @@ module Crinja
         value(env, op)
       end
 
-      abstract def value(env : Environment, op : Any) : Type
+      abstract def value(env : Environment, op : Value) : Type
     end
   end
 end

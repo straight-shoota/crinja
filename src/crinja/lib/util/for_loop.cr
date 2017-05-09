@@ -15,7 +15,7 @@ class Crinja::Util::ForLoop
     initialize(collection.each, collection.size)
   end
 
-  def initialize(iterator : Iterator(Any), @length : Int32)
+  def initialize(iterator : Iterator(Value), @length : Int32)
     initialize(iterator)
 
     if length < 2
@@ -27,7 +27,7 @@ class Crinja::Util::ForLoop
     end
   end
 
-  def initialize(@iterator : Iterator(Any))
+  def initialize(@iterator : Iterator(Value))
     @index0 = -1
     @first = true
     @last = false
@@ -50,7 +50,7 @@ class Crinja::Util::ForLoop
           @revindex0 = 0
         end
 
-        yield value.as(Any)
+        yield value.as(Value)
 
         value = next_value
 
@@ -95,11 +95,11 @@ class Crinja::Util::ForLoop
       initialize(loop_runner, collection.each, collection.size)
     end
 
-    def initialize(@loop_runner, iterator : Iterator(Any), length : Int32)
+    def initialize(@loop_runner, iterator : Iterator(Value), length : Int32)
       super(iterator, length)
     end
 
-    def initialize(@loop_runner, iterator : Iterator(Any))
+    def initialize(@loop_runner, iterator : Iterator(Value))
       super(iterator)
     end
 

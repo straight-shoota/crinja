@@ -18,7 +18,7 @@ class Crinja::Statement
       statement.parent = self
     end
 
-    def evaluate(env : Crinja::Environment) : Type
+    def evaluate(env : Environment) : Type
       object = base.value(env)
       raise TemplateSyntaxError.new(token, "empty attribute") if attribute.nil?
 

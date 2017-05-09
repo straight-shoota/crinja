@@ -7,7 +7,7 @@ module Crinja
       call(arguments.target.not_nil!, arguments)
     end
 
-    abstract def call(target : Any, arguments : Arguments) : Type
+    abstract def call(target : Value, arguments : Arguments) : Type
 
     class Library < FeatureLibrary(Filter)
       register_defaults [Abs, Float, Filesizeformat,
@@ -25,7 +25,7 @@ module Crinja
       call(arguments.target.not_nil!, arguments)
     end
 
-    abstract def call(target : Any, arguments : Arguments) : Bool
+    abstract def call(target : Value, arguments : Arguments) : Bool
 
     class Library < FeatureLibrary(Test)
       register_defaults [Defined, Callable, Even, Odd]
@@ -37,7 +37,7 @@ module Crinja
           {{ name.stringify }}
         end
 
-        def call(target : Any, arguments : Arguments) : Bool
+        def call(target : Value, arguments : Arguments) : Bool
           yield(target, arguments)
         end
       end

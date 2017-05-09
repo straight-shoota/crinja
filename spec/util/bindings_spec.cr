@@ -1,5 +1,5 @@
 require "spec"
-require "../../src/crinja/any"
+require "../../src/crinja/value"
 require "../../src/crinja/util/bindings"
 
 describe Crinja::Bindings do

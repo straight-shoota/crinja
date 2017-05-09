@@ -20,7 +20,7 @@ module Crinja
         self.cast_list(value)
       when Char
         value.to_s
-      when Any
+      when Value
         value.raw
       else
         value.as(Crinja::Type)

@@ -87,6 +87,10 @@ class Crinja::Environment
     end
   end
 
+  def undefined
+    Value.undefined
+  end
+
   # :nodoc:
   def inspect(io : IO)
     io << "<"
@@ -110,7 +114,7 @@ class Crinja::Environment
       value = resolve_with_hash_accessor(name, object)
     end
 
-    if value.is_a?(Any)
+    if value.is_a?(Value)
       value = value.raw
     end
 
@@ -142,7 +146,7 @@ class Crinja::Environment
       value = resolve_with_hash_accessor(name, object)
     end
 
-    if value.is_a?(Any)
+    if value.is_a?(Value)
       value = value.raw
     end
 

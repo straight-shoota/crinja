@@ -9,7 +9,7 @@ class Crinja::Statement
       statement.parent = self
     end
 
-    def evaluate(env : Crinja::Environment) : Type
+    def evaluate(env : Environment) : Type
       array = [] of Type
       children.each do |child|
         array << child.value(env).raw

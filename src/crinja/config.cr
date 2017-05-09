@@ -31,8 +31,7 @@ module Crinja
                    @autoescape = AutoescapeConfig.new,
                    @keep_trailing_newline = false,
                    @trim_blocks = false,
-                   @lstrip_blocks = false
-                   )
+                   @lstrip_blocks = false)
     end
 
     # This class holds configuration values for autoescape config.

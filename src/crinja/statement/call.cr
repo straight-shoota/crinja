@@ -4,12 +4,12 @@ class Crinja::Statement
 
     include ArgumentsList
 
-    def initialize(token : Crinja::Lexer::Token, @target)
+    def initialize(token, @target)
       super(token)
       target.parent = self
     end
 
-    def evaluate(env : Crinja::Environment) : Type
+    def evaluate(env : Environment) : Type
       if (name_stmt = target).is_a?(Statement::Name) && env.context.macros.has_key?(name_stmt.name)
         # its a macro call
         callable = env.context.macros[name_stmt.name]
@@ -18,19 +18,19 @@ class Crinja::Statement
         callable = target_value.raw
       end
 
-      unless callable.is_a?(Crinja::Callable)
+      unless callable.is_a?(Callable)
         raise "cannot call #{target_value.inspect}. Not a function"
       else
         arguments = if callable.responds_to?(:create_arguments)
                       callable.create_arguments(env)
                     else
-                      Crinja::Callable::Arguments.new(env)
+                      Callable::Arguments.new(env)
                     end
 
         varargs.each do |stmt|
-          if stmt.is_a?(Statement::SplashOperator)
+          if stmt.is_a?(SplashOperator)
             stmt.operand.not_nil!.value(env).as_a.each do |arg|
-              arguments.varargs << Any.new(arg)
+              arguments.varargs << Value.new(arg)
             end
           else
             arguments.varargs << stmt.value(env)

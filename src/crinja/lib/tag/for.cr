@@ -93,10 +93,10 @@ module Crinja
     end
 
     class ConditionalIterator
-      include Iterator(Any)
+      include Iterator(Value)
       include IteratorWrapper
 
-      def initialize(@iterator : Iterator(Any), @condition : Statement, @env : Environment, @item_vars : Array(String))
+      def initialize(@iterator : Iterator(Value), @condition : Statement, @env : Environment, @item_vars : Array(String))
       end
 
       def next

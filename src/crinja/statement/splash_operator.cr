@@ -18,7 +18,7 @@ class Crinja::Statement
       !operand.nil?
     end
 
-    def evaluate(env : Environment) : Type
+    def evaluate(env : Environment) : Value
       raise "SplashOperator should never be evaluated directly"
     end
   end

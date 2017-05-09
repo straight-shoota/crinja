@@ -35,7 +35,7 @@ module Crinja
         @caller = false
       end
 
-      def create_arguments(env : Environment, varargs : Array(Any) = [] of Any, kwargs : Hash(String, Any) = Hash(String, Any).new)
+      def create_arguments(env : Environment, varargs : Array(Value) = [] of Value, kwargs : Hash(String, Value) = Hash(String, Value).new)
         create_arguments(env, varargs, kwargs, defaults)
       end
 

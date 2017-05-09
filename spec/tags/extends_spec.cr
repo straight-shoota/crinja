@@ -37,7 +37,7 @@ TPL,
 {% block block1 %}
 {% if false %}
 {% block block2 %}
-  this should workd
+this should workd
 {% endblock %}
 {% endif %}
 {% endblock %}
@@ -49,7 +49,7 @@ TPL,
 {% block block1 %}
 {% if false %}
 {% block block2 %}
-  this should workd
+this should workd
 {% endblock %}
 {% endif %}
 {% endblock %}
@@ -181,22 +181,22 @@ describe Crinja::Tag::Extends do
   it "scoped_block_after_inheritance" do
     loader = Crinja::Loader::HashLoader.new({
       "layout.html" => <<-'TPL'
-  {% block useless %}*{% endblock %}
-  TPL,
+{% block useless %}*{% endblock %}
+TPL,
       "index.html" => <<-'TPL'
-  {%- extends 'layout.html' %}
-  {% from 'helpers.html' import foo with context %}
-  {% block useless %}
-      {% for x in [1, 2, 3] %}
-          {% block testing scoped %}
-              {{ foo(x) }}
-          {% endblock %}
-      {% endfor %}
-  {% endblock %}
-  TPL,
+{%- extends 'layout.html' %}
+{% from 'helpers.html' import foo with context %}
+{% block useless %}
+    {% for x in [1, 2, 3] %}
+        {% block testing scoped %}
+            {{ foo(x) }}
+        {% endblock %}
+    {% endfor %}
+{% endblock %}
+TPL,
       "helpers.html" => <<-'TPL'
-  {% macro foo(x) %}{{ the_foo + x }}{% endmacro %}
-  TPL,
+{% macro foo(x) %}{{ the_foo + x }}{% endmacro %}
+TPL,
     })
     render_load("index.html", {"the_foo" => 42}, loader: loader).split.should eq ["43", "44", "45"]
   end
