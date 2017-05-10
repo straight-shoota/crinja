@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/straight-shoota/crinja">
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="../js/doc.js"></script>
+  <title>Crinja::Environment - github.com/straight-shoota/crinja</title>
+</head>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li><a href="../index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja" data-name="crinja">
+      <a href="../Crinja.html">Crinja</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Bindings" data-name="crinja::bindings">
+      <a href="../Crinja/Bindings.html">Bindings</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
+      <a href="../Crinja/Callable.html">Callable</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/Arguments" data-name="crinja::callable::arguments">
+      <a href="../Crinja/Callable/Arguments.html">Arguments</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Config" data-name="crinja::config">
+      <a href="../Crinja/Config.html">Config</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Config/AutoescapeConfig" data-name="crinja::config::autoescapeconfig">
+      <a href="../Crinja/Config/AutoescapeConfig.html">AutoescapeConfig</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Context" data-name="crinja::context">
+      <a href="../Crinja/Context.html">Context</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Context/CallStack" data-name="crinja::context::callstack">
+      <a href="../Crinja/Context/CallStack.html">CallStack</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Environment" data-name="crinja::environment">
+      <a href="../Crinja/Environment.html">Environment</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary" data-name="crinja::featurelibrary(t)">
+      <a href="../Crinja/FeatureLibrary.html">FeatureLibrary</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary/UnknownFeatureException" data-name="crinja::featurelibrary::unknownfeatureexception">
+      <a href="../Crinja/FeatureLibrary/UnknownFeatureException.html">UnknownFeatureException</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Filter" data-name="crinja::filter">
+      <a href="../Crinja/Filter.html">Filter</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Abs" data-name="crinja::filter::abs">
+      <a href="../Crinja/Filter/Abs.html">Abs</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Batch" data-name="crinja::filter::batch">
+      <a href="../Crinja/Filter/Batch.html">Batch</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Capitalize" data-name="crinja::filter::capitalize">
+      <a href="../Crinja/Filter/Capitalize.html">Capitalize</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Center" data-name="crinja::filter::center">
+      <a href="../Crinja/Filter/Center.html">Center</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Default" data-name="crinja::filter::default">
+      <a href="../Crinja/Filter/Default.html">Default</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Dictsort" data-name="crinja::filter::dictsort">
+      <a href="../Crinja/Filter/Dictsort.html">Dictsort</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Escape" data-name="crinja::filter::escape">
+      <a href="../Crinja/Filter/Escape.html">Escape</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Filesizeformat" data-name="crinja::filter::filesizeformat">
+      <a href="../Crinja/Filter/Filesizeformat.html">Filesizeformat</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/First" data-name="crinja::filter::first">
+      <a href="../Crinja/Filter/First.html">First</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Float" data-name="crinja::filter::float">
+      <a href="../Crinja/Filter/Float.html">Float</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Format" data-name="crinja::filter::format">
+      <a href="../Crinja/Filter/Format.html">Format</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Indent" data-name="crinja::filter::indent">
+      <a href="../Crinja/Filter/Indent.html">Indent</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Join" data-name="crinja::filter::join">
+      <a href="../Crinja/Filter/Join.html">Join</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Library" data-name="crinja::filter::library">
+      <a href="../Crinja/Filter/Library.html">Library</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/List" data-name="crinja::filter::list">
+      <a href="../Crinja/Filter/List.html">List</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Lower" data-name="crinja::filter::lower">
+      <a href="../Crinja/Filter/Lower.html">Lower</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Safe" data-name="crinja::filter::safe">
+      <a href="../Crinja/Filter/Safe.html">Safe</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Slice" data-name="crinja::filter::slice">
+      <a href="../Crinja/Filter/Slice.html">Slice</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Striptags" data-name="crinja::filter::striptags">
+      <a href="../Crinja/Filter/Striptags.html">Striptags</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Filter/Upper" data-name="crinja::filter::upper">
+      <a href="../Crinja/Filter/Upper.html">Upper</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Function" data-name="crinja::function">
+      <a href="../Crinja/Function.html">Function</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Dict" data-name="crinja::function::dict">
+      <a href="../Crinja/Function/Dict.html">Dict</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Library" data-name="crinja::function::library">
+      <a href="../Crinja/Function/Library.html">Library</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Range" data-name="crinja::function::range">
+      <a href="../Crinja/Function/Range.html">Range</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Super" data-name="crinja::function::super">
+      <a href="../Crinja/Function/Super.html">Super</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Importable" data-name="crinja::importable">
+      <a href="../Crinja/Importable.html">Importable</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/InvalidArgumentException" data-name="crinja::invalidargumentexception">
+      <a href="../Crinja/InvalidArgumentException.html">InvalidArgumentException</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Lexer" data-name="crinja::lexer">
+      <a href="../Crinja/Lexer.html">Lexer</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/Base" data-name="crinja::lexer::base">
+      <a href="../Crinja/Lexer/Base.html">Base</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/Base/Kind" data-name="crinja::lexer::base::kind">
+      <a href="../Crinja/Lexer/Base/Kind.html">Kind</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/CharacterStream" data-name="crinja::lexer::characterstream">
+      <a href="../Crinja/Lexer/CharacterStream.html">CharacterStream</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/StatementLexer" data-name="crinja::lexer::statementlexer">
+      <a href="../Crinja/Lexer/StatementLexer.html">StatementLexer</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/StreamPosition" data-name="crinja::lexer::streamposition">
+      <a href="../Crinja/Lexer/StreamPosition.html">StreamPosition</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/Symbol" data-name="crinja::lexer::symbol">
+      <a href="../Crinja/Lexer/Symbol.html">Symbol</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/TemplateLexer" data-name="crinja::lexer::templatelexer">
+      <a href="../Crinja/Lexer/TemplateLexer.html">TemplateLexer</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/TemplateLexer/State" data-name="crinja::lexer::templatelexer::state">
+      <a href="../Crinja/Lexer/TemplateLexer/State.html">State</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/Token" data-name="crinja::lexer::token">
+      <a href="../Crinja/Lexer/Token.html">Token</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/Token/Kind" data-name="crinja::lexer::token::kind">
+      <a href="../Crinja/Lexer/Token/Kind.html">Kind</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/TokenStream" data-name="crinja::lexer::tokenstream">
+      <a href="../Crinja/Lexer/TokenStream.html">TokenStream</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Loader" data-name="crinja::loader">
+      <a href="../Crinja/Loader.html">Loader</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/ChoiceLoader" data-name="crinja::loader::choiceloader">
+      <a href="../Crinja/Loader/ChoiceLoader.html">ChoiceLoader</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/FileSystemLoader" data-name="crinja::loader::filesystemloader">
+      <a href="../Crinja/Loader/FileSystemLoader.html">FileSystemLoader</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/HashLoader" data-name="crinja::loader::hashloader">
+      <a href="../Crinja/Loader/HashLoader.html">HashLoader</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/PrefixLoader" data-name="crinja::loader::prefixloader">
+      <a href="../Crinja/Loader/PrefixLoader.html">PrefixLoader</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Node" data-name="crinja::node">
+      <a href="../Crinja/Node.html">Node</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/BlockOutput" data-name="crinja::node::blockoutput">
+      <a href="../Crinja/Node/BlockOutput.html">BlockOutput</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Expression" data-name="crinja::node::expression">
+      <a href="../Crinja/Node/Expression.html">Expression</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Note" data-name="crinja::node::note">
+      <a href="../Crinja/Node/Note.html">Note</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Output" data-name="crinja::node::output">
+      <a href="../Crinja/Node/Output.html">Output</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/OutputList" data-name="crinja::node::outputlist">
+      <a href="../Crinja/Node/OutputList.html">OutputList</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/RenderedOutput" data-name="crinja::node::renderedoutput">
+      <a href="../Crinja/Node/RenderedOutput.html">RenderedOutput</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Root" data-name="crinja::node::root">
+      <a href="../Crinja/Node/Root.html">Root</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Tag" data-name="crinja::node::tag">
+      <a href="../Crinja/Node/Tag.html">Tag</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Text" data-name="crinja::node::text">
+      <a href="../Crinja/Node/Text.html">Text</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Node/Token" data-name="crinja::node::token">
+      <a href="../Crinja/Node/Token.html">Token</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/Token/Kind" data-name="crinja::lexer::token::kind">
+      <a href="../Crinja/Lexer/Token/Kind.html">Kind</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Operator" data-name="crinja::operator">
+      <a href="../Crinja/Operator.html">Operator</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/And" data-name="crinja::operator::and">
+      <a href="../Crinja/Operator/And.html">And</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Binary" data-name="crinja::operator::binary">
+      <a href="../Crinja/Operator/Binary.html">Binary</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Comparator" data-name="crinja::operator::comparator">
+      <a href="../Crinja/Operator/Comparator.html">Comparator</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Divide" data-name="crinja::operator::divide">
+      <a href="../Crinja/Operator/Divide.html">Divide</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Equals" data-name="crinja::operator::equals">
+      <a href="../Crinja/Operator/Equals.html">Equals</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/GreaterThan" data-name="crinja::operator::greaterthan">
+      <a href="../Crinja/Operator/GreaterThan.html">GreaterThan</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/GreaterThanEquals" data-name="crinja::operator::greaterthanequals">
+      <a href="../Crinja/Operator/GreaterThanEquals.html">GreaterThanEquals</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/IntDivide" data-name="crinja::operator::intdivide">
+      <a href="../Crinja/Operator/IntDivide.html">IntDivide</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Library" data-name="crinja::operator::library">
+      <a href="../Crinja/Operator/Library.html">Library</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/LowerThan" data-name="crinja::operator::lowerthan">
+      <a href="../Crinja/Operator/LowerThan.html">LowerThan</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/LowerThanEquals" data-name="crinja::operator::lowerthanequals">
+      <a href="../Crinja/Operator/LowerThanEquals.html">LowerThanEquals</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Minus" data-name="crinja::operator::minus">
+      <a href="../Crinja/Operator/Minus.html">Minus</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Modulo" data-name="crinja::operator::modulo">
+      <a href="../Crinja/Operator/Modulo.html">Modulo</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Multiply" data-name="crinja::operator::multiply">
+      <a href="../Crinja/Operator/Multiply.html">Multiply</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Not" data-name="crinja::operator::not">
+      <a href="../Crinja/Operator/Not.html">Not</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/NotEquals" data-name="crinja::operator::notequals">
+      <a href="../Crinja/Operator/NotEquals.html">NotEquals</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Or" data-name="crinja::operator::or">
+      <a href="../Crinja/Operator/Or.html">Or</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Plus" data-name="crinja::operator::plus">
+      <a href="../Crinja/Operator/Plus.html">Plus</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Power" data-name="crinja::operator::power">
+      <a href="../Crinja/Operator/Power.html">Power</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Tilde" data-name="crinja::operator::tilde">
+      <a href="../Crinja/Operator/Tilde.html">Tilde</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Unary" data-name="crinja::operator::unary">
+      <a href="../Crinja/Operator/Unary.html">Unary</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Parser" data-name="crinja::parser">
+      <a href="../Crinja/Parser.html">Parser</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Parser/Base" data-name="crinja::parser::base">
+      <a href="../Crinja/Parser/Base.html">Base</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Parser/BuildExpression" data-name="crinja::parser::buildexpression">
+      <a href="../Crinja/Parser/BuildExpression.html">BuildExpression</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Parser/BuildTag" data-name="crinja::parser::buildtag">
+      <a href="../Crinja/Parser/BuildTag.html">BuildTag</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Parser/Kind" data-name="crinja::parser::kind">
+      <a href="../Crinja/Parser/Kind.html">Kind</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Parser/Node" data-name="crinja::parser::node">
+      <a href="../Crinja/Parser/Node.html">Node</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/BlockOutput" data-name="crinja::node::blockoutput">
+      <a href="../Crinja/Node/BlockOutput.html">BlockOutput</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Expression" data-name="crinja::node::expression">
+      <a href="../Crinja/Node/Expression.html">Expression</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Note" data-name="crinja::node::note">
+      <a href="../Crinja/Node/Note.html">Note</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Output" data-name="crinja::node::output">
+      <a href="../Crinja/Node/Output.html">Output</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/OutputList" data-name="crinja::node::outputlist">
+      <a href="../Crinja/Node/OutputList.html">OutputList</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/RenderedOutput" data-name="crinja::node::renderedoutput">
+      <a href="../Crinja/Node/RenderedOutput.html">RenderedOutput</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Root" data-name="crinja::node::root">
+      <a href="../Crinja/Node/Root.html">Root</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Tag" data-name="crinja::node::tag">
+      <a href="../Crinja/Node/Tag.html">Tag</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Node/Text" data-name="crinja::node::text">
+      <a href="../Crinja/Node/Text.html">Text</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Node/Token" data-name="crinja::node::token">
+      <a href="../Crinja/Node/Token.html">Token</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/Token/Kind" data-name="crinja::lexer::token::kind">
+      <a href="../Crinja/Lexer/Token/Kind.html">Kind</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Parser/StatementParser" data-name="crinja::parser::statementparser">
+      <a href="../Crinja/Parser/StatementParser.html">StatementParser</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Parser/TemplateParser" data-name="crinja::parser::templateparser">
+      <a href="../Crinja/Parser/TemplateParser.html">TemplateParser</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Parser/Token" data-name="crinja::parser::token">
+      <a href="../Crinja/Parser/Token.html">Token</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/Token/Kind" data-name="crinja::lexer::token::kind">
+      <a href="../Crinja/Lexer/Token/Kind.html">Kind</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Parser/TokenStream" data-name="crinja::parser::tokenstream">
+      <a href="../Crinja/Parser/TokenStream.html">TokenStream</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/PyObject" data-name="crinja::pyobject">
+      <a href="../Crinja/PyObject.html">PyObject</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/PyWrapper" data-name="crinja::pywrapper">
+      <a href="../Crinja/PyWrapper.html">PyWrapper</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/RuntimeError" data-name="crinja::runtimeerror">
+      <a href="../Crinja/RuntimeError.html">RuntimeError</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/SafeString" data-name="crinja::safestring">
+      <a href="../Crinja/SafeString.html">SafeString</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Statement" data-name="crinja::statement">
+      <a href="../Crinja/Statement.html">Statement</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/ArgumentsList" data-name="crinja::statement::argumentslist">
+      <a href="../Crinja/Statement/ArgumentsList.html">ArgumentsList</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Attribute" data-name="crinja::statement::attribute">
+      <a href="../Crinja/Statement/Attribute.html">Attribute</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Call" data-name="crinja::statement::call">
+      <a href="../Crinja/Statement/Call.html">Call</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Dict" data-name="crinja::statement::dict">
+      <a href="../Crinja/Statement/Dict.html">Dict</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Dict/Entry" data-name="crinja::statement::dict::entry">
+      <a href="../Crinja/Statement/Dict/Entry.html">Entry</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Filter" data-name="crinja::statement::filter">
+      <a href="../Crinja/Statement/Filter.html">Filter</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Function" data-name="crinja::statement::function">
+      <a href="../Crinja/Statement/Function.html">Function</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/List" data-name="crinja::statement::list">
+      <a href="../Crinja/Statement/List.html">List</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Literal" data-name="crinja::statement::literal">
+      <a href="../Crinja/Statement/Literal.html">Literal</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Literal/Kind" data-name="crinja::statement::literal::kind">
+      <a href="../Crinja/Statement/Literal/Kind.html">Kind</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/MultiRoot" data-name="crinja::statement::multiroot">
+      <a href="../Crinja/Statement/MultiRoot.html">MultiRoot</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Name" data-name="crinja::statement::name">
+      <a href="../Crinja/Statement/Name.html">Name</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Operator" data-name="crinja::statement::operator">
+      <a href="../Crinja/Statement/Operator.html">Operator</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Operator/Token" data-name="crinja::statement::operator::token">
+      <a href="../Crinja/Statement/Operator/Token.html">Token</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/Token/Kind" data-name="crinja::lexer::token::kind">
+      <a href="../Crinja/Lexer/Token/Kind.html">Kind</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/ParentStatement" data-name="crinja::statement::parentstatement">
+      <a href="../Crinja/Statement/ParentStatement.html">ParentStatement</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Root" data-name="crinja::statement::root">
+      <a href="../Crinja/Statement/Root.html">Root</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/SplashOperator" data-name="crinja::statement::splashoperator">
+      <a href="../Crinja/Statement/SplashOperator.html">SplashOperator</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Test" data-name="crinja::statement::test">
+      <a href="../Crinja/Statement/Test.html">Test</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Token" data-name="crinja::statement::token">
+      <a href="../Crinja/Statement/Token.html">Token</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Lexer/Token/Kind" data-name="crinja::lexer::token::kind">
+      <a href="../Crinja/Lexer/Token/Kind.html">Kind</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/StrictUndefined" data-name="crinja::strictundefined">
+      <a href="../Crinja/StrictUndefined.html">StrictUndefined</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Tag" data-name="crinja::tag">
+      <a href="../Crinja/Tag.html">Tag</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Block" data-name="crinja::tag::block">
+      <a href="../Crinja/Tag/Block.html">Block</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Call" data-name="crinja::tag::call">
+      <a href="../Crinja/Tag/Call.html">Call</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Else" data-name="crinja::tag::else">
+      <a href="../Crinja/Tag/Else.html">Else</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/ElseIf" data-name="crinja::tag::elseif">
+      <a href="../Crinja/Tag/ElseIf.html">ElseIf</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/EndTag" data-name="crinja::tag::endtag">
+      <a href="../Crinja/Tag/EndTag.html">EndTag</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Extends" data-name="crinja::tag::extends">
+      <a href="../Crinja/Tag/Extends.html">Extends</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Filter" data-name="crinja::tag::filter">
+      <a href="../Crinja/Tag/Filter.html">Filter</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Tag/For" data-name="crinja::tag::for">
+      <a href="../Crinja/Tag/For.html">For</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/For/ConditionalIterator" data-name="crinja::tag::for::conditionaliterator">
+      <a href="../Crinja/Tag/For/ConditionalIterator.html">ConditionalIterator</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/For/Runner" data-name="crinja::tag::for::runner">
+      <a href="../Crinja/Tag/For/Runner.html">Runner</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/From" data-name="crinja::tag::from">
+      <a href="../Crinja/Tag/From.html">From</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If" data-name="crinja::tag::if">
+      <a href="../Crinja/Tag/If.html">If</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Import" data-name="crinja::tag::import">
+      <a href="../Crinja/Tag/Import.html">Import</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Include" data-name="crinja::tag::include">
+      <a href="../Crinja/Tag/Include.html">Include</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Library" data-name="crinja::tag::library">
+      <a href="../Crinja/Tag/Library.html">Library</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Macro" data-name="crinja::tag::macro">
+      <a href="../Crinja/Tag/Macro.html">Macro</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Macro/MacroInstance" data-name="crinja::tag::macro::macroinstance">
+      <a href="../Crinja/Tag/Macro/MacroInstance.html">MacroInstance</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Set" data-name="crinja::tag::set">
+      <a href="../Crinja/Tag/Set.html">Set</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TagCycleException" data-name="crinja::tagcycleexception">
+      <a href="../Crinja/TagCycleException.html">TagCycleException</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Template" data-name="crinja::template">
+      <a href="../Crinja/Template.html">Template</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TemplateError" data-name="crinja::templateerror">
+      <a href="../Crinja/TemplateError.html">TemplateError</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TemplateNotFoundError" data-name="crinja::templatenotfounderror">
+      <a href="../Crinja/TemplateNotFoundError.html">TemplateNotFoundError</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TemplateSyntaxError" data-name="crinja::templatesyntaxerror">
+      <a href="../Crinja/TemplateSyntaxError.html">TemplateSyntaxError</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Test" data-name="crinja::test">
+      <a href="../Crinja/Test.html">Test</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Test/Callable" data-name="crinja::test::callable">
+      <a href="../Crinja/Test/Callable.html">Callable</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Test/Defined" data-name="crinja::test::defined">
+      <a href="../Crinja/Test/Defined.html">Defined</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Test/Even" data-name="crinja::test::even">
+      <a href="../Crinja/Test/Even.html">Even</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Test/Library" data-name="crinja::test::library">
+      <a href="../Crinja/Test/Library.html">Library</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Test/Odd" data-name="crinja::test::odd">
+      <a href="../Crinja/Test/Odd.html">Odd</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Type" data-name="crinja::type">
+      <a href="../Crinja/Type.html">Type</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TypeError" data-name="crinja::typeerror">
+      <a href="../Crinja/TypeError.html">TypeError</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Undefined" data-name="crinja::undefined">
+      <a href="../Crinja/Undefined.html">Undefined</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/UndefinedError" data-name="crinja::undefinederror">
+      <a href="../Crinja/UndefinedError.html">UndefinedError</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/UnknownArgumentException" data-name="crinja::unknownargumentexception">
+      <a href="../Crinja/UnknownArgumentException.html">UnknownArgumentException</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Util" data-name="crinja::util">
+      <a href="../Crinja/Util.html">Util</a>
+      
+        <ul>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Util/ForLoop" data-name="crinja::util::forloop">
+      <a href="../Crinja/Util/ForLoop.html">ForLoop</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Util/ForLoop/CycleMethod" data-name="crinja::util::forloop::cyclemethod">
+      <a href="../Crinja/Util/ForLoop/CycleMethod.html">CycleMethod</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Util/ForLoop/Recursive" data-name="crinja::util::forloop::recursive">
+      <a href="../Crinja/Util/ForLoop/Recursive.html">Recursive</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Util/PeekIterator" data-name="crinja::util::peekiterator(t)">
+      <a href="../Crinja/Util/PeekIterator.html">PeekIterator</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Util/ScopeMap" data-name="crinja::util::scopemap(k, v)">
+      <a href="../Crinja/Util/ScopeMap.html">ScopeMap</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Util/StringTrimmer" data-name="crinja::util::stringtrimmer">
+      <a href="../Crinja/Util/StringTrimmer.html">StringTrimmer</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
+      <a href="../Crinja/Value.html">Value</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Variable" data-name="crinja::variable">
+      <a href="../Crinja/Variable.html">Variable</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Crinja::Environment
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Crinja/Environment.html">Crinja::Environment</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>Overview</h2>
+
+  <p>The core component of Crinja is the <code><a href="../Crinja/Environment.html">Environment</a></code>. It contains configuration, global variables and provides an API for template loading and rendering. Instances of this class may be modified if they are not shared and if no template was loaded so far. Modifications on environments after the first template was loaded will lead to surprising effects and undefined behavior.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L7" target="_blank">crinja/environment.cr</a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28original%3AEnvironment%29-class-method" class="signature"><strong>.new</strong>(original : Environment)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28context%3DContext.new%29-class-method" class="signature"><strong>.new</strong>(context = <span class="t">Context</span>.<span class="k">new</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#blocks%3AHash%28String%2CArray%28Array%28Node%29%29%29-instance-method" class="signature"><strong>#blocks</strong> : Hash(String, Array(Array(Node)))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#blocks%3D%28blocks%3AHash%28String%2CArray%28Array%28Node%29%29%29%29-instance-method" class="signature"><strong>#blocks=</strong>(blocks : Hash(String, Array(Array(Node))))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#config%3AConfig-instance-method" class="signature"><strong>#config</strong> : Config</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#context%3AContext-instance-method" class="signature"><strong>#context</strong> : Context</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#errors%3AArray%28Exception%29-instance-method" class="signature"><strong>#errors</strong> : Array(Exception)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#errors%3D%28errors%3AArray%28Exception%29%29-instance-method" class="signature"><strong>#errors=</strong>(errors : Array(Exception))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extend_parent_templates%3AArray%28Template%29-instance-method" class="signature"><strong>#extend_parent_templates</strong> : Array(Template)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#extend_parent_templates%3D%28extend_parent_templates%3AArray%28Template%29%29-instance-method" class="signature"><strong>#extend_parent_templates=</strong>(extend_parent_templates : Array(Template))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#from_string%28string%3AString%29-instance-method" class="signature"><strong>#from_string</strong>(string : String)</a>
+        
+          <div class="summary"><p>Loads a template from <em>string.</em> This parses the source given and returns a <code><a href="../Crinja/Template.html">Template</a></code> object.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#get_template%28name%3AString%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method" class="signature"><strong>#get_template</strong>(name : String, parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Loads a template from the loader.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#get_template%28names%3AIterable%28String%29%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method" class="signature"><strong>#get_template</strong>(names : Iterable(String), parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Works like <code>#get_template(String)</code> but tries a number of templates before it fails.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#global_context%3AContext-instance-method" class="signature"><strong>#global_context</strong> : Context</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#loader%3ALoader-instance-method" class="signature"><strong>#loader</strong> : Loader</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#loader%3D%28loader%3ALoader%29-instance-method" class="signature"><strong>#loader=</strong>(loader : Loader)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#logger%3ALogger-instance-method" class="signature"><strong>#logger</strong> : Logger</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#resolve%28name%3AString%29-instance-method" class="signature"><strong>#resolve</strong>(name : String)</a>
+        
+          <div class="summary"><p>Resolves a variable in the current context.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#resolve%28variable%3AVariable%29-instance-method" class="signature"><strong>#resolve</strong>(variable : Variable)</a>
+        
+          <div class="summary"><p>Resolves a variable in the current context.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#resolve_attribute%28name%3AString%2Cobject%29-instance-method" class="signature"><strong>#resolve_attribute</strong>(name : String, object)</a>
+        
+          <div class="summary"><p>Resolves an objects attribute.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#resolve_item%28name%3AString%2Cobject%29-instance-method" class="signature"><strong>#resolve_item</strong>(name : String, object)</a>
+        
+          <div class="summary"><p>Resolves an objects item.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#select_template%28names%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method" class="signature"><strong>#select_template</strong>(names, parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Alias for <code>#get_template(Iterable(String))</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#undefined-instance-method" class="signature"><strong>#undefined</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#with_scope%28ctx%3AContext%2C%26block%29-instance-method" class="signature"><strong>#with_scope</strong>(ctx : Context, &block)</a>
+        
+          <div class="summary"><p>Executes the block inside the context <code>ctx</code> and returns to the previous context afterwards.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#with_scope%28bindings%3Dnil%2C%26block%29-instance-method" class="signature"><strong>#with_scope</strong>(bindings = <span class="n">nil</span>, &block)</a>
+        
+          <div class="summary"><p>Executes the block inside a new sub-context with optional local scoped <em>bindings</em>.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="new&#40;original:Environment&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(original : <a href="../Crinja/Environment.html">Environment</a>)
+
+        <a class="method-permalink" href="#new%28original%3AEnvironment%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new&#40;context&#61;Context.new&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(context = <span class="t">Context</span>.<span class="k">new</span>)
+
+        <a class="method-permalink" href="#new%28context%3DContext.new%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="blocks:Hash&#40;String,Array&#40;Array&#40;Node&#41;&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>blocks</strong> : Hash(String, Array(Array(<a href="../Crinja/Node.html">Node</a>)))
+
+        <a class="method-permalink" href="#blocks%3AHash%28String%2CArray%28Array%28Node%29%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="blocks&#61;&#40;blocks:Hash&#40;String,Array&#40;Array&#40;Node&#41;&#41;&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>blocks=</strong>(blocks : Hash(String, Array(Array(<a href="../Crinja/Node.html">Node</a>))))
+
+        <a class="method-permalink" href="#blocks%3D%28blocks%3AHash%28String%2CArray%28Array%28Node%29%29%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="config:Config-instance-method">
+      <div class="signature">
+        
+        def <strong>config</strong> : <a href="../Crinja/Config.html">Config</a>
+
+        <a class="method-permalink" href="#config%3AConfig-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="context:Context-instance-method">
+      <div class="signature">
+        
+        def <strong>context</strong> : <a href="../Crinja/Context.html">Context</a>
+
+        <a class="method-permalink" href="#context%3AContext-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="errors:Array&#40;Exception&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>errors</strong> : Array(Exception)
+
+        <a class="method-permalink" href="#errors%3AArray%28Exception%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="errors&#61;&#40;errors:Array&#40;Exception&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>errors=</strong>(errors : Array(Exception))
+
+        <a class="method-permalink" href="#errors%3D%28errors%3AArray%28Exception%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extend_parent_templates:Array&#40;Template&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>extend_parent_templates</strong> : Array(<a href="../Crinja/Template.html">Template</a>)
+
+        <a class="method-permalink" href="#extend_parent_templates%3AArray%28Template%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="extend_parent_templates&#61;&#40;extend_parent_templates:Array&#40;Template&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>extend_parent_templates=</strong>(extend_parent_templates : Array(<a href="../Crinja/Template.html">Template</a>))
+
+        <a class="method-permalink" href="#extend_parent_templates%3D%28extend_parent_templates%3AArray%28Template%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="from_string&#40;string:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>from_string</strong>(string : String)
+
+        <a class="method-permalink" href="#from_string%28string%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Loads a template from <em>string.</em> This parses the source given and returns a <code><a href="../Crinja/Template.html">Template</a></code> object.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L32" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="get_template&#40;name:String,parent&#61;nil,globals&#61;nil&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>get_template</strong>(name : String, parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#get_template%28name%3AString%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Loads a template from the loader. If a loader is configured this method ask the loader for the template and returns a <code><a href="../Crinja/Template.html">Template</a></code>.
+*If the parent parameter is not None, join_path() is called to get the real template name before loading.</p>
+
+<p><span class="flag orange">TODO</span>  <em>parent</em> parameter is not implemented.
+The <em>globals</em> parameter can be used to provide template wide globals. These variables are available in the context at render time.
+If the template does not exist a <code><a href="../Crinja/TemplateNotFoundError.html">TemplateNotFoundError</a></code> is raised.</p>
+
+<p><span class="flag orange">TODO</span>  Cache template parsing</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="get_template&#40;names:Iterable&#40;String&#41;,parent&#61;nil,globals&#61;nil&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>get_template</strong>(names : Iterable(String), parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#get_template%28names%3AIterable%28String%29%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Works like <code>#get_template(String)</code> but tries a number of templates before it fails. If it cannot find any of the templates, it will raise a <code><a href="../Crinja/TemplateNotFoundError.html">TemplateNotFoundError</a></code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L48" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="global_context:Context-instance-method">
+      <div class="signature">
+        
+        def <strong>global_context</strong> : <a href="../Crinja/Context.html">Context</a>
+
+        <a class="method-permalink" href="#global_context%3AContext-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="loader:Loader-instance-method">
+      <div class="signature">
+        
+        def <strong>loader</strong> : <a href="../Crinja/Loader.html">Loader</a>
+
+        <a class="method-permalink" href="#loader%3ALoader-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="loader&#61;&#40;loader:Loader&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>loader=</strong>(loader : <a href="../Crinja/Loader.html">Loader</a>)
+
+        <a class="method-permalink" href="#loader%3D%28loader%3ALoader%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="logger:Logger-instance-method">
+      <div class="signature">
+        
+        def <strong>logger</strong> : Logger
+
+        <a class="method-permalink" href="#logger%3ALogger-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="resolve&#40;name:String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>resolve</strong>(name : String)
+
+        <a class="method-permalink" href="#resolve%28name%3AString%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Resolves a variable in the current context.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L157" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="resolve&#40;variable:Variable&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>resolve</strong>(variable : <a href="../Crinja/Variable.html">Variable</a>)
+
+        <a class="method-permalink" href="#resolve%28variable%3AVariable%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Resolves a variable in the current context.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L163" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="resolve_attribute&#40;name:String,object&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>resolve_attribute</strong>(name : String, object)
+
+        <a class="method-permalink" href="#resolve_attribute%28name%3AString%2Cobject%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Resolves an objects attribute.
+Analogous to <code>getattr</code> in Jinja2.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L137" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="resolve_item&#40;name:String,object&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>resolve_item</strong>(name : String, object)
+
+        <a class="method-permalink" href="#resolve_item%28name%3AString%2Cobject%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Resolves an objects item.
+Analogous to <code>__getitem__</code> in Jinja2.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L105" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="select_template&#40;names,parent&#61;nil,globals&#61;nil&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>select_template</strong>(names, parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#select_template%28names%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Alias for <code>#get_template(Iterable(String))</code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="undefined-instance-method">
+      <div class="signature">
+        
+        def <strong>undefined</strong>
+
+        <a class="method-permalink" href="#undefined-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L90" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="with_scope&#40;ctx:Context,&amp;block&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>with_scope</strong>(ctx : <a href="../Crinja/Context.html">Context</a>, &block)
+
+        <a class="method-permalink" href="#with_scope%28ctx%3AContext%2C%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Executes the block inside the context <code>ctx</code> and returns to the previous context afterwards.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L65" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="with_scope&#40;bindings&#61;nil,&amp;block&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>with_scope</strong>(bindings = <span class="n">nil</span>, &block)
+
+        <a class="method-permalink" href="#with_scope%28bindings%3Dnil%2C%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Executes the block inside a new sub-context with optional local scoped <em>bindings</em>.
+Returns to the previous context afterwards.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/892c73935b06155236b480e4f6afa3ab4cfa792b/src/crinja/environment.cr#L78" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
