@@ -136,7 +136,7 @@ module Crinja::Lexer
       trim_whitespace = false
 
       whitespace = 0
-      while [' ', '\n', '\r', '\t'].includes?(peek_char(whitespace))
+      while {' ', '\n', '\r', '\t'}.includes?(peek_char(whitespace))
         whitespace += 1
       end
 

@@ -194,12 +194,12 @@ class Crinja::Value
 
   # Returns `true` if both `self` and *other*'s raw object are equal.
   def ==(other : Value)
-    raw == other.raw
+    @raw == other.raw
   end
 
   # Returns `true` if the raw object is equal to *other*.
   def ==(other)
-    raw == other
+    @raw == other
   end
 
   # Compares this value to *other*.
@@ -246,22 +246,22 @@ class Crinja::Value
 
   # Returns `true` unless this value is `false`, `0`, `nil` or `#undefined?`
   def truthy?
-    raw != false && raw != 0 && !raw.nil? && !undefined?
+    @raw != false && @raw != 0 && !@raw.nil? && !undefined?
   end
 
   # Returns `true` if this value is a `Undefined`
   def undefined?
-    raw.is_a?(Undefined)
+    @raw.is_a?(Undefined)
   end
 
   # Returns `true` if this value is a `Callable`
   def callable?
-    raw.is_a?(Callable)
+    @raw.is_a?(Callable)
   end
 
   # Returns `true` if this value is a `Int32 | Int64 | Float64`
   def number?
-    raw.is_a?(Int32 | Int64 | Float64)
+    @raw.is_a?(Int32 | Int64 | Float64)
   end
 
   # Returns an array wrapping an instance of `Undefined`
