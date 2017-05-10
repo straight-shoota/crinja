@@ -1,1 +1,4 @@
 theme: jekyll-theme-slate
+title: Crinja
+description: An implementation of the Jinja2 template engine written in Crystal.
+
