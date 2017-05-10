@@ -7,6 +7,9 @@ abstract class Crinja::FeatureLibrary(T)
 
   property store : Hash(String, T)
 
+  # Creates a new feature library.
+  # If *register_defaults* is set to `false`, this library will be empty. Otherwise it is populated
+  # with registered default features.
   def initialize(register_defaults = true)
     @store = Hash(String, T).new
     self.register_defaults if register_defaults

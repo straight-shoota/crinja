@@ -4,7 +4,7 @@ module Crinja
     # This setting configures autoescape behaviour. See `AutoescapeConfig` for details.
     #
     # When set to a boolean value, `false` deactivates any autoescape and `true` activates autoescape for any template.
-    # NOTE: The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default. This will most likely be changed by Jinja2 in the future, too.
+    # NOTE: The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for XML and HTML files. This will most likely be changed by Jinja2 in the future, too.
     property autoescape : AutoescapeConfig
 
     delegate autoescape?, to: autoescape
@@ -57,8 +57,8 @@ module Crinja
       def initialize(
                      enabled_extensions = ["html", "htm", "xml"],
                      disabled_extensions = [] of String,
-                     @default_for_string = true,
-                     @default = true)
+                     @default_for_string = false,
+                     @default = false)
         self.enabled_extensions = enabled_extensions
         self.disabled_extensions = disabled_extensions
       end

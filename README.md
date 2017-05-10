@@ -73,6 +73,8 @@ template.render({ "name" => "John" }) # => "Hello, John!"
 
 The API tries to stick ot the original [Jinja2 API](http://jinja.pocoo.org/docs/2.9/api/) which is written in Python.
 
+**[API Documentation](https://straight-shoota.github.io/crinja/doc/latest/)**
+
 ### Configuration
 
 Currently the following configuration options are supported:
@@ -94,7 +96,7 @@ Currently the following configuration options are supported:
         <dt>default</dt>
         <dd>If nothing matches, this will be the default autoescape value. Default: <code>true</code></dd>
     </dl>
-    <p>Note: <em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default. This will most likely be changed by Jinja2 in the future, too.</em></p>
+    <p>Note: <em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.</em></p>
     </dd>
     <dt>keep_trailing_newline</dt>
     <dd>Preserve the trailing newline when rendering templates. If set to `false`, a single newline, if present, will be stripped from the end of the template. Default: <code>false</code></dd>
@@ -113,7 +115,7 @@ You can provide custom tags, filters, functions, operators and tests. Create an 
 Example:
 
 ```crystal
-class MyCustomFilter < Crinja::Filter
+class MyCustom < Crinja::Filter
     name "mycustom"
     arguments({
         :attribute => "great"
@@ -133,7 +135,12 @@ Crystal is a great programming language with a clean syntax inspired by Ruby, bu
 
 There are already some [template engines for crystal](https://github.com/veelenga/awesome-crystal#template-engine). But if you want control structures and dynamic expressions without some sort of Domain Specific Language, there is only [Embedded Crystal (ECR)](https://crystal-lang.org/api/0.21.1/ECR.html), which is a part of Crystal's standard library. It uses macros to convert templates to Crystal code and embed them into the source at compile time. So for every change in a template, you have to recompile the binary. This approach is certainly applicable for many projects and provides very fast template rendering. The downside is, you need a crystal build stack for template design. This makes it impossible to render dynamic, user defined templates, that can be changed at runtime.
 
-Jinja2 is a powerful, mature template engine with a great syntax and proven language design. It was derived from the [Django Template Language](http://docs.djangoproject.com/en/dev/ref/templates/builtins/) and has quite a number of implementations and adaptations in other languages:
+Jinja2 is a powerful, mature template engine with a great syntax and proven language design. Its philosophy is:
+
+> Application logic is for the controller, but don't make the template designer's life difficult by restricting functionality too much.
+
+Jinja derived from the [Django Template Language](http://docs.djangoproject.com/en/dev/ref/templates/builtins/). While it comes from web development and is heavily used there ([Flask](http://flask.pocoo.org/))
+[Ansible](https://ansible.com/) and [Salt](http://www.saltstack.com/) use it for dynamic enhancements of configuration data. It has quite a number of implementations and adaptations in other languages:
 
 * [Jinjava](https://github.com/HubSpot/jinjava) - Jinja2 implementation in Java, but uses [Unified Expression Language](https://uel.java.net/) (`javaex.el`) instead of python-like expressions. It served as an inspiration for some parts of Crinja.
 * [Liquid](https://shopify.github.io/liquid/) - Jinja2-inspired template engine in Ruby
