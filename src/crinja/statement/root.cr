@@ -14,7 +14,8 @@ class Crinja::Statement
     end
 
     def <<(statement : Statement)
-      raise "Statement::Root already has a child" unless accepts_children?
+      raise "Statement::Root already has a child: #{@children.inspect}" unless accepts_children?
+
       @children << statement
       statement.parent = self
     end

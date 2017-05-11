@@ -1,5 +1,5 @@
-module Crinja
-  class Filter::Abs < Filter
+class Crinja::Filter
+  class Abs < Filter
     name "abs"
 
     def call(target : Value, arguments : Arguments) : Type
@@ -11,7 +11,9 @@ module Crinja
     end
   end
 
-  class Filter::Float < Filter
+  register_default Abs
+
+  class Float < Filter
     name "float"
 
     arguments({
@@ -25,7 +27,9 @@ module Crinja
     end
   end
 
-  class Filter::Filesizeformat < Filter
+  register_default Float
+
+  class Filesizeformat < Filter
     name "filesizeformat"
 
     arguments({
@@ -71,4 +75,6 @@ module Crinja
       end
     end
   end
+
+  register_default Filesizeformat
 end

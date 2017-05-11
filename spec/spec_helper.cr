@@ -36,3 +36,28 @@ def render(node : Crinja::Node, bindings)
   casted = Crinja::Bindings.cast(bindings)
   render(node, Crinja::Context.new(casted))
 end
+
+def evaluate_statement(string, bindings = nil)
+  env = Crinja::Environment.new
+
+  lexer = Crinja::Lexer::StatementLexer.new(env.config, string)
+  parser = Crinja::Parser::StatementParser.new(lexer, env.context, logger: env.logger)
+
+  statement = parser.build
+
+  {% if flag?(:debug) %}
+    puts statement.inspect
+  {% end %}
+
+  unless bindings.nil?
+    env.context.merge! Crinja::Bindings.cast(bindings)
+  end
+
+  result = statement.evaluate(env)
+
+  if env.context.autoescape?
+    result = Crinja::SafeString.escape(result)
+  end
+
+  result.to_s
+end

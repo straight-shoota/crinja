@@ -264,6 +264,46 @@ class Crinja::Value
     @raw.is_a?(Int32 | Int64 | Float64)
   end
 
+  # Returns `true` if the value is a sequence.
+  # TODO: Improve implementation based on __getitem__
+  def sequence?
+    @raw.is_a?(Iterable) || @raw.responds_to?(:each) || string?
+  end
+
+  # Returns `true` if the value is a list (`Array`).
+  def list?
+    @raw.is_a?(Array)
+  end
+
+  # Returns `true` if the value is iteraable.
+  def iterable?
+    @raw.is_a?(Iterable)
+  end
+
+  # Return `true` if the value is a string.
+  def string?
+    @raw.is_a?(String | SafeString)
+  end
+
+  # Return true if the object is a mapping (Hash or PyObject).
+  def mapping?
+    @raw.is_a?(Hash) || @raw.responds_to?(:getattr)
+  end
+
+  # Returns true if
+  def sameas?(other)
+    raw = @raw
+    if (raw.is_a?(Reference))
+      if ((oraw = other.raw).is_a?(Reference))
+        raw.same?(oraw)
+      else
+        false
+      end
+    else
+      !other.raw.is_a?(Reference) && self == other
+    end
+  end
+
   # Returns an array wrapping an instance of `Undefined`
   def self.undefined
     UNDEFINED

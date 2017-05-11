@@ -16,6 +16,6 @@ describe Crinja::Tag::Set do
   end
 
   it "block_escaping" do
-    render("{% set foo %}<em>{{ test }}</em>{% endset %}foo: {{ foo }}", {"test" => "<unsafe>"}).should eq("foo: <em>&lt;unsafe&gt;</em>")
+    render("{% set foo %}<em>{{ test }}</em>{% endset %}foo: {{ foo }}", {"test" => "<unsafe>"}, autoescape = true).should eq("foo: <em>&lt;unsafe&gt;</em>")
   end
 end

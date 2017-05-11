@@ -1,4 +1,4 @@
-require "./spec_helper"
+require "../spec_helper"
 
 describe Crinja::Lexer::StatementLexer do
   it "tokenizes a simple statement" do

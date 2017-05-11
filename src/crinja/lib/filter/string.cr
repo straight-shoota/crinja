@@ -1,29 +1,11 @@
-module Crinja
-  class Filter::Uppercase < Filter
-    name "upper"
+class Crinja::Filter
+  create_filter Upper, target.to_s.upcase
 
-    def call(target : Value, arguments : Function::Arguments) : Type
-      target.to_s.upcase
-    end
-  end
+  create_filter Lower, target.to_s.downcase
 
-  class Filter::Lowercase < Filter
-    name "lower"
+  create_filter Capitalize, target.to_s.capitalize
 
-    def call(target : Value, arguments : Function::Arguments) : Type
-      target.to_s.downcase
-    end
-  end
-
-  class Filter::Capitalize < Filter
-    name "capitalize"
-
-    def call(target : Value, arguments : Function::Arguments) : Type
-      target.to_s.capitalize
-    end
-  end
-
-  class Filter::Center < Filter
+  class Center < Filter
     name "center"
 
     arguments({
@@ -46,7 +28,9 @@ module Crinja
     end
   end
 
-  class Filter::Striptags < Filter
+  register_default Center
+
+  class Striptags < Filter
     name "striptags"
 
     def call(target : Value, arguments : Function::Arguments) : Type
@@ -55,15 +39,11 @@ module Crinja
     end
   end
 
-  class Filter::Format < Filter
-    name "format"
+  register_default Striptags
 
-    def call(target : Value, arguments : Function::Arguments) : Type
-      sprintf target.to_s, arguments.varargs
-    end
-  end
+  create_filter Format, sprintf target.to_s, arguments.varargs
 
-  class Filter::Indent < Filter
+  class Indent < Filter
     name "indent"
 
     arguments({
@@ -79,4 +59,6 @@ module Crinja
       string.gsub(/\n/, nl)
     end
   end
+
+  register_default Indent
 end

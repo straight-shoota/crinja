@@ -3,6 +3,9 @@ class Crinja::Statement
     property varargs : Array(Statement) = [] of Statement
     property kwargs : Hash(String, Statement) = Hash(String, Statement).new
 
+    # This property determines if the function call was followed by parenthesis.
+    property has_parenthesis : Bool = false
+
     include ParentStatement
 
     def <<(child : Statement)

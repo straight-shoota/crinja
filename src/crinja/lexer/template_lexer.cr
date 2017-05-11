@@ -47,10 +47,22 @@ module Crinja::Lexer
       when State::ROOT
         next_token_root
       when State::EXPRESSION
-        check_for_end || (@token = statement_lexer.next_token)
+        if statement_lexer.stack_closed? && check_for_end(@stack.last)
+          @stack.pop
+        else
+          @token = statement_lexer.next_token
+        end
       when State::TAG
-        check_for_end || next_token_tag
+        if check_for_end(@stack.last)
+          @stack.pop
+        else
+          next_token_tag
+        end
       end
+
+      {% if flag?(:debug) %}
+        puts @token
+      {% end %}
 
       @token.dup
     end
@@ -106,10 +118,6 @@ module Crinja::Lexer
       end
     end
 
-    def raise(message)
-      ::raise(Crinja::TemplateSyntaxError.new(@token.dup, message))
-    end
-
     def consume_note
       String.build do |io|
         io << current_char # = '{'
@@ -121,7 +129,8 @@ module Crinja::Lexer
         end
 
         while current_char
-          if check_for_end
+          if check_for_end(@stack.last)
+            @stack.pop
             break
           end
 
@@ -132,7 +141,7 @@ module Crinja::Lexer
     end
 
     # check if current scope closes
-    def check_for_end
+    def check_for_end(current_scope)
       trim_whitespace = false
 
       whitespace = 0
@@ -158,11 +167,11 @@ module Crinja::Lexer
             io << end_type << Symbol::POSTFIX
           end
 
-          if end_type != @stack.last.end_symbol
+          if end_type != current_scope.end_symbol
             raise "Terminated #{@stack.last} with '#{@token.value}'"
           end
 
-          @token.kind = @stack.last.end_kind
+          @token.kind = current_scope.end_kind
 
           (whitespace + lookahead + 1).times { next_char }
 
@@ -170,7 +179,6 @@ module Crinja::Lexer
             @token.trim_right = true
           end
 
-          @stack.pop
           return true
         end
       when '\0'

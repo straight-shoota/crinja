@@ -21,6 +21,9 @@ class Crinja::Environment
   def initialize(@context = Context.new)
     @global_context = @context
     @logger = Logger.new(STDOUT)
+    {% if flag?(:debug) %}
+      @logger.level = Logger::DEBUG
+    {% end %}
     # context["self"] = BlocksResolver.new(self)
   end
 
@@ -155,13 +158,14 @@ class Crinja::Environment
 
   # Resolves a variable in the current context.
   def resolve(name : String)
-    logger.debug "resolving string #{name} in context"
-    context[name]
+    value = context[name]
+    logger.debug "resolved string #{name}: #{value.inspect}"
+    value
   end
 
   # Resolves a variable in the current context.
   def resolve(variable : Variable)
-    logger.debug "resolving variable #{variable}"
+    logger.debug "resolving variable #{variable}..."
     value = context
     variable.parts.each do |part|
       if !(attr = resolve_attribute(part, value)).is_a?(Undefined)
@@ -176,6 +180,7 @@ class Crinja::Environment
         break
       end
     end
+    logger.debug "resolved variable #{variable}: #{value.inspect}"
     value.as(Type)
   end
 

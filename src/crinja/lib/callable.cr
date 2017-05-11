@@ -10,13 +10,13 @@ module Crinja
   module Callable
     abstract def call(arguments : Arguments) : Value
 
-    def create_arguments(env : Environment, varargs : Array(Value) = [] of Value, kwargs : Hash(String, Value) = Hash(String, Value).new, defaults : Hash(String, Type) = Hash(String, Type).new)
+    def create_arguments(env : Environment, varargs : Array(Value) = [] of Value, kwargs : Hash(::String, Value) = Hash(::String, Value).new, defaults : Hash(::String, Type) = Hash(::String, Type).new)
       Arguments.new(env, varargs, kwargs, defaults)
     end
 
     macro arguments(defs)
-      def create_arguments(env : Environment, varargs : Array(Value) = [] of Value, kwargs : Hash(String, Value) = Hash(String, Value).new)
-        defaults = Hash(String, Type).new
+      def create_arguments(env : Environment, varargs : Array(Value) = [] of Value, kwargs : Hash(::String, Value) = Hash(::String, Value).new)
+        defaults = Hash(::String, Type).new
         {% for key, value in defs %}
         defaults[{{ key.id.stringify }}] = {{ value }}
         {% end %}
@@ -24,7 +24,7 @@ module Crinja
       end
     end
 
-    class Arguments
+    struct Arguments
       property varargs : Array(Value)
       property target : Value?
       property caller : Value?

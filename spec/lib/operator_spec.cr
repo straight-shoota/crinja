@@ -1,4 +1,4 @@
-require "./spec_helper.cr"
+require "../spec_helper.cr"
 
 describe Crinja::Operator do
   describe Crinja::Operator::Library do

@@ -16,18 +16,19 @@ Crinja tries to stay close to the Jinja2 language design and implementation. It 
 * custom tags, filters, functions, operators and tests
 * autoescape by default
 
-All standard [control structures (tags)](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures) and [operators](http://jinja.pocoo.org/docs/2.9/templates/#expressions) are already implemented, many implementations of standard [filters](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters), [tests](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests) and [global functions](http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions) are still missing.
+All standard [control structures (tags)](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures), [tests](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests) and [operators](http://jinja.pocoo.org/docs/2.9/templates/#expressions) are already implemented, many implementations of standard [filters](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters) and [global functions](http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions) are still missing.
 
 Currently, template errors fail fast raising an exception. It is considered to change this behaviour to collect multiple errors, similar to what Jinjava does.
 
 ### Missing features
 
-* Line statements and line comments (don't seem to be particularly useful)
+* some standard filters and global functions (on the roadmap)
 * sandboxed execution (on the roadmap)
 * template caching (on the roadmap)
-* configurable syntax
-* extensions
 * some detailed features like reusable blocks, macro API, macro caller
+* line statements and line comments (seems not particularly useful)
+* configurable syntax (seems not not particularly useful, major implications on lexer implementation and performance)
+* extensions
 
 ## Installation
 
@@ -124,6 +125,9 @@ class MyCustom < Crinja::Filter
         "Crystal is #{arguments[:attribute]}! (orginally: #{target.to_s})"
     end
 end
+
+# or using a simple macro
+Crinja.create_filter MyCustom, "Crystal is #{arguments[:attribute]}! (orginally: #{target.to_s})"
 
 env.context.filters << MyCustomFilter.new
 # Usage: {{ "Hello World" | mycustom(attribute="super") }}

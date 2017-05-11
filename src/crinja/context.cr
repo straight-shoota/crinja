@@ -60,6 +60,14 @@ module Crinja
       super(Crinja::Bindings.cast(bindings).as(Hash(String, Type)))
     end
 
+    def [](key : String)
+      value = super
+      if value.is_a?(Undefined) && functions.has_key?(key)
+        value = functions[key]
+      end
+      value
+    end
+
     # Set variable *key* to value *value* in local scope.
     def []=(key : String, value : Hash(String, Type))
       self[key] = Crinja::Bindings.cast(value)

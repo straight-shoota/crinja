@@ -38,5 +38,11 @@ module Crinja::Lexer
     DICT_END       = '}'
     DICT_ASSIGN    = ':'
     LIST_SEPARATOR = ','
+
+    PAIRS = {
+      PARENTHESIS_START => PARENTHESIS_END,
+      LIST_START        => LIST_END,
+      DICT_START        => DICT_END,
+    }
   end
 end

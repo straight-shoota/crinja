@@ -1,5 +1,5 @@
-module Crinja
-  class Function::Super < Function
+class Crinja::Function
+  class Super < Function
     name "super"
 
     def call(arguments : Arguments) : Type
@@ -22,4 +22,6 @@ module Crinja
       end
     end
   end
+
+  register_default Super
 end

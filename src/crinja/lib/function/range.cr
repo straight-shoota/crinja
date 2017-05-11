@@ -1,5 +1,5 @@
-module Crinja
-  class Function::Range < Function
+class Crinja::Function
+  class Range < Function
     name "range"
 
     arguments({
@@ -8,16 +8,18 @@ module Crinja
       :step  => 1,
     })
 
-    def call(arguments : Arguments) : Type
-      stop = arguments[:stop].to_i
+    def call(arguments : Arguments)
       start = arguments[:start].to_i
+      stop = arguments[:stop].to_i
       step = arguments[:step].to_i
       unless arguments.is_set?(:stop)
-        stop = arguments.varargs.first.to_i
+        stop = start
         start = arguments.default(:stop).to_i
       end
 
       ::Range.new(start, stop, true).step(step).to_a.map(&.as(Type))
     end
   end
+
+  register_default Range
 end

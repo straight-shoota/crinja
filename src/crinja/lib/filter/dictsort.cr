@@ -1,5 +1,5 @@
-module Crinja
-  class Filter::Dictsort < Filter
+class Crinja::Filter
+  class Dictsort < Filter
     name "dictsort"
 
     arguments({
@@ -25,4 +25,6 @@ module Crinja
       [] of Type
     end
   end
+
+  register_default Dictsort
 end

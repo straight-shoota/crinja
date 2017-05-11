@@ -1,5 +1,5 @@
-module Crinja
-  class Filter::Join < Filter
+class Crinja::Filter
+  class Join < Filter
     name "join"
 
     arguments({
@@ -34,4 +34,6 @@ module Crinja
       end
     end
   end
+
+  register_default Join
 end

@@ -11,6 +11,7 @@ module Crinja::Parser
 
     def initialize(@template : Template, @root : Node::Root)
       @token_stream = TokenStream.new(Lexer::TemplateLexer.new(template.env.config, template.string))
+      @logger = @template.env.logger
       @parent = root
     end
 
@@ -24,6 +25,8 @@ module Crinja::Parser
       if @parent != root
         raise TemplateSyntaxError.new token_stream.current_token, "Missing end tag for #{@parent}: #{@parent.as(Node::Tag).end_name}"
       end
+
+      logger.debug root.inspect
 
       root
     end

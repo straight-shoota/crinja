@@ -34,7 +34,7 @@ module Crinja
 
       io << "\n" << "  " * indent
       io << "</"
-      io << {{ @type.stringify }}.rpartition("::").last.downcase
+      io << {{ @type.stringify.split("::").last.downcase }}
       io << ">"
     end
 

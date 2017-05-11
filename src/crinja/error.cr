@@ -14,11 +14,28 @@ module Crinja
 
   class TemplateSyntaxError < TemplateError
     getter token : Lexer::Token
+    property token_stream : Lexer::TokenStream?
 
     def initialize(@token, msg : String, name = nil, filename = nil)
-      file = ""
-      file = " #{filename}" if filename
-      super "TemplateSyntaxError: #{msg} @ #{token}#{file}"
+      super "TemplateSyntaxError: #{msg}"
+    end
+
+    def message
+      String.build do |io|
+        io << super << "\n"
+        io << "@ " << token
+        io << "\n" << "\n"
+
+        if (ts = token_stream).nil?
+          io << token.value
+        else
+          (-5..5).each do |n|
+            t = ts.peek_token?(n)
+            io << " " if t.try(&.whitespace_before)
+            io << t.value unless t.nil?
+          end
+        end
+      end
     end
   end
 

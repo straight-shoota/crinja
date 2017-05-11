@@ -158,8 +158,8 @@ module Crinja::Lexer
       skipped_whitespace
     end
 
-    def raise(msg)
-      ::raise TemplateSyntaxError.new(@token.dup, msg)
+    def raise(message)
+      ::raise(Crinja::TemplateSyntaxError.new(@token.dup, message))
     end
   end
 end

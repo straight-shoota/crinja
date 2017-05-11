@@ -18,7 +18,7 @@ module Crinja
     end
 
     def name
-      {{ @type.stringify }}.rpartition("::").last.downcase
+      {{ @type.stringify.split("::").last.downcase }}
     end
 
     def block?

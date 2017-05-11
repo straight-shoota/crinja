@@ -17,31 +17,52 @@ abstract class Crinja::FeatureLibrary(T)
 
   delegate :each, :keys, to: store
 
-  def register_defaults
+  # Adds default values to this library.
+  def register_defaults; end
+
+  macro inherited
+    # Create a local method in a subclass to allow the usage of `previous_def`.
+    def register_defaults; end
   end
 
-  macro register_defaults(defaults)
+  # Register default values with this library.
+  macro register_default(default)
     def register_defaults
-      register {{ defaults }}
+      previous_def
+      self << {{ default }}
     end
   end
 
-  def register(classes : Array(Class))
+  # Adds an array of classes to this library.
+  def <<(classes : Array(Class))
     classes.each do |klass|
-      self << klass.new
+      self << klass
     end
   end
 
+  # Adds a class to this library.
+  def <<(klass : Class)
+    if klass.responds_to?(:new)
+      self << klass.new
+    else
+      self << klass
+    end
+  end
+
+  # Adds a feature object to this library.
+  # It will be stored under the key `obj.name`.
+  def <<(obj : T)
+    store[obj.name] = obj
+  end
+
+  # Retrieves the feature object in this library with key *name*.
   def [](name : String) : T
     store[name.downcase]
   rescue
     raise UnknownFeatureException.new(T, name.downcase)
   end
 
-  def <<(obj : T)
-    store[obj.name] = obj
-  end
-
+  # Stores a feature object *obj* under the key *name*.
   def []=(name : String, obj : T)
     store[name.downcase] = obj
   end

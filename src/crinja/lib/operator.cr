@@ -33,10 +33,10 @@ module Crinja
     end
 
     class Library < FeatureLibrary(Operator)
-      register_defaults [Plus, Minus, Divide, IntDivide, Modulo, Multiply, Power,
-                         Tilde,
-                         Equals, NotEquals, GreaterThan, GreaterThanEquals, LowerThan, LowerThanEquals,
-                         And, Or, Not]
+      register_default [Plus, Minus, Divide, IntDivide, Modulo, Multiply, Power,
+                        Tilde,
+                        Equals, NotEquals, GreaterThan, GreaterThanEquals, LowerThan, LowerThanEquals,
+                        And, Or, Not]
     end
 
     abstract class Binary < Operator

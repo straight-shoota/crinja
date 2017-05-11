@@ -1,4 +1,4 @@
-require "./spec_helper"
+require "../spec_helper"
 
 describe Crinja::Statement do
   it "resolves a simple variable lookup" do

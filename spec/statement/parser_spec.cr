@@ -1,4 +1,4 @@
-require "./spec_helper"
+require "../spec_helper"
 
 describe Crinja::Parser::StatementParser do
   it "parses a simple statement" do

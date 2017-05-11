@@ -1,5 +1,7 @@
 module Crinja::Lexer
   class StatementLexer < Base
+    @stack = [] of Char
+
     def next_token : Token
       @token.whitespace_before = skip_whitespace
       @token.position = stream.position
@@ -60,10 +62,12 @@ module Crinja::Lexer
       when Symbol::LIST_START
         @token.kind = Kind::LIST_START
         @token.value = current_char.to_s
+        @stack << current_char
         next_char
       when Symbol::DICT_START
         @token.kind = Kind::DICT_START
         @token.value = current_char.to_s
+        @stack << current_char
         next_char
       when Symbol::LIST_SEPARATOR
         @token.kind = Kind::LIST_SEPARATOR
@@ -76,18 +80,22 @@ module Crinja::Lexer
       when Symbol::LIST_END
         @token.kind = Kind::LIST_END
         @token.value = current_char.to_s
+        pop_stack(current_char)
         next_char
       when Symbol::DICT_END
         @token.kind = Kind::DICT_END
         @token.value = current_char.to_s
+        pop_stack(current_char)
         next_char
       when Symbol::PARENTHESIS_START
         @token.kind = Kind::PARENTHESIS_START
         @token.value = current_char.to_s
+        @stack << current_char
         next_char
       when Symbol::PARENTHESIS_END
         @token.kind = Kind::PARENTHESIS_END
         @token.value = current_char.to_s
+        pop_stack(current_char)
         next_char
       when Char::ZERO
         @token.kind = Kind::EOF
@@ -97,6 +105,30 @@ module Crinja::Lexer
       end
 
       @token.dup
+    end
+
+    def pop_stack(end_symbol)
+      if stack_closed?
+        if end_symbol == Symbol::EXPR_END
+          return
+        else
+          raise "Not expecting closing symbol #{end_symbol}"
+        end
+      end
+
+      start_symbol = @stack.last
+
+      if Symbol::PAIRS[start_symbol] == end_symbol
+        @stack.pop
+      else
+        raise "Expecting #{Symbol::PAIRS[start_symbol]}, instead found #{end_symbol}"
+      end
+    end
+
+    # We need to keep track of current stack to be able to distinguish if "}}}" means
+    # `[DICT_END, EXPR_END]` or [EXPR_END, FIXED("}")]`
+    def stack_closed?
+      @stack.empty?
     end
   end
 end
