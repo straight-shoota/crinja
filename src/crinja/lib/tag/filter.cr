@@ -15,7 +15,7 @@ module Crinja
         raise TemplateSyntaxError.new(filter_stmt.token, "Argument for filter tag must be a filter call")
       end
 
-      filter = env.context.filters[filter_name]
+      filter = env.filters[filter_name]
 
       arguments = if filter.responds_to?(:create_arguments)
                     filter.create_arguments(env)

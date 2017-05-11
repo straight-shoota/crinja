@@ -1,7 +1,7 @@
 class Crinja::Statement
   class Test < Filter
     def resolve_filter(env)
-      env.context.tests[name]
+      env.tests[name]
     end
 
     def resolve_target(env)

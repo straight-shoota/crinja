@@ -202,11 +202,11 @@ describe Crinja::Filter do
 
   describe Crinja::Filter::Safe do
     it "safe" do
-      evaluate_statement(%("<div>foo</div>"|safe)).should eq "<div>foo</div>"
+      evaluate_statement(%("<div>foo</div>"|safe), autoescape: true).should eq "<div>foo</div>"
     end
 
     it "unsafe" do
-      evaluate_statement(%("<div>foo</div>")).should eq "&lt;div&gt;foo&lt;/div&gt;"
+      evaluate_statement(%("<div>foo</div>"), autoescape: true).should eq "&lt;div&gt;foo&lt;/div&gt;"
     end
   end
 end

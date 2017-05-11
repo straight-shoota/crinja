@@ -8,9 +8,8 @@ module Crinja
   # pollute the outer contexts with local scoped values.
   # Creating instances is not useful as it’s created automatically at various stages of the template evaluation and should not be created by hand.
   class Context < Util::ScopeMap(String, Type)
-    AUTOESCAPE_DEFAULT = true
+    AUTOESCAPE_DEFAULT = false
 
-    getter operators, filters, functions, tags, tests
     getter extend_path_stack, import_path_stack, include_path_stack, macro_stack
 
     property autoescape : Bool?
@@ -23,11 +22,6 @@ module Crinja
     def initialize(parent : Context? = nil, bindings : Hash(String, Type)? = nil)
       super(parent, bindings)
 
-      @operators = Operator::Library.new
-      @functions = Function::Library.new
-      @filters = Filter::Library.new
-      @tags = Tag::Library.new
-      @tests = Test::Library.new
       @macros = Hash(String, Crinja::Tag::Macro::MacroInstance).new
 
       @extend_path_stack = CallStack.new(:extend, parent.try(&.extend_path_stack))
@@ -58,14 +52,6 @@ module Crinja
     # Merges values in *bindings* into local scope.
     def merge!(bindings)
       super(Crinja::Bindings.cast(bindings).as(Hash(String, Type)))
-    end
-
-    def [](key : String)
-      value = super
-      if value.is_a?(Undefined) && functions.has_key?(key)
-        value = functions[key]
-      end
-      value
     end
 
     # Set variable *key* to value *value* in local scope.
@@ -114,19 +100,6 @@ module Crinja
     def block_context
       return @block_context unless @block_context.nil?
       parent.try(&.block_context)
-    end
-
-    # :nodoc:
-    def inspect(io)
-      super(io)
-      io << " libraries="
-      {% for library in ["operators", "functions", "filters", "tags"] %}
-      io << " " << {{ library.id.stringify }} << "=["
-      {{ library.id }}.keys.each do |item|
-        io << item << ", "
-      end
-      io << "]"
-      {% end %}
     end
 
     class CallStack

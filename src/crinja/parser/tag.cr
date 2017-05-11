@@ -4,7 +4,7 @@ module Crinja::Parser
       name_token = token_stream.next_token
       raise "Tag musst have a name token" unless name_token.kind == Kind::NAME
 
-      tag = template.env.context.tags[name_token.value]
+      tag = template.env.tags[name_token.value]
 
       if tag.nil?
         raise TemplateSyntaxError.new(start_token, "unknown tag: #{name_token.value}")

@@ -13,6 +13,8 @@ class Crinja::Environment
   property extend_parent_templates : Array(Template) = [] of Template
   property errors : Array(Exception) = [] of Exception
 
+  getter operators, filters, functions, tags, tests
+
   property blocks : Hash(String, Array(Array(Node)))
   @blocks = Hash(String, Array(Array(Node))).new do |hash, k|
     hash[k] = Array(Array(Node)).new
@@ -25,6 +27,12 @@ class Crinja::Environment
       @logger.level = Logger::DEBUG
     {% end %}
     # context["self"] = BlocksResolver.new(self)
+
+    @operators = Operator::Library.new
+    @functions = Function::Library.new
+    @filters = Filter::Library.new
+    @tags = Tag::Library.new
+    @tests = Test::Library.new
   end
 
   def initialize(original : Environment)
@@ -98,8 +106,16 @@ class Crinja::Environment
   def inspect(io : IO)
     io << "<"
     io << "Crinja::Environment"
-    io << " @context="
-    context.inspect(io)
+    io << " @libraries="
+    {% for library in ["operators", "functions", "filters", "tags"] %}
+    io << " " << {{ library.id.stringify }} << "=["
+    {{ library.id }}.keys.each do |item|
+      io << item << ", "
+    end
+    io << "]"
+    {% end %}
+    #io << " @context="
+    #context.inspect(io)
     io << ">"
   end
 
@@ -167,7 +183,15 @@ class Crinja::Environment
   def resolve(variable : Variable)
     logger.debug "resolving variable #{variable}..."
     value = context
-    variable.parts.each do |part|
+    variable.parts.each_with_index do |part, index|
+      if index == 0 && functions.has_key?(variable.to_s)
+        # There might be a global function with this name.
+        # Global functions can have dots in their name, so we need to check all parts of the variable.
+        value = functions[variable.to_s]
+        logger.debug "found function: #{variable.to_s}: #{value}"
+        break
+      end
+
       if !(attr = resolve_attribute(part, value)).is_a?(Undefined)
         value = attr
       elsif value.responds_to?(:[]) && value.responds_to?(:has_key?) && !value.is_a?(Array) && !value.is_a?(Tuple)
@@ -175,11 +199,14 @@ class Crinja::Environment
           value = value[part]
         else
           value = Undefined.new(variable.to_s)
+          break
         end
       else
+        logger.debug "could not resolve part of variable #{variable.to_s}: #{part} (#{index})"
         break
       end
     end
+
     logger.debug "resolved variable #{variable}: #{value.inspect}"
     value.as(Type)
   end

@@ -72,7 +72,7 @@ module Crinja
       end
 
       # Determines if a template with *filename* should have autoescape enabled or not.
-      def autoescape?(filename : String?)
+      def autoescape?(filename : String? = nil)
         if filename.nil? || filename.size == 0
           default_for_string
         elsif match_extension?(enabled_extensions, filename)

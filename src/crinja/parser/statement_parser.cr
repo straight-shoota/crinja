@@ -5,25 +5,28 @@ module Crinja::Parser
     property root_statement : Statement::Root
     property expected_end_token : Kind = Kind::EOF
     property parse_multiple : Bool = false
+    property logger : Logger
 
     @stack : Array(Statement::ParentStatement)
 
     getter current_statement : Statement?
-    getter context
+    getter env : Crinja::Environment
 
-    def initialize(parser : Base, root_token : Token)
-      initialize(parser, Statement::Root.new(root_token))
+    def initialize(env, parser : Base, root_token : Token)
+      initialize(env, parser, Statement::Root.new(root_token))
     end
 
     def initialize(parser : Parser::TemplateParser, root_statement : Statement = Statement::Root.new)
-      initialize(parser.token_stream, parser.template.env.context, root_statement, parser.logger)
+      initialize(parser.template.env, parser.token_stream, root_statement)
     end
 
-    def initialize(lexer : Lexer::Base, context, root_statement = Statement::Root.new, logger = Logger.new(STDOUT))
-      initialize(TokenStream.new(lexer), context, root_statement, logger)
+    def initialize(env, lexer : Lexer::Base, root_statement = Statement::Root.new)
+      initialize(env, TokenStream.new(lexer), root_statement)
     end
 
-    def initialize(@token_stream : TokenStream, @context : Crinja::Context, @root_statement : Statement = Statement::Root.new, @logger = Logger.new)
+    def initialize(@env, @token_stream : TokenStream, @root_statement : Statement = Statement::Root.new)
+      @logger = @env.logger
+
       @current_statement = nil
       @stack = [root_statement] of Statement::ParentStatement
     end
@@ -112,10 +115,10 @@ module Crinja::Parser
         when Kind::NAME
           name = token.value
 
-          if context.operators.has_key?(name)
+          if env.operators.has_key?(name)
             # some operators ("not") are character sequences that seem like names to the lexer
             build_operator_node(token)
-          elsif context.functions.has_key?(name)
+          elsif env.functions.has_key?(name)
             build_global_function_node(token)
           else
             build_variable_node(token)
@@ -216,7 +219,7 @@ module Crinja::Parser
         end
       end
 
-      op = context.operators[name]
+      op = env.operators[name]
 
       operator = Statement::Operator.new(token, op)
 

@@ -37,11 +37,12 @@ def render(node : Crinja::Node, bindings)
   render(node, Crinja::Context.new(casted))
 end
 
-def evaluate_statement(string, bindings = nil)
+def evaluate_statement(string, bindings = nil, autoescape = nil)
   env = Crinja::Environment.new
+  env.config.autoescape.default_for_string = autoescape unless autoescape.nil?
 
   lexer = Crinja::Lexer::StatementLexer.new(env.config, string)
-  parser = Crinja::Parser::StatementParser.new(lexer, env.context, logger: env.logger)
+  parser = Crinja::Parser::StatementParser.new(env, lexer)
 
   statement = parser.build
 
@@ -55,7 +56,7 @@ def evaluate_statement(string, bindings = nil)
 
   result = statement.evaluate(env)
 
-  if env.context.autoescape?
+  if env.config.autoescape?
     result = Crinja::SafeString.escape(result)
   end
 

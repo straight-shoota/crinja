@@ -31,7 +31,7 @@ class Crinja::Statement
     end
 
     def resolve_filter(env)
-      env.context.filters[name]
+      env.filters[name]
     end
 
     def resolve_target(env)

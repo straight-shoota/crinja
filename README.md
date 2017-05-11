@@ -116,21 +116,21 @@ You can provide custom tags, filters, functions, operators and tests. Create an 
 Example:
 
 ```crystal
-class MyCustom < Crinja::Filter
-    name "mycustom"
+class Customfilter < Crinja::Filter
+    name "customfilter"
     arguments({
         :attribute => "great"
     })
-    def call(target : Crinja::Value, arguments : Crinja::Callable::Arguments) : Crinja::Type
-        "Crystal is #{arguments[:attribute]}! (orginally: #{target.to_s})"
+    def call(target : Crinja::Value, arguments : Crinja::Callable::Arguments)
+        "#{target} is #{arguments[:attribute]}!"
     end
 end
 
 # or using a simple macro
-Crinja.create_filter MyCustom, { :attribute => nil }, "Crystal is #{arguments[:attribute]}! (orginally: #{target.to_s})"
+Crinja.create_filter Customfilter, { :attribute => nil }, "#{target} is #{arguments[:attribute]}!"
 
-env.context.filters << MyCustomFilter.new
-# Usage: {{ "Hello World" | mycustom(attribute="super") }}
+env.filters << Customfilter.new
+# Usage: {{ "Hello World" | customfilter(attribute="super") }}
 ```
 
 ## Background

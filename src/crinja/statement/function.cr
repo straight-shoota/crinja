@@ -7,7 +7,7 @@ class Crinja::Statement
     end
 
     def evaluate(env : Environment) : Type
-      function = env.context.functions[name]
+      function = env.functions[name]
 
       arguments = function.create_arguments(env)
 
@@ -26,25 +26,4 @@ class Crinja::Statement
       io << " name=" << name
     end
   end
-
-  # abstract class TestFunction < Function
-  #   def raw_value(env : Crinja::Environment) : Type
-  #     raise "context function must be applied with target"
-  #   end
-
-  #   def value(env : Crinja::Environment, target : Statement) : Value
-  #     Value.new raw_value(env, target)
-  #   end
-
-  #   def raw_value(env : Crinja::Environment, target : Statement) : Type
-  #     raise "NOT IMPLEMENTED"
-  #     #filter = env.filters[name]
-
-  #     target_value = target.value(env)
-  #     return Value.new(nil) if target_value.nil?
-
-  #     #filter.call(target_value, varargs, kwargs)
-  #   end
-  # end
-
 end
