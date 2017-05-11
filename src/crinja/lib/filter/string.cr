@@ -1,3 +1,5 @@
+require "xml"
+
 class Crinja::Filter
   create_filter Upper, target.to_s.upcase
 
