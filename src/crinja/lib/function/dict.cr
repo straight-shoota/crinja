@@ -9,7 +9,5 @@ class Crinja::Function
     end
   end
 
-  puts Dict.new.name
-
   register_default Dict
 end

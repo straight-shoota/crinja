@@ -65,7 +65,7 @@ require "crinja"
 
 env = Crinja::Environment.new
 env.loader = Crinja::Loader::FileSystemLoader.new("views/")
-template = env.load("index.html.j2")
+template = env.get_template("index.html.j2")
 template.render # => "Hello, World!"
 template.render({ "name" => "John" }) # => "Hello, John!"
 ```
@@ -93,9 +93,9 @@ Currently the following configuration options are supported:
         <dt>disabled_extensions</dt>
         <dd>List of filename extensions that autoescape should be disabled for. Default: <code>[] of String</code></dd>
         <dt>default_for_string</dt>
-        <dd>Determines autoescape default value for templates loaded from a string (without a filename). Default: <code>true</code></dd>
+        <dd>Determines autoescape default value for templates loaded from a string (without a filename). Default: <code>false</code></dd>
         <dt>default</dt>
-        <dd>If nothing matches, this will be the default autoescape value. Default: <code>true</code></dd>
+        <dd>If nothing matches, this will be the default autoescape value. Default: <code>false</code></dd>
     </dl>
     <p>Note: <em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.</em></p>
     </dd>
@@ -127,7 +127,7 @@ class MyCustom < Crinja::Filter
 end
 
 # or using a simple macro
-Crinja.create_filter MyCustom, "Crystal is #{arguments[:attribute]}! (orginally: #{target.to_s})"
+Crinja.create_filter MyCustom, { :attribute => nil }, "Crystal is #{arguments[:attribute]}! (orginally: #{target.to_s})"
 
 env.context.filters << MyCustomFilter.new
 # Usage: {{ "Hello World" | mycustom(attribute="super") }}
