@@ -3,11 +3,11 @@ module Crinja
   end
 
   class TemplateNotFoundError < TemplateError
-    def initialize(name, loader, message = "")
+    def initialize(name, loader = nil, message = "", cause : Exception? = nil)
       super "template #{name} could not be found by #{loader}. #{message}"
     end
 
-    def initialize(templates : Array, loader)
+    def initialize(templates : Array, loader, cause : Exception? = nil)
       super "templates #{templates.inspect} could not be found by #{loader}"
     end
   end

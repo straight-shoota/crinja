@@ -15,6 +15,7 @@ Crinja tries to stay close to the Jinja2 language design and implementation. It 
 * block scoping
 * custom tags, filters, functions, operators and tests
 * autoescape by default
+* template cache
 
 All standard [control structures (tags)](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures), [tests](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests) and [operators](http://jinja.pocoo.org/docs/2.9/templates/#expressions) are already implemented, many implementations of standard [filters](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters) and [global functions](http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions) are still missing.
 
@@ -24,7 +25,6 @@ Currently, template errors fail fast raising an exception. It is considered to c
 
 * some standard filters and global functions (on the roadmap)
 * sandboxed execution (on the roadmap)
-* template caching (on the roadmap)
 * some detailed features like reusable blocks, macro API, macro caller
 * line statements and line comments (seems not particularly useful)
 * configurable syntax (seems not not particularly useful, major implications on lexer implementation and performance)

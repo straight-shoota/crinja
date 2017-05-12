@@ -12,6 +12,7 @@ class Crinja::Environment
   property loader : Loader = Loader::FileSystemLoader.new
   property extend_parent_templates : Array(Template) = [] of Template
   property errors : Array(Exception) = [] of Exception
+  property cache : TemplateCache = TemplateCache::InMemory.new
 
   getter operators, filters, functions, tags, tests
 
@@ -51,8 +52,7 @@ class Crinja::Environment
   # If the template does not exist a `TemplateNotFoundError` is raised.
   # TODO: Cache template parsing
   def get_template(name : String, parent = nil, globals = nil)
-    string, file_name = loader.get_source(self, name)
-    Template.new(string, self, name, file_name)
+    loader.load(self, name)
   end
 
   # Works like `#get_template(String)` but tries a number of templates before it fails. If it cannot find any of the templates, it will raise a `TemplateNotFoundError`.
