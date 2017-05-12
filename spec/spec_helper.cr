@@ -14,6 +14,7 @@ def render(string, bindings = nil, autoescape = nil, loader = nil, trim_blocks =
   env.config.trim_blocks = trim_blocks unless trim_blocks.nil?
   env.config.lstrip_blocks = lstrip_blocks unless lstrip_blocks.nil?
   template = env.from_string(string)
+  puts template.inspect
   template.render(bindings)
 end
 

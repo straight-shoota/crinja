@@ -44,5 +44,9 @@ module Crinja::Lexer
       LIST_START        => LIST_END,
       DICT_START        => DICT_END,
     }
+
+    RAW_START  = "raw"
+    RAW_END    = "endraw"
+    WHITESPACE = [' ', '\t', '\n', '\r']
   end
 end

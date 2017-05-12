@@ -17,6 +17,7 @@ module Crinja::Lexer
     end
 
     @statement_lexer : StatementLexer?
+    @is_raw = false
 
     def initialize(config : Crinja::Config, input : String)
       initialize(config, CharacterStream.new(input))
@@ -68,6 +69,10 @@ module Crinja::Lexer
     end
 
     def next_token_root
+      if @is_raw
+        return next_token_raw
+      end
+
       case current_char
       when Char::ZERO
         @token.kind = Kind::EOF
@@ -106,13 +111,54 @@ module Crinja::Lexer
       end
     end
 
+    def next_token_raw
+      @token.value = consume_raw
+      @token.kind = Kind::FIXED
+      @is_raw = false
+    end
+
+    def consume_raw
+      @buffer.clear
+
+      while true
+        char = current_char
+        break if char == '\0'
+        if char == Symbol::PREFIX
+          if peek_char == Symbol::TAG
+            if peek_string?(Symbol::RAW_END, 2)
+              break
+            end
+          end
+        end
+
+        @buffer << char
+        next_char
+      end
+
+      @buffer.to_s
+    end
+
+    def peek_string?(string, offset = 1)
+      offset = peek_for_whitespace_offset(offset)
+      string.chars.each_with_index(offset) do |c, i|
+        return false if c != peek_char(i)
+      end
+      true
+    end
+
     def next_token_tag
       @token.position = stream.position
 
       if @token.kind == Kind::TAG_START
         # if last token is TAG_START, read tag name
         skip_whitespace
-        consume_name
+        consume_name(with_special_constants: false)
+
+        if @token.value == Symbol::RAW_START
+          @is_raw = true
+        elsif @token.value == Symbol::RAW_END
+          @is_raw = false
+        end
       else
         @token = statement_lexer.next_token
       end
@@ -140,14 +186,18 @@ module Crinja::Lexer
       end
     end
 
+    def peek_for_whitespace_offset(offset = 1)
+      while Symbol::WHITESPACE.includes?(peek_char(offset))
+        offset += 1
+      end
+      offset
+    end
+
     # check if current scope closes
     def check_for_end(current_scope)
       trim_whitespace = false
 
-      whitespace = 0
-      while {' ', '\n', '\r', '\t'}.includes?(peek_char(whitespace))
-        whitespace += 1
-      end
+      whitespace = peek_for_whitespace_offset(0)
 
       lookahead = 0
       end_type = peek_char(whitespace + lookahead)

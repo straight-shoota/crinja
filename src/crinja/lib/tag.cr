@@ -46,7 +46,7 @@ module Crinja
     end
 
     class Library < FeatureLibrary(Tag)
-      TAGS = [For, If, Set, Macro, Block, Filter,
+      TAGS = [For, If, Set, Macro, Block, Filter, Raw,
               Else, ElseIf, Include, Extends, From, Import, Call]
 
       def register_defaults

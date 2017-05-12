@@ -61,7 +61,7 @@ module Crinja::Lexer
       @buffer.to_s
     end
 
-    def consume_name
+    def consume_name(with_special_constants = true)
       @buffer.clear
       @buffer << current_char
 
@@ -77,7 +77,7 @@ module Crinja::Lexer
       @token.value = @buffer.to_s
       @token.kind = Kind::NAME
 
-      if SPECIAL_CONSTANTS.has_key?(@token.value)
+      if with_special_constants && SPECIAL_CONSTANTS.has_key?(@token.value)
         @token.kind = SPECIAL_CONSTANTS[@token.value]
       end
     end
@@ -144,11 +144,10 @@ module Crinja::Lexer
       {is_float ? Kind::FLOAT : Kind::INTEGER, @buffer.to_s}
     end
 
-    def skip_whitespace
+    def skip_whitespace : Bool
       skipped_whitespace = false
       while true
-        case current_char
-        when ' ', '\t', '\n', '\r'
+        if Symbol::WHITESPACE.includes?(current_char)
           skipped_whitespace = true
           next_char
         else
