@@ -1,45 +1,25 @@
 class Crinja::Filter
-  class Abs < Filter
-    name "abs"
-
-    def call(target : Value, arguments : Arguments) : Type
-      if target.number?
-        target.as_number.abs
-      else
-        raise InvalidArgumentException.new(self, "Cannot render abs value for #{target.raw.class}, only accepts numbers")
-      end
+  create_filter Abs do
+    if target.number?
+      target.as_number.abs
+    else
+      raise InvalidArgumentException.new(self, "Cannot render abs value for #{target.raw.class}, only accepts numbers")
     end
   end
 
-  register_default Abs
-
-  class Float < Filter
-    name "float"
-
-    arguments({
-      :default => 0.0,
-    })
-
-    def call(target : Value, arguments : Arguments) : Type
+  create_filter Float, {default: 0.0} do
+    begin
       target.to_f
     rescue ArgumentError
       arguments[:default].to_f
     end
   end
 
-  register_default Float
+  create_filter Filesizeformat, {binary: false} do
+    self.class.filesize_to_human(target.to_f, arguments[:binary].truthy?)
+  end
 
-  class Filesizeformat < Filter
-    name "filesizeformat"
-
-    arguments({
-      :binary => false,
-    })
-
-    def call(target : Value, arguments : Arguments) : Type
-      self.class.filesize_to_human(target.to_f, arguments[:binary].truthy?)
-    end
-
+  class Filesizeformat
     def self.filesize_to_human(size, binary = false)
       if binary
         {
@@ -75,6 +55,4 @@ class Crinja::Filter
       end
     end
   end
-
-  register_default Filesizeformat
 end

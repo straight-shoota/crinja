@@ -1,11 +1,5 @@
 class Crinja::Filter
-  class Safe < Filter
-    name "safe"
-
-    def call(target : Value, arguments : Callable::Arguments) : Type
-      target.raw.is_a?(SafeString) ? target.raw : SafeString.new(target.to_s)
-    end
+  create_filter Safe do
+    target.raw.is_a?(SafeString) ? target.raw : SafeString.new(target.to_s)
   end
-
-  register_default Safe
 end

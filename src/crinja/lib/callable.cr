@@ -14,12 +14,14 @@ module Crinja
       Arguments.new(env, varargs, kwargs, defaults)
     end
 
-    macro arguments(defs)
+    macro arguments(arguments)
       def create_arguments(env : Environment, varargs : Array(Value) = [] of Value, kwargs : Hash(::String, Value) = Hash(::String, Value).new)
         defaults = Hash(::String, Type).new
-        {% for key, value in defs %}
-        defaults[{{ key.id.stringify }}] = {{ value }}
+
+        {% for key in arguments.keys %}
+          defaults[{{ key.id.stringify }}] = {{ arguments[key] }}
         {% end %}
+
         create_arguments(env, varargs, kwargs, defaults)
       end
     end
