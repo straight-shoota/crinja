@@ -26,10 +26,14 @@ abstract class Crinja::FeatureLibrary(T)
   end
 
   # Register default values with this library.
-  macro register_default(default)
+  macro register_default(default, name = nil)
     def register_defaults
       previous_def
+      {% if name.is_a?(NilLiteral) %}
       self << {{ default }}
+      {% else %}
+      self[{{ name }}] = {{ default }}
+      {% end %}
     end
   end
 
@@ -65,6 +69,11 @@ abstract class Crinja::FeatureLibrary(T)
   # Stores a feature object *obj* under the key *name*.
   def []=(name : String, obj : T)
     store[name.downcase] = obj
+  end
+
+  # Stores a feature object *obj* under the key *name*.
+  def []=(name : String, klass : Class)
+    store[name.downcase] = klass.new
   end
 
   def has_key?(name : String)

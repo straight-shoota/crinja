@@ -1,5 +1,5 @@
 class Crinja::Filter
-  create_filter Abs do
+  create_filter Abs, default: true do
     if target.number?
       target.as_number.abs
     else
@@ -7,7 +7,7 @@ class Crinja::Filter
     end
   end
 
-  create_filter Float, {default: 0.0} do
+  create_filter Float, {default: 0.0}, default: true do
     begin
       target.to_f
     rescue ArgumentError
@@ -15,7 +15,7 @@ class Crinja::Filter
     end
   end
 
-  create_filter Filesizeformat, {binary: false} do
+  create_filter Filesizeformat, {binary: false}, default: true do
     self.class.filesize_to_human(target.to_f, arguments[:binary].truthy?)
   end
 

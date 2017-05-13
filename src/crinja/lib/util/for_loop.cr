@@ -1,7 +1,7 @@
 require "../function"
 
 class Crinja::Util::ForLoop
-  include Crinja::PyWrapper
+  include Crinja::PyObject
 
   getter iterator, length
   getter index0, revindex0, first, last

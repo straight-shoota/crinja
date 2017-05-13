@@ -5,7 +5,7 @@ require "./parser"
 # Every template object has a few methods and members that are guaranteed to exist. However it’s important that a template object should be considered immutable. Modifications on the object are not supported.
 class Crinja::Template
   property macros : Hash(String, Crinja::Tag::Macro::MacroInstance) = Hash(String, Crinja::Tag::Macro::MacroInstance).new
-  getter string
+  getter source
   # The loading name of the template. If the template was loaded from a string this is `nil`.
   getter name
   # The filename of the template on the file system if it was loaded from there. Otherwise this is `nil`.
@@ -15,12 +15,12 @@ class Crinja::Template
   getter env : Environment
 
   # Creates a new template.
-  def initialize(@string : String, e : Environment = Environment.new, @name : String = "", @filename : String? = nil, globals = nil)
+  def initialize(@source : String, e : Environment = Environment.new, @name : String = "", @filename : String? = nil, globals = nil)
     # duplicate environment for this template to avoid spilling to global scope, but keep current scope
     # even if render method has finished
     @env = e.dup
 
-    @string = @string.rchop '\n' unless env.config.keep_trailing_newline
+    @source = @source.rchop '\n' unless env.config.keep_trailing_newline
     @globals = globals.nil? ? Hash(String, Type).new : globals
 
     @root = Node::Root.new(self)

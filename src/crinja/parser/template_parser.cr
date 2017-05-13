@@ -10,7 +10,7 @@ module Crinja::Parser
     @parent : Node
 
     def initialize(@template : Template, @root : Node::Root)
-      @token_stream = TokenStream.new(Lexer::TemplateLexer.new(template.env.config, template.string))
+      @token_stream = TokenStream.new(Lexer::TemplateLexer.new(template.env.config, template.source))
       @logger = @template.env.logger
       @parent = root
     end

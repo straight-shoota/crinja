@@ -2,7 +2,7 @@ class Crinja::Filter
   create_filter(Dictsort, {
     case_sensitive: false,
     by:             "key",
-  }) do
+  }, default: true) do
     hash = target.as_h
     array = hash.to_a
 

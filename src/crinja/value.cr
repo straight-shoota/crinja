@@ -4,7 +4,7 @@ require "./lib/callable"
 
 module Crinja
   # :nodoc:
-  alias TypeValue = String | Float64 | Int64 | Int32 | Bool | PyObject | Undefined | Crinja::Callable | SafeString | Nil
+  alias TypeValue = String | Float64 | Int64 | Int32 | Bool | Time | PyObject | Undefined | Crinja::Callable | SafeString | Nil
   # :nodoc:
   alias TypeContainer = Hash(Type, Type) | Array(Type) | Tuple(Type, Type) # |Array(Tuple(Type, Type))
   alias Type = TypeValue | TypeContainer
@@ -177,6 +177,10 @@ class Crinja::Value
     @raw.as(Int32 | Int64 | Float64)
   end
 
+  def as_time
+    @raw.as(Time)
+  end
+
   # :nodoc:
   def inspect(io)
     @raw.inspect(io)
@@ -288,6 +292,11 @@ class Crinja::Value
   # Return true if the object is a mapping (Hash or PyObject).
   def mapping?
     @raw.is_a?(Hash) || @raw.responds_to?(:getattr)
+  end
+
+  # Return true if the value is a time object.
+  def time?
+    @raw.is_a(Time)
   end
 
   # Returns true if

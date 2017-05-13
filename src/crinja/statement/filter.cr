@@ -27,7 +27,13 @@ class Crinja::Statement
         arguments.kwargs[k] = stmt.value(env)
       end
 
-      filter.call(arguments)
+      value = nil
+      begin
+        value = filter.call(arguments)
+      rescue err : TypeCastError
+        raise TypeError.new(err.message, err)
+      end
+      value
     end
 
     def resolve_filter(env)

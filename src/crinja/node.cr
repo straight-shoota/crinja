@@ -17,6 +17,10 @@ module Crinja
       parent.not_nil!.root
     end
 
+    def template
+      root.template
+    end
+
     def name
       {{ @type.stringify.split("::").last.downcase }}
     end

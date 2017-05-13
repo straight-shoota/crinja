@@ -1,5 +1,5 @@
 class Crinja::Filter
-  create_filter Join, {separator: "", attribute: nil} do
+  create_filter Join, {separator: "", attribute: nil}, default: true do
     value = target.raw
     separator = arguments[:separator].to_s
     attribute = arguments[:attribute]

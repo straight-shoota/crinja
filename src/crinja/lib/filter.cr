@@ -17,8 +17,8 @@ module Crinja
     end
 
     # This is a convenient alias for `Crinja.create_filter`.
-    macro create_filter(*args)
-      Crinja.create_filter({{ *args }}) { {{ yield }} }
+    macro create_filter(klass, defaults = nil, name = nil, default = false)
+      Crinja.create_filter({{ klass }}, {{ defaults }}, {{ name }}, {{ default }}) { {{ yield }} }
     end
   end
 
@@ -27,12 +27,12 @@ module Crinja
     end
 
     # This is a convenient alias for `Crinja.create_test`.
-    macro create_test(*args)
-      Crinja.create_test({{ *args }}) { {{ yield }} }
+    macro create_test(klass, defaults = nil, name = nil, default = false)
+      Crinja.create_test({{ klass }}, {{ defaults }}, {{ name }}, {{ default }}) { {{ yield }} }
     end
   end
 
-  macro create_feature(kind, klass = nil, arguments = nil, name = nil, register_default = true)
+  macro create_feature(kind, klass = nil, arguments = nil, name = nil, register_default = false)
     {% klassname = klass.stringify.capitalize.id %}
     class {{ klassname }} < {{ kind }}
       {% unless name.is_a?(NilLiteral) %}
@@ -45,12 +45,12 @@ module Crinja
         arguments({{ arguments }})
       {% end %}
 
-      def call(arguments : Arguments) : Type
+      def call(arguments : ::Crinja::Callable::Arguments) : ::Crinja::Type
         {{ yield }}
       end
 
       # TODO: Remove
-      def call(target : Value, arguments : Arguments) : Type; end
+      def call(target : ::Crinja::Value, arguments : ::Crinja::Callable::Arguments) : ::Crinja::Type; end
     end
 
     {% if register_default %}
@@ -63,8 +63,8 @@ module Crinja
   # *expression* will be inserted into the `#call` method. Available local variables are:
   # * *arguments*: `Arguments` object provided to the call
   # * *target*: `Value` which is the target of this test (conveniently extracted from *arguments*)
-  macro create_test(klass, defaults = nil, name = nil, register_default = true)
-    Crinja.create_feature(Crinja::Test, {{ klass }}, {{ defaults }}, {{ name }}, {{ register_default }}) do
+  macro create_test(klass, defaults = nil, name = nil, default = false)
+    ::Crinja.create_feature(::Crinja::Test, {{ klass }}, {{ defaults }}, {{ name }}, {{ default }}) do
       target = arguments.target.not_nil!
       {{ yield }}
     end
@@ -75,8 +75,8 @@ module Crinja
   # *expression* will be inserted into the `#call` method. Available local variables are:
   # * *arguments*: `Arguments` object provided to the call
   # * *target*: `Value` which is the target of this filter (conveniently extracted from *arguments*)
-  macro create_filter(klass, defaults = nil, name = nil, register_default = true)
-    Crinja.create_feature(Crinja::Filter, {{ klass }}, {{ defaults }}, {{ name }}, {{ register_default }}) do
+  macro create_filter(klass, defaults = nil, name = nil, default = false)
+    ::Crinja.create_feature(::Crinja::Filter, {{ klass }}, {{ defaults }}, {{ name }}, {{ default }}) do
       target = arguments.target.not_nil!
       {{ yield }}
     end

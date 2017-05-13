@@ -20,6 +20,10 @@ module Crinja
       parent.not_nil!.root
     end
 
+    def template
+      root_node.try(&.template)
+    end
+
     def root_node
       root.root_node
     end
@@ -48,6 +52,10 @@ module Crinja
       io << {{ @type.stringify }}.rpartition("::").last.downcase
       io << " token="
       token.inspect(io)
+    end
+
+    def raise(exc : RuntimeError)
+      ::raise TemplateError.new(token, exc, template)
     end
 
     module ParentStatement

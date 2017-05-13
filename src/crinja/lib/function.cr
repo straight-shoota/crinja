@@ -10,9 +10,9 @@ module Crinja
     class Library < FeatureLibrary(Function)
     end
 
-    macro register_default(defaults)
+    macro register_default(defaults, name = nil)
       class Library
-        register_default {{ defaults }}
+        register_default {{ defaults }}, {{ name }}
       end
     end
   end

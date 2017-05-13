@@ -1,13 +1,13 @@
 require "../spec_helper"
 
 class User
-  include Crinja::PyWrapper
+  include Crinja::PyObject
 
+  getter username
   def initialize(@username : String)
   end
 
-  getter username
-  getattr username
+  getattr
 end
 
 describe Crinja::Filter do

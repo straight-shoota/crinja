@@ -61,7 +61,7 @@ module Crinja::Lexer
         end
       end
 
-      {% if flag?(:debug) %}
+      {% if flag?(:debug_lexer) %}
         puts @token
       {% end %}
 
