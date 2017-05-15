@@ -1,5 +1,7 @@
 require "../spec_helper"
 
+# Tests based on https://github.com/pallets/jinja/blob/d905cf0b6c6121d900ea384f72970b862c879bc7/tests/test_tests.py
+
 class TestFunction
   include Crinja::Callable
 

@@ -1,5 +1,5 @@
 require "../spec_helper"
-# test based on https://github.com/pallets/jinja/blob/master/tests/test_core_tags.py
+# test based on https://github.com/pallets/jinja/blob/d905cf0b6c6121d900ea384f72970b862c879bc7/tests/test_core_tags.py
 
 describe Crinja::Tag::Macro do
   it "simple" do
