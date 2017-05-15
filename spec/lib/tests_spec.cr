@@ -24,6 +24,10 @@ describe Crinja::Test do
     render(%({{ missing is defined }}|{{ true is defined }})).should eq "false|true"
   end
 
+  it "not" do
+    render(%({{ missing is not defined }}|{{ true is not defined }})).should eq "true|false"
+  end
+
   it "even" do
     render(%({{ 1 is even }}|{{ 2 is even }})).should eq "false|true"
   end
@@ -113,11 +117,11 @@ describe Crinja::Test do
     render(
       %({{ "o" is in "foo" }}|{{ "foo" is in "foo" }}|{{ "b" is in "foo" }}|) \
       %({{ 1 is in [1, 2] }}|) \
-      %({{ 3 is in [1, 2] }}|{{ "foo" is in {"foo": 1} }}|{{ "baz" is in {"bar": 1} }}) # %({{ 1 is in ((1, 2)) }}|{{ 3 is in ((1, 2)) }}|
-
+      %({{ 3 is in [1, 2] }}|{{ "foo" is in {"foo": 1} }}|{{ "baz" is in {"bar": 1} }}|) \
+      %({{ 1 is in ((1, 2)) }}|{{ 3 is in ((1, 2)) }})
     ).should eq("true|true|false|" \
-                "true|false|true|false")
-    # true|false|)
+                "true|false|true|false|" \
+                "true|false")
   end
 
   it "error in plus list" do

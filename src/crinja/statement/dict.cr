@@ -28,7 +28,7 @@ class Crinja::Statement
       end
 
       def evaluate(env : Environment) : Type
-        {key.evaluate(env), value.not_nil!.evaluate(env)}.as(Tuple(Type, Type))
+        {key.evaluate(env), value.not_nil!.evaluate(env)}.as(::Tuple(Type, Type))
       end
     end
 

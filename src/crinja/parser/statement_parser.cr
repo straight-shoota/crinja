@@ -151,7 +151,7 @@ module Crinja::Parser
           end
         when Kind::LIST_SEPARATOR
           parent = self.current_container
-          if parent.is_a?(Statement::List) || parent.is_a?(Statement::Dict) || parent.is_a?(Statement::ArgumentsList)
+          if parent.is_a?(Statement::List) || parent.is_a?(Statement::Dict) || parent.is_a?(Statement::ArgumentsList) || parent.is_a?(Statement::Tuple)
             finish_current_statement
           elsif parent.is_a?(Statement::Dict::Entry)
             pop_stack Statement::Dict::Entry
@@ -178,6 +178,10 @@ module Crinja::Parser
             pop_stack Statement::SplashOperator
           end
           pop_stack?(Statement::Operator) || pop_stack?(Statement::Subexpression) || pop_stack(Statement::ArgumentsList)
+        when Kind::TUPLE_START
+          push_stack Statement::Tuple.new(token)
+        when Kind::TUPLE_END
+          pop_stack Statement::Tuple
         else
           raise "Unsupported statement token #{current_token}"
         end
@@ -296,6 +300,13 @@ module Crinja::Parser
 
     def build_test_node(token)
       name_token = next_token
+      negative_test = false
+
+      if name_token.kind == Kind::NAME && name_token.value == Lexer::Symbol::NOT
+        # "is not <test>"
+        name_token = next_token
+        negative_test = true
+      end
 
       # `none` is identified as a literal for `nil`, but is also the name of a standard test.
       if name_token.kind == Kind::NONE
@@ -304,6 +315,7 @@ module Crinja::Parser
       raise "Test musst have a name token (instead: #{name_token})" unless name_token.kind == Kind::NAME
 
       test = Statement::Test.new(token, name_token, remove_current_statement!)
+      test.negative_test = negative_test
 
       build_function_arguments(test, call_without_parenthesis: true)
     end

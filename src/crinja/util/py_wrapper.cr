@@ -8,7 +8,6 @@ module Crinja
       Undefined.new(attr.to_s)
     end
 
-
     def getitem(item : Type) : Type
       nil
     end

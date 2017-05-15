@@ -4,14 +4,13 @@ module Crinja
     # without arguments, even if none of them is a EndTag
     def initialize
       @tag = Tag::If.new
+      @name = "invalid"
       raise "INVALID CONSTRUCTOR"
     end
 
-    def initialize(@tag : Tag)
-    end
+    getter :name
 
-    def name
-      @tag.end_tag.not_nil!
+    def initialize(@tag : Tag, @name)
     end
 
     def end_tag

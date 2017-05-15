@@ -31,7 +31,7 @@ describe Crinja::Tag::Macro do
     end
   end
 
-  pending "caller_defaults_nonsense" do
+  it "caller_defaults_nonsense" do
     expect_raises(Crinja::TemplateSyntaxError) do
       render(%({% macro a() %}{{ caller() }}{% endmacro %}{% call(x, y=1, z) a() %}{% endcall %}))
     end
@@ -41,40 +41,51 @@ describe Crinja::Tag::Macro do
     render(%({% macro test() %}{{ varargs|join('|') }}{% endmacro %}{{ test(1, 2, 3) }})).should eq "1|2|3"
   end
 
-  pending "simple_call" do
+  it "simple_call" do
     render(%({% macro test() %}[[{{ caller() }}]]{% endmacro %}{% call test() %}data{% endcall %})).should eq "[[data]]"
   end
 
-  pending "complex_call" do
+  it "complex_call" do
     render(%({% macro test() %}[[{{ caller('data') }}]]{% endmacro %}{% call(data) test() %}{{ data }}{% endcall %})).should eq "[[data]]"
   end
 
   pending "caller_undefined" do
-    render(%({% set caller = 42 %}{% macro test() %}{{ caller is not defined }}{% endmacro %}{{ test() }})).should eq "True"
+    render(%({% set caller = 42 %}{% macro test() %}{{ caller is not defined }}{% endmacro %}{{ test() }})).should eq "true"
   end
 
-  pending "include" do
-    render(%({% from "include" import test %}{{ test("foo") }}), loader: HashLoader.new({
-      "include": "{% macro test(foo) %}[{{ foo }}]{% endmacro %}",
+  it "include" do
+    render(%({% from "include" import test %}{{ test("foo") }}), loader: Crinja::Loader::HashLoader.new({
+      "include" => "{% macro test(foo) %}[{{ foo }}]{% endmacro %}",
     })).should eq "[foo]"
   end
 
-  pending "macro_api" do
-    tmpl = env.from_string(<<-'TPL'
+  it "macro_api" do
+    tmpl = Crinja::Environment.new.from_string(<<-'TPL'
          {% macro foo(a, b) %}{% endmacro %}
          {% macro bar() %}{{ varargs }}{{ kwargs }}{% endmacro %}
          {% macro baz() %}{{ caller() }}{% endmacro %}
          TPL)
-    tmpl.module["foo"].arguments.should eq ["a", "b"]
-    tmpl.module["foo"].name.should eq "foo"
-    tmpl.module["foo"].caller.should_not be_true
-    tmpl.module["foo"].catch_kwargs.should_not be_true
-    tmpl.module["foo"].catch_varargs.should_not be_true
-    tmpl.module["bar"].arguments.should eq [] of String
-    tmpl.module["bar"].caller.should_not be_true
-    tmpl.module["bar"].catch_kwargs.should be_true
-    tmpl.module["bar"].catch_varargs.should be_true
-    tmpl.module["baz"].caller.should be_true
+    tmpl.render
+    tmpl.macros["foo"].arguments.should eq ["a", "b"]
+    tmpl.macros["foo"].name.should eq "foo"
+    tmpl.macros["foo"].caller.should_not be_true
+    tmpl.macros["foo"].catch_kwargs.should_not be_true
+    tmpl.macros["foo"].catch_varargs.should_not be_true
+    tmpl.macros["bar"].arguments.should eq [] of String
+    tmpl.macros["bar"].caller.should_not be_true
+  end
+
+  # TODO: Inspect macro body for usage of `varargs`, `kwargs` and `caller()` -> Tree Traversal
+  # TODO: Create macro functions without calling render
+  pending "macro_api_ctd" do
+    tmpl = Crinja::Environment.new.from_string(<<-'TPL'
+         {% macro foo(a, b) %}{% endmacro %}
+         {% macro bar() %}{{ varargs }}{{ kwargs }}{% endmacro %}
+         {% macro baz() %}{{ caller() }}{% endmacro %}
+         TPL)
+    tmpl.macros["bar"].catch_kwargs.should be_true
+    tmpl.macros["bar"].catch_varargs.should be_true
+    tmpl.macros["baz"].caller.should be_true
   end
 
   it "callself" do
@@ -83,15 +94,19 @@ describe Crinja::Tag::Macro do
       TPL).should eq "5|4|3|2|1"
   end
 
+  # TODO: Ignore context outside macro for execution
+  # TODO: Apply argument values as default for others (`b=x`)
   pending "macro_defaults_self_ref" do
-    # tmpl = env.from_string('''
-    #      {%- set x = 42 %}
-    #      {%- macro m(a, b=x, x=23) %}{{ a }}|{{ b }}|{{ x }}{% endmacro -%}
-
-    # TPL
-    #  assert tmpl.module.m(1) == '1||23'
-    #  assert tmpl.module.m(1, 2) == '1|2|23'
-    #  assert tmpl.module.m(1, 2, 3) == '1|2|3'
-    #  assert tmpl.module.m(1, x=7) == '1|7|7'
+    env = Crinja::Environment.new
+    tmpl = env.from_string(<<-'TPL'
+         {%- set x = 42 %}
+         {%- macro m(a, b=x, x=23) %}{{ a }}|{{ b }}|{{ x }}{% endmacro -%}
+         TPL)
+    tmpl.render
+    m = tmpl.macros["m"]
+    m.call(m.create_arguments(env, [Crinja::Value.new(1), Crinja::Value.new(2)])).should eq "1|2|23"
+    m.call(m.create_arguments(env, [Crinja::Value.new(1), Crinja::Value.new(2), Crinja::Value.new(3)])).should eq "1|2|3"
+    m.call(m.create_arguments(env, [Crinja::Value.new(1)])).should eq "1||23"
+    m.call(m.create_arguments(env, [Crinja::Value.new(1)], {"x" => Crinja::Value.new(7)})).should eq "1|7|7"
   end
 end

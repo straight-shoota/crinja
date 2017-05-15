@@ -21,7 +21,7 @@ class Crinja::Statement
     end
 
     def name
-      token.value
+      variable.to_s
     end
   end
 end

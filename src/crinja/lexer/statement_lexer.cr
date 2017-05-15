@@ -1,6 +1,6 @@
 module Crinja::Lexer
   class StatementLexer < Base
-    @stack = [] of Char
+    @stack = [] of Kind
 
     def next_token : Token
       @token.whitespace_before = skip_whitespace
@@ -56,18 +56,18 @@ module Crinja::Lexer
       when .letter?, '_'
         consume_name
 
-        if @token.value == "is"
+        if @token.value == Symbol::TEST
           @token.kind = Kind::TEST
         end
       when Symbol::LIST_START
         @token.kind = Kind::LIST_START
         @token.value = current_char.to_s
-        @stack << current_char
+        @stack << Kind::LIST_END
         next_char
       when Symbol::DICT_START
         @token.kind = Kind::DICT_START
         @token.value = current_char.to_s
-        @stack << current_char
+        @stack << Kind::DICT_END
         next_char
       when Symbol::LIST_SEPARATOR
         @token.kind = Kind::LIST_SEPARATOR
@@ -80,22 +80,36 @@ module Crinja::Lexer
       when Symbol::LIST_END
         @token.kind = Kind::LIST_END
         @token.value = current_char.to_s
-        pop_stack(current_char)
+        pop_stack
         next_char
       when Symbol::DICT_END
         @token.kind = Kind::DICT_END
         @token.value = current_char.to_s
-        pop_stack(current_char)
+        pop_stack
         next_char
       when Symbol::PARENTHESIS_START
-        @token.kind = Kind::PARENTHESIS_START
-        @token.value = current_char.to_s
-        @stack << current_char
-        next_char
+        if peek_char == Symbol::PARENTHESIS_START
+          @token.kind = Kind::TUPLE_START
+          @token.value = Symbol::PARENTHESIS_START.to_s * 2
+          @stack << Kind::TUPLE_END
+          next_char
+          next_char
+        else
+          @token.kind = Kind::PARENTHESIS_START
+          @token.value = current_char.to_s
+          @stack << Kind::PARENTHESIS_END
+          next_char
+        end
       when Symbol::PARENTHESIS_END
-        @token.kind = Kind::PARENTHESIS_END
-        @token.value = current_char.to_s
-        pop_stack(current_char)
+        if peek_char == Symbol::PARENTHESIS_END
+          @token.kind = Kind::TUPLE_END
+          @token.value = Symbol::PARENTHESIS_END.to_s * 2
+          next_char
+        else
+          @token.kind = Kind::PARENTHESIS_END
+          @token.value = current_char.to_s
+        end
+        pop_stack
         next_char
       when Char::ZERO
         @token.kind = Kind::EOF
@@ -107,21 +121,19 @@ module Crinja::Lexer
       @token.dup
     end
 
-    def pop_stack(end_symbol)
+    def pop_stack
       if stack_closed?
-        if end_symbol == Symbol::EXPR_END
+        if @token.kind == Kind::EXPR_END
           return
         else
-          raise "Not expecting closing symbol #{end_symbol}"
+          raise "Not expecting closing symbol #{@token.kind}"
         end
       end
 
-      start_symbol = @stack.last
-
-      if Symbol::PAIRS[start_symbol] == end_symbol
+      if @stack.last == @token.kind
         @stack.pop
       else
-        raise "Expecting #{Symbol::PAIRS[start_symbol]}, instead found #{end_symbol}"
+        raise "Expecting #{@stack.last}, instead found #{@token.kind}"
       end
     end
 

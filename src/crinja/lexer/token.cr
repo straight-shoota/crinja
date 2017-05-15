@@ -32,6 +32,9 @@ class Crinja::Lexer::Token
     PARENTHESIS_START
     PARENTHESIS_END
     KW_ASSIGN
+
+    TUPLE_START
+    TUPLE_END
   end
 
   property kind : Kind

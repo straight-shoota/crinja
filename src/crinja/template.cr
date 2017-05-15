@@ -4,7 +4,7 @@ require "./parser"
 # Normally the template object is generated from an `Environment` by `Environment#from_string` or `Environment#get_template` but it also has a constructor that makes it possible to create a template instance directly, which refers to a default environment.
 # Every template object has a few methods and members that are guaranteed to exist. However it’s important that a template object should be considered immutable. Modifications on the object are not supported.
 class Crinja::Template
-  property macros : Hash(String, Crinja::Tag::Macro::MacroInstance) = Hash(String, Crinja::Tag::Macro::MacroInstance).new
+  property macros : Hash(String, Crinja::Tag::Macro::MacroFunction) = Hash(String, Crinja::Tag::Macro::MacroFunction).new
   getter source
   # The loading name of the template. If the template was loaded from a string this is `nil`.
   getter name

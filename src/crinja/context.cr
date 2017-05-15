@@ -22,7 +22,7 @@ module Crinja
     def initialize(parent : Context? = nil, bindings : Hash(String, Type)? = nil)
       super(parent, bindings)
 
-      @macros = Hash(String, Crinja::Tag::Macro::MacroInstance).new
+      @macros = Hash(String, Crinja::Tag::Macro::MacroFunction).new
 
       @extend_path_stack = CallStack.new(:extend, parent.try(&.extend_path_stack))
       @import_path_stack = CallStack.new(:import, parent.try(&.import_path_stack))
@@ -47,6 +47,26 @@ module Crinja
       else
         p.macros
       end
+    end
+
+    def all_macros
+      all = @macros
+      unless (p = parent).nil?
+        all.merge!(p.all_macros)
+      end
+      all
+    end
+
+    def has_macro?(name)
+      @macros.has_key?(name) || parent.try(&.has_macro?(name))
+    end
+
+    def macro(name)
+      @macros[name]? || parent.try(&.macro(name))
+    end
+
+    def register_macro(makro)
+      @macros[makro.name] = makro
     end
 
     # Merges values in *bindings* into local scope.

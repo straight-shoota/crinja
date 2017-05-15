@@ -4,6 +4,7 @@ class User
   include Crinja::PyObject
 
   getter username
+
   def initialize(@username : String)
   end
 

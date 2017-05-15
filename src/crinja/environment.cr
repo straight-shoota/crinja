@@ -75,6 +75,8 @@ class Crinja::Environment
   # Executes the block inside the context `ctx` and returns to the previous context afterwards.
   def with_scope(ctx : Context)
     former_scope = self.context
+
+    logger.info "new context #{ctx} is not the child of former context" if ctx.parent != @context
     @context = ctx
 
     result = yield @context
@@ -114,8 +116,8 @@ class Crinja::Environment
     end
     io << "]"
     {% end %}
-    #io << " @context="
-    #context.inspect(io)
+    # io << " @context="
+    # context.inspect(io)
     io << ">"
   end
 
@@ -209,6 +211,48 @@ class Crinja::Environment
 
     logger.debug "resolved variable #{variable}: #{value.inspect}"
     value.as(Type)
+  end
+
+  def execute_call(target)
+    if target.is_a?(Variable)
+      puts target.to_s
+      puts "xecuting call with context macros: #{context.all_macros.keys}"
+      if context.has_macro?(target.to_s)
+        # its a macro call
+        callable = context.macro(target.to_s)
+        puts "its a macro #{callable.inspect}"
+      else
+        callable = resolve(target)
+        puts "resolved to #{callable}"
+      end
+    else
+      callable = target.raw
+    end
+
+    unless callable.is_a?(Callable)
+      raise TypeError.new("cannot call #{target.inspect}. Not a function")
+    else
+      arguments = if callable.responds_to?(:create_arguments)
+                    callable.create_arguments(self)
+                  else
+                    Callable::Arguments.new(self)
+                  end
+
+      # if callable.is_a?(Tag::Macro::MacroFunction)
+      #  ctx = Context.new
+      #  context.all_macros.each do |_,makro|
+      #    ctx.register_macro(makro)
+      #  end
+      # else
+      #  ctx = self.context
+      # end
+
+      # with_scope(ctx) do
+      yield(arguments)
+
+      callable.call(arguments)
+      # end
+    end
   end
 
   # class BlocksResolver

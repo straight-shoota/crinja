@@ -45,6 +45,8 @@ module Crinja::Lexer
       DICT_START        => DICT_END,
     }
 
+    TEST       = "is"
+    NOT        = "not"
     RAW_START  = "raw"
     RAW_END    = "endraw"
     WHITESPACE = [' ', '\t', '\n', '\r']

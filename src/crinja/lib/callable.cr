@@ -29,7 +29,6 @@ module Crinja
     struct Arguments
       property varargs : Array(Value)
       property target : Value?
-      property caller : Value?
       property kwargs : Hash(String, Value)
       property defaults : Hash(String, Type)
       property env : Environment
@@ -52,6 +51,14 @@ module Crinja
           end
         else
           raise UnknownArgumentException.new(name, self)
+        end
+      end
+
+      def target!
+        if (t = target).nil?
+          raise UndefinedError.new("undefined target")
+        else
+          t
         end
       end
 

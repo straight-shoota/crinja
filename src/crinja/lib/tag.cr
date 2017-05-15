@@ -58,7 +58,9 @@ module Crinja
 
       def <<(tag)
         super(tag)
-        super(EndTag.new(tag)) unless tag.end_tag.nil?
+        unless (end_tag = tag.end_tag).nil?
+          super(EndTag.new(tag, end_tag))
+        end
       end
     end
   end

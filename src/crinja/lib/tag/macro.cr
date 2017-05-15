@@ -6,7 +6,7 @@ module Crinja
       call = tag_node.varargs.first.as(Statement::Call)
       name = call.target.as(Statement::Name).name
 
-      instance = MacroInstance.new(name, env, tag_node.children)
+      instance = MacroFunction.new(name, tag_node.children)
 
       call.varargs.each do |arg_stmt|
         if (arg = arg_stmt).is_a?(Statement::Name)
@@ -20,19 +20,18 @@ module Crinja
         instance.defaults[arg] = value.value(env).raw
       end
 
-      tag_node.root.template.register_macro name, instance
+      tag_node.template.register_macro name, instance
     end
 
-    class MacroInstance
+    class MacroFunction
       include Callable
       # include PyWrapper
 
-      getter name, defaults, children, env, catch_kwargs, catch_varargs, caller
+      getter name, defaults, children, catch_kwargs, catch_varargs, caller
 
-      def initialize(@name : String, @env : Environment, @children : Array(Node), @defaults = Hash(String, Type).new)
+      def initialize(@name : String, @children : Array(Node), @defaults = Hash(String, Type).new, @caller = false)
         @catch_varargs = false
-        @catch_kwargs = false
-        @caller = false
+        @catch_kwargs = !@defaults.empty?
       end
 
       def create_arguments(env : Environment, varargs : Array(Value) = [] of Value, kwargs : Hash(String, Value) = Hash(String, Value).new)
@@ -40,16 +39,15 @@ module Crinja
       end
 
       def call(arguments : Arguments)
-        env.with_scope(arguments.to_h) do |context|
+        arguments.env.with_scope(arguments.to_h) do |context|
           context.merge!({
             "varargs" => arguments.varargs,
             "kwargs"  => arguments.kwargs,
-            "caller"  => arguments.caller,
           })
 
           output = Node::OutputList.new
           children.each do |child|
-            output << child.render(env)
+            output << child.render(arguments.env)
           end
           SafeString.new output.value
         end

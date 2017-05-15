@@ -4,7 +4,7 @@ require "html"
 module Crinja
   abstract class Filter < Function
     def call(arguments : Arguments) : Type
-      call(arguments.target.not_nil!, arguments)
+      call(arguments.target!, arguments)
     end
 
     abstract def call(target : Value, arguments : Arguments) : Type
@@ -65,7 +65,7 @@ module Crinja
   # * *target*: `Value` which is the target of this test (conveniently extracted from *arguments*)
   macro create_test(klass, defaults = nil, name = nil, default = false)
     ::Crinja.create_feature(::Crinja::Test, {{ klass }}, {{ defaults }}, {{ name }}, {{ default }}) do
-      target = arguments.target.not_nil!
+      target = arguments.target!
       {{ yield }}
     end
   end
@@ -77,7 +77,7 @@ module Crinja
   # * *target*: `Value` which is the target of this filter (conveniently extracted from *arguments*)
   macro create_filter(klass, defaults = nil, name = nil, default = false)
     ::Crinja.create_feature(::Crinja::Filter, {{ klass }}, {{ defaults }}, {{ name }}, {{ default }}) do
-      target = arguments.target.not_nil!
+      target = arguments.target!
       {{ yield }}
     end
   end
