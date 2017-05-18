@@ -260,7 +260,7 @@ class Crinja::Value
 
   # Returns `true` if this value is a `Callable`
   def callable?
-    @raw.is_a?(Callable)
+    @raw.is_a?(Crinja::Callable)
   end
 
   # Returns `true` if this value is a `Int32 | Int64 | Float64`

@@ -10,6 +10,7 @@ module Crinja::CLI
   @@env = Crinja::Environment.new
   @@loader = Crinja::Loader::FileSystemLoader.new("")
   @@env.loader = @@loader
+  @@template_string : String?
 
   def self.env
     @@env

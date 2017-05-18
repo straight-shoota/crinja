@@ -16,7 +16,7 @@ class Crinja::Statement
     def evaluate(env : Environment) : Type
       filter = resolve_filter(env)
 
-      arguments = filter.create_arguments(env)
+      arguments = Arguments.new(env)
       arguments.target = resolve_target(env)
 
       varargs.each do |stmt|

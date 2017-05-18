@@ -2,8 +2,8 @@ require "benchmark"
 require "../../src/crinja.cr"
 
 env = Crinja::Environment.new
-Crinja.create_filter(Dateformat) { target.as_time.to_s("%Y-%m-%d") }
-env.filters << Dateformat
+
+env.filters[:dateformat] = Crinja.filter { target.as_time.to_s("%Y-%m-%d") }
 env.loader = Crinja::Loader::FileSystemLoader.new(File.join(FileUtils.pwd, "crinja"))
 
 time_to_parse = Benchmark.measure "parse crinja" do

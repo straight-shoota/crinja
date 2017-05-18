@@ -72,18 +72,18 @@ class Crinja::Util::ForLoop
   end
 
   class CycleMethod
-    include Crinja::Callable
+    include Crinja::CallableMod
 
     def initialize(@loop : ForLoop)
     end
 
-    def call(arguments : Crinja::Callable::Arguments) : Type
+    def call(arguments : Crinja::Arguments) : Type
       arguments.varargs[@loop.index0 % arguments.varargs.size].raw
     end
   end
 
   class Recursive < ForLoop
-    include Crinja::Callable
+    include Crinja::CallableMod
 
     property depth0 : Int32 = 0
 
@@ -103,7 +103,7 @@ class Crinja::Util::ForLoop
       super(iterator)
     end
 
-    def call(arguments : Crinja::Callable::Arguments)
+    def call(arguments : Crinja::Arguments)
       sub_iterator = arguments.varargs.first
 
       sub_loop = self.class.new(@loop_runner, sub_iterator)

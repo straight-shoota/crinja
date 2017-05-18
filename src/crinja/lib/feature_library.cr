@@ -22,7 +22,17 @@ abstract class Crinja::FeatureLibrary(T)
 
   macro inherited
     # Create a local method in a subclass to allow the usage of `previous_def`.
-    def register_defaults; end
+    def register_defaults
+      @store.merge! @@defaults
+      puts @store
+      puts @@defaults
+
+    end
+
+    @@defaults = Hash(::String, T).new
+    def self.defaults
+      @@defaults
+    end
   end
 
   # Register default values with this library.
@@ -56,28 +66,28 @@ abstract class Crinja::FeatureLibrary(T)
   # Adds a feature object to this library.
   # It will be stored under the key `obj.name`.
   def <<(obj : T)
-    store[obj.name] = obj
+    self[obj.name] = obj
   end
 
   # Retrieves the feature object in this library with key *name*.
-  def [](name : String) : T
-    store[name.downcase]
+  def [](name) : T
+    store[name.to_s.downcase]
   rescue
     raise UnknownFeatureException.new(T, name.downcase)
   end
 
   # Stores a feature object *obj* under the key *name*.
-  def []=(name : String, obj : T)
-    store[name.downcase] = obj
+  def []=(name, obj : T)
+    store[name.to_s.downcase] = obj
   end
 
   # Stores a feature object *obj* under the key *name*.
-  def []=(name : String, klass : Class)
-    store[name.downcase] = klass.new
+  def []=(name, klass : Class)
+    self[name] = klass.new
   end
 
-  def has_key?(name : String)
-    store.has_key?(name.downcase)
+  def has_key?(name)
+    store.has_key?(name.to_s.downcase)
   end
 
   def inspect(io : IO)

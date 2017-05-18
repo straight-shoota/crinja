@@ -20,7 +20,7 @@ module Crinja
       arguments = if filter.responds_to?(:create_arguments)
                     filter.create_arguments(env)
                   else
-                    Crinja::Callable::Arguments.new(env)
+                    Crinja::Arguments.new(env)
                   end
 
       # TODO: Wrap in OutputNode or find a better way

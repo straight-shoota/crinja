@@ -1,5 +1,5 @@
 class Crinja::Filter
-  create_filter Default, {default_value: "", boolean: false}, default: true do
+  Crinja.filter({default_value: "", boolean: false}, :default) do
     default_value = arguments[:default_value]
 
     value = target.raw
@@ -10,7 +10,7 @@ class Crinja::Filter
     end
   end
 
-  create_filter List, default: true do
+  Crinja.filter :list do
     value = target.raw
 
     case value
@@ -23,7 +23,7 @@ class Crinja::Filter
     end
   end
 
-  create_filter Batch, {linecount: 2, fill_with: nil}, default: true do
+  Crinja.filter({linecount: 2, fill_with: nil}, :batch) do
     value = target.raw
     fill_with = arguments[:fill_with].raw
     linecount = arguments[:linecount].to_i
@@ -43,7 +43,7 @@ class Crinja::Filter
     end
   end
 
-  create_filter Slice, {slices: 2, fill_with: nil}, default: true do
+  Crinja.filter({slices: 2, fill_with: nil}, :slice) do
     fill_with = arguments[:fill_with].raw
     slices = arguments[:slices].to_i
     raw = target.raw
@@ -79,5 +79,5 @@ class Crinja::Filter
     end
   end
 
-  create_filter(First, default: true) { target[0].raw }
+  Crinja.filter(:first) { target[0].raw }
 end

@@ -117,7 +117,11 @@ module Crinja
   end
 
   class InvalidArgumentException < RuntimeError
-    getter callee : Crinja::Callable | Crinja::Operator
+    getter callee : Crinja::Callable | Crinja::Operator | String
+
+    def initialize(callee : Symbol, msg = nil, cause = nil)
+      initialize callee.to_s, msg, cause
+    end
 
     def initialize(@callee, msg = nil, cause = nil)
       super msg, cause

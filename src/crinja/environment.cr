@@ -225,18 +225,12 @@ class Crinja::Environment
         callable = resolve(target)
         puts "resolved to #{callable}"
       end
-    else
+    elsif target.callable?
       callable = target.raw
     end
 
-    unless callable.is_a?(Callable)
-      raise TypeError.new("cannot call #{target.inspect}. Not a function")
-    else
-      arguments = if callable.responds_to?(:create_arguments)
-                    callable.create_arguments(self)
-                  else
-                    Callable::Arguments.new(self)
-                  end
+    if callable.is_a?(Callable)
+      arguments = Arguments.new(self)
 
       # if callable.is_a?(Tag::Macro::MacroFunction)
       #  ctx = Context.new
@@ -250,40 +244,10 @@ class Crinja::Environment
       # with_scope(ctx) do
       yield(arguments)
 
-      callable.call(arguments)
+      callable.as(Callable).call(arguments)
       # end
+    else
+      raise TypeError.new("cannot call #{target.inspect}. Not a callable")
     end
   end
-
-  # class BlocksResolver
-  #   include PyWrapper
-
-  #   def initialize(@env : Environment)
-  #   end
-
-  #   def getattr(attr : Type) : Type
-  #     block_chain = @env.blocks[attr.to_s]
-  #     if block_chain
-  #       CallableBlock.new(block_chain[0])
-  #     else
-  #       Undefined.new(attr)
-  #     end
-  #   end
-  # end
-
-  # class CallableBlock
-  #   include Callable
-
-  #   def initialize(@nodes : Array(Node))
-  #   end
-
-  #   def call(arguments : Arguments)
-  #     SafeString.build do |io|
-  #       @nodes.each do |node|
-  #         io << node.render(arguments.env).value
-  #       end
-  #     end
-  #   end
-
-  # end
 end

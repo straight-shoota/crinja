@@ -24,7 +24,7 @@ module Crinja
     end
 
     class MacroFunction
-      include Callable
+      include CallableMod
       # include PyWrapper
 
       getter name, defaults, children, catch_kwargs, catch_varargs, caller
@@ -34,11 +34,8 @@ module Crinja
         @catch_kwargs = !@defaults.empty?
       end
 
-      def create_arguments(env : Environment, varargs : Array(Value) = [] of Value, kwargs : Hash(String, Value) = Hash(String, Value).new)
-        create_arguments(env, varargs, kwargs, defaults)
-      end
-
       def call(arguments : Arguments)
+        arguments.defaults = @defaults
         arguments.env.with_scope(arguments.to_h) do |context|
           context.merge!({
             "varargs" => arguments.varargs,

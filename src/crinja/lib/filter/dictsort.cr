@@ -1,8 +1,8 @@
 class Crinja::Filter
-  create_filter(Dictsort, {
+  Crinja.filter({
     case_sensitive: false,
     by:             "key",
-  }, default: true) do
+  }, :dictsort) do
     hash = target.as_h
     array = hash.to_a
 

@@ -201,7 +201,7 @@ describe Crinja::Filter do
     end
   end
 
-  describe Crinja::Filter::Safe do
+  describe "safe" do
     it "safe" do
       evaluate_statement(%("<div>foo</div>"|safe), autoescape: true).should eq "<div>foo</div>"
     end

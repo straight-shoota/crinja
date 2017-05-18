@@ -111,27 +111,32 @@ See also the original [Jinja2 API Documentation](http://jinja.pocoo.org/docs/2.9
 
 ### Custom features
 
-You can provide custom tags, filters, functions, operators and tests. Create an implementation class that extends from `Crinja::Tag`, `Crinja::Filter`, `Crinja::Function`, `Crinja::Operator` or `Crinja::Test` and add an instance to the feature library in `env.context`.
+You can provide custom tags, filters, functions, operators and tests. Create an implementation using the macros `Crinja.filter`, `Crinja.function`, `Crinja.test`. They need to be passed a block which will be converted to a Proc. Optional arguments are a `Hash` or `NamedTuple` with default arguments and a name. If a name is provided, it will be added to the feature library defaults and available in every environment which uses the registered defaults.
 
-Example:
+Example with macro `Crinja.filter`:
 
 ```crystal
-class Customfilter < Crinja::Filter
+myfilter = Crinja.filter({ attribute: nil }) { "#{target} is #{arguments[:attribute]}!" }
+
+env.filters << myfilter
+# Usage: {{ "Hello World" | customfilter(attribute="super") }}
+```
+
+Or you can define a class for more complex features:
+```crystal
+class Customfilter
+    include Crinja::CallableMod
     name "customfilter"
-    arguments({
-        :attribute => "great"
-    })
-    def call(target : Crinja::Value, arguments : Crinja::Callable::Arguments)
+
+    def call(target : Crinja::Value, arguments : Crinja::Arguments)
+        arguments.defaults[:attribute] = "great"
         "#{target} is #{arguments[:attribute]}!"
     end
 end
-
-# or using a simple macro
-Crinja.create_filter Customfilter, { :attribute => nil }, "#{target} is #{arguments[:attribute]}!"
-
 env.filters << Customfilter.new
-# Usage: {{ "Hello World" | customfilter(attribute="super") }}
 ```
+
+Custom tags and operator can be implemented through subclassing `Crinja::Operator` or  `Crinja.tag` and adding an instance to the feature library defaults (`Crinja::Operator::Library.defaults << MyOperator.new`) or to a specific environment (`env.tags << MyTag.new`).
 
 ## Background
 

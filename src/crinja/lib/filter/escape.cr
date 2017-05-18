@@ -1,4 +1,4 @@
 class Crinja::Filter
-  create_filter(Escape, default: true) { SafeString.escape(target.to_s) }
-  register_default Escape, "e"
+  Crinja.filter(:escape) { SafeString.escape(target.to_s) }
+  Crinja::Filter::Library.defaults["e"] = Crinja::Filter::Library.defaults["escape"]
 end

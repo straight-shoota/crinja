@@ -2,17 +2,10 @@ require "../spec_helper"
 
 # Tests based on https://github.com/pallets/jinja/blob/d905cf0b6c6121d900ea384f72970b862c879bc7/tests/test_tests.py
 
-class TestFunction
-  include Crinja::Callable
-
-  def call(arguments : Crinja::Callable::Arguments) : Crinja::Type
-  end
-end
-
 describe Crinja::Test do
-  describe Crinja::Test::Callable do
+  describe "callable" do
     it "should find callable" do
-      evaluate_statement(%(foo is callable), {"foo" => TestFunction.new}).should eq("true")
+      evaluate_statement(%(foo is callable), {"foo" => Crinja.function() {} }).should eq("true")
     end
 
     it "should find not callable" do
@@ -128,12 +121,27 @@ describe Crinja::Test do
     evaluate_statement(%(1 is in [1, 2])).should eq "true"
   end
 
-  describe Crinja::Test::Divisibleby do
+  describe "divisibleby" do
     it "should be true" do
       evaluate_statement(%(56 is divisibleby(7))).should eq("true")
     end
     it "should be false" do
       evaluate_statement(%(57 is divisibleby(7))).should eq("false")
     end
+  end
+
+  it "test_custom_test" do
+    items = [] of Tuple(String, String)
+    matching = Crinja.test({ x: nil }) { items << {target.as_s, x.as_s}; false }
+
+    env = Crinja::Environment.new
+    env.tests["matching"] = matching
+    tmpl = env.from_string("{{ ('us-west-1' is matching '(us-east-1|ap-northeast-1)') "\
+                 "or 'stage' is matching '(dev|stage)' }}"
+      )
+    puts tmpl
+    tmpl.render.should eq "false"
+    items.should eq [{"us-west-1", "(us-east-1|ap-northeast-1)"},
+             {"stage", "(dev|stage)"}]
   end
 end
