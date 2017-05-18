@@ -24,9 +24,6 @@ abstract class Crinja::FeatureLibrary(T)
     # Create a local method in a subclass to allow the usage of `previous_def`.
     def register_defaults
       @store.merge! @@defaults
-      puts @store
-      puts @@defaults
-
     end
 
     @@defaults = Hash(::String, T).new

@@ -215,15 +215,15 @@ class Crinja::Environment
 
   def execute_call(target)
     if target.is_a?(Variable)
-      puts target.to_s
-      puts "xecuting call with context macros: #{context.all_macros.keys}"
+      #puts target.to_s
+      #puts "xecuting call with context macros: #{context.all_macros.keys}"
       if context.has_macro?(target.to_s)
         # its a macro call
         callable = context.macro(target.to_s)
-        puts "its a macro #{callable.inspect}"
+        #puts "its a macro #{callable.inspect}"
       else
         callable = resolve(target)
-        puts "resolved to #{callable}"
+        #puts "resolved to #{callable}"
       end
     elsif target.callable?
       callable = target.raw

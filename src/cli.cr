@@ -36,21 +36,27 @@ module Crinja::CLI
       opts.on("-v", "--verbose", "") { self.logger.level = Logger::Severity::DEBUG }
       opts.on("-q", "--quiet", "") { self.logger.level = Logger::Severity::WARN }
       opts.on("-h", "--help", "") { self.display_help_and_exit(opts) }
-      opts.on("-p PATH", "--path PATH", "Add path for template lookup") { |path| loader.searchpaths << path }
+      opts.on("-p PATH", "--path=PATH", "Add path for template lookup") { |path| loader.searchpaths << path }
+      opts.on("--string=TEMPLATE", "template string") { |string| @@template_string = string }
       opts.on("-e VAR", "--extra-vars=VAR", "Set variables as `key=value` or YAML/JSON") do |var|
         key, value = var.split('=')
         env.context[key] = value
       end
 
       opts.unknown_args do |args, options|
-        if args.empty?
+        if !(string = @@template_string).nil?
+          # read template from args
+          puts string.inspect
+          template = env.from_string(string)
+        elsif args.empty?
           self.display_help_and_exit(opts)
           exit
+        else
+          template_file = args[0]
+
+          template = env.get_template(template_file)
         end
 
-        template_file = args[0]
-
-        template = env.get_template(template_file)
         output = template.render
 
         puts output
@@ -59,12 +65,10 @@ module Crinja::CLI
       end
     end
   end
-
 end
 
 begin
   Crinja::CLI.run
-
 rescue ex : OptionParser::InvalidOption
   Crinja::CLI.logger.fatal ex.message
   exit 1

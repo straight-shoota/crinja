@@ -13,8 +13,6 @@ module Crinja
         call_stmt = tag_node.varargs[1]
       end
 
-      puts tag_node.inspect
-
       env.with_scope do |ctx|
         env.context.register_macro Tag::Macro::MacroFunction.new "caller", tag_node.children, defaults, caller: true
 
