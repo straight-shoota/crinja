@@ -47,6 +47,13 @@ module Crinja
         looper = Util::ForLoop.new collection
       end
 
+      if looper.responds_to?(:getattr)
+        puts "looper responds to getattr"
+        puts looper.getattr("index")
+      else
+        puts "looper not respond to getattr"
+      end
+
       result = runner.run_loop(looper)
 
       if looper.index == 0

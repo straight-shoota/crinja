@@ -124,6 +124,9 @@ class Crinja::Environment
   # Resolves an objects item.
   # Analogous to `__getitem__` in Jinja2.
   def resolve_item(name : String, object)
+    object = object.raw if object.is_a?(Value)
+    raise UndefinedError.new(name, "#{object.class} is undefined") if object.is_a?(Undefined)
+
     value = Undefined.new(name)
     if object.responds_to?(:getitem)
       value = object.getitem(name)
@@ -132,7 +135,7 @@ class Crinja::Environment
       value = object.getattr(name)
     end
     if value.is_a?(Undefined)
-      value = resolve_with_hash_accessor(name, object)
+      value = Environment.resolve_with_hash_accessor(name, object)
     end
 
     if value.is_a?(Value)
@@ -142,20 +145,12 @@ class Crinja::Environment
     value.as(Type)
   end
 
-  private def resolve_with_hash_accessor(name, object)
-    if object.responds_to?(:[]) && !object.is_a?(Array) && !object.is_a?(Tuple)
-      begin
-        return object[name]
-      rescue KeyError
-      end
-    end
-
-    Undefined.new(name)
-  end
-
   # Resolves an objects attribute.
   # Analogous to `getattr` in Jinja2.
   def resolve_attribute(name : String, object)
+    object = object.raw if object.is_a?(Value)
+    raise UndefinedError.new(name, "#{object.class} is undefined") if object.is_a?(Undefined)
+
     value = Undefined.new(name)
     if object.responds_to?(:getattr)
       value = object.getattr(name)
@@ -164,7 +159,7 @@ class Crinja::Environment
       value = object.getitem(name)
     end
     if value.is_a?(Undefined)
-      value = resolve_with_hash_accessor(name, object)
+      value = Environment.resolve_with_hash_accessor(name, object)
     end
 
     if value.is_a?(Value)
@@ -172,6 +167,17 @@ class Crinja::Environment
     end
 
     value.as(Type)
+  end
+
+  def self.resolve_with_hash_accessor(name, object)
+    if object.responds_to?(:[]) && !object.is_a?(Array) && !object.is_a?(Tuple)
+      begin
+        return object[name]
+      rescue KeyError
+      end
+    end
+
+    Undefined.new(name)
   end
 
   # Resolves a variable in the current context.

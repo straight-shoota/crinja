@@ -1,13 +1,18 @@
 class Crinja::Node
   class Tag < Node
+    property name_token : Token
     property tag : Crinja::Tag
     property varargs : Array(Statement) = [] of Statement
     property kwargs : Hash(String, Statement) = Hash(String, Statement).new
 
-    property end_tag_tokens : NamedTuple(start: Token, end: Token)?
+    property end_tag : Tag?
 
-    def initialize(start_token : Token, @tag, @varargs, @kwargs)
+    def initialize(start_token : Token, @name_token, @end_token, @tag, @varargs, @kwargs)
       super(start_token)
+    end
+
+    def end_token
+      super.not_nil!
     end
 
     def name
@@ -27,8 +32,8 @@ class Crinja::Node
     end
 
     def trim_right_after_end?
-      unless (tokens = end_tag_tokens).nil?
-        tokens[:end].trim_right
+      unless (end_tag = @end_tag).nil?
+        end_tag.end_token.trim_right
       else
         end_token.try(&.trim_right) || false
       end
@@ -52,11 +57,11 @@ class Crinja::Node
     end
 
     def inspect_end_arguments(io : IO, indent = 0)
-      unless (tokens = end_tag_tokens).nil?
+      unless (end_tag = @end_tag).nil?
         io << " start="
-        tokens[:start].inspect(io)
+        end_tag.token.inspect(io)
         io << " end="
-        tokens[:end].inspect(io)
+        end_tag.end_token.inspect(io)
       end
     end
 

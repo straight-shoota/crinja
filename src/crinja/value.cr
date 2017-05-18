@@ -69,12 +69,13 @@ class Crinja::Value
   # with the given key.
   # Raises if the underlying value is not a Hash.
   def [](key : String) : Value
-    case object = @raw
-    when Hash
-      Value.new object[key]
-    else
-      raise "expected Hash for #[](key : String), not #{object.class}"
-    end
+    Value.new Environment.resolve_with_hash_accessor(key, @raw)
+    #case object = @raw
+    #when .responds_to? :[]
+    #  Value.new object[key]
+    #else
+    #  raise "expected Hash for #[](key : String), not #{object.class}"
+    #end
   end
 
   # Assumes the underlying value is a Hash and returns the element

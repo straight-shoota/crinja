@@ -54,6 +54,10 @@ module Crinja
       token.inspect(io)
     end
 
+    def accept(visitor : Visitor)
+      visitor.visit self
+    end
+
     def raise(exc : RuntimeError)
       ::raise TemplateError.new(token, exc, template)
     end

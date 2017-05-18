@@ -46,6 +46,10 @@ module Crinja
       child.parent = self
     end
 
+    def accept(visitor : Visitor)
+      visitor.visit self
+    end
+
     def render_children(io : IO, env : Crinja::Environment)
       children.each do |node|
         node.render(io, env)

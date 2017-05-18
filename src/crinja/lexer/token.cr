@@ -45,7 +45,8 @@ class Crinja::Lexer::Token
 
   property trim_left = false, trim_right = false
 
-  property whitespace_before = false
+  property whitespace_before : String?
+  property whitespace_after : String?
 
   def initialize(@kind = Kind::INITIAL, @value = "", @position = StreamPosition.new)
   end
@@ -58,6 +59,13 @@ class Crinja::Lexer::Token
     position.column
   end
 
+  def reset(pos)
+    @value = ""
+    @position = pos
+    @whitespace_before = nil
+    @whitespace_after = nil
+  end
+
   def inspect(io : IO)
     io << kind
     preview = value
@@ -68,7 +76,10 @@ class Crinja::Lexer::Token
     end
     io << "[" << line << ":" << column << "]"
     if whitespace_before
-      io << " whitespace_before"
+      io << " ws_before=\"" << whitespace_before.to_s << "\""
+    end
+    if whitespace_after
+      io << " ws_after=\"" << whitespace_after.to_s << "\""
     end
   end
 

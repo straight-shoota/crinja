@@ -11,9 +11,7 @@ module Crinja::Parser
       end
 
       if tag.is_a?(Tag::EndTag)
-        end_token = next_token
-        raise "expected closing tag sequence `%}` for end tag #{tag}" unless end_token.kind == Kind::TAG_END
-        build_end_tag_node(start_token, end_token, tag)
+        build_end_tag_node(start_token, tag)
         return nil
       end
 
@@ -26,9 +24,9 @@ module Crinja::Parser
 
       statement_parser.build
 
-      node = Node::Tag.new(start_token, tag, root.varargs, root.kwargs)
+      end_token = current_token
+      node = Node::Tag.new(start_token, name_token, end_token, tag, root.varargs, root.kwargs)
       node.parent = @parent.as(Node)
-      node.end_token = current_token
 
       set_trim_for_last_sibling(node.trim_left?, true)
 
@@ -41,17 +39,23 @@ module Crinja::Parser
       node
     end
 
-    def build_end_tag_node(start_token, end_token, end_tag)
+    def build_end_tag_node(start_token, tag)
+      name_token = current_token
+
+      end_token = next_token
+      raise "expected closing tag sequence `%}` for end tag #{tag}" unless end_token.kind == Kind::TAG_END
+
       while !@parent.is_a?(Node::Root)
         parent_tag = @parent.as(Node::Tag)
         @parent = @parent.parent.not_nil!
 
-        if parent_tag.end_name == end_tag.name
+        if parent_tag.end_name == tag.name
           set_trim_for_last_child(start_token.trim_left, true)
-          parent_tag.end_tag_tokens = {start: start_token, end: end_token}
+          end_tag = Node::Tag.new(start_token, name_token, end_token, tag, Array(Statement).new, Hash(String, Statement).new)
+          parent_tag.end_tag = end_tag
           break
         else
-          raise TemplateSyntaxError.new(start_token, "Mismatched end tag, expected: #{parent_tag.end_name} got #{end_tag.name}")
+          raise TemplateSyntaxError.new(start_token, "Mismatched end tag, expected: #{parent_tag.end_name} got #{tag.name}")
         end
       end
     end

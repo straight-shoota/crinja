@@ -122,4 +122,11 @@ class Crinja::Template
       placeholder.resolve("") unless placeholder.resolved?
     end
   end
+
+
+  def to_string
+    String.build do |io|
+      root.accept Crinja::SourceVisitor.new(io)
+    end
+  end
 end

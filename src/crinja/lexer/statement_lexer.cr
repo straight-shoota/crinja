@@ -3,8 +3,8 @@ module Crinja::Lexer
     @stack = [] of Kind
 
     def next_token : Token
+      @token.reset(stream.position)
       @token.whitespace_before = skip_whitespace
-      @token.position = stream.position
 
       case current_char
       when Symbol::PIPE

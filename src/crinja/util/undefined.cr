@@ -1,8 +1,6 @@
 module Crinja
   # The default undefined type.
   class Undefined
-    INSTANCE = new
-
     getter name
 
     def initialize(@name = "")
@@ -14,8 +12,6 @@ module Crinja
 
   # An undefined that raises an `UndefinedError` if it is compared or printed.
   class StrictUndefined < Undefined
-    INSTANCE = new
-
     def ==(other)
       fail
     end

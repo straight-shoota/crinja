@@ -41,8 +41,7 @@ module Crinja::Lexer
     setter statement_lexer
 
     def next_token : Token
-      @token.value = ""
-      @token.position = stream.position
+      @token.reset(stream.position)
 
       case @stack.last
       when State::ROOT
@@ -151,7 +150,7 @@ module Crinja::Lexer
 
       if @token.kind == Kind::TAG_START
         # if last token is TAG_START, read tag name
-        skip_whitespace
+        @token.whitespace_before = skip_whitespace
         consume_name(with_special_constants: false)
 
         if @token.value == Symbol::RAW_START
@@ -223,7 +222,11 @@ module Crinja::Lexer
 
           @token.kind = current_scope.end_kind
 
-          (whitespace + lookahead + 1).times { next_char }
+          @token.whitespace_before = String.build do |io|
+            whitespace.times { io << current_char; next_char }
+          end
+
+          (lookahead + 1).times { next_char }
 
           if trim_whitespace
             @token.trim_right = true

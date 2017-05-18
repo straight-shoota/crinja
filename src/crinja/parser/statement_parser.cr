@@ -241,7 +241,7 @@ module Crinja::Parser
     end
 
     def build_member_operator(token)
-      if current_statement.is_a? Statement::Name
+      if false && current_statement.is_a? Statement::Name
         member = next_token
         raise "member operator only allows access through a name, found #{member}" unless member.kind == Kind::NAME
 
@@ -274,7 +274,7 @@ module Crinja::Parser
         return build_subexpression(token)
       end
 
-      raise "can only call a name statement" unless current_statement.is_a?(Statement::Name)
+      raise "can only call a name statement or attribute statment" unless current_statement.is_a?(Statement::Name | Statement::Attribute)
       function = Statement::Call.new(token, remove_current_statement!)
 
       push_stack function

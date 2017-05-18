@@ -8,6 +8,7 @@ module Crinja::Parser
       statement_parser = StatementParser.new(self, root)
       statement_parser.expected_end_token = Kind::EXPR_END
       statement = statement_parser.build
+      node.end_token = current_token
 
       unless statement.nil?
         node.statement = statement

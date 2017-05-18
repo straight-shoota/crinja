@@ -144,17 +144,23 @@ module Crinja::Lexer
       {is_float ? Kind::FLOAT : Kind::INTEGER, @buffer.to_s}
     end
 
-    def skip_whitespace : Bool
-      skipped_whitespace = false
-      while true
-        if Symbol::WHITESPACE.includes?(current_char)
-          skipped_whitespace = true
-          next_char
-        else
-          break
+    def skip_whitespace
+      whitespace = String.build do |io|
+        while true
+          if Symbol::WHITESPACE.includes?(current_char)
+            skipped_whitespace = true
+            io << current_char
+            next_char
+          else
+            break
+          end
         end
       end
-      skipped_whitespace
+      if whitespace.empty?
+        nil
+      else
+        whitespace
+      end
     end
 
     def raise(message)
