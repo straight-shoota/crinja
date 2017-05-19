@@ -8,21 +8,6 @@ class Crinja::Node
       @statement = Statement::Root.new(token)
     end
 
-    def render(env : Crinja::Environment)
-      raise "Empty expression" if statement.nil?
-      result = statement.not_nil!.evaluate(env)
-
-      if env.context.autoescape?
-        result = SafeString.escape(result)
-      end
-
-      RenderedOutput.new result.to_s
-    end
-
-    def inspect_children(io : IO, indent = 0)
-      statement.inspect(io, indent + 1)
-    end
-
     def <<(node : Statement)
       if statement.is_a?(Statement::Root)
         statement = node

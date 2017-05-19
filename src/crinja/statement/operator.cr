@@ -34,16 +34,5 @@ class Crinja::Statement
     def evaluate(env : Environment) : Type
       operator.value(env, operands)
     end
-
-    def inspect_attributes(io : IO, indent = 0)
-      io << " operator=\"" << operator << "\""
-    end
-
-    def inspect_children(io : IO, indent = 0)
-      operands.each do |op|
-        io << "\n" << "  " * indent
-        op.inspect(io, indent)
-      end
-    end
   end
 end

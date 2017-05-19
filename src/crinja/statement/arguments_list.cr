@@ -28,23 +28,5 @@ class Crinja::Statement
       true
     end
 
-    def inspect_children(io : IO, indent = 0)
-      unless varargs.empty?
-        io << "\n" << "  " * indent << "<varargs>"
-        varargs.each do |arg|
-          io << "\n" << "  " * (indent + 1)
-          arg.inspect(io, indent + 1)
-        end
-        io << "\n" << "  " * indent << "</varargs>"
-      end
-      unless kwargs.empty?
-        kwargs.each do |kw, arg|
-          io << "\n" << "  " * indent << "<kwarg name=\"" << kw << "\">"
-          io << "\n" << "  " * (indent + 1)
-          arg.inspect(io, indent + 1)
-          io << "\n" << "  " * indent << "</kwarg>"
-        end
-      end
-    end
   end
 end

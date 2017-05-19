@@ -3,10 +3,6 @@ class Crinja::Node
     property trim_left = false, trim_right = false
     property left_is_block = false, right_is_block = false
 
-    def render(env : Crinja::Environment)
-      RenderedOutput.new value(env.config.trim_blocks, env.config.lstrip_blocks)
-    end
-
     def value(trim_blocks = false, lstrip_blocks = false)
       Crinja::Util::StringTrimmer.trim(token.value,
         trim_left || (trim_blocks && left_is_block), trim_right || (lstrip_blocks && right_is_block),

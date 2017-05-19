@@ -43,18 +43,5 @@ class Crinja::Statement
     def resolve_target(env)
       target.value(env)
     end
-
-    def inspect_arguments(io : IO, indent = 0)
-      io << " name=" << name
-    end
-
-    def inspect_children(io : IO, indent = 0)
-      io << "\n" << "  " * indent << "<target>"
-      io << "\n" << "  " * (indent + 1)
-      target.inspect(io, indent + 1)
-      io << "\n" << "  " * indent << "</target>"
-
-      super(io, indent)
-    end
   end
 end

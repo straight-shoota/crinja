@@ -24,13 +24,6 @@ class Crinja::Statement
       children.empty?
     end
 
-    def inspect_children(io : IO, indent = 0)
-      children.each do |child|
-        io << "\n" << "  " * indent
-        child.inspect(io, indent)
-      end
-    end
-
     def root
       self
     end

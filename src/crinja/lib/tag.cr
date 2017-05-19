@@ -25,11 +25,7 @@ module Crinja
     end
 
     def render_children(env : Crinja::Environment, node : Node)
-      output = Node::OutputList.new
-      node.children.each do |node|
-        output << node.render(env)
-      end
-      output
+      Visitor::Renderer.new(env).visit(node.children)
     end
 
     private def expect_name(node, name = nil)

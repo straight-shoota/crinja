@@ -93,7 +93,7 @@ module Crinja
               else_branch = false
             end
 
-            output << node.render(env) unless else_branch
+            output << Visitor::Renderer.new(env).visit(node) unless else_branch
           end
         end
       end

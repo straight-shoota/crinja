@@ -1,9 +1,5 @@
 class Crinja::Node
   class Note < Node
-    def render(env : Crinja::Environment)
-      RenderedOutput.new ""
-    end
-
     def block?
       true
     end

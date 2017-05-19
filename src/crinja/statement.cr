@@ -28,30 +28,12 @@ module Crinja
       root.root_node
     end
 
-    def inspect(io : IO, indent = 0)
-      io << "<"
-      to_s(io)
-      inspect_arguments(io, indent)
-      io << ">"
-
-      inspect_children(io, indent + 1)
-
-      io << "\n" << "  " * indent
-      io << "</"
-      io << {{ @type.stringify.split("::").last.downcase }}
-      io << ">"
-    end
-
-    def inspect_arguments(io : IO, indent = 0)
-    end
-
-    def inspect_children(io : IO, indent = 0)
+    def statement_name
+      {{ @type.stringify }}.rpartition("::").last.downcase
     end
 
     def to_s(io : IO)
-      io << {{ @type.stringify }}.rpartition("::").last.downcase
-      io << " token="
-      token.inspect(io)
+      io << statement_name
     end
 
     def accept(visitor : Visitor)

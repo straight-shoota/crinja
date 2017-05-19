@@ -9,6 +9,10 @@ module Crinja
 
       def initialize(@value : String)
       end
+
+      def value(io)
+        io << value
+      end
     end
 
     class BlockOutput < Output
@@ -31,6 +35,10 @@ module Crinja
         raise "block placeholder not resolved #{name}" unless resolved?
 
         @output.not_nil!
+      end
+
+      def value(io)
+        io << value
       end
     end
 

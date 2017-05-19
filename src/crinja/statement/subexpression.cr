@@ -18,12 +18,5 @@ class Crinja::Statement
     def accepts_children?
       @child.nil?
     end
-
-    def inspect_children(io : IO, indent = 0)
-      unless (child = @child).nil?
-        io << "\n" << "  " * indent
-        child.inspect(io, indent)
-      end
-    end
   end
 end

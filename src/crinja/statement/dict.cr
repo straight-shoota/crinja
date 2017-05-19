@@ -14,15 +14,6 @@ class Crinja::Statement
         statement.parent = self
       end
 
-      def inspect(io : IO, indent = 0)
-        super(io, indent)
-
-        io << "\n" << "  " * indent << "- "
-        key.inspect(io, indent + 1)
-        io << "\n" << "  " * indent << "- "
-        value.try(&.inspect(io, indent + 1))
-      end
-
       def accepts_children?
         @value != nil
       end

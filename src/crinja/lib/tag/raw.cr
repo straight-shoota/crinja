@@ -4,7 +4,7 @@ class Crinja::Tag
 
     def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
       if (fixed = tag_node.children.first).is_a?(Node::Text)
-        io << fixed.render(env).value
+        io << fixed.token.value
       else
         raise TemplateSyntaxError.new(tag_node.token, "raw tag expexts exactly one fixed content node inside")
       end

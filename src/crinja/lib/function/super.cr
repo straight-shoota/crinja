@@ -8,10 +8,6 @@ Crinja.function(:super) do
     super_block = block_chain[block_context[:index]]
     arguments.env.context.block_context = block_context
 
-    SafeString.build do |io|
-      super_block.each do |node|
-        io << node.render(env).value
-      end
-    end unless super_block.nil?
+    Visitor::Renderer.new(env).visit(super_block).value unless super_block.nil?
   end
 end

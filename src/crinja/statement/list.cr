@@ -17,13 +17,6 @@ class Crinja::Statement
       array
     end
 
-    def inspect_children(io : IO, indent = 0)
-      children.each do |child|
-        io << "\n" << "  " * (indent + 1)
-        child.to_s(io)
-      end
-    end
-
     def accepts_children?
       true
     end

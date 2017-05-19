@@ -32,14 +32,5 @@ class Crinja::Statement
         end
       end
     end
-
-    def inspect_children(io : IO, indent = 0)
-      io << "\n" << "  " * indent << "<callable>"
-      io << "\n" << "  " * (indent + 1)
-      target.inspect(io, indent + 1)
-      io << "\n" << "  " * indent << "</callable>"
-
-      super(io, indent)
-    end
   end
 end

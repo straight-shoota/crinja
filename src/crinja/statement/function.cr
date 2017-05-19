@@ -21,9 +21,5 @@ class Crinja::Statement
 
       function.call(arguments)
     end
-
-    def inspect_arguments(io : IO, indent = 0)
-      io << " name=" << name
-    end
   end
 end

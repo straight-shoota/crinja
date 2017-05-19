@@ -59,10 +59,11 @@ class Crinja::Template
     env.context.autoescape = env.config.autoescape?(filename)
 
     env.context.macros.merge(self.macros)
-    output = render_nodes(env, root.children)
+    renderer = Visitor::Renderer.new(env)
+    output = renderer.visit(root)
 
     env.extend_parent_templates.each do |parent_template|
-      output = render_nodes(env, parent_template.root.children)
+      output = renderer.visit(parent_template.root)
 
       env.context.extend_path_stack.pop
     end
@@ -78,14 +79,6 @@ class Crinja::Template
     io << "("
     name.to_s(io)
     io << ")"
-  end
-
-  private def render_nodes(env, nodes)
-    Node::OutputList.new.tap do |output|
-      nodes.each do |node|
-        output << node.render(env)
-      end
-    end
   end
 
   private def resolve_block_stubs(env, output, block_names = Array(String).new)
@@ -105,7 +98,7 @@ class Crinja::Template
           env.with_scope(scope) do
             env.context.block_context = {name: name, index: 0}
 
-            output = render_nodes(env, block)
+            output = Visitor::Renderer.new(env).visit(block)
 
             block_names << name
             resolve_block_stubs(env, output, block_names)
@@ -122,7 +115,6 @@ class Crinja::Template
       placeholder.resolve("") unless placeholder.resolved?
     end
   end
-
 
   def to_string
     String.build do |io|

@@ -11,8 +11,6 @@ module Crinja
     def initialize(@token : Token)
     end
 
-    abstract def render(env : Crinja::Environment) : Output
-
     def root
       parent.not_nil!.root
     end
@@ -50,47 +48,12 @@ module Crinja
       visitor.visit self
     end
 
-    def render_children(io : IO, env : Crinja::Environment)
-      children.each do |node|
-        node.render(io, env)
-      end
-    end
-
     def to_s(io : IO)
       io << name
     end
 
-    def inspect(io : IO, indent = 0)
-      io << "<"
-      to_s(io)
-      inspect_arguments(io, indent)
-      io << ">"
-
-      inspect_children(io, indent + 1)
-
-      io << "\n" << "  " * indent
-      io << "</" << name
-      inspect_end_arguments(io, indent)
-      io << ">"
-    end
-
-    def inspect_arguments(io : IO, indent = 0)
-      io << " start="
-      token.inspect(io)
-      unless end_token.nil?
-        io << " end="
-        end_token.not_nil!.inspect(io)
-      end
-    end
-
-    def inspect_end_arguments(io : IO, indent = 0)
-    end
-
-    def inspect_children(io : IO, indent = 0)
-      children.each do |node|
-        io << "\n" << "  " * indent
-        node.inspect(io, indent + 1)
-      end
+    def inspect(io)
+      accept Crinja::Visitor::Inspector.new(io)
     end
   end
 end

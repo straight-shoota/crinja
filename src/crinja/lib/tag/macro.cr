@@ -42,11 +42,9 @@ module Crinja
             "kwargs"  => arguments.kwargs,
           })
 
-          output = Node::OutputList.new
-          children.each do |child|
-            output << child.render(arguments.env)
+          SafeString.build do |io|
+            Visitor::Renderer.new(arguments.env).visit(children).value(io)
           end
-          SafeString.new output.value
         end
       end
 

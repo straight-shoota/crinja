@@ -33,17 +33,6 @@ class Crinja::Statement
       end
     end
 
-    def inspect_arguments(io : IO, indent = 0)
-      io << " member_operator" if member_operator
-    end
-
-    def inspect_children(io : IO, indent = 0)
-      io << "\n" << "  " * (indent + 1)
-      base.inspect(io, indent + 1)
-      io << "\n" << "  " * (indent + 1)
-      attribute.not_nil!.inspect(io, indent + 1) unless attribute.nil?
-    end
-
     def accepts_children?
       !attribute.nil?
     end

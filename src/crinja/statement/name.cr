@@ -15,11 +15,6 @@ class Crinja::Statement
       variable.add_part(token.value)
     end
 
-    def inspect_arguments(io : IO, indent = 0)
-      io << " variable="
-      variable.to_s(io)
-    end
-
     def name
       variable.to_s
     end

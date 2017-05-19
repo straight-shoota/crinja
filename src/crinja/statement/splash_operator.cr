@@ -9,11 +9,6 @@ class Crinja::Statement
       self.operand = statement
     end
 
-    def inspect_children(io : IO, indent = 0)
-      io << "\n" << "  " * indent
-      operand.try(&.inspect(io, indent))
-    end
-
     def accepts_children?
       !operand.nil?
     end

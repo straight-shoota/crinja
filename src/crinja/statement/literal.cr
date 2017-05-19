@@ -18,10 +18,5 @@ class Crinja::Statement
         raise "Unrecognized literal token value #{token.kind}"
       end
     end
-
-    def inspect_children(io : IO, indent = 0)
-      io << "\n" << "  " * indent
-      token.value.to_s(io)
-    end
   end
 end
