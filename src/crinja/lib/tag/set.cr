@@ -11,7 +11,7 @@ module Crinja
       elsif tag_node.kwargs.size > 0
         # expression set
         tag_node.kwargs.each do |name, value|
-          env.context[name] = value.value(env).raw
+          env.context[name] = value.accept(env.evaluator)
         end
       else
         raise TemplateSyntaxError.new(tag_node.token, "Tag `set` requires either a single name argument (set block) or at least one assignment")

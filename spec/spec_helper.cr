@@ -59,7 +59,7 @@ def evaluate_statement(string, bindings = nil, autoescape = nil)
     env.context.merge! Crinja::Bindings.cast(bindings)
   end
 
-  result = statement.evaluate(env)
+  result = statement.accept(env.evaluator)
 
   if env.config.autoescape?
     result = Crinja::SafeString.escape(result)

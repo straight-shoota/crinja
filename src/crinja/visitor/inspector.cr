@@ -7,7 +7,7 @@ module Crinja
     end
 
     private def open(name)
-      open(name) {}
+      open(name) { }
     end
     private def open(name)
       @io << "<" << name
@@ -17,7 +17,7 @@ module Crinja
     end
 
     private def close(name)
-      close(name) {}
+      close(name) { }
     end
     private def close(name)
       @indent -= 1
@@ -115,8 +115,29 @@ module Crinja
       end
     end
 
+    def inspect_start_attributes(node : Node::Text)
+      @io << " trim="
+      @io << if node.trim_right
+        if node.trim_left
+          "both"
+        else
+          "right"
+        end
+      elsif node.trim_left
+        "left"
+      else
+        "none"
+      end
 
-    ### Statement
+      @io << " left_is_block" if node.left_is_block
+      @io << " right_is_block" if node.right_is_block
+    end
+
+    def inspect_content(node : Node::Text)
+      node.token.value.to_s(@io)
+    end
+
+    # ## Statement
 
     def visit(node : Statement)
       open(node.statement_name) { inspect_start_attributes(node) }
@@ -207,7 +228,7 @@ module Crinja
     def inspect_start_attributes(node : Statement::Name)
       inspect_token(node.token)
       @io << " name="
-      node.variable.to_s(@io)
+      @io << node.token.value
     end
 
     def inspect_start_attributes(node : Statement::Operator)

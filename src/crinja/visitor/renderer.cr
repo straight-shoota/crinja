@@ -1,7 +1,7 @@
 require "./visitor"
 
-module Crinja
-  class Visitor::Renderer < Visitor
+abstract class Crinja::Visitor
+  class Renderer < Visitor
     def initialize(@env : Environment)
     end
 
@@ -21,8 +21,21 @@ module Crinja
       end
     end
 
+    def self.trim_text(node, trim_blocks = false, lstrip_blocks = false)
+      Crinja::Util::StringTrimmer.trim(
+        node.token.value,
+        node.trim_left || (trim_blocks && node.left_is_block),
+        node.trim_right || (lstrip_blocks && node.right_is_block),
+        node.left_is_block,
+        node.right_is_block && lstrip_blocks
+      )
+    end
+
     def visit(node : Node::Text)
-      Node::RenderedOutput.new node.value(@env.config.trim_blocks, @env.config.lstrip_blocks)
+      trim_blocks = @env.config.trim_blocks
+      lstrip_blocks = @env.config.lstrip_blocks
+
+      Node::RenderedOutput.new Crinja::Visitor::Renderer.trim_text(node, @env.config.trim_blocks, @env.config.lstrip_blocks)
     end
 
     def visit(node : Node::Tag)
@@ -34,7 +47,7 @@ module Crinja
     end
 
     def visit(node : Node::Expression)
-      result = node.statement.not_nil!.evaluate(@env)
+      result = node.statement.accept(@env.evaluator)
 
       if @env.context.autoescape?
         result = SafeString.escape(result)

@@ -8,7 +8,7 @@ describe Crinja::Statement do
     env = Crinja::Environment.new
     env.context.merge!({"foo" => "bar"})
 
-    statement.evaluate(env).should eq("bar")
+    statement.accept(env.evaluator).should eq("bar")
   end
 
   it "resolves lookup sequence" do

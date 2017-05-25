@@ -3,7 +3,7 @@ module Crinja
     name "include"
 
     def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
-      raw_value = tag_node.varargs.first.value(env).raw
+      raw_value = tag_node.varargs.first.accept(env.evaluator)
 
       include_name = if raw_value.is_a?(Array)
                        raw_value.map &.to_s

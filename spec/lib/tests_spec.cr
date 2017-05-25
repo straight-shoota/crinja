@@ -5,7 +5,7 @@ require "../spec_helper"
 describe Crinja::Test do
   describe "callable" do
     it "should find callable" do
-      evaluate_statement(%(foo is callable), {"foo" => Crinja.function() {} }).should eq("true")
+      evaluate_statement(%(foo is callable), {"foo" => Crinja.function() { }}).should eq("true")
     end
 
     it "should find not callable" do
@@ -57,37 +57,30 @@ describe Crinja::Test do
     evaluate_statement(%((10 ** 100) is number)).should eq "true"
   end
 
-  it "parses range as function" do
-    evaluate_statement(%(range is callable)).should eq "true"
+  describe "typechecks" do
+    it { evaluate_statement(%( 42 is undefined )).should eq "false" }
+    it { evaluate_statement(%( 42 is defined )).should eq "true" }
+    it { evaluate_statement(%( 42 is none )).should eq "false" }
+    it { evaluate_statement(%( none is none )).should eq "true" }
+    it { evaluate_statement(%( 42 is number )).should eq "true" }
+    it { evaluate_statement(%( 42 is string )).should eq "false" }
+    it { evaluate_statement(%( "foo" is string )).should eq "true" }
+    it { evaluate_statement(%( "foo" is sequence )).should eq "true" }
+    it { evaluate_statement(%( [1] is sequence )).should eq "true" }
+    it { evaluate_statement(%( range is callable )).should eq "true" }
+    it { evaluate_statement(%( 42 is callable )).should eq "false" }
+    it { evaluate_statement(%( range(5) is iterable )).should eq "true" }
+    it { evaluate_statement(%( {} is mapping )).should eq "true" }
+    it { evaluate_statement(%( mydict is mapping ), {:mydict => Hash(String, Crinja::Type).new}).should eq "true" }
+    it { evaluate_statement(%( [] is mapping )).should eq "false" }
+    it { evaluate_statement(%( 10 is number )).should eq "true" }
+    it { evaluate_statement(%( (10 ** 100) is number )).should eq "true" }
+    it { evaluate_statement(%( 3.14159 is number )).should eq "true" }
   end
 
   # TODO: Implementation of complex numbers?
-  it "typechecks" do
-    render(<<-'TPL'
-      {{ 42 is undefined }}
-      {{ 42 is defined }}
-      {{ 42 is none }}
-      {{ none is none }}
-      {{ 42 is number }}
-      {{ 42 is string }}
-      {{ "foo" is string }}
-      {{ "foo" is sequence }}
-      {{ [1] is sequence }}
-      {{ range is callable }}
-      {{ 42 is callable }}
-      {{ range(5) is iterable }}
-      {{ {} is mapping }}
-      {{ mydict is mapping }}
-      {{ [] is mapping }}
-      {{ 10 is number }}
-      {{ (10 ** 100) is number }}
-      {{ 3.14159 is number }}
-      {{ complex is number }}
-      TPL, {:mydict => Hash(String, Crinja::Type).new, :complex => 0.0}).split.should eq [
-      "false", "true", "false", "true", "true", "false",
-      "true", "true", "true", "true", "false", "true",
-      "true", "true", "false", "true", "true", "true", "true",
-    ]
+  pending "complex number" do
+    evaluate_statement(%( complex is number ), {:complex => 0.0}).should eq "true"
   end
 
   it "greaterthan" do
@@ -132,16 +125,16 @@ describe Crinja::Test do
 
   it "test_custom_test" do
     items = [] of Tuple(String, String)
-    matching = Crinja.test({ x: nil }) { items << {target.as_s, x.as_s}; false }
+    matching = Crinja.test({x: nil}) { items << {target.as_s, x.as_s}; false }
 
     env = Crinja::Environment.new
     env.tests["matching"] = matching
-    tmpl = env.from_string("{{ ('us-west-1' is matching '(us-east-1|ap-northeast-1)') "\
-                 "or 'stage' is matching '(dev|stage)' }}"
-      )
+    tmpl = env.from_string("{{ ('us-west-1' is matching '(us-east-1|ap-northeast-1)') " \
+                           "or 'stage' is matching '(dev|stage)' }}"
+    )
     puts tmpl
     tmpl.render.should eq "false"
     items.should eq [{"us-west-1", "(us-east-1|ap-northeast-1)"},
-             {"stage", "(dev|stage)"}]
+                     {"stage", "(dev|stage)"}]
   end
 end

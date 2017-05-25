@@ -10,7 +10,7 @@ module Crinja
       end
     end
 
-    abstract def value(env : Environment, operands : Array(Statement)) : Type
+    abstract def value(env : Environment, operands : Array(Type)) : Type
 
     def inspect(io : IO)
       to_s(io)
@@ -42,9 +42,9 @@ module Crinja
     abstract class Binary < Operator
       num_operands 2
 
-      def value(env : Environment, operands : Array(Statement)) : Type
-        op1 = operands.first.value(env)
-        op2 = operands[1].value(env)
+      def value(env : Environment, operands : Array(Type)) : Type
+        op1 = Value.new operands[0]
+        op2 = Value.new operands[1]
 
         value(env, op1, op2)
       end
@@ -55,8 +55,8 @@ module Crinja
     abstract class Unary < Operator
       num_operands 1
 
-      def value(env : Environment, operands : Array(Statement)) : Type
-        op = operands.first.value(env)
+      def value(env : Environment, operands : Array(Type)) : Type
+        op = Value.new operands[0]
 
         value(env, op)
       end

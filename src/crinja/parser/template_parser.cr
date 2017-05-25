@@ -2,7 +2,6 @@ module Crinja::Parser
   alias Node = Crinja::Node
 
   class TemplateParser < Base
-    include BuildExpression
     include BuildTag
 
     getter template, root
@@ -68,6 +67,19 @@ module Crinja::Parser
       set_trim_for_last_sibling(node.trim_left?, true)
 
       node.parent = @parent.as(Node)
+      node
+    end
+
+    def build_expression_node(token)
+      root = Statement::Root.new(token)
+      statement_parser = StatementParser.new(self, root)
+      statement_parser.expected_end_token = Kind::EXPR_END
+      statement = statement_parser.build || raise "Empty statement"
+
+      node = Node::Expression.new(token, statement)
+      node.end_token = current_token
+      node.parent = @parent.as(Node)
+
       node
     end
 

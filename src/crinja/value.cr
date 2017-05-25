@@ -71,12 +71,12 @@ class Crinja::Value
   # Raises if the underlying value is not a Hash.
   def [](key : String) : Value
     Value.new Environment.resolve_with_hash_accessor(key, @raw)
-    #case object = @raw
-    #when .responds_to? :[]
+    # case object = @raw
+    # when .responds_to? :[]
     #  Value.new object[key]
-    #else
+    # else
     #  raise "expected Hash for #[](key : String), not #{object.class}"
-    #end
+    # end
   end
 
   # Assumes the underlying value is a Hash and returns the element
@@ -98,10 +98,10 @@ class Crinja::Value
     case object = @raw
     when Hash(Type, Type)
       Value.new([object.first_key.as(Type), object.first_value.as(Type)])
-    #  Value.new object.first.as(Type)
-    #when Array
-    #  Value.new object.first
-    # TODO: Support generic Enumerables. This will put the compiler into infinite loop
+      #  Value.new object.first.as(Type)
+      # when Array
+      #  Value.new object.first
+      # TODO: Support generic Enumerables. This will put the compiler into infinite loop
     when Enumerable
       Value.new object.first
     when String
@@ -115,13 +115,13 @@ class Crinja::Value
   # item in the array or the last character of the string.
   def last
     case object = @raw
-    #when Hash
+    # when Hash
     # Value.new object.last
     when Array
       Value.new object.last
-    # TODO: Support generic Enumerables. This will put the compiler into infinite loop
-    # when Enumerable
-    #   Value.new object.last
+      # TODO: Support generic Enumerables. This will put the compiler into infinite loop
+      # when Enumerable
+      #   Value.new object.last
     when String
       Value.new object[-1, 1]
     else
@@ -256,8 +256,8 @@ class Crinja::Value
       to_s <=> other.to_s
     elsif number? && other.number?
       as_number <=> other.as_number
-    #elsif thisraw.is_a?(Array) && otherraw.is_a?(Array)
-    #  thisraw <=> otherraw
+      # elsif thisraw.is_a?(Array) && otherraw.is_a?(Array)
+      #  thisraw <=> otherraw
     else
       0
     end

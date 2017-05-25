@@ -109,7 +109,7 @@ describe Crinja::Filter do
         {% for row in items|batch(3, '-') -%}
         {% for column in row %} {{ column }} {% endfor %} |
         {% endfor %}
-        TPL, { items: ["a", "b", "c", "d", "e", "f", "g"] }).should eq " a  b  c  |\n d  e  f  |\n g  -  -  |\n"
+        TPL, {items: ["a", "b", "c", "d", "e", "f", "g"]}).should eq " a  b  c  |\n d  e  f  |\n g  -  -  |\n"
     end
 
     it "size-only" do
@@ -117,7 +117,7 @@ describe Crinja::Filter do
         {% for row in items|batch(3) -%}
         {% for column in row %} {{ column }} {% endfor %} |
         {% endfor %}
-        TPL, { items: ["a", "b", "c", "d", "e", "f", "g"] }).should eq " a  b  c  |\n d  e  f  |\n g  |\n"
+        TPL, {items: ["a", "b", "c", "d", "e", "f", "g"]}).should eq " a  b  c  |\n d  e  f  |\n g  |\n"
     end
   end
 

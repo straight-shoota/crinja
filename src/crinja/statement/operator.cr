@@ -30,9 +30,5 @@ class Crinja::Statement
     def accepts_children?
       operands.size < num_operands
     end
-
-    def evaluate(env : Environment) : Type
-      operator.value(env, operands)
-    end
   end
 end

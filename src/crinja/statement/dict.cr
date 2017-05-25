@@ -17,10 +17,6 @@ class Crinja::Statement
       def accepts_children?
         @value != nil
       end
-
-      def evaluate(env : Environment) : Type
-        {key.evaluate(env), value.not_nil!.evaluate(env)}.as(::Tuple(Type, Type))
-      end
     end
 
     include ParentStatement
@@ -32,16 +28,6 @@ class Crinja::Statement
 
       children << entry
       entry.parent = self
-    end
-
-    def evaluate(env : Environment) : Type
-      hash = Hash(Type, Type).new
-      children.each do |entry|
-        key, value = entry.evaluate(env)
-        hash[key] = value
-      end
-
-      hash
     end
 
     def accepts_children?

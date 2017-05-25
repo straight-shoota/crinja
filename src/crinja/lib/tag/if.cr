@@ -25,7 +25,7 @@ module Crinja
       raise TemplateSyntaxError.new(tag_node.token, "if tag without condition") if tag_node.varargs.size == 0
       raise TemplateSyntaxError.new(tag_node.token, "additional kwargs for if tag") if tag_node.kwargs.size > 0
 
-      value = tag_node.varargs.first.value(env)
+      value = env.evaluator.value(tag_node.varargs.first)
       value.truthy?
     end
   end

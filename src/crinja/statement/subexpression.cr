@@ -4,10 +4,6 @@ class Crinja::Statement
 
     getter child : Statement?
 
-    def evaluate(env : Environment) : Type
-      child.not_nil!.evaluate(env)
-    end
-
     def <<(statement : Statement)
       raise "Statement::Subexpression already has a child: #{@child.inspect}" unless accepts_children?
 

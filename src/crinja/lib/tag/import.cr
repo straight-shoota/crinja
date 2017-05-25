@@ -4,7 +4,7 @@ module Crinja
 
     def interpret(io : IO, env : Environment, tag_node : Node::Tag)
       varargs = Util::PeekIterator.new(tag_node.varargs)
-      template_name = varargs.next.value(env).to_s
+      template_name = varargs.next.accept(env.evaluator).to_s
 
       env.context.import_path_stack << template_name
 

@@ -46,6 +46,10 @@ class Crinja::Environment
     initialize(Context.new(original.context))
   end
 
+  def evaluator
+    @evaluator ||= Visitor::Evaluator.new(self)
+  end
+
   # Loads a template from *string.* This parses the source given and returns a `Template` object.
   def from_string(string : String)
     Template.new(string, self)
@@ -188,7 +192,11 @@ class Crinja::Environment
 
   # Resolves a variable in the current context.
   def resolve(name : String)
-    value = context[name]
+    if functions.has_key?(name)
+      value = functions[name]
+    else
+      value = context[name]
+    end
     logger.debug "resolved string #{name}: #{value.inspect}"
     value
   end
@@ -227,15 +235,15 @@ class Crinja::Environment
 
   def execute_call(target)
     if target.is_a?(Variable)
-      #puts target.to_s
-      #puts "xecuting call with context macros: #{context.all_macros.keys}"
+      # puts target.to_s
+      # puts "xecuting call with context macros: #{context.all_macros.keys}"
       if context.has_macro?(target.to_s)
         # its a macro call
         callable = context.macro(target.to_s)
-        #puts "its a macro #{callable.inspect}"
+        # puts "its a macro #{callable.inspect}"
       else
         callable = resolve(target)
-        #puts "resolved to #{callable}"
+        # puts "resolved to #{callable}"
       end
     elsif target.undefined?
       raise TypeError.new(target, "#{target} is undefined")

@@ -1,7 +1,6 @@
 include Crinja
 
 # Return whether the object is callable.
-#class Callable < Test; end
 Crinja.test(:callable) { target.callable? }
 
 # Returns `true` if the variable is defined.

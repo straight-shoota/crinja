@@ -5,14 +5,6 @@ class Crinja::Statement
     getter children : Array(Statement) = [] of Statement
     property parent_node : Node?
 
-    def evaluate(env : Environment) : Type
-      if children.empty?
-        nil
-      else
-        children.first.evaluate(env)
-      end
-    end
-
     def <<(statement : Statement)
       raise "Statement::Root already has a child: #{@children.inspect}" unless accepts_children?
 
@@ -38,10 +30,6 @@ class Crinja::Statement
 
     def accepts_children?
       true
-    end
-
-    def evaluate(env : Crinja::Environment) : Type
-      raise "cannot evaluate instance of #{self.class}"
     end
   end
 end

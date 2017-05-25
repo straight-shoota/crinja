@@ -29,16 +29,16 @@ module Crinja
       if filter_stmt.is_a?(Statement::Call)
         filter_stmt.varargs.each do |stmt|
           if stmt.is_a?(Statement::SplashOperator)
-            stmt.operand.not_nil!.value(env).as_a.each do |arg|
+            env.evaluator.value(stmt.operand.not_nil!).as_a.each do |arg|
               arguments.varargs << Value.new(arg)
             end
           else
-            arguments.varargs << stmt.value(env)
+            arguments.varargs << env.evaluator.value(stmt)
           end
         end
 
         filter_stmt.kwargs.each do |k, stmt|
-          arguments.kwargs[k] = stmt.value(env)
+          arguments.kwargs[k] = env.evaluator.value(stmt)
         end
       end
 

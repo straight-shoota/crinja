@@ -241,19 +241,12 @@ module Crinja::Parser
     end
 
     def build_member_operator(token)
-      if false && current_statement.is_a? Statement::Name
-        member = next_token
-        raise "member operator only allows access through a name, found #{member}" unless member.kind == Kind::NAME
-
-        current_statement.as(Statement::Name).add_member member
-      else
-        statement = Statement::Attribute.new(token, remove_current_statement!)
-        member = next_token
-        raise "member operator only allows access through a name, found #{member}" unless member.kind == Kind::NAME
-        statement << Statement::Name.new(member)
-        statement.member_operator = true
-        self.current_statement = statement
-      end
+      statement = Statement::Attribute.new(token, remove_current_statement!)
+      member = next_token
+      raise "member operator only allows access through a name, found #{member}" unless member.kind == Kind::NAME
+      statement << Statement::Name.new(member)
+      statement.member_operator = true
+      self.current_statement = statement
     end
 
     def build_splash_operator(token)

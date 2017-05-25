@@ -17,7 +17,7 @@ module Crinja
       end
 
       call.kwargs.each do |arg, value|
-        instance.defaults[arg] = value.value(env).raw
+        instance.defaults[arg] = value.accept(env.evaluator)
       end
 
       tag_node.template.register_macro name, instance

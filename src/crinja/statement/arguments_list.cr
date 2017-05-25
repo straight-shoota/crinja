@@ -27,6 +27,5 @@ class Crinja::Statement
     def accepts_children?
       true
     end
-
   end
 end

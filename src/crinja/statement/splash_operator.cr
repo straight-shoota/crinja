@@ -12,9 +12,5 @@ class Crinja::Statement
     def accepts_children?
       !operand.nil?
     end
-
-    def evaluate(env : Environment) : Value
-      raise "SplashOperator should never be evaluated directly"
-    end
   end
 end

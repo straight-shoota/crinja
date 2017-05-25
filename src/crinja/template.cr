@@ -5,23 +5,20 @@ require "./parser"
 # Every template object has a few methods and members that are guaranteed to exist. However it’s important that a template object should be considered immutable. Modifications on the object are not supported.
 class Crinja::Template
   property macros : Hash(String, Crinja::Tag::Macro::MacroFunction) = Hash(String, Crinja::Tag::Macro::MacroFunction).new
+
   getter source
+
   # The loading name of the template. If the template was loaded from a string this is `nil`.
   getter name
+
   # The filename of the template on the file system if it was loaded from there. Otherwise this is `nil`.
   getter filename
-  # A `Hash` with the globals of that template. It’s unsafe to modify this dict as it may be shared with other templates or the environment that loaded the template.
-  getter globals : Hash(String, Type)
+
   getter env : Environment
 
   # Creates a new template.
-  def initialize(@source : String, e : Environment = Environment.new, @name : String = "", @filename : String? = nil, globals = nil)
-    # duplicate environment for this template to avoid spilling to global scope, but keep current scope
-    # even if render method has finished
-    @env = e.dup
-
+  def initialize(@source : String, @env : Environment = Environment.new, @name : String = "", @filename : String? = nil)
     @source = @source.rchop '\n' unless env.config.keep_trailing_newline
-    @globals = globals.nil? ? Hash(String, Type).new : globals
 
     @root = Node::Root.new(self)
     Parser::TemplateParser.new(self, root).build
@@ -46,11 +43,11 @@ class Crinja::Template
 
   # Renders this template to *io* using *bindings* as local variables scope.
   def render(io : IO, bindings = nil)
-    env.with_scope(globals) do
+    #env.with_scope(globals) do
       env.with_scope(bindings) do
         self.render(io, env)
       end
-    end
+    #end
   end
 
   # Renders this template to *io* in the environment *env*.

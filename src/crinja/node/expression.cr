@@ -1,19 +1,10 @@
 class Crinja::Node
   class Expression < Node
-    property statement : Statement
+    property statement : Statement::Root
 
-    def initialize(token : Crinja::Lexer::Token)
+    def initialize(token : Crinja::Lexer::Token, @statement)
       super(token)
-
-      @statement = Statement::Root.new(token)
-    end
-
-    def <<(node : Statement)
-      if statement.is_a?(Statement::Root)
-        statement = node
-      else
-        raise "Unrecognized additional statement"
-      end
+      @statement.parent_node = self
     end
   end
 end

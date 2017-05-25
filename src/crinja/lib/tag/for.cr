@@ -32,7 +32,7 @@ module Crinja
 
       runner = Runner.new(env, tag_node, item_vars)
 
-      collection = tag_node.varargs[next_vararg].value(env)
+      collection = env.evaluator.value(tag_node.varargs[next_vararg])
       next_vararg += 1
 
       if tag_node.varargs.size > next_vararg && tag_node.varargs[next_vararg].as(Statement::Name).name == "if"
@@ -105,7 +105,7 @@ module Crinja
           @env.context[LOOP_VARIABLE] = StrictUndefined.new(LOOP_VARIABLE)
           @env.context.unpack(@item_vars, value.raw)
 
-          if @condition.value(@env).truthy?
+          if @env.evaluator.value(@condition).truthy?
             return value
           end
         end

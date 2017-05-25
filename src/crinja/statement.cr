@@ -10,12 +10,6 @@ module Crinja
     def initialize(@token : Token = Token.new)
     end
 
-    abstract def evaluate(env : Environment) : Type
-
-    def value(env : Environment) : Value
-      Value.new evaluate(env)
-    end
-
     def root
       parent.not_nil!.root
     end

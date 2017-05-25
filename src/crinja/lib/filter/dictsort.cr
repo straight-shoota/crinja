@@ -25,12 +25,12 @@ class Crinja::Filter
     #  end
     # end.as(Array(Tuple(Crinja::Type, Crinja::Type))).map(&.to_a.as(Crinja::Type))
     # Bindings.cast_list(array)
-    #[] of Type
-    #type_array = [] of Array(Crinja::Type)
-    #array.each do |key, value|
+    # [] of Type
+    # type_array = [] of Array(Crinja::Type)
+    # array.each do |key, value|
     #  type_array << [key.raw, value.raw]
-    #end
-    #type_array
+    # end
+    # type_array
     [] of Crinja::Type
   end
 end

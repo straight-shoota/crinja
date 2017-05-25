@@ -3,7 +3,7 @@ module Crinja
     name "extends"
 
     def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
-      parent_template = tag_node.varargs.first.value(env).to_s
+      parent_template = tag_node.varargs.first.accept(env.evaluator).to_s
 
       # raise TemplateSyntaxError.new(tag_node.token, "Cannot extend from multiple parents") unless env.parent_template.nil?
       env.context.extend_path_stack << parent_template

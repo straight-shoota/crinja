@@ -6,7 +6,7 @@ module Crinja
       imports = Hash(String, String).new
 
       varargs = Util::PeekIterator.new(tag_node.varargs)
-      template_name = varargs.next.value(env).to_s
+      template_name = varargs.next.accept(env.evaluator).to_s
       expect_name(varargs.next, "import")
       with_context = false
 
@@ -26,7 +26,7 @@ module Crinja
 
         if expect_name(varargs.peek?, "as")
           varargs.next
-          import_name = varargs.next.value(env).to_s
+          import_name = varargs.next.accept(env.evaluator).to_s
         end
 
         imports[from_name] = import_name

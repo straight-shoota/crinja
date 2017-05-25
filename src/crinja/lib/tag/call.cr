@@ -16,7 +16,7 @@ module Crinja
       env.with_scope do |ctx|
         env.context.register_macro Tag::Macro::MacroFunction.new "caller", tag_node.children, defaults, caller: true
 
-        io << call_stmt.value(env)
+        io << call_stmt.accept(env.evaluator)
       end
     end
   end

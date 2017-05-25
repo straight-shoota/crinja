@@ -32,7 +32,7 @@ module Crinja
 
       node.varargs.each &.accept(self)
 
-      #node.kwargs.each &.accept(self)
+      # node.kwargs.each &.accept(self)
 
       print_token node.end_token
 

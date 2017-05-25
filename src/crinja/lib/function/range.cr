@@ -1,8 +1,8 @@
 Crinja.function({
-      :start => 0,
-      :stop  => 0,
-      :step  => 1,
-    }, :range) do
+  :start => 0,
+  :stop  => 0,
+  :step  => 1,
+}, :range) do
   start = arguments[:start].to_i
   stop = arguments[:stop].to_i
   step = arguments[:step].to_i
