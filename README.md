@@ -25,7 +25,7 @@ Currently, template errors fail fast raising an exception. It is considered to c
 
 * some standard filters and global functions (on the roadmap)
 * sandboxed execution (on the roadmap)
-* some detailed features like reusable blocks, macro API, macro caller
+* some detailed features like reusable blocks
 * line statements and line comments (seems not particularly useful)
 * configurable syntax (seems not not particularly useful, major implications on lexer implementation and performance)
 * extensions

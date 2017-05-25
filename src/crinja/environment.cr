@@ -60,7 +60,6 @@ class Crinja::Environment
   # TODO: *parent* parameter is not implemented.
   # The *globals* parameter can be used to provide template wide globals. These variables are available in the context at render time.
   # If the template does not exist a `TemplateNotFoundError` is raised.
-  # TODO: Cache template parsing
   def get_template(name : String, parent = nil, globals = nil)
     loader.load(self, name)
   end
