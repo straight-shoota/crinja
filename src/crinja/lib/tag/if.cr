@@ -2,11 +2,6 @@ module Crinja
   class Tag::If < Tag
     name "if", "endif"
 
-    def validate_arguments
-      validate_argument 0, klass = Node::Statement
-      validate_arguments_size 1
-    end
-
     def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
       current_branch_active = evaluate_node(tag_node, env)
 
@@ -25,6 +20,10 @@ module Crinja
       if tag_node.name == "else"
         return true
       end
+
+      raise TemplateSyntaxError.new(tag_node.token, "additional args for if tag") if tag_node.varargs.size > 1
+      raise TemplateSyntaxError.new(tag_node.token, "if tag without condition") if tag_node.varargs.size == 0
+      raise TemplateSyntaxError.new(tag_node.token, "additional kwargs for if tag") if tag_node.kwargs.size > 0
 
       value = tag_node.varargs.first.value(env)
       value.truthy?

@@ -16,6 +16,7 @@ end
 class Crinja::Value
   include Enumerable(self)
   include Iterable(self)
+  include Comparable(self)
 
   getter raw : Type
 
@@ -36,7 +37,7 @@ class Crinja::Value
     when Undefined
       0
     else
-      raise "expected Array or Hash for #size, not #{object.class}"
+      raise TypeError.new(self, "expected Array or Hash for #size, not #{object.class}")
     end
   end
 
@@ -45,10 +46,10 @@ class Crinja::Value
   # Raises if the underlying value is not an Array.
   def [](index : Int) : Value
     case object = @raw
-    when Array
+    when Array, String
       Value.new object[index]
     else
-      raise "expected Array for #[](index : Int), not #{object.class}"
+      raise TypeError.new(self, "expected Array for #[](index : Int), not #{object.class}")
     end
   end
 
@@ -57,11 +58,11 @@ class Crinja::Value
   # Raises if the underlying value is not an Array.
   def []?(index : Int) : Value?
     case object = @raw
-    when Array
+    when Array, String
       value = object[index]?
       value ? Value.new(value) : nil
     else
-      raise "expected Array for #[]?(index : Int), not #{object.class}"
+      raise TypeError.new(self, "expected Array for #[]?(index : Int), not #{object.class}")
     end
   end
 
@@ -87,7 +88,44 @@ class Crinja::Value
       value = object[key]?
       value ? Value.new(value) : nil
     else
-      raise "expected Hash for #[]?(key : String), not #{object.class}"
+      raise TypeError.new(self, "expected Hash for #[]?(key : String), not #{object.class}")
+    end
+  end
+
+  # Assumes the underlying value is an `Array` or `String` and returns the first
+  # item in the array or the first character of the string.
+  def first
+    case object = @raw
+    when Hash(Type, Type)
+      Value.new([object.first_key.as(Type), object.first_value.as(Type)])
+    #  Value.new object.first.as(Type)
+    #when Array
+    #  Value.new object.first
+    # TODO: Support generic Enumerables. This will put the compiler into infinite loop
+    when Enumerable
+      Value.new object.first
+    when String
+      Value.new object[0, 1]
+    else
+      raise TypeError.new(self, "expected Enumerable or String for #first, not #{object.class}")
+    end
+  end
+
+  # Assumes the underlying value is an `Array` or `String` and returns the last
+  # item in the array or the last character of the string.
+  def last
+    case object = @raw
+    #when Hash
+    # Value.new object.last
+    when Array
+      Value.new object.last
+    # TODO: Support generic Enumerables. This will put the compiler into infinite loop
+    # when Enumerable
+    #   Value.new object.last
+    when String
+      Value.new object[-1, 1]
+    else
+      raise TypeError.new(self, "expected Enumerable or String for #last, not #{object.class}")
     end
   end
 
@@ -106,7 +144,7 @@ class Crinja::Value
       end
     when Crinja::Undefined
     else
-      raise TypeError.new("#{object.class} is not iterable")
+      raise TypeError.new(self, "#{object.class} is not iterable")
     end
   end
 
@@ -119,7 +157,7 @@ class Crinja::Value
     when String
       ValueIterator.new(object.chars.map(&.to_s.as(Type)).each)
     else
-      raise TypeError.new("#{object.class} is not iterable")
+      raise TypeError.new(self, "#{object.class} is not iterable")
     end
   end
 
@@ -215,11 +253,11 @@ class Crinja::Value
     otherraw = other.raw
 
     if thisraw.is_a?(String | SafeString) || otherraw.is_a?(String | SafeString)
-      #  thisraw.to_s <=> otherraw.to_s
+      to_s <=> other.to_s
     elsif number? && other.number?
-      #  thisraw <=> otherraw
-      # elsif thisraw.is_a?(Array) && otherraw.is_a?(Array)
-      #  thisraw <=> otherraw
+      as_number <=> other.as_number
+    #elsif thisraw.is_a?(Array) && otherraw.is_a?(Array)
+    #  thisraw <=> otherraw
     else
       0
     end

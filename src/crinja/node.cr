@@ -44,10 +44,6 @@ module Crinja
       child.parent = self
     end
 
-    def accept(visitor : Visitor)
-      visitor.visit self
-    end
-
     def to_s(io : IO)
       io << name
     end

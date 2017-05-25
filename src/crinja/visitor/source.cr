@@ -2,7 +2,7 @@ require "./visitor"
 
 # The source visitor transforms a template tree into Jinja source code.
 module Crinja
-  class SourceVisitor < Visitor
+  class Visitor::Source < Visitor
     def initialize(@io : IO)
     end
 
@@ -11,11 +11,11 @@ module Crinja
     end
 
     def visit(node : Node::Text)
-      @io << node.token.value
+      print_token node.token
     end
 
     def visit(node : Node::Note)
-      @io << node.token.value
+      print_token node.token
     end
 
     def visit(node : Node::Expression)
@@ -70,11 +70,20 @@ module Crinja
       print_token node.token
     end
 
+    def visit(node : Statement::Filter)
+      node.target.accept(self)
+
+      print_token node.token
+      print_token node.name_token
+
+      node.varargs.each &.accept(self)
+    end
+
     def visit(node : Statement)
       @io << "(@@" << node.class.to_s << "@@)"
     end
 
-    private def print_token(token : Lexer::Token?)
+    protected def print_token(token : Lexer::Token?)
       unless token.nil?
         @io << token.whitespace_before << token.value << token.whitespace_after
       end

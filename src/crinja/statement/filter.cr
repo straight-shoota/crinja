@@ -1,10 +1,10 @@
 class Crinja::Statement
   class Filter < Statement
-    property target : Statement
+    getter target, name_token
 
     include ArgumentsList
 
-    def initialize(token : Crinja::Lexer::Token, @name_token : Crinja::Lexer::Token, @target)
+    def initialize(token : Crinja::Lexer::Token, @name_token : Crinja::Lexer::Token, @target : Statement)
       super(token)
       target.parent = self
     end
@@ -28,11 +28,9 @@ class Crinja::Statement
       end
 
       value = nil
-      begin
-        value = filter.call(arguments)
-      rescue err : TypeCastError
-        raise TypeError.new(err.message, err)
-      end
+
+      value = filter.call(arguments)
+
       value
     end
 

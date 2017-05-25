@@ -27,4 +27,10 @@ describe Crinja::Tag::If do
     render(%({% if a %}{% set foo = 1 %}{% endif %}{{ foo }}), {"a" => true}).should eq "1"
     render(%({% if true %}{% set foo = 1 %}{% endif %}{{ foo }})).should eq "1"
   end
+
+  it "fails additional args" do
+    expect_raises(Crinja::TemplateSyntaxError) do
+      render(%({% if 'Templates' ends with 's' %}"Templates" ends with "s"{% endif %}))
+    end
+  end
 end

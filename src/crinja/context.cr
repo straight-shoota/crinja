@@ -98,13 +98,17 @@ module Crinja
     end
 
     def unpack(vars : Array(String), values : Array(Type))
-      vars.each_with_index do |var, i|
-        value = values[i]
-        self[var] = if value.is_a?(Value)
-                      value.raw
-                    else
-                      value
-                    end
+      if vars.size == 1
+        self[vars[0]] = values
+      else
+        vars.each_with_index do |var, i|
+          value = values[i]
+          self[var] = if value.is_a?(Value)
+                        value.raw
+                      else
+                        value
+                      end
+        end
       end
     end
 

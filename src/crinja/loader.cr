@@ -59,16 +59,24 @@ module Crinja
         initialize([searchpath])
       end
 
+      def to_s(io)
+        io << "FileSystemLoader("
+        io << searchpaths.join(":")
+        io << ")"
+      end
+
       def get_source(env : Environment, template : String)
         pieces = split_template_path(template)
         searchpaths.each do |searchpath|
           file_name = File.join(searchpath, File.join(pieces))
 
+          puts file_name
+
           if File.exists?(file_name)
             begin
               source = File.read(file_name, encoding: @encoding)
               return {source, file_name}
-            rescue e : IO::Error
+            rescue e : IO::Error | Errno
               raise TemplateNotFoundError.new(template, self, e.message, e)
             end
           end

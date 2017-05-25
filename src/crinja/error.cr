@@ -102,6 +102,13 @@ module Crinja
   end
 
   class TypeError < RuntimeError
+    getter value : Value?
+    def initialize(msg = "", cause : Exception? = nil)
+      super msg, cause
+    end
+    def initialize(@value : Value, msg = "", cause : Exception? = nil)
+      super msg, cause
+    end
   end
 
   class UndefinedError < RuntimeError

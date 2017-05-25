@@ -1,5 +1,5 @@
 module Crinja
-  class SafeString
+  struct SafeString
     def initialize(@string : String, @plain_value = false)
     end
 

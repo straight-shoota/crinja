@@ -9,6 +9,7 @@ class Crinja::Filter
       value
     end
   end
+  Crinja::Filter::Library.defaults["d"] = Crinja::Filter::Library.defaults["default"]
 
   Crinja.filter :list do
     value = target.raw
@@ -79,5 +80,7 @@ class Crinja::Filter
     end
   end
 
-  Crinja.filter(:first) { target[0].raw }
+  Crinja.filter(:first) { target.first.raw }
+  Crinja.filter(:last) { target.last.raw }
+  Crinja.filter(:length) { target.size }
 end

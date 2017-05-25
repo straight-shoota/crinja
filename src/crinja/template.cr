@@ -40,7 +40,7 @@ class Crinja::Template
   # Renders this template as a `String` using *bindings* as local variables scope.
   def render(bindings = nil)
     String.build do |io|
-      render(io, bindings)
+      self.render(io, bindings)
     end
   end
 
@@ -48,7 +48,7 @@ class Crinja::Template
   def render(io : IO, bindings = nil)
     env.with_scope(globals) do
       env.with_scope(bindings) do
-        render(io, env)
+        self.render(io, env)
       end
     end
   end
@@ -118,7 +118,7 @@ class Crinja::Template
 
   def to_string
     String.build do |io|
-      root.accept Crinja::SourceVisitor.new(io)
+      root.accept Crinja::Visitor::Source.new(io)
     end
   end
 end

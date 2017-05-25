@@ -21,6 +21,12 @@ class Crinja::Environment
     hash[k] = Array(Array(Node)).new
   end
 
+  def initialize(context = Context.new)
+    initialize(context)
+
+    yield self
+  end
+
   def initialize(@context = Context.new)
     @global_context = @context
     @logger = Logger.new(STDOUT)
@@ -231,6 +237,8 @@ class Crinja::Environment
         callable = resolve(target)
         #puts "resolved to #{callable}"
       end
+    elsif target.undefined?
+      raise TypeError.new(target, "#{target} is undefined")
     elsif target.callable?
       callable = target.raw
     end
@@ -253,7 +261,7 @@ class Crinja::Environment
       callable.as(Callable).call(arguments)
       # end
     else
-      raise TypeError.new("cannot call #{target.inspect}. Not a callable")
+      raise TypeError.new(Value.new(callable), "#{target} is not callable")
     end
   end
 end

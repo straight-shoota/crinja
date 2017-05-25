@@ -18,5 +18,9 @@ describe Crinja::Operator do
       plus = Crinja::Operator::Plus.new
       library << plus
     end
+
+    it "calc /" do
+      render("{{ 15/3 }}").should eq "5.0"
+    end
   end
 end

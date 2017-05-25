@@ -58,6 +58,10 @@ describe Crinja::Filter do
     it "does not overwrite given" do
       evaluate_statement(%(given|default('no')), {"given" => "yes"}).should eq "yes"
     end
+
+    it "recognizes short-form `d`" do
+      evaluate_statement(%(missing|d(false))).should eq "false"
+    end
   end
 
   describe "dictsort" do
@@ -98,6 +102,22 @@ describe Crinja::Filter do
 
     it "batches with fill" do
       evaluate_statement(%(foo|batch(3, "X")|list), {"foo" => (0..9)}).should eq %([[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, "X", "X"]])
+    end
+
+    it "size-and-fill" do
+      render(<<-'TPL'
+        {% for row in items|batch(3, '-') -%}
+        {% for column in row %} {{ column }} {% endfor %} |
+        {% endfor %}
+        TPL, { items: ["a", "b", "c", "d", "e", "f", "g"] }).should eq " a  b  c  |\n d  e  f  |\n g  -  -  |\n"
+    end
+
+    it "size-only" do
+      render(<<-'TPL'
+        {% for row in items|batch(3) -%}
+        {% for column in row %} {{ column }} {% endfor %} |
+        {% endfor %}
+        TPL, { items: ["a", "b", "c", "d", "e", "f", "g"] }).should eq " a  b  c  |\n d  e  f  |\n g  |\n"
     end
   end
 
@@ -144,8 +164,11 @@ describe Crinja::Filter do
   end
 
   describe "first" do
-    it "first" do
+    it "range" do
       evaluate_statement(%(foo|first), {"foo" => (0..9)}).should eq "0"
+    end
+    it "string" do
+      evaluate_statement(%("foo"|first)).should eq "f"
     end
   end
 
@@ -171,6 +194,33 @@ describe Crinja::Filter do
     end
   end
 
+  describe "int" do
+    it "base-16" do
+      evaluate_statement(%("0x4d32"|int(0, 16))).should eq "19762"
+    end
+    it "base-16-overwrite" do
+      evaluate_statement(%("0x4d32"|int(0, 8))).should eq "19762"
+    end
+    it "base-8" do
+      evaluate_statement(%("011"|int(0, 8))).should eq "9"
+    end
+    it "custom-fallback" do
+      evaluate_statement(%(""|int(5))).should eq "5"
+    end
+    it "float" do
+      evaluate_statement(%(3.52|int)).should eq "3"
+    end
+    it "force-fallback" do
+      evaluate_statement(%(""|int)).should eq "0"
+    end
+    it "integer" do
+      evaluate_statement(%(3|int)).should eq "3"
+    end
+    it "string" do
+      evaluate_statement(%("3.52"|int)).should eq "3"
+    end
+  end
+
   describe "join" do
     it "join" do
       evaluate_statement(%( [1, 2, 3]|join("|") )).should eq "1|2|3"
@@ -182,6 +232,23 @@ describe Crinja::Filter do
 
     it "join_attribute" do
       evaluate_statement(%( users|join(', ', 'username') ), {"users" => [User.new("foo"), User.new("bar")]}).should eq "foo, bar"
+    end
+  end
+
+  describe "length" do
+    it "array" do
+      evaluate_statement(%([1, 2, 3, 4]|length)).should eq "4"
+    end
+    it "number" do
+      expect_raises(TypeError) do
+        evaluate_statement(%(1234|length)).should eq ""
+      end
+    end
+    it "object" do
+      evaluate_statement(%({ a: 1, b: 2, c: 3, d: 4 }|length)).should eq "4"
+    end
+    it "number" do
+      evaluate_statement(%('1234'|length)).should eq "4"
     end
   end
 

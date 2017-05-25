@@ -3,7 +3,7 @@ module Crinja
     def self.cast(bindings)
       type_hash = Hash(String, Crinja::Type).new
       bindings.each do |k, v|
-        type_hash[k.to_s] = self.cast_value(v)
+        type_hash[k.to_s] = cast_value(v)
       end
       type_hash
     end
@@ -12,12 +12,11 @@ module Crinja
       case value
       when Hash
         self.cast_hash(value)
-      when Array
+      when Array, Tuple
         self.cast_list(value)
       when Range, Iterator
+        # TODO: Implement iterator and range trough pyobject `getitem`
         self.cast_list(value.to_a)
-      when Tuple
-        self.cast_list(value)
       when Char
         value.to_s
       when Value
@@ -30,15 +29,23 @@ module Crinja
     def self.cast_hash(value) : Crinja::Type
       type_hash = Hash(Crinja::Type, Crinja::Type).new
       value.each do |k, v|
-        type_hash[self.cast_value(k)] = self.cast_value(v)
+        type_hash[cast_value(k)] = cast_value(v)
       end
       type_hash
     end
 
     def self.cast_list(array) : Crinja::Type
       array.map do |item|
-        self.cast_value(item).as(Crinja::Type)
+        cast_value(item).as(Crinja::Type)
       end
     end
   end
 end
+
+{% if @type.has_constant?(:JSON) %}
+module Crinja::Bindings
+  def self.cast_value(value : JSON::Any) : Crinja::Type
+    cast_value(value.raw)
+  end
+end
+{% end %}

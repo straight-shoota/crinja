@@ -15,6 +15,24 @@ class Crinja::Filter
     end
   end
 
+  Crinja.filter({default: 0, base: 10}, :int) do
+    begin
+      puts "filter: int with #{target} base=#{arguments[:base].to_i}"
+      if arguments.target!.string?
+        string = arguments.target!.as_s
+        if string['.']?
+          string.to_f(arguments[:base].to_i).to_i
+        else
+          string.to_i(arguments[:base].to_i, prefix: true)
+        end
+      else
+        target.to_i
+      end
+    rescue ArgumentError
+      arguments[:default].to_i
+    end
+  end
+
   Crinja.filter({binary: false}, :filesizeformat) do
     Crinja::Filter::Filesizeformat.filesize_to_human(target.to_f, arguments[:binary].truthy?)
   end

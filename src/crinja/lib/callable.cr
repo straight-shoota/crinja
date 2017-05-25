@@ -61,7 +61,7 @@ module Crinja
     end
 
     def is_set?(name : String)
-      kwargs.has_key?(name)
+      kwargs.has_key?(name) || (index = defaults.key_index(name)) && varargs.size > index
     end
 
     def default(name : Symbol)
