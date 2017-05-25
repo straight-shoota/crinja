@@ -1,14 +1,13 @@
 class Crinja::Statement
-  class Attribute < Statement
+  class AttributeOperator < Statement
     include ParentStatement
 
+    property object : Statement
     property attribute : Statement?
-    property base : Statement
-    property member_operator : Bool = false
 
-    def initialize(token, @base)
+    def initialize(token, @object)
       super(token)
-      @base.parent = self
+      @object.parent = self
     end
 
     def <<(statement : Statement)

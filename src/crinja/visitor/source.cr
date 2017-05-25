@@ -52,6 +52,12 @@ module Crinja
       end
     end
 
+    def visit(node : Statement::MemberOperator)
+      node.object.accept(self)
+      print_token node.token
+      print_token node.attribute
+    end
+
     def visit(node : Statement::Attribute)
       node.base.accept(self)
       print_token node.token

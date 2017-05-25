@@ -17,19 +17,13 @@ abstract class Crinja::Visitor
       raise statement.class.to_s
     end
 
-    def visit(statement : Statement::Attribute)
-      object = statement.base.accept(self)
+    def visit(statement : Statement::AttributeOperator)
+      object = statement.object.accept(self)
       raise TemplateSyntaxError.new(statement.token, "empty attribute") if statement.attribute.nil?
 
-      if statement.member_operator
-        raise TemplateSyntaxError.new(statement.token, "member operator expects a name as attribute") unless statement.attribute.is_a?(Statement::Name)
-        member = statement.attribute.as(Statement::Name).name
-        @env.resolve_attribute(member, object)
-      else
-        item = statement.attribute.not_nil!.accept(self)
-        value = @env.resolve_item(item.to_s, object)
-        value
-      end
+      item = statement.attribute.not_nil!.accept(self)
+      value = @env.resolve_item(item.to_s, object)
+      value
     end
 
     def visit(statement : Statement::Call)
@@ -145,6 +139,12 @@ abstract class Crinja::Visitor
       @env.resolve(statement.name)
     end
 
+    def visit(statement : Statement::MemberOperator)
+      object = statement.object.accept(self)
+
+      @env.resolve_attribute(statement.attribute.value, object)
+    end
+
     def visit(statement : Statement::Operator)
       operands = statement.operands.map do |op|
         op.accept(self).as(Type)
@@ -165,12 +165,7 @@ abstract class Crinja::Visitor
     end
 
     def visit(statement : Statement::Test)
-      value = evaluate_filter(statement)
-      if statement.negative_test
-        !value
-      else
-        !!value
-      end
+      !! evaluate_filter(statement)
     end
 
     private def resolve_filter(statement : Statement::Test)

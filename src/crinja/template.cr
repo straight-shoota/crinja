@@ -43,11 +43,11 @@ class Crinja::Template
 
   # Renders this template to *io* using *bindings* as local variables scope.
   def render(io : IO, bindings = nil)
-    #env.with_scope(globals) do
-      env.with_scope(bindings) do
-        self.render(io, env)
-      end
-    #end
+    # env.with_scope(globals) do
+    env.with_scope(bindings) do
+      self.render(io, env)
+    end
+    # end
   end
 
   # Renders this template to *io* in the environment *env*.

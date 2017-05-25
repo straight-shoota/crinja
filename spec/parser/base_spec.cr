@@ -1,4 +1,4 @@
-require "./spec_helper"
+require "../spec_helper"
 
 describe Crinja::Parser::TemplateParser do
   it "parses a simple template string" do

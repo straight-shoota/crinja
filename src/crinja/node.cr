@@ -48,7 +48,7 @@ module Crinja
       io << name
     end
 
-    def inspect(io)
+    def inspect_code(io)
       accept Crinja::Visitor::Inspector.new(io)
     end
   end

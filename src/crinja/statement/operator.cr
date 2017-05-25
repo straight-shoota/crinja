@@ -31,4 +31,24 @@ class Crinja::Statement
       operands.size < num_operands
     end
   end
+
+  class MemberOperator < Statement
+    include ParentStatement
+
+    property object : Statement
+    property attribute : Token
+
+    def initialize(token, @object, @attribute)
+      super(token)
+      @object.parent = self
+    end
+
+    def <<(statement : Statement)
+      raise "cannot add to member operator"
+    end
+
+    def accepts_children?
+      false
+    end
+  end
 end

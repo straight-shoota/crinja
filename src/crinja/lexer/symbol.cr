@@ -10,8 +10,7 @@ module Crinja::Lexer
     NEWLINE         = '\n'
     TRIM_WHITESPACE = '-'
 
-    PIPE   = '|'
-    MEMBER = '.'
+    PIPE = '|'
 
     STR_DELIMITER     = '"'
     STR_DELIMITER_ALT = '\''
@@ -23,6 +22,12 @@ module Crinja::Lexer
     OP_TIMES  = '*'
     OP_DIV    = '/'
     OP_MODULO = '%'
+
+    OP_MEMBER = '.'
+
+    OP_AND = "and"
+    OP_OR  = "or"
+    OP_NOT = "not"
 
     COMP_EQ   = '='
     COMP_BANG = '!'
@@ -46,7 +51,6 @@ module Crinja::Lexer
     }
 
     TEST       = "is"
-    NOT        = "not"
     RAW_START  = "raw"
     RAW_END    = "endraw"
     WHITESPACE = [' ', '\t', '\n', '\r']

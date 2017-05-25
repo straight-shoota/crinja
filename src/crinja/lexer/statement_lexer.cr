@@ -33,7 +33,7 @@ module Crinja::Lexer
           @token.value = current_char.to_s
           next_char
         end
-      when Symbol::OP_TILDE, Symbol::OP_MODULO, Symbol::MEMBER
+      when Symbol::OP_TILDE, Symbol::OP_MODULO, Symbol::OP_MEMBER
         @token.kind = Kind::OPERATOR
         @token.value = current_char.to_s
         next_char
@@ -56,8 +56,11 @@ module Crinja::Lexer
       when .letter?, '_'
         consume_name
 
-        if @token.value == Symbol::TEST
+        case @token.value
+        when Symbol::TEST
           @token.kind = Kind::TEST
+        when Symbol::OP_NOT, Symbol::OP_AND, Symbol::OP_OR
+          @token.kind = Kind::OPERATOR
         end
       when Symbol::LIST_START
         @token.kind = Kind::LIST_START

@@ -159,7 +159,7 @@ module Crinja::Parser
             raise "Found list separator outside of list or dict parent=#{parent.inspect} statement=#{current_statement.inspect}"
           end
         when Kind::LIST_END
-          pop_stack Statement::List | Statement::Attribute
+          pop_stack Statement::List | Statement::AttributeOperator
         when Kind::DICT_END
           if current_container.is_a?(Statement::Dict::Entry)
             pop_stack Statement::Dict::Entry
@@ -235,18 +235,17 @@ module Crinja::Parser
     end
 
     def build_attribute_operator(token)
-      statement = Statement::Attribute.new(token, remove_current_statement!)
+      statement = Statement::AttributeOperator.new(token, remove_current_statement!)
 
       push_stack statement
     end
 
     def build_member_operator(token)
-      statement = Statement::Attribute.new(token, remove_current_statement!)
-      member = next_token
-      raise "member operator only allows access through a name, found #{member}" unless member.kind == Kind::NAME
-      statement << Statement::Name.new(member)
-      statement.member_operator = true
-      self.current_statement = statement
+      if (attribute = next_token).kind == Kind::NAME
+        self.current_statement = Statement::MemberOperator.new(token, remove_current_statement!, attribute)
+      else
+        raise "member operator only allows access through a name, found #{attribute}"
+      end
     end
 
     def build_splash_operator(token)
@@ -267,7 +266,7 @@ module Crinja::Parser
         return build_subexpression(token)
       end
 
-      raise "can only call a name statement or attribute statment" unless current_statement.is_a?(Statement::Name | Statement::Attribute)
+      raise "can only call a name statement or attribute statment" unless current_statement.is_a?(Statement::Name | Statement::AttributeOperator | Statement::MemberOperator)
       function = Statement::Call.new(token, remove_current_statement!)
 
       push_stack function
@@ -293,24 +292,33 @@ module Crinja::Parser
 
     def build_test_node(token)
       name_token = next_token
-      negative_test = false
 
-      if name_token.kind == Kind::NAME && name_token.value == Lexer::Symbol::NOT
-        # "is not <test>"
+      not_operator_token : Token?
+
+      # This test is negated
+      if name_token.kind == Kind::OPERATOR && name_token.value == Lexer::Symbol::OP_NOT
+        not_operator_token = name_token
         name_token = next_token
-        negative_test = true
       end
 
       # `none` is identified as a literal for `nil`, but is also the name of a standard test.
       if name_token.kind == Kind::NONE
         name_token.kind = Kind::NAME
       end
+
       raise "Test musst have a name token (instead: #{name_token})" unless name_token.kind == Kind::NAME
 
       test = Statement::Test.new(token, name_token, remove_current_statement!)
-      test.negative_test = negative_test
 
       build_function_arguments(test, call_without_parenthesis: true)
+
+      unless not_operator_token.nil?
+        op = env.operators[Lexer::Symbol::OP_NOT]
+
+        operator = Statement::Operator.new(not_operator_token, op)
+        operator << remove_current_statement!
+        self.current_statement = operator
+      end
     end
 
     def build_function_call(name_token)
