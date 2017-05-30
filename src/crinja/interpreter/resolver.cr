@@ -92,6 +92,10 @@ module Crinja::Resolver
     else
       callable = resolve(identifier)
 
+      if callable.is_a? Undefined
+        raise TypeError.new(Value.new(callable), "#{identifier} is undefined")
+      end
+
       if callable.is_a?(Callable)
         # FIX: Why is `.as(Callable)` needed here?
         return callable.as(Callable)

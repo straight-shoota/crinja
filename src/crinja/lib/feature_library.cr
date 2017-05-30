@@ -1,7 +1,7 @@
 abstract class Crinja::FeatureLibrary(T)
   class UnknownFeatureException < Crinja::RuntimeError
     def initialize(kind, name)
-      super "no #{kind.name} with name \"#{name}\" registered"
+      super "no #{kind} with name \"#{name}\" registered"
     end
   end
 
@@ -70,7 +70,7 @@ abstract class Crinja::FeatureLibrary(T)
   def [](name) : T
     store[name.to_s.downcase]
   rescue
-    raise UnknownFeatureException.new(T, name.downcase)
+    raise UnknownFeatureException.new(self.name, name.downcase)
   end
 
   # Stores a feature object *obj* under the key *name*.
@@ -89,5 +89,9 @@ abstract class Crinja::FeatureLibrary(T)
 
   def inspect(io : IO)
     store.inspect(io)
+  end
+
+  def name
+    {{ @type.stringify.split("::")[-2].downcase }}
   end
 end

@@ -2,6 +2,9 @@ require "logger"
 require "./token_stream"
 
 module Crinja::Parser::ParserHelper
+  # :nodoc:
+  alias Kind = Parser::Token::Kind
+
   @logger = Logger.new(STDOUT)
 
   getter :logger, :token_stream
