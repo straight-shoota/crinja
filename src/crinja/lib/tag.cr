@@ -62,6 +62,8 @@ module Crinja
   end
 
   class ArgumentsParser < Parser::ExpressionParser
+    alias Kind = Crinja::Parser::Token::Kind
+
     def initialize(arguments)
       @token_stream = Parser::TokenStream.new(arguments)
       @pos = 0

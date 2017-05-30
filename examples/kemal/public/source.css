@@ -1,0 +1,27 @@
+pre {
+  background-color: #FFE;
+  color: #222;
+}
+.token {
+
+}
+
+.token--expr_start, .token--expr_end,
+.token--tag_start, .token--tag_end {
+  font-weight: bold;
+  color: #A33;
+}
+
+.token--note {
+  color: #8A8;
+  font-style: italic;
+}
+
+.token--name {
+  color: #338;
+}
+
+.token--operator {
+  font-weight: bold;
+  color: #D32;
+}

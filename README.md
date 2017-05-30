@@ -77,6 +77,10 @@ template.render # => "Hello, World!"
 template.render({ "name" => "John" }) # => "Hello, John!"
 ```
 
+### Examples
+
+Some simple usage examples can be found in the [`examples` folder](examples/).
+
 ## API
 
 The API tries to stick ot the original [Jinja2 API](http://jinja.pocoo.org/docs/2.9/api/) which is written in Python.
