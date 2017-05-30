@@ -31,7 +31,7 @@ This is an incomplete list of **Differences to the original Jinja2**:
 * **Complex numbers**: Complex numbers are not supported yet.
 * **Configurable syntax**: Due to performance reasons it is not possible to reconfigure the syntax symbols.
 
-The following features are not yet fully implemented, but on the roadmap:
+The following features are not yet fully implemented, but on the [roadmap](ROADMAP.md):
 
 * Implementation of all standard filters and global functions
 * sandboxed execution
