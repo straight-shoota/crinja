@@ -15,20 +15,27 @@ Crinja tries to stay close to the Jinja2 language design and implementation. It 
 * block scoping
 * custom tags, filters, functions, operators and tests
 * autoescape by default
+* template cache
 
 All standard [control structures (tags)](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures), [tests](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests) and [operators](http://jinja.pocoo.org/docs/2.9/templates/#expressions) are already implemented, many implementations of standard [filters](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters) and [global functions](http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions) are still missing.
 
 Currently, template errors fail fast raising an exception. It is considered to change this behaviour to collect multiple errors, similar to what Jinjava does.
 
-### Missing features
+### Differences from Jinja2
 
-* some standard filters and global functions (on the roadmap)
-* sandboxed execution (on the roadmap)
-* template caching (on the roadmap)
-* some detailed features like reusable blocks, macro API, macro caller
-* line statements and line comments (seems not particularly useful)
-* configurable syntax (seems not not particularly useful, major implications on lexer implementation and performance)
-* extensions
+This is an incomplete list of **Differences to the original Jinja2**:
+
+* **Line statements and line comments**: Are not supported, because their usecase is negligible.
+* **String representation:** `{{ "{{" }} ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 which is the Python representation of an array with strings. In Crinja it uses the Crytal representation: `["foo", "bar"]`.
+* **Double escape:** `{{ "{{" }} '<html>'|escape|escape }}` will render as `&lt;html&gt;` in Jinja2, but `&amp;lt;html&amp;gt;`. Should we change that behaviour?
+* **Complex numbers**: Complex numbers are not supported yet.
+* **Configurable syntax**: Due to performance reasons it is not possible to reconfigure the syntax symbols.
+
+The following features are not yet fully implemented, but on the [roadmap](ROADMAP.md):
+
+* Implementation of all standard filters and global functions
+* sandboxed execution
+* some detailed features like reusable blocks
 
 ## Installation
 
@@ -46,7 +53,7 @@ dependencies:
 ```crystal
 require "crinja"
 
-template = Crinja::Template.new("Hello, {{ name }}!")
+template = Crinja::Template.new("Hello, {{ "{{" }} name }}!")
 template.render({"name" => "John"}) # => "Hello, John!"
 ```
 
@@ -55,7 +62,7 @@ template.render({"name" => "John"}) # => "Hello, John!"
 With this template file:
 ```html
 # views/index.html.j2
-<p>Hello {{ name | default('World') }}</p>
+<p>Hello {{ "{{" }} name | default('World') }}</p>
 ```
 
 It can be loaded with a `FileSystemLoader`:
@@ -65,10 +72,14 @@ require "crinja"
 
 env = Crinja::Environment.new
 env.loader = Crinja::Loader::FileSystemLoader.new("views/")
-template = env.load("index.html.j2")
+template = env.get_template("index.html.j2")
 template.render # => "Hello, World!"
 template.render({ "name" => "John" }) # => "Hello, John!"
 ```
+
+### Examples
+
+Some simple usage examples can be found in the [`examples` folder](examples/).
 
 ## API
 
@@ -93,9 +104,9 @@ Currently the following configuration options are supported:
         <dt>disabled_extensions</dt>
         <dd>List of filename extensions that autoescape should be disabled for. Default: <code>[] of String</code></dd>
         <dt>default_for_string</dt>
-        <dd>Determines autoescape default value for templates loaded from a string (without a filename). Default: <code>true</code></dd>
+        <dd>Determines autoescape default value for templates loaded from a string (without a filename). Default: <code>false</code></dd>
         <dt>default</dt>
-        <dd>If nothing matches, this will be the default autoescape value. Default: <code>true</code></dd>
+        <dd>If nothing matches, this will be the default autoescape value. Default: <code>false</code></dd>
     </dl>
     <p>Note: <em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.</em></p>
     </dd>
@@ -111,27 +122,32 @@ See also the original [Jinja2 API Documentation](http://jinja.pocoo.org/docs/2.9
 
 ### Custom features
 
-You can provide custom tags, filters, functions, operators and tests. Create an implementation class that extends from `Crinja::Tag`, `Crinja::Filter`, `Crinja::Function`, `Crinja::Operator` or `Crinja::Test` and add an instance to the feature library in `env.context`.
+You can provide custom tags, filters, functions, operators and tests. Create an implementation using the macros `Crinja.filter`, `Crinja.function`, `Crinja.test`. They need to be passed a block which will be converted to a Proc. Optional arguments are a `Hash` or `NamedTuple` with default arguments and a name. If a name is provided, it will be added to the feature library defaults and available in every environment which uses the registered defaults.
 
-Example:
+Example with macro `Crinja.filter`:
 
 ```crystal
-class MyCustom < Crinja::Filter
-    name "mycustom"
-    arguments({
-        :attribute => "great"
-    })
-    def call(target : Crinja::Value, arguments : Crinja::Callable::Arguments) : Crinja::Type
-        "Crystal is #{arguments[:attribute]}! (orginally: #{target.to_s})"
+myfilter = Crinja.filter({ attribute: nil }) { "#{target} is #{arguments[:attribute]}!" }
+
+env.filters << myfilter
+# Usage: {{ "{{" }} "Hello World" | customfilter(attribute="super") }}
+```
+
+Or you can define a class for more complex features:
+```crystal
+class Customfilter
+    include Crinja::CallableMod
+    name "customfilter"
+
+    def call(target : Crinja::Value, arguments : Crinja::Arguments)
+        arguments.defaults[:attribute] = "great"
+        "#{target} is #{arguments[:attribute]}!"
     end
 end
-
-# or using a simple macro
-Crinja.create_filter MyCustom, "Crystal is #{arguments[:attribute]}! (orginally: #{target.to_s})"
-
-env.context.filters << MyCustomFilter.new
-# Usage: {{ "Hello World" | mycustom(attribute="super") }}
+env.filters << Customfilter.new
 ```
+
+Custom tags and operator can be implemented through subclassing `Crinja::Operator` or  `Crinja.tag` and adding an instance to the feature library defaults (`Crinja::Operator::Library.defaults << MyOperator.new`) or to a specific environment (`env.tags << MyTag.new`).
 
 ## Background
 
@@ -146,13 +162,16 @@ Jinja2 is a powerful, mature template engine with a great syntax and proven lang
 Jinja derived from the [Django Template Language](http://docs.djangoproject.com/en/dev/ref/templates/builtins/). While it comes from web development and is heavily used there ([Flask](http://flask.pocoo.org/))
 [Ansible](https://ansible.com/) and [Salt](http://www.saltstack.com/) use it for dynamic enhancements of configuration data. It has quite a number of implementations and adaptations in other languages:
 
-* [Jinjava](https://github.com/HubSpot/jinjava) - Jinja2 implementation in Java, but uses [Unified Expression Language](https://uel.java.net/) (`javaex.el`) instead of python-like expressions. It served as an inspiration for some parts of Crinja.
+* [Jinjava](https://github.com/HubSpot/jinjava) - Jinja2 implementation in Java using [Unified Expression Language](https://uel.java.net/) (`javaex.el`) for expression resolving. It served as an inspiration for some parts of Crinja.
 * [Liquid](https://shopify.github.io/liquid/) - Jinja2-inspired template engine in Ruby
 * [Liquid.cr](https://github.com/TechMagister/liquid.cr) - Liquid implementation in Crystal
 * [Twig](https://twig.sensiolabs.org/) - Jinja2-inspired template engine in PHP
 * [ginger](https://hackage.haskell.org/package/ginger) - Jinja2 implementation in Haskell
 * [Jinja-Js](https://github.com/sstur/jinja-js) - Jinja2-inspired template engin in Javascript
 * [jigo](https://github.com/jmoiron/jigo) - Jinja2 implementation in Go
+* [tera](https://github.com/Keats/tera) - Jinja2 implementation in Rust
+* [jingoo](https://github.com/tategakibunko/jingoo) - Jinja2 implementation in OCaml
+* [nunjucks](https://mozilla.github.io/nunjucks/) - Jinja2 inspired template engine in Javascript
 
 ## Contributing
 

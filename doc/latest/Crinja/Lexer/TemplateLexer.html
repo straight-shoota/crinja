@@ -45,6 +45,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/CLI" data-name="crinja::cli">
+      <a href="../../Crinja/CLI.html">CLI</a>
+      
+    </li>
+  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Config" data-name="crinja::config">
       <a href="../../Crinja/Config.html">Config</a>
       
@@ -675,8 +680,8 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/PyWrapper" data-name="crinja::pywrapper">
-      <a href="../../Crinja/PyWrapper.html">PyWrapper</a>
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/PyyWrapper" data-name="crinja::pyywrapper">
+      <a href="../../Crinja/PyyWrapper.html">PyyWrapper</a>
       
     </li>
   
@@ -830,6 +835,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Statement/Tuple" data-name="crinja::statement::tuple">
+      <a href="../../Crinja/Statement/Tuple.html">Tuple</a>
+      
+    </li>
+  
 </ul>
 
       
@@ -940,6 +950,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Raw" data-name="crinja::tag::raw">
+      <a href="../../Crinja/Tag/Raw.html">Raw</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Set" data-name="crinja::tag::set">
       <a href="../../Crinja/Tag/Set.html">Set</a>
       
@@ -957,6 +972,26 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Template" data-name="crinja::template">
       <a href="../../Crinja/Template.html">Template</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/TemplateCache" data-name="crinja::templatecache">
+      <a href="../../Crinja/TemplateCache.html">TemplateCache</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TemplateCache/InMemory" data-name="crinja::templatecache::inmemory">
+      <a href="../../Crinja/TemplateCache/InMemory.html">InMemory</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TemplateCache/NoCache" data-name="crinja::templatecache::nocache">
+      <a href="../../Crinja/TemplateCache/NoCache.html">NoCache</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -1213,7 +1248,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/4725dc0896f2e44673b53aefad0e952e31784f7f/src/crinja/lexer/template_lexer.cr#L2" target="_blank">crinja/lexer/template_lexer.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L2" target="_blank">crinja/lexer/template_lexer.cr</a>
     
     <br/>
   
@@ -1255,7 +1290,17 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#consume_raw-instance-method" class="signature"><strong>#consume_raw</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#next_token%3AToken-instance-method" class="signature"><strong>#next_token</strong> : Token</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#next_token_raw-instance-method" class="signature"><strong>#next_token_raw</strong></a>
         
       </li>
     
@@ -1266,6 +1311,16 @@
     
       <li class="entry-summary">
         <a href="#next_token_tag-instance-method" class="signature"><strong>#next_token_tag</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#peek_for_whitespace_offset%28offset%3D1%29-instance-method" class="signature"><strong>#peek_for_whitespace_offset</strong>(offset = <span class="n">1</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#peek_string%3F%28string%2Coffset%3D1%29-instance-method" class="signature"><strong>#peek_string?</strong>(string, offset = <span class="n">1</span>)</a>
         
       </li>
     
@@ -1302,8 +1357,8 @@
     consume_fixed</a>, 
     
   
-    <a href="../../Crinja/Lexer/Base.html#consume_name-instance-method" class="tooltip">
-      <span>consume_name</span>
+    <a href="../../Crinja/Lexer/Base.html#consume_name%28with_special_constants%3Dtrue%29-instance-method" class="tooltip">
+      <span>consume_name(with_special_constants = <span class="n">true</span>)</span>
     consume_name</a>, 
     
   
@@ -1342,8 +1397,8 @@
     raise</a>, 
     
   
-    <a href="../../Crinja/Lexer/Base.html#skip_whitespace-instance-method" class="tooltip">
-      <span>skip_whitespace</span>
+    <a href="../../Crinja/Lexer/Base.html#skip_whitespace%3ABool-instance-method" class="tooltip">
+      <span>skip_whitespace : Bool</span>
     skip_whitespace</a>, 
     
   
@@ -1402,7 +1457,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/4725dc0896f2e44673b53aefad0e952e31784f7f/src/crinja/lexer/template_lexer.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1418,7 +1473,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/4725dc0896f2e44673b53aefad0e952e31784f7f/src/crinja/lexer/template_lexer.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1441,7 +1496,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/4725dc0896f2e44673b53aefad0e952e31784f7f/src/crinja/lexer/template_lexer.cr#L144" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L197" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1457,7 +1512,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/4725dc0896f2e44673b53aefad0e952e31784f7f/src/crinja/lexer/template_lexer.cr#L121" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="consume_raw-instance-method">
+      <div class="signature">
+        
+        def <strong>consume_raw</strong>
+
+        <a class="method-permalink" href="#consume_raw-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L120" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1473,7 +1544,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/4725dc0896f2e44673b53aefad0e952e31784f7f/src/crinja/lexer/template_lexer.cr#L42" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L43" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="next_token_raw-instance-method">
+      <div class="signature">
+        
+        def <strong>next_token_raw</strong>
+
+        <a class="method-permalink" href="#next_token_raw-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L114" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1489,7 +1576,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/4725dc0896f2e44673b53aefad0e952e31784f7f/src/crinja/lexer/template_lexer.cr#L70" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L71" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1505,7 +1592,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/4725dc0896f2e44673b53aefad0e952e31784f7f/src/crinja/lexer/template_lexer.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L149" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="peek_for_whitespace_offset&#40;offset&#61;1&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>peek_for_whitespace_offset</strong>(offset = <span class="n">1</span>)
+
+        <a class="method-permalink" href="#peek_for_whitespace_offset%28offset%3D1%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L189" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="peek_string?&#40;string,offset&#61;1&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>peek_string?</strong>(string, offset = <span class="n">1</span>)
+
+        <a class="method-permalink" href="#peek_string%3F%28string%2Coffset%3D1%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L141" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1521,7 +1640,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/4725dc0896f2e44673b53aefad0e952e31784f7f/src/crinja/lexer/template_lexer.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1537,7 +1656,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/4725dc0896f2e44673b53aefad0e952e31784f7f/src/crinja/lexer/template_lexer.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7d340ceddfaa64e30e84daee8d771adbee8d55b3/src/crinja/lexer/template_lexer.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
