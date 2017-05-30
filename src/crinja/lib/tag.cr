@@ -1,14 +1,19 @@
 module Crinja
   abstract class Tag
+    alias TagNode = Crinja::Parser::TagNode
+    alias AST = Crinja::Parser
+    alias Kind = Crinja::Parser::Token::Kind
     include Importable
 
-    def interpret_output(env : Crinja::Environment, tag_node : Node::Tag)
-      Node::RenderedOutput.new(String.build do |io|
-        interpret(io, env, tag_node)
+    def interpret_output(renderer : Renderer, tag_node : TagNode)
+      Renderer::RenderedOutput.new(String.build do |io|
+        interpret(io, renderer, tag_node)
       end)
     end
 
-    abstract def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
+    private def interpret(io : IO, renderer : Renderer, tag_node : TagNode)
+      raise "Tag#interpret needs to be implemented by #{self.class}"
+    end
 
     def end_tag : String?
       nil
@@ -24,26 +29,21 @@ module Crinja
       end
     end
 
+    def has_block?(node : TagNode)
+      !end_tag.nil?
+    end
+
     def render_children(env : Crinja::Environment, node : Node)
-      Visitor::Renderer.new(env).visit(node.children)
-    end
-
-    private def expect_name(node, name = nil)
-      expect_name(node, name) { }
-    end
-
-    private def expect_name(node, name = nil)
-      if node.is_a?(Statement::Name) && (name.nil? || (name.is_a?(Array) && name.includes?(node.name)) || name === node.name)
-        yield node.name
-        return node.name
-      end
-
-      nil
+      Crinja::Renderer.new(env).render(node.children)
     end
 
     class Library < FeatureLibrary(Tag)
-      TAGS = [For, If, Set, Macro, Block, Filter, Raw,
-              Else, ElseIf, Include, Extends, From, Import, Call]
+      TAGS = [If, Else, Elif, For,
+              Set, Filter,
+              Macro, Call,
+              Raw,
+              Include, From, Import,
+              Extends, Block]
 
       def register_defaults
         TAGS.each do |name|
@@ -57,6 +57,58 @@ module Crinja
         unless (end_tag = tag.end_tag).nil?
           super(EndTag.new(tag, end_tag))
         end
+      end
+    end
+  end
+
+  class ArgumentsParser < Parser::ExpressionParser
+    def initialize(arguments)
+      @token_stream = Parser::TokenStream.new(arguments)
+      @pos = 0
+    end
+
+    include Parser::ParserHelper
+
+    def expect_identifier
+      unless current_token.kind == Kind::IDENTIFIER
+        raise TemplateSyntaxError.new(current_token, "Unexpected #{current_token}, expected identifier expression")
+      else
+        name = current_token.value
+
+        next_token
+
+        return name
+      end
+    end
+
+    def expect_identifier(name)
+      unless current_token.kind == Kind::IDENTIFIER && current_token.value == name
+        raise TemplateSyntaxError.new(current_token, "Unexpected #{current_token}, expected identifier expression `#{name}`")
+      end
+
+      next_token
+    end
+
+    def expect_identifier(names : Array(String))
+      name = current_token.value
+      unless current_token.kind == Kind::IDENTIFIER && names.includes? name
+        raise TemplateSyntaxError.new(current_token, "Unexpected #{current_token}, expected identifier expression `#{names.join("`, `")}`")
+      end
+
+      next_token
+
+      name
+    end
+
+    def if_identifier(name)
+      if current_token.kind == Kind::IDENTIFIER && current_token.value == name
+        yield
+      end
+    end
+
+    def if_identifier(names : Array(String))
+      if current_token.kind == Kind::IDENTIFIER && names.includes? current_token.value
+        yield
       end
     end
   end

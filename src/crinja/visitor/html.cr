@@ -2,7 +2,7 @@ require "./source"
 
 module Crinja
   class Visitor::HTML < Visitor::Source
-    protected def print_token(token : Lexer::Token?)
+    protected def print_token(token : Parser::Token?)
       unless token.nil?
         @io << token.whitespace_before
         open_token_tag token

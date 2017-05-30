@@ -2,14 +2,44 @@ module Crinja
   class Tag::Import < Tag
     name "import"
 
-    def interpret(io : IO, env : Environment, tag_node : Node::Tag)
-      varargs = Util::PeekIterator.new(tag_node.varargs)
-      template_name = varargs.next.accept(env.evaluator).to_s
+    private def interpret(io : IO, renderer : Renderer, tag_node : TagNode)
+      env = renderer.env
+      parser = ArgumentsParser.new(tag_node.arguments)
+      name_expr = parser.parse_expression
 
-      env.context.import_path_stack << template_name
+      context_var = parser.if_identifier "as" do
+        parser.next_token
+        parser.current_token.value
+      end
 
-      if expect_name(varargs.peek?, "as")
-        context_var = varargs.next.as(Statement::Name).name
+      parser.close
+
+      include_name = env.evaluate(name_expr).to_s
+
+      env.context.import_path_stack << include_name
+
+      template = env.get_template(include_name)
+
+      if context_var.nil?
+        template.render(env)
+      else
+        child = Environment.new(env)
+        template.render(child)
+
+        env.errors += child.errors
+
+        child_bindings = child.context.session_bindings
+        child.context.macros.each do |key, value|
+          child_bindings[key] = value
+        end
+
+        env.context[context_var] = child_bindings
+      end
+    end
+
+    def unreached
+      if expect_name(arguments.peek?, "as")
+        context_var = arguments.next.as(Statement::Name).name
       end
 
       template = env.get_template(template_name)

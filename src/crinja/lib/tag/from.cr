@@ -2,35 +2,12 @@ module Crinja
   class Tag::From < Tag
     name "from"
 
-    def interpret(io : IO, env : Environment, tag_node : Node::Tag)
-      imports = Hash(String, String).new
+    private def interpret(io : IO, renderer : Renderer, tag_node : TagNode)
+      env = renderer.env
+      parser = Parser.new(tag_node.arguments)
+      source_expression, with_context, imports = parser.parse_from_tag
 
-      varargs = Util::PeekIterator.new(tag_node.varargs)
-      template_name = varargs.next.accept(env.evaluator).to_s
-      expect_name(varargs.next, "import")
-      with_context = false
-
-      while arg = varargs.next?
-        from_name = expect_name(arg) || raise TemplateSyntaxError.new(arg.token, "Expected name token")
-        import_name = from_name
-
-        if expect_name(varargs.peek?, "context")
-          if from_name == "with"
-            with_context = true
-            break
-          elsif from_name == "without"
-            with_context = false
-            break
-          end
-        end
-
-        if expect_name(varargs.peek?, "as")
-          varargs.next
-          import_name = varargs.next.accept(env.evaluator).to_s
-        end
-
-        imports[from_name] = import_name
-      end
+      template_name = env.evaluate(source_expression).to_s
 
       template = env.get_template(template_name)
 
@@ -50,8 +27,44 @@ module Crinja
         elsif child.context.has_key?(from_name)
           env.context[import_name] = child.context[from_name]
         else
-          raise RuntimeError.new("Unknown import #{from_name} in #{template}")
+          raise RuntimeError.new("Unknown import `#{from_name}` in #{template}").at(tag_node)
         end
+      end
+    end
+
+    class Parser < ArgumentsParser
+      def parse_from_tag
+        source_expression = parse_expression
+
+        expect_identifier "import"
+
+        imports = Hash(String, String).new
+
+        while true
+          from_name = expect_identifier
+
+          import_name = from_name
+
+          if_identifier "as" do
+            next_token
+            import_name = expect_identifier
+          end
+
+          imports[from_name] = import_name
+
+          break unless current_token.kind == Kind::COMMA
+        end
+
+        with_context = false
+        if_identifier ["with", "without"] do
+          with_context = current_token.value != "without"
+          next_token
+          expect_identifier "context"
+        end
+
+        close
+
+        {source_expression, with_context, imports}
       end
     end
   end

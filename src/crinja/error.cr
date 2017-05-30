@@ -1,15 +1,6 @@
 module Crinja
-  class TemplateError < Exception
-    getter token : Lexer::Token
-    getter template : Template?
-
-    def initialize(token, cause : Exception? = nil, template = nil)
-      initialize(token, nil, cause, template)
-    end
-
-    def initialize(@token, message : String? = nil, cause = nil, @template = nil)
-      super(message, cause)
-    end
+  module SourceAttached
+    MAX_COLUMN_WIDTH = 120
 
     def message
       String.build do |io|
@@ -27,61 +18,82 @@ module Crinja
           io << c.message
         end
 
-        io << "\n" << token
         io << "\n\ntemplate: "
 
         if (t = template).nil?
           io << "<string>"
-          io.printf "[%d:%d]\n", token.position.line, token.position.column
+          io << location_start
         else
-          io << t.filename
-          io.printf "[%d:%d]", token.position.line, token.position.column
+          io << t.filename || "<string>"
+          io << location_start << " .. " << location_end
           io << "\n"
-          token_source(io)
+
+          highlight_source_code(io)
         end
 
         io << "\n"
       end
     end
 
-    def token_source(io, lines_before = 2, lines_after = 2)
-      template = self.template
-      return if template.nil?
-      source = template.source
-      start_pos = token.position.pos
-      before = [] of String
-      before = source[0..start_pos - 1].split(Lexer::Symbol::NEWLINE)
-      io << before.inspect
-      before = before[[0, before.size - 1 - lines_before].max, before.size]
+    GLOWING_STAR = "🌟"
+    OTHER        = "⚡"
+    POINTING_UP  = "☝️"
 
-      after = source[(start_pos + token.value.size)..source.size].split(Lexer::Symbol::NEWLINE)
-      io << after.inspect
-      after = after[0..[lines_after, after.size - 1].min]
+    def highlight_source_code(io, lines_before = 2, lines_after = 2)
+      template = @template || return
+      location_start = self.location_start || return
+      location_end = self.location_end || location_start
 
-      lino = token.position.line
-      linowidth = Math.log(lino + after.size, 10).ceil.to_i
+      lines = template.source.split('\n')
+      line_range = (1..lines.size)
+      start_line = (location_start.line - lines_before).clamp(line_range)
+      end_line = (location_end.line + lines_after).clamp(line_range)
 
-      before.each_with_index do |line, i|
-        io.printf " %*d | ", linowidth, lino - (before.size - 1) + i
-        io << line
-        io << "\n" unless i == before.size - 1
-      end
+      linowidth = Math.log(lines.size, 10).ceil.to_i
 
-      io << token.value
+      (start_line..end_line).each do |i|
+        io.printf " %*d | ", linowidth, i
+        io << lines[i - 1]
+        io << '\n'
 
-      after.each_with_index do |line, i|
-        if i == 1
-          io << " " * linowidth
-          io << "  | "
-          io << " " * (token.position.column - 2)
-          io << "/"
-          io << "^" * token.value.size
-          io << "\\\n"
+        linelength = lines[i - 1].size
+
+        if i - 1 == location_start.line
+          io << " " * (linowidth == 0 ? 1 : linowidth) << OTHER << " | "
+          previous_width = (linowidth + 4 + location_start.column)
+          io << " " * (location_start.column - 1).clamp(0, linelength)
+          io << "^"
+          previous_width = previous_width + 1
+          if location_end.line == location_start.line
+            io << "~" * (location_end.column - location_start.column - 2).clamp(0, linelength)
+          end
+          io << '\n'
         end
-        io.printf " %*d | ", linowidth, lino + i unless i == 0
-
-        io << line << "\n"
       end
+    end
+  end
+
+  class TemplateError < Exception
+    property template : Template?
+    getter location_start : Parser::StreamPosition
+    getter location_end : Parser::StreamPosition
+
+    include SourceAttached
+
+    def initialize(token, cause : Exception? = nil, template = nil)
+      initialize(token, nil, cause, template)
+    end
+
+    def initialize(token, message : String? = nil, cause = nil, @template = nil)
+      @location_start = token.location_start
+      @location_end = token.location_end
+      super(message, cause)
+    end
+
+    def initialize(node : Parser::ASTNode, message : String? = nil, cause = nil, @template = nil)
+      @location_start = node.location_start
+      @location_end = node.location_end
+      super(message, cause)
     end
   end
 
@@ -99,16 +111,31 @@ module Crinja
   end
 
   class RuntimeError < Exception
+    property template : Template?
+    getter location_start : Parser::StreamPosition?
+    getter location_end : Parser::StreamPosition?
+
+    include SourceAttached
+
+    def at(@location_start, @location_end)
+      self
+    end
+
+    def at(node)
+      @location_start = node.location_start
+      @location_end = node.location_end
+      self
+    end
   end
 
   class TypeError < RuntimeError
     getter value : Value?
 
-    def initialize(msg = "", cause : Exception? = nil)
-      super msg, cause
+    def initialize(@value : Value, msg = "", cause : Exception? = nil)
+      initialize msg, cause
     end
 
-    def initialize(@value : Value, msg = "", cause : Exception? = nil)
+    def initialize(msg = "", cause : Exception? = nil)
       super msg, cause
     end
   end
@@ -116,7 +143,7 @@ module Crinja
   class UndefinedError < RuntimeError
     getter variable_name : String
 
-    def initialize(@variable_name, msg = nil, cause = nil)
+    def initialize(@variable_name, msg = "", cause : Exception? = nil)
       super msg, cause
     end
 
@@ -149,5 +176,13 @@ module Crinja
     def message
       "Tag cycle exception #{@type}. #{super}"
     end
+  end
+
+  class ExceptionWrapper < Exception
+    def cause!
+      cause.not_nil!
+    end
+
+    delegate backtrace, callstack, inspect_with_backtrace, message, to_s, inspect, pretty_print, to: cause!
   end
 end

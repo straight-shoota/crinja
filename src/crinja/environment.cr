@@ -1,6 +1,7 @@
 require "./context"
 require "./config"
 require "./loader"
+require "./interpreter/resolver"
 require "logger"
 
 # The core component of Crinja is the `Environment`. It contains configuration, global variables and provides an API for template loading and rendering. Instances of this class may be modified if they are not shared and if no template was loaded so far. Modifications on environments after the first template was loaded will lead to surprising effects and undefined behavior.
@@ -16,9 +17,9 @@ class Crinja::Environment
 
   getter operators, filters, functions, tags, tests
 
-  property blocks : Hash(String, Array(Array(Node)))
-  @blocks = Hash(String, Array(Array(Node))).new do |hash, k|
-    hash[k] = Array(Array(Node)).new
+  property blocks : Hash(String, Array(Parser::NodeList))
+  @blocks = Hash(String, Array(Parser::NodeList)).new do |hash, k|
+    hash[k] = Array(Parser::NodeList).new
   end
 
   def initialize(context = Context.new)
@@ -30,7 +31,7 @@ class Crinja::Environment
   def initialize(@context = Context.new)
     @global_context = @context
     @logger = Logger.new(STDOUT)
-    {% if flag?(:debug) %}
+    {% if flag?(:logger) %}
       @logger.level = Logger::DEBUG
     {% end %}
     # context["self"] = BlocksResolver.new(self)
@@ -47,8 +48,10 @@ class Crinja::Environment
   end
 
   def evaluator
-    @evaluator ||= Visitor::Evaluator.new(self)
+    @evaluator ||= Evaluator.new(self)
   end
+
+  delegate evaluate, to: evaluator
 
   # Loads a template from *string.* This parses the source given and returns a `Template` object.
   def from_string(string : String)
@@ -85,14 +88,12 @@ class Crinja::Environment
   def with_scope(ctx : Context)
     former_scope = self.context
 
-    logger.info "new context #{ctx} is not the child of former context" if ctx.parent != @context
+    logger.debug "new context #{ctx} is not the child of former context" if ctx.parent != @context
     @context = ctx
 
-    result = yield @context
+    yield @context
   ensure
     @context = former_scope.not_nil!
-
-    result
   end
 
   # Executes the block inside a new sub-context with optional local scoped *bindings*.
@@ -101,7 +102,7 @@ class Crinja::Environment
     ctx = Context.new(self.context)
 
     unless bindings.nil?
-      ctx.merge! Crinja::Bindings.cast(bindings)
+      ctx.merge! bindings
     end
 
     with_scope(ctx) do |c|
@@ -130,145 +131,5 @@ class Crinja::Environment
     io << ">"
   end
 
-  # Resolves an objects item.
-  # Analogous to `__getitem__` in Jinja2.
-  def resolve_item(name : String, object)
-    object = object.raw if object.is_a?(Value)
-    raise UndefinedError.new(name, "#{object.class} is undefined") if object.is_a?(Undefined)
-
-    value = Undefined.new(name)
-    if object.responds_to?(:getitem)
-      value = object.getitem(name)
-    end
-    if value.is_a?(Undefined) && object.responds_to?(:getattr)
-      value = object.getattr(name)
-    end
-    if value.is_a?(Undefined)
-      value = Environment.resolve_with_hash_accessor(name, object)
-    end
-
-    if value.is_a?(Value)
-      value = value.raw
-    end
-
-    value.as(Type)
-  end
-
-  # Resolves an objects attribute.
-  # Analogous to `getattr` in Jinja2.
-  def resolve_attribute(name : String, object)
-    object = object.raw if object.is_a?(Value)
-    raise UndefinedError.new(name, "#{object.class} is undefined") if object.is_a?(Undefined)
-
-    value = Undefined.new(name)
-    if object.responds_to?(:getattr)
-      value = object.getattr(name)
-    end
-    if value.is_a?(Undefined) && object.responds_to?(:getitem)
-      value = object.getitem(name)
-    end
-    if value.is_a?(Undefined)
-      value = Environment.resolve_with_hash_accessor(name, object)
-    end
-
-    if value.is_a?(Value)
-      value = value.raw
-    end
-
-    value.as(Type)
-  end
-
-  def self.resolve_with_hash_accessor(name, object)
-    if object.responds_to?(:[]) && !object.is_a?(Array) && !object.is_a?(Tuple)
-      begin
-        return object[name]
-      rescue KeyError
-      end
-    end
-
-    Undefined.new(name)
-  end
-
-  # Resolves a variable in the current context.
-  def resolve(name : String)
-    if functions.has_key?(name)
-      value = functions[name]
-    else
-      value = context[name]
-    end
-    logger.debug "resolved string #{name}: #{value.inspect}"
-    value
-  end
-
-  # Resolves a variable in the current context.
-  def resolve(variable : Variable)
-    logger.debug "resolving variable #{variable}..."
-    value = context
-    variable.parts.each_with_index do |part, index|
-      if index == 0 && functions.has_key?(variable.to_s)
-        # There might be a global function with this name.
-        # Global functions can have dots in their name, so we need to check all parts of the variable.
-        value = functions[variable.to_s]
-        logger.debug "found function: #{variable.to_s}: #{value}"
-        break
-      end
-
-      if !(attr = resolve_attribute(part, value)).is_a?(Undefined)
-        value = attr
-      elsif value.responds_to?(:[]) && value.responds_to?(:has_key?) && !value.is_a?(Array) && !value.is_a?(Tuple)
-        if value.has_key?(part)
-          value = value[part]
-        else
-          value = Undefined.new(variable.to_s)
-          break
-        end
-      else
-        logger.debug "could not resolve part of variable #{variable.to_s}: #{part} (#{index})"
-        break
-      end
-    end
-
-    logger.debug "resolved variable #{variable}: #{value.inspect}"
-    value.as(Type)
-  end
-
-  def execute_call(target)
-    if target.is_a?(Variable)
-      # puts target.to_s
-      # puts "xecuting call with context macros: #{context.all_macros.keys}"
-      if context.has_macro?(target.to_s)
-        # its a macro call
-        callable = context.macro(target.to_s)
-        # puts "its a macro #{callable.inspect}"
-      else
-        callable = resolve(target)
-        # puts "resolved to #{callable}"
-      end
-    elsif target.undefined?
-      raise TypeError.new(target, "#{target} is undefined")
-    elsif target.callable?
-      callable = target.raw
-    end
-
-    if callable.is_a?(Callable)
-      arguments = Arguments.new(self)
-
-      # if callable.is_a?(Tag::Macro::MacroFunction)
-      #  ctx = Context.new
-      #  context.all_macros.each do |_,makro|
-      #    ctx.register_macro(makro)
-      #  end
-      # else
-      #  ctx = self.context
-      # end
-
-      # with_scope(ctx) do
-      yield(arguments)
-
-      callable.as(Callable).call(arguments)
-      # end
-    else
-      raise TypeError.new(Value.new(callable), "#{target} is not callable")
-    end
-  end
+  include Crinja::Resolver
 end

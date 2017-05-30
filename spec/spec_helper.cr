@@ -1,7 +1,7 @@
 require "spec"
 require "../src/crinja"
 
-alias Kind = Crinja::Lexer::Token::Kind
+alias Kind = Crinja::Parser::Token::Kind
 
 def parse(string)
   Crinja::Template.new(string)
@@ -31,35 +31,21 @@ def render_load(name, bindings = nil, autoescape = nil, loader = nil, trim_block
   load(name, autoescape, loader, trim_blocks, lstrip_blocks).render(bindings)
 end
 
-def render(node : Crinja::Node, context : Crinja::Context = Crinja::Context.new)
-  env = Crinja::Environment.new(context)
-
-  node.render(env)
-end
-
-def render(node : Crinja::Node, bindings)
-  casted = Crinja::Bindings.cast(bindings)
-  render(node, Crinja::Context.new(casted))
-end
-
-def evaluate_statement(string, bindings = nil, autoescape = nil)
+def evaluate_expression(string, bindings = nil, autoescape = nil)
   env = Crinja::Environment.new
   env.config.autoescape.default_for_string = autoescape unless autoescape.nil?
 
-  lexer = Crinja::Lexer::StatementLexer.new(env.config, string)
-  parser = Crinja::Parser::StatementParser.new(env, lexer)
+  lexer = Crinja::Parser::ExpressionLexer.new(env.config, string)
 
-  statement = parser.build
+  parser = Crinja::Parser::ExpressionParser.new(lexer)
 
-  {% if flag?(:debug) %}
-    puts statement.inspect
-  {% end %}
+  expression = parser.parse
 
   unless bindings.nil?
     env.context.merge! Crinja::Bindings.cast(bindings)
   end
 
-  result = statement.accept(env.evaluator)
+  result = env.evaluate expression
 
   if env.config.autoescape?
     result = Crinja::SafeString.escape(result)

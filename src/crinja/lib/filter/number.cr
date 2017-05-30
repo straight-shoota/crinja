@@ -17,7 +17,6 @@ class Crinja::Filter
 
   Crinja.filter({default: 0, base: 10}, :int) do
     begin
-      puts "filter: int with #{target} base=#{arguments[:base].to_i}"
       if arguments.target!.string?
         string = arguments.target!.as_s
         if string['.']?

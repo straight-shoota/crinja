@@ -70,8 +70,6 @@ module Crinja
         searchpaths.each do |searchpath|
           file_name = File.join(searchpath, File.join(pieces))
 
-          puts file_name
-
           if File.exists?(file_name)
             begin
               source = File.read(file_name, encoding: @encoding)

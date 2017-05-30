@@ -2,14 +2,12 @@ require "../spec_helper"
 
 describe Crinja::Parser::TemplateParser do
   it "parses a simple template string" do
-    template = Crinja::Template.new("Hallo Welt")
-    parser = Crinja::Parser::TemplateParser.new(template, Crinja::Node::Root.new(template))
-    tree = parser.build.root
+    parser = Crinja::Parser::TemplateParser.new(Crinja::Environment.new, "Hallo Welt")
+    tree = parser.parse
 
-    tree.should be_a(Crinja::Node::Root)
+    tree.should be_a(Crinja::Parser::NodeList)
     tree.children.size.should eq 1
-    tree.children.first.should be_a Crinja::Node::Text
-    tree.children.first.token.value.should eq "Hallo Welt"
+    tree.children.first.should be_a Crinja::Parser::FixedString
   end
 
   it "parses dict reference" do

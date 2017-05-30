@@ -2,11 +2,12 @@ class Crinja::Tag
   class Raw < Tag
     name "raw", "endraw"
 
-    def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
-      if (fixed = tag_node.children.first).is_a?(Node::Text)
-        io << fixed.token.value
+    private def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
+      ArgumentsParser.new(tag_node.arguments).close
+      if (fixed = tag_node.block.children.first).is_a?(Parser::FixedString)
+        io << fixed.string
       else
-        raise TemplateSyntaxError.new(tag_node.token, "raw tag expexts exactly one fixed content node inside")
+        raise TemplateSyntaxError.new(tag_node, "raw tag expexts exactly one fixed content node inside")
       end
     end
   end

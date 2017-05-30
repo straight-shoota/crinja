@@ -2,39 +2,21 @@ module Crinja
   class Tag::Include < Tag
     name "include"
 
-    def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
-      raw_value = tag_node.varargs.first.accept(env.evaluator)
+    private def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
+      env = renderer.env
+      parser = IncludeParser.new(tag_node.arguments)
+      source_expression, ignore_missing, with_context = parser.parse_include_tag
 
-      include_name = if raw_value.is_a?(Array)
-                       raw_value.map &.to_s
-                     else
-                       raw_value.to_s
-                     end
-      vararg_index = 1
-      context = env.context
-      ignore_missing = false
-
-      if tag_node.varargs.size > vararg_index
-        expect_name(tag_node.varargs[vararg_index], "ignore") do
-          vararg_index += 1
-          expect_name(tag_node.varargs[vararg_index], "missing") do
-            vararg_index += 1
-            ignore_missing = true
-          end || raise TemplateSyntaxError.new(tag_node.varargs[vararg_index].token, "expected `missing` after `ignore`")
-        end
+      source = env.evaluate(source_expression)
+      if source.is_a?(Array)
+        include_name = source.map &.to_s
+      else
+        include_name = source.to_s
       end
 
-      if tag_node.varargs.size > vararg_index
-        expect_name(tag_node.varargs[vararg_index], ["with", "without"]) do |with_or_without|
-          vararg_index += 1
-          expect_name(tag_node.varargs[vararg_index], "context") do
-            vararg_index += 1
-            if with_or_without == "without"
-              context = env.global_context
-            end
-          end || raise TemplateSyntaxError.new(tag_node.varargs[vararg_index].token, "expected `context` after `#{with_or_without}`")
-        end || raise TemplateSyntaxError.new(tag_node.varargs[vararg_index].token, "expected `without` or `ignore`")
-      end
+      context = env.global_context unless with_context
+
+      env_context = env.context
 
       begin
         env.logger.debug "loading include #{include_name}"
@@ -42,6 +24,32 @@ module Crinja
         template.render(io, context)
       rescue error : TemplateNotFoundError
         raise error unless ignore_missing
+      end
+    end
+
+    class IncludeParser < ArgumentsParser
+      def parse_include_tag
+        source_expression = parse_expression
+
+        ignore_missing = false
+
+        if_identifier "ignore" do
+          next_token
+          expect_identifier "missing"
+
+          ignore_missing = true
+        end
+
+        with_context = current_token.value != "without"
+
+        if_identifier ["with", "without"] do
+          next_token
+          expect_identifier "context"
+        end
+
+        close
+
+        {source_expression, ignore_missing, with_context}
       end
     end
   end

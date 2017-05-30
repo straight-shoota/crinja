@@ -61,12 +61,16 @@ module Crinja
       @macros.has_key?(name) || parent.try(&.has_macro?(name))
     end
 
-    def macro(name)
-      @macros[name]? || parent.try(&.macro(name))
+    def macro(name) : Callable
+      @macros[name]? || parent.try(&.macro(name)) || raise "Macro #{name} is not registered"
     end
 
     def register_macro(makro)
       @macros[makro.name] = makro
+    end
+
+    def merge!(context : Crinja::Context)
+      super(context.scope)
     end
 
     # Merges values in *bindings* into local scope.

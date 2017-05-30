@@ -20,8 +20,9 @@ module Crinja
     property kwargs : Hash(String, Value)
     property defaults : Hash(String, Type)
     property env : Environment
+    property! renderer : Renderer
 
-    def initialize(@env, @varargs = [] of Value, @kwargs = Hash(String, Value).new, @defaults = Hash(String, Type).new)
+    def initialize(@env, @varargs = [] of Value, @kwargs = Hash(String, Value).new, @defaults = Hash(String, Type).new, @target = nil)
     end
 
     def [](name : Symbol) : Value

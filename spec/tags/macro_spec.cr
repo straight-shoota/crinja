@@ -26,13 +26,13 @@ describe Crinja::Tag::Macro do
   end
 
   it "arguments_defaults_nonsense" do
-    expect_raises(Crinja::TemplateSyntaxError) do
+    expect_raises(Crinja::TemplateSyntaxError | Crinja::ExceptionWrapper, "Expected KW_ASSIGN") do
       render(%({% macro m(a, b=1, c) %}a={{ a }}, b={{ b }}, c={{ c }}{% endmacro %}))
     end
   end
 
   it "caller_defaults_nonsense" do
-    expect_raises(Crinja::TemplateSyntaxError) do
+    expect_raises(Crinja::TemplateSyntaxError | Crinja::ExceptionWrapper) do
       render(%({% macro a() %}{{ caller() }}{% endmacro %}{% call(x, y=1, z) a() %}{% endcall %}))
     end
   end

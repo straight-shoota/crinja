@@ -2,28 +2,32 @@ module Crinja
   class Tag::Block < Tag
     name "block", "endblock"
 
-    def interpret_output(env : Environment, tag_node : Node::Tag)
-      if (name = expect_name(tag_node.varargs.first))
-        env.blocks[name] << tag_node.children
+    def interpret_output(renderer : Renderer, tag_node : TagNode)
+      env = renderer.env
+      parser = Parser.new(tag_node.arguments)
+      name, scoped = parser.parse_block_tag
 
-        block = Node::BlockOutput.new(name)
+      env.blocks[name] << tag_node.block
 
-        if tag_node.varargs.size > 1
-          if expect_name(tag_node.varargs[1], "scoped")
-            block.scope = env.context
-          else
-            raise TemplateSyntaxError.new(tag_node.varargs[1].token, "block tag with invalid modifier")
-          end
-        end
+      block = Renderer::BlockOutput.new(name)
+      block.scope = env.context if scoped
 
-        block
-      else
-        raise TemplateSyntaxError.new(tag_node.varargs.first.token, "block tag expects a name")
-      end
+      block
     end
 
-    def interpret(io : IO, env : Environment, tag_node : Node::Tag)
-      raise "Unsupported operation"
+    class Parser < ArgumentsParser
+      def parse_block_tag
+        name = parse_identifier.name
+
+        scoped = false
+        if_identifier "scoped" do
+          scoped = true
+        end
+
+        close
+
+        {name, scoped}
+      end
     end
   end
 end

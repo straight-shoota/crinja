@@ -2,50 +2,44 @@ module Crinja
   class Tag::Filter < Tag
     name "filter", "endfilter"
 
-    def interpret_output(env : Crinja::Environment, tag_node : Node::Tag)
-      filter_stmt = tag_node.varargs.first
-      varargs : Array(Value) = [] of Value
-      kwargs : Hash(String, Value) = Hash(String, Value).new
+    def interpret_output(renderer : Renderer, tag_node : TagNode)
+      env = renderer.env
+      parser = Parser.new(tag_node.arguments)
+      name, expression = parser.parse_filter_tag
 
-      if filter_stmt.is_a?(Statement::Name)
-        filter_name = filter_stmt.name
-      elsif filter_stmt.is_a?(Statement::Call)
-        filter_name = filter_stmt.target.as(Statement::Name).name
-      else
-        raise TemplateSyntaxError.new(filter_stmt.token, "Argument for filter tag must be a filter call")
+      filter = env.filters[name]
+
+      target = Value.new renderer.render(tag_node.block).value
+
+      argumentlist = env.evaluate(expression.argumentlist).as(Array(Type)).map { |a| Value.new a }
+      keyword_arguments = expression.keyword_arguments.each_with_object(Hash(String, Value).new) do |(keyword, value), args|
+        args[keyword.name] = env.evaluator.value(value)
       end
 
-      filter = env.filters[filter_name]
+      result = filter.call Arguments.new(env, argumentlist, keyword_arguments, target: target)
 
-      arguments = if filter.responds_to?(:create_arguments)
-                    filter.create_arguments(env)
-                  else
-                    Crinja::Arguments.new(env)
-                  end
-
-      # TODO: Wrap in OutputNode or find a better way
-      arguments.target = Value.new(render_children(env, tag_node).value)
-
-      if filter_stmt.is_a?(Statement::Call)
-        filter_stmt.varargs.each do |stmt|
-          if stmt.is_a?(Statement::SplashOperator)
-            env.evaluator.value(stmt.operand.not_nil!).as_a.each do |arg|
-              arguments.varargs << Value.new(arg)
-            end
-          else
-            arguments.varargs << env.evaluator.value(stmt)
-          end
-        end
-
-        filter_stmt.kwargs.each do |k, stmt|
-          arguments.kwargs[k] = env.evaluator.value(stmt)
-        end
-      end
-
-      Node::RenderedOutput.new(filter.call(arguments).to_s)
+      Renderer::RenderedOutput.new(SafeString.new(result.to_s).to_s)
     end
 
-    def interpret(io : IO, env : Environment, tag_node : Node::Tag)
+    class Parser < ArgumentsParser
+      def parse_filter_tag
+        name = parse_identifier
+
+        if current_token.kind == Kind::LEFT_PAREN
+          next_token
+
+          call = parse_call_expression(name)
+        else
+          call = parse_call_expression(name, with_parenthesis: false)
+        end
+
+        close
+
+        {name.name, call}
+      end
+    end
+
+    def interpret(io : IO, env : Environment, tag_node : TagNode)
       raise "Unsupported operation"
     end
   end

@@ -6,42 +6,20 @@ module Crinja
 
     LOOP_VARIABLE = "loop"
 
-    def validate_arguments
-      validate_argument 0, klass = Statement::Name
-      validate_argument 1, klass = Statement::Name, token_value = "in"
-      validate_argument 2, klass = Statement
-      validate_arguments_size 3
-    end
+    def interpret_output(renderer : Renderer, tag_node : TagNode)
+      env = renderer.env
+      parser = Parser.new(tag_node.arguments)
+      item_vars, collection_expr, if_expr, recursive = parser.parse_for_tag
 
-    def interpret_output(env : Crinja::Environment, tag_node : Node::Tag)
-      next_vararg = 0
-      item_vars = [] of String
-      while next_vararg < tag_node.varargs.size
-        break unless (name_node = tag_node.varargs[next_vararg]).is_a?(Statement::Name)
-        name = name_node.name
+      runner = Runner.new(renderer, tag_node, item_vars)
 
-        next_vararg += 1
-        break if name == "in"
+      collection = env.evaluator.value(collection_expr)
 
-        if name == LOOP_VARIABLE
-          raise TemplateSyntaxError.new(name_node.token, "cannot use reserved name `loop` as item variable in for loop")
-        end
-
-        item_vars << name
+      if if_expr
+        collection = ConditionalIterator.new(collection.each, if_expr, env, item_vars)
       end
 
-      runner = Runner.new(env, tag_node, item_vars)
-
-      collection = env.evaluator.value(tag_node.varargs[next_vararg])
-      next_vararg += 1
-
-      if tag_node.varargs.size > next_vararg && tag_node.varargs[next_vararg].as(Statement::Name).name == "if"
-        if_stmt = tag_node.varargs[next_vararg + 1].as(Statement)
-
-        collection = ConditionalIterator.new(collection.each, if_stmt, env, item_vars)
-      end
-
-      if tag_node.varargs.size > next_vararg && (recursive = tag_node.varargs[next_vararg]).is_a?(Statement::Name) && recursive.name == "recursive"
+      if recursive
         looper = Util::ForLoop::Recursive.new runner, collection
       else
         looper = Util::ForLoop.new collection
@@ -51,42 +29,70 @@ module Crinja
 
       if looper.index == 0
         # no items were processed, render else branch
-        runner.render_children(true)
+        runner.render_else
       else
         result
       end
     end
 
-    def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
-      raise "Unsupported operation"
+    class Parser < ArgumentsParser
+      def parse_for_tag
+        item_vars = parse_identifier_list.map do |identifier|
+          if identifier.name == LOOP_VARIABLE
+            raise TemplateSyntaxError.new(identifier, "cannot use reserved name `loop` as item variable in for loop")
+          end
+          identifier.name
+        end
+
+        expect Kind::IDENTIFIER, "in"
+
+        collection_expr = parse_expression
+
+        if_expr : AST::ExpressionNode? = nil
+        if_token Kind::IDENTIFIER, "if" do
+          next_token
+          if_expr = parse_expression
+        end
+
+        recursive = false
+        if_token Kind::IDENTIFIER, "recursive" do
+          recursive = true
+        end
+
+        close
+
+        return {item_vars, collection_expr, if_expr, recursive}
+      end
     end
 
     class Runner
-      getter env, tag_node, item_vars
-
-      def initialize(@env : Crinja::Environment, @tag_node : Node::Tag, @item_vars : Array(String))
+      def initialize(@renderer : Renderer, @tag_node : TagNode, @item_vars : Array(String))
       end
 
       def run_loop(looper : Util::ForLoop)
-        Node::OutputList.new.tap do |output|
+        Renderer::OutputList.new.tap do |output|
           looper.each do |value|
-            env.with_scope({LOOP_VARIABLE => looper}) do |context|
-              context.unpack item_vars, value.raw
+            @renderer.env.with_scope({LOOP_VARIABLE => looper}) do |context|
+              context.unpack @item_vars, value.raw
               output << render_children
             end
           end
         end
       end
 
-      def render_children(else_branch = false) : Node::Output
-        Node::OutputList.new.tap do |output|
-          tag_node.children.each do |node|
-            if node.is_a?(Node::Tag) && "else" == node.as(Node::Tag).name
+      def render_else
+        render_children(true)
+      end
+
+      def render_children(else_branch = false)
+        Renderer::OutputList.new.tap do |output|
+          @tag_node.block.children.each do |node|
+            if node.is_a?(TagNode) && "else" == node.name
               break unless else_branch
               else_branch = false
             end
 
-            output << Visitor::Renderer.new(env).visit(node) unless else_branch
+            output << @renderer.render(node) unless else_branch
           end
         end
       end
@@ -96,7 +102,7 @@ module Crinja
       include Iterator(Value)
       include IteratorWrapper
 
-      def initialize(@iterator : Iterator(Value), @condition : Statement, @env : Environment, @item_vars : Array(String))
+      def initialize(@iterator : Iterator(Value), @condition : AST::ExpressionNode, @env : Environment, @item_vars : Array(String))
       end
 
       def next

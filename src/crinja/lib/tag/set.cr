@@ -2,24 +2,32 @@ module Crinja
   class Tag::Set < Tag
     name "set", "endset"
 
-    def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
-      if tag_node.varargs.size == 1 && (name_node = tag_node.varargs[0]).is_a?(Statement::Name)
-        # block set
-        name = name_node.name
-        value = render_children(env, tag_node).value
+    private def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
+      env = renderer.env
+      args = ArgumentsParser.new(tag_node.arguments)
+
+      if tag_node.arguments.size == 2
+        # IDENTIFIER + EOF
+        name = args.current_token.value
+        args.next_token
+        value = renderer.render(tag_node.block).value
         env.context[name] = SafeString.new(value)
-      elsif tag_node.kwargs.size > 0
-        # expression set
-        tag_node.kwargs.each do |name, value|
-          env.context[name] = value.accept(env.evaluator)
-        end
+        args.close
       else
-        raise TemplateSyntaxError.new(tag_node.token, "Tag `set` requires either a single name argument (set block) or at least one assignment")
+        begin
+          args.parse_keyword_list.each do |identifier, expr|
+            env.context[identifier.name] = env.evaluate(expr)
+          end
+        rescue exc
+          raise TemplateSyntaxError.new(tag_node, "Tag `set` requires either a single name argument (set block) or at least one assignment", exc)
+        end
+
+        args.close
       end
     end
 
-    def end_tag_for(node : Node::Tag) : String?
-      node.varargs.size > 0 ? end_tag : nil
+    def has_block?(node : TagNode)
+      node.arguments.size <= 2
     end
   end
 end

@@ -18,4 +18,10 @@ describe Crinja::Tag::Set do
   it "block_escaping" do
     render("{% set foo %}<em>{{ test }}</em>{% endset %}foo: {{ foo }}", {"test" => "<unsafe>"}, autoescape = true).should eq("foo: <em>&lt;unsafe&gt;</em>")
   end
+
+  it "raises error for unclosed tag" do
+    expect_raises(Crinja::TemplateSyntaxError | Crinja::ExceptionWrapper, "endset") do
+      render(%({% set foo %}{{ foo }}))
+    end
+  end
 end

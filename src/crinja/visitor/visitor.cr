@@ -1,15 +1,15 @@
 module Crinja
-  abstract class Visitor
-    abstract def visit(node : Node)
+  abstract class Visitor(T)
+    alias AST = Parser
 
-    def visit(template : Template)
-      template.root.accept(self)
-    end
-  end
-
-  abstract class Node
-    def accept(visitor : Visitor)
-      visitor.visit self
+    macro visit(*node_types)
+      def visit(node : {{
+                         (node_types.map do |type|
+                           "Parser::#{type.id}"
+                         end).join(" | ").id
+                       }})
+        {{ yield }}
+      end
     end
   end
 end

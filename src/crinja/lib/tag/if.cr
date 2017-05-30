@@ -2,16 +2,17 @@ module Crinja
   class Tag::If < Tag
     name "if", "endif"
 
-    def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
+    private def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
+      env = renderer.env
       current_branch_active = evaluate_node(tag_node, env)
 
-      tag_node.children.each do |node|
-        if (tnode = node).is_a?(Node::Tag) && (tnode.tag.is_a?(Tag::ElseIf) || tnode.tag.is_a?(Tag::Else))
+      tag_node.block.children.each do |node|
+        if (tnode = node).is_a?(TagNode) && (tnode.name == "elif" || tnode.name == "else")
           break if current_branch_active
 
           current_branch_active = evaluate_node(tnode, env)
         else
-          Visitor::Renderer.new(env).visit(node).value(io) if current_branch_active
+          renderer.render(node).value(io) if current_branch_active
         end
       end
     end
@@ -21,12 +22,31 @@ module Crinja
         return true
       end
 
-      raise TemplateSyntaxError.new(tag_node.token, "additional args for if tag") if tag_node.varargs.size > 1
-      raise TemplateSyntaxError.new(tag_node.token, "if tag without condition") if tag_node.varargs.size == 0
-      raise TemplateSyntaxError.new(tag_node.token, "additional kwargs for if tag") if tag_node.kwargs.size > 0
+      arguments = ArgumentsParser.new(tag_node.arguments)
+      expression = arguments.parse_expression
 
-      value = env.evaluator.value(tag_node.varargs.first)
+      if expression.is_a?(Parser::Empty)
+        raise TemplateSyntaxError.new(tag_node, "#{tag_node.name} tag missing condition")
+      end
+
+      arguments.close
+
+      value = env.evaluator.value(expression)
       value.truthy?
+    end
+  end
+
+  class Tag::Else < Tag
+    name "else"
+
+    def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
+    end
+  end
+
+  class Tag::Elif < Tag
+    name "elif"
+
+    def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
     end
   end
 end

@@ -2,25 +2,81 @@ module Crinja
   class Tag::Macro < Tag
     name "macro", "endmacro"
 
-    def interpret(io : IO, env : Crinja::Environment, tag_node : Node::Tag)
-      call = tag_node.varargs.first.as(Statement::Call)
-      name = call.target.as(Statement::Name).name
+    def interpret_output(renderer : Renderer, tag_node : TagNode)
+      env = renderer.env
+      parser = Parser.new(tag_node.arguments)
 
-      instance = MacroFunction.new(name, tag_node.children)
+      name, defaults = parser.parse_macro_node
 
-      call.varargs.each do |arg_stmt|
-        if (arg = arg_stmt).is_a?(Statement::Name)
-          instance.defaults[arg.name] = nil
-        else
-          raise TemplateSyntaxError.new(arg_stmt.token, "Invalid statement #{arg_stmt} in macro def")
+      instance = MacroFunction.new(name, tag_node.block, renderer.template)
+
+      defaults.each do |key, value|
+        instance.defaults[key] = if value.is_a?(AST::ExpressionNode)
+                                   env.evaluate(value)
+                                 else
+                                   value
+                                 end
+      end
+
+      renderer.template.register_macro name, instance
+
+      Renderer::RenderedOutput.new("")
+    end
+
+    class Parser < ArgumentsParser
+      def parse_macro_node
+        name = parse_identifier
+        expect Kind::LEFT_PAREN
+
+        call = parse_call_expression(name)
+
+        defaults = Hash(String, AST::ExpressionNode | Nil).new
+        call.argumentlist.children.each do |arg_expr|
+          if (arg = arg_expr).is_a?(AST::IdentifierLiteral)
+            defaults[arg.name] = nil
+          else
+            raise TemplateSyntaxError.new(arg_expr, "Invalid statement #{arg_expr} in macro def")
+          end
         end
+
+        call.keyword_arguments.each do |arg, value|
+          defaults[arg.name] = value
+        end
+
+        close
+
+        {name.name, defaults}
       end
 
-      call.kwargs.each do |arg, value|
-        instance.defaults[arg] = value.accept(env.evaluator)
-      end
+      private def parse_macro_arguments_definition
+        hash = Hash(String, AST::ExpressionNode | Nil).new
 
-      tag_node.template.register_macro name, instance
+        should_read = current_token.kind != Kind::RIGHT_PAREN
+        while should_read
+          should_read = false
+
+          keyword = parse_literal
+
+          if keyword.is_a?(AST::IdentifierLiteral)
+            value = nil
+            if_token Kind::KW_ASSIGN do
+              next_token
+              value = parse_expression
+            end
+
+            hash[keyword.name] = value
+          else
+            unexpected_token Kind::IDENTIFIER
+          end
+
+          if current_token.kind == Kind::COMMA
+            should_read = true
+            next_token
+          end
+        end
+
+        hash
+      end
     end
 
     class MacroFunction
@@ -29,7 +85,7 @@ module Crinja
 
       getter name, defaults, children, catch_kwargs, catch_varargs, caller
 
-      def initialize(@name : String, @children : Array(Node), @defaults = Hash(String, Type).new, @caller = false)
+      def initialize(@name : String, @children : Crinja::Parser::NodeList, @template : Template, @defaults = Hash(String, Type).new, @caller = false)
         @catch_varargs = false
         @catch_kwargs = !@defaults.empty?
       end
@@ -43,7 +99,7 @@ module Crinja
           })
 
           SafeString.build do |io|
-            Visitor::Renderer.new(arguments.env).visit(children).value(io)
+            Crinja::Renderer.new(arguments.env, @template).render(children).value(io)
           end
         end
       end
@@ -52,7 +108,7 @@ module Crinja
         defaults.keys
       end
 
-      # getattr name, arguments, defaults, catch_kwargs, catch_varargs
+      # getattr name, arguments, defaults, catch_kwargs, catch_arguments
     end
   end
 end

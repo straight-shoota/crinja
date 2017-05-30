@@ -12,7 +12,7 @@ class Crinja::Filter
       SafeString.build do |io|
         value.join(separator, io) do |item, io|
           if attribute.truthy?
-            item = arguments.env.resolve_attribute(attribute.to_s, item)
+            item = Resolver.resolve_attribute(attribute.to_s, item)
           end
           SafeString.escape(item).to_s(io)
         end
