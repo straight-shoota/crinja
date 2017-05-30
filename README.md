@@ -79,7 +79,7 @@ template.render({ "name" => "John" }) # => "Hello, John!"
 
 ### Examples
 
-Some simple usage examples can be found in the [`examples` folder](examples/).
+Some simple usage examples can be found in the [`examples` folder](https://github.com/straight-shoota/crinja/tree/master/examples).
 
 ## API
 
