@@ -1,6 +1,6 @@
 /doc/
 /lib/
-/bin/
+/build/
 /.shards/
 
 # Libraries don't need dependency lock

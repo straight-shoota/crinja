@@ -21,14 +21,21 @@ All standard [control structures (tags)](http://jinja.pocoo.org/docs/2.9/templat
 
 Currently, template errors fail fast raising an exception. It is considered to change this behaviour to collect multiple errors, similar to what Jinjava does.
 
-### Missing features
+### Differences from Jinja2
 
-* some standard filters and global functions (on the roadmap)
-* sandboxed execution (on the roadmap)
+This is an incomplete list of **Differences to the original Jinja2**:
+
+* **Line statements and line comments**: Are not supported, because their usecase is negligible.
+* **String representation:** `{{ ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 which is the Python representation of an array with strings. In Crinja it uses the Crytal representation: `["foo", "bar"]`.
+* **Double escape:** `{{ '<html>'|escape|escape }}` will render as `&lt;html&gt;` in Jinja2, but `&amp;lt;html&amp;gt;`. Should we change that behaviour?
+* **Complex numbers**: Complex numbers are not supported yet.
+* **Configurable syntax**: Due to performance reasons it is not possible to reconfigure the syntax symbols.
+
+The following features are not yet fully implemented, but on the roadmap:
+
+* Implementation of all standard filters and global functions
+* sandboxed execution
 * some detailed features like reusable blocks
-* line statements and line comments (seems not particularly useful)
-* configurable syntax (seems not not particularly useful, major implications on lexer implementation and performance)
-* extensions
 
 ## Installation
 
@@ -160,6 +167,7 @@ Jinja derived from the [Django Template Language](http://docs.djangoproject.com/
 * [jigo](https://github.com/jmoiron/jigo) - Jinja2 implementation in Go
 * [tera](https://github.com/Keats/tera) - Jinja2 implementation in Rust
 * [jingoo](https://github.com/tategakibunko/jingoo) - Jinja2 implementation in OCaml
+* [nunjucks](https://mozilla.github.io/nunjucks/) - Jinja2 inspired template engine in Javascript
 
 ## Contributing
 
