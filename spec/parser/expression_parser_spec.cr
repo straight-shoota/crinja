@@ -10,18 +10,18 @@ end
 describe Crinja::Parser::ExpressionParser do
   it "" do
     expression = parse %( "foo")
-    expression.should be_a(Crinja::Parser::StringLiteral)
+    expression.should be_a(Crinja::AST::StringLiteral)
   end
 
   it "" do
     expression = parse %(1 + 2)
-    expression.should be_a(Crinja::Parser::BinaryExpression)
+    expression.should be_a(Crinja::AST::BinaryExpression)
     Crinja::Environment.new.evaluate(expression).should eq 3
   end
 
   it "parses member operator" do
     expression = parse %(foo.bar)
-    expression.should be_a(Crinja::Parser::MemberExpression)
+    expression.should be_a(Crinja::AST::MemberExpression)
   end
 
   it "parses double array" do

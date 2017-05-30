@@ -5,9 +5,9 @@ describe Crinja::Parser::TemplateParser do
     parser = Crinja::Parser::TemplateParser.new(Crinja::Environment.new, "Hallo Welt")
     tree = parser.parse
 
-    tree.should be_a(Crinja::Parser::NodeList)
+    tree.should be_a(Crinja::AST::NodeList)
     tree.children.size.should eq 1
-    tree.children.first.should be_a Crinja::Parser::FixedString
+    tree.children.first.should be_a Crinja::AST::FixedString
   end
 
   it "parses dict reference" do

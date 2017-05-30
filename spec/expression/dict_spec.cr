@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-describe Crinja::Parser::DictLiteral do
+describe Crinja::AST::DictLiteral do
   it "parses dict" do
     evaluate_expression(%({ "foo": "bar", target: "world" }), {"target" => "hello"}).should eq(%({"foo" => "bar", "hello" => "world"}))
   end

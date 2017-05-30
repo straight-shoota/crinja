@@ -2,7 +2,7 @@ require "../spec_helper"
 
 describe "expressions with identifiers" do
   it "resolves a simple variable lookup" do
-    expression = Crinja::Parser::IdentifierLiteral.new("foo")
+    expression = Crinja::AST::IdentifierLiteral.new("foo")
 
     env = Crinja::Environment.new
     env.context.merge!({"foo" => "bar"})
