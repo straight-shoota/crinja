@@ -17,9 +17,9 @@ class Crinja::Environment
 
   getter operators, filters, functions, tags, tests
 
-  property blocks : Hash(String, Array(Parser::NodeList))
-  @blocks = Hash(String, Array(Parser::NodeList)).new do |hash, k|
-    hash[k] = Array(Parser::NodeList).new
+  property blocks : Hash(String, Array(AST::NodeList))
+  @blocks = Hash(String, Array(AST::NodeList)).new do |hash, k|
+    hash[k] = Array(AST::NodeList).new
   end
 
   def initialize(context = Context.new)

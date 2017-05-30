@@ -8,6 +8,7 @@ if [ ! -d ${DOC_ROOT} ]; then
 fi
 
 echo "Building docs with \`crystal doc\`."
+rm -r doc/*
 crystal doc
 echo "Done."
 echo "Moving generated docs to ${DOC_ROOT}/doc/latest"

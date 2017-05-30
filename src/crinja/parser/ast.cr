@@ -1,9 +1,9 @@
 require "./character_stream"
 
-module Crinja::Parser
+module Crinja::AST
   class ASTNode
-    property! location_start : StreamPosition?
-    property! location_end : StreamPosition?
+    property! location_start : Parser::StreamPosition?
+    property! location_end : Parser::StreamPosition?
 
     # Set the location_start and location_end values to *location_start*
     def at(@location_start)
@@ -153,13 +153,13 @@ module Crinja::Parser
 
   template_node TagNode,
     name : String,
-    arguments : Array(Token),
+    arguments : Array(Parser::Token),
     block : NodeList,
     end_tag : EndTagNode?
 
   template_node EndTagNode,
     name : String,
-    arguments : Array(Token)
+    arguments : Array(Parser::Token)
 
   template_node Note,
     note : String

@@ -1,67 +1,68 @@
-module Crinja
-  abstract class Tag
-    alias TagNode = Crinja::Parser::TagNode
-    alias AST = Crinja::Parser
-    alias Kind = Crinja::Parser::Token::Kind
-    include Importable
+abstract class Crinja::Tag
+  # :nodoc:
+  alias TagNode = AST::TagNode
+  # :nodoc:
+  alias Kind = Parser::Token::Kind
 
-    def interpret_output(renderer : Renderer, tag_node : TagNode)
-      Renderer::RenderedOutput.new(String.build do |io|
-        interpret(io, renderer, tag_node)
-      end)
-    end
+  include Importable
 
-    private def interpret(io : IO, renderer : Renderer, tag_node : TagNode)
-      raise "Tag#interpret needs to be implemented by #{self.class}"
+  def interpret_output(renderer : Renderer, tag_node : TagNode)
+    Renderer::RenderedOutput.new(String.build do |io|
+      interpret(io, renderer, tag_node)
+    end)
+  end
+
+  private def interpret(io : IO, renderer : Renderer, tag_node : TagNode)
+    raise "Tag#interpret needs to be implemented by #{self.class}"
+  end
+
+  def end_tag : String?
+    nil
+  end
+
+  macro name(name, end_tag = nil)
+    def name : String
+      {{ name }}
     end
 
     def end_tag : String?
-      nil
+      {{ end_tag }}
     end
+  end
 
-    macro name(name, end_tag = nil)
-      def name : String
-        {{ name }}
+  def has_block?(node : TagNode)
+    !end_tag.nil?
+  end
+
+  def render_children(env : Crinja::Environment, node : Node)
+    Crinja::Renderer.new(env).render(node.children)
+  end
+
+  class Library < FeatureLibrary(Tag)
+    TAGS = [If, Else, Elif, For,
+            Set, Filter,
+            Macro, Call,
+            Raw,
+            Include, From, Import,
+            Extends, Block]
+
+    def register_defaults
+      TAGS.each do |name|
+        tag = name.new
+        self << tag
       end
-
-      def end_tag : String?
-        {{ end_tag }}
-      end
     end
 
-    def has_block?(node : TagNode)
-      !end_tag.nil?
-    end
-
-    def render_children(env : Crinja::Environment, node : Node)
-      Crinja::Renderer.new(env).render(node.children)
-    end
-
-    class Library < FeatureLibrary(Tag)
-      TAGS = [If, Else, Elif, For,
-              Set, Filter,
-              Macro, Call,
-              Raw,
-              Include, From, Import,
-              Extends, Block]
-
-      def register_defaults
-        TAGS.each do |name|
-          tag = name.new
-          self << tag
-        end
-      end
-
-      def <<(tag)
-        super(tag)
-        unless (end_tag = tag.end_tag).nil?
-          super(EndTag.new(tag, end_tag))
-        end
+    def <<(tag)
+      super(tag)
+      unless (end_tag = tag.end_tag).nil?
+        super(EndTag.new(tag, end_tag))
       end
     end
   end
 
   class ArgumentsParser < Parser::ExpressionParser
+    # :nodoc:
     alias Kind = Crinja::Parser::Token::Kind
 
     def initialize(arguments)

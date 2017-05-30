@@ -1,7 +1,7 @@
 require "../error"
 
 module Crinja
-  class UnknownArgumentException < Crinja::RuntimeError
+  class Crinja::UnknownArgumentException < Crinja::RuntimeError
     def initialize(name, arguments)
       super "unknown argument \"#{name}\" for #{arguments.inspect}"
     end
@@ -14,6 +14,7 @@ module Crinja
   alias CallableProc = Arguments -> Type
   alias Callable = CallableMod | CallableProc
 
+  # This holds arguments and environment information for function, filter, test and macro calls.
   struct Arguments
     property varargs : Array(Value)
     property target : Value?

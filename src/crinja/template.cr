@@ -13,7 +13,7 @@ class Crinja::Template
   getter filename
 
   # Returns the root node of this template's abstract syntax tree.
-  getter nodes : Parser::NodeList
+  getter nodes : AST::NodeList
 
   getter env : Environment
 
@@ -21,7 +21,7 @@ class Crinja::Template
   def initialize(@source : String, @env : Environment = Environment.new, @name : String = "", @filename : String? = nil)
     @source = @source.rchop '\n' unless env.config.keep_trailing_newline
 
-    @nodes = Parser::NodeList.new([] of Parser::TemplateNode, false)
+    @nodes = AST::NodeList.new([] of AST::TemplateNode, false)
 
     begin
       @nodes = Parser::TemplateParser.new(@env, @source).parse

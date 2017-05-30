@@ -6,7 +6,8 @@ module Crinja
   # :nodoc:
   alias TypeValue = String | Float64 | Int64 | Int32 | Bool | Time | PyObject | Undefined | Crinja::Callable | SafeString | Nil
   # :nodoc:
-  alias TypeContainer = Hash(Type, Type) | Array(Type) | Tuple(Type, Type) # |Array(Tuple(Type, Type))
+  alias TypeContainer = Hash(Type, Type) | Array(Type) | Tuple(Type, Type)
+
   alias Type = TypeValue | TypeContainer
 end
 

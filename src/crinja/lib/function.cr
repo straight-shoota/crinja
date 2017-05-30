@@ -17,6 +17,7 @@ module Crinja
     end
   end
 
+  # :nodoc:
   macro callable(kind, defaults = nil, name = nil)
     %defaults = Hash(::String, Crinja::Type).new
     {% if defaults.is_a?(NamedTupleLiteral) || defaults.is_a?(HashLiteral) %}
@@ -49,22 +50,59 @@ module Crinja
     %block
   end
 
-  # This macro creates a test implementation proc.
-  macro test(defaults = nil, name = nil)
+  # This macro returns a `Crinja::Callable` proc which implements a `Crinja::Test`.
+  #
+  # *defaults* are set as default values in the `Crinja::Arguments` object,
+  # which a call to this proc receives.
+  #
+  # If a *name* is provided, the created proc will automatically be registered as a default test
+  # at `Crinja::Test::Library`.
+  #
+  # The macro takes a *block* which will be the main body for the proc. There, the following
+  # variables are available:
+  # * *arguments* : `Crinja::Arguments` - Call arguments from the caller including *defaults*.
+  # * *env* : `Crinja::Environment` - The current environment.
+  # * *target* : `Crinja::Value` - The subject of the test. Short cut for `arguments.target`.
+  macro test(defaults = nil, name = nil, &block)
     Crinja.callable(Crinja::Test, {{ defaults }}, {{ name }}) do
       target = arguments.target!
-      ({{ yield }}).as(Crinja::Type)
+      ({{ block.body }}).as(Crinja::Type)
     end
   end
 
-  macro filter(defaults = nil, name = nil)
+  # This macro returns a `Crinja::Callable` proc which implements a `Crinja::Filter`.
+  #
+  # *defaults* are set as default values in the `Crinja::Arguments` object,
+  # which a call to this proc receives.
+  #
+  # If a *name* is provided, the created proc will automatically be registered as a default filter
+  # at `Crinja::Filter::Library`.
+  #
+  # The macro takes a *block* which will be the main body for the proc. There, the following
+  # variables are available:
+  # * *arguments* : `Crinja::Arguments` - Call arguments from the caller including *defaults*.
+  # * *env* : `Crinja::Environment` - The current environment.
+  # * *target* : `Crinja::Value` - The value which is to be filtered. Short cut for `arguments.target`.
+  macro filter(defaults = nil, name = nil, &block)
     Crinja.callable(Crinja::Filter, {{ defaults }}, {{ name }}) do
       target = arguments.target!
       ({{ yield }}).as(Crinja::Type)
     end
   end
 
-  macro function(defaults = nil, name = nil)
+  # This macro returns a `Crinja::Callable` proc which implements a `Crinja::Function`.
+  #
+  # *defaults* are set as default values in the `Crinja::Arguments` object,
+  # which a call to this proc receives.
+  #
+  # If a *name* is provided, the created proc will automatically be registered as a default golbal
+  # function at `Crinja::Function::Library`.
+  #
+  # The macro takes a *block* which will be the main body for the proc. There, the following
+  # variables are available:
+  # * *arguments* : `Crinja::Arguments` - Call arguments from the caller including *defaults*.
+  # * *env* : `Crinja::Environment` - The current environment.
+  macro function(defaults = nil, name = nil, &block)
     Crinja.callable(Crinja::Function, {{ defaults }}, {{ name }}) do
       ({{ yield }}).as(Crinja::Type)
     end

@@ -13,7 +13,7 @@ class Crinja::Evaluator
   macro visit(*node_types)
     def evaluate(expression : {{
                                 (node_types.map do |type|
-                                  "Parser::#{type.id}"
+                                  "AST::#{type.id}"
                                 end).join(" | ").id
                               }})
       ({{ yield }}).as(Type)
@@ -40,7 +40,7 @@ class Crinja::Evaluator
   visit CallExpression do
     identifier = expression.identifier
 
-    if identifier.is_a?(Parser::IdentifierLiteral)
+    if identifier.is_a?(AST::IdentifierLiteral)
       # identifier lookup for function calls is handled by `execute_call`
       callable = identifier.name
     else
@@ -88,7 +88,7 @@ class Crinja::Evaluator
   visit ExpressionList do
     values = [] of Type
     expression.children.each do |child|
-      if child.is_a?(Parser::SplashOperator)
+      if child.is_a?(AST::SplashOperator)
         splash = evaluate(child.right)
         if splash.is_a?(Array(Type))
           values += splash

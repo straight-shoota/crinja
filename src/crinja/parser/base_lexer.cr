@@ -1,5 +1,6 @@
 module Crinja::Parser
   abstract class BaseLexer
+    # :nodoc:
     alias Kind = Token::Kind
 
     SPECIAL_CONSTANTS = {

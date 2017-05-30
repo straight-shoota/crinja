@@ -3,6 +3,7 @@ require "logger"
 require "./crinja"
 
 module Crinja::CLI
+  # :nodoc:
   def self.logger
     @@logger ||= Logger.new(STDOUT)
   end

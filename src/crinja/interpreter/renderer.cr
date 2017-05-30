@@ -7,7 +7,7 @@ class Crinja::Renderer
   macro visit(*node_types)
     def render(node : {{
                         (node_types.map do |type|
-                          "Parser::#{type.id}"
+                          "AST::#{type.id}"
                         end).join(" | ").id
                       }})
       {{ yield }}
@@ -18,7 +18,7 @@ class Crinja::Renderer
     self.render(node.children)
   end
 
-  def render(nodes : Array(Parser::TemplateNode))
+  def render(nodes : Array(AST::TemplateNode))
     OutputList.new.tap do |output|
       nodes.each do |node|
         output << self.render(node)
