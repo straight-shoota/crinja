@@ -35,21 +35,9 @@ def evaluate_expression(string, bindings = nil, autoescape = nil)
   env = Crinja::Environment.new
   env.config.autoescape.default_for_string = autoescape unless autoescape.nil?
 
-  lexer = Crinja::Parser::ExpressionLexer.new(env.config, string)
-
-  parser = Crinja::Parser::ExpressionParser.new(lexer)
-
-  expression = parser.parse
-
   unless bindings.nil?
     env.context.merge! Crinja::Bindings.cast(bindings)
   end
 
-  result = env.evaluate expression
-
-  if env.config.autoescape?
-    result = Crinja::SafeString.escape(result)
-  end
-
-  result.to_s
+  env.evaluate(string).to_s
 end

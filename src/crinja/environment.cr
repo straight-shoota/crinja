@@ -74,7 +74,24 @@ class Crinja::Environment
     @evaluator ||= Evaluator.new(self)
   end
 
-  delegate evaluate, to: evaluator
+  # Evaluates a Crinja expression with `#evaluator`.
+  def evaluate(expression : AST::ExpressionNode)
+    evaluator.evaluate(expression)
+  end
+
+  # ditto
+  def evaluate(expression)
+    lexer = Parser::ExpressionLexer.new(config, expression)
+    parser = Parser::ExpressionParser.new(lexer)
+
+    result = evaluate parser.parse
+
+    if config.autoescape?
+      result = SafeString.escape(result)
+    end
+
+    result
+  end
 
   # Loads a template from *string.* This parses the source given and returns a `Template` object.
   def from_string(string : String)
