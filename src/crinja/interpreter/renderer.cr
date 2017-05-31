@@ -1,5 +1,5 @@
 class Crinja::Renderer
-  getter env, template
+  getter template
 
   property extend_parent_templates : Array(Template) = [] of Template
 
@@ -8,10 +8,17 @@ class Crinja::Renderer
     hash[k] = Array(AST::NodeList).new
   end
 
-  def initialize(@env : Environment, @template : Template)
+  # Creates a new evaluator for the template *template*.
+  def initialize(@template : Template)
   end
 
-  macro visit(*node_types)
+  @[AlwaysInline]
+  def env
+    @template.env
+  end
+
+  private macro visit(*node_types)
+    # :nodoc:
     def render(node : {{
                         (node_types.map do |type|
                           "AST::#{type.id}"
@@ -20,6 +27,30 @@ class Crinja::Renderer
       {{ yield }}
     end
   end
+
+  def render(template : Template)
+    String.build do |io|
+      render(io, template)
+    end
+  end
+
+  def render(io : IO, template : Template)
+    env.context.autoescape = env.config.autoescape?(template.filename)
+
+    env.context.macros.merge(template.macros)
+    output = render(template.nodes)
+
+    @extend_parent_templates.each do |parent_template|
+      output = render(parent_template.nodes)
+
+      env.context.extend_path_stack.pop
+    end
+
+    resolve_block_stubs(output)
+
+    output.value(io)
+  end
+
 
   visit NodeList do
     self.render(node.children)
@@ -44,14 +75,14 @@ class Crinja::Renderer
   end
 
   visit FixedString do
-    trim_blocks = @env.config.trim_blocks
-    lstrip_blocks = @env.config.lstrip_blocks
+    trim_blocks = env.config.trim_blocks
+    lstrip_blocks = env.config.lstrip_blocks
 
-    RenderedOutput.new Crinja::Renderer.trim_text(node, @env.config.trim_blocks, @env.config.lstrip_blocks)
+    RenderedOutput.new Crinja::Renderer.trim_text(node, env.config.trim_blocks, env.config.lstrip_blocks)
   end
 
   visit TagNode do
-    @env.tags[node.name].interpret_output(self, node)
+    env.tags[node.name].interpret_output(self, node)
   end
 
   visit EndTagNode do
@@ -70,9 +101,9 @@ class Crinja::Renderer
       return render_super(expr.as(AST::CallExpression))
     end
 
-    result = @env.evaluate(expr)
+    result = env.evaluate(expr)
 
-    if @env.context.autoescape?
+    if env.context.autoescape?
       result = SafeString.escape(result)
     end
 
@@ -82,7 +113,7 @@ class Crinja::Renderer
   # global function `super` needs access to this renderer and thus needs to be implemented
   # as a language feature.
   private def render_super(expression)
-    block_context = @env.context.block_context
+    block_context = env.context.block_context
 
     unless block_context.nil?
       block_context = {name: block_context[:name], index: block_context[:index] + 1}
@@ -93,35 +124,12 @@ class Crinja::Renderer
       end
 
       super_block = block_chain[block_context[:index]]
-      @env.context.block_context = block_context
+      env.context.block_context = block_context
 
       self.render(super_block)
     else
       RenderedOutput.new("")
     end
-  end
-
-  def render(template : Template)
-    String.build do |io|
-      render(io, template)
-    end
-  end
-
-  def render(io : IO, template : Template)
-    @env.context.autoescape = @env.config.autoescape?(template.filename)
-
-    @env.context.macros.merge(template.macros)
-    output = render(template.nodes)
-
-    @extend_parent_templates.each do |parent_template|
-      output = render(parent_template.nodes)
-
-      @env.context.extend_path_stack.pop
-    end
-
-    resolve_block_stubs(output)
-
-    output.value(io)
   end
 
   private def resolve_block_stubs(output, block_names = Array(String).new)
@@ -133,13 +141,13 @@ class Crinja::Renderer
         if block_chain.size > 0
           block = block_chain.first
 
-          scope = @env.context
+          scope = env.context
           unless (original_scope = placeholder.scope).nil?
             scope = original_scope
           end
 
-          @env.with_scope(scope) do
-            @env.context.block_context = {name: name, index: 0}
+          env.with_scope(scope) do
+            env.context.block_context = {name: name, index: 0}
 
             output = render(block)
 
@@ -148,7 +156,7 @@ class Crinja::Renderer
 
             block_names.pop
 
-            @env.context.block_context = nil
+            env.context.block_context = nil
           end
 
           placeholder.resolve(output.value)

@@ -6,7 +6,7 @@ class Crinja::Tag::Call < Crinja::Tag
     parser = Parser.new(tag_node.arguments)
     defaults, call = parser.parse_call_tag
 
-    instance = Tag::Macro::MacroFunction.new "caller", tag_node.block, renderer.template, caller: true
+    instance = Tag::Macro::MacroFunction.new "caller", tag_node.block, renderer, caller: true
     defaults.each do |key, value|
       instance.defaults[key] = if value.is_a?(AST::ExpressionNode)
                                  env.evaluate(value)

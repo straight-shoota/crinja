@@ -7,7 +7,7 @@ class Crinja::Tag::Macro < Crinja::Tag
 
     name, defaults = parser.parse_macro_node
 
-    instance = MacroFunction.new(name, tag_node.block, renderer.template)
+    instance = MacroFunction.new(name, tag_node.block, renderer)
 
     defaults.each do |key, value|
       instance.defaults[key] = if value.is_a?(AST::ExpressionNode)
@@ -84,7 +84,7 @@ class Crinja::Tag::Macro < Crinja::Tag
 
     getter name, defaults, children, catch_kwargs, catch_varargs, caller
 
-    def initialize(@name : String, @children : AST::NodeList, @template : Template, @defaults = Hash(String, Type).new, @caller = false)
+    def initialize(@name : String, @children : AST::NodeList, @renderer : Renderer, @defaults = Hash(String, Type).new, @caller = false)
       @catch_varargs = false
       @catch_kwargs = !@defaults.empty?
     end
@@ -98,7 +98,7 @@ class Crinja::Tag::Macro < Crinja::Tag
         })
 
         SafeString.build do |io|
-          Renderer.new(arguments.env, @template).render(children).value(io)
+          @renderer.render(children).value(io)
         end
       end
     end

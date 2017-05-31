@@ -53,7 +53,7 @@ class Crinja::Template
   # Renders this template to *io* in the environment *env*.
   # This method might return unexpected results if *env* differs from the original environment this template was parsed with.
   def render(io : IO, env : Environment)
-    renderer = Renderer.new(env, self)
+    renderer = Renderer.new(self)
     renderer.render(io, self)
   rescue e : TemplateError
     e.template = self
