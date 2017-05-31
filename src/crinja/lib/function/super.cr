@@ -1,14 +1,6 @@
+# This function is a special language construct because it needs access to the renderer which is
+# generally not available in expressions. Therefore it must be the one and only expression in a
+# `AST::PrintStatement` (`{{ super() }}`).
 Crinja.function(:super) do
-  block_context = env.context.block_context
-
-  unless block_context.nil?
-    block_context = {name: block_context[:name], index: block_context[:index] + 1}
-    block_chain = env.blocks[block_context[:name]]
-
-    raise "cannot call super block" if block_chain.size <= block_context[:index]
-    super_block = block_chain[block_context[:index]]
-    arguments.env.context.block_context = block_context
-
-    Crinja::Renderer.new(env, Template.new("")).render(super_block).value unless super_block.nil?
-  end
+  raise Crinja::RuntimeError.new("call to global function `super()` must be the only expression in a print statement")
 end

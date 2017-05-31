@@ -1,6 +1,13 @@
 class Crinja::Renderer
   getter env, template
 
+  property extend_parent_templates : Array(Template) = [] of Template
+
+  property blocks : Hash(String, Array(AST::NodeList))
+  @blocks = Hash(String, Array(AST::NodeList)).new do |hash, k|
+    hash[k] = Array(AST::NodeList).new
+  end
+
   def initialize(@env : Environment, @template : Template)
   end
 
@@ -56,13 +63,42 @@ class Crinja::Renderer
   end
 
   visit PrintStatement do
-    result = @env.evaluate(node.expression)
+    expr = node.expression
+    if expr.is_a?(AST::CallExpression) &&
+       (id = expr.identifier) && id.is_a?(AST::IdentifierLiteral) &&
+       (id.as(AST::IdentifierLiteral)).name == "super"
+      return render_super(expr.as(AST::CallExpression))
+    end
+
+    result = @env.evaluate(expr)
 
     if @env.context.autoescape?
       result = SafeString.escape(result)
     end
 
     RenderedOutput.new result.to_s
+  end
+
+  # global function `super` needs access to this renderer and thus needs to be implemented
+  # as a language feature.
+  private def render_super(expression)
+    block_context = @env.context.block_context
+
+    unless block_context.nil?
+      block_context = {name: block_context[:name], index: block_context[:index] + 1}
+      block_chain = @blocks[block_context[:name]]
+
+      if block_chain.size <= block_context[:index]
+        raise RuntimeError.new("cannot call super block").at(expression)
+      end
+
+      super_block = block_chain[block_context[:index]]
+      @env.context.block_context = block_context
+
+      self.render(super_block)
+    else
+      RenderedOutput.new("")
+    end
   end
 
   def render(template : Template)
@@ -77,7 +113,7 @@ class Crinja::Renderer
     @env.context.macros.merge(template.macros)
     output = render(template.nodes)
 
-    @env.extend_parent_templates.each do |parent_template|
+    @extend_parent_templates.each do |parent_template|
       output = render(parent_template.nodes)
 
       @env.context.extend_path_stack.pop
@@ -92,7 +128,7 @@ class Crinja::Renderer
     output.each_block do |placeholder|
       name = placeholder.name
       unless block_names.includes?(name)
-        block_chain = @env.blocks[name]
+        block_chain = @blocks[name]
 
         if block_chain.size > 0
           block = block_chain.first

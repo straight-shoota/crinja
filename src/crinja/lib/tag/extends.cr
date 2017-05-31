@@ -13,6 +13,6 @@ class Crinja::Tag::Extends < Crinja::Tag
     env.context.extend_path_stack << extends_name
 
     template = env.get_template(extends_name)
-    env.extend_parent_templates << template
+    renderer.extend_parent_templates << template
   end
 end

@@ -11,16 +11,10 @@ class Crinja::Environment
   getter config : Config = Config.new
   getter logger : Logger
   property loader : Loader = Loader::FileSystemLoader.new
-  property extend_parent_templates : Array(Template) = [] of Template
-  property errors : Array(Exception) = [] of Exception
   property cache : TemplateCache = TemplateCache::InMemory.new
 
   getter operators, filters, functions, tags, tests
 
-  property blocks : Hash(String, Array(AST::NodeList))
-  @blocks = Hash(String, Array(AST::NodeList)).new do |hash, k|
-    hash[k] = Array(AST::NodeList).new
-  end
 
   def initialize(context = Context.new)
     initialize(context)

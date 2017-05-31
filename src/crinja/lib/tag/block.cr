@@ -6,7 +6,7 @@ class Crinja::Tag::Block < Crinja::Tag
     parser = Parser.new(tag_node.arguments)
     name, scoped = parser.parse_block_tag
 
-    env.blocks[name] << tag_node.block
+    renderer.blocks[name] << tag_node.block
 
     block = Renderer::BlockOutput.new(name)
     block.scope = env.context if scoped
