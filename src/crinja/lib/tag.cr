@@ -34,10 +34,6 @@ abstract class Crinja::Tag
     !end_tag.nil?
   end
 
-  def render_children(env : Crinja::Environment, node : Node)
-    Crinja::Renderer.new(env).render(node.children)
-  end
-
   class Library < FeatureLibrary(Tag)
     TAGS = [If, Else, Elif, For,
             Set, Filter,

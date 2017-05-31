@@ -31,7 +31,7 @@ class Crinja::Tag::From < Crinja::Tag
     end
   end
 
-  class Parser < ArgumentsParser
+  private class Parser < ArgumentsParser
     def parse_from_tag
       source_expression = parse_expression
 

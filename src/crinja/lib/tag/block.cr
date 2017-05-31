@@ -14,7 +14,7 @@ class Crinja::Tag::Block < Crinja::Tag
     block
   end
 
-  class Parser < ArgumentsParser
+  private class Parser < ArgumentsParser
     def parse_block_tag
       name = parse_identifier.name
 

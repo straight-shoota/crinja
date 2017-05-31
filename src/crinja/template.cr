@@ -1,9 +1,11 @@
-# The central template object. This class represents a compiled template and is used to evaluate it.
+# This class represents a compiled template and is used to evaluate it.
 # Normally the template object is generated from an `Environment` by `Environment#from_string` or `Environment#get_template` but it also has a constructor that makes it possible to create a template instance directly, which refers to a default environment.
 # Every template object has a few methods and members that are guaranteed to exist. However it’s important that a template object should be considered immutable. Modifications on the object are not supported.
 class Crinja::Template
-  property macros : Hash(String, Crinja::Tag::Macro::MacroFunction) = Hash(String, Crinja::Tag::Macro::MacroFunction).new
+  # This hash gives access to all macros defined by this template.
+  getter macros : Hash(String, Tag::Macro::MacroFunction) = Hash(String, Tag::Macro::MacroFunction).new
 
+  # Source string of this template.
   getter source
 
   # The loading name of the template. If the template was loaded from a string this is `nil`.
@@ -15,6 +17,7 @@ class Crinja::Template
   # Returns the root node of this template's abstract syntax tree.
   getter nodes : AST::NodeList
 
+  # Environment in which this template is loaded.
   getter env : Environment
 
   # Creates a new template.
@@ -31,6 +34,7 @@ class Crinja::Template
     end
   end
 
+  # :nodoc:
   def register_macro(name, instance)
     macros[name] = instance
     env.context.macros[name] = instance
@@ -68,6 +72,7 @@ class Crinja::Template
     io << ")"
   end
 
+  # :nodoc:
   def to_string
     source
   end

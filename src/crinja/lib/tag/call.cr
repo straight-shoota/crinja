@@ -20,7 +20,7 @@ class Crinja::Tag::Call < Crinja::Tag
     Renderer::RenderedOutput.new(env.evaluate(call).to_s)
   end
 
-  class Parser < ArgumentsParser
+  private class Parser < ArgumentsParser
     def parse_call_tag
       defaults = Hash(String, AST::ExpressionNode | Nil).new
 

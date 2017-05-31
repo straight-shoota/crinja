@@ -20,7 +20,7 @@ class Crinja::Tag::Filter < Crinja::Tag
     Renderer::RenderedOutput.new(SafeString.new(result.to_s).to_s)
   end
 
-  class Parser < ArgumentsParser
+  private class Parser < ArgumentsParser
     def parse_filter_tag
       name = parse_identifier
 

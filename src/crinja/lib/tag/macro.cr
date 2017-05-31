@@ -22,7 +22,7 @@ class Crinja::Tag::Macro < Crinja::Tag
     Renderer::RenderedOutput.new("")
   end
 
-  class Parser < ArgumentsParser
+  private class Parser < ArgumentsParser
     def parse_macro_node
       name = parse_identifier
       expect Kind::LEFT_PAREN

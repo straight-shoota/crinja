@@ -35,28 +35,4 @@ class Crinja::Tag::Import < Crinja::Tag
       env.context[context_var] = child_bindings
     end
   end
-
-  def unreached
-    if expect_name(arguments.peek?, "as")
-      context_var = arguments.next.as(Statement::Name).name
-    end
-
-    template = env.get_template(template_name)
-
-    if context_var.nil?
-      template.render(env)
-    else
-      child = Environment.new(env)
-      template.render(child)
-
-      env.errors += child.errors
-
-      child_bindings = child.context.session_bindings
-      child.context.macros.each do |key, value|
-        child_bindings[key] = value
-      end
-
-      env.context[context_var] = child_bindings
-    end
-  end
 end

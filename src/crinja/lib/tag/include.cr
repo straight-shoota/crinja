@@ -3,7 +3,7 @@ class Crinja::Tag::Include < Crinja::Tag
 
   private def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
     env = renderer.env
-    parser = IncludeParser.new(tag_node.arguments)
+    parser = Parser.new(tag_node.arguments)
     source_expression, ignore_missing, with_context = parser.parse_include_tag
 
     source = env.evaluate(source_expression)
@@ -26,7 +26,7 @@ class Crinja::Tag::Include < Crinja::Tag
     end
   end
 
-  class IncludeParser < ArgumentsParser
+  private class Parser < ArgumentsParser
     def parse_include_tag
       source_expression = parse_expression
 

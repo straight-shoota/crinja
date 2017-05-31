@@ -13,13 +13,10 @@ class Crinja::Tag::Set < Crinja::Tag
       env.context[name] = SafeString.new(value)
       args.close
     else
-      begin
-        args.parse_keyword_list.each do |identifier, expr|
-          env.context[identifier.name] = env.evaluate(expr)
-        end
-      rescue exc
-        raise TemplateSyntaxError.new(tag_node, "Tag `set` requires either a single name argument (set block) or at least one assignment", exc)
+      args.parse_keyword_list.each do |identifier, expr|
+        env.context[identifier.name] = env.evaluate(expr)
       end
+      # raise TemplateSyntaxError.new(tag_node, "Tag `set` requires either a single name argument (set block) or at least one assignment", exc)
 
       args.close
     end

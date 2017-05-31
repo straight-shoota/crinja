@@ -34,7 +34,7 @@ class Crinja::Tag::For < Crinja::Tag
     end
   end
 
-  class Parser < ArgumentsParser
+  private class Parser < ArgumentsParser
     def parse_for_tag
       item_vars = parse_identifier_list.map do |identifier|
         if identifier.name == LOOP_VARIABLE
