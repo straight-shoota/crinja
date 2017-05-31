@@ -8,22 +8,51 @@ require "logger"
 class Crinja::Environment
   getter context : Context
   getter global_context : Context
-  getter config : Config = Config.new
+
+  # The configuration for this environment.
+  getter config : Config
+
+  # The logger for this environment.
   getter logger : Logger
-  property loader : Loader = Loader::FileSystemLoader.new
-  property cache : TemplateCache = TemplateCache::InMemory.new
 
-  getter operators, filters, functions, tags, tests
+  # The loader through which `#get_template` loads a template.
+  # Defaults to `Loader::FileSystemLoader` with searchpath of the current working directory.
+  property loader : Loader
 
+  # A cache where parsed templates are stored. Defaults to `TemplateCache::InMemory`.
+  property cache : TemplateCache
 
-  def initialize(context = Context.new)
-    initialize(context)
+  property errors : Array(Exception) = [] of Exception
 
-    yield self
+  # Operator library for this environment.
+  getter operators
+
+  # Filter library for this environment.
+  getter filters
+
+  # Function library for this environment.
+  getter functions
+
+  # Tag library for this environment.
+  getter tags
+
+  # Test library for this environment.
+  getter tests
+
+  # Creates a new environment and yields `self` for configuration.
+  def self.new(context = Context.new, config = Config.new,
+               loader = Loader::FileSystemLoader.new, cache = TemplateCache::InMemory.new)
+    env = new(context, config, loader, cache)
+    yield env
+    env
   end
 
-  def initialize(@context = Context.new)
+  # Creates a new environment with default values. The *context* becomes both `#global_context`
+  # as well as current ``#context`.
+  def initialize(@context = Context.new, @config = Config.new,
+                 @loader = Loader::FileSystemLoader.new, @cache = TemplateCache::InMemory.new)
     @global_context = @context
+
     @logger = Logger.new(STDOUT)
     {% if flag?(:logger) %}
       @logger.level = Logger::DEBUG
@@ -38,7 +67,7 @@ class Crinja::Environment
   end
 
   def initialize(original : Environment)
-    initialize(Context.new(original.context))
+    initialize(Context.new(original.context), original.config, original.loader)
   end
 
   def evaluator
