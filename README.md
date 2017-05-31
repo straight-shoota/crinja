@@ -116,6 +116,10 @@ Currently the following configuration options are supported:
     <dd>If this is set to <code>true</code>, the first newline after a block is removed. This only applies to blocks, not expression tags. Default: <code>false</code>.</dd>
     <dt>lstrip_blocks</dt>
     <dd>If this is set to <code>true</code>, leading spaces and tabs are stripped from the start of a line to a block. Default: <code>false</code>.</dd>
+    <td>register_defaults</td>
+    <dd>If <code>register_defaults</code> is set to <code>true</code>, all feature libraries will be populated with the defaults (Crinja standards and registered custom features).
+    Otherwise the libraries will be empty. They can be manually populated with <code>library.register_defaults</code>.
+    This setting needs to be set at the creation of an environment.</dd>
 </dl>
 
 See also the original [Jinja2 API Documentation](http://jinja.pocoo.org/docs/2.9/api/).

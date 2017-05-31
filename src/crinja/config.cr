@@ -25,6 +25,12 @@ class Crinja::Config
   # If this is set to `true`, leading spaces and tabs are stripped from the start of a line to a block.
   property lstrip_blocks : Bool = false
 
+  # If *register_defaults* is set to `true`, all feature libraries will be populated with the
+  # defaults (Crinja standards and registered custom features).
+  # Otherwise the libraries will be empty. They can be manually populated with `library.register_defaults`.
+  # This setting needs to be set at the creation of an environment.
+  property register_defaults : Bool = true
+
   # Initializes a configuration object.
   def initialize(
                  @autoescape = AutoescapeConfig.new,

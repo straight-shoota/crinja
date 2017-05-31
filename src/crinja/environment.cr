@@ -30,11 +30,11 @@ class Crinja::Environment
     {% end %}
     # context["self"] = BlocksResolver.new(self)
 
-    @operators = Operator::Library.new
-    @functions = Function::Library.new
-    @filters = Filter::Library.new
-    @tags = Tag::Library.new
-    @tests = Test::Library.new
+    @operators = Operator::Library.new(config.register_defaults)
+    @functions = Function::Library.new(config.register_defaults)
+    @filters = Filter::Library.new(config.register_defaults)
+    @tags = Tag::Library.new(config.register_defaults)
+    @tests = Test::Library.new(config.register_defaults)
   end
 
   def initialize(original : Environment)
