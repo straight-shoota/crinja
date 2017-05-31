@@ -1,8 +1,11 @@
+# The renderer traverses through an abstract syntax tree to render all template nodes to a string or IO.
 class Crinja::Renderer
   getter template
 
+  # :nodoc:
   property extend_parent_templates : Array(Template) = [] of Template
 
+  # :nodoc:
   property blocks : Hash(String, Array(AST::NodeList))
   @blocks = Hash(String, Array(AST::NodeList)).new do |hash, k|
     hash[k] = Array(AST::NodeList).new
@@ -25,6 +28,13 @@ class Crinja::Renderer
                         end).join(" | ").id
                       }})
       {{ yield }}
+    # TODO: Enable when re-raising is fixed in Crystal.
+    # rescue exc : TemplateError | RuntimeError | ExceptionWrapper
+    #   # Re-raise template and runtime exception.
+    #  raise ExceptionWrapper.new(cause: exc)
+    # rescue exc
+    #   # Wrap other exceptions in a runtime exception to add location info.
+    #   raise RuntimeError.new(cause: exc).at(node)
     end
   end
 
@@ -50,7 +60,6 @@ class Crinja::Renderer
 
     output.value(io)
   end
-
 
   visit NodeList do
     self.render(node.children)

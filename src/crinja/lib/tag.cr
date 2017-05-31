@@ -57,6 +57,8 @@ abstract class Crinja::Tag
     end
   end
 
+  # This is a helper class for `Tag` implementations to parse tag arguments. It can either be used
+  # directly or be subclassed for more complex parsing.
   class ArgumentsParser < Parser::ExpressionParser
     # :nodoc:
     alias Kind = Crinja::Parser::Token::Kind

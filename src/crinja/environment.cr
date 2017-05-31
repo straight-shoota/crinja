@@ -6,7 +6,10 @@ require "logger"
 
 # The core component of Crinja is the `Environment`. It contains configuration, global variables and provides an API for template loading and rendering. Instances of this class may be modified if they are not shared and if no template was loaded so far. Modifications on environments after the first template was loaded will lead to surprising effects and undefined behavior.
 class Crinja::Environment
+  # The current context in which evaluation happens. It can only be changed by `#with_context`.
   getter context : Context
+
+  # The global context.
   getter global_context : Context
 
   # The configuration for this environment.
@@ -66,10 +69,12 @@ class Crinja::Environment
     @tests = Test::Library.new(config.register_defaults)
   end
 
+  # Creates a new environment with the context and configuration from the *original* environment.
   def initialize(original : Environment)
     initialize(Context.new(original.context), original.config, original.loader)
   end
 
+  # Returns an `Crinja::Evaluator` which allows evaluation of expressions.
   def evaluator
     @evaluator ||= Evaluator.new(self)
   end
@@ -93,13 +98,13 @@ class Crinja::Environment
     result
   end
 
-  # Loads a template from *string.* This parses the source given and returns a `Template` object.
+  # Loads a template from *string.* This parses the given string and returns a `Template` object.
   def from_string(string : String)
     Template.new(string, self)
   end
 
   # Loads a template from the loader. If a loader is configured this method ask the loader for the template and returns a `Template`.
-  # *If the parent parameter is not None, join_path() is called to get the real template name before loading.
+  # If the parent parameter is not None, join_path() is called to get the real template name before loading.
   # TODO: *parent* parameter is not implemented.
   # The *globals* parameter can be used to provide template wide globals. These variables are available in the context at render time.
   # If the template does not exist a `TemplateNotFoundError` is raised.

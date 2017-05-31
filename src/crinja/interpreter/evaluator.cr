@@ -1,16 +1,22 @@
+# The evaluator traverses through an abstract syntax tree to evaluate all expressions and return a
+# final value.
 class Crinja::Evaluator
+  # Creates a new evaluator for the environment *env*.
   def initialize(@env : Environment)
   end
 
+  # Evaluates an expression inside this evaluatores environment and returns a `Value` object.
   def value(expression)
     Value.new self.evaluate(expression)
   end
 
+  # Evaluates an expression inside this evaluatores environment and returns a `Type` object.
   def evaluate(expression)
     raise expression.inspect
   end
 
-  macro visit(*node_types)
+  private macro visit(*node_types)
+    # :nodoc:
     def evaluate(expression : {{
                                 (node_types.map do |type|
                                   "AST::#{type.id}"
@@ -63,7 +69,7 @@ class Crinja::Evaluator
     !!evaluate_filter @env.tests[expression.identifier.name], expression
   end
 
-  def evaluate_filter(callable, expression)
+  private def evaluate_filter(callable, expression)
     argumentlist = evaluate(expression.argumentlist).as(Array(Type)).map { |a| Value.new a }
     keyword_arguments = expression.keyword_arguments.each_with_object(Hash(String, Value).new) do |(keyword, value), args|
       args[keyword.name] = value(value)
