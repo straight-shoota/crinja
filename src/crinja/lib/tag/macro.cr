@@ -91,6 +91,7 @@ class Crinja::Tag::Macro < Crinja::Tag
 
     def call(arguments : Arguments)
       arguments.defaults = @defaults
+
       arguments.env.with_scope(arguments.to_h) do |context|
         context.merge!({
           "varargs" => arguments.varargs,
@@ -98,7 +99,7 @@ class Crinja::Tag::Macro < Crinja::Tag
         })
 
         SafeString.build do |io|
-          @renderer.render(children).value(io)
+          Crinja::Renderer.new(@renderer.template, arguments.env).render(children).value(io)
         end
       end
     end

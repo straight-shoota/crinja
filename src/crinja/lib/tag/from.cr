@@ -8,13 +8,13 @@ class Crinja::Tag::From < Crinja::Tag
 
     template_name = env.evaluate(source_expression).to_s
 
-    template = env.get_template(template_name)
-
     child = if with_context
               Environment.new(env)
             else
-              Environment.new
+              Environment.new(config: env.config, loader: env.loader)
             end
+
+    template = child.get_template(template_name)
 
     template.render(child)
 
@@ -52,6 +52,7 @@ class Crinja::Tag::From < Crinja::Tag
         imports[from_name] = import_name
 
         break unless current_token.kind == Kind::COMMA
+        next_token
       end
 
       with_context = false

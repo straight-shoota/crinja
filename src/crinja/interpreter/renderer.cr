@@ -11,13 +11,13 @@ class Crinja::Renderer
     hash[k] = Array(AST::NodeList).new
   end
 
-  # Creates a new evaluator for the template *template*.
-  def initialize(@template : Template)
-  end
+  # Returns the environment.
+  getter env : Environment
 
-  @[AlwaysInline]
-  def env
-    @template.env
+  # Creates a new evaluator for the template *template* with optional environment *env*. If no
+  # environment is provided, the environment of the template is used.
+  def initialize(@template : Template, env : Environment? = nil)
+    @env = env || @template.env
   end
 
   private macro visit(*node_types)
