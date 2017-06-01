@@ -51,12 +51,12 @@ context = {
   ] * 5,
 }
 
-rendered = ""
+rendered = uninitialized String
 time_to_render = Benchmark.measure "render crinja" do
   rendered = crinja_template.render(context)
 end
 
-File.write(File.join(FileUtils.pwd, "rendered_crinja.html"), rendered)
+File.write(File.join(FileUtils.pwd, "crinja.rendered.html"), rendered)
 
 puts "parsed in #{time_to_parse}"
 puts "rendered in #{time_to_render}"
