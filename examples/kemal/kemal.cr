@@ -1,11 +1,11 @@
 require "kemal"
 require "../../src/crinja.cr"
 
-crinja = Crinja::Environment.new do |crinja|
-  crinja.loader = Crinja::Loader::FileSystemLoader.new("pages")
-end
+crinja = Crinja::Environment.new(loader: Crinja::Loader::FileSystemLoader.new("pages"))
 
 logger = Logger.new(STDERR)
+
+source_renderer = Crinja::Server::SourceRenderer.new(crinja)
 
 get "/source/*" do |env|
   path = env.request.path
@@ -14,15 +14,9 @@ get "/source/*" do |env|
   if path[-1] == '/'
     path += "index.html"
   end
+
   begin
-    template = crinja.get_template(path)
-    String.build do |io|
-      io << %(<link href="/source.css" rel="stylesheet">)
-      io << "Crinja template code for #{path}:"
-      io << "<pre>"
-      Crinja::Visitor::HTML.new(io).visit(template)
-      io << "</pre>"
-    end
+    source_renderer.render(crinja.get_template(path))
   rescue e : Crinja::TemplateNotFoundError
     logger.warn e.message
     env.response.respond_with_error "File Not Found", 404
@@ -46,6 +40,21 @@ get "/*" do |env|
   rescue e : Crinja::TemplateNotFoundError
     logger.warn e.message
     env.response.respond_with_error "File Not Found", 404
+  end
+end
+
+class Crinja::Server::SourceRenderer
+  def initialize(@env : Crinja::Environment)
+  end
+
+  def render(template)
+    String.build do |io|
+      io << %(<link href="/source.css" rel="stylesheet">)
+      io << "Crinja template code for #{template.filename}:"
+      io << "<pre>"
+      Crinja::Visitor::HTML.new(io).visit(template)
+      io << "</pre>"
+    end
   end
 end
 

@@ -1,0 +1,86 @@
+body {
+  background-color: #FFE;
+  color: #222;
+  font-family: Roboto, "Source Sans Pro", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.token {
+
+}
+
+pre {
+  padding: .5em;
+  line-height: 1.5;
+}
+
+.crinja-server-notice {
+  background-color: #555;
+  color: #ddd;
+  padding: .5em;
+}
+
+.crinja-server-notice a {
+  text-decoration: none;
+  color: inherit;
+}
+.crinja-server-notice code {
+  font-family: inherit;
+}
+
+.token--expr_start, .token--expr_end,
+.token--tag_start, .token--tag_end {
+  font-weight: bold;
+  color: #A33;
+}
+
+.token--note {
+  color: #8A8;
+  font-style: italic;
+}
+
+.token--name {
+  color: #338;
+}
+
+.token--operator,
+.token--pipe,
+.token--kw_assign {
+  font-weight: bold;
+  color: #F80;
+}
+
+.token--point {
+  font-weight: bold;
+  color: #23D;
+}
+
+.token--left_paren,
+.token--right_paren {
+
+}
+
+.token--string {
+  color: #860;
+}
+
+.token--tag_start + .token--identifier {
+  font-weight: bold;
+  color: #A33;
+}
+
+.crinja__expr, .crinja__tag {
+  border-radius: 2px;
+  border: 1px solid transparent;
+  margin: 0 .1em;
+  padding: 0 .2em .1em;
+}
+.crinja__tag {
+  background-color: #EFE;
+  border-color: #ADA;
+}
+.crinja__expr {
+  background-color: #F8F8FC;
+  border-color: #BBD;
+}
+

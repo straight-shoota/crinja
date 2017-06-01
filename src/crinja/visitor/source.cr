@@ -1,104 +1,56 @@
 require "./visitor"
 
 # The source visitor transforms a template tree into Jinja source code.
-module Crinja
-  class Visitor::Source < Visitor(AST::ASTNode)
-    def initialize(@io : IO)
+class Crinja::Visitor::Source
+  # :nodoc:
+  alias Kind = Parser::Token::Kind
+
+  def initialize(@io : IO)
+  end
+
+  def visit(template)
+    lexer = Parser::TemplateLexer.new(template.env.config, template.source)
+
+    while token = lexer.next_token
+      break if token.kind == Kind::EOF
+      visit_token token
+    end
+  end
+
+  private def visit_token(token : Parser::Token)
+    print_whitespace_before token
+
+    visit_content token
+
+    print_whitespace_after token
+  end
+
+  private def visit_content(token)
+    case token.kind
+    when Kind::STRING
+      print_string_delimiter
     end
 
-    def visit(expression : AST::ExpressionNode)
+    print_value token
+
+    case token.kind
+    when Kind::STRING
+      print_string_delimiter
     end
+  end
 
-    def visit(node : AST::ASTNode)
-    end
+  private def print_string_delimiter
+    @io << '"'
+  end
 
-    def visit(node : Node)
-      node.children.each &.accept(self)
-    end
+  private def print_value(token)
+    @io << token.value
+  end
 
-    def visit(node : Node::Text)
-      print_token node.token
-    end
-
-    def visit(node : Node::Note)
-      print_token node.token
-    end
-
-    def visit(node : Node::Expression)
-      print_token node.token
-
-      node.statement.accept(self)
-
-      print_token node.end_token
-    end
-
-    def visit(node : Node::Tag)
-      print_token node.token
-      print_token node.name_token
-
-      node.varargs.each &.accept(self)
-
-      # node.kwargs.each &.accept(self)
-
-      print_token node.end_token
-
-      node.children.each &.accept(self)
-
-      node.end_tag.try &.accept(self)
-    end
-
-    def visit(node : Statement::Operator)
-      if node.unary?
-        print_token node.token
-      end
-      node.operands[0].accept(self)
-      unless node.unary?
-        print_token node.token
-        node.operands[1].accept(self)
-      end
-    end
-
-    def visit(node : Statement::MemberOperator)
-      node.object.accept(self)
-      print_token node.token
-      print_token node.attribute
-    end
-
-    # def visit(node : Statement::Attribute)
-    #  node.base.accept(self)
-    #  print_token node.token
-    #  node.attribute.try &.accept(self)
-    # end
-
-    def visit(node : Statement::ParentStatement)
-      if node.responds_to? :children
-        node.children.each &.accept(self)
-      else
-        @io << "(--" << node.class.to_s << "--)"
-      end
-    end
-
-    def visit(node : Statement::Name)
-      print_token node.token
-    end
-
-    def visit(node : Statement::Filter)
-      node.target.accept(self)
-
-      print_token node.token
-      print_token node.name_token
-
-      node.varargs.each &.accept(self)
-    end
-
-    def visit(node : Statement)
-      @io << "(@@" << node.class.to_s << "@@)"
-    end
-
-    private def print_token(token : Parser::Token?)
-      unless token.nil?
-        @io << token.whitespace_before << token.value << token.whitespace_after
-      end
-    end
+  private def print_whitespace_before(token)
+    @io << token.whitespace_before
+  end
+  private def print_whitespace_after(token)
+    @io << token.whitespace_after
   end
 end
