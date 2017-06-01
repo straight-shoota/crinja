@@ -101,6 +101,13 @@ abstract class Crinja::Loader
     def list_templates
       data.keys
     end
+
+    # :nodoc:
+    def to_s(io)
+      io << "#<HashLoader:"
+      data.keys.join(", ", io)
+      io << ">"
+    end
   end
 
   # Load templates from other loaders based on prefix.

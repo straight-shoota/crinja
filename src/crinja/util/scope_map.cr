@@ -41,20 +41,22 @@ class Crinja::Util::ScopeMap(K, V)
   end
 
   def keys
-    keys = Set(K).new
+    keys = scope.keys
 
-    keys.merge!(parent.keys) unless parent.nil?
+    if p = parent
+      keys += p.keys
+    end
 
-    keys.merge! scope.keys
+    keys
   end
 
   def values
-    entries.map &.[:value]
+    entries.map &.[0]
   end
 
   def entries
     keys.map do |key|
-      {key: key, value: self[key]}
+      {key, self[key]}
     end
   end
 

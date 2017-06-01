@@ -81,9 +81,11 @@ module Crinja::Resolver
     )
   end
 
-  def execute_call(callable, varargs : Array(Value), kwargs : Hash(String, Value))
+  def execute_call(name, varargs : Array(Value), kwargs : Hash(String, Value))
     arguments = Arguments.new(self, varargs, kwargs)
-    resolve_callable(callable).call(arguments)
+    callable = resolve_callable(name)
+
+    callable.call(arguments)
   end
 
   def resolve_callable(identifier : String) : Callable
