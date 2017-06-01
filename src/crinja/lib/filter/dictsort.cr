@@ -1,4 +1,4 @@
-class Crinja::Filter
+module Crinja::Filter
   Crinja.filter({
     case_sensitive: false,
     by:             "key",

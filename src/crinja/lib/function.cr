@@ -7,7 +7,7 @@ module Crinja
     end
   end
 
-  class Filter
+  module Filter
     class Library < FeatureLibrary(Callable)
     end
   end

@@ -1,6 +1,6 @@
 require "xml"
 
-class Crinja::Filter
+module Crinja::Filter
   Crinja.filter(:upper) { target.to_s.upcase }
 
   Crinja.filter(:lower) { target.to_s.downcase }

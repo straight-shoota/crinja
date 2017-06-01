@@ -1,4 +1,4 @@
-class Crinja::Filter
+module Crinja::Filter
   Crinja.filter({separator: "", attribute: nil}, :join) do
     value = target.raw
     separator = arguments[:separator].to_s

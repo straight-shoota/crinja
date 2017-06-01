@@ -1,4 +1,4 @@
-class Crinja::Filter
+module Crinja::Filter
   Crinja.filter :abs do
     if target.number?
       target.as_number.abs

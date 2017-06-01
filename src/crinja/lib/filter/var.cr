@@ -1,4 +1,4 @@
-class Crinja::Filter
+module Crinja::Filter
   Crinja.filter({default_value: "", boolean: false}, :default) do
     default_value = arguments[:default_value]
 
