@@ -25,6 +25,7 @@ Currently, template errors fail fast raising an exception. It is considered to c
 
 This is an incomplete list of **Differences to the original Jinja2**:
 
+* **Python expressions:** Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib.
 * **Line statements and line comments**: Are not supported, because their usecase is negligible.
 * **String representation:** `{{ ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 which is the Python representation of an array with strings. In Crinja it uses the Crytal representation: `["foo", "bar"]`.
 * **Double escape:** `{{ '<html>'|escape|escape }}` will render as `&lt;html&gt;` in Jinja2, but `&amp;lt;html&amp;gt;`. Should we change that behaviour?
@@ -33,9 +34,10 @@ This is an incomplete list of **Differences to the original Jinja2**:
 
 The following features are not yet fully implemented, but on the [roadmap](ROADMAP.md):
 
-* Implementation of all standard filters and global functions
-* sandboxed execution
-* some detailed features like reusable blocks
+* Implementation of all standard filters and global functions.
+* There is some trouble with regard to recursive types in Crystal's type system, which makes collection-based filters like `groupby` or `dictsort` not working properly.
+* Sandboxed execution.
+* Some in-depth features like extended macro reflection, reusable blocks.
 
 ## Installation
 
