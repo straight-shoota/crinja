@@ -122,4 +122,11 @@ describe Crinja::Operator do
       evaluate_expression("true and none").should eq("false")
     end
   end
+
+  describe "precedence" do
+    it { evaluate_expression(%(true or false and false)).should eq "true" }
+    it { evaluate_expression(%((true or false) and false)).should eq "false" }
+    it { evaluate_expression(%(2 + 4 * 2)).should eq "10" }
+    it { evaluate_expression(%((2 + 4) * 2)).should eq "12" }
+  end
 end
