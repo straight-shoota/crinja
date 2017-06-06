@@ -66,7 +66,7 @@ module Crinja::Parser
           @token.value = current_char == '>' ? Symbol::OP_GREATER_EQUAL : Symbol::OP_LESS_EQUAL
           next_char
         else
-          @token.value = current_char == '>' ? Symbol::OP_GREATER : Symbol::OP_GREATER
+          @token.value = current_char == '>' ? Symbol::OP_GREATER : Symbol::OP_LESS
         end
         next_char
       when .letter?, '_'

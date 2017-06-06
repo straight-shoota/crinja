@@ -89,7 +89,8 @@ class Crinja::Environment
     lexer = Parser::ExpressionLexer.new(config, expression)
     parser = Parser::ExpressionParser.new(lexer)
 
-    result = evaluate parser.parse
+    expression = parser.parse
+    result = evaluate expression
 
     if config.autoescape?
       result = SafeString.escape(result)

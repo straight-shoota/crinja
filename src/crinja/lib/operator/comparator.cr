@@ -1,30 +1,16 @@
 class Crinja::Operator
-  class Equals < Binary
-    name "=="
+  module Comparator
+    extend self
 
-    def value(env : Environment, op1 : Value, op2 : Value)
-      op1 == op2
-    end
-  end
-
-  class NotEquals < Binary
-    name "!="
-
-    def value(env : Environment, op1 : Value, op2 : Value)
-      op1 != op2
-    end
-  end
-
-  abstract class Comparator < Binary
     def compare(a : Type, b : Type)
       if a.is_a?(Array(Type))
         if b.is_a?(Array(Type))
           compare_array(a, b)
         else
-          raise InvalidArgumentException.new self, "Cannot compare Array(Type) with #{b.class}"
+          raise TypeError.new "Cannot compare Array(Type) with #{b.class}"
         end
       elsif a.is_a?(Bool) || b.is_a?(Bool)
-        raise InvalidArgumentException.new self, "Cannot compare Bool value"
+        raise TypeError.new "Cannot compare Bool value"
       elsif a.is_a?(Number) && b.is_a?(Number)
         a <=> b
       elsif a.is_a?(String | SafeString) || a.is_a?(String | SafeString)
@@ -45,32 +31,58 @@ class Crinja::Operator
     end
   end
 
-  class GreaterThan < Comparator
+  class Equals < Binary
+    name "=="
+    include Comparator
+
+    def value(env : Environment, op1 : Value, op2 : Value)
+      compare(op1.raw, op2.raw) == 0
+    rescue TypeError
+      op1.raw == op2.raw
+    end
+  end
+
+  class NotEquals < Binary
+    name "!="
+    include Comparator
+
+    def value(env : Environment, op1 : Value, op2 : Value)
+      compare(op1.raw, op2.raw) != 0
+    rescue TypeError
+      op1.raw != op2.raw
+    end
+  end
+
+  class GreaterThan < Binary
     name ">"
+    include Comparator
 
     def value(env : Environment, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) > 0
     end
   end
 
-  class GreaterThanEquals < Comparator
+  class GreaterThanEquals < Binary
     name ">="
+    include Comparator
 
     def value(env : Environment, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) >= 0
     end
   end
 
-  class LowerThan < Comparator
+  class LowerThan < Binary
     name "<"
+    include Comparator
 
     def value(env : Environment, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) < 0
     end
   end
 
-  class LowerThanEquals < Comparator
+  class LowerThanEquals < Binary
     name "<="
+    include Comparator
 
     def value(env : Environment, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) <= 0
