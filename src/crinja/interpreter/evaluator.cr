@@ -46,19 +46,36 @@ class Crinja::Evaluator
   visit CallExpression do
     identifier = expression.identifier
 
-    if identifier.is_a?(AST::IdentifierLiteral)
-      # identifier lookup for function calls is handled by `execute_call`
-      callable = identifier.name
-    else
-      callable = value(identifier)
+    # First check if there is a literal function or macro registered (like "function" or "group.function").
+    callable_name = identifier_or_member(identifier)
+
+    callable = @env.resolve_callable(callable_name) if callable_name
+
+    unless callable.is_a?(Callable)
+      callable = @env.resolve_callable!(value(identifier))
     end
 
-    argumentlist = evaluate(expression.argumentlist).as(Array(Type)) # TODO: Remove self when https://github.com/crystal-lang/crystal/issues/236 is resolved
+    argumentlist = evaluate(expression.argumentlist).as(Array(Type))
     keyword_arguments = expression.keyword_arguments.each_with_object(Hash(String, Type).new) do |(keyword, value), args|
       args[keyword.name] = evaluate value
     end
 
     @env.execute_call(callable, argumentlist, keyword_arguments)
+  end
+
+  private def identifier_or_member(identifier : AST::IdentifierLiteral)
+    identifier.name
+  end
+
+  private def identifier_or_member(expr : AST::MemberExpression)
+    identifier = identifier_or_member(expr.identifier)
+    member = identifier_or_member(expr.member)
+
+    "#{identifier}.#{member}" if identifier && member
+  end
+
+  private def identifier_or_member(expr)
+    nil
   end
 
   visit FilterExpression do

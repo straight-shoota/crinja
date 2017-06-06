@@ -27,12 +27,9 @@ class Crinja::Tag::Import < Crinja::Tag
 
       env.errors += child.errors
 
-      child_bindings = child.context.session_bindings
-      child.context.macros.each do |key, value|
-        child_bindings[key] = value
+      template.macros.each do |key, value|
+        env.context.macros["#{context_var}.#{key}"] = value
       end
-
-      env.context[context_var] = child_bindings
     end
   end
 end

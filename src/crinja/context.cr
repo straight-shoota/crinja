@@ -13,6 +13,7 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
 
   property autoescape : Bool?
   setter block_context : NamedTuple(name: String, index: Int32)?
+  getter macros
 
   def initialize(bindings : Hash(String, Type))
     initialize(nil, bindings)
@@ -40,7 +41,7 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
   end
 
   # Returns macros defined in the root context.
-  def macros
+  def root_macros
     if (p = parent).nil?
       @macros
     else

@@ -83,40 +83,37 @@ module Crinja::Resolver
 
   def execute_call(name, varargs : Array(Value), kwargs : Hash(String, Value))
     arguments = Arguments.new(self, varargs, kwargs)
-    callable = resolve_callable(name)
+    callable = resolve_callable!(name)
 
     callable.call(arguments)
   end
 
-  def resolve_callable(identifier : String) : Callable
+  def resolve_callable(identifier)
     if context.has_macro?(identifier.to_s)
       context.macro(identifier.to_s)
     else
-      callable = resolve(identifier)
+      resolve(identifier.to_s)
+    end
+  end
 
-      if callable.is_a? Undefined
-        raise TypeError.new(Value.new(callable), "#{identifier} is undefined")
-      end
+  def resolve_callable!(identifier) : Callable
+    return identifier.as(Callable) if identifier.is_a?(Callable)
 
-      if callable.is_a?(Callable)
-        # FIX: Why is `.as(Callable)` needed here?
-        return callable.as(Callable)
-      end
+    callable = resolve_callable(identifier)
 
+    if callable.is_a? Undefined
+      raise TypeError.new(Value.new(callable), "#{identifier} is undefined")
+    end
+
+    if callable.is_a? Callable
+      # FIXME: Explicit cast should not be necessary.
+      return callable.as(Callable)
+    else
       raise TypeError.new(Value.new(callable), "`#{identifier}` is not callable")
     end
   end
 
-  def resolve_callable(callable : Value) : Callable
-    if callable.undefined?
-      raise TypeError.new(callable, "#{callable} is undefined")
-    end
-
-    raw = callable.raw
-    if raw.is_a?(Callable)
-      return raw.as(Callable)
-    end
-
-    raise TypeError.new(callable, "#{callable} is not callable")
+  def resolve_callable!(callable : Value)
+    resolve_callable!(callable.raw)
   end
 end
