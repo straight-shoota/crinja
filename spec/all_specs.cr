@@ -1,0 +1,8 @@
+require "./crinja_spec.cr"
+require "./expression/*"
+require "./functions/*"
+require "./integration/*"
+require "./lib/*"
+require "./parser/*"
+require "./tags/*"
+require "./util/*"

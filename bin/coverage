@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+COVERAGE_OUT="~/cov-out2/"
+CSS_FILE="${COVERAGE_OUT}/data/bcov.css"
+BIN_FILE="build/all_specs"
+
+echo "Building all_specs.cr..."
+crystal build -o "${BIN_FILE}" spec/all_specs.cr
+
+echo "Running kcov..."
+kcov --exclude-path=/opt/crystal,/usr/include --exclude-pattern=_spec.cr "${COVERAGE_OUT}" "${BIN_FILE}"
+
+echo "Patching css file..."
+sed -i -- 's/pre\.source \{ font-family: monospace; white-space: pre; \}/pre.source { font-family: monospace; white-space: normal; }/' "${CSS_FILE}"
+echo 'source-line { display: block; white-space: pre; }' >> "${CSS_FILE}"
