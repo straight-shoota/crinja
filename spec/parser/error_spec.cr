@@ -7,4 +7,30 @@ describe "errors" do
     end
     # error.location_start.should eq({0, 8})
   end
+
+  describe "unexpected EOF" do
+    it do
+      expect_raises(Crinja::TemplateSyntaxError | Crinja::ExceptionWrapper, "Unterminated expression") do
+        parse(%({{ foo))
+      end
+    end
+
+    it do
+      expect_raises(Crinja::TemplateSyntaxError | Crinja::ExceptionWrapper, "Unterminated tag") do
+        parse(%({% for i in))
+      end
+    end
+
+    it do
+      expect_raises(Crinja::TemplateSyntaxError | Crinja::ExceptionWrapper, "Unterminated note") do
+        parse(%({# comment))
+      end
+    end
+
+    it do
+      expect_raises(Crinja::TemplateSyntaxError | Crinja::ExceptionWrapper, "Unclosed tag, missing: endif") do
+        parse(%({% if true %}))
+      end
+    end
+  end
 end
