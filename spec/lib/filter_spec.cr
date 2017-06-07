@@ -1,6 +1,6 @@
 require "../spec_helper"
 
-class User
+private class User
   include Crinja::PyObject
 
   getter username
