@@ -8,7 +8,7 @@ module Crinja::PyObject
                 # (method.return_type == Type || method.return_type.class_name == "Nop") &&
                 (method.args.empty?) %}
           if {{ method.name.stringify }} == attr
-            return {{ method.name }}.as(Crinja::Type)
+            return self.{{ method.name }}.as(Crinja::Type)
           end
         {% end %}
       {% end %}
@@ -18,8 +18,8 @@ module Crinja::PyObject
   macro getattr(*whitelist)
     def getattr(attr : Crinja::Type) : Crinja::Type
       {% for method in whitelist %}
-        if {{ method.stringify }} == attr
-          return {{ method.id }}.as(Crinja::Type)
+        if {{ method.id.stringify }} == attr
+          return self.{{ method.id }}.as(Crinja::Type)
         end
       {% end %}
     end

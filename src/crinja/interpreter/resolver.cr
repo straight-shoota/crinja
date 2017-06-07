@@ -50,6 +50,16 @@ module Crinja::Resolver
     value.as(Type)
   end
 
+  def self.resolve_method(name, object) : Callable?
+    object = object.raw if object.is_a?(Value)
+
+    if object.responds_to? :__call__
+      return object.__call__(name).as(Callable)
+    end
+
+    nil
+  end
+
   def self.resolve_with_hash_accessor(name, object)
     if object.responds_to?(:[]) && !object.is_a?(Array) && !object.is_a?(Tuple)
       begin
