@@ -11,7 +11,8 @@ Crinja.function({
     start = arguments.default(:stop).as_number.to_i
   end
 
-  #start.step(to: stop, by: step).to_a.map(&.as(Type))
+  # TODO: Use a stlib implementation
+  # start.step(to: stop, by: step).to_a.map(&.as(Type))
   Crinja::Function::RangeIterator(Int32, Int32).new(Range.new(start, stop, true), step).to_a.map(&.as(Type))
 end
 
@@ -22,17 +23,20 @@ class Crinja::Function::RangeIterator(B, N)
   @step : N
   @current : B
   @reached_end : Bool
+  @direction_reversed : Bool
 
-  def initialize(@range, @step, @current = range.begin, @reached_end = false)
+  def initialize(@range, step, @current = range.begin, @reached_end = false)
+    @step = step.abs
+    @direction_reversed = step < 0
   end
 
   def next
     return stop if @reached_end
 
-    if @current < @range.end
+    if (@current <=> @range.end) == (@direction_reversed ? 1 : -1)
       value = @current
-      if @step < 0
-        @step.abs.times { @current = @current.pred }
+      if @direction_reversed
+        @step.times { @current = @current.pred }
       else
         @step.times { @current = @current.succ }
       end
