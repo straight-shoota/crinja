@@ -30,11 +30,13 @@ module Crinja
 
     %block = ->(arguments : Crinja::Arguments) do
       arguments.defaults = %defaults
-      {% if defaults.is_a?(NamedTupleLiteral) || defaults.is_a?(HashLiteral) %}
-      {% for key in defaults.keys %}
-        {{ key.id }} = arguments[{{ key.id.symbolize }}]
-      {% end %}
-      {% end %}
+      # TODO: Is this useful? Usually you can access arguments[:key] and directly cast from value
+      # to raw type. Some argument names may be reserved words (e.g. `end`)!
+      #{% if defaults.is_a?(NamedTupleLiteral) || defaults.is_a?(HashLiteral) %}
+      #{% for key in defaults.keys %}
+      #  {{ key.id }} = arguments[{{ key.id.symbolize }}]
+      #{% end %}
+      #{% end %}
       env = arguments.env
       ({{ yield }}).as(Crinja::Type)
     end

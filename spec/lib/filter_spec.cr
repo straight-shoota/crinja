@@ -313,6 +313,43 @@ describe Crinja::Filter do
     end
   end
 
+  describe "truncate" do
+    it { evaluate_expression(%(data|truncate(15, true, ">>>")), {
+      data:      "foobar baz bar" * 1000,
+      smalldata: "foobar baz bar",
+    }).should eq "foobar baz b>>>" }
+    it { evaluate_expression(%(data|truncate(15, false, ">>>")), {
+      data:      "foobar baz bar" * 1000,
+      smalldata: "foobar baz bar",
+    }).should eq "foobar baz>>>" }
+    it { evaluate_expression(%(smalldata|truncate(15)), {
+      data:      "foobar baz bar" * 1000,
+      smalldata: "foobar baz bar",
+    }).should eq "foobar baz bar" }
+
+    it { evaluate_expression(%("foo bar baz"|truncate(9))).should eq "foo bar baz" }
+    it { evaluate_expression(%("foo bar baz"|truncate(9, true))).should eq "foo bar baz" }
+
+    it { evaluate_expression(%("Joel is a slug"|truncate(7, true))).should eq "Joel..." }
+  end
+
+  pending "urlize" do
+    it "urlize" do
+      evaluate_expression(%("foo http://www.example.com/ bar"|urlize)).should eq %(foo <a href="http://www.example.com/" rel="noopener">) \
+                                                                                 %(http://www.example.com/</a> bar)
+    end
+
+    it "urlize rel policy" do
+      # env.policies['urlize.rel'] = None
+      evaluate_expression(%("foo http://www.example.com/ bar"|urlize)).should eq %(foo <a href="http://www.example.com/"http://www.example.com/</a> bar)
+    end
+
+    it "urlize_target_parameter" do
+      evaluate_expression(%("foo http://www.example.com/ bar"|urlize(target="_blank"))).should eq %(foo <a href="http://www.example.com/" rel="noopener" target="_blank">) \
+                                                                                                  %(http://www.example.com/</a> bar)
+    end
+  end
+
   describe "abs" do
     it "works with integer" do
       evaluate_expression(%(1 | abs)).should eq("1")

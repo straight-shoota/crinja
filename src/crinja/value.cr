@@ -281,7 +281,7 @@ class Crinja::Value
     if raw.responds_to?(:to_i)
       raw.to_i
     else
-      raw.to_s.to_i
+      raise TypeError.new("can't convert #{raw.inspect} to Int32")
     end
   end
 
@@ -290,7 +290,7 @@ class Crinja::Value
     if raw.responds_to?(:to_f)
       raw.to_f
     else
-      raw.to_s.to_f
+      raise TypeError.new("can't convert #{raw.inspect} to Float32")
     end
   end
 

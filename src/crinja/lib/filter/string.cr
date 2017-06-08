@@ -45,4 +45,23 @@ module Crinja::Filter
   Crinja.filter(:string) { target.to_s }
 
   Crinja.filter(:title) { target.to_s.gsub(/[^-\s\(\{\[\<]+/, &.capitalize) }
+
+  Crinja.filter({length: 255, killwords: false, end: "...", leeway: nil}, :truncate) do
+    length = arguments[:length].to_i
+    fin = arguments[:end].to_s
+    end_size = fin.size
+    raise "expected length >= #{end_size}, got #{length}" if length < end_size
+    leeway = arguments.fetch(:leeway) { env.policies.fetch("truncate.leeway", 5) }.to_i
+    raise "expected leeway >= 0, got #{leeway}" if leeway < 0
+    killwords = arguments[:killwords].truthy?
+
+    s = target.to_s
+    if s.size <= length + leeway
+      s
+    else
+      trimmed = s[0, length - end_size]
+      trimmed = trimmed.rpartition(' ').first unless killwords
+      trimmed + fin
+    end
+  end
 end

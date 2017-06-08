@@ -42,6 +42,10 @@ class Crinja::Environment
   # Test library for this environment.
   getter tests
 
+  # Policies for this environment.
+  getter policies : Hash(String, Type)
+  @policies = {} of String => Type
+
   # Creates a new environment and yields `self` for configuration.
   def self.new(context = Context.new, config = Config.new,
                loader = Loader::FileSystemLoader.new, cache = TemplateCache::InMemory.new)

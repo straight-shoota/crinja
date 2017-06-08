@@ -53,6 +53,19 @@ module Crinja
       end
     end
 
+    def fetch(name, default : Type = nil)
+      fetch(name) { default }
+    end
+
+    def fetch(name)
+      value = self.[name]
+      if value.raw.nil?
+        Value.new(yield)
+      else
+        value
+      end
+    end
+
     def target!
       if (t = target).nil?
         raise UndefinedError.new("undefined target")
