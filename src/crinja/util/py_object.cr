@@ -53,6 +53,7 @@
 #     end
 #   end
 # end
+# ```
 module Crinja::PyObject
   # This macro creates a lookup list for `getattr` including all publicly visible properties.
   macro getattr
