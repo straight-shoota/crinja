@@ -277,6 +277,15 @@ describe Crinja::Filter do
     end
   end
 
+  describe "reverse" do
+    it "string" do
+      evaluate_expression(%("foobar"|reverse)).should eq "raboof"
+    end
+    it "array" do
+      evaluate_expression(%([1, 2, 3]|reverse|list)).should eq "[3, 2, 1]"
+    end
+  end
+
   describe "abs" do
     it "works with integer" do
       evaluate_expression(%(1 | abs)).should eq("1")

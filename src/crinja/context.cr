@@ -103,12 +103,24 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
 
   def unpack(vars : Array(String), values : Array(Type))
     if vars.size == 1
-      self[vars[0]] = values
+      self[vars.first] = values
     else
-      vars.each_with_index do |var, i|
-        value = values[i]
-        self[var] = if value.is_a?(Value)
-                      value.raw
+      unpack vars, values.each
+    end
+  end
+
+  def unpack(vars : Array(String), values : Iterator(Type))
+    if vars.size == 1
+      self[vars.first] = values
+    else
+      # FIXME: undefined constant U // def zip(other : Iterator(U)) forall U
+      # vars.each.zip(values).each do |var, value|
+      #   self[var] = value
+      # end
+      vars.each do |var|
+        value = values.next
+        self[var] = if value.is_a?(Iterator::Stop)
+                      raise RuntimeError.new("Missing value for unpack")
                     else
                       value
                     end

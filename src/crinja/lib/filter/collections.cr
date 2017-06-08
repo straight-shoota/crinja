@@ -7,6 +7,8 @@ module Crinja::Filter
       value.chars.map(&.to_s.as(Type))
     when Array
       value
+    when .responds_to?(:to_a)
+      value.to_a
     else
       raise TypeError.new("target for list filter cannot be converted to list")
     end
@@ -71,4 +73,15 @@ module Crinja::Filter
   Crinja.filter(:first) { target.first.raw }
   Crinja.filter(:last) { target.last.raw }
   Crinja.filter(:length) { target.size }
+
+  Crinja.filter(:reverse) do
+    reversable = target.raw
+    if reversable.responds_to?(:reverse_each)
+      reversable.reverse_each
+    elsif reversable.responds_to?(:reverse)
+      reversable.reverse
+    else
+      raise TypeError.new(target, "#{target.raw.class} cannot be reversed")
+    end
+  end
 end
