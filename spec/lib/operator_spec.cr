@@ -111,7 +111,7 @@ describe Crinja::Operator do
       it { evaluate_expression(%("b" < "a")).should eq "false" }
     end
     describe "~" do
-      pending { evaluate_expression(%("b" ~ "a")).should eq "ba" }
+      it { evaluate_expression(%("b" ~ "a")).should eq "ba" }
     end
   end
 end
