@@ -8,18 +8,14 @@ module Crinja::Resolver
     if object.is_a?(Array) && name.is_a?(Int)
       value = object[name]
     end
-    if object.responds_to?(:getitem)
-      value = object.getitem(name)
+    if object.responds_to?(:__getitem__)
+      value = object.__getitem__(name)
     end
     if value.is_a?(Undefined)
       value = self.resolve_getattr(name, object)
     end
 
-    if value.is_a?(Value)
-      value = value.raw
-    end
-
-    value.as(Type)
+    cast_type value, name
   end
 
   # ditto
@@ -40,11 +36,19 @@ module Crinja::Resolver
       value = object.getitem(name)
     end
 
+    cast_type value, name
+  end
+
+  private def self.cast_type(value, name)
     if value.is_a?(Value)
       value = value.raw
     end
 
-    value.as(Type)
+    if value.is_a?(Type)
+      value
+    else
+      raise TypeError.new("#{name} is of type #{value.class}, can't cast to Crinja::Type")
+    end
   end
 
   # ditto
