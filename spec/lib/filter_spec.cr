@@ -8,6 +8,10 @@ private class User
   def initialize(@username : String)
   end
 
+  def to_s(io)
+    io << username
+  end
+
   getattr
 end
 
@@ -283,6 +287,29 @@ describe Crinja::Filter do
     end
     it "array" do
       evaluate_expression(%([1, 2, 3]|reverse|list)).should eq "[3, 2, 1]"
+    end
+  end
+
+  it "string" do
+    list = [1,2,3,4,5]
+    evaluate_expression(%(obj|string), { obj: list }).should eq list.to_s
+  end
+
+  describe "title" do
+    it { evaluate_expression(%("foo bar"|title)).should eq "Foo Bar" }
+    it { evaluate_expression(%("foo's bar"|title)).should eq "Foo's Bar" }
+    it { evaluate_expression(%("foo   bar"|title)).should eq "Foo   Bar" }
+    it { evaluate_expression(%("f bar f"|title)).should eq "F Bar F" }
+    it { evaluate_expression(%("foo-bar"|title)).should eq "Foo-Bar" }
+    it { evaluate_expression(%("foo\tbar"|title)).should eq "Foo\tBar" }
+    it { evaluate_expression(%("FOO\tBAR"|title)).should eq "Foo\tBar" }
+    it { evaluate_expression(%("foo (bar)"|title)).should eq "Foo (Bar)" }
+    it { evaluate_expression(%("foo {bar}"|title)).should eq "Foo {Bar}" }
+    it { evaluate_expression(%("foo [bar]"|title)).should eq "Foo [Bar]" }
+    it { evaluate_expression(%("foo <bar>"|title)).should eq "Foo <Bar>" }
+
+    it "from object" do
+      evaluate_expression(%(data|title), { data: User.new("foo-bar") }).should eq "Foo-Bar"
     end
   end
 

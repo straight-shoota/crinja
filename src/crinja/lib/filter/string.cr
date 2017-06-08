@@ -41,4 +41,8 @@ module Crinja::Filter
     string = indent + string if arguments[:indentfirst].truthy?
     string.gsub(/\n/, nl)
   end
+
+  Crinja.filter(:string) { target.to_s }
+
+  Crinja.filter(:title) { target.to_s.gsub(/[^-\s\(\{\[\<]+/, &.capitalize) }
 end
