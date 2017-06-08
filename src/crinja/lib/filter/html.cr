@@ -3,7 +3,7 @@ module Crinja::Filter
     rel = arguments[:rel].to_s.split(' ').to_set
 
     rel << "nofollow" if arguments[:nofollow].truthy?
-    rel &= env.policies.fetch("urlize.rel", "").to_s.split(' ').to_set
+    rel &= env.policies.fetch("urlize.rel", "noopener").to_s.split(' ').to_set
 
     target_attr = arguments.fetch(:target) { env.policies.fetch("urlize.target", "_blank") }.to_s
     trim_url_limit = arguments[:trim_url_limit].raw.as(Int32?)

@@ -246,7 +246,7 @@ describe Crinja::Filter do
 
   describe "last" do
     it "last" do
-      evaluate_expression(%(foo|last), { foo: Range.new(0, 10, true)}).should eq "9"
+      evaluate_expression(%(foo|last), {foo: Range.new(0, 10, true)}).should eq "9"
     end
   end
 
@@ -270,14 +270,14 @@ describe Crinja::Filter do
   describe "pprint" do
     it "pprint" do
       data = Range.new(0, 1000, true)
-      evaluate_expression(%(data|pprint), { data: data }).should eq data.to_a.pretty_inspect
+      evaluate_expression(%(data|pprint), {data: data}).should eq data.to_a.pretty_inspect
     end
   end
 
   it "random" do
     seq = Range.new(0, 100, true)
     10.times do
-      evaluate_expression(%(seq|random), { seq: seq }).to_i.should be_in seq
+      evaluate_expression(%(seq|random), {seq: seq}).to_i.should be_in seq
     end
   end
 
@@ -291,8 +291,8 @@ describe Crinja::Filter do
   end
 
   it "string" do
-    list = [1,2,3,4,5]
-    evaluate_expression(%(obj|string), { obj: list }).should eq list.to_s
+    list = [1, 2, 3, 4, 5]
+    evaluate_expression(%(obj|string), {obj: list}).should eq list.to_s
   end
 
   describe "title" do
@@ -309,7 +309,7 @@ describe Crinja::Filter do
     it { evaluate_expression(%("foo <bar>"|title)).should eq "Foo <Bar>" }
 
     it "from object" do
-      evaluate_expression(%(data|title), { data: User.new("foo-bar") }).should eq "Foo-Bar"
+      evaluate_expression(%(data|title), {data: User.new("foo-bar")}).should eq "Foo-Bar"
     end
   end
 
@@ -335,18 +335,22 @@ describe Crinja::Filter do
 
   pending "urlize" do
     it "urlize" do
-      evaluate_expression(%("foo http://www.example.com/ bar"|urlize)).should eq %(foo <a href="http://www.example.com/" rel="noopener">) \
-                                                                                 %(http://www.example.com/</a> bar)
+      evaluate_expression(%("foo http://www.example.com/ bar"|urlize)).should eq \
+        %(foo <a href="http://www.example.com/" rel="noopener">) \
+        %(http://www.example.com/</a> bar)
     end
 
     it "urlize rel policy" do
-      # env.policies['urlize.rel'] = None
-      evaluate_expression(%("foo http://www.example.com/ bar"|urlize)).should eq %(foo <a href="http://www.example.com/"http://www.example.com/</a> bar)
+      env = Crinja::Environment.new
+      env.policies["urlize.rel"] = nil
+      env.evaluate(%("foo http://www.example.com/ bar"|urlize)).should eq \
+        %(foo <a href="http://www.example.com/"http://www.example.com/</a> bar)
     end
 
     it "urlize_target_parameter" do
-      evaluate_expression(%("foo http://www.example.com/ bar"|urlize(target="_blank"))).should eq %(foo <a href="http://www.example.com/" rel="noopener" target="_blank">) \
-                                                                                                  %(http://www.example.com/</a> bar)
+      evaluate_expression(%("foo http://www.example.com/ bar"|urlize(target="_blank"))).should eq \
+        %(foo <a href="http://www.example.com/" rel="noopener" target="_blank">) \
+        %(http://www.example.com/</a> bar)
     end
   end
 
@@ -378,10 +382,10 @@ describe Crinja::Filter do
 
   describe "attr" do
     it do
-      evaluate_expression(%(data | attr("foo")), { data: { "foo" => "bar" } }).should eq "bar"
+      evaluate_expression(%(data | attr("foo")), {data: {"foo" => "bar"}}).should eq "bar"
     end
     it do
-      evaluate_expression(%(arr | attr(0)), { arr: ["bar"] }).should eq ""
+      evaluate_expression(%(arr | attr(0)), {arr: ["bar"]}).should eq ""
     end
   end
 end
