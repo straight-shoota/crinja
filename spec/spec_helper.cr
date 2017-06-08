@@ -41,3 +41,29 @@ def evaluate_expression(string, bindings = nil, autoescape = nil)
 
   env.evaluate(string).to_s
 end
+
+module Spec
+  # :nodoc:
+  struct BeInExpectation(T)
+    def initialize(@expected_container : T)
+    end
+
+    def match(actual_value)
+      @expected_container.includes?(actual_value)
+    end
+
+    def failure_message(actual_value)
+      "Expected:   #{@expected_container.inspect}\nto include: #{actual_value.inspect}"
+    end
+
+    def negative_failure_message(actual_value)
+      "Expected: value #{@expected_container.inspect}\nto not include: #{actual_value.inspect}"
+    end
+  end
+
+  module Expectations
+    def be_in(value)
+      Spec::BeInExpectation.new(value)
+    end
+  end
+end

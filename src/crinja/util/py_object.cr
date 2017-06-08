@@ -47,8 +47,8 @@
 #
 #   def __call__(name)
 #     if name == "days_old"
-#       -> (arguments : Crinja::Arguments) do
-#          self.age.days.as(Crinja::Type)
+#       ->(arguments : Crinja::Arguments) do
+#         self.age.days.as(Crinja::Type)
 #       end
 #     end
 #   end

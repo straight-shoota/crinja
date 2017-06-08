@@ -217,8 +217,14 @@ class Crinja::Value
     @raw.as(Int32 | Int64 | Float64)
   end
 
+  # Checks that the underlaying value is a `Time` object and retuns its value. Raises otherwise.
   def as_time
     @raw.as(Time)
+  end
+
+  # Checks that the underlaying value is a `Indexable` and retuns its value. Raises otherwise.
+  def as_indexable
+    @raw.as(Indexable)
   end
 
   # :nodoc:

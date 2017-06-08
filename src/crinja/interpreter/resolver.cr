@@ -5,7 +5,7 @@ module Crinja::Resolver
     raise UndefinedError.new(name.to_s, "#{object.class} is undefined") if object.is_a?(Undefined)
 
     value = Undefined.new(name.to_s)
-    if object.is_a?(Array) && name.is_a?(Int)
+    if object.is_a?(Indexable) && name.is_a?(Int)
       value = object[name]
     end
     if object.responds_to?(:__getitem__)

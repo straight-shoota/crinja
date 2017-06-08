@@ -131,6 +131,11 @@ describe Crinja::Filter do
     end
   end
 
+  # NOTE: Jinja2 encodes '"' as '&#34;' instead of '&quot;'
+  describe "escape" do
+    evaluate_expression(%('<">&'|escape)).should eq "&lt;&quot;&gt;&amp;"
+  end
+
   describe "striptags" do
     it "strips tags" do
       html = %(  <p>just a small   \n <a href="#">example</a> link</p>\n<p>to a webpage</p> <!-- <p>and some commented stuff</p> -->)
@@ -235,6 +240,12 @@ describe Crinja::Filter do
     end
   end
 
+  describe "last" do
+    it "last" do
+      evaluate_expression(%(foo|last), { foo: Range.new(0, 10, true)}).should eq "9"
+    end
+  end
+
   describe "length" do
     it "array" do
       evaluate_expression(%([1, 2, 3, 4]|length)).should eq "4"
@@ -249,6 +260,20 @@ describe Crinja::Filter do
     end
     it "number" do
       evaluate_expression(%('1234'|length)).should eq "4"
+    end
+  end
+
+  describe "pprint" do
+    it "pprint" do
+      data = Range.new(0, 1000, true)
+      evaluate_expression(%(data|pprint), { data: data }).should eq data.to_a.pretty_inspect
+    end
+  end
+
+  it "random" do
+    seq = Range.new(0, 100, true)
+    10.times do
+      evaluate_expression(%(seq|random), { seq: seq }).to_i.should be_in seq
     end
   end
 
