@@ -15,8 +15,8 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
   setter block_context : NamedTuple(name: String, index: Int32)?
   getter macros
 
-  def initialize(bindings : Hash(String, Type))
-    initialize(nil, bindings)
+  def self.new(bindings : Hash(String, Type))
+    new(nil, bindings)
   end
 
   def initialize(parent : Context? = nil, bindings : Hash(String, Type)? = nil)

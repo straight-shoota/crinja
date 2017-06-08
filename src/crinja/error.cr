@@ -79,8 +79,8 @@ class Crinja::TemplateError < Exception
 
   include SourceAttached
 
-  def initialize(token, cause : Exception? = nil, template = nil)
-    initialize(token, nil, cause, template)
+  def self.new(token, cause : Exception? = nil, template = nil)
+    new(token, nil, cause, template)
   end
 
   def initialize(token, message : String? = nil, cause = nil, @template = nil)
@@ -154,8 +154,8 @@ end
 class Crinja::InvalidArgumentException < Crinja::RuntimeError
   getter callee : Crinja::Callable | Crinja::Operator | String
 
-  def initialize(callee : Symbol, msg = nil, cause = nil)
-    initialize callee.to_s, msg, cause
+  def self.new(callee : Symbol, msg = nil, cause = nil)
+    new callee.to_s, msg, cause
   end
 
   def initialize(@callee, msg = nil, cause = nil)

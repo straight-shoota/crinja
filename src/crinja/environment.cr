@@ -70,8 +70,8 @@ class Crinja::Environment
   end
 
   # Creates a new environment with the context and configuration from the *original* environment.
-  def initialize(original : Environment)
-    initialize(Context.new(original.context), original.config, original.loader)
+  def self.new(original : Environment)
+    new(Context.new(original.context), original.config, original.loader)
   end
 
   # Returns an `Crinja::Evaluator` which allows evaluation of expressions.

@@ -11,8 +11,8 @@ class Crinja::Util::ForLoop
   @length : Int32 = Int32::MIN
   @revindex0 : Int32 = Int32::MIN
 
-  def initialize(collection)
-    initialize(collection.each, collection.size)
+  def self.new(collection)
+    new(collection.each, collection.size)
   end
 
   def initialize(iterator : Iterator(Value), @length : Int32)
