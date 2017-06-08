@@ -2,7 +2,6 @@ module Crinja::Resolver
   # Resolves an objects item.
   # Analogous to `__getitem__` in Jinja2.
   def self.resolve_item(name, object)
-    object = object.raw if object.is_a?(Value)
     raise UndefinedError.new(name.to_s, "#{object.class} is undefined") if object.is_a?(Undefined)
 
     value = Undefined.new(name.to_s)
@@ -12,11 +11,8 @@ module Crinja::Resolver
     if object.responds_to?(:getitem)
       value = object.getitem(name)
     end
-    if value.is_a?(Undefined) && object.responds_to?(:getattr)
-      value = object.getattr(name)
-    end
     if value.is_a?(Undefined)
-      value = resolve_with_hash_accessor(name, object)
+      value = self.resolve_getattr(name, object)
     end
 
     if value.is_a?(Value)
@@ -24,23 +20,24 @@ module Crinja::Resolver
     end
 
     value.as(Type)
+  end
+
+  # ditto
+  def self.resolve_item(name, value : Value)
+    self.resolve_item(name, value.raw)
   end
 
   # Resolves an objects attribute.
   # Analogous to `getattr` in Jinja2.
   def self.resolve_attribute(name, object)
-    object = object.raw if object.is_a?(Value)
     raise UndefinedError.new(name.to_s, "#{object.class} is undefined") if object.is_a?(Undefined)
 
     value = Undefined.new(name.to_s)
-    if object.responds_to?(:getattr)
-      value = object.getattr(name)
-    end
+
+    value = self.resolve_getattr(name, object)
+
     if value.is_a?(Undefined) && object.responds_to?(:getitem)
       value = object.getitem(name)
-    end
-    if value.is_a?(Undefined)
-      value = resolve_with_hash_accessor(name, object)
     end
 
     if value.is_a?(Value)
@@ -50,17 +47,38 @@ module Crinja::Resolver
     value.as(Type)
   end
 
-  def self.resolve_method(name, object) : Callable?
-    object = object.raw if object.is_a?(Value)
-
-    if object.responds_to? :__call__
-      return object.__call__(name).as(Callable)
-    end
-
-    nil
+  # ditto
+  def self.resolve_attribute(name, value : Value)
+    self.resolve_attribute(name, value.raw)
   end
 
-  def self.resolve_with_hash_accessor(name, object)
+  def self.resolve_getattr(name, object)
+    if object.responds_to?(:getattr)
+      object.getattr(name)
+    else
+      self.resolve_with_hash_accessor(name, object)
+    end
+  end
+
+  # ditto
+  def self.resolve_getattr(name, value : Value)
+    self.resolve_getattr(name, value.raw)
+  end
+
+  def self.resolve_method(name, object) : Callable?
+    if object.responds_to? :__call__
+      object.__call__(name).as(Callable)
+    else
+      nil
+    end
+  end
+
+  # ditto
+  def self.resolve_method(name, value : Value)
+    self.resolve_method(name, value.raw)
+  end
+
+  def self.resolve_with_hash_accessor(name, object : Type)
     if object.responds_to?(:[]) && !object.is_a?(Array) && !object.is_a?(Tuple)
       begin
         return object[name.to_s]
@@ -69,6 +87,11 @@ module Crinja::Resolver
     end
 
     Undefined.new(name.to_s)
+  end
+
+  # ditto
+  def self.resolve_with_hash_accessor(name, value : Value)
+    self.resolve_with_hash_accessor(name, value.raw)
   end
 
   # Resolves a variable in the current context.

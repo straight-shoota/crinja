@@ -277,4 +277,13 @@ describe Crinja::Filter do
       evaluate_expression(%("<div>foo</div>"), autoescape: true).should eq "&lt;div&gt;foo&lt;/div&gt;"
     end
   end
+
+  describe "attr" do
+    it do
+      evaluate_expression(%(data | attr("foo")), { data: { "foo" => "bar" } }).should eq "bar"
+    end
+    it do
+      evaluate_expression(%(arr | attr(0)), { arr: ["bar"] }).should eq ""
+    end
+  end
 end

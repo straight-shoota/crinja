@@ -83,4 +83,8 @@ module Crinja::Filter
   Crinja.filter(:first) { target.first.raw }
   Crinja.filter(:last) { target.last.raw }
   Crinja.filter(:length) { target.size }
+
+  Crinja.filter({name: nil}, :attr) do
+    Resolver.resolve_getattr(arguments[:name].raw, target)
+  end
 end
