@@ -399,6 +399,17 @@ describe Crinja::Filter do
     end
   end
 
+  describe "round" do
+    it { evaluate_expression(%(2.7|round)).should eq "3.0" }
+    it { evaluate_expression(%(2.1|round)).should eq "2.0" }
+    it { evaluate_expression(%(2.1234|round(3, 'floor'))).should eq "2.123" }
+    it { evaluate_expression(%(2.1|round(0, 'ceil'))).should eq "3.0" }
+
+    it { evaluate_expression(%(21.3|round(-1))).should eq "20.0" }
+    it { evaluate_expression(%(21.3|round(-1, 'ceil'))).should eq "30.0" }
+    it { evaluate_expression(%(21.3|round(-1, 'floor'))).should eq "20.0" }
+  end
+
   describe "safe" do
     it "safe" do
       evaluate_expression(%("<div>foo</div>"|safe), autoescape: true).should eq "<div>foo</div>"

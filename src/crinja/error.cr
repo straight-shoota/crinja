@@ -151,6 +151,9 @@ class Crinja::UndefinedError < Crinja::RuntimeError
   end
 end
 
+class Crinja::CallableArgumentError < Crinja::RuntimeError
+end
+
 class Crinja::InvalidArgumentException < Crinja::RuntimeError
   getter callee : Crinja::Callable | Crinja::Operator | String
 

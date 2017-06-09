@@ -72,4 +72,24 @@ module Crinja::Filter
       end
     end
   end
+
+  Crinja.filter({precision: 0, method: "common", base: 10}, :round) do
+    precision = arguments[:precision].to_i
+    value = target.as_number
+    base = arguments[:base].as_number
+    base = base.to_f if precision < 0
+
+    case arguments[:method].as_s
+    when "common"
+      value.round(precision, base)
+    when "ceil"
+      multi = base ** precision
+      (value * multi).ceil / multi
+    when "floor"
+      multi = base ** precision
+      (value * multi).floor / multi
+    else
+      raise CallableArgumentError.new("argument `method` for filter `round` must be 'common', 'ceil' or 'floor'")
+    end
+  end
 end
