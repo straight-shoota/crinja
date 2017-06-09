@@ -358,6 +358,32 @@ describe Crinja::Filter do
     evaluate_expression(%("foo bar baz"|wordcount)).should eq "3"
   end
 
+
+  it "chaining" do
+    evaluate_expression(%(['<foo>', '<bar>']|first|upper|escape)).should eq "&lt;FOO&gt;"
+  end
+
+  describe "sum" do
+    it "sums" do
+      evaluate_expression(%([1, 2, 3, 4, 5, 6]|sum)).should eq "21"
+    end
+
+    it "sums attribute" do
+      values = [{"value" => 23}, {"value" => 1}, {"value" => 18}]
+      evaluate_expression(%(values|sum('value')), { values: values}).should eq "42"
+    end
+
+    it "sums attributes nested" do
+      values = [{"real": {"value" => 23}}, {"real": {"value" => 1}}, {"real": {"value" => 18}}]
+      evaluate_expression(%(values|sum('real.value')), { values: values}).should eq "42"
+    end
+
+    it "sums attributes tuple" do
+      values = {"foo" => 23, "bar" => 1, "baz" => 18}
+      evaluate_expression(%(values|sum('1')), { values: values}).should eq "42"
+    end
+  end
+
   describe "abs" do
     it "works with integer" do
       evaluate_expression(%(1 | abs)).should eq("1")

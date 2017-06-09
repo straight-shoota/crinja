@@ -1,16 +1,11 @@
 module Crinja::Resolver
-  # Resolves an objects item.
+  # Resolves an objects item. Tries `resolve_getattr` it `getitem` returns undefined.
   # Analogous to `__getitem__` in Jinja2.
   def self.resolve_item(name, object)
     raise UndefinedError.new(name.to_s, "#{object.class} is undefined") if object.is_a?(Undefined)
 
-    value = Undefined.new(name.to_s)
-    if object.is_a?(Indexable) && name.is_a?(Int)
-      value = object[name]
-    end
-    if object.responds_to?(:__getitem__)
-      value = object.__getitem__(name)
-    end
+    value = resolve_getitem(name, object)
+
     if value.is_a?(Undefined)
       value = self.resolve_getattr(name, object)
     end
@@ -23,17 +18,33 @@ module Crinja::Resolver
     self.resolve_item(name, value.raw)
   end
 
-  # Resolves an objects attribute.
+  # Resolve an objects item.
+  def self.resolve_getitem(name, object)
+    value = Undefined.new(name.to_s)
+
+    if object.responds_to?(:__getitem__)
+      value = object.__getitem__(name)
+    end
+    if object.is_a?(Indexable) && name.responds_to?(:to_i)
+      value = object[name.to_i]
+    end
+    value
+  end
+
+  # :ditto:
+  def self.resolve_getitem(name, value : Value)
+    self.resolve_getitem(name, value.raw)
+  end
+
+  # Resolves an objects attribute. Tries `resolve_getitem` it `getitem` returns undefined.
   # Analogous to `getattr` in Jinja2.
   def self.resolve_attribute(name, object)
     raise UndefinedError.new(name.to_s, "#{object.class} is undefined") if object.is_a?(Undefined)
 
-    value = Undefined.new(name.to_s)
-
     value = self.resolve_getattr(name, object)
 
-    if value.is_a?(Undefined) && object.responds_to?(:getitem)
-      value = object.getitem(name)
+    if value.is_a?(Undefined)
+      value = self.resolve_getitem(name, object)
     end
 
     cast_type value, name
@@ -98,6 +109,23 @@ module Crinja::Resolver
     self.resolve_with_hash_accessor(name, value.raw)
   end
 
+  # Resolves a dig.
+  def self.resolve_dig(name, object : Type)
+    identifier, _, rest = name.partition('.')
+
+    resolved = resolve_attribute(identifier, object)
+    if rest != ""
+      resolve_dig(rest, resolved)
+    else
+      resolved
+    end
+  end
+
+  # :ditto:
+  def self.resolve_dig(name, value : Value)
+    self.resolve_dig(name, value.raw)
+  end
+
   # Resolves a variable in the current context.
   def resolve(name : String)
     if functions.has_key?(name)
@@ -139,14 +167,14 @@ module Crinja::Resolver
     callable = resolve_callable(identifier)
 
     if callable.is_a? Undefined
-      raise TypeError.new(Value.new(callable), "#{identifier} is undefined")
+      raise TypeError.new(Value.new(callable), "#{identifier.inspect} is undefined")
     end
 
     if callable.is_a? Callable
       # FIXME: Explicit cast should not be necessary.
       return callable.as(Callable)
     else
-      raise TypeError.new(Value.new(callable), "`#{identifier}` is not callable")
+      raise TypeError.new(Value.new(callable), "`#{identifier.inspect}` is not callable")
     end
   end
 

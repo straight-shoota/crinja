@@ -4,7 +4,9 @@ require "./lib/callable"
 
 module Crinja
   # :nodoc:
-  alias TypeValue = String | Float64 | Int64 | Int32 | Bool | Time | PyObject | Undefined | Crinja::Callable | SafeString | Nil
+  alias TypeNumber = Float64 | Int64 | Int32
+  # :nodoc:
+  alias TypeValue = TypeNumber | String | Bool | Time | PyObject | Undefined | Crinja::Callable | SafeString | Nil
   # :nodoc:
   alias TypeContainer = Hash(Type, Type) | Array(Type) | Tuple(Type, Type) | Iterator(Type)
 
@@ -151,12 +153,16 @@ class Crinja::Value
 
   def each
     case object = @raw
+    when Hash
+      HashValueIterator.new(object)
     when Iterable(Type)
       ValueIterator.new(object.each.as(Iterator(Type)))
-    when Crinja::Undefined
-      ValueIterator.new
     when String
       ValueIterator.new(object.chars.map(&.to_s.as(Type)).each)
+    when Crinja::StrictUndefined
+      raise TypeError.new(self, "can't iterate over undefined")
+    when Crinja::Undefined
+      ValueIterator.new(([] of Type).each)
     else
       raise TypeError.new(self, "#{object.class} is not iterable")
     end
@@ -192,14 +198,59 @@ class Crinja::Value
     end
   end
 
+  private class HashValueIterator
+    include Iterator(Value)
+    include IteratorWrapper
+
+    # FIXME: Hash::EntryIterator results in a invalid memory access, therefore this workaround with
+    # key iterator.
+    @iterator : Iterator(Type)
+
+    def initialize(@hash : Hash(Type, Type))
+      @iterator = hash.keys.each
+    end
+
+    def next
+      key = wrapped_next
+
+      case key
+      when Type
+        value = @hash[key].as(Type)
+        # FIXME: Turn into a tuple.
+        tuple = [key.as(Type), value.as(Type)].as(Type)
+        Value.new(tuple)
+      when stop
+        stop
+      else
+        raise "never reach"
+      end
+    end
+  end
+
+
   # Checks that the underlying value is `Nil`, and returns `nil`. Raises otherwise.
   def as_nil : Nil
     @raw.as(Nil)
   end
 
-  # Checks that the underlying value is `String`, and returns its value. Raises otherwise.
-  def as_s : String
-    @raw.as(String)
+  # Checks that the underlying value is `String` or `SafeString`, and returns its value. Raises otherwise.
+  def as_s
+    @raw.as(String | SafeString)
+  end
+
+  # Checks that the underlying value is `String`, `SafeString` or `Nil`, and returns its value. Raises otherwise.
+  def as_s?
+    @raw.as(String | SafeString | Nil)
+  end
+
+  # Checks that the underlying value is `String`, and returns its value. `SafeString` is converted to
+  # `String`. Raises otherwise.
+  def as_s!
+    if @raw.is_a?(SafeString)
+      @raw.to_s
+    else
+      @raw.as(String)
+    end
   end
 
   # Checks that the underlying value is `Array`, and returns its value. Raises otherwise.
@@ -212,9 +263,9 @@ class Crinja::Value
     @raw.as(Hash)
   end
 
-  # Checks that the underlying value is a `Int32 | Int64 | Float64`, and returns its value. Raises otherwise.
-  def as_number : Int32 | Int64 | Float64
-    @raw.as(Int32 | Int64 | Float64)
+  # Checks that the underlying value is a `TypeNumber`, and returns its value. Raises otherwise.
+  def as_number : TypeNumber
+    @raw.as(TypeNumber)
   end
 
   # Checks that the underlaying value is a `Time` object and retuns its value. Raises otherwise.
@@ -309,9 +360,9 @@ class Crinja::Value
     @raw.is_a?(Crinja::Callable)
   end
 
-  # Returns `true` if this value is a `Int32 | Int64 | Float64`
+  # Returns `true` if this value is a `TypeNumber`
   def number?
-    @raw.is_a?(Int32 | Int64 | Float64)
+    @raw.is_a?(TypeNumber)
   end
 
   # Returns `true` if the value is a sequence.

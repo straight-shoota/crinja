@@ -16,6 +16,8 @@ module Crinja::Bindings
     case value
     when Hash
       self.cast_hash(value)
+    when NamedTuple
+      self.cast_named_tuple(value)
     when Array, Tuple
       self.cast_list(value)
     when Range, Iterator
@@ -35,6 +37,15 @@ module Crinja::Bindings
     type_hash = Hash(Crinja::Type, Crinja::Type).new
     value.each do |k, v|
       type_hash[cast_value(k)] = cast_value(v)
+    end
+    type_hash
+  end
+
+  # Casts a `NamedTuple` to `Hash(Crinja::Type, Crinja::Type)`, converting symbol keys to strings.
+  def self.cast_named_tuple(value) : Crinja::Type
+    type_hash = Hash(Crinja::Type, Crinja::Type).new
+    value.each do |k, v|
+      type_hash[k.to_s] = cast_value(v)
     end
     type_hash
   end

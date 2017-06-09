@@ -84,4 +84,23 @@ module Crinja::Filter
       raise TypeError.new(target, "#{target.raw.class} cannot be reversed")
     end
   end
+
+  Crinja.filter({attribute: nil, start: 0}, :sum) do
+    iterator = target.each
+    attribute = arguments[:attribute].as_s?
+
+    start = arguments[:start].as_number
+    iterator.reduce(start) do |memo, item|
+      unless attribute.nil?
+        item = Resolver.resolve_dig(attribute, item)
+      end
+
+      item = item.raw if item.is_a?(Value)
+      if item.is_a?(Crinja::TypeNumber)
+        memo + item
+      else
+        raise TypeError.new("cannot add #{item.class} to sum, value: #{item.inspect}")
+      end
+    end
+  end
 end
