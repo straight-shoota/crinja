@@ -50,8 +50,8 @@ module Crinja::Filter
 
   Crinja.filter({length: 255, killwords: false, end: "...", leeway: nil}, :truncate) do
     length = arguments[:length].to_i
-    fin = arguments[:end].to_s
-    end_size = fin.size
+    append = arguments[:end].to_s
+    end_size = append.size
     raise "expected length >= #{end_size}, got #{length}" if length < end_size
     leeway = arguments.fetch(:leeway) { env.policies.fetch("truncate.leeway", 5) }.to_i
     raise "expected leeway >= 0, got #{leeway}" if leeway < 0
@@ -63,7 +63,7 @@ module Crinja::Filter
     else
       trimmed = s[0, length - end_size]
       trimmed = trimmed.rpartition(' ').first unless killwords
-      trimmed + fin
+      trimmed + append
     end
   end
 
