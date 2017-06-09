@@ -354,6 +354,10 @@ describe Crinja::Filter do
     end
   end
 
+  it "wordcount" do
+    evaluate_expression(%("foo bar baz"|wordcount)).should eq "3"
+  end
+
   describe "abs" do
     it "works with integer" do
       evaluate_expression(%(1 | abs)).should eq("1")

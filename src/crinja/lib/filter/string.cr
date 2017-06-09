@@ -44,7 +44,9 @@ module Crinja::Filter
 
   Crinja.filter(:string) { target.to_s }
 
-  Crinja.filter(:title) { target.to_s.gsub(/[^-\s\(\{\[\<]+/, &.capitalize) }
+  Crinja.filter(:title) do
+    target.to_s.gsub(/[^#{Crinja::Util::REGEX_WORD.source}]+/, &.capitalize)
+  end
 
   Crinja.filter({length: 255, killwords: false, end: "...", leeway: nil}, :truncate) do
     length = arguments[:length].to_i
@@ -64,4 +66,12 @@ module Crinja::Filter
       trimmed + fin
     end
   end
+
+  Crinja.filter(:wordcount) do
+    target.to_s.split(/[#{Crinja::Util::REGEX_WORD.source}]+/).size
+  end
+end
+
+module Crinja::Util
+  REGEX_WORD = /\s-\(\{\[\</
 end
