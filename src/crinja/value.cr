@@ -227,7 +227,6 @@ class Crinja::Value
     end
   end
 
-
   # Checks that the underlying value is `Nil`, and returns `nil`. Raises otherwise.
   def as_nil : Nil
     @raw.as(Nil)

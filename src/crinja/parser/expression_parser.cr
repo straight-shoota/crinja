@@ -104,10 +104,12 @@ class Crinja::Parser::ExpressionParser
         next_token
 
         not_location = nil
-        if_token Kind::OPERATOR, "not" do
-          not_location = current_token.location
+        if is_test
+          if_token Kind::OPERATOR, "not" do
+            not_location = current_token.location
 
-          next_token
+            next_token
+          end
         end
 
         identifier = if_token(Kind::NONE) do

@@ -4,37 +4,42 @@ class Crinja::Tag::Filter < Crinja::Tag
   def interpret_output(renderer : Renderer, tag_node : TagNode)
     env = renderer.env
     parser = Parser.new(tag_node.arguments)
-    name, expression = parser.parse_filter_tag
+    placeholder, expression = parser.parse_filter_tag
 
-    filter = env.filters[name]
+    placeholder.value = renderer.render(tag_node.block).value
 
-    target = Value.new renderer.render(tag_node.block).value
-
-    argumentlist = env.evaluate(expression.argumentlist).as(Array(Type)).map { |a| Value.new a }
-    keyword_arguments = expression.keyword_arguments.each_with_object(Hash(String, Value).new) do |(keyword, value), args|
-      args[keyword.name] = env.evaluator.value(value)
-    end
-
-    result = filter.call Arguments.new(env, argumentlist, keyword_arguments, target: target)
+    result = renderer.env.evaluate(expression)
 
     Renderer::RenderedOutput.new(SafeString.new(result.to_s).to_s)
   end
 
   private class Parser < ArgumentsParser
     def parse_filter_tag
-      name = parse_identifier
+      placeholder = left = AST::ValuePlaceholder.new(nil).at(current_token.location)
 
-      if current_token.kind == Kind::LEFT_PAREN
+      while true
+        identifier = parse_identifier
+
+        if current_token.kind == Kind::LEFT_PAREN
+          next_token
+
+          call = parse_call_expression(identifier)
+        else
+          call = parse_call_expression(identifier, with_parenthesis: false)
+        end
+
+        left = AST::FilterExpression.new(left, identifier, call.argumentlist, call.keyword_arguments).at(left, call)
+
+        if current_token.kind != Kind::PIPE
+          break
+        end
+
         next_token
-
-        call = parse_call_expression(name)
-      else
-        call = parse_call_expression(name, with_parenthesis: false)
       end
 
       close
 
-      {name.name, call}
+      return placeholder, left
     end
   end
 

@@ -141,6 +141,9 @@ module Crinja::AST
   expression_node DictLiteral,
     children : Hash(ExpressionNode, ExpressionNode)
 
+  expression_node ValuePlaceholder,
+    value : Type
+
   template_node NodeList,
     children : Array(TemplateNode),
     block : Bool

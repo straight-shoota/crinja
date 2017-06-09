@@ -172,4 +172,8 @@ class Crinja::Evaluator
       args[evaluate keyword] = self.evaluate(value)
     end
   end
+
+  visit ValuePlaceholder do
+    expression.value
+  end
 end

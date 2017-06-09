@@ -358,7 +358,6 @@ describe Crinja::Filter do
     evaluate_expression(%("foo bar baz"|wordcount)).should eq "3"
   end
 
-
   it "chaining" do
     evaluate_expression(%(['<foo>', '<bar>']|first|upper|escape)).should eq "&lt;FOO&gt;"
   end
