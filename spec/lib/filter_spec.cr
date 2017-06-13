@@ -456,6 +456,25 @@ describe Crinja::Filter do
     evaluate_expression(%(o|urlencode), {o: [{"\u203d": 1}]}, autoescape: true).should eq "%E2%80%BD=1"
   end
 
+  describe "map" do
+    it "simple_map" do
+      evaluate_expression(%(["1", "2", "3"]|map("int")|sum)).should eq "6"
+    end
+
+    it "attribute_map" do
+      users = [
+          User.new("john"),
+          User.new("jane"),
+          User.new("mike"),
+      ]
+      evaluate_expression(%(users|map(attribute="username")|join("|")), {users: users}).should eq "john|jane|mike"
+    end
+
+    it "empty_map" do
+      evaluate_expression(%(none|map("upper")|list)).should eq "[]"
+    end
+  end
+
   describe "attr" do
     it do
       evaluate_expression(%(data | attr("foo")), {data: {"foo" => "bar"}}).should eq "bar"

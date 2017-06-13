@@ -394,19 +394,24 @@ class Crinja::Value
     @raw.is_a?(Iterable)
   end
 
-  # Return `true` if the value is a string.
+  # Returns `true` if the value is a string.
   def string?
     @raw.is_a?(String | SafeString)
   end
 
-  # Return true if the object is a mapping (Hash or PyObject).
+  # Returns `true` if the object is a mapping (Hash or PyObject).
   def mapping?
     @raw.is_a?(Hash) || @raw.responds_to?(:getattr)
   end
 
-  # Return true if the value is a time object.
+  # Returns `true` if the value is a time object.
   def time?
     @raw.is_a(Time)
+  end
+
+  # Returns `true` if the value is nil.
+  def none?
+    @raw.nil?
   end
 
   # Returns true if
