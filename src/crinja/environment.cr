@@ -83,24 +83,24 @@ class Crinja::Environment
     @evaluator ||= Evaluator.new(self)
   end
 
-  # Evaluates a Crinja expression with `#evaluator`.
-  def evaluate(expression : AST::ExpressionNode)
+  # Evaluates a Crinja expression with `#evaluator` and returns the resulting raw value.
+  def evaluate(expression : AST::ExpressionNode) : Type
     evaluator.evaluate(expression)
   end
 
-  # ditto
-  def evaluate(expression)
+  # Parses and evaluates a Crinja expression with `#evaluator`. Returns a string which will be
+  # auto-escaped if `config.autoescape?` is `true`.
+  def evaluate(expression) : String
     lexer = Parser::ExpressionLexer.new(config, expression)
     parser = Parser::ExpressionParser.new(lexer)
 
     expression = parser.parse
+
+    @context.autoescape = @config.autoescape?
+
     result = evaluate expression
 
-    if config.autoescape?
-      result = SafeString.escape(result)
-    end
-
-    result
+    Value.stringify(result, @context.autoescape?)
   end
 
   # Loads a template from *string.* This parses the given string and returns a `Template` object.
@@ -160,8 +160,8 @@ class Crinja::Environment
     end
   end
 
-  def undefined
-    Value.undefined
+  def undefined(name = nil)
+    Undefined.new(name)
   end
 
   # :nodoc:

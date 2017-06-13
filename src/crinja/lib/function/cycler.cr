@@ -13,7 +13,7 @@ class Crinja::Cycler
   end
 
   def current
-    return nil if @index < 0 # .current called directly after initialization or rewind
+    return "" if @index < 0 # .current called directly after initialization or rewind
     @values[@index].raw
   end
 
@@ -25,7 +25,7 @@ class Crinja::Cycler
 
   def rewind
     @index = -1
-    nil
+    ""
   end
 
   def reset

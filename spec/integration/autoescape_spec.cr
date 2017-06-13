@@ -5,7 +5,7 @@ describe "autoescape" do
     render_file("hello_world.html", {
       "variable"  => "Value with <unsafe> data",
       "item_list" => [1, 2, 3, 4, 5, 6],
-    }).should eq(rendered_file("hello_world.html"))
+    }, autoescape: true).should eq(rendered_file("hello_world.html"))
   end
 
   it "renders template *.xml" do

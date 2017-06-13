@@ -13,7 +13,7 @@ class Crinja::Tag::Macro < Crinja::Tag
       instance.defaults[key] = if value.is_a?(AST::ExpressionNode)
                                  env.evaluate(value)
                                else
-                                 value
+                                 env.undefined(key)
                                end
     end
 

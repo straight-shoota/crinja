@@ -112,11 +112,7 @@ class Crinja::Renderer
 
     result = env.evaluate(expr)
 
-    if env.context.autoescape?
-      result = SafeString.escape(result)
-    end
-
-    RenderedOutput.new result.to_s
+    RenderedOutput.new Value.stringify result, env.context.autoescape?
   end
 
   # global function `super` needs access to this renderer and thus needs to be implemented

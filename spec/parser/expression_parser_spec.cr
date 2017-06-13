@@ -23,8 +23,4 @@ describe Crinja::Parser::ExpressionParser do
     expression = parse %(foo.bar)
     expression.should be_a(Crinja::AST::MemberExpression)
   end
-
-  it "parses double array" do
-    evaluate_expression(%([[1,2,3]])).should eq "[[1, 2, 3]]"
-  end
 end

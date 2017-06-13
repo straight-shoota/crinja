@@ -93,6 +93,8 @@ struct Crinja::SafeString
     new(value.to_s, true)
   end
 
+  NIL = plain(nil)
+
   SUBSTITUTIONS = {
     '>'  => "&gt;",
     '<'  => "&lt;",
@@ -101,30 +103,50 @@ struct Crinja::SafeString
     '\'' => "&#x27;",
   }
 
+  # Escapes value and wraps it in a `SafeString`.
   def self.escape(value : Value) : SafeString
     escape(value.raw)
   end
 
-  def self.escape(value : Type) : SafeString
-    case value
-    when nil
-      SafeString.plain nil
-    when SafeString
-      value
-    when Number
-      SafeString.plain value.to_s
-    when Array
-      container = value.map do |v|
-        escape(v).as(SafeString)
-      end
-      SafeString.plain container.to_s
-    when Hash
-      hash = value.each_with_object(Hash(SafeString, SafeString).new) do |(k, v), memo|
-        memo[escape(k)] = escape(v)
-      end
-      SafeString.plain hash.to_s
-    else
-      new value.to_s.gsub(SUBSTITUTIONS)
+  # ditto
+  def self.escape(value : Nil)
+    NIL
+  end
+
+  # ditto
+  def self.escape(value : SafeString)
+    value
+  end
+
+  # ditto
+  def self.escape(value : Number)
+    plain value.to_s
+  end
+
+  # ditto
+  def self.escape(value : Array)
+    container = value.map do |v|
+      escape(v).as(SafeString)
     end
+    plain container.to_s
+  end
+
+  # ditto
+  def self.escape(value : Hash)
+    hash = value.each_with_object(Hash(SafeString, SafeString).new) do |(k, v), memo|
+      memo[escape(k)] = escape(v)
+    end
+    plain hash.to_s
+  end
+
+  # ditto
+  def self.escape(string)
+    new self.escaped(string)
+  end
+
+  # Returns an escaped string.
+  # TODO: Replace with HTML.escape when crystal-lang/crystal#4555 gets merged
+  def self.escaped(string)
+    string.to_s.gsub(SUBSTITUTIONS)
   end
 end

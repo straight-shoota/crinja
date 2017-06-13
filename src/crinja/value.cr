@@ -301,6 +301,11 @@ class Crinja::Value
     end
   end
 
+  # Transform the value into a string representation.
+  def to_string
+    self.class.stringify(@raw)
+  end
+
   # :nodoc:
   def pretty_print(pp)
     @raw.pretty_print(pp)
@@ -360,12 +365,22 @@ class Crinja::Value
 
   # Returns `true` unless this value is `false`, `0`, `nil` or `#undefined?`
   def truthy?
-    @raw != false && @raw != 0 && !@raw.nil? && !undefined?
+    self.class.truthy? @raw
+  end
+
+  # :ditto:
+  def self.truthy?(raw)
+    raw != false && raw != 0 && !raw.nil? && !self.undefined?(raw)
   end
 
   # Returns `true` if this value is a `Undefined`
   def undefined?
-    @raw.is_a?(Undefined)
+    self.class.undefined? @raw
+  end
+
+  # :ditto:
+  def self.undefined?(raw)
+    raw.is_a?(Undefined)
   end
 
   # Returns `true` if this value is a `Callable`
@@ -444,5 +459,35 @@ class Crinja::Value
     else
       FALSE
     end
+  end
+
+  # Convert a `Type` to string with optional *escape*.
+  def self.stringify(raw, escape = false)
+    string = raw.to_s
+
+    if escape
+      SafeString.escaped(string)
+    else
+      string
+    end
+  end
+
+  # Convert a `Type` to string with optional *escape*.
+  def self.stringify(io : IO, raw, escape = false)
+    io << stringify(raw, escape)
+  end
+
+  # Convert a `nil` to `"none"`.
+  #
+  # *escape* is ignored.
+  def self.stringify(raw : Nil, escape = false)
+    "none"
+  end
+
+  # Convert a `SafeString` to string.
+  #
+  # *escape* is ignored.
+  def self.stringify(safe : SafeString, escape = false)
+    safe.to_s
   end
 end

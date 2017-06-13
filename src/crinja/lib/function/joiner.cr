@@ -6,7 +6,7 @@ Crinja.function({sep: ", "}, :joiner) do
       sep.as(Type)
     else
       called = true
-      nil.as(Type)
+      "".as(Type)
     end).as(Type)
   }.as(Type)
 end

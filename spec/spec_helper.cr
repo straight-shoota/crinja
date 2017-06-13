@@ -39,7 +39,7 @@ def evaluate_expression(string, bindings = nil, autoescape = nil)
     env.context.merge! Crinja::Bindings.cast(bindings)
   end
 
-  env.evaluate(string).to_s
+  env.evaluate(string)
 end
 
 module Spec

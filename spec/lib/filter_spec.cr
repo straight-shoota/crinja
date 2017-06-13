@@ -136,7 +136,7 @@ describe Crinja::Filter do
   end
 
   # NOTE: Jinja2 encodes '"' as '&#34;' instead of '&quot;'
-  describe "escape" do
+  it "escape" do
     evaluate_expression(%('<">&'|escape)).should eq "&lt;&quot;&gt;&amp;"
     evaluate_expression(%(x|escape), {x: SafeString.new("<div />")}).should eq "<div />"
   end
@@ -236,8 +236,8 @@ describe Crinja::Filter do
       evaluate_expression(%( [1, 2, 3]|join("|") )).should eq "1|2|3"
     end
 
-    it "joins with autoescae" do
-      evaluate_expression(%( ["<foo>", "<span>foo</span>"|safe]|join )).should eq "&lt;foo&gt;<span>foo</span>"
+    it "joins with autoescape" do
+      evaluate_expression(%( ["<foo>", "<span>foo</span>"|safe]|join ), autoescape: true).should eq "&lt;foo&gt;<span>foo</span>"
     end
 
     it "join_attribute" do
