@@ -103,4 +103,86 @@ module Crinja::Filter
       end
     end
   end
+
+  Crinja.filter(:random) do
+    target.as_indexable.sample
+  end
+
+  Crinja.filter(:map) do
+    if target.none?
+      ""
+    elsif arguments.is_set?("attribute")
+      attribute = arguments[:attribute].raw
+      target.map do |item|
+        Resolver.resolve_getattr(attribute, item).as(Type)
+      end.as(Type)
+    else
+      varargs = arguments.varargs
+      filter = env.filters[varargs.shift.as_s!]
+      args = Arguments.new(env, varargs, arguments.kwargs)
+
+      target.map do |item|
+        args.target = item
+        filter.call(args).as(Type)
+      end
+    end
+  end
+
+  macro select_reject_attr(func)
+    varargs = arguments.varargs
+    iterable = target.as_iterable
+
+    attribute = varargs.shift.raw
+
+    if varargs.size == 0
+      # select based on attribute value, no filter
+      iterable.{{ func.id }} do |item|
+        Value.truthy? Resolver.resolve_getattr(attribute, item)
+      end
+    else
+      test = env.tests[varargs.shift.as_s!]
+      args = Arguments.new(env, varargs, arguments.kwargs)
+
+      iterable.{{ func.id }} do |item|
+        args.target = Value.new Resolver.resolve_getattr(attribute, item)
+        Value.truthy? test.call(args)
+      end
+    end
+  end
+
+  macro select_reject(func)
+    varargs = arguments.varargs
+    iterable = target.as_iterable
+
+    if varargs.size == 0
+      # select based on actual value, no filter
+      iterable.{{ func.id }} do |item|
+        Value.truthy? item
+      end
+    else
+      test = env.tests[varargs.shift.as_s!]
+      args = Arguments.new(env, varargs, arguments.kwargs)
+
+      iterable.{{ func.id }} do |item|
+        args.target = Value.new item
+        Value.truthy? test.call(args)
+      end
+    end
+  end
+
+  Crinja.filter(:select) do
+    Crinja::Filter.select_reject(:select)
+  end
+
+  Crinja.filter(:reject) do
+    Crinja::Filter.select_reject(:reject)
+  end
+
+  Crinja.filter(:selectattr) do
+    Crinja::Filter.select_reject_attr(:select)
+  end
+
+  Crinja.filter(:rejectattr) do
+    Crinja::Filter.select_reject_attr(:reject)
+  end
 end

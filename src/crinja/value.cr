@@ -277,6 +277,11 @@ class Crinja::Value
     @raw.as(Time)
   end
 
+  # Checks that the underlaying value is a `Iterable` and retuns its value. Raises otherwise.
+  def as_iterable
+    @raw.as(Iterable)
+  end
+
   # Checks that the underlaying value is a `Indexable` and retuns its value. Raises otherwise.
   def as_indexable
     @raw.as(Indexable)

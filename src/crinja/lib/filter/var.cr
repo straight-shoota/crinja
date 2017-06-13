@@ -23,28 +23,4 @@ module Crinja::Filter
       target.pretty_inspect
     end
   end
-
-  Crinja.filter(:random) do
-    target.as_indexable.sample
-  end
-
-  Crinja.filter(:map) do
-    if target.none?
-      ""
-    elsif arguments.is_set?("attribute")
-      attribute = arguments[:attribute].raw
-      target.map do |item|
-        Resolver.resolve_getattr(attribute, item).as(Type)
-      end.as(Type)
-    else
-      varargs = arguments.varargs
-      filter = env.filters[varargs.shift.as_s!]
-      args = Arguments.new(env, varargs, arguments.kwargs, target: target)
-
-      target.map do |item|
-        args.target = item
-        filter.call(args).as(Type)
-      end
-    end
-  end
 end

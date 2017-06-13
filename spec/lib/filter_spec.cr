@@ -3,13 +3,27 @@ require "../spec_helper"
 private class User
   include Crinja::PyObject
 
-  getter username
+  getter username, is_active
 
-  def initialize(@username : String)
+  def initialize(@username : String, @is_active : Bool = true)
   end
 
   def to_s(io)
     io << username
+  end
+
+  getattr
+end
+private class IdUser
+  include Crinja::PyObject
+
+  getter id, name
+
+  def initialize(@id : Int32, @name : String)
+  end
+
+  def to_s(io)
+    io << name
   end
 
   getattr
@@ -472,6 +486,63 @@ describe Crinja::Filter do
 
     it "empty_map" do
       evaluate_expression(%(none|map("upper")|list)).should eq "[]"
+    end
+  end
+
+  describe "select/reject" do
+
+    it "simple_select" do
+      evaluate_expression(%([1, 2, 3, 4, 5]|select("odd")|join("|"))).should eq "1|3|5"
+    end
+
+    it "bool_select" do
+      evaluate_expression(%([none, false, 0, 1, 2, 3, 4, 5]|select|join("|"))).should eq "1|2|3|4|5"
+    end
+
+    it "simple_reject" do
+      evaluate_expression(%([1, 2, 3, 4, 5]|reject("odd")|join("|"))).should eq "2|4"
+    end
+
+    it "bool_reject" do
+      evaluate_expression(%([none, false, 0, 1, 2, 3, 4, 5]|reject|join("|"))).should eq "none|false|0"
+    end
+
+    it "simple_select_attr" do
+      users = [
+          User.new("john", true),
+          User.new("jane", true),
+          User.new("mike", false),
+      ]
+      evaluate_expression(%(users|selectattr("is_active")|map(attribute="username")|join("|")), {users: users}).should eq "john|jane"
+    end
+
+    it "simple_reject_attr" do
+      users = [
+          User.new("john", true),
+          User.new("jane", true),
+          User.new("mike", false),
+      ]
+      evaluate_expression(%(users|rejectattr("is_active")|map(attribute="username")|join("|")), {users: users}).should eq "mike"
+    end
+
+    it "func_select_attr" do
+        users = [
+            IdUser.new(1, "john"),
+            IdUser.new(2, "jane"),
+            IdUser.new(3, "mike"),
+        ]
+        evaluate_expression(%(users|selectattr("id", "odd")|map(attribute="name")|join("|")),
+            {users: users}).should eq "john|mike"
+    end
+
+    it "func_reject_attr" do
+        users = [
+            IdUser.new(1, "john"),
+            IdUser.new(2, "jane"),
+            IdUser.new(3, "mike"),
+        ]
+        evaluate_expression(%(users|rejectattr("id", "odd")|map(attribute="name")|join("|")),
+            {users: users}).should eq "jane"
     end
   end
 
