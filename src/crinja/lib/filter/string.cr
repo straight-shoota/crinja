@@ -70,6 +70,24 @@ module Crinja::Filter
   Crinja.filter(:wordcount) do
     target.to_s.split(/[#{Crinja::Util::REGEX_WORD.source}]+/).size
   end
+
+  Crinja.filter({old: nil, new: nil, count: nil}, :replace) do
+    search = arguments[:old].to_s
+    replace = arguments[:new]
+    count = arguments[:count]
+
+    if count.raw.nil?
+      target.as_s.gsub(search, replace)
+    else
+      string = target.to_s
+      count.to_i.times do
+        running = false
+        string = string.sub(search) { running = true; replace }
+        break unless running
+      end
+      string
+    end
+  end
 end
 
 module Crinja::Util

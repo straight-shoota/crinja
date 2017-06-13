@@ -38,7 +38,7 @@ module Crinja
       #{% end %}
       #{% end %}
       env = arguments.env
-      ({{ yield }}).as(Crinja::Type)
+      {{ yield }}.as(Crinja::Type)
     end
 
     {% if defaults.is_a?(StringLiteral) %}

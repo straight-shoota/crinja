@@ -1,3 +1,5 @@
+require "uri"
+
 module Crinja::Filter
   Crinja.filter({trim_url_limit: nil, nofollow: false, target: nil, rel: nil}, :urlize) do
     rel = arguments[:rel].to_s.split(' ').to_set
@@ -11,6 +13,20 @@ module Crinja::Filter
     rv = Crinja::Util.urlize(target.to_s, trim_url_limit, rel: rel, target: target_attr)
 
     rv
+  end
+
+  Crinja.filter(:urlencode) do
+    if target.iterable?
+      target.map do |item|
+        if item.indexable? && item.size == 2
+          [URI.escape(item[0].to_s), "=", URI.escape(item[1].to_s)].join.as(Type)
+        else
+          URI.escape(item.to_s).as(Type)
+        end
+      end.join("&")
+    else
+      URI.escape(target.to_s)
+    end
   end
 end
 

@@ -138,6 +138,7 @@ describe Crinja::Filter do
   # NOTE: Jinja2 encodes '"' as '&#34;' instead of '&quot;'
   describe "escape" do
     evaluate_expression(%('<">&'|escape)).should eq "&lt;&quot;&gt;&amp;"
+    evaluate_expression(%(x|escape), {x: SafeString.new("<div />")}).should eq "<div />"
   end
 
   describe "striptags" do
@@ -369,17 +370,17 @@ describe Crinja::Filter do
 
     it "sums attribute" do
       values = [{"value" => 23}, {"value" => 1}, {"value" => 18}]
-      evaluate_expression(%(values|sum('value')), { values: values}).should eq "42"
+      evaluate_expression(%(values|sum('value')), {values: values}).should eq "42"
     end
 
     it "sums attributes nested" do
       values = [{"real": {"value" => 23}}, {"real": {"value" => 1}}, {"real": {"value" => 18}}]
-      evaluate_expression(%(values|sum('real.value')), { values: values}).should eq "42"
+      evaluate_expression(%(values|sum('real.value')), {values: values}).should eq "42"
     end
 
     it "sums attributes tuple" do
       values = {"foo" => 23, "bar" => 1, "baz" => 18}
-      evaluate_expression(%(values|sum('1')), { values: values}).should eq "42"
+      evaluate_expression(%(values|sum('1')), {values: values}).should eq "42"
     end
   end
 
@@ -410,6 +411,26 @@ describe Crinja::Filter do
     it { evaluate_expression(%(21.3|round(-1, 'floor'))).should eq "20.0" }
   end
 
+  pending "xmlattr" do
+  end
+
+  pending "sort" do
+  end
+
+  pending "groupby" do
+  end
+
+  describe "replace" do
+    it { evaluate_expression(%(string|replace("o", 42)), {string: "<foo>"}).should eq "<f4242>" }
+    it { evaluate_expression(%(string|replace("o", 42)), {string: "<foo>"}, autoescape: true).should eq "&lt;f4242&gt;" }
+    it { evaluate_expression(%(string|replace("<", 42)), {string: "<foo>"}, autoescape: true).should eq "42foo&gt;" }
+    it { evaluate_expression(%(string|replace("o", ">x<")), {string: SafeString.new("foo")}, autoescape: true).should eq "f&gt;x&lt;&gt;x&lt;" }
+  end
+
+  it "forceescape" do
+    evaluate_expression(%(x|forceescape), {x: SafeString.new("<div />")}).should eq "&lt;div /&gt;"
+  end
+
   describe "safe" do
     it "safe" do
       evaluate_expression(%("<div>foo</div>"|safe), autoescape: true).should eq "<div>foo</div>"
@@ -418,6 +439,21 @@ describe Crinja::Filter do
     it "unsafe" do
       evaluate_expression(%("<div>foo</div>"), autoescape: true).should eq "&lt;div&gt;foo&lt;/div&gt;"
     end
+  end
+
+  it "urlencode" do
+    evaluate_expression(%("Hello, world!"|urlencode), autoescape: true).should eq "Hello%2C%20world%21"
+
+    evaluate_expression(%(o|urlencode), {o: "Hello, world\u203d"}, autoescape: true).should eq "Hello%2C%20world%E2%80%BD"
+    evaluate_expression(%(o|urlencode), {o: {0 => 1}}, autoescape: true).should eq "0=1"
+  end
+
+  # TODO: Invalid memory access. Tuple failure
+  pending do
+    evaluate_expression(%(o|urlencode), {o: [{"f", 1}]}, autoescape: true).should eq "f=1"
+    evaluate_expression(%(o|urlencode), {o: [{'f', 1}, {"z", 2}]}, autoescape: true).should eq "f=1&amp;z=2"
+    evaluate_expression(%(o|urlencode), {o: [{"\u203d", 1}]}, autoescape: true).should eq "%E2%80%BD=1"
+    evaluate_expression(%(o|urlencode), {o: [{"\u203d": 1}]}, autoescape: true).should eq "%E2%80%BD=1"
   end
 
   describe "attr" do

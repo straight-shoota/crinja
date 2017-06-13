@@ -49,8 +49,10 @@ class Crinja::Value
   # Raises if the underlying value is not an Array.
   def [](index : Int) : Value
     case object = @raw
-    when Array, String
+    when Indexable
       Value.new object[index]
+    when String
+      Value.new object[index].to_s
     else
       raise TypeError.new(self, "expected Array for #[](index : Int), not #{object.class}")
     end
@@ -61,9 +63,12 @@ class Crinja::Value
   # Raises if the underlying value is not an Array.
   def []?(index : Int) : Value?
     case object = @raw
-    when Array, String
+    when Indexable
       value = object[index]?
       value ? Value.new(value) : nil
+    when String, SafeString
+      value = object[index]?
+      value ? Value.new(value.to_s) : nil
     else
       raise TypeError.new(self, "expected Array for #[]?(index : Int), not #{object.class}")
     end
@@ -288,6 +293,15 @@ class Crinja::Value
   end
 
   # :nodoc:
+  def to_s
+    if (raw = @raw).is_a?(String)
+      raw
+    else
+      super
+    end
+  end
+
+  # :nodoc:
   def pretty_print(pp)
     @raw.pretty_print(pp)
   end
@@ -371,8 +385,8 @@ class Crinja::Value
   end
 
   # Returns `true` if the value is a list (`Array`).
-  def list?
-    @raw.is_a?(Array)
+  def indexable?
+    @raw.is_a?(Indexable)
   end
 
   # Returns `true` if the value is iteraable.

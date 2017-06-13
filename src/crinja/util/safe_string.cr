@@ -2,7 +2,7 @@ struct Crinja::SafeString
   def initialize(@string : String, @plain_value = false)
   end
 
-  forward_missing_to string
+  delegate :size, :to_i, :to_f, to: @string
 
   def to_s(io : IO)
     @string.to_s(io)
@@ -20,6 +20,68 @@ struct Crinja::SafeString
     @string == other
   end
 
+  def [](index : Int)
+    @string[index]
+  end
+
+  def [](*args)
+    result = @string[*args]
+    if result.is_a?(String)
+      result = SafeString.new(result)
+    end
+    result
+  end
+
+  def []?(*args)
+    result = @string[*args]
+    if result.is_a?(String)
+      result = SafeString.new(result)
+    end
+    result
+  end
+
+  def gsub(search, replace)
+    result = @string.gsub(search, replace)
+
+    if replace.is_a?(self)
+      result = SafeString.new result
+    end
+    result
+  end
+
+  def partition(sep)
+    a, b, c = @string.partition(sep)
+
+    return SafeString.new(a), SafeString.new(b), SafeString.new(c)
+  end
+
+  def sub(search, replace)
+    result = @string.sub(search, replace)
+
+    if replace.is_a?(self)
+      result = SafeString.new result
+    end
+    result
+  end
+
+  def sub(search)
+    all_safe = true
+
+    result = @string.sub(search) do
+      replace = yield
+      if replace.is_a?(self)
+        all_safe = false
+      end
+      replace
+    end
+
+    if all_safe
+      result = SafeString.new result
+    end
+
+    result
+  end
+
   def self.build
     new(String.build do |io|
       yield io
@@ -32,10 +94,11 @@ struct Crinja::SafeString
   end
 
   SUBSTITUTIONS = {
-    '>' => "&gt;",
-    '<' => "&lt;",
-    '&' => "&amp;",
-    '"' => "&quot;",
+    '>'  => "&gt;",
+    '<'  => "&lt;",
+    '&'  => "&amp;",
+    '"'  => "&quot;",
+    '\'' => "&#x27;",
   }
 
   def self.escape(value : Value) : SafeString
