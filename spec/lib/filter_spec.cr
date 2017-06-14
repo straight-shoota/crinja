@@ -1,4 +1,6 @@
 require "../spec_helper"
+# These specs are derived from the original Jinja2 filter specs
+# https://github.com/pallets/jinja/blob/bbe0a4174c2846487bef4328b309fddd8638da39/tests/test_filters.py
 
 private class User
   include Crinja::PyObject
@@ -14,6 +16,7 @@ private class User
 
   getattr
 end
+
 private class IdUser
   include Crinja::PyObject
 
@@ -30,34 +33,12 @@ private class IdUser
 end
 
 describe Crinja::Filter do
-  describe "lowercase" do
-    it "lowercases mixed case string" do
-      evaluate_expression(%("Hello World" | lower)).should eq("hello world")
-    end
-    it "lowercases mixed case string" do
-      evaluate_expression(%("hello world" | lower)).should eq("hello world")
-    end
+  it "capitalize" do
+    evaluate_expression(%("foo bar"|capitalize)).should eq "Foo bar"
   end
 
-  describe "uppercase" do
-    it "uppercases mixed case string" do
-      evaluate_expression(%("Hello World" | upper)).should eq("HELLO WORLD")
-    end
-    it "uppercases mixed case string" do
-      evaluate_expression(%("hello world" | upper)).should eq("HELLO WORLD")
-    end
-  end
-
-  describe "capitalize" do
-    it "capitalizes" do
-      evaluate_expression(%("foo bar"|capitalize)).should eq "Foo bar"
-    end
-  end
-
-  describe "center" do
-    it "centers" do
-      evaluate_expression(%("foo"|center(9))).should eq "   foo   "
-    end
+  it "center" do
+    evaluate_expression(%("foo"|center(9))).should eq "   foo   "
   end
 
   describe "default" do
@@ -82,34 +63,20 @@ describe Crinja::Filter do
     end
   end
 
-  describe "dictsort" do
-    pending "sorts" do
+  pending "dictsort" do
+    it "sorts" do
       bindings = {"foo" => {"aa" => 0, "b" => 1, "c" => 2, "AB" => 3}}
       evaluate_expression(%(foo|dictsort), bindings).should eq %([("aa", 0), ("AB", 3), ("b", 1), ("c", 2)])
     end
 
-    pending "sorts caseinsensitive" do
+    it "sorts caseinsensitive" do
       bindings = {"foo" => {"aa" => 0, "b" => 1, "c" => 2, "AB" => 3}}
       evaluate_expression(%(foo|dictsort(true)), bindings).should eq %([("AB", 3), ("aa", 0), ("b", 1), ("c", 2)])
     end
 
-    pending "sorts by value" do
+    it "sorts by value" do
       bindings = {"foo" => {"aa" => 0, "b" => 1, "c" => 2, "AB" => 3}}
       evaluate_expression(%(foo|dictsort(false, "value")), bindings).should eq %([("aa", 0), ("b", 1), ("c", 2), ("AB", 3)])
-    end
-  end
-
-  describe "list" do
-    it "retuns array" do
-      evaluate_expression(%([1, 2] | list)).should eq "[1, 2]"
-    end
-    it "splits string" do
-      evaluate_expression(%("abc" | list)).should eq %(["a", "b", "c"])
-    end
-    it "fails for number" do
-      expect_raises(Crinja::TypeError) do
-        evaluate_expression(%(1 | list))
-      end
     end
   end
 
@@ -155,11 +122,9 @@ describe Crinja::Filter do
     evaluate_expression(%(x|escape), {x: SafeString.new("<div />")}).should eq "<div />"
   end
 
-  describe "striptags" do
-    it "strips tags" do
-      html = %(  <p>just a small   \n <a href="#">example</a> link</p>\n<p>to a webpage</p> <!-- <p>and some commented stuff</p> -->)
-      evaluate_expression(%(foo|striptags), {"foo" => html}).should eq "just a small example link to a webpage"
-    end
+  it "strips tags" do
+    html = %(  <p>just a small   \n <a href="#">example</a> link</p>\n<p>to a webpage</p> <!-- <p>and some commented stuff</p> -->)
+    evaluate_expression(%(foo|striptags), {"foo" => html}).should eq "just a small example link to a webpage"
   end
 
   describe "filesizeformat" do
@@ -187,35 +152,25 @@ describe Crinja::Filter do
     end
   end
 
-  describe "first" do
-    it "range" do
-      evaluate_expression(%(foo|first), {"foo" => (0..9)}).should eq "0"
-    end
-    it "string" do
-      evaluate_expression(%("foo"|first)).should eq "f"
-    end
+  it "first" do
+    evaluate_expression(%(foo|first), {"foo" => (0..9)}).should eq "0"
+    evaluate_expression(%("foo"|first)).should eq "f"
   end
 
-  describe "float" do
-    it do
-      evaluate_expression(%("42"|float)).should eq "42.0"
-      evaluate_expression(%("ajsghasjgd"|float)).should eq "0.0"
-      evaluate_expression(%("32.32"|float)).should eq "32.32"
-    end
+  it "float" do
+    evaluate_expression(%("42"|float)).should eq "42.0"
+    evaluate_expression(%("ajsghasjgd"|float)).should eq "0.0"
+    evaluate_expression(%("32.32"|float)).should eq "32.32"
   end
 
-  describe "format" do
-    it do
-      evaluate_expression(%("%s|%s"|format("a", "b"))).should eq "a|b"
-    end
+  it "format" do
+    evaluate_expression(%("%s|%s"|format("a", "b"))).should eq "a|b"
   end
 
-  describe "indent" do
-    it do
-      text = ([(["foo", "bar"] * 2).join(" ")] * 2).join "\n"
-      evaluate_expression(%(foo|indent(2)), {"foo" => text}).should eq "foo bar foo bar\n  foo bar foo bar"
-      evaluate_expression(%(foo|indent(2, true)), {"foo" => text}).should eq "  foo bar foo bar\n  foo bar foo bar"
-    end
+  it "indent" do
+    text = ([(["foo", "bar"] * 2).join(" ")] * 2).join "\n"
+    evaluate_expression(%(foo|indent(2)), {"foo" => text}).should eq "foo bar foo bar\n  foo bar foo bar"
+    evaluate_expression(%(foo|indent(2, true)), {"foo" => text}).should eq "  foo bar foo bar\n  foo bar foo bar"
   end
 
   describe "int" do
@@ -259,10 +214,8 @@ describe Crinja::Filter do
     end
   end
 
-  describe "last" do
-    it "last" do
-      evaluate_expression(%(foo|last), {foo: Range.new(0, 10, true)}).should eq "9"
-    end
+  it "last" do
+    evaluate_expression(%(foo|last), {foo: Range.new(0, 10, true)}).should eq "9"
   end
 
   describe "length" do
@@ -282,11 +235,14 @@ describe Crinja::Filter do
     end
   end
 
-  describe "pprint" do
-    it "pprint" do
-      data = Range.new(0, 1000, true)
-      evaluate_expression(%(data|pprint), {data: data}).should eq data.to_a.pretty_inspect
-    end
+  it "lower" do
+    evaluate_expression(%("Hello World" | lower)).should eq("hello world")
+    evaluate_expression(%("hello world" | lower)).should eq("hello world")
+  end
+
+  it "pprint" do
+    data = Range.new(0, 1000, true)
+    evaluate_expression(%(data|pprint), {data: data}).should eq data.to_a.pretty_inspect
   end
 
   it "random" do
@@ -296,13 +252,9 @@ describe Crinja::Filter do
     end
   end
 
-  describe "reverse" do
-    it "string" do
-      evaluate_expression(%("foobar"|reverse)).should eq "raboof"
-    end
-    it "array" do
-      evaluate_expression(%([1, 2, 3]|reverse|list)).should eq "[3, 2, 1]"
-    end
+  it "reverse" do
+    evaluate_expression(%("foobar"|reverse)).should eq "raboof"
+    evaluate_expression(%([1, 2, 3]|reverse|list)).should eq "[3, 2, 1]"
   end
 
   it "string" do
@@ -328,24 +280,29 @@ describe Crinja::Filter do
     end
   end
 
-  describe "truncate" do
-    it { evaluate_expression(%(data|truncate(15, true, ">>>")), {
+  it "truncate" do
+    evaluate_expression(%(data|truncate(15, true, ">>>")), {
       data:      "foobar baz bar" * 1000,
       smalldata: "foobar baz bar",
-    }).should eq "foobar baz b>>>" }
-    it { evaluate_expression(%(data|truncate(15, false, ">>>")), {
+    }).should eq "foobar baz b>>>"
+    evaluate_expression(%(data|truncate(15, false, ">>>")), {
       data:      "foobar baz bar" * 1000,
       smalldata: "foobar baz bar",
-    }).should eq "foobar baz>>>" }
-    it { evaluate_expression(%(smalldata|truncate(15)), {
+    }).should eq "foobar baz>>>"
+    evaluate_expression(%(smalldata|truncate(15)), {
       data:      "foobar baz bar" * 1000,
       smalldata: "foobar baz bar",
-    }).should eq "foobar baz bar" }
+    }).should eq "foobar baz bar"
 
-    it { evaluate_expression(%("foo bar baz"|truncate(9))).should eq "foo bar baz" }
-    it { evaluate_expression(%("foo bar baz"|truncate(9, true))).should eq "foo bar baz" }
+    evaluate_expression(%("foo bar baz"|truncate(9))).should eq "foo bar baz"
+    evaluate_expression(%("foo bar baz"|truncate(9, true))).should eq "foo bar baz"
 
-    it { evaluate_expression(%("Joel is a slug"|truncate(7, true))).should eq "Joel..." }
+    evaluate_expression(%("Joel is a slug"|truncate(7, true))).should eq "Joel..."
+  end
+
+  it "upper" do
+    evaluate_expression(%("Hello World" | upper)).should eq("HELLO WORLD")
+    evaluate_expression(%("hello world" | upper)).should eq("HELLO WORLD")
   end
 
   pending "urlize" do
@@ -415,14 +372,14 @@ describe Crinja::Filter do
   end
 
   describe "round" do
-    it { evaluate_expression(%(2.7|round)).should eq "3.0" }
-    it { evaluate_expression(%(2.1|round)).should eq "2.0" }
-    it { evaluate_expression(%(2.1234|round(3, 'floor'))).should eq "2.123" }
-    it { evaluate_expression(%(2.1|round(0, 'ceil'))).should eq "3.0" }
+    evaluate_expression(%(2.7|round)).should eq "3.0"
+    evaluate_expression(%(2.1|round)).should eq "2.0"
+    evaluate_expression(%(2.1234|round(3, 'floor'))).should eq "2.123"
+    evaluate_expression(%(2.1|round(0, 'ceil'))).should eq "3.0"
 
-    it { evaluate_expression(%(21.3|round(-1))).should eq "20.0" }
-    it { evaluate_expression(%(21.3|round(-1, 'ceil'))).should eq "30.0" }
-    it { evaluate_expression(%(21.3|round(-1, 'floor'))).should eq "20.0" }
+    evaluate_expression(%(21.3|round(-1))).should eq "20.0"
+    evaluate_expression(%(21.3|round(-1, 'ceil'))).should eq "30.0"
+    evaluate_expression(%(21.3|round(-1, 'floor'))).should eq "20.0"
   end
 
   pending "xmlattr" do
@@ -435,24 +392,19 @@ describe Crinja::Filter do
   end
 
   describe "replace" do
-    it { evaluate_expression(%(string|replace("o", 42)), {string: "<foo>"}).should eq "<f4242>" }
-    it { evaluate_expression(%(string|replace("o", 42)), {string: "<foo>"}, autoescape: true).should eq "&lt;f4242&gt;" }
-    it { evaluate_expression(%(string|replace("<", 42)), {string: "<foo>"}, autoescape: true).should eq "42foo&gt;" }
-    it { evaluate_expression(%(string|replace("o", ">x<")), {string: SafeString.new("foo")}, autoescape: true).should eq "f&gt;x&lt;&gt;x&lt;" }
+    evaluate_expression(%(string|replace("o", 42)), {string: "<foo>"}).should eq "<f4242>"
+    evaluate_expression(%(string|replace("o", 42)), {string: "<foo>"}, autoescape: true).should eq "&lt;f4242&gt;"
+    evaluate_expression(%(string|replace("<", 42)), {string: "<foo>"}, autoescape: true).should eq "42foo&gt;"
+    evaluate_expression(%(string|replace("o", ">x<")), {string: SafeString.new("foo")}, autoescape: true).should eq "f&gt;x&lt;&gt;x&lt;"
   end
 
   it "forceescape" do
     evaluate_expression(%(x|forceescape), {x: SafeString.new("<div />")}).should eq "&lt;div /&gt;"
   end
 
-  describe "safe" do
-    it "safe" do
-      evaluate_expression(%("<div>foo</div>"|safe), autoescape: true).should eq "<div>foo</div>"
-    end
-
-    it "unsafe" do
-      evaluate_expression(%("<div>foo</div>"), autoescape: true).should eq "&lt;div&gt;foo&lt;/div&gt;"
-    end
+  it "safe" do
+    evaluate_expression(%("<div>foo</div>"|safe), autoescape: true).should eq "<div>foo</div>"
+    evaluate_expression(%("<div>foo</div>"), autoescape: true).should eq "&lt;div&gt;foo&lt;/div&gt;"
   end
 
   it "urlencode" do
@@ -463,7 +415,7 @@ describe Crinja::Filter do
   end
 
   # TODO: Invalid memory access. Tuple failure
-  pending do
+  pending "urlencode with tuple" do
     evaluate_expression(%(o|urlencode), {o: [{"f", 1}]}, autoescape: true).should eq "f=1"
     evaluate_expression(%(o|urlencode), {o: [{'f', 1}, {"z", 2}]}, autoescape: true).should eq "f=1&amp;z=2"
     evaluate_expression(%(o|urlencode), {o: [{"\u203d", 1}]}, autoescape: true).should eq "%E2%80%BD=1"
@@ -490,7 +442,6 @@ describe Crinja::Filter do
   end
 
   describe "select/reject" do
-
     it "simple_select" do
       evaluate_expression(%([1, 2, 3, 4, 5]|select("odd")|join("|"))).should eq "1|3|5"
     end
@@ -567,12 +518,22 @@ describe Crinja::Filter do
     end
   end
 
-  describe "attr" do
-    it do
-      evaluate_expression(%(data | attr("foo")), {data: {"foo" => "bar"}}).should eq "bar"
+  it "attr" do
+    evaluate_expression(%(data | attr("foo")), {data: {"foo" => "bar"}}).should eq "bar"
+    evaluate_expression(%(arr | attr(0)), {arr: ["bar"]}).should eq ""
+  end
+
+  describe "list" do
+    it "retuns array" do
+      evaluate_expression(%([1, 2] | list)).should eq "[1, 2]"
     end
-    it do
-      evaluate_expression(%(arr | attr(0)), {arr: ["bar"]}).should eq ""
+    it "splits string" do
+      evaluate_expression(%("abc" | list)).should eq %(["a", "b", "c"])
+    end
+    it "fails for number" do
+      expect_raises(Crinja::TypeError) do
+        evaluate_expression(%(1 | list))
+      end
     end
   end
 end
