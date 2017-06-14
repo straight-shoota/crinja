@@ -18,7 +18,9 @@ module Crinja::Bindings
       self.cast_hash(value)
     when NamedTuple
       self.cast_named_tuple(value)
-    when Array, Tuple
+    when Tuple
+      self.cast_tuple(value)
+    when Array
       self.cast_list(value)
     when Range, Iterator
       # TODO: Implement iterator and range trough pyobject `getitem`
@@ -55,6 +57,11 @@ module Crinja::Bindings
     array.map do |item|
       cast_value(item).as(Crinja::Type)
     end
+  end
+
+  # Casts a tuple to `PyTuple`.
+  def self.cast_tuple(tuple) : Crinja::Type
+    PyTuple.from(tuple)
   end
 end
 

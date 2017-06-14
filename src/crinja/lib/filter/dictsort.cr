@@ -3,16 +3,16 @@ module Crinja::Filter
     case_sensitive: false,
     by:             "key",
   }, :dictsort) do
-    hash = target.as_h
-    array = [] of Tuple(Value, Value)
-    sort_by_key = arguments[:by] != "value"
-    hash.each do |key, value|
-      array << {Value.new(key), Value.new(value)}
-    end
+    # hash = target.as_h
+    # array = [] of Tuple(Value, Value)
+    # sort_by_key = arguments[:by] != "value"
+    # hash.each do |key, value|
+    #   array << {Value.new(key), Value.new(value)}
+    # end
 
-    array.sort do |(ak, av), (bk, kv)|
-      ak <=> bk
-    end
+    # array.sort do |(ak, av), (bk, kv)|
+    #   ak <=> bk
+    # end
 
     # case_sensitive = arguments[:case_sensitive].truthy?
     # if arguments[:by].to_s == "value"

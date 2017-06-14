@@ -132,7 +132,7 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
     unpack(vars, values.map(&.raw))
   end
 
-  def unpack(vars : Array(String), values : TypeValue | Hash(Type, Type) | Tuple(Type, Type))
+  def unpack(vars : Array(String), values : TypeValue | Hash(Type, Type) | PyTuple)
     raise "cannot unpack multiple values" if vars.size > 1
     self[vars.first] = values.as(Type)
   end

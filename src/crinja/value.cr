@@ -1,5 +1,6 @@
 require "./util/py_object"
 require "./util/undefined"
+require "./util/safe_string"
 require "./lib/callable"
 
 module Crinja
@@ -8,7 +9,7 @@ module Crinja
   # :nodoc:
   alias TypeValue = TypeNumber | String | Bool | Time | PyObject | Undefined | Crinja::Callable | SafeString | Nil
   # :nodoc:
-  alias TypeContainer = Hash(Type, Type) | Array(Type) | Tuple(Type, Type) | Iterator(Type)
+  alias TypeContainer = Hash(Type, Type) | Array(Type) | Iterator(Type)
 
   alias Type = TypeValue | TypeContainer
 end
@@ -26,27 +27,19 @@ class Crinja::Value
   def initialize(@raw)
   end
 
-  # Assumes the underlying value is an `Array` or `Hash` and returns
+  # Assumes the underlying value responds to `size` and returns
   # its size.
-  # Raises if the underlying value is not an `Array` or `Hash`.
   def size : Int
-    case object = @raw
-    when Array
+    if (object = @raw).responds_to?(:size)
       object.size
-    when Hash
-      object.size
-    when String
-      object.size
-    when Undefined
-      0
     else
-      raise TypeError.new(self, "expected Array or Hash for #size, not #{object.class}")
+      raise TypeError.new(self, "#{object.class} does not respond to #size")
     end
   end
 
-  # Assumes the underlying value is an Array and returns the element
+  # Assumes the underlying value is an `Indexable` or `String` returns the element
   # at the given index.
-  # Raises if the underlying value is not an Array.
+  # Raises if the underlying value is not an `Indexable` or `String`.
   def [](index : Int) : Value
     case object = @raw
     when Indexable
@@ -58,9 +51,9 @@ class Crinja::Value
     end
   end
 
-  # Assumes the underlying value is an Array and returns the element
+  # Assumes the underlying value is an `Indexable` or `String` and returns the element
   # at the given index, or `nil` if out of bounds.
-  # Raises if the underlying value is not an Array.
+  # Raises if the underlying value is not an `Indexable` or `String`.
   def []?(index : Int) : Value?
     case object = @raw
     when Indexable
@@ -74,92 +67,55 @@ class Crinja::Value
     end
   end
 
-  # Assumes the underlying value is a Hash and returns the element
+  # Assumes the underlying value has an hash-like accessor and returns the element
   # with the given key.
-  # Raises if the underlying value is not a Hash.
+  # Raises if the underlying value is not hash-like.
   def [](key : String) : Value
     Value.new Environment.resolve_with_hash_accessor(key, @raw)
-    # case object = @raw
-    # when .responds_to? :[]
-    #  Value.new object[key]
-    # else
-    #  raise "expected Hash for #[](key : String), not #{object.class}"
-    # end
   end
 
-  # Assumes the underlying value is a Hash and returns the element
+  # Assumes the underlying value has an hash-like accessor returns the element
   # with the given key, or `nil` if the key is not present.
-  # Raises if the underlying value is not a Hash.
+  # Raises if the underlying value is not hash-like.
   def []?(key : String) : Value?
-    case object = @raw
-    when Hash
-      value = object[key]?
-      value ? Value.new(value) : nil
-    else
-      raise TypeError.new(self, "expected Hash for #[]?(key : String), not #{object.class}")
-    end
+    Value.new Environment.resolve_with_hash_accessor(key, @raw)
   end
 
-  # Assumes the underlying value is an `Array` or `String` and returns the first
-  # item in the array or the first character of the string.
+  # Assumes the underlying value is an `Iterable`, `Hash` or `String` and returns the first
+  # item in the list or the first character of the string.
   def first
     case object = @raw
     when Hash(Type, Type)
-      Value.new([object.first_key.as(Type), object.first_value.as(Type)])
-      #  Value.new object.first.as(Type)
-      # when Array
-      #  Value.new object.first
-      # TODO: Support generic Enumerables. This will put the compiler into infinite loop
-    when Enumerable
+      Value.new(PyTuple.new(object.first_key, object.first_value))
+    when Iterable
       Value.new object.first
     when String
       Value.new object[0, 1]
     else
-      raise TypeError.new(self, "expected Enumerable or String for #first, not #{object.class}")
+      raise TypeError.new(self, "expected Iterable, Hash or String for #first, not #{object.class}")
     end
   end
 
-  # Assumes the underlying value is an `Array` or `String` and returns the last
-  # item in the array or the last character of the string.
+  # Assumes the underlying value is a `String` or responds to `last` and returns the last
+  # item in the list or the last character of the string.
   def last
-    case object = @raw
-    # when Hash
-    # Value.new object.last
-    when Array
+    object = @raw
+
+    if object.responds_to?(:last)
       Value.new object.last
-      # TODO: Support generic Enumerables. This will put the compiler into infinite loop
-      # when Enumerable
-      #   Value.new object.last
-    when String
+    elsif object.is_a?(String)
       Value.new object[-1, 1]
     else
       raise TypeError.new(self, "expected Enumerable or String for #last, not #{object.class}")
     end
   end
 
-  # Assumes the underlying value is an `Array` or `Hash` and yields each
-  # of the elements or key/values, always as `YAML::Value`.
-  # Raises if the underlying value is not an `Array` or `Hash`.
-  def __each
-    case object = @raw
-    when Array
-      object.each do |elem|
-        yield Value.new(elem), Value.new(nil)
-      end
-    when Hash
-      object.each do |key, value|
-        yield Value.new(key), Value.new(value)
-      end
-    when Crinja::Undefined
-    else
-      raise TypeError.new(self, "#{object.class} is not iterable")
-    end
-  end
-
+  # Returns an iterator for the underlying value if it is an `Iterable`, `String` or `Undefined`
+  # which iterates through the items as `Value`.
   def each
     case object = @raw
     when Hash
-      HashValueIterator.new(object)
+      HashValueIterator.new(object.each)
     when Iterable(Type)
       ValueIterator.new(object.each.as(Iterator(Type)))
     when String
@@ -173,6 +129,8 @@ class Crinja::Value
     end
   end
 
+  # Assumes the underlying value is an `Iterable` and yields each
+  # of the elements or key/values, always as `Value`.
   def each
     each.each do |a|
       yield a
@@ -207,23 +165,15 @@ class Crinja::Value
     include Iterator(Value)
     include IteratorWrapper
 
-    # FIXME: Hash::EntryIterator results in a invalid memory access, therefore this workaround with
-    # key iterator.
-    @iterator : Iterator(Type)
-
-    def initialize(@hash : Hash(Type, Type))
-      @iterator = hash.keys.each
+    def initialize(@iterator : Iterator(Tuple(Type, Type)))
     end
 
     def next
-      key = wrapped_next
+      tuple = wrapped_next
 
-      case key
-      when Type
-        value = @hash[key].as(Type)
-        # FIXME: Turn into a tuple.
-        tuple = [key.as(Type), value.as(Type)].as(Type)
-        Value.new(tuple)
+      case tuple
+      when Tuple
+        Value.new PyTuple.from tuple
       when stop
         stop
       else
