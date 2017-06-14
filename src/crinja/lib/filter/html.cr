@@ -19,7 +19,7 @@ module Crinja::Filter
   Crinja.filter(:urlencode) do
     if target.iterable?
       target.map do |item|
-        if item.indexable? && item.size == 2
+        if item.iterable? && item.size == 2
           [URI.escape(item[0].to_s), "=", URI.escape(item[1].to_s)].join.as(Type)
         else
           URI.escape(item.to_s).as(Type)

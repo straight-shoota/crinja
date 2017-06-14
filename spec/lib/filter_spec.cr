@@ -375,7 +375,7 @@ describe Crinja::Filter do
     end
   end
 
-  describe "round" do
+  it "round" do
     evaluate_expression(%(2.7|round)).should eq "3.0"
     evaluate_expression(%(2.1|round)).should eq "2.0"
     evaluate_expression(%(2.1234|round(3, 'floor'))).should eq "2.123"
@@ -395,7 +395,7 @@ describe Crinja::Filter do
   pending "groupby" do
   end
 
-  describe "replace" do
+  it "replace" do
     evaluate_expression(%(string|replace("o", 42)), {string: "<foo>"}).should eq "<f4242>"
     evaluate_expression(%(string|replace("o", 42)), {string: "<foo>"}, autoescape: true).should eq "&lt;f4242&gt;"
     evaluate_expression(%(string|replace("<", 42)), {string: "<foo>"}, autoescape: true).should eq "42foo&gt;"
@@ -416,14 +416,10 @@ describe Crinja::Filter do
 
     evaluate_expression(%(o|urlencode), {o: "Hello, world\u203d"}, autoescape: true).should eq "Hello%2C%20world%E2%80%BD"
     evaluate_expression(%(o|urlencode), {o: {0 => 1}}, autoescape: true).should eq "0=1"
-  end
-
-  # TODO: Invalid memory access. Tuple failure
-  pending "urlencode with tuple" do
     evaluate_expression(%(o|urlencode), {o: [{"f", 1}]}, autoescape: true).should eq "f=1"
-    evaluate_expression(%(o|urlencode), {o: [{'f', 1}, {"z", 2}]}, autoescape: true).should eq "f=1&amp;z=2"
+    evaluate_expression(%(o|urlencode), {o: [{"f", 1}, {"z", 2}]}, autoescape: true).should eq "f=1&amp;z=2"
     evaluate_expression(%(o|urlencode), {o: [{"\u203d", 1}]}, autoescape: true).should eq "%E2%80%BD=1"
-    evaluate_expression(%(o|urlencode), {o: [{"\u203d": 1}]}, autoescape: true).should eq "%E2%80%BD=1"
+    evaluate_expression(%(o|urlencode), {o: {"\u203d": 1}}, autoescape: true).should eq "%E2%80%BD=1"
   end
 
   describe "map" do
