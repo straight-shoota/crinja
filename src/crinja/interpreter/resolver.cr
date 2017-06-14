@@ -154,10 +154,10 @@ module Crinja::Resolver
   end
 
   def call_filter(name, target, varargs : Array(Type) = [] of Type, kwargs : Hash(String, Type) = Hash(String, Type).new)
-    unless target.is_a?(Type)
-      target = Crinja::Bindings.cast_value(target)
-    end
+    call_filter(name, Crinja::Bindings.cast_value(target), varargs, kwargs)
+  end
 
+  def call_filter(name, target : Type, varargs : Array(Type) = [] of Type, kwargs : Hash(String, Type) = Hash(String, Type).new)
     call_filter(name, Value.new(target),
       varargs.map { |a| Value.new(a) },
       kwargs.each_with_object(Hash(String, Value).new) do |(k, v), hash|
