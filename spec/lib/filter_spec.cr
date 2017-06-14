@@ -546,6 +546,27 @@ describe Crinja::Filter do
     end
   end
 
+  describe "json_dump" do
+    it "json_dump" do
+      # original jinja2
+      # evaluate_expression(%(x|tojson), {x: {"foo" => "bar"}}, autoescape: true).should eq "{&#34;foo&#34;: &#34;bar&#34;}"
+      evaluate_expression(%(x|tojson), {x: {"foo" => "bar"}}, autoescape: true).should eq "{\n&quot;foo&quot;: &quot;bar&quot;\n}"
+      #evaluate_expression(%(x|tojson), {x: %("bar')}, autoescape: true).should eq "&#34;&#34;bar\u0027&#34;"
+      evaluate_expression(%(x|tojson), {x: %("bar')}, autoescape: true).should eq "&quot;\\&quot;bar&#x27;&quot;"
+    end
+
+    pending "policies" do
+      env = Crinja::Environment.new()
+      env.config.autoescape = true
+      env.policies["json.dumps_function"] = Crinja.function do
+        arguments.kwargs.should eq({"foo", "bar"})
+        42
+      end
+      env.policies["json.dumps_kwargs"] = Crinja::Bindings.cast_value({"foo" => "bar"})
+      env.evaluate(%(x|tojson), {x: 23}).should eq "42"
+    end
+  end
+
   describe "attr" do
     it do
       evaluate_expression(%(data | attr("foo")), {data: {"foo" => "bar"}}).should eq "bar"

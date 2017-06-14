@@ -7,6 +7,10 @@ class Crinja::Undefined
 
   def to_s(io)
   end
+
+  def to_json(json : JSON::Builder)
+    json.null
+  end
 end
 
 # An undefined that raises an `UndefinedError` if it is compared or printed.

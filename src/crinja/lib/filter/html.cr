@@ -1,4 +1,5 @@
 require "uri"
+require "../../util/json_builder"
 
 module Crinja::Filter
   Crinja.filter({trim_url_limit: nil, nofollow: false, target: nil, rel: nil}, :urlize) do
@@ -27,6 +28,20 @@ module Crinja::Filter
     else
       URI.escape(target.to_s)
     end
+  end
+
+  # TODO: This is still a draft implementation.
+  # `responds_to?(:to_json)` is true for every object, because to_json.cr adds the wrappers everywhere.
+  Crinja.filter({indent: nil}, :tojson) do
+    raw = target.raw
+
+    indent = arguments.fetch(:indent, 0).to_i
+
+    json = Crinja::JsonBuilder.dump(raw, indent)
+
+    string = SafeString.escape(json)
+
+    string
   end
 end
 

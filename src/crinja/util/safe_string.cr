@@ -2,11 +2,7 @@ struct Crinja::SafeString
   def initialize(@string : String, @plain_value = false)
   end
 
-  delegate :size, :to_i, :to_f, to: @string
-
-  def to_s(io : IO)
-    @string.to_s(io)
-  end
+  delegate :size, :to_i, :to_f, :to_s, :to_json, to: @string
 
   def inspect(io : IO)
     if @plain_value
