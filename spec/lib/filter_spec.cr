@@ -33,6 +33,10 @@ private class IdUser
 end
 
 describe Crinja::Filter do
+  it "calling" do
+    Crinja::Environment.new.call_filter("sum", [1, 2, 3]).should eq 6
+  end
+
   it "capitalize" do
     evaluate_expression(%("foo bar"|capitalize)).should eq "Foo bar"
   end

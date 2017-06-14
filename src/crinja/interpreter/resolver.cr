@@ -153,6 +153,25 @@ module Crinja::Resolver
     callable.call(arguments)
   end
 
+  def call_filter(name, target, varargs : Array(Type) = [] of Type, kwargs : Hash(String, Type) = Hash(String, Type).new)
+    unless target.is_a?(Type)
+      target = Crinja::Bindings.cast_value(target)
+    end
+
+    call_filter(name, Value.new(target),
+      varargs.map { |a| Value.new(a) },
+      kwargs.each_with_object(Hash(String, Value).new) do |(k, v), hash|
+        hash[k] = Value.new(v)
+      end
+    )
+  end
+
+  def call_filter(name, target : Value, varargs : Array(Value) = [] of Value, kwargs : Hash(String, Value) = Hash(String, Value).new)
+    arguments = Arguments.new(self, varargs, kwargs, target: target)
+
+    filters[name].call(arguments)
+  end
+
   def resolve_callable(identifier)
     if context.has_macro?(identifier.to_s)
       context.macro(identifier.to_s)
