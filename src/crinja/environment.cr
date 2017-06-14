@@ -84,13 +84,19 @@ class Crinja::Environment
   end
 
   # Evaluates a Crinja expression with `#evaluator` and returns the resulting raw value.
+  def evaluate(expression : AST::ExpressionNode, bindings) : Type
+    with_scope(bindings) do
+      evaluate(expression)
+    end
+  end
+
   def evaluate(expression : AST::ExpressionNode) : Type
     evaluator.evaluate(expression)
   end
 
   # Parses and evaluates a Crinja expression with `#evaluator`. Returns a string which will be
   # auto-escaped if `config.autoescape?` is `true`.
-  def evaluate(expression) : String
+  def evaluate(expression, bindings = nil) : String
     lexer = Parser::ExpressionLexer.new(config, expression)
     parser = Parser::ExpressionParser.new(lexer)
 
@@ -98,7 +104,7 @@ class Crinja::Environment
 
     @context.autoescape = @config.autoescape?
 
-    result = evaluate expression
+    result = evaluate expression, bindings
 
     Value.stringify(result, @context.autoescape?)
   end

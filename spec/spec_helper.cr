@@ -35,11 +35,7 @@ def evaluate_expression(string, bindings = nil, autoescape = nil)
   env = Crinja::Environment.new
   env.config.autoescape.default_for_string = autoescape unless autoescape.nil?
 
-  unless bindings.nil?
-    env.context.merge! Crinja::Bindings.cast(bindings)
-  end
-
-  env.evaluate(string)
+  env.evaluate(string, bindings)
 end
 
 module Spec
