@@ -81,6 +81,27 @@ abstract class Crinja::Loader
 
       raise TemplateNotFoundError.new(template, self)
     end
+
+    def list_templates
+      searchpaths.map do |path|
+        range = (path.size + 1)..-1
+        list_templates(path).map { |name| name[range] }
+      end.flatten
+    end
+
+    private def list_templates(path, list = [] of String)
+      Dir.foreach(path) do |file|
+        next if file == "." || file == ".."
+
+        file_path = File.join(path, file)
+        if File.directory?(file_path)
+          list_templates(file_path, list)
+        elsif File.file?(file_path) && File.readable?(file_path)
+          list << file_path
+        end
+      end
+      list
+    end
   end
 
   # Load templates from a hash in memory.
@@ -168,7 +189,7 @@ abstract class Crinja::Loader
     end
 
     def list_templates
-      loaders.map(&.list_templates).flatten.uniq.sort
+      choices.map(&.list_templates).flatten.uniq.sort
     end
   end
 end
