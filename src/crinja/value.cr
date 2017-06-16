@@ -63,7 +63,7 @@ class Crinja::Value
       value = object[index]?
       value ? Value.new(value.to_s) : nil
     else
-      raise TypeError.new(self, "expected Array for #[]?(index : Int), not #{object.class}")
+      raise TypeError.new(self, "expected Indexable for #[]?(index : Int), not #{object.class}")
     end
   end
 
@@ -71,14 +71,14 @@ class Crinja::Value
   # with the given key.
   # Raises if the underlying value is not hash-like.
   def [](key : String) : Value
-    Value.new Environment.resolve_with_hash_accessor(key, @raw)
+    Value.new Resolver.resolve_attribute(key, @raw)
   end
 
   # Assumes the underlying value has an hash-like accessor returns the element
   # with the given key, or `nil` if the key is not present.
   # Raises if the underlying value is not hash-like.
   def []?(key : String) : Value?
-    Value.new Environment.resolve_with_hash_accessor(key, @raw)
+    Value.new Resolver.resolve_attribute(key, @raw)
   end
 
   # Assumes the underlying value is an `Iterable`, `Hash` or `String` and returns the first

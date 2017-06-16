@@ -94,7 +94,7 @@ module Crinja::Resolver
   end
 
   def self.resolve_with_hash_accessor(name, object : Type)
-    if object.responds_to?(:[]) && !object.is_a?(Array) && !object.is_a?(PyTuple)
+    if object.responds_to?(:[]) && !object.is_a?(Array) && !object.is_a?(PyTuple) && !object.is_a?(String | SafeString)
       begin
         return object[name.to_s]
       rescue KeyError

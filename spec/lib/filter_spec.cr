@@ -389,7 +389,24 @@ describe Crinja::Filter do
   pending "xmlattr" do
   end
 
-  pending "sort" do
+  describe "sort" do
+    it do
+      evaluate_expression(%([2, 3, 1]|sort)).should eq "[1, 2, 3]"
+      evaluate_expression(%([2, 3, 1]|sort(true))).should eq "[3, 2, 1]"
+      evaluate_expression(%(["c", "A", "b", "D"]|sort|join)).should eq "AbcD"
+      evaluate_expression(%(["c", "A", "b", "D"]|sort(case_sensitive=true)|join)).should eq "ADbc"
+      evaluate_expression(%(['foo', 'Bar', 'blah']|sort)).should eq %(["Bar", "blah", "foo"])
+    end
+
+    it "custom_sort" do
+      users = [
+          IdUser.new(3, "mike"),
+          IdUser.new(1, "john"),
+          IdUser.new(4, "mick"),
+          IdUser.new(2, "jane"),
+      ]
+      evaluate_expression(%(users|sort(attribute='id')|join(",")), {users: users}).should eq "john,jane,mike,mick"
+    end
   end
 
   pending "groupby" do
