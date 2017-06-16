@@ -258,7 +258,7 @@ class Crinja::Value
 
   # Transform the value into a string representation.
   def to_string
-    self.class.stringify(@raw)
+    Stringifier.stringify(@raw)
   end
 
   # :nodoc:
@@ -414,35 +414,5 @@ class Crinja::Value
     else
       FALSE
     end
-  end
-
-  # Convert a `Type` to string with optional *escape*.
-  def self.stringify(raw, escape = false)
-    string = raw.to_s
-
-    if escape
-      SafeString.escaped(string)
-    else
-      string
-    end
-  end
-
-  # Convert a `Type` to string with optional *escape*.
-  def self.stringify(io : IO, raw, escape = false)
-    io << stringify(raw, escape)
-  end
-
-  # Convert a `nil` to `"none"`.
-  #
-  # *escape* is ignored.
-  def self.stringify(raw : Nil, escape = false)
-    "none"
-  end
-
-  # Convert a `SafeString` to string.
-  #
-  # *escape* is ignored.
-  def self.stringify(safe : SafeString, escape = false)
-    safe.to_s
   end
 end

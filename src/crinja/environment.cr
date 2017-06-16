@@ -106,7 +106,7 @@ class Crinja::Environment
 
     result = evaluate expression, bindings
 
-    Value.stringify(result, @context.autoescape?)
+    Stringifier.stringify(result, @context.autoescape?).to_s
   end
 
   # Loads a template from *string.* This parses the given string and returns a `Template` object.

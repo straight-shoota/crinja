@@ -44,11 +44,11 @@ struct Crinja::JsonBuilder
     end
   end
 
-  protected def to_s
+  protected def to_string
     @io.to_s
   end
 
-  def self.dump(value, indent = 0)
-    new(value, indent).to_s
+  def self.to_json(value, indent = 0)
+    new(value, indent).to_string
   end
 end

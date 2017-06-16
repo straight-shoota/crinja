@@ -37,7 +37,7 @@ module Crinja::Filter
 
     indent = arguments.fetch(:indent, 0).to_i
 
-    json = Crinja::JsonBuilder.dump(raw, indent)
+    json = JsonBuilder.to_json(raw, indent)
 
     string = SafeString.escape(json)
 

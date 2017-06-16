@@ -17,7 +17,7 @@ module Crinja::Filter
           if do_attribute
             item = Resolver.resolve_attribute(attr_name, item)
           end
-          Value.stringify(io, item, env.context.autoescape?)
+          io << Stringifier.stringify(item, env.context.autoescape?)
         end
       end
     else
