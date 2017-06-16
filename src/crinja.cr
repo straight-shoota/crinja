@@ -7,7 +7,14 @@ module Crinja
 end
 
 require "./crinja/util/*"
-require "./crinja/*"
+require "./crinja/config"
+require "./crinja/context"
+require "./crinja/environment"
+require "./crinja/error"
+require "./crinja/loader"
+require "./crinja/template"
+require "./crinja/value"
+require "./crinja/version"
 require "./crinja/parser/*"
 require "./crinja/interpreter/*"
 require "./crinja/lib/*"

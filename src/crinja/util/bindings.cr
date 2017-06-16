@@ -73,3 +73,12 @@ module Crinja::Bindings
   end
 end
 {% end %}
+
+{% if @type.has_constant?(:YAML) %}
+module Crinja::Bindings
+  # Casts an `YAML::Any` to `Crinja::Type`.
+  def self.cast_value(value : YAML::Any) : Crinja::Type
+    cast_value(value.raw)
+  end
+end
+{% end %}
