@@ -72,13 +72,25 @@ module Crinja::SourceAttached
   end
 end
 
-class Crinja::TemplateError < Exception
+class Crinja::Error < Exception
   property template : Template?
-  getter location_start : Parser::StreamPosition
-  getter location_end : Parser::StreamPosition
+  getter location_start : Parser::StreamPosition?
+  getter location_end : Parser::StreamPosition?
 
   include SourceAttached
 
+  def at(@location_start, @location_end)
+    self
+  end
+
+  def at(node)
+    @location_start = node.location_start
+    @location_end = node.location_end
+    self
+  end
+end
+
+class Crinja::TemplateError < Crinja::Error
   def self.new(token, cause : Exception? = nil, template = nil)
     new(token, nil, cause, template)
   end
@@ -109,22 +121,7 @@ end
 class Crinja::TemplateSyntaxError < Crinja::TemplateError
 end
 
-class Crinja::RuntimeError < Exception
-  property template : Template?
-  getter location_start : Parser::StreamPosition?
-  getter location_end : Parser::StreamPosition?
-
-  include SourceAttached
-
-  def at(@location_start, @location_end)
-    self
-  end
-
-  def at(node)
-    @location_start = node.location_start
-    @location_end = node.location_end
-    self
-  end
+class Crinja::RuntimeError < Crinja::Error
 end
 
 class Crinja::TypeError < Crinja::RuntimeError
