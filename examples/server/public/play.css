@@ -1,0 +1,61 @@
+.crinja-playground {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.field-pane {
+  flex-basis: 50%;
+  flex-grow: 1;
+  position: relative;
+}
+.field-pane > h3 {
+  margin: 0;
+  padding : .2em .3em;
+}
+.form-action {
+  flex-basis: 100%;
+  padding: .5em;
+  text-align: center;
+}
+
+.template_source {
+
+}
+#rendered_result {
+  padding: .5em;
+  border: 1px solid #CCC;
+  margin: .2em;
+  background: #fff;
+}
+#variables, #template_source {
+  min-height: 50%;
+}
+#rendered_source {
+  min-height: 30% ;
+}
+
+.crinja-playground .ace_editor {
+  width: 100%;
+  font-size: 12pt;
+}
+
+.editor-wrapper {
+  border: 1px solid #888;
+}
+.variables .editor-wrapper {
+  border-left: none;
+}
+
+textarea {
+  width: 100%;
+  min-height: 15em;
+  background-color: ;
+  padding: .5em;
+  line-height: 1.5;
+}
+.rendered_result {
+
+}
+.rendered_source {
+
+}

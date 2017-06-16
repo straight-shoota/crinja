@@ -81,7 +81,11 @@ template.render({ "name" => "John" }) # => "Hello, John!"
 
 ### Examples
 
-Some simple usage examples can be found in the [`examples` folder](https://github.com/straight-shoota/crinja/tree/master/examples).
+The **Crinja Example Server** in [`examples/server`](https://github.com/straight-shoota/crinja/tree/master/examples/server) is an HTTP server which renders Crinja templates from `examples/server/pages`. It has also an interactive playground for Crinja template testing at `/play`.
+
+Command to start the server: `cd examples/server && crystal server.cr`
+
+Other examples can be found in the [`examples` folder](https://github.com/straight-shoota/crinja/tree/master/examples).
 
 ## API
 

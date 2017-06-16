@@ -1,0 +1,67 @@
+<link href="/source.css" rel="stylesheet">
+<link rel="stylesheet" href="/play.css" >
+
+<form method="post">
+<div class="crinja-playground">
+  <div class="template_source field-pane">
+    <h3>Template Source</h3>
+    <div class="editor-wrapper">
+      <div id="template_source">{{ template_source }}</div>
+      <textarea name="template_source" style="display: none;">{{ template_source }}</textarea>
+    </div>
+  </div>
+
+  <div class="variables field-pane">
+    <h3>Variables</h3>
+    <div class="editor-wrapper">
+      <div id="variables">{{ variables }}</div>
+      <textarea name="variables" style="display: none;">{{ variables }}</textarea>
+    </div>
+  </div>
+
+  <div class="form-action field-pane">
+    <button type="submit">Render</button>
+  </div>
+
+  <div class="rendered_result field-pane">
+    <h3>Rendered Result</h3>
+    <div id="rendered_result">{{ rendered_result }}</div>
+  </div>
+  <class class="rendered_source field-pane">
+    <h3>Rendered Source</h3>
+    <div id="rendered_source">{{ rendered_result | forceescape }}</div>
+  </div>
+</div>
+</form>
+
+{% for path in ["ace.js", "mode-yaml.js", "mode-django.js"] %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/{{ path }}"></script>
+{% endfor %}
+
+<script>
+
+editors = {}
+
+ids = ["template_source", "variables", "rendered_source"]
+ids.forEach(function(id) {
+  var editor = ace.edit(id)
+  editors[id] = editor
+
+  editor.setTheme("ace/theme/tomorrow")
+  editor.getSession().setTabSize(2);
+
+  var textarea = document.querySelector('textarea[name="' + id + '"]');
+  if(textarea){
+    editor.getSession().on("change", function () {
+      console.log("writing " + id + " into ", textarea)
+        textarea.innerHTML = editor.getSession().getValue();
+    });
+  }
+})
+
+editors["variables"].getSession().setMode("ace/mode/yaml")
+editors["template_source"].getSession().setMode("ace/mode/django")
+editors["rendered_source"].getSession().setMode("ace/mode/html")
+editors["rendered_source"].setReadOnly(true)
+
+</script>
