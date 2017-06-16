@@ -67,7 +67,7 @@ describe Crinja::Filter do
     end
   end
 
-  pending "dictsort" do
+  describe "dictsort" do
     it "sorts" do
       bindings = {"foo" => {"aa" => 0, "b" => 1, "c" => 2, "AB" => 3}}
       evaluate_expression(%(foo|dictsort), bindings).should eq %([("aa", 0), ("AB", 3), ("b", 1), ("c", 2)])

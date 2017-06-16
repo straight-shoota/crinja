@@ -3,34 +3,24 @@ module Crinja::Filter
     case_sensitive: false,
     by:             "key",
   }, :dictsort) do
-    # hash = target.as_h
-    # array = [] of Tuple(Value, Value)
-    # sort_by_key = arguments[:by] != "value"
-    # hash.each do |key, value|
-    #   array << {Value.new(key), Value.new(value)}
-    # end
+    case_sensitive = arguments[:case_sensitive].truthy?
 
-    # array.sort do |(ak, av), (bk, kv)|
-    #   ak <=> bk
-    # end
+    array = target.each.to_a
 
-    # case_sensitive = arguments[:case_sensitive].truthy?
-    # if arguments[:by].to_s == "value"
-    #  hash.to_a.sort do |(ak, av), (bk, bv)|
-    #    Value.new(av) <=> Value.new(bv)
-    #  end
-    # else
-    #  array.as(Array(Tuple(Crinja::Type, Crinja::Type))).sort do |(ak, av), (bk, kv)|
-    #    Value.new(ak) <=> Value.new(bk)
-    #  end
-    # end.as(Array(Tuple(Crinja::Type, Crinja::Type))).map(&.to_a.as(Crinja::Type))
-    # Bindings.cast_list(array)
-    # [] of Type
-    # type_array = [] of Array(Crinja::Type)
-    # array.each do |key, value|
-    #  type_array << [key.raw, value.raw]
-    # end
-    # type_array
-    [] of Crinja::Type
+    compare = ->(a : Value, b : Value) do
+      if !case_sensitive && a.string? && b.string?
+        a.as_s!.compare(b.as_s!, true)
+      else
+        a <=> b
+      end
+    end
+
+    if arguments[:by].to_s == "value"
+      array = array.sort { |a, b| compare.call(a[1], b[1]) }
+    else
+      array = array.sort { |a, b| compare.call(a[0], b[0]) }
+    end
+
+    array.map(&.raw.as(Type)).as(Type)
   end
 end

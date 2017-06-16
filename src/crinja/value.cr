@@ -280,19 +280,17 @@ class Crinja::Value
   #
   # TODO: Enable proper comparison.
   def <=>(other : Value)
-    thisraw = @raw
     otherraw = other.raw
 
-    if thisraw.is_a?(String | SafeString) || otherraw.is_a?(String | SafeString)
-      to_s <=> other.to_s
+    if @raw.is_a?(String | SafeString) || otherraw.is_a?(String | SafeString)
+      as_s! <=> other.as_s!
     elsif number? && other.number?
       as_number <=> other.as_number
       # elsif thisraw.is_a?(Array) && otherraw.is_a?(Array)
       #  thisraw <=> otherraw
     else
-      0
+      raise TypeError.new("cannot compare #{@raw.class} with #{otherraw.class}")
     end
-    0
   end
 
   # :nodoc:
