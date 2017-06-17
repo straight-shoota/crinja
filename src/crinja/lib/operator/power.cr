@@ -12,7 +12,7 @@ class Crinja::Operator
           base ** power
         end
       else
-        raise InvalidArgumentException.new(self, "Both operators need to be numeric")
+        raise Callable::ArgumentError.new(self, "Both operators need to be numeric")
       end
     end
   end

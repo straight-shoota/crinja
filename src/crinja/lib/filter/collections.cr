@@ -66,7 +66,7 @@ module Crinja::Filter
   Crinja.filter(:first) { target.first.raw }
   Crinja.filter(:last) { target.last.raw }
   Crinja.filter(:length) { target.size }
-  Crinja::Filter::Library.defaults["count"] = Crinja::Filter::Library.defaults["length"]
+  Crinja::Filter::Library.alias "count", "length"
 
   Crinja.filter(:reverse) do
     reversable = target.raw
@@ -111,7 +111,7 @@ module Crinja::Filter
     else
       varargs = arguments.varargs
       filter = env.filters[varargs.shift.as_s!]
-      args = Arguments.new(env, varargs, arguments.kwargs)
+      args = Callable::Arguments.new(env, varargs, arguments.kwargs)
 
       target.map do |item|
         args.target = item
@@ -120,6 +120,7 @@ module Crinja::Filter
     end
   end
 
+  # :nodoc:
   macro select_reject_attr(func)
     varargs = arguments.varargs
     iterable = target.as_iterable
@@ -133,7 +134,7 @@ module Crinja::Filter
       end
     else
       test = env.tests[varargs.shift.as_s!]
-      args = Arguments.new(env, varargs, arguments.kwargs)
+      args = Callable::Arguments.new(env, varargs, arguments.kwargs)
 
       iterable.{{ func.id }} do |item|
         args.target = Value.new Resolver.resolve_getattr(attribute, item)
@@ -142,6 +143,7 @@ module Crinja::Filter
     end
   end
 
+  # :nodoc:
   macro select_reject(func)
     varargs = arguments.varargs
     iterable = target.as_iterable
@@ -153,7 +155,7 @@ module Crinja::Filter
       end
     else
       test = env.tests[varargs.shift.as_s!]
-      args = Arguments.new(env, varargs, arguments.kwargs)
+      args = Callable::Arguments.new(env, varargs, arguments.kwargs)
 
       iterable.{{ func.id }} do |item|
         args.target = Value.new item
@@ -178,7 +180,7 @@ module Crinja::Filter
     Crinja::Filter.select_reject_attr(:reject)
   end
 
-  Crinja.filter({attribute: nil}, :groupby) do
+  Crinja.filter({attribute: UNDEFINED}, :groupby) do
     attribute = arguments[:attribute].raw
 
     h = Hash(Type, Type).new

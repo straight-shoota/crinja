@@ -1,3 +1,24 @@
+# A tag (=control structure) refers to all those things that control the flow of a program -
+# conditionals (i.e. if/elif/else), for-loops, as well as things like macros and blocks.
+#
+# Control structures appear inside `{% ... %}` blocks.
+#
+# ## Builtin tags
+#
+# The following tags are available in the default library:
+#
+# * `**[block](http://jinja.pocoo.org/docs/2.9/templates/#blocks)**`
+# * `**[call](http://jinja.pocoo.org/docs/2.9/templates/#call)**`
+# * `**[extends](http://jinja.pocoo.org/docs/2.9/templates/#extends)**`
+# * `**[filter](http://jinja.pocoo.org/docs/2.9/templates/#id11)**`
+# * `**[for](http://jinja.pocoo.org/docs/2.9/templates/#for)**`
+# * `**[from](http://jinja.pocoo.org/docs/2.9/templates/#import)**`
+# * `**[if](http://jinja.pocoo.org/docs/2.9/templates/#if)**`
+# * `**[import](http://jinja.pocoo.org/docs/2.9/templates/#import)**`
+# * `**[include](http://jinja.pocoo.org/docs/2.9/templates/#include)**`
+# * `**[macro](http://jinja.pocoo.org/docs/2.9/templates/#macros)**`
+# * `**[raw](http://jinja.pocoo.org/docs/2.9/templates/#escaping)**`
+# * `**[set](http://jinja.pocoo.org/docs/2.9/templates/#assignments)**`
 abstract class Crinja::Tag
   # :nodoc:
   alias TagNode = AST::TagNode

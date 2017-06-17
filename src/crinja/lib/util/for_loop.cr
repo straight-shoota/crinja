@@ -1,7 +1,7 @@
 require "../function"
 
-class Crinja::Util::ForLoop
-  include Crinja::PyObject
+class Crinja::Tag::For::ForLoop
+  include PyObject
 
   getter iterator, length
   getter index0, revindex0, first, last
@@ -72,18 +72,18 @@ class Crinja::Util::ForLoop
   end
 
   class CycleMethod
-    include Crinja::CallableMod
+    include Callable
 
     def initialize(@loop : ForLoop)
     end
 
-    def call(arguments : Crinja::Arguments) : Type
+    def call(arguments : Callable::Arguments) : Type
       arguments.varargs[@loop.index0 % arguments.varargs.size].raw
     end
   end
 
   class Recursive < ForLoop
-    include Crinja::CallableMod
+    include Callable
 
     property depth0 : Int32 = 0
 
@@ -103,7 +103,7 @@ class Crinja::Util::ForLoop
       super(iterator)
     end
 
-    def call(arguments : Crinja::Arguments)
+    def call(arguments : Callable::Arguments)
       sub_iterator = arguments.varargs.first
 
       sub_loop = self.class.new(@loop_runner, sub_iterator)

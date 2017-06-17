@@ -9,9 +9,9 @@ module Crinja::Filter
       value
     end
   end
-  Crinja::Filter::Library.defaults["d"] = Crinja::Filter::Library.defaults["default"]
+  Crinja::Filter::Library.alias :d, :default
 
-  Crinja.filter({name: nil}, :attr) do
+  Crinja.filter({name: UNDEFINED}, :attr) do
     Resolver.resolve_getattr(arguments[:name].raw, target)
   end
 

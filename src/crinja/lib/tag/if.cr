@@ -35,14 +35,14 @@ class Crinja::Tag::If < Crinja::Tag
   end
 end
 
-class Tag::Else < Tag
+class Crinja::Tag::Else < Crinja::Tag
   name "else"
 
   def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
   end
 end
 
-class Tag::Elif < Tag
+class Crinja::Tag::Elif < Crinja::Tag
   name "elif"
 
   def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)

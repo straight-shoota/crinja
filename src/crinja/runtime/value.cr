@@ -2,7 +2,7 @@ require "./type"
 require "./py_object"
 require "./undefined"
 require "./safe_string"
-require "../lib/callable"
+require "./callable"
 
 # was intended to be a struct, but that crashes iterator
 
@@ -341,7 +341,7 @@ class Crinja::Value
 
   # Returns `true` if this value is a `Callable`
   def callable?
-    @raw.is_a?(Crinja::Callable)
+    @raw.is_a?(Callable | Callable::Proc)
   end
 
   # Returns `true` if this value is a `TypeNumber`

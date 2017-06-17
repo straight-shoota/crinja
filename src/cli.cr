@@ -33,7 +33,8 @@ module Crinja::CLI
     [env.filters, env.tests, env.functions, env.tags, env.operators].each do |library|
       puts "#{library.name}:"
       library.keys.sort.each do |name|
-        puts "  #{name}"
+        feature = library[name]
+        puts "  #{feature}"
       end
       puts
     end

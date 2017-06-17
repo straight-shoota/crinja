@@ -71,7 +71,7 @@ module Crinja::Filter
     target.to_s.split(/[#{Crinja::Util::REGEX_WORD.source}]+/).size
   end
 
-  Crinja.filter({old: nil, new: nil, count: nil}, :replace) do
+  Crinja.filter({old: UNDEFINED, new: UNDEFINED, count: nil}, :replace) do
     search = arguments[:old].to_s
     replace = arguments[:new]
     count = arguments[:count]

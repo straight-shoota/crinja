@@ -79,7 +79,7 @@ class Crinja::Tag::Macro < Crinja::Tag
   end
 
   class MacroFunction
-    include CallableMod
+    include Callable
     # include PyWrapper
 
     getter name, defaults, children, catch_kwargs, catch_varargs, caller

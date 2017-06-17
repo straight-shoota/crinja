@@ -7,7 +7,7 @@ module Crinja::Filter
       SafeString.escape(raw.to_s)
     end
   end
-  Crinja::Filter::Library.defaults["e"] = Crinja::Filter::Library.defaults["escape"]
+  Crinja::Filter::Library.alias :e, :escape
 
   Crinja.filter(:forceescape) { SafeString.escape(target.to_s) }
 

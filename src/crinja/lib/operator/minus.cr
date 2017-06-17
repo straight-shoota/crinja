@@ -6,7 +6,7 @@ class Crinja::Operator
       if op1.number? && op2.number?
         op1.as_number - op2.as_number
       else
-        raise InvalidArgumentException.new(self, "Both operators need to be numeric")
+        raise Callable::ArgumentError.new(self, "Both operators need to be numeric")
       end
     end
   end

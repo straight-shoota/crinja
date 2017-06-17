@@ -1,5 +1,3 @@
-require "../util/for_loop"
-
 class Crinja::Tag::For < Crinja::Tag
   name "for", "endfor"
 
@@ -19,9 +17,9 @@ class Crinja::Tag::For < Crinja::Tag
     end
 
     if recursive
-      looper = Util::ForLoop::Recursive.new runner, collection
+      looper = ForLoop::Recursive.new runner, collection
     else
-      looper = Util::ForLoop.new collection
+      looper = ForLoop.new collection
     end
 
     result = runner.run_loop(looper)
@@ -68,7 +66,7 @@ class Crinja::Tag::For < Crinja::Tag
     def initialize(@renderer : Renderer, @tag_node : TagNode, @item_vars : Array(String))
     end
 
-    def run_loop(looper : Util::ForLoop)
+    def run_loop(looper)
       Renderer::OutputList.new.tap do |output|
         looper.each do |value|
           @renderer.env.with_scope({LOOP_VARIABLE => looper}) do |context|
@@ -117,3 +115,5 @@ class Crinja::Tag::For < Crinja::Tag
     end
   end
 end
+
+require "../util/for_loop"

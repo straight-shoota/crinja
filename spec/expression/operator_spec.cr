@@ -20,7 +20,7 @@ describe Crinja::Operator do
     end
 
     it "fails to subtract string" do
-      expect_raises(Crinja::InvalidArgumentException) do
+      expect_raises(Crinja::Callable::ArgumentError) do
         evaluate_expression(%(42 - "a"))
       end
     end
@@ -37,7 +37,7 @@ describe Crinja::Operator do
       evaluate_expression("1.0 / 2.0").should eq("0.5")
     end
     it "fails to divde string" do
-      expect_raises(Crinja::InvalidArgumentException) do
+      expect_raises(Crinja::Callable::ArgumentError) do
         evaluate_expression(%(42 / "a"))
       end
     end
@@ -54,7 +54,7 @@ describe Crinja::Operator do
       evaluate_expression("1.0 // 2.0").should eq("0")
     end
     it "fails to int divde string" do
-      expect_raises(Crinja::InvalidArgumentException) do
+      expect_raises(Crinja::Callable::ArgumentError) do
         evaluate_expression(%(42 // "a"))
       end
     end
@@ -71,7 +71,7 @@ describe Crinja::Operator do
       evaluate_expression("1.0 % 2.0").should eq("1")
     end
     it "fails to modulo string" do
-      expect_raises(Crinja::InvalidArgumentException) do
+      expect_raises(Crinja::Callable::ArgumentError) do
         evaluate_expression(%(42 % "a"))
       end
     end
@@ -88,7 +88,7 @@ describe Crinja::Operator do
       evaluate_expression("1.0 * 2.0 ").should eq("2.0")
     end
     it "fails to multiply string" do
-      expect_raises(Crinja::InvalidArgumentException) do
+      expect_raises(Crinja::Callable::ArgumentError) do
         evaluate_expression(%(42 * "a"))
       end
     end
@@ -105,7 +105,7 @@ describe Crinja::Operator do
       evaluate_expression("4.0 ** 0.5").should eq("2.0")
     end
     it "fails to raise string" do
-      expect_raises(Crinja::InvalidArgumentException) do
+      expect_raises(Crinja::Callable::ArgumentError) do
         evaluate_expression(%(42 ** "a"))
       end
     end

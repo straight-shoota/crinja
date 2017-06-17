@@ -51,11 +51,11 @@ class Crinja::Evaluator
 
     callable = @env.resolve_callable(callable_name) if callable_name
 
-    if !callable.is_a?(Callable) && identifier.is_a?(AST::MemberExpression)
+    if !callable.is_a?(Callable | Callable::Proc) && identifier.is_a?(AST::MemberExpression)
       callable = call_on_member(identifier)
     end
 
-    unless callable.is_a?(Callable)
+    unless callable.is_a?(Callable | Callable::Proc)
       callable = @env.resolve_callable!(value(identifier))
     end
 
@@ -103,7 +103,7 @@ class Crinja::Evaluator
     end
 
     target = value expression.target
-    callable.call Arguments.new(@env, argumentlist, keyword_arguments, target: target)
+    callable.call Callable::Arguments.new(@env, argumentlist, keyword_arguments, target: target)
   end
 
   visit MemberExpression do

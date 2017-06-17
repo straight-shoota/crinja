@@ -80,9 +80,9 @@ module Crinja::Resolver
     self.resolve_getattr(name, value.raw)
   end
 
-  def self.resolve_method(name, object) : Callable?
+  def self.resolve_method(name, object) : Callable | Callable::Proc?
     if object.responds_to? :__call__
-      object.__call__(name).as(Callable)
+      object.__call__(name).as(Callable | Callable::Proc)
     else
       nil
     end
@@ -152,7 +152,7 @@ module Crinja::Resolver
   end
 
   def execute_call(name, varargs : Array(Value), kwargs : Hash(String, Value))
-    arguments = Arguments.new(self, varargs, kwargs)
+    arguments = Callable::Arguments.new(self, varargs, kwargs)
     callable = resolve_callable!(name)
 
     callable.call(arguments)
@@ -172,7 +172,7 @@ module Crinja::Resolver
   end
 
   def call_filter(name, target : Value, varargs : Array(Value) = [] of Value, kwargs : Hash(String, Value) = Hash(String, Value).new)
-    arguments = Arguments.new(self, varargs, kwargs, target: target)
+    arguments = Callable::Arguments.new(self, varargs, kwargs, target: target)
 
     filters[name].call(arguments)
   end
@@ -185,9 +185,11 @@ module Crinja::Resolver
     end
   end
 
-  def resolve_callable!(identifier) : Callable
-    return identifier.as(Callable) if identifier.is_a?(Callable)
+  def resolve_callable!(identifier : Callable | Callable::Proc)
+    identifier
+  end
 
+  def resolve_callable!(identifier) : Callable | Callable::Proc
     callable = resolve_callable(identifier)
 
     if callable.is_a? Undefined
@@ -196,7 +198,7 @@ module Crinja::Resolver
 
     if callable.is_a? Callable
       # FIXME: Explicit cast should not be necessary.
-      return callable.as(Callable)
+      return callable.as(Callable | Callable::Proc)
     else
       raise TypeError.new(Value.new(callable), "`#{identifier.inspect}` is not callable")
     end

@@ -163,4 +163,14 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
       end
     end
   end
+
+  class TagCycleException < RuntimeError
+    def initialize(@type : Symbol, msg = nil, cause = nil)
+      super msg, cause
+    end
+
+    def message
+      "Tag cycle exception #{@type}. #{super}"
+    end
+  end
 end

@@ -148,35 +148,7 @@ class Crinja::UndefinedError < Crinja::RuntimeError
   end
 end
 
-class Crinja::CallableArgumentError < Crinja::RuntimeError
-end
-
-class Crinja::InvalidArgumentException < Crinja::RuntimeError
-  getter callee : Crinja::Callable | Crinja::Operator | String
-
-  def self.new(callee : Symbol, msg = nil, cause = nil)
-    new callee.to_s, msg, cause
-  end
-
-  def initialize(@callee, msg = nil, cause = nil)
-    super msg, cause
-  end
-
-  def message
-    "#{super} (called: #{callee})"
-  end
-end
-
-class Crinja::TagCycleException < Crinja::RuntimeError
-  def initialize(@type : Symbol, msg = nil, cause = nil)
-    super msg, cause
-  end
-
-  def message
-    "Tag cycle exception #{@type}. #{super}"
-  end
-end
-
+# FIXME: Remove when call stack rewriting arrives in the next release
 class Crinja::ExceptionWrapper < Exception
   def cause!
     cause.not_nil!

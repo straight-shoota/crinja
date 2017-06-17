@@ -2,15 +2,13 @@
 # It tries to convert values to a meaningful string represenation similar to what `Object#to_s` does
 # but with a few adjustments compared to Crystal standard `to_s` methods.
 struct Crinja::Finalizer
-  protected def self.stringify(raw, escape = false)
-    builder = new(escape)
+  protected def self.stringify(raw, escape = false, in_struct = false)
+    builder = new(escape, in_struct)
     builder.stringify(raw)
     builder.to_string
   end
 
-  @inside_struct = false
-
-  def initialize(@escape : Bool = false)
+  def initialize(@escape = false, @inside_struct = false)
     @io = IO::Memory.new
   end
 

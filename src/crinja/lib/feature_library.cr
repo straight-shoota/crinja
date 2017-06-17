@@ -6,12 +6,15 @@ abstract class Crinja::FeatureLibrary(T)
   end
 
   property store : Hash(String, T)
+  property aliasses : Hash(String, String)
 
   # Creates a new feature library.
   # If *register_defaults* is set to `false`, this library will be empty. Otherwise it is populated
   # with registered default features.
   def initialize(register_defaults = true)
-    @store = Hash(String, T).new
+    # FIXME: Move ivar initialization to property definition
+    @store = {} of String => T
+    @aliasses = {} of String => String
     self.register_defaults if register_defaults
   end
 
@@ -23,12 +26,17 @@ abstract class Crinja::FeatureLibrary(T)
   macro inherited
     # Create a local method in a subclass to allow the usage of `previous_def`.
     def register_defaults
-      @store.merge! @@defaults
+      @@defaults.each do |callable|
+        self << callable
+      end
+      @aliasses.merge! @@aliasses
     end
 
-    @@defaults = Hash(::String, T).new
-    def self.defaults
-      @@defaults
+    class_getter defaults = [] of T
+
+    @@aliasses = {} of String => String
+    def self.alias(from, to)
+      @@aliasses[from.to_s] = to.to_s
     end
   end
 
@@ -63,12 +71,20 @@ abstract class Crinja::FeatureLibrary(T)
   # Adds a feature object to this library.
   # It will be stored under the key `obj.name`.
   def <<(obj : T)
-    self[obj.name] = obj
+    name = if obj.responds_to?(:name)
+             obj.name
+           else
+             obj.class.to_s.split("::")[-1].downcase
+           end
+
+    self[name] = obj
   end
 
   # Retrieves the feature object in this library with key *name*.
   def [](name) : T
-    store[name.to_s.downcase]
+    lookup = name.to_s.downcase
+    lookup = aliasses.fetch(lookup, lookup)
+    store[lookup]
   rescue
     raise UnknownFeatureException.new(self.name, name.downcase)
   end
@@ -84,7 +100,9 @@ abstract class Crinja::FeatureLibrary(T)
   end
 
   def has_key?(name)
-    store.has_key?(name.to_s.downcase)
+    lookup = name.to_s.downcase
+    lookup = aliasses.fetch(lookup, lookup)
+    store.has_key?(lookup)
   end
 
   def inspect(io : IO)

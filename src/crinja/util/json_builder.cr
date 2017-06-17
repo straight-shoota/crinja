@@ -10,12 +10,12 @@ struct Crinja::JsonBuilder
     @json.end_document
   end
 
-  private def dump(value : Crinja::CallableMod)
+  private def dump(value : Crinja::Callable)
     @json.null
   end
 
   private def dump(value : Crinja::TypeValue)
-    unless value.is_a?(Callable)
+    unless value.is_a?(Callable | Callable::Proc)
       value.to_json(@json)
     else
       @json.string value.to_s
