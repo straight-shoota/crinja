@@ -66,6 +66,7 @@ module Crinja::Filter
   Crinja.filter(:first) { target.first.raw }
   Crinja.filter(:last) { target.last.raw }
   Crinja.filter(:length) { target.size }
+  Crinja::Filter::Library.defaults["count"] = Crinja::Filter::Library.defaults["length"]
 
   Crinja.filter(:reverse) do
     reversable = target.raw

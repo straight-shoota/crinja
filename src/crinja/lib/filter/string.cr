@@ -88,6 +88,36 @@ module Crinja::Filter
       string
     end
   end
+
+  Crinja.filter(:trim) do
+    target.as_s.strip
+  end
+
+  Crinja.filter({width: 79, break_long_words: true, wrapstring: nil}, :wordwrap) do
+    width = arguments[:width].to_i
+    break_long_words = arguments[:break_long_words].truthy?
+    wrapstring = arguments.fetch(:wrapstring, "\n").to_s
+
+    String.build do |io|
+      first_line = true
+      target.as_s.each_line do |line|
+        io << wrapstring unless first_line
+        first_line = false
+        while line.size > width
+          newline = line[0, width]
+          unless break_long_words
+            newline, s, _ = newline.rpartition(/\s/)
+            io << newline << s
+          else
+            io << newline
+          end
+          io << wrapstring
+          line = line[newline.size..-1]
+        end
+        io << line
+      end
+    end
+  end
 end
 
 module Crinja::Util

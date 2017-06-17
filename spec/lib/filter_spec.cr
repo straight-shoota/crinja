@@ -332,7 +332,7 @@ describe Crinja::Filter do
     evaluate_expression(%("hello world" | upper)).should eq("HELLO WORLD")
   end
 
-  pending "urlize" do
+  describe "urlize" do
     it "urlize" do
       evaluate_expression(%("foo http://www.example.com/ bar"|urlize)).should eq \
         %(foo <a href="http://www.example.com/" rel="noopener">) \
@@ -343,7 +343,7 @@ describe Crinja::Filter do
       env = Crinja::Environment.new
       env.policies["urlize.rel"] = nil
       env.evaluate(%("foo http://www.example.com/ bar"|urlize)).should eq \
-        %(foo <a href="http://www.example.com/"http://www.example.com/</a> bar)
+        %(foo <a href="http://www.example.com/">http://www.example.com/</a> bar)
     end
 
     it "urlize_target_parameter" do
@@ -622,6 +622,23 @@ describe Crinja::Filter do
       expect_raises(Crinja::TypeError) do
         evaluate_expression(%(1 | list))
       end
+    end
+  end
+
+  it "trim" do
+    evaluate_expression(%("  foo. \n"|trim)).should eq "foo."
+  end
+
+  describe "wordwrap" do
+    it do
+      evaluate_expression(%(s|wordwrap), {s: "a" * 79}).should eq "a" * 79
+      evaluate_expression(%(s|wordwrap), {s: "a" * 80}).split('\n').should eq ["a" * 79, "a"]
+      evaluate_expression(%(s|wordwrap(10)), {s: "foo " * 3}).split('\n').should eq ["foo foo fo", "o "]
+    end
+
+    pending do
+      evaluate_expression(%(s|wordwrap), {s: "foo " * 20}).split('\n').should eq ["foo " * 19, "foo"]
+      evaluate_expression(%(s|wordwrap(10, false)), {s: "foo " * 3}).split('\n').should eq ["foo foo", "foo "]
     end
   end
 end

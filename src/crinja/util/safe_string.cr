@@ -36,6 +36,14 @@ struct Crinja::SafeString
     result
   end
 
+  def +(other : String | SafeString | Char)
+    result = @string + other.to_s
+    if other.is_a?(SafeString)
+      result = SafeString.new(result)
+    end
+    result
+  end
+
   def gsub(search, replace)
     result = @string.gsub(search, replace)
 
@@ -47,6 +55,12 @@ struct Crinja::SafeString
 
   def partition(sep)
     a, b, c = @string.partition(sep)
+
+    return SafeString.new(a), SafeString.new(b), SafeString.new(c)
+  end
+
+  def rpartition(sep)
+    a, b, c = @string.rpartition(sep)
 
     return SafeString.new(a), SafeString.new(b), SafeString.new(c)
   end
@@ -76,6 +90,24 @@ struct Crinja::SafeString
     end
 
     result
+  end
+
+  def strip(*args)
+    SafeString.new @string.strip(*args)
+  end
+
+  def lstrip(*args)
+    SafeString.new @string.lstrip(*args)
+  end
+
+  def rstrip(*args)
+    SafeString.new @string.rstrip(*args)
+  end
+
+  def each_line(chomp = true)
+    @string.each_line(chomp) do |line|
+      yield SafeString.new(line)
+    end
   end
 
   def self.build
