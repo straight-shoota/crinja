@@ -43,6 +43,22 @@ module Crinja::Filter
 
     string
   end
+
+  Crinja.filter({autoescape: true}, :xmlattr) do
+    string = SafeString.build do |io|
+      target.as_h.each_with_index do |(key, value), i|
+        next if value.nil? || value.is_a?(Undefined)
+
+        io << sprintf %( %s="%s"), SafeString.escaped(key), SafeString.escaped(value)
+      end
+    end
+
+    if string.size > 0 && !arguments[:autoescape].truthy?
+      string = string[1..-1]
+    end
+
+    string
+  end
 end
 
 module Crinja::Util

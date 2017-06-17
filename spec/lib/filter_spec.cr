@@ -409,7 +409,14 @@ describe Crinja::Filter do
     evaluate_expression(%(21.3|round(-1, 'floor'))).should eq "20.0"
   end
 
-  pending "xmlattr" do
+  it "xmlattr" do
+    kvpairs = evaluate_expression(%({'foo': 42, 'bar': 23, 'fish': none, ) \
+                        %('spam': missing, 'blub:blub': '<?>'}|xmlattr)).split(' ')
+
+    kvpairs.should contain %(foo="42")
+    kvpairs.should contain %(bar="23")
+    kvpairs.should contain %(blub:blub="&lt;?&gt;")
+    kvpairs.size.should eq 4
   end
 
   describe "sort" do
