@@ -110,7 +110,7 @@ module Crinja::Resolver
   end
 
   # Resolves a dig.
-  def self.resolve_dig(name, object : Type)
+  def self.resolve_dig(name : String, object : Type)
     identifier, _, rest = name.partition('.')
 
     resolved = resolve_attribute(identifier, object)
@@ -119,6 +119,11 @@ module Crinja::Resolver
     else
       resolved
     end
+  end
+
+  # :ditto:
+  def self.resolve_dig(name, object : Type)
+    resolve_attribute(name, object)
   end
 
   # :ditto:

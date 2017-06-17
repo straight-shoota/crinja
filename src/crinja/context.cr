@@ -101,15 +101,7 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
     end
   end
 
-  def unpack(vars : Array(String), values : Array(Type))
-    if vars.size == 1
-      self[vars.first] = values
-    else
-      unpack vars, values.each
-    end
-  end
-
-  def unpack(vars : Array(String), values : Iterator(Type))
+  def unpack(vars : Array(String), values : Iterable(Type) | Iterator(Type))
     if vars.size == 1
       self[vars.first] = values
     else
@@ -117,6 +109,7 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
       # vars.each.zip(values).each do |var, value|
       #   self[var] = value
       # end
+      values = values.each if values.is_a?(Iterable)
       vars.each do |var|
         value = values.next
         self[var] = if value.is_a?(Iterator::Stop)
@@ -132,8 +125,8 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
     unpack(vars, values.map(&.raw))
   end
 
-  def unpack(vars : Array(String), values : TypeValue | Hash(Type, Type) | PyTuple)
-    raise "cannot unpack multiple values" if vars.size > 1
+  def unpack(vars : Array(String), values : TypeValue | Hash(Type, Type))
+    raise RuntimeError.new("cannot unpack multiple values of type #{values.class}") if vars.size > 1
     self[vars.first] = values.as(Type)
   end
 

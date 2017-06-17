@@ -19,6 +19,10 @@ class Crinja::PyTuple
     PyTuple.from(@data + other.@data)
   end
 
+  def ==(other : PyTuple)
+    self == other.@data
+  end
+
   def to_s(io)
     io << "(("
     join ", ", io, &.inspect(io)
