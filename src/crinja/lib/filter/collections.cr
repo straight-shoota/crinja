@@ -176,4 +176,19 @@ module Crinja::Filter
   Crinja.filter(:rejectattr) do
     Crinja::Filter.select_reject_attr(:reject)
   end
+
+  Crinja.filter({attribute: nil}, :groupby) do
+    attribute = arguments[:attribute].raw
+
+    h = Hash(Type, Type).new
+    target.raw_each do |item|
+      value = Resolver.resolve_dig(attribute, item)
+      if h.has_key?(value)
+        h[value].as(Array).push(item)
+      else
+        h[value] = [item.as(Type)].as(Type)
+      end
+    end
+    h
+  end
 end

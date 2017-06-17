@@ -32,6 +32,29 @@ private class IdUser
   getattr
 end
 
+private class Date
+  include Crinja::PyObject
+  getter day : Int32
+  getter month : Int32
+  getter year : Int32
+
+  getattr
+
+  def initialize(@day, @month, @year)
+  end
+end
+
+private class Article
+  include Crinja::PyObject
+  getter title : String
+  getter date : Date
+  getattr
+
+  def initialize(@title, *date)
+    @date = Date.new(*date)
+  end
+end
+
 describe Crinja::Filter do
   it "calling" do
     Crinja::Environment.new.call_filter("sum", [1, 2, 3]).should eq 6
@@ -409,7 +432,48 @@ describe Crinja::Filter do
     end
   end
 
-  pending "groupby" do
+  describe "groupby" do
+    it "basic" do
+      render(<<-'TPL'
+        {%- for grouper, list in [{'foo': 1, 'bar': 2},
+                                  {'foo': 2, 'bar': 3},
+                                  {'foo': 1, 'bar': 1},
+                                  {'foo': 3, 'bar': 4}]|groupby('foo') -%}
+        {{ grouper }}{% for x in list %}: {{ x.foo }}, {{ x.bar }}{% endfor %}|
+        {%- endfor %}
+        TPL).split("|\n").should eq [
+            "1: 1, 2: 1, 1",
+            "2: 2, 3",
+            "3: 3, 4",
+            ""
+        ]
+    end
+
+    it "tuple_index" do
+      render(<<-'TPL'
+        {%- for grouper, list in [('a', 1), ('a', 2), ('b', 1)]|groupby(0) -%}
+        {{ grouper }}{% for x in list %}:{{ x.1 }}{% endfor %}|
+        {%- endfor %}
+        TPL).should eq "a:1:2|\nb:1|\n"
+    end
+
+    it "multidot" do
+        articles = [
+            Article.new("aha", 1, 1, 1970),
+            Article.new("interesting", 2, 1, 1970),
+            Article.new("really?", 3, 1, 1970),
+            Article.new("totally not", 1, 1, 1971)
+        ]
+        render(<<-'TPL'
+          {%- for year, list in articles|groupby('date.year') -%}
+          {{ year }}{% for x in list %}[{{ x.title }}]{% endfor %}|
+          {%- endfor %}
+          TPL, {articles: articles}).split("|\n").should eq [
+              "1970[aha][interesting][really?]",
+              "1971[totally not]",
+              ""
+          ]
+      end
   end
 
   it "replace" do
