@@ -113,20 +113,7 @@ class Crinja::Value
   # Returns an iterator for the underlying value if it is an `Iterable`, `String` or `Undefined`
   # which iterates through the items as `Value`.
   def each
-    case object = @raw
-    when Hash
-      HashValueIterator.new(object.each)
-    when Iterable(Type)
-      ValueIterator.new(object.each.as(Iterator(Type)))
-    when String
-      ValueIterator.new(object.chars.map(&.to_s.as(Type)).each)
-    when Crinja::StrictUndefined
-      raise TypeError.new(self, "can't iterate over undefined")
-    when Crinja::Undefined
-      ValueIterator.new(([] of Type).each)
-    else
-      raise TypeError.new(self, "#{object.class} is not iterable")
-    end
+    ValueIterator.new raw_each
   end
 
   # Assumes the underlying value is an `Iterable` and yields each
@@ -137,11 +124,40 @@ class Crinja::Value
     end
   end
 
+  # Returns an iterator for the underlying value if it is an `Iterable`, `String` or `Undefined`
+  # which iterates through the items as `Type`.
+  def raw_each : Iterator(Type)
+    case object = @raw
+    when Hash
+      HashTupleIterator.new(object.each)
+    when Iterable(Type)
+      object.each.as(Iterator(Type))
+    when Iterator(Type)
+      object
+    when String
+      object.chars.map(&.to_s.as(Type)).each
+    when StrictUndefined
+      raise TypeError.new(self, "can't iterate over undefined")
+    when Undefined
+      ([] of Type).each
+    else
+      raise TypeError.new(self, "#{object.class} is not iterable")
+    end
+  end
+
+  # Assumes the underlying value is an `Iterable` and yields each
+  # of the elements or key/values, always as `Type`.
+  def raw_each
+    raw_each.each do |a|
+      yield a
+    end
+  end
+
   private class ValueIterator
     include Iterator(Value)
     include IteratorWrapper
 
-    def initialize(@iterator : Iterator(Type) = ([] of Type).each)
+    def initialize(@iterator : Iterator(Type))
     end
 
     def next
@@ -161,8 +177,8 @@ class Crinja::Value
     end
   end
 
-  private class HashValueIterator
-    include Iterator(Value)
+  private class HashTupleIterator
+    include Iterator(Type)
     include IteratorWrapper
 
     def initialize(@iterator : Iterator(Tuple(Type, Type)))
@@ -171,13 +187,10 @@ class Crinja::Value
     def next
       tuple = wrapped_next
 
-      case tuple
-      when Tuple
-        Value.new PyTuple.from tuple
-      when stop
-        stop
+      if tuple.is_a?(Tuple)
+        PyTuple.from tuple
       else
-        raise "never reach"
+        stop
       end
     end
   end

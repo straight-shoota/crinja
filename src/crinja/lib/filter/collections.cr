@@ -15,40 +15,33 @@ module Crinja::Filter
   end
 
   Crinja.filter({linecount: 2, fill_with: nil}, :batch) do
-    value = target.raw
     fill_with = arguments[:fill_with].raw
     linecount = arguments[:linecount].to_i
 
-    case value
-    when Array
+    if target.sequence?
       array = Array(Type).new
 
-      value.each_slice(linecount) do |slice|
+      target.raw_each.each_slice(linecount) do |slice|
         (linecount - slice.size).times { slice << fill_with } unless fill_with.nil?
         array << slice
       end
 
       array
     else
-      raise TypeError.new("target for batch filter must be a list")
+      raise TypeError.new("target for batch filter must be a sequence")
     end
   end
 
   Crinja.filter({slices: 2, fill_with: nil}, :slice) do
     fill_with = arguments[:fill_with].raw
     slices = arguments[:slices].to_i
-    raw = target.raw
 
-    case raw
-    when Array(Type)
-      values = [] of Type
-      raw.each do |val|
-        values << val.as(Type)
-      end
+    if target.sequence?
+      values = target.raw_each.to_a
       array = Array(Type).new
 
-      num_full_slices = values.size % slices
-      per_slice = values.size / slices
+      num_full_slices = target.size % slices
+      per_slice = target.size / slices
 
       num_full_slices.times do |i|
         slice = Array(Type).new
@@ -86,16 +79,14 @@ module Crinja::Filter
   end
 
   Crinja.filter({attribute: nil, start: 0}, :sum) do
-    iterator = target.each
     attribute = arguments[:attribute].as_s?
 
     start = arguments[:start].as_number
-    iterator.reduce(start) do |memo, item|
+    target.raw_each.reduce(start) do |memo, item|
       unless attribute.nil?
         item = Resolver.resolve_dig(attribute, item)
       end
 
-      item = item.raw if item.is_a?(Value)
       if item.is_a?(Crinja::TypeNumber)
         memo + item
       else
