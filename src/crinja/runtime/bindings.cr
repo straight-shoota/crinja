@@ -3,7 +3,7 @@
 module Crinja::Bindings
   # Casts an object with hash-like interface to `Hash(String, Crinja::Type)`, which can be
   # used for name lookup.
-  def self.cast(bindings)
+  def self.cast_bindings(bindings)
     type_hash = Hash(String, Crinja::Type).new
     bindings.each do |k, v|
       type_hash[k.to_s] = cast_value(v)

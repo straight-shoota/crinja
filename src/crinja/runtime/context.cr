@@ -75,12 +75,12 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
 
   # Merges values in *bindings* into local scope.
   def merge!(bindings)
-    super(Crinja::Bindings.cast(bindings).as(Hash(String, Type)))
+    super(Crinja::Bindings.cast_bindings(bindings))
   end
 
   # Set variable *key* to value *value* in local scope.
   def []=(key : String, value : Hash(String, Type))
-    self[key] = Crinja::Bindings.cast(value)
+    self[key] = Crinja::Bindings.cast_bindings(value)
   end
 
   # Returns an undefined value.
