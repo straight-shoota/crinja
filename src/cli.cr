@@ -29,11 +29,23 @@ module Crinja::CLI
     exit
   end
 
+  def self.print_library_defaults
+    [env.filters, env.tests, env.functions, env.tags, env.operators].each do |library|
+      puts "#{library.name}:"
+      library.keys.sort.each do |name|
+        puts "  #{name}"
+      end
+      puts
+    end
+    exit
+  end
+
   def self.run
     OptionParser.parse! do |opts|
       path = Dir.current
 
-      opts.on("--version", "") { puts Crinja::VERSION; exit }
+      opts.on("--version", "show version info") { puts Crinja::VERSION; exit }
+      opts.on("--library-defaults", "print all default filters, tests, functions, tags and operators in stdlib") { print_library_defaults }
       opts.on("-v", "--verbose", "") { self.logger.level = Logger::Severity::DEBUG }
       opts.on("-q", "--quiet", "") { self.logger.level = Logger::Severity::WARN }
       opts.on("-h", "--help", "") { self.display_help_and_exit(opts) }
