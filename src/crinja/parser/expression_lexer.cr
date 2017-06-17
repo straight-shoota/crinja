@@ -107,27 +107,14 @@ module Crinja::Parser
         pop_stack
         next_char
       when Symbol::LEFT_PAREN
-        if peek_char == Symbol::LEFT_PAREN
-          @token.kind = Kind::TUPLE_START
-          @token.value = Symbol::LEFT_PAREN.to_s * 2
-          @stack << Kind::TUPLE_END
-          next_char
-          next_char
-        else
-          @token.kind = Kind::LEFT_PAREN
-          @token.value = current_char.to_s
-          @stack << Kind::RIGHT_PAREN
-          next_char
-        end
+        @token.kind = Kind::LEFT_PAREN
+        @token.value = current_char.to_s
+        @stack << Kind::RIGHT_PAREN
+        next_char
       when Symbol::RIGHT_PAREN
-        if peek_char == Symbol::RIGHT_PAREN
-          @token.kind = Kind::TUPLE_END
-          @token.value = Symbol::RIGHT_PAREN.to_s * 2
-          next_char
-        else
-          @token.kind = Kind::RIGHT_PAREN
-          @token.value = current_char.to_s
-        end
+        @token.kind = Kind::RIGHT_PAREN
+        @token.value = current_char.to_s
+
         pop_stack
         next_char
       when Char::ZERO

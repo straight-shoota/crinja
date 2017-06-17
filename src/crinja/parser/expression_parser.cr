@@ -291,8 +291,6 @@ class Crinja::Parser::ExpressionParser
       node = parse_array_literal
     when Kind::LEFT_CURLY
       node = parse_dict_literal
-    when Kind::TUPLE_START
-      node = parse_tuple_literal
     else
       unexpected_token value: "an expression"
     end
@@ -368,17 +366,6 @@ class Crinja::Parser::ExpressionParser
     end_location = current_token.location
     expect Kind::RIGHT_BRACKET
     return AST::ArrayLiteral.new(exps.children).at(start_location, end_location)
-  end
-
-  private def parse_tuple_literal
-    start_location = current_token.location
-
-    expect Kind::TUPLE_START
-    exps = parse_expression_list([Kind::TUPLE_END])
-
-    end_location = current_token.location
-    expect Kind::TUPLE_END
-    return AST::TupleLiteral.new(exps.children).at(start_location, end_location)
   end
 
   private def parse_dict_literal

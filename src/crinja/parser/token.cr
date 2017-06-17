@@ -34,9 +34,6 @@ class Crinja::Parser::Token
 
     POINT
     COMMA
-
-    TUPLE_START
-    TUPLE_END
   end
 
   property kind : Kind

@@ -33,4 +33,8 @@ describe Crinja::Parser::ExpressionParser do
     expression = parse(%(foo.1))
     expression.should be_a(Crinja::AST::MemberExpression)
   end
+
+  it "parse double parenthesis" do
+    expression = parse("dict(foo=(1, 2))")
+  end
 end
