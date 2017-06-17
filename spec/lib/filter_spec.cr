@@ -93,17 +93,17 @@ describe Crinja::Filter do
   describe "dictsort" do
     it "sorts" do
       bindings = {"foo" => {"aa" => 0, "b" => 1, "c" => 2, "AB" => 3}}
-      evaluate_expression(%(foo|dictsort), bindings).should eq %([("aa", 0), ("AB", 3), ("b", 1), ("c", 2)])
+      evaluate_expression(%(foo|dictsort), bindings).should eq %([('aa', 0), ('AB', 3), ('b', 1), ('c', 2)])
     end
 
     it "sorts caseinsensitive" do
       bindings = {"foo" => {"aa" => 0, "b" => 1, "c" => 2, "AB" => 3}}
-      evaluate_expression(%(foo|dictsort(true)), bindings).should eq %([("AB", 3), ("aa", 0), ("b", 1), ("c", 2)])
+      evaluate_expression(%(foo|dictsort(true)), bindings).should eq %([('AB', 3), ('aa', 0), ('b', 1), ('c', 2)])
     end
 
     it "sorts by value" do
       bindings = {"foo" => {"aa" => 0, "b" => 1, "c" => 2, "AB" => 3}}
-      evaluate_expression(%(foo|dictsort(false, "value")), bindings).should eq %([("aa", 0), ("b", 1), ("c", 2), ("AB", 3)])
+      evaluate_expression(%(foo|dictsort(false, "value")), bindings).should eq %([('aa', 0), ('b', 1), ('c', 2), ('AB', 3)])
     end
   end
 
@@ -113,7 +113,7 @@ describe Crinja::Filter do
     end
 
     it "batches with fill" do
-      evaluate_expression(%(foo|batch(3, "X")|list), {"foo" => (0..9)}).should eq %([[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, "X", "X"]])
+      evaluate_expression(%(foo|batch(3, "X")|list), {"foo" => (0..9)}).should eq %([[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 'X', 'X']])
     end
 
     it "size-and-fill" do
@@ -139,7 +139,7 @@ describe Crinja::Filter do
     end
 
     it "slices with fill" do
-      evaluate_expression(%(foo|slice(3, "X")|list), {"foo" => (0..9)}).should eq %([[0, 1, 2, 3], [4, 5, 6, "X"], [7, 8, 9, "X"]])
+      evaluate_expression(%(foo|slice(3, "X")|list), {"foo" => (0..9)}).should eq %([[0, 1, 2, 3], [4, 5, 6, 'X'], [7, 8, 9, 'X']])
     end
   end
 
@@ -425,7 +425,7 @@ describe Crinja::Filter do
       evaluate_expression(%([2, 3, 1]|sort(true))).should eq "[3, 2, 1]"
       evaluate_expression(%(["c", "A", "b", "D"]|sort|join)).should eq "AbcD"
       evaluate_expression(%(["c", "A", "b", "D"]|sort(case_sensitive=true)|join)).should eq "ADbc"
-      evaluate_expression(%(['foo', 'Bar', 'blah']|sort)).should eq %(["Bar", "blah", "foo"])
+      evaluate_expression(%(['foo', 'Bar', 'blah']|sort)).should eq %(['Bar', 'blah', 'foo'])
     end
 
     it "custom_sort" do
@@ -616,7 +616,7 @@ describe Crinja::Filter do
       evaluate_expression(%([1, 2] | list)).should eq "[1, 2]"
     end
     it "splits string" do
-      evaluate_expression(%("abc" | list)).should eq %(["a", "b", "c"])
+      evaluate_expression(%("abc" | list)).should eq %(['a', 'b', 'c'])
     end
     it "fails for number" do
       expect_raises(Crinja::TypeError) do

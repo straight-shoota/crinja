@@ -6,7 +6,7 @@ describe Crinja::Operator do
       evaluate_expression("'a' + 'b'").should eq("ab")
     end
     it "concatenates two arrays" do
-      evaluate_expression("['a'] + ['b']").should eq(%(["a", "b"]))
+      evaluate_expression("['a'] + ['b']").should eq(%(['a', 'b']))
     end
   end
 

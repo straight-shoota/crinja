@@ -75,8 +75,8 @@ struct Crinja::Finalizer
 
   private def quote
     quotes = @inside_struct
-    @io << '"' if quotes
+    @io << '\'' if quotes
     yield
-    @io << '"' if quotes
+    @io << '\'' if quotes
   end
 end
