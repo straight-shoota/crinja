@@ -17,7 +17,7 @@ Crinja tries to stay close to the Jinja2 language design and implementation. It 
 * autoescape by default
 * template cache
 
-All standard [control structures (tags)](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures), [tests](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests) and [operators](http://jinja.pocoo.org/docs/2.9/templates/#expressions) are already implemented, many implementations of standard [filters](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters) and [global functions](http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions) are still missing.
+All standard [control structures (tags)](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures), [tests](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests), [global functions](http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions) and [operators](http://jinja.pocoo.org/docs/2.9/templates/#expressions) are already implemented, some implementations of standard [filters](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters) are still missing.
 
 Currently, template errors fail fast raising an exception. It is considered to change this behaviour to collect multiple errors, similar to what Jinjava does.
 
@@ -25,6 +25,7 @@ Currently, template errors fail fast raising an exception. It is considered to c
 
 This is an incomplete list of **Differences to the original Jinja2**:
 
+* **Python expressions:** Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib.
 * **Line statements and line comments**: Are not supported, because their usecase is negligible.
 * **String representation:** `{{ "{{" }} ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 which is the Python representation of an array with strings. In Crinja it uses the Crytal representation: `["foo", "bar"]`.
 * **Double escape:** `{{ "{{" }} '<html>'|escape|escape }}` will render as `&lt;html&gt;` in Jinja2, but `&amp;lt;html&amp;gt;`. Should we change that behaviour?
@@ -33,9 +34,10 @@ This is an incomplete list of **Differences to the original Jinja2**:
 
 The following features are not yet fully implemented, but on the [roadmap](ROADMAP.md):
 
-* Implementation of all standard filters and global functions
-* sandboxed execution
-* some detailed features like reusable blocks
+* Implementation of all standard filters and global functions.
+* There is some trouble with regard to recursive types in Crystal's type system, which makes collection-based filters like `groupby` or `dictsort` not working properly.
+* Sandboxed execution.
+* Some in-depth features like extended macro reflection, reusable blocks.
 
 ## Installation
 
@@ -79,7 +81,11 @@ template.render({ "name" => "John" }) # => "Hello, John!"
 
 ### Examples
 
-Some simple usage examples can be found in the [`examples` folder](https://github.com/straight-shoota/crinja/tree/master/examples).
+The **Crinja Example Server** in [`examples/server`](https://github.com/straight-shoota/crinja/tree/master/examples/server) is an HTTP server which renders Crinja templates from `examples/server/pages`. It has also an interactive playground for Crinja template testing at `/play`.
+
+Command to start the server: `cd examples/server && crystal server.cr`
+
+Other examples can be found in the [`examples` folder](https://github.com/straight-shoota/crinja/tree/master/examples).
 
 ## API
 
@@ -116,6 +122,10 @@ Currently the following configuration options are supported:
     <dd>If this is set to <code>true</code>, the first newline after a block is removed. This only applies to blocks, not expression tags. Default: <code>false</code>.</dd>
     <dt>lstrip_blocks</dt>
     <dd>If this is set to <code>true</code>, leading spaces and tabs are stripped from the start of a line to a block. Default: <code>false</code>.</dd>
+    <td>register_defaults</td>
+    <dd>If <code>register_defaults</code> is set to <code>true</code>, all feature libraries will be populated with the defaults (Crinja standards and registered custom features).
+    Otherwise the libraries will be empty. They can be manually populated with <code>library.register_defaults</code>.
+    This setting needs to be set at the creation of an environment.</dd>
 </dl>
 
 See also the original [Jinja2 API Documentation](http://jinja.pocoo.org/docs/2.9/api/).
