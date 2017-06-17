@@ -1,4 +1,7 @@
-class Crinja::Stringifier
+# This class is used to process the result of a variable expression before it is output.
+# It tries to convert values to a meaningful string represenation similar to what `Object#to_s` does
+# but with a few adjustments compared to Crystal standard `to_s` methods.
+struct Crinja::Finalizer
   protected def self.stringify(raw, escape = false)
     builder = new(escape)
     builder.stringify(raw)
@@ -15,7 +18,7 @@ class Crinja::Stringifier
     @io.to_s
   end
 
-  # Convert a `Type` to string.
+  # Convert a `Type` to stringitg.
   protected def stringify(raw)
     raw.to_s(@io)
   end

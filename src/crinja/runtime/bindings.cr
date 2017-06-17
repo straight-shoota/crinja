@@ -30,7 +30,7 @@ module Crinja::Bindings
     when Value
       value.raw
     else
-      value.as(Crinja::Type)
+      value.as(Type)
     end
   end
 

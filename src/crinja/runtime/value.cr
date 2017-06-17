@@ -1,18 +1,8 @@
-require "./util/py_object"
-require "./util/undefined"
-require "./util/safe_string"
-require "./lib/callable"
-
-module Crinja
-  # :nodoc:
-  alias TypeNumber = Float64 | Int64 | Int32
-  # :nodoc:
-  alias TypeValue = TypeNumber | String | Bool | Time | PyObject | Undefined | Crinja::Callable | SafeString | Nil
-  # :nodoc:
-  alias TypeContainer = Hash(Type, Type) | Array(Type) | Iterator(Type)
-
-  alias Type = TypeValue | TypeContainer
-end
+require "./type"
+require "./py_object"
+require "./undefined"
+require "./safe_string"
+require "../lib/callable"
 
 # was intended to be a struct, but that crashes iterator
 
@@ -271,7 +261,7 @@ class Crinja::Value
 
   # Transform the value into a string representation.
   def to_string
-    Stringifier.stringify(@raw)
+    Finalizer.stringify(@raw)
   end
 
   # :nodoc:

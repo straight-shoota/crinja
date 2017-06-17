@@ -1,7 +1,7 @@
-require "./context"
+require "./runtime/context"
 require "./config"
 require "./loader"
-require "./interpreter/resolver"
+require "./runtime/resolver"
 require "logger"
 
 # The core component of Crinja is the `Environment`. It contains configuration, global variables and provides an API for template loading and rendering. Instances of this class may be modified if they are not shared and if no template was loaded so far. Modifications on environments after the first template was loaded will lead to surprising effects and undefined behavior.
@@ -71,6 +71,8 @@ class Crinja::Environment
     @filters = Filter::Library.new(config.register_defaults)
     @tags = Tag::Library.new(config.register_defaults)
     @tests = Test::Library.new(config.register_defaults)
+
+    @finalizer = Finalizer
   end
 
   # Creates a new environment with the context and configuration from the *original* environment.
@@ -106,7 +108,7 @@ class Crinja::Environment
 
     result = evaluate expression, bindings
 
-    Stringifier.stringify(result, @context.autoescape?).to_s
+    stringify(result)
   end
 
   # Loads a template from *string.* This parses the given string and returns a `Template` object.
@@ -164,6 +166,10 @@ class Crinja::Environment
     with_scope(ctx) do |c|
       yield c
     end
+  end
+
+  def stringify(object)
+    @finalizer.stringify(object, context.autoescape?)
   end
 
   def undefined(name = nil)
