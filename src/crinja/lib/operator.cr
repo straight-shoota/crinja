@@ -1,11 +1,13 @@
 abstract class Crinja::Operator
-  include Importable
-
   abstract def num_operands : Int32
 
-  macro num_operands(num_operands)
-    def num_operands
-      {{ num_operands }}
+  macro name(name, end_tag = nil)
+    def name
+      {{ name }}
+    end
+
+    def end_tag : String?
+      {{ end_tag }}
     end
   end
 
@@ -39,7 +41,9 @@ abstract class Crinja::Operator
   end
 
   abstract class Binary < Operator
-    num_operands 2
+    def num_operands
+      2
+    end
 
     def value(env : Environment, operands : Array(Type)) : Type
       op1 = Value.new operands[0]
@@ -52,7 +56,9 @@ abstract class Crinja::Operator
   end
 
   abstract class Unary < Operator
-    num_operands 1
+    def num_operands
+      1
+    end
 
     def value(env : Environment, operands : Array(Type)) : Type
       op = Value.new operands[0]

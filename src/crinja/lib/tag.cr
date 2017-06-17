@@ -25,8 +25,6 @@ abstract class Crinja::Tag
   # :nodoc:
   alias Kind = Parser::Token::Kind
 
-  include Importable
-
   def interpret_output(renderer : Renderer, tag_node : TagNode)
     Renderer::RenderedOutput.new(String.build do |io|
       interpret(io, renderer, tag_node)
