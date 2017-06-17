@@ -23,4 +23,14 @@ describe Crinja::Parser::ExpressionParser do
     expression = parse %(foo.bar)
     expression.should be_a(Crinja::AST::MemberExpression)
   end
+
+  it "parses single parenthesis tuple" do
+    expression = parse(%(("foo", 1)))
+    expression.should be_a(Crinja::AST::TupleLiteral)
+  end
+
+  it "parses integer as identifier member" do
+    expression = parse(%(foo.1))
+    expression.should be_a(Crinja::AST::MemberExpression)
+  end
 end

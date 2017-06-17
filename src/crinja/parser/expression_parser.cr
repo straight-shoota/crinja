@@ -179,10 +179,24 @@ class Crinja::Parser::ExpressionParser
   private def parse_parenthesis_expression
     if_token Kind::LEFT_PAREN do
       # parse subexpression in parenthesis
+      start_location = current_token.location
+
       next_token
 
       expression = parse_expression
 
+      if current_token.kind == Kind::COMMA
+        # we're in a tuple with only single parenthesis
+        next_token
+
+        exps = parse_expression_list([Kind::RIGHT_PAREN])
+        entries = exps.children
+        entries.unshift expression
+
+        end_location = current_token.location
+
+        expression = AST::TupleLiteral.new(entries).at(start_location, end_location)
+      end
       expect Kind::RIGHT_PAREN
 
       return expression
@@ -208,9 +222,12 @@ class Crinja::Parser::ExpressionParser
       when Kind::POINT
         next_token
         member = AST::Empty.new
-        assert_token Kind::IDENTIFIER do
+
+        if current_token.kind == Kind::IDENTIFIER || current_token.kind == Kind::INTEGER
           member = AST::IdentifierLiteral.new(current_token.value).at(current_token.location)
           next_token
+        else
+          unexpected_token Kind::IDENTIFIER
         end
 
         if member.is_a? AST::IdentifierLiteral
