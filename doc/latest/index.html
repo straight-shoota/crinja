@@ -205,6 +205,11 @@
       
         <ul>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/ArgumentError" data-name="crinja::callable::argumenterror">
+      <a href="Crinja/Callable/ArgumentError.html">ArgumentError</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/Arguments" data-name="crinja::callable::arguments">
       <a href="Crinja/Callable/Arguments.html">Arguments</a>
       
@@ -220,13 +225,13 @@
       
     </li>
   
-</ul>
-
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/UnknownArgumentException" data-name="crinja::callable::unknownargumentexception">
+      <a href="Crinja/Callable/UnknownArgumentException.html">UnknownArgumentException</a>
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/CallableArgumentError" data-name="crinja::callableargumenterror">
-      <a href="Crinja/CallableArgumentError.html">CallableArgumentError</a>
+</ul>
+
       
     </li>
   
@@ -260,13 +265,13 @@
       
     </li>
   
-</ul>
-
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Context/TagCycleException" data-name="crinja::context::tagcycleexception">
+      <a href="Crinja/Context/TagCycleException.html">TagCycleException</a>
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Cycler" data-name="crinja::cycler">
-      <a href="Crinja/Cycler.html">Cycler</a>
+</ul>
+
       
     </li>
   
@@ -335,6 +340,11 @@
       
         <ul>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Cycler" data-name="crinja::function::cycler">
+      <a href="Crinja/Function/Cycler.html">Cycler</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Library" data-name="crinja::function::library">
       <a href="Crinja/Function/Library.html">Library</a>
       
@@ -347,16 +357,6 @@
   
 </ul>
 
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Importable" data-name="crinja::importable">
-      <a href="Crinja/Importable.html">Importable</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/InvalidArgumentException" data-name="crinja::invalidargumentexception">
-      <a href="Crinja/InvalidArgumentException.html">InvalidArgumentException</a>
       
     </li>
   
@@ -830,11 +830,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TagCycleException" data-name="crinja::tagcycleexception">
-      <a href="Crinja/TagCycleException.html">TagCycleException</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Template" data-name="crinja::template">
       <a href="Crinja/Template.html">Template</a>
       
@@ -907,11 +902,6 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/UndefinedError" data-name="crinja::undefinederror">
       <a href="Crinja/UndefinedError.html">UndefinedError</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/UnknownArgumentException" data-name="crinja::unknownargumentexception">
-      <a href="Crinja/UnknownArgumentException.html">UnknownArgumentException</a>
       
     </li>
   
@@ -989,19 +979,9 @@
 
 <ul><li>all basic language features like control structures and expressions</li><li>template inheritance</li><li>block scoping</li><li>custom tags, filters, functions, operators and tests</li><li>autoescape by default</li><li>template cache</li></ul>
 
-<p>All standard <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures" target="_blank">control structures (tags)</a>, <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests" target="_blank">tests</a>, <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions" target="_blank">global functions</a> and <a href="http://jinja.pocoo.org/docs/2.9/templates/#expressions" target="_blank">operators</a> are already implemented, some implementations of standard <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters" target="_blank">filters</a> are still missing.</p>
+<p>From Jinja2 all builtin <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures" target="_blank">control structures (tags)</a>, <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests" target="_blank">tests</a>, <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions" target="_blank">global functions</a>, <a href="http://jinja.pocoo.org/docs/2.9/templates/#expressions" target="_blank">operators</a> and <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters" target="_blank">filters</a> have been ported to Crinja. See <code><a href="Crinja/Filter.html">Crinja::Filter</a></code>, <code><a href="Crinja/Test.html">Crinja::Test</a></code>, <code><a href="Crinja/Function.html">Crinja::Function</a></code>, <code><a href="Crinja/Tag.html">Crinja::Tag</a></code>, <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> for lists of builin features.</p>
 
 <p>Currently, template errors fail fast raising an exception. It is considered to change this behaviour to collect multiple errors, similar to what Jinjava does.</p>
-
-<h3>Differences from Jinja2</h3>
-
-<p>This is an incomplete list of <strong>Differences to the original Jinja2</strong>:</p>
-
-<ul><li><strong>Python expressions:</strong> Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib.</li><li><strong>Line statements and line comments</strong>: Are not supported, because their usecase is negligible.</li><li><strong>String representation:</strong> <code>{{ ["foo", "bar"] }}</code> will render as <code>[u'foo', u'bar']</code> in Jinja2 which is the Python representation of an array with strings. In Crinja it uses the Crytal representation: <code>["foo", "bar"]</code>.</li><li><strong>Double escape:</strong> <code>{{ '<html>'|escape|escape }}</code> will render as <code>&lt;html&gt;</code> in Jinja2, but <code>&amp;lt;html&amp;gt;</code>. Should we change that behaviour?</li><li><strong>Complex numbers</strong>: Complex numbers are not supported yet.</li><li><strong>Configurable syntax</strong>: Due to performance reasons it is not possible to reconfigure the syntax symbols.</li></ul>
-
-<p>The following features are not yet fully implemented, but on the <a href="ROADMAP.md" target="_blank">roadmap</a>:</p>
-
-<ul><li>Implementation of all standard filters and global functions.</li><li>There is some trouble with regard to recursive types in Crystal's type system, which makes collection-based filters like <code>groupby</code> or <code>dictsort</code> not working properly.</li><li>Sandboxed execution.</li><li>Some in-depth features like extended macro reflection, reusable blocks.</li></ul>
 
 <h2>Installation</h2>
 
@@ -1115,6 +1095,16 @@ env.filters <span class="o"><<</span> myfilter
 env.filters <span class="o"><<</span> <span class="t">Customfilter</span>.<span class="k">new</span></code></pre>
 
 <p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> or  <code>Crinja.tag</code> and adding an instance to the feature library defaults (<code><a href="Crinja/Operator.html">Crinja::Operator</a>::Library.defaults << MyOperator.new</code>) or to a specific environment (<code>env.tags << MyTag.new</code>).</p>
+
+<h2>Differences from Jinja2</h2>
+
+<p>This is an incomplete list of <strong>Differences to the original Jinja2</strong>:</p>
+
+<ul><li><strong>Python expressions:</strong> Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib.</li><li><strong>Line statements and line comments</strong>: Are not supported, because their usecase is negligible.</li><li><strong>String representation:</strong> Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like <code>{{ ["foo", "bar"] }}</code> will render as <code>[u'foo', u'bar']</code> in Jinja2 and as <code>["foo", "bar"]</code> in Crinja.</li><li><strong>Double escape:</strong> <code>{{ '<html>'|escape|escape }}</code> will render as <code>&lt;html&gt;</code> in Jinja2, but <code>&amp;lt;html&amp;gt;</code>. Should we change that behaviour?</li><li><strong>Complex numbers</strong>: Complex numbers are not supported yet.</li><li><strong>Configurable syntax</strong>: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.</li></ul>
+
+<p>The following features are not yet fully implemented, but on the <a href="ROADMAP.md" target="_blank">roadmap</a>:</p>
+
+<ul><li>Sandboxed execution.</li><li>Some in-depth features like extended macro reflection, reusable blocks.</li></ul>
 
 <h2>Background</h2>
 

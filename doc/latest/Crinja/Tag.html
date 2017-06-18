@@ -205,6 +205,11 @@
       
         <ul>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/ArgumentError" data-name="crinja::callable::argumenterror">
+      <a href="../Crinja/Callable/ArgumentError.html">ArgumentError</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/Arguments" data-name="crinja::callable::arguments">
       <a href="../Crinja/Callable/Arguments.html">Arguments</a>
       
@@ -220,13 +225,13 @@
       
     </li>
   
-</ul>
-
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/UnknownArgumentException" data-name="crinja::callable::unknownargumentexception">
+      <a href="../Crinja/Callable/UnknownArgumentException.html">UnknownArgumentException</a>
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/CallableArgumentError" data-name="crinja::callableargumenterror">
-      <a href="../Crinja/CallableArgumentError.html">CallableArgumentError</a>
+</ul>
+
       
     </li>
   
@@ -260,13 +265,13 @@
       
     </li>
   
-</ul>
-
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Context/TagCycleException" data-name="crinja::context::tagcycleexception">
+      <a href="../Crinja/Context/TagCycleException.html">TagCycleException</a>
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Cycler" data-name="crinja::cycler">
-      <a href="../Crinja/Cycler.html">Cycler</a>
+</ul>
+
       
     </li>
   
@@ -335,6 +340,11 @@
       
         <ul>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Cycler" data-name="crinja::function::cycler">
+      <a href="../Crinja/Function/Cycler.html">Cycler</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Library" data-name="crinja::function::library">
       <a href="../Crinja/Function/Library.html">Library</a>
       
@@ -347,16 +357,6 @@
   
 </ul>
 
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Importable" data-name="crinja::importable">
-      <a href="../Crinja/Importable.html">Importable</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/InvalidArgumentException" data-name="crinja::invalidargumentexception">
-      <a href="../Crinja/InvalidArgumentException.html">InvalidArgumentException</a>
       
     </li>
   
@@ -830,11 +830,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TagCycleException" data-name="crinja::tagcycleexception">
-      <a href="../Crinja/TagCycleException.html">TagCycleException</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Template" data-name="crinja::template">
       <a href="../Crinja/Template.html">Template</a>
       
@@ -910,11 +905,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/UnknownArgumentException" data-name="crinja::unknownargumentexception">
-      <a href="../Crinja/UnknownArgumentException.html">UnknownArgumentException</a>
-      
-    </li>
-  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Util" data-name="crinja::util">
       <a href="../Crinja/Util.html">Util</a>
       
@@ -987,16 +977,22 @@
 
 
 
+  <h2>Overview</h2>
+
+  <p>A tag (=control structure) refers to all those things that control the flow of a program -
+conditionals (i.e. if/elif/else), for-loops, as well as things like macros and blocks.</p>
+
+<p>Control structures appear inside <code>{% ... %}</code> blocks.</p>
+
+<h2>Builtin tags</h2>
+
+<p>The following tags are available in the default library:</p>
+
+<ul><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#blocks" target="_blank">block</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#call" target="_blank">call</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#extends" target="_blank">extends</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#id11" target="_blank">filter</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#for" target="_blank">for</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#import" target="_blank">from</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#if" target="_blank">if</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#import" target="_blank">import</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#include" target="_blank">include</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#macros" target="_blank">macro</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#escaping" target="_blank">raw</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#assignments" target="_blank">set</a></strong></code></li></ul>
 
 
 
 
-  <h2>Included Modules</h2>
-  <ul class="other-types-list">
-  
-    <li class="other-type"><a href="../Crinja/Importable.html">Crinja::Importable</a></li>
-  
-  </ul>
 
 
 
@@ -1045,7 +1041,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/lib/tag.cr#L1" target="_blank">crinja/lib/tag.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag.cr#L22" target="_blank">crinja/lib/tag.cr</a>
     
     <br/>
   
@@ -1094,22 +1090,6 @@
   
     
 
-  <h3>Instance methods inherited from module <code><a href="../Crinja/Importable.html">Crinja::Importable</a></code></h3>
-  
-  
-    <a href="../Crinja/Importable.html#name%3AString-instance-method" class="tooltip">
-      <span>name : String</span>
-    name</a>
-    
-  
-
-
-    
-
-
-  
-    
-
 
     
 
@@ -1140,7 +1120,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/lib/tag.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1156,7 +1136,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/lib/tag.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1172,7 +1152,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/lib/tag.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1193,7 +1173,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/lib/tag.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag.cr#L42" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -17,27 +17,9 @@ Crinja tries to stay close to the Jinja2 language design and implementation. It 
 * autoescape by default
 * template cache
 
-All standard [control structures (tags)](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures), [tests](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests), [global functions](http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions) and [operators](http://jinja.pocoo.org/docs/2.9/templates/#expressions) are already implemented, some implementations of standard [filters](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters) are still missing.
+From Jinja2 all builtin [control structures (tags)](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures), [tests](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests), [global functions](http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions), [operators](http://jinja.pocoo.org/docs/2.9/templates/#expressions) and [filters](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters) have been ported to Crinja. See `Crinja::Filter`, `Crinja::Test`, `Crinja::Function`, `Crinja::Tag`, `Crinja::Operator` for lists of builin features.
 
 Currently, template errors fail fast raising an exception. It is considered to change this behaviour to collect multiple errors, similar to what Jinjava does.
-
-### Differences from Jinja2
-
-This is an incomplete list of **Differences to the original Jinja2**:
-
-* **Python expressions:** Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib.
-* **Line statements and line comments**: Are not supported, because their usecase is negligible.
-* **String representation:** `{{ "{{" }} ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 which is the Python representation of an array with strings. In Crinja it uses the Crytal representation: `["foo", "bar"]`.
-* **Double escape:** `{{ "{{" }} '<html>'|escape|escape }}` will render as `&lt;html&gt;` in Jinja2, but `&amp;lt;html&amp;gt;`. Should we change that behaviour?
-* **Complex numbers**: Complex numbers are not supported yet.
-* **Configurable syntax**: Due to performance reasons it is not possible to reconfigure the syntax symbols.
-
-The following features are not yet fully implemented, but on the [roadmap](ROADMAP.md):
-
-* Implementation of all standard filters and global functions.
-* There is some trouble with regard to recursive types in Crystal's type system, which makes collection-based filters like `groupby` or `dictsort` not working properly.
-* Sandboxed execution.
-* Some in-depth features like extended macro reflection, reusable blocks.
 
 ## Installation
 
@@ -158,6 +140,22 @@ env.filters << Customfilter.new
 ```
 
 Custom tags and operator can be implemented through subclassing `Crinja::Operator` or  `Crinja.tag` and adding an instance to the feature library defaults (`Crinja::Operator::Library.defaults << MyOperator.new`) or to a specific environment (`env.tags << MyTag.new`).
+
+## Differences from Jinja2
+
+This is an incomplete list of **Differences to the original Jinja2**:
+
+* **Python expressions:** Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib.
+* **Line statements and line comments**: Are not supported, because their usecase is negligible.
+* **String representation:** Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like `{{ "{{" }} ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 and as `["foo", "bar"]` in Crinja.
+* **Double escape:** `{{ "{{" }} '<html>'|escape|escape }}` will render as `&lt;html&gt;` in Jinja2, but `&amp;lt;html&amp;gt;`. Should we change that behaviour?
+* **Complex numbers**: Complex numbers are not supported yet.
+* **Configurable syntax**: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.
+
+The following features are not yet fully implemented, but on the [roadmap](ROADMAP.md):
+
+* Sandboxed execution.
+* Some in-depth features like extended macro reflection, reusable blocks.
 
 ## Background
 

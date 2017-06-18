@@ -205,6 +205,11 @@
       
         <ul>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/ArgumentError" data-name="crinja::callable::argumenterror">
+      <a href="../Crinja/Callable/ArgumentError.html">ArgumentError</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/Arguments" data-name="crinja::callable::arguments">
       <a href="../Crinja/Callable/Arguments.html">Arguments</a>
       
@@ -220,13 +225,13 @@
       
     </li>
   
-</ul>
-
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/UnknownArgumentException" data-name="crinja::callable::unknownargumentexception">
+      <a href="../Crinja/Callable/UnknownArgumentException.html">UnknownArgumentException</a>
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/CallableArgumentError" data-name="crinja::callableargumenterror">
-      <a href="../Crinja/CallableArgumentError.html">CallableArgumentError</a>
+</ul>
+
       
     </li>
   
@@ -260,13 +265,13 @@
       
     </li>
   
-</ul>
-
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Context/TagCycleException" data-name="crinja::context::tagcycleexception">
+      <a href="../Crinja/Context/TagCycleException.html">TagCycleException</a>
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Cycler" data-name="crinja::cycler">
-      <a href="../Crinja/Cycler.html">Cycler</a>
+</ul>
+
       
     </li>
   
@@ -335,6 +340,11 @@
       
         <ul>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Cycler" data-name="crinja::function::cycler">
+      <a href="../Crinja/Function/Cycler.html">Cycler</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Library" data-name="crinja::function::library">
       <a href="../Crinja/Function/Library.html">Library</a>
       
@@ -347,16 +357,6 @@
   
 </ul>
 
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Importable" data-name="crinja::importable">
-      <a href="../Crinja/Importable.html">Importable</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/InvalidArgumentException" data-name="crinja::invalidargumentexception">
-      <a href="../Crinja/InvalidArgumentException.html">InvalidArgumentException</a>
       
     </li>
   
@@ -830,11 +830,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TagCycleException" data-name="crinja::tagcycleexception">
-      <a href="../Crinja/TagCycleException.html">TagCycleException</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Template" data-name="crinja::template">
       <a href="../Crinja/Template.html">Template</a>
       
@@ -907,11 +902,6 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/UndefinedError" data-name="crinja::undefinederror">
       <a href="../Crinja/UndefinedError.html">UndefinedError</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/UnknownArgumentException" data-name="crinja::unknownargumentexception">
-      <a href="../Crinja/UnknownArgumentException.html">UnknownArgumentException</a>
       
     </li>
   
@@ -1014,7 +1004,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L8" target="_blank">crinja/environment.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L8" target="_blank">crinja/environment.cr</a>
     
     <br/>
   
@@ -1065,6 +1055,13 @@
         <a href="#cache%3D%28cache%3ATemplateCache%29-instance-method" class="signature"><strong>#cache=</strong>(cache : TemplateCache)</a>
         
           <div class="summary"><p>A cache where parsed templates are stored.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cast%28value%29-instance-method" class="signature"><strong>#cast</strong>(value)</a>
+        
+          <div class="summary"><p>Casts external values to <code><a href="../Crinja/Type.html">Crinja::Type</a></code> using <code><a href="../Crinja/Bindings.html">Crinja::Bindings</a></code>.</p></div>
         
       </li>
     
@@ -1205,6 +1202,8 @@
       <li class="entry-summary">
         <a href="#stringify%28object%29-instance-method" class="signature"><strong>#stringify</strong>(object)</a>
         
+          <div class="summary"><p>Turns <em>object</em> into a string represenation using <code><a href="../Crinja/Finalizer.html">Crinja::Finalizer</a></code>.</p></div>
+        
       </li>
     
       <li class="entry-summary">
@@ -1224,12 +1223,7 @@
       <li class="entry-summary">
         <a href="#undefined%28name%3Dnil%29-instance-method" class="signature"><strong>#undefined</strong>(name = <span class="n">nil</span>)</a>
         
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#with_scope%28ctx%3AContext%2C%26block%29-instance-method" class="signature"><strong>#with_scope</strong>(ctx : Context, &block)</a>
-        
-          <div class="summary"><p>Executes the block inside the context <code>ctx</code> and returns to the previous context afterwards.</p></div>
+          <div class="summary"><p>Creates a new <code><a href="../Crinja/Environment.html#undefined%28name%3Dnil%29-instance-method">#undefined</a></code>.</p></div>
         
       </li>
     
@@ -1237,6 +1231,13 @@
         <a href="#with_scope%28bindings%3Dnil%2C%26block%29-instance-method" class="signature"><strong>#with_scope</strong>(bindings = <span class="n">nil</span>, &block)</a>
         
           <div class="summary"><p>Executes the block inside a new sub-context with optional local scoped <em>bindings</em>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#with_scope%28ctx%3AContext%2C%26block%29-instance-method" class="signature"><strong>#with_scope</strong>(ctx : Context, &block)</a>
+        
+          <div class="summary"><p>Executes the block inside the context <code>ctx</code> and returns to the previous context afterwards.</p></div>
         
       </li>
     
@@ -1355,7 +1356,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L50" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1373,7 +1374,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L79" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L79" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1392,7 +1393,7 @@ as well as current <code></code>#context`.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L59" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1415,7 +1416,7 @@ as well as current <code></code>#context`.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1433,7 +1434,25 @@ as well as current <code></code>#context`.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cast&#40;value&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>cast</strong>(value)
+
+        <a class="method-permalink" href="#cast%28value%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Casts external values to <code><a href="../Crinja/Type.html">Crinja::Type</a></code> using <code><a href="../Crinja/Bindings.html">Crinja::Bindings</a></code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L177" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1451,7 +1470,7 @@ as well as current <code></code>#context`.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1469,7 +1488,7 @@ as well as current <code></code>#context`.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1485,7 +1504,7 @@ as well as current <code></code>#context`.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1501,7 +1520,7 @@ as well as current <code></code>#context`.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1520,7 +1539,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L101" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L101" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1536,7 +1555,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L95" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L95" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1554,7 +1573,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L89" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L89" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1572,7 +1591,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L84" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1590,7 +1609,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1608,7 +1627,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L115" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L115" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1626,7 +1645,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1649,7 +1668,7 @@ If the template does not exist a <code><a href="../Crinja/TemplateNotFoundError.
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L124" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L124" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1667,7 +1686,7 @@ If the template does not exist a <code><a href="../Crinja/TemplateNotFoundError.
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L129" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L129" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1685,7 +1704,7 @@ If the template does not exist a <code><a href="../Crinja/TemplateNotFoundError.
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1704,7 +1723,7 @@ Defaults to <code><a href="../Crinja/Loader/FileSystemLoader.html">Loader::FileS
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1723,7 +1742,7 @@ Defaults to <code><a href="../Crinja/Loader/FileSystemLoader.html">Loader::FileS
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1741,7 +1760,7 @@ Defaults to <code><a href="../Crinja/Loader/FileSystemLoader.html">Loader::FileS
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1759,7 +1778,7 @@ Defaults to <code><a href="../Crinja/Loader/FileSystemLoader.html">Loader::FileS
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1777,7 +1796,7 @@ Defaults to <code><a href="../Crinja/Loader/FileSystemLoader.html">Loader::FileS
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1795,7 +1814,7 @@ Defaults to <code><a href="../Crinja/Loader/FileSystemLoader.html">Loader::FileS
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L141" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L141" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1808,10 +1827,12 @@ Defaults to <code><a href="../Crinja/Loader/FileSystemLoader.html">Loader::FileS
         <a class="method-permalink" href="#stringify%28object%29-instance-method">#</a>
       </div>
       
+        <div class="doc"><p>Turns <em>object</em> into a string represenation using <code><a href="../Crinja/Finalizer.html">Crinja::Finalizer</a></code>.</p></div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L171" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L172" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1829,7 +1850,7 @@ Defaults to <code><a href="../Crinja/Loader/FileSystemLoader.html">Loader::FileS
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1847,7 +1868,7 @@ Defaults to <code><a href="../Crinja/Loader/FileSystemLoader.html">Loader::FileS
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L43" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1860,28 +1881,12 @@ Defaults to <code><a href="../Crinja/Loader/FileSystemLoader.html">Loader::FileS
         <a class="method-permalink" href="#undefined%28name%3Dnil%29-instance-method">#</a>
       </div>
       
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L175" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="with_scope&#40;ctx:Context,&amp;block&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>with_scope</strong>(ctx : <a href="../Crinja/Context.html">Context</a>, &block)
-
-        <a class="method-permalink" href="#with_scope%28ctx%3AContext%2C%26block%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc"><p>Executes the block inside the context <code>ctx</code> and returns to the previous context afterwards.</p></div>
+        <div class="doc"><p>Creates a new <code><a href="../Crinja/Environment.html#undefined%28name%3Dnil%29-instance-method">#undefined</a></code>.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L146" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L182" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1900,7 +1905,25 @@ Returns to the previous context afterwards.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/environment.cr#L159" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L159" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="with_scope&#40;ctx:Context,&amp;block&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>with_scope</strong>(ctx : <a href="../Crinja/Context.html">Context</a>, &block)
+
+        <a class="method-permalink" href="#with_scope%28ctx%3AContext%2C%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Executes the block inside the context <code>ctx</code> and returns to the previous context afterwards.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/environment.cr#L146" target="_blank">View source</a>]
         
       </div>
     </div>

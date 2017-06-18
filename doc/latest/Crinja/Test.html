@@ -205,6 +205,11 @@
       
         <ul>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/ArgumentError" data-name="crinja::callable::argumenterror">
+      <a href="../Crinja/Callable/ArgumentError.html">ArgumentError</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/Arguments" data-name="crinja::callable::arguments">
       <a href="../Crinja/Callable/Arguments.html">Arguments</a>
       
@@ -220,13 +225,13 @@
       
     </li>
   
-</ul>
-
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/UnknownArgumentException" data-name="crinja::callable::unknownargumentexception">
+      <a href="../Crinja/Callable/UnknownArgumentException.html">UnknownArgumentException</a>
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/CallableArgumentError" data-name="crinja::callableargumenterror">
-      <a href="../Crinja/CallableArgumentError.html">CallableArgumentError</a>
+</ul>
+
       
     </li>
   
@@ -260,13 +265,13 @@
       
     </li>
   
-</ul>
-
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Context/TagCycleException" data-name="crinja::context::tagcycleexception">
+      <a href="../Crinja/Context/TagCycleException.html">TagCycleException</a>
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Cycler" data-name="crinja::cycler">
-      <a href="../Crinja/Cycler.html">Cycler</a>
+</ul>
+
       
     </li>
   
@@ -335,6 +340,11 @@
       
         <ul>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Cycler" data-name="crinja::function::cycler">
+      <a href="../Crinja/Function/Cycler.html">Cycler</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Function/Library" data-name="crinja::function::library">
       <a href="../Crinja/Function/Library.html">Library</a>
       
@@ -347,16 +357,6 @@
   
 </ul>
 
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Importable" data-name="crinja::importable">
-      <a href="../Crinja/Importable.html">Importable</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/InvalidArgumentException" data-name="crinja::invalidargumentexception">
-      <a href="../Crinja/InvalidArgumentException.html">InvalidArgumentException</a>
       
     </li>
   
@@ -830,11 +830,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TagCycleException" data-name="crinja::tagcycleexception">
-      <a href="../Crinja/TagCycleException.html">TagCycleException</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Template" data-name="crinja::template">
       <a href="../Crinja/Template.html">Template</a>
       
@@ -910,11 +905,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/UnknownArgumentException" data-name="crinja::unknownargumentexception">
-      <a href="../Crinja/UnknownArgumentException.html">UnknownArgumentException</a>
-      
-    </li>
-  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Util" data-name="crinja::util">
       <a href="../Crinja/Util.html">Util</a>
       
@@ -985,6 +975,26 @@
 
 
 
+  <h2>Overview</h2>
+
+  <p>Beside filters, there are also so-called “tests” available.
+Tests can be used to test a variable against a common expression. To test a variable or expression,
+you add <code>is</code> plus the name of the test after the variable. For example, to find out if a variable
+is defined, you can do <code>name is defined</code>, which will then return true or false depending on
+whether name is defined in the current template context.</p>
+
+<p>Tests can accept arguments, too. If the test only takes one argument, you can leave out the
+parentheses. For example, the following two expressions do the same thing:</p>
+
+<pre><code class='language-crinja'>{% if loop.index is divisibleby 3 %}
+{% if loop.index is divisibleby(3) %}</code></pre>
+
+<h2>Builtin Tests</h2>
+
+<p>The following tests are available in the default library:</p>
+
+<ul><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#callable" target="_blank">callable</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#defined" target="_blank">defined</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#divisibleby" target="_blank">divisibleby</a></strong>(<em>num</em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#equalto" target="_blank">equalto</a></strong>(<em>other</em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#escaped" target="_blank">escaped</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#even" target="_blank">even</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#greaterthan" target="_blank">greaterthan</a></strong>(<em>other=0</em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#in" target="_blank">in</a></strong>(<em>seq=[]</em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#iterable" target="_blank">iterable</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#lessthan" target="_blank">lessthan</a></strong>(<em>other=0</em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#lower" target="_blank">lower</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#mapping" target="_blank">mapping</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#nil" target="_blank">nil</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#none" target="_blank">none</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#number" target="_blank">number</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#odd" target="_blank">odd</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#sameas" target="_blank">sameas</a></strong>(<em>other</em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#sequence" target="_blank">sequence</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#string" target="_blank">string</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#undefined" target="_blank">undefined</a></strong>(<em></em>)</code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#upper" target="_blank">upper</a></strong>(<em></em>)</code></li></ul>
+
 
 
 
@@ -1001,7 +1011,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/8e579f9a60328651abc2e7f672d0ef57d66dd1a1/src/crinja/lib/function.cr#L77" target="_blank">crinja/lib/function.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/test.cr#L40" target="_blank">crinja/lib/test.cr</a>
     
     <br/>
   
