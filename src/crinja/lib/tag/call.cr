@@ -1,3 +1,24 @@
+# In some cases it can be useful to pass a `Macro` to another macro. For this purpose, you can use
+# the special call block. The following example shows a macro that takes advantage of the call
+# functionality and how it can be used:
+#
+# ```
+# {% macro render_dialog(title, class='dialog') -%}
+#     <div class="{{ class }}">
+#         <h2>{{ title }}</h2>
+#         <div class="contents">
+#             {{ caller() }}
+#         </div>
+#     </div>
+# {%- endmacro %}
+
+# {% call render_dialog('Hello World') %}
+#     This is a simple dialog rendered by using a macro and
+#     a call block.
+# {% endcall %}
+# ```
+#
+# See [Jinja2 Template Documentation](http://jinja.pocoo.org/docs/2.9/templates/#call) for details.
 class Crinja::Tag::Call < Crinja::Tag
   name "call", "endcall"
 

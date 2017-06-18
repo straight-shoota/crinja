@@ -1,3 +1,13 @@
+# The include statement is useful to include a template and return the rendered contents of that
+# file into the current namespace:
+#
+# ```
+# {% include 'header.html' %}
+#     Body
+# {% include 'footer.html' %}
+# ```
+#
+# See [Jinja2 Template Documentation](http://jinja.pocoo.org/docs/2.9/templates/#include) for details.
 class Crinja::Tag::Include < Crinja::Tag
   name "include"
 

@@ -1,3 +1,13 @@
+# Loop over each item in a sequence.  For example, to display a list of users
+# provided in a variable called `users`:
+#
+# ```
+# {% for user in users %}
+#  {{ user }}
+# {% endfor %}
+# ```
+#
+# See [Jinja2 Template Documentation](http://jinja.pocoo.org/docs/2.9/templates/#for) for details.
 class Crinja::Tag::For < Crinja::Tag
   name "for", "endfor"
 

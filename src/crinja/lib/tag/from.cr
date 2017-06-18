@@ -1,3 +1,8 @@
+# Crinja supports putting often used code into macros. These macros can go into different templates
+# and get imported from there. It’s important to know that imports can be cached and imported templates
+# don’t have access to the current template variables, just the globals by default.
+#
+# See [Jinja2 Template Documentation](http://jinja.pocoo.org/docs/2.9/templates/#import) for details.
 class Crinja::Tag::From < Crinja::Tag
   name "from"
 

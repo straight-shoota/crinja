@@ -19,6 +19,9 @@
 # * `**[macro](http://jinja.pocoo.org/docs/2.9/templates/#macros)**`
 # * `**[raw](http://jinja.pocoo.org/docs/2.9/templates/#escaping)**`
 # * `**[set](http://jinja.pocoo.org/docs/2.9/templates/#assignments)**`
+#
+# See [Jinja2 Template Documentation](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures)
+# detailed explanations.
 abstract class Crinja::Tag
   # :nodoc:
   alias TagNode = AST::TagNode
@@ -54,7 +57,7 @@ abstract class Crinja::Tag
   end
 
   class Library < FeatureLibrary(Tag)
-    TAGS = [If, Else, Elif, For,
+    TAGS = [If, If::Else, If::Elif, For,
             Set, Filter,
             Macro, Call,
             Raw,

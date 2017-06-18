@@ -1,3 +1,22 @@
+# Macros are comparable with functions in regular programming languages. They are useful to put
+# often used idioms into reusable functions to not repeat yourself (“DRY”).
+#
+# Here’s a small example of a macro that renders a form element:
+#
+# ```
+# {% macro input(name, value='', type='text', size=20) -%}
+#     <input type="{{ type }}" name="{{ name }}" value="{{
+#         value|e }}" size="{{ size }}">
+# {%- endmacro %}
+# ```
+#
+# The macro can then be called like a function in the namespace:
+#
+# ```
+# {{ input('username') }}
+# ```
+#
+# See [Jinja2 Template Documentation](http://jinja.pocoo.org/docs/2.9/templates/#macros) for details.
 class Crinja::Tag::Macro < Crinja::Tag
   name "macro", "endmacro"
 

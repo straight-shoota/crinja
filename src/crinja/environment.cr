@@ -28,18 +28,28 @@ class Crinja::Environment
   property errors : Array(Exception) = [] of Exception
 
   # Operator library for this environment.
+  #
+  # See `Crinja::Operator` for a list of builtin operators.
   getter operators
 
   # Filter library for this environment.
+  #
+  # See `Crinja::Filter` for a list of builtin filters.
   getter filters
 
   # Function library for this environment.
+  #
+  # See `Crinja::Function` for a list of builtin functions.
   getter functions
 
   # Tag library for this environment.
+  #
+  # See `Crinja::Tag` for a list of builtin tags.
   getter tags
 
   # Test library for this environment.
+  #
+  # See `Crinja::Test` for a list of builtin tests.
   getter tests
 
   # Policies for this environment.

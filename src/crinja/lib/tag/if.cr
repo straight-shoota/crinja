@@ -1,3 +1,18 @@
+# The `if` tag is a conditional statement. The block content will only be evaluated if the test
+# condition is truthy. Condition can be an arbitrary `Expression`. `elif` and `else` allow for
+# multiple branches.
+#
+# ```
+# {% if kenny.sick %}
+#   Kenny is sick.
+# {% elif kenny.dead %}
+#   You killed Kenny!  You bastard!!!
+# {% else %}
+#   Kenny looks okay --- so far
+# {% endif %}
+# ```
+#
+# See [Jinja2 Template Documentation](http://jinja.pocoo.org/docs/2.9/templates/#if) for details.
 class Crinja::Tag::If < Crinja::Tag
   name "if", "endif"
 
@@ -35,16 +50,18 @@ class Crinja::Tag::If < Crinja::Tag
   end
 end
 
-class Crinja::Tag::Else < Crinja::Tag
+class Crinja::Tag::If::Else < Crinja::Tag
   name "else"
 
+  # Do nothing, interpretation is implemented by `If#interpret`.
   def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
   end
 end
 
-class Crinja::Tag::Elif < Crinja::Tag
+class Crinja::Tag::If::Elif < Crinja::Tag
   name "elif"
 
+  # Do nothing, interpretation is implemented by `If#interpret`.
   def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
   end
 end

@@ -1,3 +1,13 @@
+# Filter sections allow you to apply regular `Crinja::Filter` filters on a block of template data.
+# Just wrap the code in the special filter block:
+#
+# ```
+# {% filter upper %}
+#     This text becomes uppercase
+# {% endfilter %}
+# ```
+#
+# See [Jinja2 Template Documentation](http://jinja.pocoo.org/docs/2.9/templates/#id11) for details.
 class Crinja::Tag::Filter < Crinja::Tag
   name "filter", "endfilter"
 
@@ -41,9 +51,5 @@ class Crinja::Tag::Filter < Crinja::Tag
 
       return placeholder, left
     end
-  end
-
-  def interpret(io : IO, env : Environment, tag_node : TagNode)
-    raise "Unsupported operation"
   end
 end

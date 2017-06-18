@@ -1,3 +1,7 @@
+# The extends tag can be used to extend one template from another. You can have multiple extends
+# tags in a file, but only one of them may be executed at a time.
+#
+# See [Jinja2 Template Documentation](http://jinja.pocoo.org/docs/2.9/templates/#template-inheritance) for details.
 class Crinja::Tag::Extends < Crinja::Tag
   name "extends"
 

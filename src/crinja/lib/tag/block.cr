@@ -1,3 +1,6 @@
+# Blocks are used for inheritance and act as both placeholders and replacements at the same time.
+#
+# See [Jinja2 Template Documentation](http://jinja.pocoo.org/docs/2.9/templates/#template-inheritance) for details.
 class Crinja::Tag::Block < Crinja::Tag
   name "block", "endblock"
 
