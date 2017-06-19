@@ -710,16 +710,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Elif" data-name="crinja::tag::elif">
-      <a href="../../Crinja/Tag/Elif.html">Elif</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Else" data-name="crinja::tag::else">
-      <a href="../../Crinja/Tag/Else.html">Else</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/EndTag" data-name="crinja::tag::endtag">
       <a href="../../Crinja/Tag/EndTag.html">EndTag</a>
       
@@ -780,8 +770,23 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Tag/If" data-name="crinja::tag::if">
+  <li class="parent current" data-id="github.com/straight-shoota/crinja/Crinja/Tag/If" data-name="crinja::tag::if">
       <a href="../../Crinja/Tag/If.html">If</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If/Elif" data-name="crinja::tag::if::elif">
+      <a href="../../Crinja/Tag/If/Elif.html">Elif</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If/Else" data-name="crinja::tag::if::else">
+      <a href="../../Crinja/Tag/If/Else.html">Else</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -977,6 +982,21 @@
 
 
 
+  <h2>Overview</h2>
+
+  <p>The <code>if</code> tag is a conditional statement. The block content will only be evaluated if the test
+condition is truthy. Condition can be an arbitrary <code>Expression</code>. <code>elif</code> and <code>else</code> allow for
+multiple branches.</p>
+
+<pre><code>{% <span class="k">if</span> kenny.sick %}
+  <span class="t">Kenny</span> is sick.
+{% elif kenny.dead %}
+  <span class="t">You</span> killed <span class="t">Kenny</span><span class="o">!</span>  <span class="t">You</span> bastard!<span class="o">!</span><span class="o">!</span>
+{% <span class="k">else</span> %}
+  <span class="t">Kenny</span> looks okay </code></pre>
+
+<p>See <a href="http://jinja.pocoo.org/docs/2.9/templates/#if" target="_blank">Jinja2 Template Documentation</a> for details.</p>
+
 
 
 
@@ -993,7 +1013,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/if.cr#L1" target="_blank">crinja/lib/tag/if.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/if.cr#L16" target="_blank">crinja/lib/tag/if.cr</a>
     
     <br/>
   
@@ -1088,7 +1108,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/if.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/if.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1104,7 +1124,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/if.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/if.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1120,7 +1140,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/if.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/if.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>

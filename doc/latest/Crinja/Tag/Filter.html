@@ -710,16 +710,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Elif" data-name="crinja::tag::elif">
-      <a href="../../Crinja/Tag/Elif.html">Elif</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Else" data-name="crinja::tag::else">
-      <a href="../../Crinja/Tag/Else.html">Else</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/EndTag" data-name="crinja::tag::endtag">
       <a href="../../Crinja/Tag/EndTag.html">EndTag</a>
       
@@ -780,8 +770,23 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If" data-name="crinja::tag::if">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If" data-name="crinja::tag::if">
       <a href="../../Crinja/Tag/If.html">If</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If/Elif" data-name="crinja::tag::if::elif">
+      <a href="../../Crinja/Tag/If/Elif.html">Elif</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If/Else" data-name="crinja::tag::if::else">
+      <a href="../../Crinja/Tag/If/Else.html">Else</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -977,6 +982,17 @@
 
 
 
+  <h2>Overview</h2>
+
+  <p>Filter sections allow you to apply regular <code><a href="../../Crinja/Filter.html">Crinja::Filter</a></code> filters on a block of template data.
+Just wrap the code in the special filter block:</p>
+
+<pre><code>{% filter upper %}
+    <span class="t">This</span> text becomes uppercase
+{% endfilter %}</code></pre>
+
+<p>See <a href="http://jinja.pocoo.org/docs/2.9/templates/#id11" target="_blank">Jinja2 Template Documentation</a> for details.</p>
+
 
 
 
@@ -993,7 +1009,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/filter.cr#L1" target="_blank">crinja/lib/tag/filter.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/filter.cr#L11" target="_blank">crinja/lib/tag/filter.cr</a>
     
     <br/>
   
@@ -1009,11 +1025,6 @@
     
       <li class="entry-summary">
         <a href="#end_tag%3AString%3F-instance-method" class="signature"><strong>#end_tag</strong> : String?</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#interpret%28io%3AIO%2Cenv%3AEnvironment%2Ctag_node%3ATagNode%29-instance-method" class="signature"><strong>#interpret</strong>(io : IO, env : Environment, tag_node : TagNode)</a>
         
       </li>
     
@@ -1093,23 +1104,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/filter.cr#L2" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="interpret&#40;io:IO,env:Environment,tag_node:TagNode&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>interpret</strong>(io : IO, env : <a href="../../Crinja/Environment.html">Environment</a>, tag_node : TagNode)
-
-        <a class="method-permalink" href="#interpret%28io%3AIO%2Cenv%3AEnvironment%2Ctag_node%3ATagNode%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/filter.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/filter.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1125,7 +1120,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/filter.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/filter.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1141,7 +1136,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/filter.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/filter.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>

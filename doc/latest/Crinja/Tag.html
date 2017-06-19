@@ -710,16 +710,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Elif" data-name="crinja::tag::elif">
-      <a href="../Crinja/Tag/Elif.html">Elif</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Else" data-name="crinja::tag::else">
-      <a href="../Crinja/Tag/Else.html">Else</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/EndTag" data-name="crinja::tag::endtag">
       <a href="../Crinja/Tag/EndTag.html">EndTag</a>
       
@@ -780,8 +770,23 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If" data-name="crinja::tag::if">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If" data-name="crinja::tag::if">
       <a href="../Crinja/Tag/If.html">If</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If/Elif" data-name="crinja::tag::if::elif">
+      <a href="../Crinja/Tag/If/Elif.html">Elif</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If/Else" data-name="crinja::tag::if::else">
+      <a href="../Crinja/Tag/If/Else.html">Else</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -990,6 +995,9 @@ conditionals (i.e. if/elif/else), for-loops, as well as things like macros and b
 
 <ul><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#blocks" target="_blank">block</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#call" target="_blank">call</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#extends" target="_blank">extends</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#id11" target="_blank">filter</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#for" target="_blank">for</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#import" target="_blank">from</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#if" target="_blank">if</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#import" target="_blank">import</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#include" target="_blank">include</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#macros" target="_blank">macro</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#escaping" target="_blank">raw</a></strong></code></li><li><code><strong><a href="http://jinja.pocoo.org/docs/2.9/templates/#assignments" target="_blank">set</a></strong></code></li></ul>
 
+<p>See <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures" target="_blank">Jinja2 Template Documentation</a>
+detailed explanations.</p>
+
 
 
 
@@ -1005,10 +1013,6 @@ conditionals (i.e. if/elif/else), for-loops, as well as things like macros and b
   
     <li class="other-type"><a href="../Crinja/Tag/Call.html">Crinja::Tag::Call</a></li>
   
-    <li class="other-type"><a href="../Crinja/Tag/Elif.html">Crinja::Tag::Elif</a></li>
-  
-    <li class="other-type"><a href="../Crinja/Tag/Else.html">Crinja::Tag::Else</a></li>
-  
     <li class="other-type"><a href="../Crinja/Tag/EndTag.html">Crinja::Tag::EndTag</a></li>
   
     <li class="other-type"><a href="../Crinja/Tag/Extends.html">Crinja::Tag::Extends</a></li>
@@ -1020,6 +1024,10 @@ conditionals (i.e. if/elif/else), for-loops, as well as things like macros and b
     <li class="other-type"><a href="../Crinja/Tag/From.html">Crinja::Tag::From</a></li>
   
     <li class="other-type"><a href="../Crinja/Tag/If.html">Crinja::Tag::If</a></li>
+  
+    <li class="other-type"><a href="../Crinja/Tag/If/Elif.html">Crinja::Tag::If::Elif</a></li>
+  
+    <li class="other-type"><a href="../Crinja/Tag/If/Else.html">Crinja::Tag::If::Else</a></li>
   
     <li class="other-type"><a href="../Crinja/Tag/Import.html">Crinja::Tag::Import</a></li>
   
@@ -1041,7 +1049,7 @@ conditionals (i.e. if/elif/else), for-loops, as well as things like macros and b
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag.cr#L22" target="_blank">crinja/lib/tag.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag.cr#L25" target="_blank">crinja/lib/tag.cr</a>
     
     <br/>
   
@@ -1120,7 +1128,7 @@ conditionals (i.e. if/elif/else), for-loops, as well as things like macros and b
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1136,7 +1144,7 @@ conditionals (i.e. if/elif/else), for-loops, as well as things like macros and b
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag.cr#L55" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1152,7 +1160,7 @@ conditionals (i.e. if/elif/else), for-loops, as well as things like macros and b
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1173,7 +1181,7 @@ conditionals (i.e. if/elif/else), for-loops, as well as things like macros and b
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag.cr#L42" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag.cr#L45" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -710,16 +710,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Elif" data-name="crinja::tag::elif">
-      <a href="../../Crinja/Tag/Elif.html">Elif</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Else" data-name="crinja::tag::else">
-      <a href="../../Crinja/Tag/Else.html">Else</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/EndTag" data-name="crinja::tag::endtag">
       <a href="../../Crinja/Tag/EndTag.html">EndTag</a>
       
@@ -780,8 +770,23 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If" data-name="crinja::tag::if">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If" data-name="crinja::tag::if">
       <a href="../../Crinja/Tag/If.html">If</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If/Elif" data-name="crinja::tag::if::elif">
+      <a href="../../Crinja/Tag/If/Elif.html">Elif</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/If/Else" data-name="crinja::tag::if::else">
+      <a href="../../Crinja/Tag/If/Else.html">Else</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -977,6 +982,30 @@
 
 
 
+  <h2>Overview</h2>
+
+  <p>Inside code blocks, you can also assign values to variables. Assignments at top level (outside of
+blocks, macros or loops) are exported from the template like top level macros and can be imported
+by other templates.</p>
+
+<p>Assignments use the set tag and can have multiple targets:</p>
+
+<pre><code>{% set navigation <span class="o">=</span> [(</code></pre>
+
+<p>It is also possible to use block assignments to capture the contents of a <code>set</code> block into a
+variable name. Instead of using an equals sign and a value, you just write the variable name and
+then everything until <code>{% endset %}</code> is captured.</p>
+
+<p>{% set navigation %}</p>
+
+<pre><code><span class="o"><</span>li<span class="o">></span><span class="o"><</span>a href<span class="o">=</span><span class="s">&quot;/&quot;</span><span class="o">></span><span class="t">Index</span><span class="o"><</span><span class="s">/a&gt;
+&lt;li&gt;&lt;a href&#61;&quot;/</span>downloads<span class="s">&quot;&gt;Downloads&lt;/a&gt;</code></pre>
+
+<p>{% endset %}</p>
+
+<pre><code>
+<span class="t">See</span> [<span class="t">Jinja2</span> <span class="t">Template</span> <span class="t">Documentation</span>](http<span class="n">:/</span><span class="s">/jinja.pocoo.org/</span>docs<span class="s">/2.9/</span>templates<span class="s">/#assignments&#41; for details.</code></pre>
+
 
 
 
@@ -993,7 +1022,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/set.cr#L1" target="_blank">crinja/lib/tag/set.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/set.cr#L23" target="_blank">crinja/lib/tag/set.cr</a>
     
     <br/>
   
@@ -1088,7 +1117,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/set.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/set.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1104,7 +1133,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/set.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/set.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1120,7 +1149,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/3f9a13126802963ccb485a398c879612f88d5826/src/crinja/lib/tag/set.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/tag/set.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
