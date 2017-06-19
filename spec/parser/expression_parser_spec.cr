@@ -2,9 +2,14 @@ require "../spec_helper.cr"
 
 private def parse(string)
   env = Crinja::Environment.new
-  lexer = Crinja::Parser::ExpressionLexer.new(env.config, string)
-  parser = Crinja::Parser::ExpressionParser.new(lexer)
-  parser.parse
+  begin
+    lexer = Crinja::Parser::ExpressionLexer.new(env.config, string)
+    parser = Crinja::Parser::ExpressionParser.new(lexer)
+    parser.parse
+  rescue e : TemplateError
+    e.template = Crinja::Template.new(string, env, run_parser: false)
+    raise ExceptionWrapper.new(cause: e)
+  end
 end
 
 describe Crinja::Parser::ExpressionParser do
@@ -36,5 +41,15 @@ describe Crinja::Parser::ExpressionParser do
 
   it "parse double parenthesis" do
     expression = parse("dict(foo=(1, 2))")
+  end
+
+  it "parses expression as named argument value" do
+    expression = parse("self(n=n-1)")
+    expression.should be_a(Crinja::AST::CallExpression)
+  end
+
+  it "parses integer as member access" do
+    expression = parse("foo.1.bar")
+    expression.should be_a(Crinja::AST::MemberExpression)
   end
 end

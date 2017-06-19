@@ -1,5 +1,7 @@
 class Crinja::Operator
-  class Plus < Binary
+  class Plus < Operator
+    include Binary
+    include Unary
     name "+"
 
     def value(env : Environment, op1, op2)
@@ -14,6 +16,14 @@ class Crinja::Operator
         end
       else
         op1.to_s + op2.to_s
+      end
+    end
+
+    def value(env, op)
+      if op.number?
+        op.as_number
+      else
+        raise Callable::ArgumentError.new(self, "Operators needs to be numeric")
       end
     end
   end

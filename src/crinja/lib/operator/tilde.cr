@@ -1,5 +1,6 @@
 class Crinja::Operator
-  class Tilde < Binary
+  class Tilde < Operator
+    include Binary
     name "~"
 
     def value(env : Environment, op1, op2)

@@ -1,5 +1,6 @@
 class Crinja::Operator
-  class Power < Binary
+  class Power < Operator
+    include Binary
     name "**"
 
     def value(env : Environment, op1, op2)

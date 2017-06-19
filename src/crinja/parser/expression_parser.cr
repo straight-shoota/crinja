@@ -168,7 +168,7 @@ class Crinja::Parser::ExpressionParser
       if (current_token.kind == Kind::OPERATOR) && (current_token.value == Parser::Symbol::OP_POW)
         operator = current_token.value
         next_token
-        right = parse_pow
+        right = parse_unary_expression
         left = AST::BinaryExpression.new(operator, left, right).at(left, right)
       else
         return left

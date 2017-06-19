@@ -1,5 +1,6 @@
 class Crinja::Operator
-  class Multiply < Binary
+  class Multiply < Operator
+    include Binary
     name "*"
 
     def value(env : Environment, op1, op2)

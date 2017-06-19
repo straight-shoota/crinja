@@ -1,5 +1,6 @@
 class Crinja::Operator
-  class Divide < Binary
+  class Divide < Operator
+    include Binary
     name "/"
 
     def value(env : Environment, op1, op2)

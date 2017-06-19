@@ -31,7 +31,8 @@ class Crinja::Operator
     end
   end
 
-  class Equals < Binary
+  class Equals < Operator
+    include Binary
     name "=="
     include Comparator
 
@@ -42,7 +43,8 @@ class Crinja::Operator
     end
   end
 
-  class NotEquals < Binary
+  class NotEquals < Operator
+    include Binary
     name "!="
     include Comparator
 
@@ -53,7 +55,8 @@ class Crinja::Operator
     end
   end
 
-  class GreaterThan < Binary
+  class GreaterThan < Operator
+    include Binary
     name ">"
     include Comparator
 
@@ -62,7 +65,8 @@ class Crinja::Operator
     end
   end
 
-  class GreaterThanEquals < Binary
+  class GreaterThanEquals < Operator
+    include Binary
     name ">="
     include Comparator
 
@@ -71,7 +75,8 @@ class Crinja::Operator
     end
   end
 
-  class LowerThan < Binary
+  class LowerThan < Operator
+    include Binary
     name "<"
     include Comparator
 
@@ -80,7 +85,8 @@ class Crinja::Operator
     end
   end
 
-  class LowerThanEquals < Binary
+  class LowerThanEquals < Operator
+    include Binary
     name "<="
     include Comparator
 

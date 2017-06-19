@@ -1,5 +1,6 @@
 class Crinja::Operator
-  class And < Binary
+  class And < Operator
+    include Binary
     name "and"
 
     def value(env : Environment, op1 : Value, op2 : Value)
@@ -7,7 +8,8 @@ class Crinja::Operator
     end
   end
 
-  class Or < Binary
+  class Or < Operator
+    include Binary
     name "or"
 
     def value(env : Environment, op1 : Value, op2 : Value)
@@ -15,7 +17,8 @@ class Crinja::Operator
     end
   end
 
-  class Not < Unary
+  class Not < Operator
+    include Unary
     name "not"
 
     def value(env : Environment, op : Value)

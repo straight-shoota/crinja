@@ -134,14 +134,18 @@ module Crinja::Parser
         when .number?
           @buffer << char
         when '.'
-          @buffer << char
           raise "Invalid floating point number" if is_float
+
+          # make sure the next char is numeric, otherwise the point can be a member operator
+          break unless peek_char.number?
+
+          @buffer << char
           is_float = true
         when ' ', '\n', '\t', '\r', Char::ZERO, Symbol::RIGHT_PAREN, Symbol::RIGHT_BRACKET, Symbol::RIGHT_CURLY, Symbol::DICT_ASSIGN, Symbol::COMMA, Symbol::PIPE,
              '~', '+', '-', '*', '/', '%', '=', '>', '<', '!'
           break
         else
-          raise "Invalid number. Found char: '#{char}'(#{char.ord}) at #{stream.position}"
+          raise "Invalid number. Found char: '#{char}'(#{char.ord})"
         end
       end
 
@@ -167,8 +171,8 @@ module Crinja::Parser
       end
     end
 
-    def raise(message)
-      ::raise(Crinja::TemplateSyntaxError.new(@token.dup, message))
+    def raise(message : String)
+      ::raise(Crinja::TemplateSyntaxError.new(message).at(stream.position, stream.position))
     end
   end
 end

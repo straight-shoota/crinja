@@ -1,5 +1,6 @@
 class Crinja::Operator
-  class Modulo < Binary
+  class Modulo < Operator
+    include Binary
     name "%"
 
     def value(env : Environment, op1, op2)

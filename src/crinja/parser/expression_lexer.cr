@@ -26,13 +26,9 @@ module Crinja::Parser
           next_char
         end
       when '+', '-'
-        if peek_char.number?
-          @token.kind, @token.value = consume_numeric
-        else
-          @token.kind = Kind::OPERATOR
-          @token.value = current_char.to_s
-          next_char
-        end
+        @token.kind = Kind::OPERATOR
+        @token.value = current_char.to_s
+        next_char
       when '~', '%'
         @token.kind = Kind::OPERATOR
         @token.value = current_char.to_s
@@ -121,7 +117,7 @@ module Crinja::Parser
         @token.kind = Kind::EOF
         @token.value = ""
       else
-        raise "Not implemented expression value `#{current_char}`. #{@stream.inspect}"
+        raise "Not implemented expression value `#{current_char}`"
       end
 
       @token.dup

@@ -21,16 +21,18 @@ class Crinja::Template
   getter env : Environment
 
   # Creates a new template.
-  def initialize(@source : String, @env : Environment = Environment.new, @name : String = "", @filename : String? = nil)
+  def initialize(@source : String, @env : Environment = Environment.new, @name : String = "", @filename : String? = nil, run_parser = true)
     @source = @source.rchop '\n' unless env.config.keep_trailing_newline
 
     @nodes = AST::NodeList.new([] of AST::TemplateNode, false)
 
-    begin
-      @nodes = Parser::TemplateParser.new(@env, @source).parse
-    rescue e : TemplateError
-      e.template = self
-      raise ExceptionWrapper.new(cause: e)
+    if run_parser
+      begin
+        @nodes = Parser::TemplateParser.new(@env, @source).parse
+      rescue e : TemplateError
+        e.template = self
+        raise ExceptionWrapper.new(cause: e)
+      end
     end
   end
 

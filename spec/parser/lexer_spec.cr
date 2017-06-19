@@ -106,4 +106,24 @@ describe Crinja::Parser do
       {token.kind, token.value}
     end.should eq(expected)
   end
+
+  it "tokenizes member access with single char name" do
+    lexer = Crinja::Parser::ExpressionLexer.new Crinja::Config.new, %(foo(n=n-1))
+
+    expected = [
+      {Kind::IDENTIFIER, "foo"},
+      {Kind::LEFT_PAREN, "("},
+      {Kind::IDENTIFIER, "n"},
+      {Kind::KW_ASSIGN, "="},
+      {Kind::IDENTIFIER, "n"},
+      {Kind::OPERATOR, "-"},
+      {Kind::INTEGER, "1"},
+      {Kind::RIGHT_PAREN, ")"},
+      {Kind::EOF, ""},
+    ]
+
+    lexer.tokenize.map do |token|
+      {token.kind, token.value}
+    end.should eq(expected)
+  end
 end

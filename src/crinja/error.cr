@@ -91,11 +91,15 @@ class Crinja::Error < Exception
 end
 
 class Crinja::TemplateError < Crinja::Error
-  def self.new(token, cause : Exception? = nil, template = nil)
+  def self.new(token : Parser::Token, cause : Exception? = nil, template = nil)
     new(token, nil, cause, template)
   end
 
-  def initialize(token, message : String? = nil, cause = nil, @template = nil)
+  def initialize(message : String? = nil, cause = nil)
+    super(message, cause)
+  end
+
+  def initialize(token : Parser::Token, message : String? = nil, cause = nil, @template = nil)
     @location_start = token.location_start
     @location_end = token.location_end
     super(message, cause)
