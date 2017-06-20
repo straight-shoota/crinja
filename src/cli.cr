@@ -53,7 +53,8 @@ module Crinja::CLI
 
       opts.on("--version", "show version info") { puts Crinja::VERSION; exit }
       opts.on("--library-defaults=only-names", "print all default filters, tests, functions, tags and operators in stdlib") { |names|
-        print_library_defaults(names == "only-names") }
+        print_library_defaults(names == "only-names")
+      }
       opts.missing_option do |option|
         case option
         when "--library-defaults"

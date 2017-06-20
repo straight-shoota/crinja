@@ -415,7 +415,7 @@ describe Crinja::Filter do
 
   it "xmlattr" do
     kvpairs = evaluate_expression(%({'foo': 42, 'bar': 23, 'fish': none, ) \
-                        %('spam': missing, 'blub:blub': '<?>'}|xmlattr)).split(' ')
+                                  %('spam': missing, 'blub:blub': '<?>'}|xmlattr)).split(' ')
 
     kvpairs.should contain %(foo="42")
     kvpairs.should contain %(bar="23")
@@ -434,10 +434,10 @@ describe Crinja::Filter do
 
     it "custom_sort" do
       users = [
-          IdUser.new(3, "mike"),
-          IdUser.new(1, "john"),
-          IdUser.new(4, "mick"),
-          IdUser.new(2, "jane"),
+        IdUser.new(3, "mike"),
+        IdUser.new(1, "john"),
+        IdUser.new(4, "mick"),
+        IdUser.new(2, "jane"),
       ]
       evaluate_expression(%(users|sort(attribute='id')|join(",")), {users: users}).should eq "john,jane,mike,mick"
     end
@@ -453,11 +453,11 @@ describe Crinja::Filter do
         {{ grouper }}{% for x in list %}: {{ x.foo }}, {{ x.bar }}{% endfor %}|
         {%- endfor %}
         TPL).split("|\n").should eq [
-            "1: 1, 2: 1, 1",
-            "2: 2, 3",
-            "3: 3, 4",
-            ""
-        ]
+        "1: 1, 2: 1, 1",
+        "2: 2, 3",
+        "3: 3, 4",
+        "",
+      ]
     end
 
     it "tuple_index" do
@@ -469,22 +469,22 @@ describe Crinja::Filter do
     end
 
     it "multidot" do
-        articles = [
-            Article.new("aha", 1, 1, 1970),
-            Article.new("interesting", 2, 1, 1970),
-            Article.new("really?", 3, 1, 1970),
-            Article.new("totally not", 1, 1, 1971)
-        ]
-        render(<<-'TPL'
-          {%- for year, list in articles|groupby('date.year') -%}
-          {{ year }}{% for x in list %}[{{ x.title }}]{% endfor %}|
-          {%- endfor %}
-          TPL, {articles: articles}).split("|\n").should eq [
-              "1970[aha][interesting][really?]",
-              "1971[totally not]",
-              ""
-          ]
-      end
+      articles = [
+        Article.new("aha", 1, 1, 1970),
+        Article.new("interesting", 2, 1, 1970),
+        Article.new("really?", 3, 1, 1970),
+        Article.new("totally not", 1, 1, 1971),
+      ]
+      render(<<-'TPL'
+        {%- for year, list in articles|groupby('date.year') -%}
+        {{ year }}{% for x in list %}[{{ x.title }}]{% endfor %}|
+        {%- endfor %}
+        TPL, {articles: articles}).split("|\n").should eq [
+        "1970[aha][interesting][really?]",
+        "1971[totally not]",
+        "",
+      ]
+    end
   end
 
   it "replace" do
@@ -521,9 +521,9 @@ describe Crinja::Filter do
 
     it "attribute_map" do
       users = [
-          User.new("john"),
-          User.new("jane"),
-          User.new("mike"),
+        User.new("john"),
+        User.new("jane"),
+        User.new("mike"),
       ]
       evaluate_expression(%(users|map(attribute="username")|join("|")), {users: users}).should eq "john|jane|mike"
     end
@@ -552,40 +552,40 @@ describe Crinja::Filter do
 
     it "simple_select_attr" do
       users = [
-          User.new("john", true),
-          User.new("jane", true),
-          User.new("mike", false),
+        User.new("john", true),
+        User.new("jane", true),
+        User.new("mike", false),
       ]
       evaluate_expression(%(users|selectattr("is_active")|map(attribute="username")|join("|")), {users: users}).should eq "john|jane"
     end
 
     it "simple_reject_attr" do
       users = [
-          User.new("john", true),
-          User.new("jane", true),
-          User.new("mike", false),
+        User.new("john", true),
+        User.new("jane", true),
+        User.new("mike", false),
       ]
       evaluate_expression(%(users|rejectattr("is_active")|map(attribute="username")|join("|")), {users: users}).should eq "mike"
     end
 
     it "func_select_attr" do
-        users = [
-            IdUser.new(1, "john"),
-            IdUser.new(2, "jane"),
-            IdUser.new(3, "mike"),
-        ]
-        evaluate_expression(%(users|selectattr("id", "odd")|map(attribute="name")|join("|")),
-            {users: users}).should eq "john|mike"
+      users = [
+        IdUser.new(1, "john"),
+        IdUser.new(2, "jane"),
+        IdUser.new(3, "mike"),
+      ]
+      evaluate_expression(%(users|selectattr("id", "odd")|map(attribute="name")|join("|")),
+        {users: users}).should eq "john|mike"
     end
 
     it "func_reject_attr" do
-        users = [
-            IdUser.new(1, "john"),
-            IdUser.new(2, "jane"),
-            IdUser.new(3, "mike"),
-        ]
-        evaluate_expression(%(users|rejectattr("id", "odd")|map(attribute="name")|join("|")),
-            {users: users}).should eq "jane"
+      users = [
+        IdUser.new(1, "john"),
+        IdUser.new(2, "jane"),
+        IdUser.new(3, "mike"),
+      ]
+      evaluate_expression(%(users|rejectattr("id", "odd")|map(attribute="name")|join("|")),
+        {users: users}).should eq "jane"
     end
   end
 
@@ -594,12 +594,12 @@ describe Crinja::Filter do
       # original jinja2
       # evaluate_expression(%(x|tojson), {x: {"foo" => "bar"}}, autoescape: true).should eq "{&#34;foo&#34;: &#34;bar&#34;}"
       evaluate_expression(%(x|tojson), {x: {"foo" => "bar"}}, autoescape: true).should eq "{\n&quot;foo&quot;: &quot;bar&quot;\n}"
-      #evaluate_expression(%(x|tojson), {x: %("bar')}, autoescape: true).should eq "&#34;&#34;bar\u0027&#34;"
+      # evaluate_expression(%(x|tojson), {x: %("bar')}, autoescape: true).should eq "&#34;&#34;bar\u0027&#34;"
       evaluate_expression(%(x|tojson), {x: %("bar')}, autoescape: true).should eq "&quot;\\&quot;bar&#x27;&quot;"
     end
 
     pending "policies" do
-      env = Crinja::Environment.new()
+      env = Crinja::Environment.new
       env.config.autoescape = true
       env.policies["json.dumps_function"] = Crinja.function do
         arguments.kwargs.should eq({"foo", "bar"})

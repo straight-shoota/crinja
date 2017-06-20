@@ -25,7 +25,7 @@ describe Crinja::Value do
   describe "each" do
     it "array" do
       a = [1, 2, 3]
-      Crinja::Value.new(a.map(&.as(Crinja::Type))).each.to_a.should eq a.map{|item| Crinja::Value.new(item)}
+      Crinja::Value.new(a.map(&.as(Crinja::Type))).each.to_a.should eq a.map { |item| Crinja::Value.new(item) }
     end
 
     it "hash" do
@@ -35,7 +35,7 @@ describe Crinja::Value do
       arr = [] of Crinja::Type
       arr << Crinja::PyTuple.new("foo", 1)
       arr << Crinja::PyTuple.new("bar", 3)
-      Crinja::Value.new(hash).each.to_a.should eq arr.map{|item| Crinja::Value.new(item)}
+      Crinja::Value.new(hash).each.to_a.should eq arr.map { |item| Crinja::Value.new(item) }
     end
   end
 end

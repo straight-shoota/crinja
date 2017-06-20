@@ -3,10 +3,10 @@ require "./spec_helper.cr"
 require "diff"
 require "colorize"
 
-COMPAT_SUITE_PATH = "./compat-suite"
+COMPAT_SUITE_PATH           = "./compat-suite"
 COMPAT_SUITE_TEMPLATES_PATH = "#{COMPAT_SUITE_PATH}/templates"
-COMPAT_SUITE_EXPECTED_PATH = "#{COMPAT_SUITE_PATH}/expected"
-COMPAT_SUITE_LOADER = Crinja::Loader::FileSystemLoader.new(File.join(__DIR__, COMPAT_SUITE_TEMPLATES_PATH))
+COMPAT_SUITE_EXPECTED_PATH  = "#{COMPAT_SUITE_PATH}/expected"
+COMPAT_SUITE_LOADER         = Crinja::Loader::FileSystemLoader.new(File.join(__DIR__, COMPAT_SUITE_TEMPLATES_PATH))
 
 private def create_compat_suite_env
   env = Crinja::Environment.new(loader: COMPAT_SUITE_LOADER)
@@ -19,20 +19,20 @@ private def create_compat_suite_env
     end
   end
   env.context.merge!({
-    product: Product.new,
-    username: "bob",
+    product:         Product.new,
+    username:        "bob",
     friend_reviewed: true,
-    number_reviews: 2,
-    show_more: true,
-    reviews: [Review.new, Review.new],
-    comments: {
-      bob: "comment 1",
+    number_reviews:  2,
+    show_more:       true,
+    reviews:         [Review.new, Review.new],
+    comments:        {
+      bob:  "comment 1",
       jane: "comment 2",
-      },
-    a_tuple: {1, 2, 3},
+    },
+    a_tuple:           {1, 2, 3},
     an_array_of_tuple: [{1, 2, 3}, {1, 2, 3}],
-    empty: [] of Review,
-    })
+    empty:             [] of Review,
+  })
   env
 end
 
@@ -98,7 +98,6 @@ struct EqualStringExpectation(T)
     "Expected: actual_value != #{@expected_value.inspect}\n     got: #{actual_value.inspect}"
   end
 end
-
 
 private record Product, name = "Moto G", manufacturer = "Motorala", summary = "A phone", price = 100 do
   include Crinja::PyObject

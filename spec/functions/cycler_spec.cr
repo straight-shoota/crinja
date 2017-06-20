@@ -10,6 +10,6 @@ describe "function cycler" do
   it "cycles with current and reset" do
     render(%({% set c = cycler('a', 'b') %}\
       {{ c.current }}|{{ c.next }}|{{ c.current }}|{{ c.reset() }}|\
-      {{ c.current }}|{{ c.next }}|{{ c.rewind }}|{{ c.next }})). should eq "|a|a|||a||a"
+      {{ c.current }}|{{ c.next }}|{{ c.rewind }}|{{ c.next }})).should eq "|a|a|||a||a"
   end
 end

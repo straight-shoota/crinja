@@ -26,8 +26,8 @@ private class User
 
   def __call__(name)
     if name == "days_old"
-      -> (arguments : Crinja::Callable::Arguments) do
-         self.age.days.as(Crinja::Type)
+      ->(arguments : Crinja::Callable::Arguments) do
+        self.age.days.as(Crinja::Type)
       end
     end
   end
@@ -44,6 +44,6 @@ end
 describe Crinja::PyObject do
   it do
     user = User.new("Tom", Time.new(1974, 3, 28))
-    render(%({{ user[0] | lower }}/{{ user.name }}: {{ user.age }} ({{ user.days_old() }} days)), { user: user }).should eq "t/Tom: 43 (15778 days)"
+    render(%({{ user[0] | lower }}/{{ user.name }}: {{ user.age }} ({{ user.days_old() }} days)), {user: user}).should eq "t/Tom: 43 (15778 days)"
   end
 end
