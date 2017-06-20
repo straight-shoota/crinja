@@ -403,6 +403,7 @@ describe Crinja::Filter do
     evaluate_expression(%(2.1|round)).should eq "2.0"
     evaluate_expression(%(2.1234|round(3, 'floor'))).should eq "2.123"
     evaluate_expression(%(2.1|round(0, 'ceil'))).should eq "3.0"
+    evaluate_expression(%(2|round(0, 'ceil'))).should eq "2.0"
 
     evaluate_expression(%(21.3|round(-1))).should eq "20.0"
     evaluate_expression(%(21.3|round(-1, 'ceil'))).should eq "30.0"

@@ -84,10 +84,10 @@ module Crinja::Filter
       value.round(precision, base)
     when "ceil"
       multi = base ** precision
-      (value * multi).ceil / multi
+      (value * multi).ceil.to_f / multi
     when "floor"
       multi = base ** precision
-      (value * multi).floor / multi
+      (value * multi).floor.to_f / multi
     else
       raise Callable::ArgumentError.new("method", "argument `method` for filter `round` must be 'common', 'ceil' or 'floor'")
     end

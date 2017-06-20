@@ -1,5 +1,5 @@
 require "spec"
-require "../src/crinja"
+require "../../src/crinja"
 
 FIXTURES       = "spec/fixtures"
 FIXTURE_LOADER = Crinja::Loader::FileSystemLoader.new(FIXTURES)
@@ -13,6 +13,6 @@ def render_file(file, bindings, autoescape = nil, trim_blocks = nil)
   tmpl.render(bindings)
 end
 
-def rendered_file(file)
-  File.read(File.join(FIXTURES, file + ".rendered")).rchop("\n")
+def rendered_file(file, path = FIXTURES)
+  File.read(File.join(path, file + ".rendered")).rchop("\n")
 end
