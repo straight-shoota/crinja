@@ -1,4 +1,4 @@
-<link href="/source.css" rel="stylesheet">
+<link rel="stylesheet" href="/source.css">
 <link rel="stylesheet" href="/play.css" >
 
 <form method="post">
@@ -34,8 +34,8 @@
 </div>
 </form>
 
-{% for path in ["ace.js", "mode-yaml.js", "mode-django.js"] %}
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/{{ path }}"></script>
+{% for path in ["ace.js", "mode-yaml.js", "mode-html.js"] %}
+<script type="text/javascript" src="vendor/ace-1.2.7/{{ path }}"></script>
 {% endfor %}
 
 <script>
