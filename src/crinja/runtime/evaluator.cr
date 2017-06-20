@@ -56,7 +56,12 @@ class Crinja::Evaluator
     end
 
     unless callable.is_a?(Callable | Callable::Proc)
-      callable = @env.resolve_callable!(value(identifier))
+      begin
+        callable = @env.resolve_callable!(value(identifier))
+      rescue e : TypeError
+        e.at(expression)
+        raise e
+      end
     end
 
     argumentlist = evaluate(expression.argumentlist).as(Array(Type))

@@ -25,6 +25,9 @@ class Crinja::Server
   def start
     return unless @server.nil?
 
+    raise "template_dir `template_dir` does not exist" unless File.directory?(template_dir)
+    raise "template_dir `template_dir` is not readable" unless File.readable?(template_dir)
+
     @env.loader = @loader = Crinja::Loader::FileSystemLoader.new(template_dir)
     @env.context.merge! default_variables
 
