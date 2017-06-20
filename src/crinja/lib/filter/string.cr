@@ -57,6 +57,12 @@ module Crinja::Filter
     raise "expected leeway >= 0, got #{leeway}" if leeway < 0
     killwords = arguments[:killwords].truthy?
 
+    if leeway >= length
+      # if string has very short length, don't use leeway and kill words
+      leeway = 0
+      killwords = true unless arguments.is_set?(:killwords)
+    end
+
     s = target.to_s
     if s.size <= length + leeway
       s

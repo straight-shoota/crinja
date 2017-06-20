@@ -325,6 +325,9 @@ describe Crinja::Filter do
     evaluate_expression(%("foo bar baz"|truncate(9, true))).should eq "foo bar baz"
 
     evaluate_expression(%("Joel is a slug"|truncate(7, true))).should eq "Joel..."
+    evaluate_expression(%("Crystal"|truncate(5))).should eq "Cr..."
+    evaluate_expression(%("Motorala"|truncate(length=4))).should eq "M..."
+    evaluate_expression(%("Motorala"|truncate(length=6))).should eq "Motorala"
   end
 
   it "upper" do
