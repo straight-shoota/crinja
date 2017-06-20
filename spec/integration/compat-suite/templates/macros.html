@@ -1,0 +1,22 @@
+{% macro do_nothing() %}
+{% endmacro %}
+
+{% macro input(label, type) %}
+<label>
+    {{ label }}
+    <input type="{{type}}" />
+</label>
+{% endmacro %}
+
+
+{% macro factorial(n) %}
+  {% if n > 1 %}{{ n }} - {{ factorial(n=n-1) }}{% else %}1{% endif %}{{ n }}
+{% endmacro %}
+
+{% macro include(greeting) %}
+    {% include "macro_included.html" %}
+{% endmacro %}
+
+{% macro dump(name) %}
+    {{ __tera_context }}
+{% endmacro %}

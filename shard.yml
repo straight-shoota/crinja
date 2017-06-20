@@ -9,3 +9,8 @@ authors:
 targets:
   crinja:
     main: src/cli.cr
+
+development_dependencies:
+  diff:
+    github: MakeNowJust/crystal-diff
+    branch: master
