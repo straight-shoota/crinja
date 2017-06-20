@@ -70,8 +70,10 @@ module Crinja::Filter
 
   Crinja.filter(:reverse) do
     reversable = target.raw
+
     if reversable.responds_to?(:reverse_each)
-      reversable.reverse_each
+      # FIXME: `to_a` should not be necessary, but without it creates a silent memory failure
+      reversable.reverse_each.to_a
     elsif reversable.responds_to?(:reverse)
       reversable.reverse
     else
