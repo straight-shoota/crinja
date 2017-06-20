@@ -14,7 +14,7 @@ abstract class Crinja::Operator
   end
 
   def to_s(io : IO)
-    io << "operator" << name
+    io << "operator[" << name << "]"
   end
 
   def unary?

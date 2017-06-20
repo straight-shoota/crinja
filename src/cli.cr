@@ -29,12 +29,18 @@ module Crinja::CLI
     exit
   end
 
-  def self.print_library_defaults
+  def self.print_library_defaults(only_names = false)
     [env.filters, env.tests, env.functions, env.tags, env.operators].each do |library|
-      puts "#{library.name}:"
-      library.keys.sort.each do |name|
+      puts "#{library.name}s:"
+      names = library.keys
+      names += library.aliasses.keys if only_names
+      names.sort.each do |name|
         feature = library[name]
-        puts "  #{feature}"
+        if only_names
+          puts "  #{name}"
+        else
+          puts "  #{feature}"
+        end
       end
       puts
     end
@@ -46,7 +52,18 @@ module Crinja::CLI
       path = Dir.current
 
       opts.on("--version", "show version info") { puts Crinja::VERSION; exit }
-      opts.on("--library-defaults", "print all default filters, tests, functions, tags and operators in stdlib") { print_library_defaults }
+      opts.on("--library-defaults=only-names", "print all default filters, tests, functions, tags and operators in stdlib") { |names|
+        print_library_defaults(names == "only-names") }
+      opts.missing_option do |option|
+        case option
+        when "--library-defaults"
+          # it's okay to have no options
+          print_library_defaults(false)
+          exit
+        else
+          raise OptionParser::MissingOption.new(option)
+        end
+      end
       opts.on("-v", "--verbose", "") { self.logger.level = Logger::Severity::DEBUG }
       opts.on("-q", "--quiet", "") { self.logger.level = Logger::Severity::WARN }
       opts.on("-h", "--help", "") { self.display_help_and_exit(opts) }

@@ -56,6 +56,15 @@ abstract class Crinja::Tag
     !end_tag.nil?
   end
 
+  def to_s(io)
+    io << name
+    unless (et = end_tag).nil?
+      io << " ["
+      io << et
+      io << "]"
+    end
+  end
+
   class Library < FeatureLibrary(Tag)
     TAGS = [If, If::Else, If::Elif, For,
             Set, Filter,
