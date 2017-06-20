@@ -47,7 +47,7 @@ module Crinja::Parser
 
       while true
         case char = next_char
-        when '\0'
+        when Char::ZERO
           break
         when Symbol::PREFIX
           case peek_char

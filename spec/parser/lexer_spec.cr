@@ -126,4 +126,19 @@ describe Crinja::Parser do
       {token.kind, token.value}
     end.should eq(expected)
   end
+
+  it "tokenizes non-ascii" do
+    lexer = Crinja::Parser::TemplateLexer.new Crinja::Config.new, %(£{{ "foo" }})
+    expected = [
+      {Kind::FIXED, "£"},
+      {Kind::EXPR_START, "{{"},
+      {Kind::STRING, "foo"},
+      {Kind::EXPR_END, "}}"},
+      {Kind::EOF, ""},
+    ]
+
+    lexer.tokenize.map do |token|
+      {token.kind, token.value}
+    end.should eq(expected)
+  end
 end

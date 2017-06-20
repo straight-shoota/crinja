@@ -14,12 +14,23 @@ module Crinja::Parser
     end
 
     def peek_char(lookahead = 1)
-      pos = @reader.pos + lookahead
-      if @reader.string.size > pos
-        @reader.string[pos]
+      if lookahead == 0
+        @reader.current_char
+      elsif lookahead == 1
+        @reader.peek_next_char
+      elsif lookahead > 1
+        original_pos = @reader.pos
+        (lookahead - 1).times do
+          @reader.next_char
+        end
+        char = @reader.peek_next_char
+        @reader.pos = original_pos
+        char
       else
-        Char::ZERO
+        raise ArgumentError.new("lookahead must be >= 0, was #{lookahead}")
       end
+    rescue IndexError
+      Char::ZERO
     end
 
     def next_char

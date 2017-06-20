@@ -116,7 +116,7 @@ class Crinja::Parser::TemplateLexer < Crinja::Parser::BaseLexer
 
     while true
       char = current_char
-      break if char == '\0'
+      break if char == Char::ZERO
       if char == Symbol::PREFIX
         if peek_char == Symbol::TAG
           if peek_string?(Symbol::RAW_END, 2)
@@ -229,7 +229,7 @@ class Crinja::Parser::TemplateLexer < Crinja::Parser::BaseLexer
 
         return true
       end
-    when '\0'
+    when Char::ZERO
       raise "Unterminated #{@stack.last.name}"
     end
 
