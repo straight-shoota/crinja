@@ -5,7 +5,7 @@
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
   <link href="../../css/style.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="../../js/doc.js"></script>
-  <title>Crinja::Operator::Not - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Loader::BakedFileLoader(T) - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -365,12 +365,12 @@
       
     </li>
   
-  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Loader" data-name="crinja::loader">
+  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Loader" data-name="crinja::loader">
       <a href="../../Crinja/Loader.html">Loader</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/BakedFileLoader" data-name="crinja::loader::bakedfileloader(t)">
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Loader/BakedFileLoader" data-name="crinja::loader::bakedfileloader(t)">
       <a href="../../Crinja/Loader/BakedFileLoader.html">BakedFileLoader</a>
       
     </li>
@@ -400,7 +400,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Operator" data-name="crinja::operator">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Operator" data-name="crinja::operator">
       <a href="../../Crinja/Operator.html">Operator</a>
       
         <ul>
@@ -475,7 +475,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Operator/Not" data-name="crinja::operator::not">
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Not" data-name="crinja::operator::not">
       <a href="../../Crinja/Operator/Not.html">Not</a>
       
     </li>
@@ -977,26 +977,50 @@
 <div id="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Operator::Not
+  <span class="kind">class</span> Crinja::Loader::BakedFileLoader(T)
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Operator/Not.html">Crinja::Operator::Not</a></li><li class="superclass"><a href="../../Crinja/Operator.html">Crinja::Operator</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Loader/BakedFileLoader.html">Crinja::Loader::BakedFileLoader(T)</a></li><li class="superclass"><a href="../../Crinja/Loader.html">Crinja::Loader</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
 
+  <h2>Overview</h2>
+
+  <p>A loader that retrieves templates from a <a href="https://github.com/schovi/baked_file_system" target="_blank">Baked File System</a>.
+This way templates can be baked directly into the executable, so there is no need to provide
+separate templates files. However, this prevents modifying templates at runtime.
+Both can be accomplished by using a <code><a href="../../Crinja/Loader/ChoiceLoader.html">ChoiceLoader</a></code> to combine a <code><a href="../../Crinja/Loader/FileSystemLoader.html">FileSystemLoader</a></code> with
+baked files as a fallback/default template loader.</p>
+
+<p>Usage depends on the shard <a href="https://github.com/schovi/baked_file_system" target="_blank">schovi/baked_file_system</a>
+and this class must be explicitly required as <code>crinja/loader/baked_file_loader</code>.</p>
+
+<h2>Usage:</h2>
+
+<pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;crinja/loader/baked_file_loader&quot;</span>
+
+<span class="k">module</span> <span class="t">MyBakedTemplateFileSystem</span>
+  <span class="t">BakedFileSystem</span>.load(<span class="s">&quot;templates&quot;</span>, __DIR__)
+<span class="k">end</span>
+
+env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">BakedFileLoader</span>.<span class="k">new</span>(<span class="t">MyBakedTemplateFileSystem</span>)
+
+<span class="c"># with choice loader:</span>
+env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Loader</span><span class="t">::</span><span class="t">ChoiceLoader</span>.<span class="k">new</span>([
+  <span class="t">FileSystemLoader</span>.<span class="k">new</span>(<span class="s">&quot;/path/to/user/templates&quot;</span>),
+  <span class="t">Crinja</span><span class="t">::</span><span class="t">BakedFileLoader</span>.<span class="k">new</span>(<span class="t">MyBakedTemplateFileSystem</span>)
+])</code></pre>
+
+<p>See <code>examples/kilt/kilt.cr</code> for a practical example in conjunction with <code>Kilt</code>.</p>
+
+<p>A baked file system can also be used as a default</p>
 
 
 
 
-  <h2>Included Modules</h2>
-  <ul class="other-types-list">
-  
-    <li class="other-type"><a href="../../Crinja/Operator/Unary.html">Crinja::Operator::Unary</a></li>
-  
-  </ul>
 
 
 
@@ -1010,7 +1034,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/operator/logic.cr#L20" target="_blank">crinja/lib/operator/logic.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/loader/baked_file_loader.cr#L33" target="_blank">crinja/loader/baked_file_loader.cr</a>
     
     <br/>
   
@@ -1019,23 +1043,38 @@
 
 
 
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28file_system%3AT%29-class-method" class="signature"><strong>.new</strong>(file_system : T)</a>
+        
+      </li>
+    
+  </ul>
+
 
 
   <h2>Instance Method Summary</h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#end_tag%3AString%3F-instance-method" class="signature"><strong>#end_tag</strong> : String?</a>
+        <a href="#file_system%3AT-instance-method" class="signature"><strong>#file_system</strong> : T</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#name-instance-method" class="signature"><strong>#name</strong></a>
+        <a href="#get_source%28env%2Ctemplate%29-instance-method" class="signature"><strong>#get_source</strong>(env, template)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#value%28env%3AEnvironment%2Cop%3AValue%29-instance-method" class="signature"><strong>#value</strong>(env : Environment, op : Value)</a>
+        <a href="#list_templates-instance-method" class="signature"><strong>#list_templates</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%29-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
         
       </li>
     
@@ -1049,53 +1088,22 @@
   
     
 
-  <h3>Instance methods inherited from module <code><a href="../../Crinja/Operator/Unary.html">Crinja::Operator::Unary</a></code></h3>
+  <h3>Instance methods inherited from class <code><a href="../../Crinja/Loader.html">Crinja::Loader</a></code></h3>
   
   
-    <a href="../../Crinja/Operator/Unary.html#unary%3F-instance-method" class="tooltip">
-      <span>unary?</span>
-    unary?</a>, 
+    <a href="../../Crinja/Loader.html#get_source%28env%3AEnvironment%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%29-instance-method" class="tooltip">
+      <span>get_source(env : Environment, template : String) : ::Tuple(String, String)</span>
+    get_source</a>, 
     
   
-    <a href="../../Crinja/Operator/Unary.html#value%28env%3AEnvironment%2Cop%3AValue%29%3AType-instance-method" class="tooltip">
-      <span>value(env : Environment, op : Value) : Type</span>
-    value</a>
+    <a href="../../Crinja/Loader.html#list_templates%3AIterable%28String%29-instance-method" class="tooltip">
+      <span>list_templates : Iterable(String)</span>
+    list_templates</a>, 
     
   
-
-
-    
-
-
-  
-    
-
-  <h3>Instance methods inherited from class <code><a href="../../Crinja/Operator.html">Crinja::Operator</a></code></h3>
-  
-  
-    <a href="../../Crinja/Operator.html#binary%3F-instance-method" class="tooltip">
-      <span>binary?</span>
-    binary?</a>, 
-    
-  
-    <a href="../../Crinja/Operator.html#inspect%28io%3AIO%29-instance-method" class="tooltip">
-      <span>inspect(io : IO)</span>
-    inspect</a>, 
-    
-  
-    <a href="../../Crinja/Operator.html#ternary%3F-instance-method" class="tooltip">
-      <span>ternary?</span>
-    ternary?</a>, 
-    
-  
-    <a href="../../Crinja/Operator.html#to_s%28io%3AIO%29-instance-method" class="tooltip">
-      <span>to_s(io : IO)</span>
-    to_s</a>, 
-    
-  
-    <a href="../../Crinja/Operator.html#unary%3F-instance-method" class="tooltip">
-      <span>unary?</span>
-    unary?</a>
+    <a href="../../Crinja/Loader.html#load%28env%2Cname%29-instance-method" class="tooltip">
+      <span>load(env, name)</span>
+    load</a>
     
   
 
@@ -1121,54 +1129,89 @@
 </div>
 
 
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="new&#40;file_system:T&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(file_system : T)
+
+        <a class="method-permalink" href="#new%28file_system%3AT%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/loader/baked_file_loader.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="end_tag:String?-instance-method">
+    <div class="entry-detail" id="file_system:T-instance-method">
       <div class="signature">
         
-        def <strong>end_tag</strong> : String?
+        def <strong>file_system</strong> : T
 
-        <a class="method-permalink" href="#end_tag%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#file_system%3AT-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/operator/logic.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/loader/baked_file_loader.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="name-instance-method">
+    <div class="entry-detail" id="get_source&#40;env,template&#41;-instance-method">
       <div class="signature">
         
-        def <strong>name</strong>
+        def <strong>get_source</strong>(env, template)
 
-        <a class="method-permalink" href="#name-instance-method">#</a>
+        <a class="method-permalink" href="#get_source%28env%2Ctemplate%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/operator/logic.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/loader/baked_file_loader.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="value&#40;env:Environment,op:Value&#41;-instance-method">
+    <div class="entry-detail" id="list_templates-instance-method">
       <div class="signature">
         
-        def <strong>value</strong>(env : <a href="../../Crinja/Environment.html">Environment</a>, op : <a href="../../Crinja/Value.html">Value</a>)
+        def <strong>list_templates</strong>
 
-        <a class="method-permalink" href="#value%28env%3AEnvironment%2Cop%3AValue%29-instance-method">#</a>
+        <a class="method-permalink" href="#list_templates-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/operator/logic.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/loader/baked_file_loader.cr#L46" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s&#40;io&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io)
+
+        <a class="method-permalink" href="#to_s%28io%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/loader/baked_file_loader.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>

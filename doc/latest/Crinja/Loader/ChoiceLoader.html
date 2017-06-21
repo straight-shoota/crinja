@@ -245,8 +245,8 @@
       
         <ul>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Config/AutoescapeConfig" data-name="crinja::config::autoescapeconfig">
-      <a href="../../Crinja/Config/AutoescapeConfig.html">AutoescapeConfig</a>
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Config/Autoescape" data-name="crinja::config::autoescape">
+      <a href="../../Crinja/Config/Autoescape.html">Autoescape</a>
       
     </li>
   
@@ -369,6 +369,11 @@
       <a href="../../Crinja/Loader.html">Loader</a>
       
         <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/BakedFileLoader" data-name="crinja::loader::bakedfileloader(t)">
+      <a href="../../Crinja/Loader/BakedFileLoader.html">BakedFileLoader</a>
+      
+    </li>
   
   <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Loader/ChoiceLoader" data-name="crinja::loader::choiceloader">
       <a href="../../Crinja/Loader/ChoiceLoader.html">ChoiceLoader</a>
@@ -990,10 +995,11 @@ by one loader the next one is tried.</p>
 <pre><code>loader <span class="o">=</span> <span class="t">ChoiceLoader</span>.<span class="k">new</span>([
   <span class="t">FileSystemLoader</span>.<span class="k">new</span>(<span class="s">&quot;/path/to/user/templates&quot;</span>),
   <span class="t">FileSystemLoader</span>.<span class="k">new</span>(<span class="s">&quot;/path/to/system/templates&quot;</span>),
+  <span class="t">BakedFileLoader</span>.<span class="k">new</span>(<span class="t">MyBakedTemplateFileSystem</span>),
 ])</code></pre>
 
 <p>This is useful if you want to allow users to override builtin templates
-from a different location.</p>
+from a different location or baked-in templates (see <code><a href="../../Crinja/Loader/BakedFileLoader.html">BakedFileLoader</a></code>).</p>
 
 
 
@@ -1011,7 +1017,7 @@ from a different location.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/loader.cr#L172" target="_blank">crinja/loader.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/loader.cr#L170" target="_blank">crinja/loader.cr</a>
     
     <br/>
   
@@ -1036,32 +1042,7 @@ from a different location.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#%3C%3C%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#<<</strong>(*args, **options)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#%3C%3C%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#<<</strong>(*args, **options, &block)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#%5B%5D%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#[]</strong>(*args, **options)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#%5B%5D%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#[]</strong>(*args, **options, &block)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#choices%3AArray%28Loader%29-instance-method" class="signature"><strong>#choices</strong> : Array(Loader)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#choices%3D%28choices%3AArray%28Loader%29%29-instance-method" class="signature"><strong>#choices=</strong>(choices : Array(Loader))</a>
         
       </li>
     
@@ -1139,7 +1120,7 @@ from a different location.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/loader.cr#L175" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/loader.cr#L173" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1148,70 +1129,6 @@ from a different location.</p>
 
 
   <h2>Instance Method Detail</h2>
-  
-    <div class="entry-detail" id="&lt;&lt;&#40;*args,**options&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong><<</strong>(*args, **options)
-
-        <a class="method-permalink" href="#%3C%3C%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/loader.cr#L178" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="&lt;&lt;&#40;*args,**options,&amp;block&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong><<</strong>(*args, **options, &block)
-
-        <a class="method-permalink" href="#%3C%3C%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/loader.cr#L178" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="&#91;&#93;&#40;*args,**options&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>[]</strong>(*args, **options)
-
-        <a class="method-permalink" href="#%5B%5D%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/loader.cr#L178" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="&#91;&#93;&#40;*args,**options,&amp;block&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>[]</strong>(*args, **options, &block)
-
-        <a class="method-permalink" href="#%5B%5D%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/loader.cr#L178" target="_blank">View source</a>]
-        
-      </div>
-    </div>
   
     <div class="entry-detail" id="choices:Array&#40;Loader&#41;-instance-method">
       <div class="signature">
@@ -1224,23 +1141,7 @@ from a different location.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/loader.cr#L173" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="choices&#61;&#40;choices:Array&#40;Loader&#41;&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>choices=</strong>(choices : Array(<a href="../../Crinja/Loader.html">Loader</a>))
-
-        <a class="method-permalink" href="#choices%3D%28choices%3AArray%28Loader%29%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/loader.cr#L173" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/loader.cr#L171" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1256,7 +1157,7 @@ from a different location.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/loader.cr#L180" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/loader.cr#L176" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1272,7 +1173,7 @@ from a different location.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/loader.cr#L191" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/loader.cr#L187" target="_blank">View source</a>]
         
       </div>
     </div>

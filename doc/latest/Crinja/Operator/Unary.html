@@ -245,8 +245,8 @@
       
         <ul>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Config/AutoescapeConfig" data-name="crinja::config::autoescapeconfig">
-      <a href="../../Crinja/Config/AutoescapeConfig.html">AutoescapeConfig</a>
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Config/Autoescape" data-name="crinja::config::autoescape">
+      <a href="../../Crinja/Config/Autoescape.html">Autoescape</a>
       
     </li>
   
@@ -369,6 +369,11 @@
       <a href="../../Crinja/Loader.html">Loader</a>
       
         <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/BakedFileLoader" data-name="crinja::loader::bakedfileloader(t)">
+      <a href="../../Crinja/Loader/BakedFileLoader.html">BakedFileLoader</a>
+      
+    </li>
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/ChoiceLoader" data-name="crinja::loader::choiceloader">
       <a href="../../Crinja/Loader/ChoiceLoader.html">ChoiceLoader</a>
@@ -972,12 +977,11 @@
 <div id="main-content">
 <h1 class="type-name">
 
-  <span class="kind">abstract class</span> Crinja::Operator::Unary
+  <span class="kind">module</span> Crinja::Operator::Unary
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Operator/Unary.html">Crinja::Operator::Unary</a></li><li class="superclass"><a href="../../Crinja/Operator.html">Crinja::Operator</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -990,14 +994,17 @@
 
 
 
-  <h2>Direct Known Subclasses</h2>
+
+  <h2>Direct including types</h2>
   <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../../Crinja/Operator/Minus.html">Crinja::Operator::Minus</a></li>
   
     <li class="other-type"><a href="../../Crinja/Operator/Not.html">Crinja::Operator::Not</a></li>
   
+    <li class="other-type"><a href="../../Crinja/Operator/Plus.html">Crinja::Operator::Plus</a></li>
+  
   </ul>
-
-
 
 
 
@@ -1005,7 +1012,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/operator.cr#L58" target="_blank">crinja/lib/operator.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/operator.cr#L47" target="_blank">crinja/lib/operator.cr</a>
     
     <br/>
   
@@ -1020,12 +1027,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#num_operands-instance-method" class="signature"><strong>#num_operands</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#value%28env%3AEnvironment%2Coperands%3AArray%28Type%29%29%3AType-instance-method" class="signature"><strong>#value</strong>(env : Environment, operands : Array(Type)) : Type</a>
+        <a href="#unary%3F-instance-method" class="signature"><strong>#unary?</strong></a>
         
       </li>
     
@@ -1042,66 +1044,6 @@
 
 <div class="methods-inherited">
   
-    
-
-  <h3>Instance methods inherited from class <code><a href="../../Crinja/Operator.html">Crinja::Operator</a></code></h3>
-  
-  
-    <a href="../../Crinja/Operator.html#binary%3F-instance-method" class="tooltip">
-      <span>binary?</span>
-    binary?</a>, 
-    
-  
-    <a href="../../Crinja/Operator.html#inspect%28io%3AIO%29-instance-method" class="tooltip">
-      <span>inspect(io : IO)</span>
-    inspect</a>, 
-    
-  
-    <a href="../../Crinja/Operator.html#num_operands%3AInt32-instance-method" class="tooltip">
-      <span>num_operands : Int32</span>
-    num_operands</a>, 
-    
-  
-    <a href="../../Crinja/Operator.html#ternary%3F-instance-method" class="tooltip">
-      <span>ternary?</span>
-    ternary?</a>, 
-    
-  
-    <a href="../../Crinja/Operator.html#to_s%28io%3AIO%29-instance-method" class="tooltip">
-      <span>to_s(io : IO)</span>
-    to_s</a>, 
-    
-  
-    <a href="../../Crinja/Operator.html#unary%3F-instance-method" class="tooltip">
-      <span>unary?</span>
-    unary?</a>, 
-    
-  
-    <a href="../../Crinja/Operator.html#value%28env%3AEnvironment%2Coperands%3AArray%28Type%29%29%3AType-instance-method" class="tooltip">
-      <span>value(env : Environment, operands : Array(Type)) : Type</span>
-    value</a>
-    
-  
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-  
 </div>
 
 
@@ -1109,34 +1051,18 @@
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="num_operands-instance-method">
+    <div class="entry-detail" id="unary?-instance-method">
       <div class="signature">
         
-        def <strong>num_operands</strong>
+        def <strong>unary?</strong>
 
-        <a class="method-permalink" href="#num_operands-instance-method">#</a>
+        <a class="method-permalink" href="#unary%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/operator.cr#L59" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="value&#40;env:Environment,operands:Array&#40;Type&#41;&#41;:Type-instance-method">
-      <div class="signature">
-        
-        def <strong>value</strong>(env : <a href="../../Crinja/Environment.html">Environment</a>, operands : Array(<a href="../../Crinja/Type.html">Type</a>)) : <a href="../../Crinja/Type.html">Type</a>
-
-        <a class="method-permalink" href="#value%28env%3AEnvironment%2Coperands%3AArray%28Type%29%29%3AType-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/operator.cr#L63" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/operator.cr#L48" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1152,7 +1078,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/21dd05edb658320b681fdbb905a4eb1dc81af2ad/src/crinja/lib/operator.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/operator.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
