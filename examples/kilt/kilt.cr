@@ -4,7 +4,7 @@ require "../../src/crinja"
 
 module Crinja
   macro embed(filename, io_name)
-    env = Crinja::Environment.new(loader: Crinja::BakedTemplateLoader.new)
+    env = Crinja::Environment.new(loader: Crinja::KiltTemplateLoader.new)
     bindings = {} of String => Crinja::Type
 
     bindings = self.to_bindings if self.responds_to?(:to_bindings)
@@ -13,7 +13,7 @@ module Crinja
   end
 
   macro bake_file_system(path, dir = nil)
-    class Crinja::BakedTemplateLoader < Crinja::Loader
+    class Crinja::KiltTemplateLoader < Crinja::Loader
       BakedFileSystem.load({{ path }}, {{ dir }})
 
       def get_source(env, template)
