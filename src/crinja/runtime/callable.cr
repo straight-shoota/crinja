@@ -110,26 +110,30 @@ module Crinja
       end
 
       def call(arguments : Arguments)
-        arguments.defaults = defaults
         @proc.call(arguments)
       end
+    end
 
-      def to_s(io)
-        if name.nil?
-          io << "*unnamed_callable*"
-        else
-          io << name
-        end
-        io << "("
+    def to_s(io)
+      me = self
+      if me.responds_to?(:name) && (name = me.name)
+        io << name
+      else
+        io << "*unnamed_callable_#{object_id}*"
+      end
+      io << "("
 
-        defaults.each_with_index do |(key, value), i|
+      if me.responds_to?(:defaults)
+        me.defaults.each_with_index do |(key, value), i|
           io << ", " if i > 0
           io << key
           io << "=" << Finalizer.stringify(value, in_struct: true) unless value.is_a?(Undefined)
         end
-
-        io << ")"
+      else
+        io << "?"
       end
+
+      io << ")"
     end
 
     # This holds arguments and environment information for function, filter, test and macro calls.

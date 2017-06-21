@@ -142,39 +142,41 @@ module Crinja::Resolver
     value
   end
 
-  def execute_call(target, varargs : Array(Type), kwargs : Hash(String, Type))
-    execute_call(target,
+  def execute_call(callable, varargs : Array(Type), kwargs : Hash(String, Type), target : Value? = nil)
+    execute_call(callable,
       varargs.map { |a| Value.new(a) },
       kwargs.each_with_object(Hash(String, Value).new) do |(k, v), hash|
         hash[k] = Value.new(v)
-      end
+      end,
+      target: target
     )
   end
 
-  def execute_call(name, varargs : Array(Value), kwargs : Hash(String, Value))
-    arguments = Callable::Arguments.new(self, varargs, kwargs)
-    callable = resolve_callable!(name)
+  def execute_call(callable,
+                   varargs : Array(Value) = [] of Value,
+                   kwargs : Hash(String, Value) = {} of String => Value,
+                   target : Value? = nil)
+    arguments = Callable::Arguments.new(self, varargs, kwargs, target: target)
+    callable = resolve_callable!(callable)
+    execute_call callable, arguments
+  end
+
+  def execute_call(callable : Callable | Callable::Proc, arguments : Callable::Arguments)
+    if callable.responds_to?(:defaults)
+      arguments.defaults = callable.defaults
+    end
 
     callable.call(arguments)
   end
 
-  def call_filter(name, target, varargs : Array(Type) = [] of Type, kwargs : Hash(String, Type) = Hash(String, Type).new)
-    unless target.is_a?(Type)
-      target = Crinja::Bindings.cast_value(target)
-    end
-
-    call_filter(name, Value.new(target),
-      varargs.map { |a| Value.new(a) },
-      kwargs.each_with_object(Hash(String, Value).new) do |(k, v), hash|
-        hash[k] = Value.new(v)
+  def call_filter(name, target, *args)
+    unless target.is_a?(Value)
+      unless target.is_a?(Type)
+        target = Crinja::Bindings.cast_value(target)
       end
-    )
-  end
-
-  def call_filter(name, target : Value, varargs : Array(Value) = [] of Value, kwargs : Hash(String, Value) = Hash(String, Value).new)
-    arguments = Callable::Arguments.new(self, varargs, kwargs, target: target)
-
-    filters[name].call(arguments)
+      target = Value.new(target)
+    end
+    execute_call(filters[name], *args, target: target)
   end
 
   def resolve_callable(identifier)

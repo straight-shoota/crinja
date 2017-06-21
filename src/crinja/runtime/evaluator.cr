@@ -108,7 +108,7 @@ class Crinja::Evaluator
     end
 
     target = value expression.target
-    callable.call Callable::Arguments.new(@env, argumentlist, keyword_arguments, target: target)
+    @env.execute_call callable, argumentlist, keyword_arguments, target: target
   end
 
   visit MemberExpression do

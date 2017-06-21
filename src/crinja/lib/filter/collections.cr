@@ -117,7 +117,7 @@ module Crinja::Filter
 
       target.map do |item|
         args.target = item
-        filter.call(args).as(Type)
+        arguments.env.execute_call(filter, args).as(Type)
       end
     end
   end
@@ -140,7 +140,7 @@ module Crinja::Filter
 
       iterable.{{ func.id }} do |item|
         args.target = Value.new Resolver.resolve_getattr(attribute, item)
-        Value.truthy? test.call(args)
+        Value.truthy? env.execute_call(test, args)
       end
     end
   end
@@ -161,7 +161,7 @@ module Crinja::Filter
 
       iterable.{{ func.id }} do |item|
         args.target = Value.new item
-        Value.truthy? test.call(args)
+        Value.truthy? env.execute_call(test, args)
       end
     end
   end
