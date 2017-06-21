@@ -44,8 +44,9 @@ abstract class Crinja::Loader
   # locations are wanted a list of them which is then looked up in the
   # given order.
   class FileSystemLoader < Loader
-    property searchpaths : Array(String)
+    getter searchpaths : Array(String)
     getter encoding : String?
+    getter followlinks : Bool
 
     # The default encoding is `nil` which can be changed
     # by setting the `encoding` parameter to something else.
@@ -106,12 +107,10 @@ abstract class Crinja::Loader
 
   # Load templates from a hash in memory.
   class HashLoader < Loader
-    property data : Hash(String, String)
+    getter data : Hash(String, String)
 
     def initialize(@data)
     end
-
-    delegate :[], :[]=, to: data
 
     def get_source(env : Environment, template : String)
       raise TemplateNotFoundError.new(template, self) unless data.has_key?(template)
@@ -133,7 +132,7 @@ abstract class Crinja::Loader
 
   # Load templates from other loaders based on prefix.
   class PrefixLoader < Loader
-    property mapping : Hash(String, Loader)
+    getter mapping : Hash(String, Loader)
 
     # The prefix is delimited from the template by a slash per
     # default, which can be changed by setting the *delimiter* argument.
@@ -145,8 +144,6 @@ abstract class Crinja::Loader
     # by loading `app2/index.html` the file path `../otherapp/index.html`.
     def initialize(@mapping, @delimiter = "/")
     end
-
-    delegate :[], :[]=, to: mapping
 
     def get_source(env : Environment, template : String)
       prefix, slash, rest = template.partition(@delimiter)
@@ -169,14 +166,12 @@ abstract class Crinja::Loader
   # ])
   # ```
   # This is useful if you want to allow users to override builtin templates
-  # from a different location or baked in templates (see `BakedFileLoader`).
+  # from a different location or baked-in templates (see `BakedFileLoader`).
   class ChoiceLoader < Loader
-    property choices : Array(Loader)
+    getter choices : Array(Loader)
 
     def initialize(@choices)
     end
-
-    delegate :[], :<<, to: choices
 
     def get_source(env : Environment, template : String)
       choices.each do |loader|
