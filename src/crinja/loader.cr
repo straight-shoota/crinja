@@ -165,10 +165,11 @@ abstract class Crinja::Loader
   # loader = ChoiceLoader.new([
   #   FileSystemLoader.new("/path/to/user/templates"),
   #   FileSystemLoader.new("/path/to/system/templates"),
+  #   BakedFileLoader.new(MyBakedTemplateFileSystem),
   # ])
   # ```
   # This is useful if you want to allow users to override builtin templates
-  # from a different location.
+  # from a different location or baked in templates (see `BakedFileLoader`).
   class ChoiceLoader < Loader
     property choices : Array(Loader)
 

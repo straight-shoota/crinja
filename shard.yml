@@ -14,3 +14,5 @@ development_dependencies:
   diff:
     github: MakeNowJust/crystal-diff
     branch: master
+  baked_file_system:
+    github: schovi/baked_file_system
