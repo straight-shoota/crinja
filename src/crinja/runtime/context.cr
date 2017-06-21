@@ -135,6 +135,51 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
     parent.try(&.block_context)
   end
 
+  def inspect(io)
+    {
+      scope: @scope,
+      autoescape: autoescape,
+      extend_path_stack: extend_path_stack,
+      import_path_stack: import_path_stack,
+      include_path_stack: include_path_stack,
+      macro_stack: macro_stack,
+    }.inspect(io)
+  end
+
+  def pretty_print(pp)
+    pp.group do
+      pp.text "scope: "
+      pp.nest do
+        pp.breakable ""
+        @scope.pretty_print(pp)
+      end
+      pp.breakable ""
+      pp.text "autoescape: "
+      autoescape.pretty_print(pp)
+      pp.breakable ""
+
+      pp.text "extend_path_stack: "
+      pp.nest do
+        extend_path_stack.pretty_print(pp)
+      end
+      pp.breakable ""
+      pp.text "import_path_stack: "
+      pp.nest do
+        import_path_stack.pretty_print(pp)
+      end
+      pp.breakable ""
+      pp.text "include_path_stack: "
+      pp.nest do
+        include_path_stack.pretty_print(pp)
+      end
+      pp.breakable ""
+      pp.text "macro_stack: "
+      pp.nest do
+        macro_stack.pretty_print(pp)
+      end
+    end
+  end
+
   class CallStack
     @stack : Array(String) = [] of String
 
@@ -161,6 +206,10 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
       else
         @stack.pop
       end
+    end
+
+    def inspect(io)
+      @stack.inspect(io)
     end
   end
 
