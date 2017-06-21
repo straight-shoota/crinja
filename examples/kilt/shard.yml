@@ -1,0 +1,8 @@
+name: crinja-kilt-example
+version: 0.0.1
+
+dependencies:
+  kilt:
+    github: jeromegn/kilt
+  baked_file_system:
+    github: schovi/baked_file_system
