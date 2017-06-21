@@ -80,34 +80,34 @@ The API tries to stick ot the original [Jinja2 API](http://jinja.pocoo.org/docs/
 Currently the following configuration options are supported:
 
 <dl>
-    <dt>autoescape</dt>
-    <dd>
-    <p>This config allows the same settings as <code><a href="http://jinja.pocoo.org/docs/2.9/api/#jinja2.select_autoescape">select_autoescape</a></code> in Jinja 2.9.</p>
-    <p>It intelligently sets the initial value of autoescaping based on the filename of the template.</p>
-    <p>When set to a boolean value, <code>false</code> deactivates any autoescape and <code>true</code> activates autoescape for any template.
-    It also allows more detailed configuration:</p>
-    <dl>
-        <dt>enabled_extensions</dt>
-        <dd>List of filename extensions that autoescape should be enabled for. Default: <code>["html", "htm", "xml"]</code></dd>
-        <dt>disabled_extensions</dt>
-        <dd>List of filename extensions that autoescape should be disabled for. Default: <code>[] of String</code></dd>
-        <dt>default_for_string</dt>
-        <dd>Determines autoescape default value for templates loaded from a string (without a filename). Default: <code>false</code></dd>
-        <dt>default</dt>
-        <dd>If nothing matches, this will be the default autoescape value. Default: <code>false</code></dd>
-    </dl>
-    <p>Note: <em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.</em></p>
-    </dd>
-    <dt>keep_trailing_newline</dt>
-    <dd>Preserve the trailing newline when rendering templates. If set to `false`, a single newline, if present, will be stripped from the end of the template. Default: <code>false</code></dd>
-    <dt>trim_blocks</dt>
-    <dd>If this is set to <code>true</code>, the first newline after a block is removed. This only applies to blocks, not expression tags. Default: <code>false</code>.</dd>
-    <dt>lstrip_blocks</dt>
-    <dd>If this is set to <code>true</code>, leading spaces and tabs are stripped from the start of a line to a block. Default: <code>false</code>.</dd>
-    <td>register_defaults</td>
-    <dd>If <code>register_defaults</code> is set to <code>true</code>, all feature libraries will be populated with the defaults (Crinja standards and registered custom features).
-    Otherwise the libraries will be empty. They can be manually populated with <code>library.register_defaults</code>.
-    This setting needs to be set at the creation of an environment.</dd>
+  <dt>autoescape</dt>
+  <dd>
+  <p>This config allows the same settings as <code><a href="http://jinja.pocoo.org/docs/2.9/api/#jinja2.select_autoescape">select_autoescape</a></code> in Jinja 2.9.</p>
+  <p>It intelligently sets the initial value of autoescaping based on the filename of the template.</p>
+  <p>When set to a boolean value, <code>false</code> deactivates any autoescape and <code>true</code> activates autoescape for any template.
+  It also allows more detailed configuration:</p>
+  <dl>
+    <dt>enabled_extensions</dt>
+    <dd>List of filename extensions that autoescape should be enabled for. Default: <code>["html", "htm", "xml"]</code></dd>
+    <dt>disabled_extensions</dt>
+    <dd>List of filename extensions that autoescape should be disabled for. Default: <code>[] of String</code></dd>
+    <dt>default_for_string</dt>
+    <dd>Determines autoescape default value for templates loaded from a string (without a filename). Default: <code>false</code></dd>
+    <dt>default</dt>
+    <dd>If nothing matches, this will be the default autoescape value. Default: <code>false</code></dd>
+  </dl>
+  <p>Note: <em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.</em></p>
+  </dd>
+  <dt>keep_trailing_newline</dt>
+  <dd>Preserve the trailing newline when rendering templates. If set to `false`, a single newline, if present, will be stripped from the end of the template. Default: <code>false</code></dd>
+  <dt>trim_blocks</dt>
+  <dd>If this is set to <code>true</code>, the first newline after a block is removed. This only applies to blocks, not expression tags. Default: <code>false</code>.</dd>
+  <dt>lstrip_blocks</dt>
+  <dd>If this is set to <code>true</code>, leading spaces and tabs are stripped from the start of a line to a block. Default: <code>false</code>.</dd>
+  <td>register_defaults</td>
+  <dd>If <code>register_defaults</code> is set to <code>true</code>, all feature libraries will be populated with the defaults (Crinja standards and registered custom features).
+  Otherwise the libraries will be empty. They can be manually populated with <code>library.register_defaults</code>.
+  This setting needs to be set at the creation of an environment.</dd>
 </dl>
 
 See also the original [Jinja2 API Documentation](http://jinja.pocoo.org/docs/2.9/api/).
@@ -119,7 +119,9 @@ You can provide custom tags, filters, functions, operators and tests. Create an 
 Example with macro `Crinja.filter`:
 
 ```crystal
-myfilter = Crinja.filter({ attribute: nil }) { "#{target} is #{arguments[:attribute]}!" }
+myfilter = Crinja.filter({ attribute: nil }) do
+  "#{target} is #{arguments[:attribute]}!"
+end
 
 env.filters << myfilter
 # Usage: {{ "Hello World" | customfilter(attribute="super") }}
@@ -128,26 +130,29 @@ env.filters << myfilter
 Or you can define a class for more complex features:
 ```crystal
 class Customfilter
-    include Crinja::CallableMod
-    name "customfilter"
+  include Crinja::Callable
+  getter name = "customfilter"
+  defaults({
+    "attribute" => "great"
+  })
 
-    def call(target : Crinja::Value, arguments : Crinja::Arguments)
-        arguments.defaults[:attribute] = "great"
-        "#{target} is #{arguments[:attribute]}!"
-    end
+  def call(arguments)
+    arguments.defaults = defaults
+    "#{arguments.target} is #{arguments[:attribute]}!"
+  end
 end
 env.filters << Customfilter.new
 ```
 
-Custom tags and operator can be implemented through subclassing `Crinja::Operator` or  `Crinja.tag` and adding an instance to the feature library defaults (`Crinja::Operator::Library.defaults << MyOperator.new`) or to a specific environment (`env.tags << MyTag.new`).
+Custom tags and operator can be implemented through subclassing `Crinja::Operator` and  `Crinja:Tag` and adding an instance to the feature library defaults (`Crinja::Operator::Library.defaults << MyTag.new`) or to a specific environment (`env.tags << MyTag.new`).
 
 ## Differences from Jinja2
 
 This is an incomplete list of **Differences to the original Jinja2**:
 
-* **Python expressions:** Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib.
+* **Python expressions:** Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib like `Dict#iteritems()` which is often used to make dicts iterable.
 * **Line statements and line comments**: Are not supported, because their usecase is negligible.
-* **String representation:** Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like `{{ ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 and as `["foo", "bar"]` in Crinja.
+* **String representation:** Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like `{{ ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 and as `['foo', 'bar']` in Crinja.
 * **Double escape:** `{{ '<html>'|escape|escape }}` will render as `&lt;html&gt;` in Jinja2, but `&amp;lt;html&amp;gt;`. Should we change that behaviour?
 * **Complex numbers**: Complex numbers are not supported yet.
 * **Configurable syntax**: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.
