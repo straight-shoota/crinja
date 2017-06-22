@@ -300,8 +300,8 @@
       
         <ul>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary/UnknownFeatureException" data-name="crinja::featurelibrary::unknownfeatureexception">
-      <a href="Crinja/FeatureLibrary/UnknownFeatureException.html">UnknownFeatureException</a>
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary/UnknownFeatureError" data-name="crinja::featurelibrary::unknownfeatureerror">
+      <a href="Crinja/FeatureLibrary/UnknownFeatureError.html">UnknownFeatureError</a>
       
     </li>
   
@@ -652,6 +652,11 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/SafeString" data-name="crinja::safestring">
       <a href="Crinja/SafeString.html">SafeString</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/SecurityError" data-name="crinja::securityerror">
+      <a href="Crinja/SecurityError.html">SecurityError</a>
       
     </li>
   
@@ -1043,40 +1048,50 @@ template.render({ <span class="s">&quot;name&quot;</span> => <span class="s">&qu
 
 <h3>Configuration</h3>
 
-<p>Currently the following configuration options are supported:</p>
+<p>Currently the following configuration options for <code><a href="Crinja/Config.html">Config</a></code> are supported:</p>
 
-<p>&lt;dl></p>
+<p>&lt;dl>
+  &lt;dt>autoescape&lt;/dt>
+  &lt;dd>
+  &lt;p>This config allows the same settings as &lt;code>&lt;a href="http://jinja.pocoo.org/docs/2.9/api/#jinja2.select_autoescape">select_autoescape&lt;/a>&lt;/code> in Jinja 2.9.&lt;/p>
+  &lt;p>It intelligently sets the initial value of autoescaping based on the filename of the template.&lt;/p>
+  &lt;p>When set to a boolean value, &lt;code>false&lt;/code> deactivates any autoescape and &lt;code>true&lt;/code> activates autoescape for any template.
+  It also allows more detailed configuration:&lt;/p>
+  &lt;dl></p>
 
-<pre><code><span class="o"><</span>dt<span class="o">></span>autoescape<span class="o"><</span><span class="s">/dt&gt;
-&lt;dd&gt;
-&lt;p&gt;This config allows the same settings as &lt;code&gt;&lt;a href&#61;&quot;http:/</span><span class="s">/jinja.pocoo.org/</span>docs<span class="s">/2.9/</span>api<span class="s">/#jinja2.select_autoescape&quot;&gt;select_autoescape&lt;/</span>a<span class="o">></span><span class="o"><</span><span class="s">/code&gt; in Jinja 2.9.&lt;/</span>p<span class="o">></span>
-<span class="o"><</span>p<span class="o">></span><span class="t">It</span> intelligently sets the initial value <span class="k">of</span> autoescaping based on the filename <span class="k">of</span> the template.<span class="o"><</span><span class="s">/p&gt;
-&lt;p&gt;When set to a boolean value, &lt;code&gt;false&lt;/</span>code<span class="o">></span> deactivates any autoescape and <span class="o"><</span>code<span class="o">></span><span class="n">true</span><span class="o"><</span><span class="s">/code&gt; activates autoescape for any template.
-It also allows more detailed configuration:&lt;/</span>p<span class="o">></span>
-<span class="o"><</span>dl<span class="o">></span>
-    <span class="o"><</span>dt<span class="o">></span>enabled_extensions<span class="o"><</span><span class="s">/dt&gt;
-    &lt;dd&gt;List of filename extensions that autoescape should be enabled for. Default: &lt;code&gt;&#91;&quot;html&quot;, &quot;htm&quot;, &quot;xml&quot;&#93;&lt;/</span>code<span class="o">></span><span class="o"><</span><span class="s">/dd&gt;
-    &lt;dt&gt;disabled_extensions&lt;/</span>dt<span class="o">></span>
-    <span class="o"><</span>dd<span class="o">></span><span class="t">List</span> <span class="k">of</span> filename extensions that autoescape should be disabled <span class="k">for</span>. <span class="t">Default</span>: <span class="o"><</span>code<span class="o">></span><span class="o">[]</span> <span class="k">of</span> <span class="t">String</span><span class="o"><</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">></span>
-    <span class="o"><</span>dt<span class="o">></span>default_for_string<span class="o"><</span><span class="s">/dt&gt;
-    &lt;dd&gt;Determines autoescape default value for templates loaded from a string &#40;without a filename&#41;. Default: &lt;code&gt;false&lt;/</span>code<span class="o">></span><span class="o"><</span><span class="s">/dd&gt;
-    &lt;dt&gt;default&lt;/</span>dt<span class="o">></span>
-    <span class="o"><</span>dd<span class="o">></span><span class="t">If</span> nothing matches, this will be the default autoescape value. <span class="t">Default</span>: <span class="o"><</span>code<span class="o">></span><span class="n">false</span><span class="o"><</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">></span>
-<span class="o"><</span><span class="s">/dl&gt;
-&lt;p&gt;Note: &lt;em&gt;The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.&lt;/</span>em<span class="o">></span><span class="o"><</span><span class="s">/p&gt;
-&lt;/</span>dd<span class="o">></span>
-<span class="o"><</span>dt<span class="o">></span>keep_trailing_newline<span class="o"><</span><span class="s">/dt&gt;
-&lt;dd&gt;Preserve the trailing newline when rendering templates. If set to &#96;false&#96;, a single newline, if present, will be stripped from the end of the template. Default: &lt;code&gt;false&lt;/</span>code<span class="o">></span><span class="o"><</span><span class="s">/dd&gt;
-&lt;dt&gt;trim_blocks&lt;/</span>dt<span class="o">></span>
-<span class="o"><</span>dd<span class="o">></span><span class="t">If</span> this is set to <span class="o"><</span>code<span class="o">></span><span class="n">true</span><span class="o"><</span><span class="s">/code&gt;, the first newline after a block is removed. This only applies to blocks, not expression tags. Default: &lt;code&gt;false&lt;/</span>code<span class="o">></span>.<span class="o"><</span><span class="s">/dd&gt;
-&lt;dt&gt;lstrip_blocks&lt;/</span>dt<span class="o">></span>
-<span class="o"><</span>dd<span class="o">></span><span class="t">If</span> this is set to <span class="o"><</span>code<span class="o">></span><span class="n">true</span><span class="o"><</span><span class="s">/code&gt;, leading spaces and tabs are stripped from the start of a line to a block. Default: &lt;code&gt;false&lt;/</span>code<span class="o">></span>.<span class="o"><</span><span class="s">/dd&gt;
-&lt;td&gt;register_defaults&lt;/</span>td<span class="o">></span>
-<span class="o"><</span>dd<span class="o">></span><span class="t">If</span> <span class="o"><</span>code<span class="o">></span>register_defaults<span class="o"><</span><span class="s">/code&gt; is set to &lt;code&gt;true&lt;/</span>code<span class="o">></span>, all feature libraries will be populated <span class="k">with</span> the defaults (<span class="t">Crinja</span> standards and registered custom features).
-<span class="t">Otherwise</span> the libraries will be empty. <span class="t">They</span> can be manually populated <span class="k">with</span> <span class="o"><</span>code<span class="o">></span>library.register_defaults<span class="o"><</span><span class="s">/code&gt;.
-This setting needs to be set at the creation of an environment.&lt;/</span>dd<span class="o">></span></code></pre>
+<pre><code><span class="o"><</span>dt<span class="o">></span>enabled_extensions<span class="o"><</span><span class="s">/dt&gt;
+&lt;dd&gt;List of filename extensions that autoescape should be enabled for. Default: &lt;code&gt;&#91;&quot;html&quot;, &quot;htm&quot;, &quot;xml&quot;&#93;&lt;/</span>code<span class="o">></span><span class="o"><</span><span class="s">/dd&gt;
+&lt;dt&gt;disabled_extensions&lt;/</span>dt<span class="o">></span>
+<span class="o"><</span>dd<span class="o">></span><span class="t">List</span> <span class="k">of</span> filename extensions that autoescape should be disabled <span class="k">for</span>. <span class="t">Default</span>: <span class="o"><</span>code<span class="o">></span><span class="o">[]</span> <span class="k">of</span> <span class="t">String</span><span class="o"><</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">></span>
+<span class="o"><</span>dt<span class="o">></span>default_for_string<span class="o"><</span><span class="s">/dt&gt;
+&lt;dd&gt;Determines autoescape default value for templates loaded from a string &#40;without a filename&#41;. Default: &lt;code&gt;false&lt;/</span>code<span class="o">></span><span class="o"><</span><span class="s">/dd&gt;
+&lt;dt&gt;default&lt;/</span>dt<span class="o">></span>
+<span class="o"><</span>dd<span class="o">></span><span class="t">If</span> nothing matches, this will be the default autoescape value. <span class="t">Default</span>: <span class="o"><</span>code<span class="o">></span><span class="n">false</span><span class="o"><</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">></span></code></pre>
 
-<p>&lt;/dl></p>
+<p>&lt;/dl>
+  &lt;p>Note: &lt;em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.&lt;/em>&lt;/p>
+  &lt;/dd>
+  &lt;dt>disabled_filters&lt;/dt>
+  &lt;dd>A list of <em>disabled_filters</em> that will raise a <code><a href="Crinja/SecurityError.html">SecurityError</a></code> when invoked.&lt;/dd>
+  &lt;dt>disabled_functions&lt;/dt>
+  &lt;dd>A list of <em>disabled_functions</em> that will raise a <code><a href="Crinja/SecurityError.html">SecurityError</a></code> when invoked.&lt;/dd>
+  &lt;dt>disabled_operators&lt;/dt>
+  &lt;dd>A list of <em>disabled_operators</em> that will raise a <code><a href="Crinja/SecurityError.html">SecurityError</a></code> when invoked.&lt;/dd>
+  &lt;dt>disabled_tags&lt;/dt>
+  &lt;dd>A list of <em>disabled_tags</em> that will raise a <code><a href="Crinja/SecurityError.html">SecurityError</a></code> when invoked.&lt;/dd>
+  &lt;dt>disabled_tests&lt;/dt>
+  &lt;dd>A list of <em>disabled_tests</em> that will raise a <code><a href="Crinja/SecurityError.html">SecurityError</a></code> when invoked.&lt;/dd>
+  &lt;dt>keep_trailing_newline&lt;/dt>
+  &lt;dd>Preserve the trailing newline when rendering templates. If set to <code>false</code>, a single newline, if present, will be stripped from the end of the template. Default: &lt;code>false&lt;/code>&lt;/dd>
+  &lt;dt>trim_blocks&lt;/dt>
+  &lt;dd>If this is set to &lt;code>true&lt;/code>, the first newline after a block is removed. This only applies to blocks, not expression tags. Default: &lt;code>false&lt;/code>.&lt;/dd>
+  &lt;dt>lstrip_blocks&lt;/dt>
+  &lt;dd>If this is set to &lt;code>true&lt;/code>, leading spaces and tabs are stripped from the start of a line to a block. Default: &lt;code>false&lt;/code>.&lt;/dd>
+  &lt;td>register_defaults&lt;/td>
+  &lt;dd>If &lt;code>register_defaults&lt;/code> is set to &lt;code>true&lt;/code>, all feature libraries will be populated with the defaults (Crinja standards and registered custom features).
+  Otherwise the libraries will be empty. They can be manually populated with &lt;code>library.register_defaults&lt;/code>.
+  This setting needs to be set at the creation of an environment.&lt;/dd>
+&lt;/dl></p>
 
 <p>See also the original <a href="http://jinja.pocoo.org/docs/2.9/api/" target="_blank">Jinja2 API Documentation</a>.</p>
 
@@ -1086,7 +1101,9 @@ This setting needs to be set at the creation of an environment.&lt;/</span>dd<sp
 
 <p>Example with macro <code>Crinja.filter</code>:</p>
 
-<pre><code class='language-crystal'>myfilter <span class="o">=</span> <span class="t">Crinja</span>.filter({ attribute: <span class="n">nil</span> }) { <span class="s">&quot;</span><span class="i">#{</span></span>target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>&#33;&quot;</span> }
+<pre><code class='language-crystal'>myfilter <span class="o">=</span> <span class="t">Crinja</span>.filter({ attribute: <span class="n">nil</span> }) <span class="k">do</span>
+  <span class="s">&quot;</span><span class="i">#{</span></span>target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>&#33;&quot;</span>
+<span class="k">end</span>
 
 env.filters <span class="o"><<</span> myfilter
 <span class="c"># Usage: &#123;&#123; &quot;Hello World&quot; | customfilter&#40;attribute&#61;&quot;super&quot;&#41; &#125;&#125;</span></code></pre>
@@ -1094,23 +1111,26 @@ env.filters <span class="o"><<</span> myfilter
 <p>Or you can define a class for more complex features:</p>
 
 <pre><code class='language-crystal'><span class="k">class</span> <span class="t">Customfilter</span>
-    <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">CallableMod</span>
-    name <span class="s">&quot;customfilter&quot;</span>
+  <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Callable</span>
+  getter name <span class="o">=</span> <span class="s">&quot;customfilter&quot;</span>
+  defaults({
+    <span class="s">&quot;attribute&quot;</span> => <span class="s">&quot;great&quot;</span>
+  })
 
-    <span class="k">def</span> <span class="m">call</span>(target : <span class="t">Crinja</span><span class="t">::</span><span class="t">Value</span>, arguments : <span class="t">Crinja</span><span class="t">::</span><span class="t">Arguments</span>)
-        arguments.defaults[<span class="n">:attribute</span>] <span class="o">=</span> <span class="s">&quot;great&quot;</span>
-        <span class="s">&quot;</span><span class="i">#{</span></span>target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>&#33;&quot;</span>
-    <span class="k">end</span>
+  <span class="k">def</span> <span class="m">call</span>(arguments)
+    arguments.defaults <span class="o">=</span> defaults
+    <span class="s">&quot;</span><span class="i">#{</span></span>arguments.target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>&#33;&quot;</span>
+  <span class="k">end</span>
 <span class="k">end</span>
 env.filters <span class="o"><<</span> <span class="t">Customfilter</span>.<span class="k">new</span></code></pre>
 
-<p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> or  <code>Crinja.tag</code> and adding an instance to the feature library defaults (<code><a href="Crinja/Operator.html">Crinja::Operator</a>::Library.defaults << MyOperator.new</code>) or to a specific environment (<code>env.tags << MyTag.new</code>).</p>
+<p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> and  <code><a href="Crinja.html">Crinja</a>:<a href="Crinja/Tag.html">Tag</a></code> and adding an instance to the feature library defaults (<code><a href="Crinja/Operator.html">Crinja::Operator</a>::Library.defaults << MyTag.new</code>) or to a specific environment (<code>env.tags << MyTag.new</code>).</p>
 
 <h2>Differences from Jinja2</h2>
 
 <p>This is an incomplete list of <strong>Differences to the original Jinja2</strong>:</p>
 
-<ul><li><strong>Python expressions:</strong> Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib.</li><li><strong>Line statements and line comments</strong>: Are not supported, because their usecase is negligible.</li><li><strong>String representation:</strong> Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like <code>{{ ["foo", "bar"] }}</code> will render as <code>[u'foo', u'bar']</code> in Jinja2 and as <code>["foo", "bar"]</code> in Crinja.</li><li><strong>Double escape:</strong> <code>{{ '<html>'|escape|escape }}</code> will render as <code>&lt;html&gt;</code> in Jinja2, but <code>&amp;lt;html&amp;gt;</code>. Should we change that behaviour?</li><li><strong>Complex numbers</strong>: Complex numbers are not supported yet.</li><li><strong>Configurable syntax</strong>: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.</li></ul>
+<ul><li><strong>Python expressions:</strong> Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib like <code>Dict#iteritems()</code> which is often used to make dicts iterable.</li><li><strong>Line statements and line comments</strong>: Are not supported, because their usecase is negligible.</li><li><strong>String representation:</strong> Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like <code>{{ ["foo", "bar"] }}</code> will render as <code>[u'foo', u'bar']</code> in Jinja2 and as <code>['foo', 'bar']</code> in Crinja.</li><li><strong>Double escape:</strong> <code>{{ '<html>'|escape|escape }}</code> will render as <code>&lt;html&gt;</code> in Jinja2, but <code>&amp;lt;html&amp;gt;</code>. Should we change that behaviour?</li><li><strong>Complex numbers</strong>: Complex numbers are not supported yet.</li><li><strong>Configurable syntax</strong>: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.</li></ul>
 
 <p>The following features are not yet fully implemented, but on the <a href="ROADMAP.md" target="_blank">roadmap</a>:</p>
 

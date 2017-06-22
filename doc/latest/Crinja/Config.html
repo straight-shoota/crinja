@@ -300,8 +300,8 @@
       
         <ul>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary/UnknownFeatureException" data-name="crinja::featurelibrary::unknownfeatureexception">
-      <a href="../Crinja/FeatureLibrary/UnknownFeatureException.html">UnknownFeatureException</a>
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary/UnknownFeatureError" data-name="crinja::featurelibrary::unknownfeatureerror">
+      <a href="../Crinja/FeatureLibrary/UnknownFeatureError.html">UnknownFeatureError</a>
       
     </li>
   
@@ -652,6 +652,11 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/SafeString" data-name="crinja::safestring">
       <a href="../Crinja/SafeString.html">SafeString</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/SecurityError" data-name="crinja::securityerror">
+      <a href="../Crinja/SecurityError.html">SecurityError</a>
       
     </li>
   
@@ -1007,7 +1012,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L2" target="_blank">crinja/config.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L2" target="_blank">crinja/config.cr</a>
     
     <br/>
   
@@ -1059,6 +1064,76 @@
     
       <li class="entry-summary">
         <a href="#autoescape%3F%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#autoescape?</strong>(*args, **options, &block)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#disabled_filters%3AArray%28String%29-instance-method" class="signature"><strong>#disabled_filters</strong> : Array(String)</a>
+        
+          <div class="summary"><p>A list of <em>disabled_filters</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#disabled_filters%3D%28disabled_filters%3AArray%28String%29%29-instance-method" class="signature"><strong>#disabled_filters=</strong>(disabled_filters : Array(String))</a>
+        
+          <div class="summary"><p>A list of <em>disabled_filters</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#disabled_functions%3AArray%28String%29-instance-method" class="signature"><strong>#disabled_functions</strong> : Array(String)</a>
+        
+          <div class="summary"><p>A list of <em>disabled_functions</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#disabled_functions%3D%28disabled_functions%3AArray%28String%29%29-instance-method" class="signature"><strong>#disabled_functions=</strong>(disabled_functions : Array(String))</a>
+        
+          <div class="summary"><p>A list of <em>disabled_functions</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#disabled_operators%3AArray%28String%29-instance-method" class="signature"><strong>#disabled_operators</strong> : Array(String)</a>
+        
+          <div class="summary"><p>A list of <em>disabled_operators</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#disabled_operators%3D%28disabled_operators%3AArray%28String%29%29-instance-method" class="signature"><strong>#disabled_operators=</strong>(disabled_operators : Array(String))</a>
+        
+          <div class="summary"><p>A list of <em>disabled_operators</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#disabled_tags%3AArray%28String%29-instance-method" class="signature"><strong>#disabled_tags</strong> : Array(String)</a>
+        
+          <div class="summary"><p>A list of <em>disabled_tags</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#disabled_tags%3D%28disabled_tags%3AArray%28String%29%29-instance-method" class="signature"><strong>#disabled_tags=</strong>(disabled_tags : Array(String))</a>
+        
+          <div class="summary"><p>A list of <em>disabled_tags</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#disabled_tests%3AArray%28String%29-instance-method" class="signature"><strong>#disabled_tests</strong> : Array(String)</a>
+        
+          <div class="summary"><p>A list of <em>disabled_test</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#disabled_tests%3D%28disabled_tests%3AArray%28String%29%29-instance-method" class="signature"><strong>#disabled_tests=</strong>(disabled_tests : Array(String))</a>
+        
+          <div class="summary"><p>A list of <em>disabled_test</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
         
       </li>
     
@@ -1158,7 +1233,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1185,7 +1260,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1201,7 +1276,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1223,7 +1298,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1239,7 +1314,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1255,7 +1330,187 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="disabled_filters:Array&#40;String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>disabled_filters</strong> : Array(String)
+
+        <a class="method-permalink" href="#disabled_filters%3AArray%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of <em>disabled_filters</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="disabled_filters&#61;&#40;disabled_filters:Array&#40;String&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>disabled_filters=</strong>(disabled_filters : Array(String))
+
+        <a class="method-permalink" href="#disabled_filters%3D%28disabled_filters%3AArray%28String%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of <em>disabled_filters</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="disabled_functions:Array&#40;String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>disabled_functions</strong> : Array(String)
+
+        <a class="method-permalink" href="#disabled_functions%3AArray%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of <em>disabled_functions</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="disabled_functions&#61;&#40;disabled_functions:Array&#40;String&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>disabled_functions=</strong>(disabled_functions : Array(String))
+
+        <a class="method-permalink" href="#disabled_functions%3D%28disabled_functions%3AArray%28String%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of <em>disabled_functions</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="disabled_operators:Array&#40;String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>disabled_operators</strong> : Array(String)
+
+        <a class="method-permalink" href="#disabled_operators%3AArray%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of <em>disabled_operators</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="disabled_operators&#61;&#40;disabled_operators:Array&#40;String&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>disabled_operators=</strong>(disabled_operators : Array(String))
+
+        <a class="method-permalink" href="#disabled_operators%3D%28disabled_operators%3AArray%28String%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of <em>disabled_operators</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="disabled_tags:Array&#40;String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>disabled_tags</strong> : Array(String)
+
+        <a class="method-permalink" href="#disabled_tags%3AArray%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of <em>disabled_tags</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="disabled_tags&#61;&#40;disabled_tags:Array&#40;String&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>disabled_tags=</strong>(disabled_tags : Array(String))
+
+        <a class="method-permalink" href="#disabled_tags%3D%28disabled_tags%3AArray%28String%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of <em>disabled_tags</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="disabled_tests:Array&#40;String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>disabled_tests</strong> : Array(String)
+
+        <a class="method-permalink" href="#disabled_tests%3AArray%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of <em>disabled_test</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L32" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="disabled_tests&#61;&#40;disabled_tests:Array&#40;String&#41;&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>disabled_tests=</strong>(disabled_tests : Array(String))
+
+        <a class="method-permalink" href="#disabled_tests%3D%28disabled_tests%3AArray%28String%29%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>A list of <em>disabled_test</em> that will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> when invoked.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1274,7 +1529,7 @@ If set to <code>false</code>, a single newline, if present, willl be stripped fr
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1293,7 +1548,7 @@ If set to <code>false</code>, a single newline, if present, willl be stripped fr
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1311,7 +1566,7 @@ If set to <code>false</code>, a single newline, if present, willl be stripped fr
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1329,7 +1584,7 @@ If set to <code>false</code>, a single newline, if present, willl be stripped fr
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1350,7 +1605,7 @@ This setting needs to be set at the creation of an environment.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1371,7 +1626,7 @@ This setting needs to be set at the creation of an environment.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1390,7 +1645,7 @@ This only applies to blocks, not expression tags.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1409,7 +1664,7 @@ This only applies to blocks, not expression tags.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/config.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/config.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>

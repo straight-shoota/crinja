@@ -5,7 +5,7 @@
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
   <link href="../../css/style.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="../../js/doc.js"></script>
-  <title>Crinja::Renderer::BlockOutput - github.com/straight-shoota/crinja</title>
+  <title>Crinja::FeatureLibrary::UnknownFeatureError - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -295,12 +295,12 @@
       
     </li>
   
-  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary" data-name="crinja::featurelibrary(t)">
+  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary" data-name="crinja::featurelibrary(t)">
       <a href="../../Crinja/FeatureLibrary.html">FeatureLibrary</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary/UnknownFeatureError" data-name="crinja::featurelibrary::unknownfeatureerror">
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary/UnknownFeatureError" data-name="crinja::featurelibrary::unknownfeatureerror">
       <a href="../../Crinja/FeatureLibrary/UnknownFeatureError.html">UnknownFeatureError</a>
       
     </li>
@@ -610,12 +610,12 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Renderer" data-name="crinja::renderer">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Renderer" data-name="crinja::renderer">
       <a href="../../Crinja/Renderer.html">Renderer</a>
       
         <ul>
   
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Renderer/BlockOutput" data-name="crinja::renderer::blockoutput">
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Renderer/BlockOutput" data-name="crinja::renderer::blockoutput">
       <a href="../../Crinja/Renderer/BlockOutput.html">BlockOutput</a>
       
     </li>
@@ -982,12 +982,12 @@
 <div id="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Renderer::BlockOutput
+  <span class="kind">class</span> Crinja::FeatureLibrary::UnknownFeatureError
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Renderer/BlockOutput.html">Crinja::Renderer::BlockOutput</a></li><li class="superclass"><a href="../../Crinja/Renderer/Output.html">Crinja::Renderer::Output</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/FeatureLibrary/UnknownFeatureError.html">Crinja::FeatureLibrary::UnknownFeatureError</a></li><li class="superclass"><a href="../../Crinja/RuntimeError.html">Crinja::RuntimeError</a></li><li class="superclass"><a href="../../Crinja/Error.html">Crinja::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -1008,7 +1008,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/runtime/output.cr#L17" target="_blank">crinja/runtime/output.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L2" target="_blank">crinja/lib/feature_library.cr</a>
     
     <br/>
   
@@ -1021,53 +1021,13 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28name%29-class-method" class="signature"><strong>.new</strong>(name)</a>
+        <a href="#new%28kind%2Cname%29-class-method" class="signature"><strong>.new</strong>(kind, name)</a>
         
       </li>
     
   </ul>
 
 
-
-  <h2>Instance Method Summary</h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#resolve%28string%3AString%29-instance-method" class="signature"><strong>#resolve</strong>(string : String)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#resolved%3F-instance-method" class="signature"><strong>#resolved?</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#scope%3AContext%3F-instance-method" class="signature"><strong>#scope</strong> : Context?</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#scope%3D%28scope%3AContext%3F%29-instance-method" class="signature"><strong>#scope=</strong>(scope : Context?)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#value%28io%29-instance-method" class="signature"><strong>#value</strong>(io)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#value%3AString-instance-method" class="signature"><strong>#value</strong> : String</a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -1077,14 +1037,69 @@
   
     
 
-  <h3>Instance methods inherited from class <code><a href="../../Crinja/Renderer/Output.html">Crinja::Renderer::Output</a></code></h3>
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from class <code><a href="../../Crinja/Error.html">Crinja::Error</a></code></h3>
   
   
-    <a href="../../Crinja/Renderer/Output.html#value%3AString-instance-method" class="tooltip">
-      <span>value : String</span>
-    value</a>
+    <a href="../../Crinja/Error.html#at%28location_start%2Clocation_end%29-instance-method" class="tooltip">
+      <span>at(location_start, location_end)<br/>at(node)</span>
+    at</a>, 
     
   
+    <a href="../../Crinja/Error.html#location_end%3AParser%3A%3AStreamPosition%3F-instance-method" class="tooltip">
+      <span>location_end : Parser::StreamPosition?</span>
+    location_end</a>, 
+    
+  
+    <a href="../../Crinja/Error.html#location_start%3AParser%3A%3AStreamPosition%3F-instance-method" class="tooltip">
+      <span>location_start : Parser::StreamPosition?</span>
+    location_start</a>, 
+    
+  
+    <a href="../../Crinja/Error.html#template%3ATemplate%3F-instance-method" class="tooltip">
+      <span>template : Template?</span>
+    template</a>, 
+    
+  
+    <a href="../../Crinja/Error.html#template%3D%28template%3ATemplate%3F%29-instance-method" class="tooltip">
+      <span>template=(template : Template?)</span>
+    template=</a>
+    
+  
+
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="../../Crinja/SourceAttached.html">Crinja::SourceAttached</a></code></h3>
+  
+  
+    <a href="../../Crinja/SourceAttached.html#highlight_source_code%28io%2Clines_before%3D2%2Clines_after%3D2%29-instance-method" class="tooltip">
+      <span>highlight_source_code(io, lines_before = <span class="n">2</span>, lines_after = <span class="n">2</span>)</span>
+    highlight_source_code</a>, 
+    
+  
+    <a href="../../Crinja/SourceAttached.html#message-instance-method" class="tooltip">
+      <span>message</span>
+    message</a>
+    
+  
+
+
+    
+
+
+  
+    
 
 
     
@@ -1110,139 +1125,24 @@
 
   <h2>Class Method Detail</h2>
   
-    <div class="entry-detail" id="new&#40;name&#41;-class-method">
+    <div class="entry-detail" id="new&#40;kind,name&#41;-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(name)
+        def self.<strong>new</strong>(kind, name)
 
-        <a class="method-permalink" href="#new%28name%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28kind%2Cname%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/runtime/output.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
   
 
 
-
-  <h2>Instance Method Detail</h2>
-  
-    <div class="entry-detail" id="name:String-instance-method">
-      <div class="signature">
-        
-        def <strong>name</strong> : String
-
-        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/runtime/output.cr#L18" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="resolve&#40;string:String&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>resolve</strong>(string : String)
-
-        <a class="method-permalink" href="#resolve%28string%3AString%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/runtime/output.cr#L29" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="resolved?-instance-method">
-      <div class="signature">
-        
-        def <strong>resolved?</strong>
-
-        <a class="method-permalink" href="#resolved%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/runtime/output.cr#L25" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="scope:Context?-instance-method">
-      <div class="signature">
-        
-        def <strong>scope</strong> : <a href="../../Crinja/Context.html">Context</a>?
-
-        <a class="method-permalink" href="#scope%3AContext%3F-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/runtime/output.cr#L20" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="scope&#61;&#40;scope:Context?&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>scope=</strong>(scope : <a href="../../Crinja/Context.html">Context</a>?)
-
-        <a class="method-permalink" href="#scope%3D%28scope%3AContext%3F%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/runtime/output.cr#L20" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="value&#40;io&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>value</strong>(io)
-
-        <a class="method-permalink" href="#value%28io%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/runtime/output.cr#L39" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="value:String-instance-method">
-      <div class="signature">
-        
-        def <strong>value</strong> : String
-
-        <a class="method-permalink" href="#value%3AString-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/runtime/output.cr#L33" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 

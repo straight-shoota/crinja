@@ -300,8 +300,8 @@
       
         <ul>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary/UnknownFeatureException" data-name="crinja::featurelibrary::unknownfeatureexception">
-      <a href="../Crinja/FeatureLibrary/UnknownFeatureException.html">UnknownFeatureException</a>
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary/UnknownFeatureError" data-name="crinja::featurelibrary::unknownfeatureerror">
+      <a href="../Crinja/FeatureLibrary/UnknownFeatureError.html">UnknownFeatureError</a>
       
     </li>
   
@@ -652,6 +652,11 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/SafeString" data-name="crinja::safestring">
       <a href="../Crinja/SafeString.html">SafeString</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/SecurityError" data-name="crinja::securityerror">
+      <a href="../Crinja/SecurityError.html">SecurityError</a>
       
     </li>
   
@@ -1018,7 +1023,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L1" target="_blank">crinja/lib/feature_library.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L1" target="_blank">crinja/lib/feature_library.cr</a>
     
     <br/>
   
@@ -1031,7 +1036,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28register_defaults%3Dtrue%29-class-method" class="signature"><strong>.new</strong>(register_defaults = <span class="n">true</span>)</a>
+        <a href="#new%28register_defaults%3Dtrue%2Cdisabled%3D%5B%5DofString%29-class-method" class="signature"><strong>.new</strong>(register_defaults = <span class="n">true</span>, disabled = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>)</a>
         
           <div class="summary"><p>Creates a new feature library.</p></div>
         
@@ -1066,16 +1071,9 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#%5B%5D%28name%29%3AT-instance-method" class="signature"><strong>#[]</strong>(name) : T</a>
+        <a href="#%5B%5D%28lookup%29%3AT-instance-method" class="signature"><strong>#[]</strong>(lookup) : T</a>
         
-          <div class="summary"><p>Retrieves the feature object in this library with key <em>name</em>.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#%5B%5D%3D%28name%2Cobj%3AT%29-instance-method" class="signature"><strong>#[]=</strong>(name, obj : T)</a>
-        
-          <div class="summary"><p>Stores a feature object <em>obj</em> under the key <em>name</em>.</p></div>
+          <div class="summary"><p>Retrieves the feature object in this library with key or alias <em>lookup</em>.</p></div>
         
       </li>
     
@@ -1087,12 +1085,23 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#aliasses%3AHash%28String%2CString%29-instance-method" class="signature"><strong>#aliasses</strong> : Hash(String, String)</a>
+        <a href="#%5B%5D%3D%28name%2Cobj%3AT%29-instance-method" class="signature"><strong>#[]=</strong>(name, obj : T)</a>
+        
+          <div class="summary"><p>Stores a feature object <em>obj</em> under the key <em>name</em>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#aliasses%3D%28aliasses%3AHash%28String%2CString%29%29-instance-method" class="signature"><strong>#aliasses=</strong>(aliasses : Hash(String, String))</a>
+        <a href="#aliasses%3AHash%28String%2CString%29-instance-method" class="signature"><strong>#aliasses</strong> : Hash(String, String)</a>
+        
+          <div class="summary"><p>Map of aliasses.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#disabled%3AArray%28String%29-instance-method" class="signature"><strong>#disabled</strong> : Array(String)</a>
+        
+          <div class="summary"><p>List of disabled features.</p></div>
         
       </li>
     
@@ -1138,16 +1147,6 @@
         
       </li>
     
-      <li class="entry-summary">
-        <a href="#store%3AHash%28String%2CT%29-instance-method" class="signature"><strong>#store</strong> : Hash(String, T)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#store%3D%28store%3AHash%28String%2CT%29%29-instance-method" class="signature"><strong>#store=</strong>(store : Hash(String, T))</a>
-        
-      </li>
-    
   </ul>
 
 
@@ -1187,22 +1186,24 @@
 
   <h2>Class Method Detail</h2>
   
-    <div class="entry-detail" id="new&#40;register_defaults&#61;true&#41;-class-method">
+    <div class="entry-detail" id="new&#40;register_defaults&#61;true,disabled&#61;&#91;&#93;ofString&#41;-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(register_defaults = <span class="n">true</span>)
+        def self.<strong>new</strong>(register_defaults = <span class="n">true</span>, disabled = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>)
 
-        <a class="method-permalink" href="#new%28register_defaults%3Dtrue%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28register_defaults%3Dtrue%2Cdisabled%3D%5B%5DofString%29-class-method">#</a>
       </div>
       
         <div class="doc"><p>Creates a new feature library.
 If <em>register_defaults</em> is set to <code>false</code>, this library will be empty. Otherwise it is populated
-with registered default features.</p></div>
+with registered default features.
+A list of <em>disabled</em> features can be provided, if a feature name in this list is accessed,
+it will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code>.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1225,7 +1226,7 @@ with registered default features.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1243,7 +1244,7 @@ with registered default features.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L63" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L68" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1262,43 +1263,28 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L78" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="&#91;&#93;&#40;name&#41;:T-instance-method">
+    <div class="entry-detail" id="&#91;&#93;&#40;lookup&#41;:T-instance-method">
       <div class="signature">
         
-        def <strong>[]</strong>(name) : T
+        def <strong>[]</strong>(lookup) : T
 
-        <a class="method-permalink" href="#%5B%5D%28name%29%3AT-instance-method">#</a>
+        <a class="method-permalink" href="#%5B%5D%28lookup%29%3AT-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Retrieves the feature object in this library with key <em>name</em>.</p></div>
+        <div class="doc"><p>Retrieves the feature object in this library with key or alias <em>lookup</em>.</p>
+
+<p>If the lookup name is in the list of <code><a href="../Crinja/FeatureLibrary.html#disabled%3AArray%28String%29-instance-method">#disabled</a></code> features, a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> is raised.
+If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary/UnknownFeatureError.html">UnknownFeatureError</a></code> is raised.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L84" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="&#91;&#93;&#61;&#40;name,obj:T&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>[]=</strong>(name, obj : T)
-
-        <a class="method-permalink" href="#%5B%5D%3D%28name%2Cobj%3AT%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc"><p>Stores a feature object <em>obj</em> under the key <em>name</em>.</p></div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L93" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L92" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1316,7 +1302,25 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L98" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L114" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&#91;&#93;&#61;&#40;name,obj:T&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>[]=</strong>(name, obj : T)
+
+        <a class="method-permalink" href="#%5B%5D%3D%28name%2Cobj%3AT%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Stores a feature object <em>obj</em> under the key <em>name</em>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1329,26 +1333,30 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
         <a class="method-permalink" href="#aliasses%3AHash%28String%2CString%29-instance-method">#</a>
       </div>
       
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L9" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="aliasses&#61;&#40;aliasses:Hash&#40;String,String&#41;&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>aliasses=</strong>(aliasses : Hash(String, String))
-
-        <a class="method-permalink" href="#aliasses%3D%28aliasses%3AHash%28String%2CString%29%29-instance-method">#</a>
-      </div>
+        <div class="doc"><p>Map of aliasses.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="disabled:Array&#40;String&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>disabled</strong> : Array(String)
+
+        <a class="method-permalink" href="#disabled%3AArray%28String%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>List of disabled features.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1364,7 +1372,7 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1380,7 +1388,7 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1396,7 +1404,7 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L102" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L118" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1412,7 +1420,7 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L108" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L124" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1428,7 +1436,7 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1444,7 +1452,7 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1460,7 +1468,7 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L112" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L128" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1478,39 +1486,7 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L24" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="store:Hash&#40;String,T&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>store</strong> : Hash(String, T)
-
-        <a class="method-permalink" href="#store%3AHash%28String%2CT%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L8" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="store&#61;&#40;store:Hash&#40;String,T&#41;&#41;-instance-method">
-      <div class="signature">
-        
-        def <strong>store=</strong>(store : Hash(String, T))
-
-        <a class="method-permalink" href="#store%3D%28store%3AHash%28String%2CT%29%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1533,7 +1509,7 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d62b367f2ada26d69556412c7d02da262ef1f46e/src/crinja/lib/feature_library.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/99d708506e84f111309fbf28f5754754d427a52a/src/crinja/lib/feature_library.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
