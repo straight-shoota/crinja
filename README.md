@@ -77,7 +77,7 @@ The API tries to stick ot the original [Jinja2 API](http://jinja.pocoo.org/docs/
 
 ### Configuration
 
-Currently the following configuration options are supported:
+Currently the following configuration options for `Config` are supported:
 
 <dl>
   <dt>autoescape</dt>
@@ -98,6 +98,16 @@ Currently the following configuration options are supported:
   </dl>
   <p>Note: <em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.</em></p>
   </dd>
+  <dt>disabled_filters</dt>
+  <dd>A list of *disabled_filters* that will raise a `SecurityError` when invoked.</dd>
+  <dt>disabled_functions</dt>
+  <dd>A list of *disabled_functions* that will raise a `SecurityError` when invoked.</dd>
+  <dt>disabled_operators</dt>
+  <dd>A list of *disabled_operators* that will raise a `SecurityError` when invoked.</dd>
+  <dt>disabled_tags</dt>
+  <dd>A list of *disabled_tags* that will raise a `SecurityError` when invoked.</dd>
+  <dt>disabled_tests</dt>
+  <dd>A list of *disabled_tests* that will raise a `SecurityError` when invoked.</dd>
   <dt>keep_trailing_newline</dt>
   <dd>Preserve the trailing newline when rendering templates. If set to `false`, a single newline, if present, will be stripped from the end of the template. Default: <code>false</code></dd>
   <dt>trim_blocks</dt>

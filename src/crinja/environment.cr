@@ -76,11 +76,11 @@ class Crinja::Environment
     {% end %}
     # context["self"] = BlocksResolver.new(self)
 
-    @operators = Operator::Library.new(config.register_defaults)
-    @functions = Function::Library.new(config.register_defaults)
-    @filters = Filter::Library.new(config.register_defaults)
-    @tags = Tag::Library.new(config.register_defaults)
-    @tests = Test::Library.new(config.register_defaults)
+    @operators = Operator::Library.new(config.register_defaults, config.disabled_operators)
+    @functions = Function::Library.new(config.register_defaults, config.disabled_functions)
+    @filters = Filter::Library.new(config.register_defaults, config.disabled_filters)
+    @tags = Tag::Library.new(config.register_defaults, config.disabled_tags)
+    @tests = Test::Library.new(config.register_defaults, config.disabled_tests)
 
     @finalizer = Finalizer
   end
@@ -88,6 +88,12 @@ class Crinja::Environment
   # Creates a new environment with the context and configuration from the *original* environment.
   def self.new(original : Environment)
     new(Context.new(original.context), original.config, original.loader)
+  end
+
+  # Creates a new environment from *config*.
+  def self.new(config : Config, loader = Loader::FileSystemLoader.new,
+               cache = TemplateCache::InMemory.new)
+    new(Context.new, config, loader, cache)
   end
 
   # Returns an `Crinja::Evaluator` which allows evaluation of expressions.

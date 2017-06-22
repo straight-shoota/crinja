@@ -1,24 +1,29 @@
 abstract class Crinja::FeatureLibrary(T)
-  class UnknownFeatureException < Crinja::RuntimeError
+  class UnknownFeatureError < Crinja::RuntimeError
     def initialize(kind, name)
       super "no #{kind} with name \"#{name}\" registered"
     end
   end
 
-  property store : Hash(String, T)
-  property aliasses : Hash(String, String)
+  # Map of aliasses.
+  getter aliasses : Hash(String, String)
+
+  # List of disabled features.
+  getter disabled : Array(String)
 
   # Creates a new feature library.
   # If *register_defaults* is set to `false`, this library will be empty. Otherwise it is populated
   # with registered default features.
-  def initialize(register_defaults = true)
+  # A list of *disabled* features can be provided, if a feature name in this list is accessed,
+  # it will raise a `SecurityError`.
+  def initialize(register_defaults = true, @disabled = [] of String)
     # FIXME: Move ivar initialization to property definition
     @store = {} of String => T
     @aliasses = {} of String => String
     self.register_defaults if register_defaults
   end
 
-  delegate :each, :keys, to: store
+  delegate :each, :keys, to: @store
 
   # Adds default values to this library.
   def register_defaults; end
@@ -80,18 +85,29 @@ abstract class Crinja::FeatureLibrary(T)
     self[name] = obj
   end
 
-  # Retrieves the feature object in this library with key *name*.
-  def [](name) : T
-    lookup = name.to_s.downcase
-    lookup = aliasses.fetch(lookup, lookup)
-    store[lookup]
-  rescue
-    raise UnknownFeatureException.new(self.name, name.downcase)
+  # Retrieves the feature object in this library with key or alias *lookup*.
+  #
+  # If the lookup name is in the list of `#disabled` features, a `SecurityError` is raised.
+  # If the lookup name is not registered, an `UnknownFeatureError` is raised.
+  def [](lookup) : T
+    lookup = lookup.to_s.downcase
+    lookup = @aliasses.fetch(lookup, lookup)
+
+    feature = @store[lookup]?
+
+    if disabled.includes?(lookup)
+      feature_name = feature.try(&.to_s) || lookup
+      raise SecurityError.new("access to #{name} `#{feature_name}` is disabled.")
+    end
+
+    raise UnknownFeatureError.new(self.name, lookup) if feature.nil?
+
+    feature
   end
 
   # Stores a feature object *obj* under the key *name*.
   def []=(name, obj : T)
-    store[name.to_s.downcase] = obj
+    @store[name.to_s.downcase] = obj
   end
 
   # Stores a feature object *obj* under the key *name*.
@@ -101,12 +117,12 @@ abstract class Crinja::FeatureLibrary(T)
 
   def has_key?(name)
     lookup = name.to_s.downcase
-    lookup = aliasses.fetch(lookup, lookup)
-    store.has_key?(lookup)
+    lookup = @aliasses.fetch(lookup, lookup)
+    @store.has_key?(lookup)
   end
 
   def inspect(io : IO)
-    store.inspect(io)
+    @store.inspect(io)
   end
 
   def name

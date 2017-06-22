@@ -16,6 +16,21 @@ class Crinja::Config
     end
   end
 
+  # A list of *disabled_filters* that will raise a `SecurityError` when invoked.
+  property disabled_filters : Array(String) = [] of String
+
+  # A list of *disabled_functions* that will raise a `SecurityError` when invoked.
+  property disabled_functions : Array(String) = [] of String
+
+  # A list of *disabled_operators* that will raise a `SecurityError` when invoked.
+  property disabled_operators : Array(String) = [] of String
+
+  # A list of *disabled_tags* that will raise a `SecurityError` when invoked.
+  property disabled_tags : Array(String) = [] of String
+
+  # A list of *disabled_test* that will raise a `SecurityError` when invoked.
+  property disabled_tests : Array(String) = [] of String
+
   # Preserve the trailing newline when rendering templates.
   # If set to `false`, a single newline, if present, willl be stripped from the end of the template.
   property keep_trailing_newline : Bool = false

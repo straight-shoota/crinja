@@ -152,6 +152,9 @@ class Crinja::UndefinedError < Crinja::RuntimeError
   end
 end
 
+class Crinja::SecurityError < Crinja::RuntimeError
+end
+
 # FIXME: Remove when call stack rewriting arrives in the next release
 class Crinja::ExceptionWrapper < Exception
   def cause!

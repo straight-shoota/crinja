@@ -59,9 +59,8 @@ abstract class Crinja::Tag
   def to_s(io)
     io << name
     unless (et = end_tag).nil?
-      io << " ["
+      io << "~"
       io << et
-      io << "]"
     end
   end
 
