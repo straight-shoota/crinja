@@ -73,7 +73,7 @@ Other examples can be found in the [`examples` folder](https://github.com/straig
 
 The API tries to stick ot the original [Jinja2 API](http://jinja.pocoo.org/docs/2.9/api/) which is written in Python.
 
-**[API Documentation](https://straight-shoota.github.io/crinja/doc/latest/)**
+**[API Documentation](https://straight-shoota.github.io/crinja/api/latest/)**
 
 ### Configuration
 

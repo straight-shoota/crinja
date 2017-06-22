@@ -1,1 +1,9 @@
 language: crystal
+
+after_success:
+- bin/autodeploy-docs.sh
+
+env:
+  global:
+    GIT_COMMITTER_NAME: travis-ci
+    GIT_COMMITTER_EMAIL: travis@travis-ci.org
