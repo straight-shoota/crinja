@@ -22,7 +22,7 @@ if [ "$BRANCH" == "" ]; then
   fi
 fi
 
-if [ "$TAG" == "undefined" ]; then
+if [ "$TAG" == "undefined" ] || [ "$TAG" == "" ]; then
   TAG="latest"
 fi
 
