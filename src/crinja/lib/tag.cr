@@ -7,6 +7,7 @@
 #
 # The following tags are available in the default library:
 #
+# * `**[autoescape](http://jinja.pocoo.org/docs/2.9/templates/#autoescape-overrides)**`
 # * `**[block](http://jinja.pocoo.org/docs/2.9/templates/#blocks)**`
 # * `**[call](http://jinja.pocoo.org/docs/2.9/templates/#call)**`
 # * `**[extends](http://jinja.pocoo.org/docs/2.9/templates/#extends)**`
@@ -19,6 +20,7 @@
 # * `**[macro](http://jinja.pocoo.org/docs/2.9/templates/#macros)**`
 # * `**[raw](http://jinja.pocoo.org/docs/2.9/templates/#escaping)**`
 # * `**[set](http://jinja.pocoo.org/docs/2.9/templates/#assignments)**`
+# * `**[with](http://jinja.pocoo.org/docs/2.9/templates/#with-statement)**`
 #
 # See [Jinja2 Template Documentation](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures)
 # detailed explanations.
@@ -66,7 +68,7 @@ abstract class Crinja::Tag
 
   class Library < FeatureLibrary(Tag)
     TAGS = [If, If::Else, If::Elif, For,
-            Set, Filter,
+            Set, Filter, With, Autoescape,
             Macro, Call,
             Raw,
             Include, From, Import,
