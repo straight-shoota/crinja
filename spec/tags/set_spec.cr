@@ -20,7 +20,7 @@ describe Crinja::Tag::Set do
   end
 
   it "raises error for unclosed tag" do
-    expect_raises(Crinja::TemplateSyntaxError | Crinja::ExceptionWrapper, "endset") do
+    expect_raises(Crinja::TemplateSyntaxError, "endset") do
       render(%({% set foo %}{{ foo }}))
     end
   end

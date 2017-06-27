@@ -8,7 +8,7 @@ private def parse(string)
     parser.parse
   rescue e : TemplateError
     e.template = Crinja::Template.new(string, env, run_parser: false)
-    raise ExceptionWrapper.new(cause: e)
+    raise e
   end
 end
 

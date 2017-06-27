@@ -28,13 +28,11 @@ class Crinja::Renderer
                         end).join(" | ").id
                       }})
       {{ yield }}
-    # TODO: Enable when re-raising is fixed in Crystal.
-    # rescue exc : TemplateError | RuntimeError | ExceptionWrapper
-    #   # Re-raise template and runtime exception.
-    #  raise ExceptionWrapper.new(cause: exc)
-    # rescue exc
-    #   # Wrap other exceptions in a runtime exception to add location info.
-    #   raise RuntimeError.new(cause: exc).at(node)
+    rescue exc : TemplateError
+      # Add location info to runtime exception.
+      exc.template = template
+      exc.at(node) unless exc.has_location?
+      raise exc
     end
   end
 

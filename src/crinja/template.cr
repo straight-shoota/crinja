@@ -31,7 +31,7 @@ class Crinja::Template
         @nodes = Parser::TemplateParser.new(@env, @source).parse
       rescue e : TemplateError
         e.template = self
-        raise ExceptionWrapper.new(cause: e)
+        raise e
       end
     end
   end
@@ -63,7 +63,7 @@ class Crinja::Template
     renderer.render(io, self)
   rescue e : TemplateError
     e.template = self
-    raise ExceptionWrapper.new(cause: e)
+    raise e
   end
 
   # :nodoc:

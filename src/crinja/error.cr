@@ -88,6 +88,10 @@ class Crinja::Error < Exception
     @location_end = node.location_end
     self
   end
+
+  def has_location?
+    !location_start.nil?
+  end
 end
 
 class Crinja::TemplateError < Crinja::Error
@@ -153,13 +157,4 @@ class Crinja::UndefinedError < Crinja::RuntimeError
 end
 
 class Crinja::SecurityError < Crinja::RuntimeError
-end
-
-# FIXME: Remove when call stack rewriting arrives in the next release
-class Crinja::ExceptionWrapper < Exception
-  def cause!
-    cause.not_nil!
-  end
-
-  delegate backtrace, callstack, inspect_with_backtrace, message, to_s, inspect, pretty_print, to: cause!
 end

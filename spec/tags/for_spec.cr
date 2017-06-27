@@ -130,7 +130,7 @@ describe Crinja::Tag::For do
   end
 
   it "loop_unassignable" do
-    expect_raises(Crinja::TemplateSyntaxError | ExceptionWrapper) do
+    expect_raises(Crinja::TemplateSyntaxError) do
       render %({% for loop in seq %}...{% endfor %})
     end
   end

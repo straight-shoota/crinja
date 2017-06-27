@@ -29,7 +29,7 @@ describe Crinja::Tag::If do
   end
 
   it "fails additional args" do
-    expect_raises(Crinja::TemplateSyntaxError | Crinja::ExceptionWrapper, "Did not expect any more tokens") do
+    expect_raises(Crinja::TemplateSyntaxError, "Did not expect any more tokens") do
       render(%({% if 'Templates' ends with 's' %}"Templates" ends with "s"{% endif %}))
     end
   end
