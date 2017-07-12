@@ -30,7 +30,7 @@ class Crinja::Template
       begin
         @nodes = Parser::TemplateParser.new(@env, @source).parse
       rescue e : TemplateError
-        e.template = self
+        e.template ||= self
         raise e
       end
     end
@@ -61,8 +61,8 @@ class Crinja::Template
   def render(io : IO, env : Environment)
     renderer = Renderer.new(self)
     renderer.render(io, self)
-  rescue e : TemplateError
-    e.template = self
+  rescue e : Crinja::Error
+    e.template ||= self
     raise e
   end
 

@@ -23,6 +23,10 @@ class Crinja::Evaluator
                                 end).join(" | ").id
                               }})
       ({{ yield }}).as(Type)
+    rescue exc : Crinja::Error
+      # Add location info to runtime exception.
+      exc.at(expression) unless exc.has_location?
+      raise exc
     end
   end
 

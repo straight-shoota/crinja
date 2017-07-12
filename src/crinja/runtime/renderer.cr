@@ -28,9 +28,8 @@ class Crinja::Renderer
                         end).join(" | ").id
                       }})
       {{ yield }}
-    rescue exc : TemplateError
+    rescue exc : Crinja::Error
       # Add location info to runtime exception.
-      exc.template = template
       exc.at(node) unless exc.has_location?
       raise exc
     end
