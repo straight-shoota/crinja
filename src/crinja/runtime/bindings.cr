@@ -30,7 +30,12 @@ module Crinja::Bindings
     when Value
       value.raw
     else
-      value.as(Type)
+      if !value.is_a?(Type) && value.responds_to?(:raw)
+        # JSON::Any & YAML::Any
+        cast_value(value.raw)
+      else
+        value.as(Type)
+      end
     end
   end
 
@@ -64,21 +69,3 @@ module Crinja::Bindings
     PyTuple.from(tuple)
   end
 end
-
-{% if @type.has_constant?(:JSON) %}
-module Crinja::Bindings
-  # Casts an `JSON::Any` to `Crinja::Type`.
-  def self.cast_value(value : JSON::Any) : Crinja::Type
-    cast_value(value.raw)
-  end
-end
-{% end %}
-
-{% if @type.has_constant?(:YAML) %}
-module Crinja::Bindings
-  # Casts an `YAML::Any` to `Crinja::Type`.
-  def self.cast_value(value : YAML::Any) : Crinja::Type
-    cast_value(value.raw)
-  end
-end
-{% end %}
