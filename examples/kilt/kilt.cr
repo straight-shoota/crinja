@@ -1,7 +1,7 @@
 require "kilt"
 require "baked_file_system"
-require "../../src/crinja"
-require "../../src/crinja/loader/baked_file_loader"
+require "crinja"
+require "crinja/loader/baked_file_loader"
 
 module Crinja
   macro embed(filename, io_name, *args)

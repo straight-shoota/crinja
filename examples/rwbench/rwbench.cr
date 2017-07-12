@@ -1,5 +1,5 @@
 require "benchmark"
-require "../../src/crinja.cr"
+require "crinja"
 
 env = Crinja::Environment.new
 

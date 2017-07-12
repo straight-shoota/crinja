@@ -1,7 +1,13 @@
 name: crinja-kemal-example
-version: 0.1.0
+version: 0.0.1
+
+targets:
+  kemal-example:
+    main: kemal.cr
 
 dependencies:
   kemal:
     github: kemalcr/kemal
     branch: master
+  crinja:
+    path: ../../

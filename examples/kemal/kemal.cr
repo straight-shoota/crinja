@@ -1,5 +1,5 @@
 require "kemal"
-require "../../src/crinja.cr"
+require "crinja"
 
 crinja = Crinja::Environment.new(loader: Crinja::Loader::FileSystemLoader.new("pages"))
 

@@ -1,12 +1,16 @@
 version: 1.0
 shards:
+  crinja:
+    path: ../../
+    version: 0.2.0
+
   kemal:
     github: kemalcr/kemal
-    commit: 0724e07c22513790fbeefeca3bf8e1a8407d44b2
+    commit: 1d056b203b8a4551cab37fc8c975151a228e3c66
 
   kilt:
     github: jeromegn/kilt
-    version: 0.3.3
+    version: 0.4.0
 
   radix:
     github: luislavena/radix

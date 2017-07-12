@@ -1,7 +1,7 @@
 require "option_parser"
 require "yaml"
-require "../../src/crinja"
-require "../../src/crinja/server"
+require "crinja"
+require "crinja/server"
 
 class Crinja::Server
   module CLI
