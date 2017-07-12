@@ -1,7 +1,7 @@
 language: crystal
 
 after_success:
-- bin/autodeploy-docs.sh
+- scripts/autodeploy-docs.sh
 
 env:
   global:

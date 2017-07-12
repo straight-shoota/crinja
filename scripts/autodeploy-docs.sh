@@ -35,9 +35,9 @@ GENERATED_DOCS_DIR="$(pwd)/doc"
 echo -e "Generating documentation for branch ${BRANCH} ($TAG)."
 
 
-echo -e "Building docs with bin/generate-docs.sh into ${GENERATED_DOCS_DIR}."
+echo -e "Building docs with scripts/generate-docs.sh into ${GENERATED_DOCS_DIR}."
 
-bin/generate-docs.sh
+scripts/generate-docs.sh
 
 echo -e "Checking out docs repository ${DOCS_REPO} ${DOCS_BRANCH} into ${WORKDIR}."
 
