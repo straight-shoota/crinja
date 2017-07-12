@@ -151,6 +151,10 @@ class Crinja::UndefinedError < Crinja::RuntimeError
     super msg, cause
   end
 
+  def self.new(undefined : Undefined, msg = "", cause : Exception? = nil)
+    new(undefined.name, msg, cause)
+  end
+
   def message
     "#{variable_name} is undefined. #{super}"
   end

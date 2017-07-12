@@ -187,22 +187,26 @@ class Crinja::Value
 
   # Checks that the underlying value is `Nil`, and returns `nil`. Raises otherwise.
   def as_nil : Nil
+    raise_undefined!
     @raw.as(Nil)
   end
 
   # Checks that the underlying value is `String` or `SafeString`, and returns its value. Raises otherwise.
   def as_s
+    raise_undefined!
     @raw.as(String | SafeString)
   end
 
   # Checks that the underlying value is `String`, `SafeString` or `Nil`, and returns its value. Raises otherwise.
   def as_s?
+    raise_undefined!
     @raw.as(String | SafeString | Nil)
   end
 
   # Checks that the underlying value is `String`, and returns its value. `SafeString` is converted to
   # `String`. Raises otherwise.
   def as_s!
+    raise_undefined!
     if @raw.is_a?(SafeString)
       @raw.to_s
     else
@@ -212,32 +216,44 @@ class Crinja::Value
 
   # Checks that the underlying value is `Array`, and returns its value. Raises otherwise.
   def as_a : Array(Type)
+    raise_undefined!
     @raw.as(Array)
   end
 
   # Checks that the underlying value is `Hash`, and returns its value. Raises otherwise.
   def as_h : Hash(Type, Type)
+    raise_undefined!
     @raw.as(Hash)
   end
 
   # Checks that the underlying value is a `TypeNumber`, and returns its value. Raises otherwise.
   def as_number : TypeNumber
+    raise_undefined!
     @raw.as(TypeNumber)
   end
 
   # Checks that the underlaying value is a `Time` object and retuns its value. Raises otherwise.
   def as_time
+    raise_undefined!
     @raw.as(Time)
   end
 
   # Checks that the underlaying value is a `Iterable` and retuns its value. Raises otherwise.
   def as_iterable
+    raise_undefined!
     @raw.as(Iterable)
   end
 
   # Checks that the underlaying value is a `Indexable` and retuns its value. Raises otherwise.
   def as_indexable
+    raise_undefined!
     @raw.as(Indexable)
+  end
+
+  private def raise_undefined!
+    if (undefined = @raw).is_a?(Undefined)
+      raise UndefinedError.new(undefined)
+    end
   end
 
   # :nodoc:
@@ -261,6 +277,7 @@ class Crinja::Value
 
   # Transform the value into a string representation.
   def to_string
+    raise_undefined!
     Finalizer.stringify(@raw)
   end
 
@@ -302,6 +319,7 @@ class Crinja::Value
   end
 
   def to_i
+    raise_undefined!
     raw = @raw
     if raw.responds_to?(:to_i)
       raw.to_i
@@ -311,6 +329,7 @@ class Crinja::Value
   end
 
   def to_f
+    raise_undefined!
     raw = @raw
     if raw.responds_to?(:to_f)
       raw.to_f
