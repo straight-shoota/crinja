@@ -170,7 +170,11 @@ abstract class Crinja::Loader
   class ChoiceLoader < Loader
     getter choices : Array(Loader)
 
-    def initialize(@choices)
+    def initialize(@choices : Array(Loader))
+    end
+
+    def self.new(*choices)
+      new choices.map { |loader| loader.as(Loader) }
     end
 
     def get_source(env : Environment, template : String)
