@@ -25,7 +25,7 @@ class Crinja::Tag::Set < Crinja::Tag
 
   private def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
     env = renderer.env
-    args = ArgumentsParser.new(tag_node.arguments)
+    args = ArgumentsParser.new(tag_node.arguments, renderer.env.config)
 
     if tag_node.arguments.size == 2
       # IDENTIFIER + EOF

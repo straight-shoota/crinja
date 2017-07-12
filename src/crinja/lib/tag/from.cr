@@ -8,7 +8,7 @@ class Crinja::Tag::From < Crinja::Tag
 
   private def interpret(io : IO, renderer : Renderer, tag_node : TagNode)
     env = renderer.env
-    parser = Parser.new(tag_node.arguments)
+    parser = Parser.new(tag_node.arguments, renderer.env.config)
     source_expression, with_context, imports = parser.parse_from_tag
 
     template_name = env.evaluate(source_expression).to_s

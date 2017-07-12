@@ -2,7 +2,7 @@ class Crinja::Tag::Raw < Crinja::Tag
   name "raw", "endraw"
 
   private def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
-    ArgumentsParser.new(tag_node.arguments).close
+    ArgumentsParser.new(tag_node.arguments, renderer.env.config).close
     if (fixed = tag_node.block.children.first).is_a?(AST::FixedString)
       io << fixed.string
     else

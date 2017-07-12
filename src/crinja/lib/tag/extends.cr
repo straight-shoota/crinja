@@ -7,7 +7,7 @@ class Crinja::Tag::Extends < Crinja::Tag
 
   private def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
     env = renderer.env
-    parser = ArgumentsParser.new(tag_node.arguments)
+    parser = ArgumentsParser.new(tag_node.arguments, renderer.env.config)
     name_expr = parser.parse_expression
     parser.close
 

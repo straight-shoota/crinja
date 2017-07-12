@@ -22,7 +22,7 @@ class Crinja::Tag::Macro < Crinja::Tag
 
   def interpret_output(renderer : Renderer, tag_node : TagNode)
     env = renderer.env
-    parser = Parser.new(tag_node.arguments)
+    parser = Parser.new(tag_node.arguments, renderer.env.config)
 
     name, defaults = parser.parse_macro_node
 

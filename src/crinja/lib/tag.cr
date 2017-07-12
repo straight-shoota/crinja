@@ -95,8 +95,8 @@ abstract class Crinja::Tag
     # :nodoc:
     alias Kind = Crinja::Parser::Token::Kind
 
-    def initialize(arguments)
-      @token_stream = Parser::TokenStream.new(arguments)
+    def initialize(arguments, @config : Config)
+      super(Parser::TokenStream.new(arguments))
       @pos = 0
     end
 

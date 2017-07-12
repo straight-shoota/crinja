@@ -24,7 +24,7 @@ class Crinja::Tag::Call < Crinja::Tag
 
   def interpret_output(renderer : Renderer, tag_node : TagNode)
     env = renderer.env
-    parser = Parser.new(tag_node.arguments)
+    parser = Parser.new(tag_node.arguments, renderer.env.config)
     defaults, call = parser.parse_call_tag
 
     instance = Tag::Macro::MacroFunction.new "caller", tag_node.block, renderer, caller: true

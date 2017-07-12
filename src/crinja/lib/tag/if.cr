@@ -36,7 +36,7 @@ class Crinja::Tag::If < Crinja::Tag
       return true
     end
 
-    arguments = ArgumentsParser.new(tag_node.arguments)
+    arguments = ArgumentsParser.new(tag_node.arguments, env.config)
     expression = arguments.parse_expression
 
     if expression.is_a?(AST::Empty)

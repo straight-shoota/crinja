@@ -15,7 +15,7 @@ class Crinja::Tag::For < Crinja::Tag
 
   def interpret_output(renderer : Renderer, tag_node : TagNode)
     env = renderer.env
-    parser = Parser.new(tag_node.arguments)
+    parser = Parser.new(tag_node.arguments, renderer.env.config)
     item_vars, collection_expr, if_expr, recursive = parser.parse_for_tag
 
     runner = Runner.new(renderer, tag_node, item_vars)

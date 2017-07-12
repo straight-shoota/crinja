@@ -18,7 +18,7 @@ class Crinja::Tag::Autoescape < Crinja::Tag
 
   def interpret_output(renderer : Crinja::Renderer, tag_node : TagNode)
     env = renderer.env
-    args = ArgumentsParser.new(tag_node.arguments)
+    args = ArgumentsParser.new(tag_node.arguments, renderer.env.config)
     expression = args.parse_expression
 
     is_activated = Value.truthy? renderer.env.evaluate(expression)

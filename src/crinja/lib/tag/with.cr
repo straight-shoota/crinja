@@ -29,7 +29,7 @@ class Crinja::Tag::With < Crinja::Tag
 
   def interpret_output(renderer : Crinja::Renderer, tag_node : TagNode)
     env = renderer.env
-    args = Parser.new(tag_node.arguments)
+    args = Parser.new(tag_node.arguments, renderer.env.config)
 
     var_defs = Hash(String, Type).new
     args.parse_with_tag_arguments.each do |variable, expression|

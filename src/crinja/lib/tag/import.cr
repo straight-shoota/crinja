@@ -8,7 +8,7 @@ class Crinja::Tag::Import < Crinja::Tag
 
   private def interpret(io : IO, renderer : Renderer, tag_node : TagNode)
     env = renderer.env
-    parser = ArgumentsParser.new(tag_node.arguments)
+    parser = ArgumentsParser.new(tag_node.arguments, renderer.env.config)
     name_expr = parser.parse_expression
 
     context_var = parser.if_identifier "as" do

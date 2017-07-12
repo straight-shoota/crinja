@@ -8,11 +8,17 @@ class Crinja::Visitor::Source
   def initialize(@io : IO)
   end
 
-  def visit(template)
+  def visit(template : Template)
     lexer = Parser::TemplateLexer.new(template.env.config, template.source)
 
     while token = lexer.next_token
       break if token.kind == Kind::EOF
+      visit_token token
+    end
+  end
+
+  def visit(tokens)
+    tokens.each do |token|
       visit_token token
     end
   end

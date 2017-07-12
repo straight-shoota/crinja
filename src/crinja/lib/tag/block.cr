@@ -6,7 +6,7 @@ class Crinja::Tag::Block < Crinja::Tag
 
   def interpret_output(renderer : Renderer, tag_node : TagNode)
     env = renderer.env
-    parser = Parser.new(tag_node.arguments)
+    parser = Parser.new(tag_node.arguments, renderer.env.config)
     name, scoped = parser.parse_block_tag
 
     renderer.blocks[name] << tag_node.block

@@ -4,6 +4,12 @@ require "./parser_helper"
 class Crinja::Parser::ExpressionParser
   include ParserHelper
 
+  getter config
+
+  def initialize(stream, @config = Config.new)
+    super(stream)
+  end
+
   # Helper macro to prevent duplicate code for operator precedence parsing
   macro parse_operator(name, next_operator, *operators)
     private def parse_{{name.id}}
@@ -123,6 +129,9 @@ class Crinja::Parser::ExpressionParser
         if !is_test && current_token.kind == Kind::LEFT_PAREN
           next_token
           with_parenthesis = true
+        elsif config.liquid_compatibility_mode && current_token.kind == Kind::DICT_ASSIGN
+          # django/liquid style format `val | filter: arg, arg`
+          next_token
         end
 
         call = parse_call_expression identifier, with_parenthesis: with_parenthesis

@@ -13,10 +13,22 @@ class Crinja::Tag::Include < Crinja::Tag
 
   private def interpret(io : IO, renderer : Crinja::Renderer, tag_node : TagNode)
     env = renderer.env
-    parser = Parser.new(tag_node.arguments)
+    parser = Parser.new(tag_node.arguments, renderer.env.config)
     source_expression, ignore_missing, with_context = parser.parse_include_tag
 
-    source = env.evaluate(source_expression)
+    begin
+      source = env.evaluate(source_expression)
+    rescue error : UndefinedError
+      if renderer.env.config.liquid_compatibility_mode
+        # enables use of `{% include file.name %}` => `source = "file.name"`
+        source = String.build do |io|
+          Visitor::Source.new(io).visit(tag_node.arguments)
+        end.strip
+      else
+        raise error
+      end
+    end
+
     if source.is_a?(Array)
       include_name = source.map &.to_s
     else

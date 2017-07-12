@@ -5,15 +5,19 @@ class Crinja::Parser::TemplateParser
   @left_is_block = false
   @last_sibling_fixed : AST::FixedString?
 
-  def initialize(template : Template)
-    initialize(template.env, template.source)
+  def self.new(template : Template)
+    new(template.env, template.source)
   end
 
   def initialize(@env : Environment, source)
     @token_stream = TokenStream.new(TemplateLexer.new(@env.config, source))
     @logger = @env.logger
-    @expression_parser = ExpressionParser.new(@token_stream)
+    @expression_parser = ExpressionParser.new(@token_stream, @env.config)
     @stack = [] of Tuple(AST::TagNode, String)
+  end
+
+  def config
+    @env.config
   end
 
   # Parses a template.

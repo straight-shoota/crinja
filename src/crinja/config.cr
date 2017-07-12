@@ -40,6 +40,12 @@ class Crinja::Config
   # If this is set to `true`, leading spaces and tabs are stripped from the start of a line to a block.
   property lstrip_blocks : Bool = false
 
+  # Enables liquid compatibility mode.
+  # The parser will additionally parse tags and expressions with liquid/django syntax:
+  # * filter: `val | filter: arg, arg`
+  # * tag `include`: `{% include file.name %}`
+  property liquid_compatibility_mode : Bool = false
+
   # If *register_defaults* is set to `true`, all feature libraries will be populated with the
   # defaults (Crinja standards and registered custom features).
   # Otherwise the libraries will be empty. They can be manually populated with `library.register_defaults`.
