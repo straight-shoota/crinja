@@ -87,7 +87,8 @@ class Crinja::Tag::For::ForLoop
 
     property depth0 : Int32 = 0
 
-    getattr depth, depth0
+    # TODO: Explicit receiver `PyObject` is required because of a macro lookup bug (https://github.com/crystal-lang/crystal/issues/4639#issuecomment-314564447)
+    PyObject.getattr depth, depth0
 
     @loop_runner : Crinja::Tag::For::Runner
 
