@@ -20,7 +20,7 @@ module Crinja::SourceAttached
       io << "\n\ntemplate: "
 
       if (t = template).nil?
-        io << "<string>"
+        io << "<unknown>"
         io << location_start
       else
         io << t.filename || "<string>"
