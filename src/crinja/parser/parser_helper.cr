@@ -61,6 +61,7 @@ module Crinja::Parser::ParserHelper
 
     raise TemplateSyntaxError.new(current_token, error_message)
   end
+
   # :nodoc:
   private def assert_token(type : Token::Kind)
     unless current_token.kind == type

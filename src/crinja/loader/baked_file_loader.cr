@@ -23,7 +23,7 @@ require "baked_file_system"
 # # with choice loader:
 # env.loader = Crinja::Loader::ChoiceLoader.new([
 #   FileSystemLoader.new("/path/to/user/templates"),
-#   Crinja::BakedFileLoader.new(MyBakedTemplateFileSystem)
+#   Crinja::BakedFileLoader.new(MyBakedTemplateFileSystem),
 # ])
 # ```
 #

@@ -137,12 +137,12 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
 
   def inspect(io)
     {
-      scope: @scope,
-      autoescape: autoescape,
-      extend_path_stack: extend_path_stack,
-      import_path_stack: import_path_stack,
+      scope:              @scope,
+      autoescape:         autoescape,
+      extend_path_stack:  extend_path_stack,
+      import_path_stack:  import_path_stack,
       include_path_stack: include_path_stack,
-      macro_stack: macro_stack,
+      macro_stack:        macro_stack,
     }.inspect(io)
   end
 

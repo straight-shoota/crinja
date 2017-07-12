@@ -28,6 +28,7 @@ class Crinja::Tag::Import < Crinja::Tag
       template.render(env)
     else
       child = Environment.new(env)
+
       template.render(child)
 
       env.errors += child.errors

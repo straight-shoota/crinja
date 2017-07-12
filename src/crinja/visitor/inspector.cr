@@ -12,6 +12,7 @@ module Crinja
     private def open(name)
       open(name) { }
     end
+
     private def open(name)
       @io << "<" << name
       yield
@@ -22,6 +23,7 @@ module Crinja
     private def close(name)
       close(name) { }
     end
+
     private def close(name)
       @indent -= 1
       nl

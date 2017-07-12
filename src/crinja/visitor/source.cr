@@ -50,6 +50,7 @@ class Crinja::Visitor::Source
   private def print_whitespace_before(token)
     @io << token.whitespace_before
   end
+
   private def print_whitespace_after(token)
     @io << token.whitespace_after
   end
