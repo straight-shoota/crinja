@@ -4,6 +4,15 @@
 #
 # The most important class for using the Crinja API is `Crinja::Environment`.
 module Crinja
+  # Tries to cast any value to `Crinja::Type`.
+  def self.cast_type(value)
+    Bindings.cast_value(value)
+  end
+
+  # Tries to cast any value to `Hash(Crinja::Type => Crinja::Type)`.
+  def self.cast_hash(value)
+    Bindings.cast_hash(value)
+  end
 end
 
 require "./crinja/util/*"

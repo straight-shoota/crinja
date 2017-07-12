@@ -189,11 +189,6 @@ class Crinja::Environment
     @finalizer.stringify(object, context.autoescape?)
   end
 
-  # Casts external values to `Crinja::Type` using `Crinja::Bindings`.
-  def cast(value)
-    Bindings.cast_value(value)
-  end
-
   # Creates a new `undefined`.
   def undefined(name = nil)
     Undefined.new(name)

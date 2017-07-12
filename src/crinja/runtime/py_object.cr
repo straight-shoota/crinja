@@ -66,7 +66,7 @@ module Crinja::PyObject
                 # (method.return_type == Type || method.return_type.class_name == "Nop") &&
                 (method.args.empty?) %}
           if {{ method.name.stringify }} == attr
-            return Crinja::Bindings.cast_value(self.{{ method.name }})
+            return Crinja.cast_type(self.{{ method.name }})
           end
         {% end %}
       {% end %}
@@ -80,7 +80,7 @@ module Crinja::PyObject
     def getattr(attr : Crinja::Type) : Crinja::Type
       {% for method in whitelist %}
         if {{ method.id.stringify }} == attr
-          return Crinja::Bindings.cast_value(self.{{ method.id }})
+          return Crinja.cast_type(self.{{ method.id }})
         end
       {% end %}
 

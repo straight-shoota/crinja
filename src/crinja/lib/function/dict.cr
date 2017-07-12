@@ -1,3 +1,3 @@
 Crinja.function(:dict) do
-  Crinja::Bindings.cast_hash arguments.kwargs
+  Crinja.cast_hash arguments.kwargs
 end

@@ -172,7 +172,7 @@ module Crinja::Resolver
   def call_filter(name, target, *args)
     unless target.is_a?(Value)
       unless target.is_a?(Type)
-        target = Crinja::Bindings.cast_value(target)
+        target = Crinja.cast_type(target)
       end
       target = Value.new(target)
     end
