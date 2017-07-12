@@ -9,7 +9,7 @@ private def test_loader_from
       {% macro foomacro() %}foo{%endmacro%}
       {% macro barmacro() %}bar{%endmacro%}
       TPL,
-    })
+  })
 end
 
 describe Crinja::Tag::From do

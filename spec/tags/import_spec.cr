@@ -5,7 +5,7 @@ private def test_loader_import
     "macros.html" => <<-'TPL'
       {% macro testmacro() %}foo{%endmacro%}
       TPL,
-    })
+  })
 end
 
 describe Crinja::Tag::Import do

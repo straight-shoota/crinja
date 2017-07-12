@@ -1,4 +1,5 @@
 require "../spec_helper"
+
 # These specs are derived from the original Jinja2 filter specs
 # https://github.com/pallets/jinja/blob/bbe0a4174c2846487bef4328b309fddd8638da39/tests/test_filters.py
 

@@ -5,7 +5,7 @@ private class Customfilter
   getter name = "customfilter"
 
   getter defaults : Hash(String, Type) = Crinja::Bindings.cast_bindings({
-    attribute: "great"
+    attribute: "great",
   })
 
   def call(arguments)
