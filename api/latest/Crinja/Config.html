@@ -290,11 +290,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/ExceptionWrapper" data-name="crinja::exceptionwrapper">
-      <a href="../Crinja/ExceptionWrapper.html">ExceptionWrapper</a>
-      
-    </li>
-  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary" data-name="crinja::featurelibrary(t)">
       <a href="../Crinja/FeatureLibrary.html">FeatureLibrary</a>
       
@@ -710,6 +705,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Autoescape" data-name="crinja::tag::autoescape">
+      <a href="../Crinja/Tag/Autoescape.html">Autoescape</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Block" data-name="crinja::tag::block">
       <a href="../Crinja/Tag/Block.html">Block</a>
       
@@ -837,6 +837,11 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Set" data-name="crinja::tag::set">
       <a href="../Crinja/Tag/Set.html">Set</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/With" data-name="crinja::tag::with">
+      <a href="../Crinja/Tag/With.html">With</a>
       
     </li>
   
@@ -1012,7 +1017,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L2" target="_blank">crinja/config.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L2" target="_blank">crinja/config.cr</a>
     
     <br/>
   
@@ -1021,7 +1026,7 @@
 
 
 
-  <h2>Class Method Summary</h2>
+  <h2>Constructors</h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
@@ -1032,6 +1037,8 @@
       </li>
     
   </ul>
+
+
 
 
 
@@ -1152,6 +1159,20 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#liquid_compatibility_mode%3ABool-instance-method" class="signature"><strong>#liquid_compatibility_mode</strong> : Bool</a>
+        
+          <div class="summary"><p>Enables liquid compatibility mode.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#liquid_compatibility_mode%3D%28liquid_compatibility_mode%3ABool%29-instance-method" class="signature"><strong>#liquid_compatibility_mode=</strong>(liquid_compatibility_mode : Bool)</a>
+        
+          <div class="summary"><p>Enables liquid compatibility mode.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#lstrip_blocks%3ABool-instance-method" class="signature"><strong>#lstrip_blocks</strong> : Bool</a>
         
           <div class="summary"><p>If this is set to <code>true</code>, leading spaces and tabs are stripped from the start of a line to a block.</p></div>
@@ -1207,7 +1228,13 @@
     
 
 
+    
+
+
   
+    
+
+
     
 
 
@@ -1218,7 +1245,7 @@
 </div>
 
 
-  <h2>Class Method Detail</h2>
+  <h2>Constructor Detail</h2>
   
     <div class="entry-detail" id="new&#40;autoescape&#61;Autoescape.new,keep_trailing_newline&#61;false,trim_blocks&#61;false,lstrip_blocks&#61;false&#41;-class-method">
       <div class="signature">
@@ -1233,11 +1260,13 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L50" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L56" target="_blank">View source</a>]
         
       </div>
     </div>
   
+
+
 
 
 
@@ -1260,7 +1289,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1276,7 +1305,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1298,7 +1327,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1314,7 +1343,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1330,7 +1359,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1348,7 +1377,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1366,7 +1395,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1384,7 +1413,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1402,7 +1431,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1420,7 +1449,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1438,7 +1467,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1456,7 +1485,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1474,7 +1503,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1492,7 +1521,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1510,7 +1539,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1529,7 +1558,7 @@ If set to <code>false</code>, a single newline, if present, willl be stripped fr
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1548,7 +1577,49 @@ If set to <code>false</code>, a single newline, if present, willl be stripped fr
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="liquid_compatibility_mode:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>liquid_compatibility_mode</strong> : Bool
+
+        <a class="method-permalink" href="#liquid_compatibility_mode%3ABool-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Enables liquid compatibility mode.
+The parser will additionally parse tags and expressions with liquid/django syntax:</p>
+
+<ul><li>filter: <code>val | filter: arg, arg</code></li><li>tag <code>include</code>: <code>{% include file.name %}</code></li></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L47" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="liquid_compatibility_mode&#61;&#40;liquid_compatibility_mode:Bool&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>liquid_compatibility_mode=</strong>(liquid_compatibility_mode : Bool)
+
+        <a class="method-permalink" href="#liquid_compatibility_mode%3D%28liquid_compatibility_mode%3ABool%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Enables liquid compatibility mode.
+The parser will additionally parse tags and expressions with liquid/django syntax:</p>
+
+<ul><li>filter: <code>val | filter: arg, arg</code></li><li>tag <code>include</code>: <code>{% include file.name %}</code></li></ul></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1566,7 +1637,7 @@ If set to <code>false</code>, a single newline, if present, willl be stripped fr
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1584,7 +1655,7 @@ If set to <code>false</code>, a single newline, if present, willl be stripped fr
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1605,7 +1676,7 @@ This setting needs to be set at the creation of an environment.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1626,7 +1697,7 @@ This setting needs to be set at the creation of an environment.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1645,7 +1716,7 @@ This only applies to blocks, not expression tags.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1664,7 +1735,7 @@ This only applies to blocks, not expression tags.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/config.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/config.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>

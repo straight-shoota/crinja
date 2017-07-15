@@ -290,11 +290,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/ExceptionWrapper" data-name="crinja::exceptionwrapper">
-      <a href="../../Crinja/ExceptionWrapper.html">ExceptionWrapper</a>
-      
-    </li>
-  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/FeatureLibrary" data-name="crinja::featurelibrary(t)">
       <a href="../../Crinja/FeatureLibrary.html">FeatureLibrary</a>
       
@@ -710,6 +705,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Autoescape" data-name="crinja::tag::autoescape">
+      <a href="../../Crinja/Tag/Autoescape.html">Autoescape</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Block" data-name="crinja::tag::block">
       <a href="../../Crinja/Tag/Block.html">Block</a>
       
@@ -837,6 +837,11 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Set" data-name="crinja::tag::set">
       <a href="../../Crinja/Tag/Set.html">Set</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/With" data-name="crinja::tag::with">
+      <a href="../../Crinja/Tag/With.html">With</a>
       
     </li>
   
@@ -1019,7 +1024,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/visitor/source.cr#L4" target="_blank">crinja/visitor/source.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/visitor/source.cr#L4" target="_blank">crinja/visitor/source.cr</a>
     
     <br/>
   
@@ -1028,7 +1033,7 @@
 
 
 
-  <h2>Class Method Summary</h2>
+  <h2>Constructors</h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
@@ -1040,11 +1045,18 @@
 
 
 
+
+
   <h2>Instance Method Summary</h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#visit%28template%29-instance-method" class="signature"><strong>#visit</strong>(template)</a>
+        <a href="#visit%28template%3ATemplate%29-instance-method" class="signature"><strong>#visit</strong>(template : Template)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#visit%28tokens%29-instance-method" class="signature"><strong>#visit</strong>(tokens)</a>
         
       </li>
     
@@ -1062,7 +1074,13 @@
     
 
 
+    
+
+
   
+    
+
+
     
 
 
@@ -1073,7 +1091,7 @@
 </div>
 
 
-  <h2>Class Method Detail</h2>
+  <h2>Constructor Detail</h2>
   
     <div class="entry-detail" id="new&#40;io:IO&#41;-class-method">
       <div class="signature">
@@ -1086,7 +1104,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/visitor/source.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/visitor/source.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1094,20 +1112,38 @@
 
 
 
+
+
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="visit&#40;template&#41;-instance-method">
+    <div class="entry-detail" id="visit&#40;template:Template&#41;-instance-method">
       <div class="signature">
         
-        def <strong>visit</strong>(template)
+        def <strong>visit</strong>(template : <a href="../../Crinja/Template.html">Template</a>)
 
-        <a class="method-permalink" href="#visit%28template%29-instance-method">#</a>
+        <a class="method-permalink" href="#visit%28template%3ATemplate%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/a03b5ef7ae323189e82a1e5771d368e21af6c0a0/src/crinja/visitor/source.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/visitor/source.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="visit&#40;tokens&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>visit</strong>(tokens)
+
+        <a class="method-permalink" href="#visit%28tokens%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/6ad9d714e1fd0de1636fdabe09f3e51adbcb2c0d/src/crinja/visitor/source.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
