@@ -339,7 +339,7 @@ describe Crinja::Filter do
   describe "urlize" do
     it "urlize" do
       evaluate_expression(%("foo http://www.example.com/ bar"|urlize)).should eq \
-        %(foo <a href="http://www.example.com/" rel="noopener">) \
+        %(foo <a href="http://www.example.com/" rel="noopener">) +
         %(http://www.example.com/</a> bar)
     end
 
@@ -352,7 +352,7 @@ describe Crinja::Filter do
 
     it "urlize_target_parameter" do
       evaluate_expression(%("foo http://www.example.com/ bar"|urlize(target="_blank"))).should eq \
-        %(foo <a href="http://www.example.com/" rel="noopener" target="_blank">) \
+        %(foo <a href="http://www.example.com/" rel="noopener" target="_blank">) +
         %(http://www.example.com/</a> bar)
     end
   end
