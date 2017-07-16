@@ -66,6 +66,11 @@ class Crinja::Template
     raise e
   end
 
+  # Returns `true` if this template contains a template expression. If `false`, this template is a fixed string and will always render the same output.
+  def dynamic?
+    @nodes.children.any? { |node| !node.is_a?(AST::FixedString) }
+  end
+
   # :nodoc:
   def to_s(io : IO)
     io << "Template"
