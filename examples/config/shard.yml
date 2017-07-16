@@ -1,0 +1,10 @@
+name: crinja-config-example
+version: 0.0.1
+
+targets:
+  config-example:
+    main: config.cr
+
+dependencies:
+  crinja:
+    path: ../../
