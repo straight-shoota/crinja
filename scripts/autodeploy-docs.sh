@@ -48,7 +48,7 @@ function run_subcommand() {
   echo -e ""
 }
 
-echo -e "Building documentation for branch ${BRANCH} ($TAG)."
+echo -e "Building documentation for branch ${BRANCH} ($TAG) from source at ${GENERATED_DOCS_DIR}"
 echo -e "Checking out docs repository ${DOCS_REPO} ${DOCS_BRANCH} into ${WORKDIR}"
 echo -e ""
 
@@ -72,20 +72,20 @@ fi
 git -c core.fileMode=false add -f .
 
 if [ "$CI" = true ]; then
-  BUILD_NOTICE=" on successful travis build $TRAVIS_BUILD_NUMBER"
+  BUILD_NOTICE_TRAVIS=" on successful travis build $TRAVIS_BUILD_NUMBER"
 else
   run_subcommand git -c core.fileMode=false status
 fi
-LOCAL_GIT_CONF=""
+LOCAL_GIT_CONF=()
 if [ "$GIT_COMMITTER_NAME" != "" ]; then
-  LOCAL_GIT_CONF="-c user.name=\"$GIT_COMMITTER_NAME\" -c user.email=\"$GIT_COMMITTER_EMAIL\""
+  LOCAL_GIT_CONF=(-c "user.name=$GIT_COMMITTER_NAME" -c "user.email=$GIT_COMMITTER_EMAIL")
 fi
 
 if [ "$GIT_COMMIT_MESSAGE" = "" ]; then
-  GIT_COMMIT_MESSAGE="Docs generated${TRAVIS_BUILD_NOTICE} for ${BRANCH} ($TAG)"
+  GIT_COMMIT_MESSAGE="Docs generated${BUILD_NOTICE_TRAVIS} for ${BRANCH} ($TAG)"
 fi
 # TOOO: pipe git commit through `head -n 3` to show only the status information
-run_subcommand git ${LOCAL_GIT_CONF} commit -m "$GIT_COMMIT_MESSAGE"
+run_subcommand git "${LOCAL_GIT_CONF[@]}" commit -m "$GIT_COMMIT_MESSAGE"
 
 if [ "$CI" = true ]; then
   git push -fq origin "${DOCS_BRANCH}" > /dev/null 2>/dev/null
