@@ -1,5 +1,12 @@
 #! /usr/bin/env bash
-# This script builds the latest documentation and copies it into a doc directory.
+# This script does the following:
+# * clone the docs repository ($DOCS_REPO, $DOCS_BRANCH)
+# * collect documentation from a source directory ($GENERATER_DOCS_DIR)
+# * commit updates to repository
+# * push local repository to origin
+# It can be installed as an after_success hook on a CI setup or run manually.
+# Most configuration values will work with their default values on Travis-CI or when run from a local copy of
+# a repository at Github. They can also be customized trough environment variables.
 
 set -o errexit
 
@@ -8,6 +15,13 @@ if [ "$CI" = true ] && ([ "$TRAVIS_BRANCH" != "master" ] || [ "$TRAVIS_PULL_REQU
   echo -e "TRAVIS_TAG=$TRAVIS_TAG"
   echo -e "TRAVIS_BRANCH=$TRAVIS_BRANCH"
   exit 0
+fi
+
+GENERATED_DOCS_DIR="${GENERATED_DOCS_DIR:-"$(pwd)/doc"}"
+if [ ! -d "$GENERATED_DOCS_DIR" ]; then
+  echo -e "Source directory \`$GENERATED_DOCS_DIR\` does not exist."
+  echo -e "Please create the documentation at this path or change it by assigning a different path to \$GENERATER_DOCS_DIR"
+  exit 1
 fi
 
 BRANCH="${BRANCH:-$TRAVIS_BRANCH}"
@@ -31,15 +45,16 @@ if [ "$TAG" = "undefined" ] || [ "$TAG" = "" ]; then
   TAG="latest"
 fi
 
-WORKDIR="$HOME/${REPO}-docs-${TAG}"
-if [ "$GH_TOKEN" = "" ]; then
-  DOCS_REPO="git@github.com:${REPO}"
-else
-  DOCS_REPO="https://${GH_TOKEN}@github.com/${REPO}"
+WORKDIR="${WORKDIR:-"$HOME/${REPO}-docs-${TAG}"}"
+if [ "$DOCS_REPO" == "" ]; then
+  if [ "$GH_TOKEN" = "" ]; then
+    DOCS_REPO="git@github.com:${REPO}"
+  else
+    DOCS_REPO="https://${GH_TOKEN}@github.com/${REPO}"
+  fi
 fi
 DOCS_BRANCH="${DOCS_BRANCH:-gh-pages}"
-TARGET_PATH="api/${TAG}"
-GENERATED_DOCS_DIR="$(pwd)/doc"
+TARGET_PATH="${TARGET_PATH:-"api/${TAG}"}"
 
 function run_subcommand() {
   echo -e "  ==> $*"
@@ -48,7 +63,9 @@ function run_subcommand() {
   echo -e ""
 }
 
-echo -e "Building documentation for branch ${BRANCH} ($TAG) from source at ${GENERATED_DOCS_DIR}"
+echo -e "Autodeploying documentation for branch ${BRANCH} ($TAG) from ${GENERATED_DOCS_DIR}"
+
+### Clone docs repository
 echo -e "Checking out docs repository ${DOCS_REPO} ${DOCS_BRANCH} into ${WORKDIR}"
 echo -e ""
 
@@ -63,12 +80,15 @@ cd "${WORKDIR}"
 
 git rm -rf "${TARGET_PATH}" --ignore-unmatch --quiet
 
+## Collect docs from source
+
 mkdir -p "${TARGET_PATH}"
 rsync -a "${GENERATED_DOCS_DIR}/" "${TARGET_PATH}"
 if [ "$BRANCH" = "master" ]; then
-  run_subcommand cp "${GENERATED_DOCS_DIR}/README.md" "${WORKDIR}"
+  run_subcommand cp -v "${GENERATED_DOCS_DIR}/README.md" "${WORKDIR}"
 fi
 
+## Commit updates to repository
 git -c core.fileMode=false add -f .
 
 if [ "$CI" = true ]; then
@@ -76,6 +96,8 @@ if [ "$CI" = true ]; then
 else
   run_subcommand git -c core.fileMode=false status
 fi
+
+## Push local repository to origin
 LOCAL_GIT_CONF=()
 if [ "$GIT_COMMITTER_NAME" != "" ]; then
   LOCAL_GIT_CONF=(-c "user.name=$GIT_COMMITTER_NAME" -c "user.email=$GIT_COMMITTER_EMAIL")
