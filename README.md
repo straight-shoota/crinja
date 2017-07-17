@@ -6,6 +6,8 @@
 
 Crinja is an implementation of the [Jinja2 template engine](http://jinja.pocoo.org) written in [Crystal](http://crystallang.org). Templates are parsed and evaluated at runtime (see [Background](#background)). It includes a script runtime for evaluation of dynamic python-like expressions used by the Jinja2 syntax.
 
+**[API Documentation](https://straight-shoota.github.io/crinja/api/latest/)**
+
 ## Features
 
 Crinja tries to stay close to the Jinja2 language design and implementation. It currently provides most features of the original template language, such as:

@@ -48,13 +48,7 @@ function run_subcommand() {
   echo -e ""
 }
 
-echo -e "Generating documentation for branch ${BRANCH} ($TAG)."
-
-echo -e "Building docs into ${GENERATED_DOCS_DIR}"
-echo -e ""
-
-run_subcommand "$@"
-
+echo -e "Building documentation for branch ${BRANCH} ($TAG)."
 echo -e "Checking out docs repository ${DOCS_REPO} ${DOCS_BRANCH} into ${WORKDIR}"
 echo -e ""
 
@@ -71,16 +65,16 @@ git rm -rf "${TARGET_PATH}" --ignore-unmatch --quiet
 
 mkdir -p "${TARGET_PATH}"
 rsync -a "${GENERATED_DOCS_DIR}/" "${TARGET_PATH}"
-if [ "$BRANCH" = "master"]; then
-  cp "${GENERATED_DOCS_DIR}/README.md" "${WORKDIR}"
+if [ "$BRANCH" = "master" ]; then
+  run_subcommand cp "${GENERATED_DOCS_DIR}/README.md" "${WORKDIR}"
 fi
 
-git add -f .
+git -c core.fileMode=false add -f .
 
 if [ "$CI" = true ]; then
   BUILD_NOTICE=" on successful travis build $TRAVIS_BUILD_NUMBER"
 else
-  run_subcommand git status
+  run_subcommand git -c core.fileMode=false status
 fi
 LOCAL_GIT_CONF=""
 if [ "$GIT_COMMITTER_NAME" != "" ]; then
