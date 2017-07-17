@@ -1,7 +1,8 @@
 language: crystal
 
 after_success:
-- scripts/generate-docs.sh && scripts/autodeploy-docs.sh
+- scripts/generate-docs.sh
+- curl https://raw.githubusercontent.com/straight-shoota/autodeploy-docs/master/autodeploy-docs.sh | bash
 
 env:
   global:
