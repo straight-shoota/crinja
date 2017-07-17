@@ -6,6 +6,8 @@
 
 Crinja is an implementation of the [Jinja2 template engine](http://jinja.pocoo.org) written in [Crystal](http://crystallang.org). Templates are parsed and evaluated at runtime (see [Background](#background)). It includes a script runtime for evaluation of dynamic python-like expressions used by the Jinja2 syntax.
 
+**[API Documentation](https://straight-shoota.github.io/crinja/api/latest/)**
+
 ## Features
 
 Crinja tries to stay close to the Jinja2 language design and implementation. It currently provides most features of the original template language, such as:
@@ -37,7 +39,7 @@ dependencies:
 ```crystal
 require "crinja"
 
-template = Crinja::Template.new("Hello, {{#123;{{#123; name }}!")
+template = Crinja::Template.new("Hello, &#123;{ name }}!")
 template.render({"name" => "John"}) # => "Hello, John!"
 ```
 
@@ -46,7 +48,7 @@ template.render({"name" => "John"}) # => "Hello, John!"
 With this template file:
 ```html
 # views/index.html.j2
-<p>Hello {{#123;{{#123; name | default('World') }}</p>
+<p>Hello &#123;{ name | default('World') }}</p>
 ```
 
 It can be loaded with a `FileSystemLoader`:
@@ -134,7 +136,7 @@ myfilter = Crinja.filter({ attribute: nil }) do
 end
 
 env.filters << myfilter
-# Usage: {{#123;{{#123; "Hello World" | customfilter(attribute="super") }}
+# Usage: &#123;{ "Hello World" | customfilter(attribute="super") }}
 ```
 
 Or you can define a class for more complex features:
@@ -162,8 +164,8 @@ This is an incomplete list of **Differences to the original Jinja2**:
 
 * **Python expressions:** Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib like `Dict#iteritems()` which is often used to make dicts iterable.
 * **Line statements and line comments**: Are not supported, because their usecase is negligible.
-* **String representation:** Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like `{{#123;{{#123; ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 and as `['foo', 'bar']` in Crinja.
-* **Double escape:** `{{#123;{{#123; '<html>'|escape|escape }}` will render as `&lt;html&gt;` in Jinja2, but `&amp;lt;html&amp;gt;`. Should we change that behaviour?
+* **String representation:** Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like `&#123;{ ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 and as `['foo', 'bar']` in Crinja.
+* **Double escape:** `&#123;{ '<html>'|escape|escape }}` will render as `&lt;html&gt;` in Jinja2, but `&amp;lt;html&amp;gt;`. Should we change that behaviour?
 * **Complex numbers**: Complex numbers are not supported yet.
 * **Configurable syntax**: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.
 

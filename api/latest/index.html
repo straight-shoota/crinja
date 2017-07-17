@@ -993,6 +993,8 @@
 
 <p>Crinja is an implementation of the <a href="http://jinja.pocoo.org" target="_blank">Jinja2 template engine</a> written in <a href="http://crystallang.org" target="_blank">Crystal</a>. Templates are parsed and evaluated at runtime (see <a href="#background" target="_blank">Background</a>). It includes a script runtime for evaluation of dynamic python-like expressions used by the Jinja2 syntax.</p>
 
+<p><strong><a href="https://straight-shoota.github.io/crinja/api/latest/" target="_blank">API Documentation</a></strong></p>
+
 <h2>Features</h2>
 
 <p>Crinja tries to stay close to the Jinja2 language design and implementation. It currently provides most features of the original template language, such as:</p>
@@ -1017,7 +1019,7 @@
 
 <pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
 
-template <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Template</span>.<span class="k">new</span>(<span class="s">&quot;Hello, &#123;&#123; name &#125;&#125;&#33;&quot;</span>)
+template <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Template</span>.<span class="k">new</span>(<span class="s">&quot;Hello, &amp;#123;&#123; name &#125;&#125;&#33;&quot;</span>)
 template.render({<span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span>}) <span class="c"># &#61;&gt; &quot;Hello, John&#33;&quot;</span></code></pre>
 
 <h3>File loader</h3>
@@ -1025,7 +1027,7 @@ template.render({<span class="s">&quot;name&quot;</span> => <span class="s">&quo
 <p>With this template file:</p>
 
 <pre><code class='language-html'># views/index.html.j2
-&lt;p>Hello {{ name | default('World') }}&lt;/p></code></pre>
+&lt;p>Hello &#123;{ name | default('World') }}&lt;/p></code></pre>
 
 <p>It can be loaded with a <code>FileSystemLoader</code>:</p>
 
@@ -1111,7 +1113,7 @@ template.render({ <span class="s">&quot;name&quot;</span> => <span class="s">&qu
 <span class="k">end</span>
 
 env.filters <span class="o"><<</span> myfilter
-<span class="c"># Usage: &#123;&#123; &quot;Hello World&quot; | customfilter&#40;attribute&#61;&quot;super&quot;&#41; &#125;&#125;</span></code></pre>
+<span class="c"># Usage: &amp;#123;&#123; &quot;Hello World&quot; | customfilter&#40;attribute&#61;&quot;super&quot;&#41; &#125;&#125;</span></code></pre>
 
 <p>Or you can define a class for more complex features:</p>
 
@@ -1135,7 +1137,7 @@ env.filters <span class="o"><<</span> <span class="t">Customfilter</span>.<span 
 
 <p>This is an incomplete list of <strong>Differences to the original Jinja2</strong>:</p>
 
-<ul><li><strong>Python expressions:</strong> Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib like <code>Dict#iteritems()</code> which is often used to make dicts iterable.</li><li><strong>Line statements and line comments</strong>: Are not supported, because their usecase is negligible.</li><li><strong>String representation:</strong> Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like <code>{{ ["foo", "bar"] }}</code> will render as <code>[u'foo', u'bar']</code> in Jinja2 and as <code>['foo', 'bar']</code> in Crinja.</li><li><strong>Double escape:</strong> <code>{{ '<html>'|escape|escape }}</code> will render as <code>&lt;html&gt;</code> in Jinja2, but <code>&amp;lt;html&amp;gt;</code>. Should we change that behaviour?</li><li><strong>Complex numbers</strong>: Complex numbers are not supported yet.</li><li><strong>Configurable syntax</strong>: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.</li></ul>
+<ul><li><strong>Python expressions:</strong> Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib like <code>Dict#iteritems()</code> which is often used to make dicts iterable.</li><li><strong>Line statements and line comments</strong>: Are not supported, because their usecase is negligible.</li><li><strong>String representation:</strong> Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like <code>&#123;{ ["foo", "bar"] }}</code> will render as <code>[u'foo', u'bar']</code> in Jinja2 and as <code>['foo', 'bar']</code> in Crinja.</li><li><strong>Double escape:</strong> <code>&#123;{ '<html>'|escape|escape }}</code> will render as <code>&lt;html&gt;</code> in Jinja2, but <code>&amp;lt;html&amp;gt;</code>. Should we change that behaviour?</li><li><strong>Complex numbers</strong>: Complex numbers are not supported yet.</li><li><strong>Configurable syntax</strong>: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.</li></ul>
 
 <p>The following features are not yet fully implemented, but on the <a href="ROADMAP.md" target="_blank">roadmap</a>:</p>
 
