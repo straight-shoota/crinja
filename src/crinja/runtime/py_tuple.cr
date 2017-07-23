@@ -1,4 +1,4 @@
-require "../value"
+require "./value"
 
 # Implementation of a Python Tuple
 class Crinja::PyTuple
