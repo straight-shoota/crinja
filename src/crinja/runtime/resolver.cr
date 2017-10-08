@@ -138,7 +138,6 @@ module Crinja::Resolver
     else
       value = context[name]
     end
-    logger.debug "resolved string #{name}: #{value.inspect}"
     value
   end
 
