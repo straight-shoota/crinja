@@ -6,11 +6,6 @@ env = Crinja::Environment.new
 env.filters[:dateformat] = Crinja.filter { target.as_time.to_s("%Y-%m-%d") }
 env.loader = Crinja::Loader::FileSystemLoader.new(File.join(FileUtils.pwd, "crinja"))
 
-time_to_parse = Benchmark.measure "parse crinja" do
-  env.get_template("index.html")
-end
-crinja_template = env.get_template("index.html") # uses cache
-
 users = ["John Doe", "Jane Doe", "Peter Somewhat"].map { |n| User.new(n) }
 articles = (0..20).map { |i| Article.new(i, users.sample) }
 
@@ -51,12 +46,13 @@ context = {
   ] * 5,
 }
 
-rendered = uninitialized String
-time_to_render = Benchmark.measure "render crinja" do
-  rendered = crinja_template.render(context)
-end
-
+env.get_template("index.html")
+crinja_template = env.get_template("index.html") # uses cache
+rendered = crinja_template.render(context)
 File.write(File.join(FileUtils.pwd, "crinja.rendered.html"), rendered)
 
-puts "parsed in #{time_to_parse}"
-puts "rendered in #{time_to_render}"
+env.cache = Crinja::TemplateCache::NoCache.new
+Benchmark.ips do |x|
+  x.report("parse crinja") { env.get_template("index.html") }
+  x.report("crinja render") { crinja_template.render(context) }
+end

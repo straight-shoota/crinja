@@ -49,6 +49,6 @@ config = Crinja::ResolvedDict(String | Int32).from_yaml <<-'YAML'
   YAML
 
 pp config["baz"] # => "BAR"
-config["foo"] = "foo"
-pp config["baz"] # => "FOO"
+config["foo"] = "{{ 'foo' ~ num }}"
+pp config["baz"] # => "FOO1"
 pp config.resolve_all
