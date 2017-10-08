@@ -5,7 +5,7 @@
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
   <link href="../../css/style.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="../../js/doc.js"></script>
-  <title>Crinja::Tag::With - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Operator::Logic - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -395,7 +395,7 @@
       
     </li>
   
-  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Operator" data-name="crinja::operator">
+  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Operator" data-name="crinja::operator">
       <a href="../../Crinja/Operator.html">Operator</a>
       
         <ul>
@@ -445,7 +445,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Logic" data-name="crinja::operator::logic">
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Operator/Logic" data-name="crinja::operator::logic">
       <a href="../../Crinja/Operator/Logic.html">Logic</a>
       
     </li>
@@ -700,7 +700,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Tag" data-name="crinja::tag">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Tag" data-name="crinja::tag">
       <a href="../../Crinja/Tag.html">Tag</a>
       
         <ul>
@@ -845,7 +845,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Tag/With" data-name="crinja::tag::with">
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/With" data-name="crinja::tag::with">
       <a href="../../Crinja/Tag/With.html">With</a>
       
     </li>
@@ -992,40 +992,11 @@
 <div id="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Tag::With
+  <span class="kind">module</span> Crinja::Operator::Logic
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Tag/With.html">Crinja::Tag::With</a></li><li class="superclass"><a href="../../Crinja/Tag.html">Crinja::Tag</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
-
-
-
-
-  <h2>Overview</h2>
-
-  <p>The <code>with</code> statement makes it possible to create a new inner scope. Variables set within this
-scope are not visible outside of the scope.</p>
-
-<pre><code>{% <span class="k">with</span> %}
-    {% set foo <span class="o">=</span> <span class="n">42</span> %}
-    {{ foo }}           <span class="c"># &#61;&gt; foo is 42 here</span>
-{% endwith %}
-{{ foo }}               <span class="c"># &#61;&gt; undefined</span></code></pre>
-
-<p>Because it is common to set variables at the beginning of the scope, you can do that within the
-with statement. The following two examples are equivalent:</p>
-
-<pre><code>{% <span class="k">with</span> foo <span class="o">=</span> <span class="n">42</span> %}
-    {{ foo }}
-{% endwith %}
-
-{% <span class="k">with</span> %}
-    {% set foo <span class="o">=</span> <span class="n">42</span> %}
-    {{ foo }}
-{% endwith %}</code></pre>
-
-<p>See <a href="http://jinja.pocoo.org/docs/2.9/templates/#with-statement" target="_blank">Jinja2 Template Documentation</a> for details.</p>
 
 
 
@@ -1036,6 +1007,17 @@ with statement. The following two examples are equivalent:</p>
 
 
 
+
+
+
+  <h2>Direct including types</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../../Crinja/Operator/And.html">Crinja::Operator::And</a></li>
+  
+    <li class="other-type"><a href="../../Crinja/Operator/Or.html">Crinja::Operator::Or</a></li>
+  
+  </ul>
 
 
 
@@ -1043,7 +1025,7 @@ with statement. The following two examples are equivalent:</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/f45028fc1795bc49c723fe21a91010a08d210e49/src/crinja/lib/tag/with.cr#L27" target="_blank">crinja/lib/tag/with.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/f45028fc1795bc49c723fe21a91010a08d210e49/src/crinja/lib/operator.cr#L55" target="_blank">crinja/lib/operator.cr</a>
     
     <br/>
   
@@ -1060,17 +1042,12 @@ with statement. The following two examples are equivalent:</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#end_tag%3AString%3F-instance-method" class="signature"><strong>#end_tag</strong> : String?</a>
+        <a href="#binary%3F-instance-method" class="signature"><strong>#binary?</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#interpret_output%28renderer%3ACrinja%3A%3ARenderer%2Ctag_node%3ATagNode%29-instance-method" class="signature"><strong>#interpret_output</strong>(renderer : Crinja::Renderer, tag_node : TagNode)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        <a href="#value%28env%3AEnvironment%2Cop1%3AValue%2C%26block%3A-%3EValue%29%3AType-instance-method" class="signature"><strong>#value</strong>(env : Environment, op1 : Value, &block :  -> Value) : Type</a>
         
       </li>
     
@@ -1082,60 +1059,6 @@ with statement. The following two examples are equivalent:</p>
 
 <div class="methods-inherited">
   
-    
-
-  <h3>Instance methods inherited from class <code><a href="../../Crinja/Tag.html">Crinja::Tag</a></code></h3>
-  
-  
-    <a href="../../Crinja/Tag.html#end_tag%3AString%3F-instance-method" class="tooltip">
-      <span>end_tag : String?</span>
-    end_tag</a>, 
-    
-  
-    <a href="../../Crinja/Tag.html#has_block%3F%28node%3ATagNode%29-instance-method" class="tooltip">
-      <span>has_block?(node : TagNode)</span>
-    has_block?</a>, 
-    
-  
-    <a href="../../Crinja/Tag.html#interpret_output%28renderer%3ARenderer%2Ctag_node%3ATagNode%29-instance-method" class="tooltip">
-      <span>interpret_output(renderer : Renderer, tag_node : TagNode)</span>
-    interpret_output</a>, 
-    
-  
-    <a href="../../Crinja/Tag.html#to_s%28io%29-instance-method" class="tooltip">
-      <span>to_s(io)</span>
-    to_s</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
 
@@ -1145,50 +1068,34 @@ with statement. The following two examples are equivalent:</p>
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="end_tag:String?-instance-method">
+    <div class="entry-detail" id="binary?-instance-method">
       <div class="signature">
         
-        def <strong>end_tag</strong> : String?
+        def <strong>binary?</strong>
 
-        <a class="method-permalink" href="#end_tag%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#binary%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/f45028fc1795bc49c723fe21a91010a08d210e49/src/crinja/lib/tag/with.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/f45028fc1795bc49c723fe21a91010a08d210e49/src/crinja/lib/operator.cr#L56" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="interpret_output&#40;renderer:Crinja::Renderer,tag_node:TagNode&#41;-instance-method">
+    <div class="entry-detail" id="value&#40;env:Environment,op1:Value,&amp;block:-&gt;Value&#41;:Type-instance-method">
       <div class="signature">
-        
-        def <strong>interpret_output</strong>(renderer : <a href="../../Crinja/Renderer.html">Crinja::Renderer</a>, tag_node : TagNode)
+        abstract 
+        def <strong>value</strong>(env : <a href="../../Crinja/Environment.html">Environment</a>, op1 : <a href="../../Crinja/Value.html">Value</a>, &block :  -> <a href="../../Crinja/Value.html">Value</a>) : <a href="../../Crinja/Type.html">Type</a>
 
-        <a class="method-permalink" href="#interpret_output%28renderer%3ACrinja%3A%3ARenderer%2Ctag_node%3ATagNode%29-instance-method">#</a>
+        <a class="method-permalink" href="#value%28env%3AEnvironment%2Cop1%3AValue%2C%26block%3A-%3EValue%29%3AType-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/f45028fc1795bc49c723fe21a91010a08d210e49/src/crinja/lib/tag/with.cr#L30" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="name:String-instance-method">
-      <div class="signature">
-        
-        def <strong>name</strong> : String
-
-        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/f45028fc1795bc49c723fe21a91010a08d210e49/src/crinja/lib/tag/with.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/f45028fc1795bc49c723fe21a91010a08d210e49/src/crinja/lib/operator.cr#L60" target="_blank">View source</a>]
         
       </div>
     </div>
