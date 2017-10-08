@@ -65,10 +65,10 @@ Crinja.test(:even) { target.to_i.even? }
 Crinja.test(:odd) { target.to_i.odd? }
 
 # Checks if value is less than other.
-Crinja.test({other: 0}, :lessthan) { target.to_i < arguments[:other].to_i }
+Crinja.test({other: 0}, :lessthan) { target.to_i.<(arguments[:other].to_i) }
 
 # Checks if value is greater than other.
-Crinja.test({other: 0}, :greaterthan) { target.to_i > arguments[:other].to_i }
+Crinja.test({other: 0}, :greaterthan) { target.to_i.>(arguments[:other].to_i) }
 
 # Check if value is in seq.
 Crinja.test({seq: Array(Type).new}, :in) {

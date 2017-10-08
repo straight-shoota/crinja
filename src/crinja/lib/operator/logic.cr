@@ -1,19 +1,19 @@
 class Crinja::Operator
   class And < Operator
-    include Binary
+    include Logic
     name "and"
 
-    def value(env : Environment, op1 : Value, op2 : Value)
-      !!(op1.truthy? && op2.truthy?)
+    def value(env : Environment, op1 : Value, &op2 : -> Value) : Type
+      !!(op1.truthy? && op2.call.truthy?)
     end
   end
 
   class Or < Operator
-    include Binary
+    include Logic
     name "or"
 
-    def value(env : Environment, op1 : Value, op2 : Value)
-      !!(op1.truthy? || op2.truthy?)
+    def value(env : Environment, op1 : Value, &op2 : -> Value) : Type
+      !!(op1.truthy? || op2.call.truthy?)
     end
   end
 

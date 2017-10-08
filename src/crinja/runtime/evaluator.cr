@@ -35,10 +35,18 @@ class Crinja::Evaluator
   end
 
   visit BinaryExpression, ComparisonExpression do
-    op = @env.operators[expression.operator].as(Operator::Binary)
+    op = @env.operators[expression.operator]
     left = evaluate expression.left
-    right = evaluate expression.right
-    op.value(@env, Value.new(left), Value.new(right))
+
+    case op
+    when Operator::Logic
+      op.value(@env, Value.new(left)) { Value.new(evaluate expression.right) }
+    when Operator::Binary
+      right = evaluate expression.right
+      op.value(@env, Value.new(left), Value.new(right))
+    else
+      raise "unreachable: invalid operator"
+    end
   end
 
   visit UnaryExpression do

@@ -51,6 +51,14 @@ abstract class Crinja::Operator
 
     abstract def value(env : Environment, op : Value) : Type
   end
+
+  module Logic
+    def binary?
+      true
+    end
+
+    abstract def value(env : Environment, op1 : Value, &block : -> Value) : Type
+  end
 end
 
 require "./operator/*"

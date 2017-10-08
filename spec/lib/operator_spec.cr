@@ -140,6 +140,43 @@ describe Crinja::Operator do
     it "works" do
       evaluate_expression("true and none").should eq("false")
     end
+    it "evaluates right branch if first is true" do
+      env = Crinja::Environment.new
+      test_called = false
+      env.functions["test"] = Crinja.function { test_called = true }
+      env.evaluate("true and test()")
+      test_called.should be_true
+    end
+    it "does not evaluate right branch if first is false" do
+      env = Crinja::Environment.new
+      test_called = false
+      env.functions["test"] = Crinja.function { test_called = true }
+      env.evaluate("false and test()")
+      test_called.should be_false
+    end
+  end
+
+  describe "or" do
+    it "works" do
+      evaluate_expression("true or true").should eq("true")
+      evaluate_expression("false or none").should eq("false")
+      evaluate_expression("1 or 1").should eq("true")
+      evaluate_expression("true or none").should eq("true")
+    end
+    it "evaluates right branch if first is false" do
+      env = Crinja::Environment.new
+      test_called = false
+      env.functions["test"] = Crinja.function { test_called = true }
+      env.evaluate("false or test()")
+      test_called.should be_true
+    end
+    it "does not evaluate right branch if first is true" do
+      env = Crinja::Environment.new
+      test_called = false
+      env.functions["test"] = Crinja.function { test_called = true }
+      env.evaluate("true or test()")
+      test_called.should be_false
+    end
   end
 
   describe "precedence" do
