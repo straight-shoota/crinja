@@ -2,7 +2,7 @@ module Crinja::Resolver
   # Resolves an objects item. Tries `resolve_getattr` it `getitem` returns undefined.
   # Analogous to `__getitem__` in Jinja2.
   def self.resolve_item(name, object)
-    raise UndefinedError.new(name.to_s, "#{object.class} is undefined") if object.is_a?(Undefined)
+    raise UndefinedError.new(name.to_s) if object.is_a?(Undefined)
 
     value = resolve_getitem(name, object)
 

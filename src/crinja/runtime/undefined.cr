@@ -3,7 +3,7 @@ module Crinja
 
   # The default undefined type.
   class Undefined
-    getter name
+    property name
 
     def initialize(@name = "")
     end

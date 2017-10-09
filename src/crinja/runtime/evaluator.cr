@@ -126,13 +126,51 @@ class Crinja::Evaluator
   visit MemberExpression do
     identifier = evaluate expression.identifier
     member = expression.member.name
-    Resolver.resolve_attribute(member, identifier)
+
+    begin
+      value = Resolver.resolve_attribute(member, identifier)
+    rescue exc : UndefinedError
+      raise UndefinedError.new(name_for_expression(expression))
+    end
+
+    if value.is_a?(Undefined)
+      value.name = name_for_expression(expression)
+    end
+
+    value
   end
 
   visit IndexExpression do
     identifier = evaluate expression.identifier
     argument = evaluate expression.argument
-    Resolver.resolve_item(argument, identifier)
+
+    begin
+      value = Resolver.resolve_item(argument, identifier)
+    rescue exc : UndefinedError
+      raise UndefinedError.new(name_for_expression(expression))
+    end
+
+    if value.is_a?(Undefined)
+      value.name = name_for_expression(expression)
+    end
+
+    value
+  end
+
+  private def name_for_expression(expression)
+    raise "not implemented for #{expression.class}"
+  end
+
+  private def name_for_expression(expression : AST::IdentifierLiteral)
+    expression.name
+  end
+
+  private def name_for_expression(expression : AST::MemberExpression)
+    "#{name_for_expression(expression.identifier)}.#{expression.member.name}"
+  end
+
+  private def name_for_expression(expression : AST::IndexExpression)
+    "#{name_for_expression(expression.identifier)}[#{evaluate expression.argument}]"
   end
 
   visit ExpressionList do

@@ -38,6 +38,17 @@ def evaluate_expression(string, bindings = nil, autoescape = nil)
   env.evaluate(string, bindings)
 end
 
+def evaluate_expression_raw(string, bindings = nil, autoescape = nil)
+  env = Crinja::Environment.new
+  env.context.autoescape = autoescape unless autoescape.nil?
+  lexer = Parser::ExpressionLexer.new(env.config, string)
+  parser = Parser::ExpressionParser.new(lexer)
+
+  expression = parser.parse
+
+  env.evaluate expression, bindings
+end
+
 module Spec
   # :nodoc:
   struct BeInExpectation(T)
