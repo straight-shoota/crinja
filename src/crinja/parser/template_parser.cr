@@ -40,6 +40,9 @@ class Crinja::Parser::TemplateParser
     start_location = current_token.location
 
     while true
+      if last_node = nodes.last?
+        last_node.location_end = current_token.location
+      end
       case current_token.kind
       when Kind::EOF
         break

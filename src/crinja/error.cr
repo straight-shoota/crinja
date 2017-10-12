@@ -23,7 +23,7 @@ module Crinja::SourceAttached
         io << "<unknown>"
         io << location_start
       else
-        io << t.filename || "<string>"
+        io << (t.filename || "<string>")
         io << location_start << " .. " << location_end
         io << "\n"
 
@@ -51,20 +51,21 @@ module Crinja::SourceAttached
     linowidth = Math.log(lines.size, 10).ceil.to_i
 
     (start_line..end_line).each do |i|
+      line = lines[i - 1]
       io.printf " %*d | ", linowidth, i
-      io << lines[i - 1]
+      io << line
       io << '\n'
 
-      linelength = lines[i - 1].size
+      linelength = line.size
 
-      if i - 1 == location_start.line
+      if i == location_start.line
         io << " " * (linowidth == 0 ? 1 : linowidth) << OTHER << " | "
         previous_width = (linowidth + 4 + location_start.column)
         io << " " * (location_start.column - 1).clamp(0, linelength)
         io << "^"
         previous_width = previous_width + 1
         if location_end.line == location_start.line
-          io << "~" * (location_end.column - location_start.column - 2).clamp(0, linelength)
+          io << "~" * (location_end.column - location_start.column - 1).clamp(0, linelength)
         end
         io << '\n'
       end

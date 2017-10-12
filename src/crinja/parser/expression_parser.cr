@@ -71,7 +71,9 @@ class Crinja::Parser::ExpressionParser
   end
 
   def parse_expression
-    parse_logical_or
+    parse_logical_or.tap do |expression|
+      expression.location_end = current_token.location
+    end
   end
 
   parse_operator :logical_or, :logical_and, OR do
@@ -120,10 +122,11 @@ class Crinja::Parser::ExpressionParser
 
         identifier = if_token(Kind::NONE) do
           AST::IdentifierLiteral.new(current_token.value).at(current_token.location)
-        end || assert_token Kind::IDENTIFIER do
+        end || assert_token(Kind::IDENTIFIER) do
           AST::IdentifierLiteral.new(current_token.value).at(current_token.location)
         end
-        next_token
+
+        identifier.location_end = next_token.location
 
         with_parenthesis = false
         if !is_test && current_token.kind == Kind::LEFT_PAREN
@@ -216,6 +219,8 @@ class Crinja::Parser::ExpressionParser
 
   private def parse_variable_expression
     identifier = parse_literal
+    identifier.location_end = current_token.location
+
     while true
       case current_token.kind
       when Kind::LEFT_PAREN
@@ -234,7 +239,7 @@ class Crinja::Parser::ExpressionParser
 
         if current_token.kind == Kind::IDENTIFIER || current_token.kind == Kind::INTEGER
           member = AST::IdentifierLiteral.new(current_token.value).at(current_token.location)
-          next_token
+          member.location_end = next_token.location
         else
           unexpected_token Kind::IDENTIFIER
         end

@@ -7,6 +7,18 @@ def parse(string)
   Crinja::Template.new(string)
 end
 
+def parse_expression(string)
+  env = Crinja::Environment.new
+  begin
+    lexer = Crinja::Parser::ExpressionLexer.new(env.config, string)
+    parser = Crinja::Parser::ExpressionParser.new(lexer)
+    parser.parse
+  rescue e : TemplateError
+    e.template = Crinja::Template.new(string, env, run_parser: false)
+    raise e
+  end
+end
+
 def render(string, bindings = nil, autoescape = nil, loader = nil, trim_blocks = nil, lstrip_blocks = nil)
   env = Crinja::Environment.new
   env.loader = loader unless loader.nil?
