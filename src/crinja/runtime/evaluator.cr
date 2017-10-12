@@ -15,6 +15,18 @@ class Crinja::Evaluator
     raise expression.inspect
   end
 
+  # Evaluates an expression inside this evaluatores environment and returns a `Type` object.
+  # Raises if the expression returns an `Undefined`.
+  def evaluate!(expression)
+    value = evaluate(expression)
+
+    if value.is_a?(Undefined)
+      raise UndefinedError.new(name_for_expression(expression))
+    end
+
+    value
+  end
+
   private macro visit(*node_types)
     # :nodoc:
     def evaluate(expression : {{
@@ -124,7 +136,7 @@ class Crinja::Evaluator
   end
 
   visit MemberExpression do
-    identifier = evaluate expression.identifier
+    identifier = evaluate! expression.identifier
     member = expression.member.name
 
     begin
@@ -141,7 +153,7 @@ class Crinja::Evaluator
   end
 
   visit IndexExpression do
-    identifier = evaluate expression.identifier
+    identifier = evaluate! expression.identifier
     argument = evaluate expression.argument
 
     begin

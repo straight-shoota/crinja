@@ -34,9 +34,7 @@ module Crinja::SourceAttached
     end
   end
 
-  GLOWING_STAR = "🌟"
-  OTHER        = "⚡"
-  POINTING_UP  = "☝️"
+  LINE_MARKER = 'X'
 
   def highlight_source_code(io, lines_before = 2, lines_after = 2)
     template = @template || return
@@ -59,7 +57,7 @@ module Crinja::SourceAttached
       linelength = line.size
 
       if i == location_start.line
-        io << " " * (linowidth == 0 ? 1 : linowidth) << OTHER << " | "
+        io << " " * (linowidth == 0 ? 1 : linowidth) << LINE_MARKER << " | "
         previous_width = (linowidth + 4 + location_start.column)
         io << " " * (location_start.column - 1).clamp(0, linelength)
         io << "^"

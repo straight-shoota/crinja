@@ -15,7 +15,7 @@ describe "expressions with identifiers" do
   end
 
   it "shows lookup name if undefined" do
-    expect_raises(Crinja::UndefinedError, "posts[0] is undefined") do
+    expect_raises(Crinja::UndefinedError, "posts is undefined") do
       evaluate_expression(%(posts[0].user.name))
     end
   end
