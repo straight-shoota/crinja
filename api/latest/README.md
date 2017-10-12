@@ -66,8 +66,9 @@ template.render({ "name" => "John" }) # => "Hello, John!"
 
 ### Examples
 
-The **Crinja Example Server** in [`examples/server`](https://github.com/straight-shoota/crinja/tree/master/examples/server) is an HTTP server which renders Crinja templates from `examples/server/pages`. It has also an interactive playground for Crinja template testing at `/play`.
+You can run `crystal play` inside this repostitory to run a **Crystal playground** server with prepared examples of Crinja usage (in the `Workbooks` section).
 
+The **Crinja Example Server** in [`examples/server`](https://github.com/straight-shoota/crinja/tree/master/examples/server) is an HTTP server which renders Crinja templates from `examples/server/pages`. It has also an interactive playground for Crinja template testing at `/play`.
 Command to start the server: `cd examples/server && crystal server.cr`
 
 Other examples can be found in the [`examples` folder](https://github.com/straight-shoota/crinja/tree/master/examples).
@@ -132,29 +133,39 @@ You can provide custom tags, filters, functions, operators and tests. Create an 
 Example with macro `Crinja.filter`:
 
 ```crystal
+env = Crinja::Environment.new
+
 myfilter = Crinja.filter({ attribute: nil }) do
   "#{target} is #{arguments[:attribute]}!"
 end
 
-env.filters << myfilter
-# Usage: {{#123;{{#123; "Hello World" | customfilter(attribute="super") }}
+env.filters["customfilter"] = myfilter
+
+template = env.from_string(%({{#123;{{#123; "Hello World" | customfilter(attribute="super") }}))
+template.render = "Hello World is super!"
 ```
 
 Or you can define a class for more complex features:
 ```crystal
+env = Crinja::Environment.new
+
 class Customfilter
   include Crinja::Callable
+
   getter name = "customfilter"
-  defaults({
+
+  getter defaults = {
     "attribute" => "great"
-  })
+  } of String => Crinja::Type
 
   def call(arguments)
-    arguments.defaults = defaults
     "#{arguments.target} is #{arguments[:attribute]}!"
   end
 end
 env.filters << Customfilter.new
+
+template = env.from_string(%({{#123;{{#123; "Hello World" | customfilter(attribute="super") }}))
+template.render # => "Hello World is super!"
 ```
 
 Custom tags and operator can be implemented through subclassing `Crinja::Operator` and  `Crinja:Tag` and adding an instance to the feature library defaults (`Crinja::Operator::Library.defaults << MyTag.new`) or to a specific environment (`env.tags << MyTag.new`).
