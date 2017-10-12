@@ -136,7 +136,7 @@ myfilter = Crinja.filter({ attribute: nil }) do
   "#{target} is #{arguments[:attribute]}!"
 end
 
-env.filters << myfilter
+env.filters["myfilter"] = myfilter
 # Usage: {{ "Hello World" | customfilter(attribute="super") }}
 ```
 

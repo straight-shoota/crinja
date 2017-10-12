@@ -1,7 +1,7 @@
 abstract class Crinja::FeatureLibrary(T)
   class UnknownFeatureError < Crinja::RuntimeError
     def initialize(kind, name)
-      super "no #{kind} with name \"#{name}\" registered"
+      super %(no #{kind} with name "#{name}" registered)
     end
   end
 
@@ -20,10 +20,11 @@ abstract class Crinja::FeatureLibrary(T)
     # FIXME: Move ivar initialization to property definition
     @store = {} of String => T
     @aliasses = {} of String => String
+
     self.register_defaults if register_defaults
   end
 
-  delegate :each, :keys, to: @store
+  delegate each, keys, size, to: @store
 
   # Adds default values to this library.
   def register_defaults; end
@@ -78,9 +79,11 @@ abstract class Crinja::FeatureLibrary(T)
   def <<(obj : T)
     name = if obj.responds_to?(:name)
              obj.name
-           else
+           elsif obj.class != Callable::Instance
              obj.class.to_s.split("::")[-1].downcase
            end
+
+    raise "cannot append unnamed feature, use `#[name]=` instead" if name.nil?
 
     self[name] = obj
   end
