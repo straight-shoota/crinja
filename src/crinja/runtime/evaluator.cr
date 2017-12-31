@@ -235,7 +235,7 @@ class Crinja::Evaluator
   end
 
   visit DictLiteral do
-    expression.children.each_with_object(Hash(Type, Type).new) do |(keyword, value), args|
+    expression.children.each_with_object(Dictionary.new) do |(keyword, value), args|
       args[evaluate keyword] = self.evaluate(value)
     end
   end

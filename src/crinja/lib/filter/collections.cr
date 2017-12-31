@@ -185,7 +185,7 @@ module Crinja::Filter
   Crinja.filter({attribute: UNDEFINED}, :groupby) do
     attribute = arguments[:attribute].raw
 
-    h = Hash(Type, Type).new
+    h = Dictionary.new
     target.raw_each do |item|
       value = Resolver.resolve_dig(attribute, item)
       if h.has_key?(value)

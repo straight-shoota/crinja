@@ -75,7 +75,7 @@ class Crinja::Value
   # item in the list or the first character of the string.
   def first
     case object = @raw
-    when Hash(Type, Type)
+    when Dictionary
       Value.new(PyTuple.new(object.first_key, object.first_value))
     when Iterable
       Value.new object.first
@@ -221,7 +221,7 @@ class Crinja::Value
   end
 
   # Checks that the underlying value is `Hash`, and returns its value. Raises otherwise.
-  def as_h : Hash(Type, Type)
+  def as_h : Dictionary
     raise_undefined!
     @raw.as(Hash)
   end

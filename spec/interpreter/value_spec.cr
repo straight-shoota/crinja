@@ -12,7 +12,7 @@ describe Crinja::Value do
     end
 
     it "hash" do
-      hash = Hash(Crinja::Type, Crinja::Type).new
+      hash = Crinja::Dictionary.new
       hash["foo"] = 1
       hash["bar"] = 3
       arr = [] of Type
@@ -29,7 +29,7 @@ describe Crinja::Value do
     end
 
     it "hash" do
-      hash = Hash(Crinja::Type, Crinja::Type).new
+      hash = Crinja::Dictionary.new
       hash["foo"] = 1
       hash["bar"] = 3
       arr = [] of Crinja::Type
