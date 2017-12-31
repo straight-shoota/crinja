@@ -15,11 +15,11 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
   setter block_context : NamedTuple(name: String, index: Int32)?
   getter macros
 
-  def self.new(bindings : Hash(String, Type))
+  def self.new(bindings : Variables)
     new(nil, bindings)
   end
 
-  def initialize(parent : Context? = nil, bindings : Hash(String, Type)? = nil)
+  def initialize(parent : Context? = nil, bindings : Variables? = nil)
     super(parent, bindings)
 
     @macros = Hash(String, Crinja::Tag::Macro::MacroFunction).new
@@ -75,12 +75,12 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
 
   # Merges values in *bindings* into local scope.
   def merge!(bindings)
-    super(Crinja::Bindings.cast_bindings(bindings))
+    super(Crinja::Bindings.cast_variables(bindings))
   end
 
   # Set variable *key* to value *value* in local scope.
-  def []=(key : String, value : Hash(String, Type))
-    self[key] = Crinja::Bindings.cast_bindings(value)
+  def []=(key : String, value : Variables)
+    self[key] = Crinja::Bindings.cast_variables(value)
   end
 
   # Returns an undefined value.

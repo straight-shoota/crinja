@@ -141,7 +141,7 @@ module Crinja::Resolver
     value
   end
 
-  def execute_call(callable, varargs : Array(Type), kwargs : Hash(String, Type), target : Value? = nil)
+  def execute_call(callable, varargs : Array(Type), kwargs : Variables, target : Value? = nil)
     execute_call(callable,
       varargs.map { |a| Value.new(a) },
       kwargs.each_with_object(Hash(String, Value).new) do |(k, v), hash|

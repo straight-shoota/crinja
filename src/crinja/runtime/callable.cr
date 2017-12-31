@@ -3,7 +3,7 @@ require "../error"
 module Crinja
   # :nodoc:
   macro callable(kind, defaults = nil, name = nil)
-    %defaults = Hash(::String, Crinja::Type).new
+    %defaults = Crinja::Variables.new
     {% if defaults.is_a?(NamedTupleLiteral) || defaults.is_a?(HashLiteral) %}
     {% for key in defaults.keys %}
       %defaults[{{ key.id.stringify }}] = {{ defaults[key] }}
@@ -103,7 +103,7 @@ module Crinja
       include Callable
 
       getter proc : Proc
-      getter defaults : Hash(String, Type)
+      getter defaults : Variables
       getter name : String?
 
       def initialize(@proc, @defaults = {} of String => Type, @name = nil)
@@ -141,11 +141,11 @@ module Crinja
       property varargs : Array(Value)
       property target : Value?
       property kwargs : Hash(String, Value)
-      property defaults : Hash(String, Type)
+      property defaults : Variables
       property env : Environment
       property! renderer : Renderer
 
-      def initialize(@env, @varargs = [] of Value, @kwargs = Hash(String, Value).new, @defaults = Hash(String, Type).new, @target = nil)
+      def initialize(@env, @varargs = [] of Value, @kwargs = Hash(String, Value).new, @defaults = Variables.new, @target = nil)
       end
 
       def [](name : Symbol) : Value

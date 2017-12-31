@@ -71,7 +71,7 @@ describe Crinja::Test do
     it { evaluate_expression(%( 42 is callable )).should eq "false" }
     it { evaluate_expression(%( range(5) is iterable )).should eq "true" }
     it { evaluate_expression(%( {} is mapping )).should eq "true" }
-    it { evaluate_expression(%( mydict is mapping ), {:mydict => Hash(String, Crinja::Type).new}).should eq "true" }
+    it { evaluate_expression(%( mydict is mapping ), {:mydict => Crinja::Variables.new}).should eq "true" }
     it { evaluate_expression(%( [] is mapping )).should eq "false" }
     it { evaluate_expression(%( 10 is number )).should eq "true" }
     it { evaluate_expression(%( (10 ** 100) is number )).should eq "true" }

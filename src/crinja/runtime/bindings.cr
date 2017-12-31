@@ -1,11 +1,11 @@
 # This module provides some methods to cast datastructures with Crystal types like `Array(String)`
 # to Crinja datastructures like `Array(Crinja::Type)`.
 module Crinja::Bindings
-  # Casts an object with hash-like interface to `Hash(String, Crinja::Type)`, which can be
+  # Casts an object with hash-like interface to `Variables`, which can be
   # used for name lookup.
-  def self.cast_bindings(bindings)
-    type_hash = Hash(String, Crinja::Type).new
-    bindings.each do |k, v|
+  def self.cast_variables(variables) : Variables
+    type_hash = Variables.new
+    variables.each do |k, v|
       type_hash[k.to_s] = cast_value(v)
     end
     type_hash

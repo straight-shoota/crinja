@@ -31,7 +31,7 @@ class Crinja::Tag::With < Crinja::Tag
     env = renderer.env
     args = Parser.new(tag_node.arguments, renderer.env.config)
 
-    var_defs = Hash(String, Type).new
+    var_defs = Variables.new
     args.parse_with_tag_arguments.each do |variable, expression|
       var_defs[variable.name] = renderer.env.evaluate(expression)
     end

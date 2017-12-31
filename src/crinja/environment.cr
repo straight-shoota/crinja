@@ -53,8 +53,7 @@ class Crinja::Environment
   getter tests
 
   # Policies for this environment.
-  getter policies : Hash(String, Type)
-  @policies = {} of String => Type
+  getter policies = Variables.new
 
   # Creates a new environment and yields `self` for configuration.
   def self.new(context = Context.new, config = Config.new,

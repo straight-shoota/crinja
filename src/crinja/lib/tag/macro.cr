@@ -103,7 +103,7 @@ class Crinja::Tag::Macro < Crinja::Tag
 
     getter name, defaults, children, catch_kwargs, catch_varargs, caller
 
-    def initialize(@name : String, @children : AST::NodeList, @renderer : Renderer, @defaults = Hash(String, Type).new, @caller = false)
+    def initialize(@name : String, @children : AST::NodeList, @renderer : Renderer, @defaults = Variables.new, @caller = false)
       @catch_varargs = false
       @catch_kwargs = !@defaults.empty?
     end

@@ -9,4 +9,6 @@ module Crinja
   alias Type = TypeValue | TypeContainer
 
   alias Dictionary = Hash(Type, Type)
+
+  alias Variables = Hash(String, Type)
 end
