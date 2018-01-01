@@ -4,7 +4,7 @@
 #
 # The most important class for using the Crinja API is `Crinja::Environment`.
 module Crinja
-  VERSION = "0.2.0"
+  VERSION = {{ `shards version #{__DIR__}`.chomp.stringify }}
 
   # Tries to cast any value to `Crinja::Type`.
   def self.cast_type(value)
