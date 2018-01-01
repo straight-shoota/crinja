@@ -4,6 +4,8 @@
 #
 # The most important class for using the Crinja API is `Crinja::Environment`.
 module Crinja
+  VERSION = "0.2.0"
+
   # Tries to cast any value to `Crinja::Type`.
   def self.cast_type(value)
     Bindings.cast_value(value)
@@ -21,7 +23,6 @@ require "./environment"
 require "./error"
 require "./loader"
 require "./template"
-require "./version"
 require "./parser/*"
 require "./runtime/*"
 require "./lib/feature_library"
