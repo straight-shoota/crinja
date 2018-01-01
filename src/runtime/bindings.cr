@@ -15,7 +15,7 @@ module Crinja::Bindings
   def self.cast_value(value) : Crinja::Type
     case value
     when Hash
-      self.cast_hash(value)
+      self.cast_dictionary(value)
     when NamedTuple
       self.cast_named_tuple(value)
     when Tuple
@@ -40,7 +40,7 @@ module Crinja::Bindings
   end
 
   # Casts an object with hash-like interface to `Dictionary`.
-  def self.cast_hash(value) : Crinja::Type
+  def self.cast_dictionary(value) : Crinja::Type
     type_hash = Dictionary.new
     value.each do |k, v|
       type_hash[cast_value(k)] = cast_value(v)

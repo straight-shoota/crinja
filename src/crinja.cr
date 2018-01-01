@@ -11,9 +11,9 @@ module Crinja
     Bindings.cast_value(value)
   end
 
-  # Tries to cast any value to `Dictionary`.
-  def self.cast_hash(value) : Dictionary
-    Bindings.cast_hash(value)
+  # Tries to cast any hash-like value to `Dictionary`.
+  def self.cast_dictionary(value) : Dictionary
+    Bindings.cast_dictionary(value)
   end
 end
 
