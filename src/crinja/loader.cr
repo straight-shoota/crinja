@@ -61,7 +61,7 @@ abstract class Crinja::Loader
 
     def to_s(io)
       io << "FileSystemLoader("
-      io << searchpaths.join(":")
+      searchpaths.join(':', io)
       io << ")"
     end
 
