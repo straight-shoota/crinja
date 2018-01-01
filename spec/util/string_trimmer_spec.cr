@@ -1,5 +1,5 @@
 require "spec"
-require "../../src/crinja/util/string_trimmer"
+require "../../src/util/string_trimmer"
 
 describe Crinja::Util::StringTrimmer do
   it "trims whitespace without linebreaks" do

@@ -1,6 +1,6 @@
 require "spec"
-require "../../src/crinja/runtime/value"
-require "../../src/crinja/runtime/bindings"
+require "../../src/runtime/value"
+require "../../src/runtime/bindings"
 
 describe Crinja::Bindings do
   it "casts simple hash" do

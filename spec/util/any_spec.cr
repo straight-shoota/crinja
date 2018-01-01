@@ -1,6 +1,6 @@
 require "spec"
 
-require "../../src/crinja/runtime/value"
+require "../../src/runtime/value"
 
 describe Crinja::Value do
   describe "#each" do
