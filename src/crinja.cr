@@ -15,6 +15,11 @@ module Crinja
   def self.cast_dictionary(value) : Dictionary
     Bindings.cast_dictionary(value)
   end
+
+  # Tries to cast any hash-like value to `Variables`.
+  def self.cast_variables(value) : Variables
+    Bindings.cast_variables(value)
+  end
 end
 
 require "./util/*"
