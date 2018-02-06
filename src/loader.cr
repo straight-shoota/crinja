@@ -10,7 +10,7 @@ abstract class Crinja::Loader
   # template as string. The filename should be the name of the file on
   # the filesystem if it was loaded from there, otherwise `nil`.
   # The filename is used for the tracebacks if no loader extension is used.
-  abstract def get_source(env : Environment, template : String) : {String, String}
+  abstract def get_source(env : Crinja, template : String) : {String, String}
 
   # Iterates over all templates. If the loader does not support that
   # it should raise a `TypeError` which is the default behavior.
@@ -65,7 +65,7 @@ abstract class Crinja::Loader
       io << ")"
     end
 
-    def get_source(env : Environment, template : String)
+    def get_source(env : Crinja, template : String)
       pieces = split_template_path(template)
       searchpaths.each do |searchpath|
         file_name = File.join(searchpath, File.join(pieces))
@@ -112,7 +112,7 @@ abstract class Crinja::Loader
     def initialize(@data)
     end
 
-    def get_source(env : Environment, template : String)
+    def get_source(env : Crinja, template : String)
       raise TemplateNotFoundError.new(template, self) unless data.has_key?(template)
 
       {data[template], nil}
@@ -145,7 +145,7 @@ abstract class Crinja::Loader
     def initialize(@mapping, @delimiter = "/")
     end
 
-    def get_source(env : Environment, template : String)
+    def get_source(env : Crinja, template : String)
       prefix, slash, rest = template.partition(@delimiter)
 
       if loader = mapping[prefix]?
@@ -177,7 +177,7 @@ abstract class Crinja::Loader
       new choices.map { |loader| loader.as(Loader) }
     end
 
-    def get_source(env : Environment, template : String)
+    def get_source(env : Crinja, template : String)
       choices.each do |loader|
         begin
           return loader.get_source(env, template)

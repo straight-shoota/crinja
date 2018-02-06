@@ -12,11 +12,11 @@ class Crinja::Renderer
   end
 
   # Returns the environment.
-  getter env : Environment
+  getter env : Crinja
 
   # Creates a new evaluator for the template *template* with optional environment *env*. If no
   # environment is provided, the environment of the template is used.
-  def initialize(@template : Template, env : Environment? = nil)
+  def initialize(@template : Template, env : Crinja? = nil)
     @env = env || @template.env
   end
 

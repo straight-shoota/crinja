@@ -3,7 +3,7 @@ class Crinja::Operator
     include Binary
     name "**"
 
-    def value(env : Environment, op1, op2)
+    def value(env : Crinja, op1, op2)
       if op1.number? && op2.number?
         base = op1.as_number
         power = op2.as_number

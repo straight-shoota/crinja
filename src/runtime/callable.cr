@@ -142,7 +142,7 @@ class Crinja
       property target : Value?
       property kwargs : Hash(String, Value)
       property defaults : Variables
-      property env : Environment
+      property env : Crinja
       property! renderer : Renderer
 
       def initialize(@env, @varargs = [] of Value, @kwargs = Hash(String, Value).new, @defaults = Variables.new, @target = nil)

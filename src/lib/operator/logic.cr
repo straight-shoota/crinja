@@ -3,7 +3,7 @@ class Crinja::Operator
     include Logic
     name "and"
 
-    def value(env : Environment, op1 : Value, &op2 : -> Value) : Type
+    def value(env : Crinja, op1 : Value, &op2 : -> Value) : Type
       !!(op1.truthy? && op2.call.truthy?)
     end
   end
@@ -12,7 +12,7 @@ class Crinja::Operator
     include Logic
     name "or"
 
-    def value(env : Environment, op1 : Value, &op2 : -> Value) : Type
+    def value(env : Crinja, op1 : Value, &op2 : -> Value) : Type
       !!(op1.truthy? || op2.call.truthy?)
     end
   end
@@ -21,7 +21,7 @@ class Crinja::Operator
     include Unary
     name "not"
 
-    def value(env : Environment, op : Value)
+    def value(env : Crinja, op : Value)
       !op.truthy?
     end
   end

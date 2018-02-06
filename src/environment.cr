@@ -5,7 +5,6 @@ require "./runtime/resolver"
 require "logger"
 
 class Crinja
-  alias Environment = self
   # The current context in which evaluation happens. It can only be changed by `#with_context`.
   getter context : Context
 
@@ -85,7 +84,7 @@ class Crinja
   end
 
   # Creates a new environment with the context and configuration from the *original* environment.
-  def self.new(original : Environment)
+  def self.new(original : Crinja)
     new(Context.new(original.context), original.config, original.loader)
   end
 

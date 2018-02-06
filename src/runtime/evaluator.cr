@@ -2,7 +2,7 @@
 # final value.
 class Crinja::Evaluator
   # Creates a new evaluator for the environment *env*.
-  def initialize(@env : Environment)
+  def initialize(@env : Crinja)
   end
 
   # Evaluates an expression inside this evaluatores environment and returns a `Value` object.

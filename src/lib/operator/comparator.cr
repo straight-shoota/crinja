@@ -36,7 +36,7 @@ class Crinja::Operator
     name "=="
     include Comparator
 
-    def value(env : Environment, op1 : Value, op2 : Value)
+    def value(env : Crinja, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) == 0
     rescue TypeError
       op1.raw == op2.raw
@@ -48,7 +48,7 @@ class Crinja::Operator
     name "!="
     include Comparator
 
-    def value(env : Environment, op1 : Value, op2 : Value)
+    def value(env : Crinja, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) != 0
     rescue TypeError
       op1.raw != op2.raw
@@ -60,7 +60,7 @@ class Crinja::Operator
     name ">"
     include Comparator
 
-    def value(env : Environment, op1 : Value, op2 : Value)
+    def value(env : Crinja, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) > 0
     end
   end
@@ -70,7 +70,7 @@ class Crinja::Operator
     name ">="
     include Comparator
 
-    def value(env : Environment, op1 : Value, op2 : Value)
+    def value(env : Crinja, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) >= 0
     end
   end
@@ -80,7 +80,7 @@ class Crinja::Operator
     name "<"
     include Comparator
 
-    def value(env : Environment, op1 : Value, op2 : Value)
+    def value(env : Crinja, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) < 0
     end
   end
@@ -90,7 +90,7 @@ class Crinja::Operator
     name "<="
     include Comparator
 
-    def value(env : Environment, op1 : Value, op2 : Value)
+    def value(env : Crinja, op1 : Value, op2 : Value)
       compare(op1.raw, op2.raw) <= 0
     end
   end

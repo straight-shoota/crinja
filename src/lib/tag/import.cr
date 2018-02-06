@@ -27,7 +27,7 @@ class Crinja::Tag::Import < Crinja::Tag
     if context_var.nil?
       template.render(env)
     else
-      child = Environment.new(env)
+      child = Crinja.new(env)
 
       template.render(child)
 

@@ -14,7 +14,7 @@ abstract class Crinja::TemplateCache
 
   # This cache stores `Template` objects in a `Hash`.
   class InMemory < TemplateCache
-    @cache = Hash(Tuple(Environment, String, String?, String), Template).new
+    @cache = Hash(Tuple(Crinja, String, String?, String), Template).new
 
     def fetch(env, name, file_name, source)
       id = {env, name, file_name, source}

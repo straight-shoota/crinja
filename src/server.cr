@@ -12,14 +12,14 @@ class Crinja::Server
   property public_dir : String = "public"
   property logger : Logger = Logger.new(STDERR)
 
-  getter env : Environment
+  getter env : Crinja
   getter! server : HTTP::Server
   getter! loader : Crinja::Loader
 
   include Crinja::PyObject
   getattr host, port, template_dir, public_dir, templates
 
-  def initialize(@env = Environment.new)
+  def initialize(@env = Crinja.new)
   end
 
   def start

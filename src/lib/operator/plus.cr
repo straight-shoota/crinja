@@ -4,7 +4,7 @@ class Crinja::Operator
     include Unary
     name "+"
 
-    def value(env : Environment, op1, op2)
+    def value(env : Crinja, op1, op2)
       if op1.number? && op2.number?
         op1.as_number + op2.as_number
       elsif op1.raw.is_a?(Array(Type))

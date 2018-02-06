@@ -1,6 +1,12 @@
 # This class represents a compiled template and is used to evaluate it.
-# Normally the template object is generated from an `Environment` by `Environment#from_string` or `Environment#get_template` but it also has a constructor that makes it possible to create a template instance directly, which refers to a default environment.
-# Every template object has a few methods and members that are guaranteed to exist. However it’s important that a template object should be considered immutable. Modifications on the object are not supported.
+#
+# Normally the template object is generated from an `Crinja` environment
+# by `Crinja#from_string` or `Crinja#get_template`. But it also has a constructor
+# that makes it possible to create a template instance directly.
+#
+# Every template object has a few methods and members that are guaranteed to exist.
+# However it’s important that a template object should be considered immutable.
+# Modifications on the object are not supported.
 class Crinja::Template
   # This hash gives access to all macros defined by this template.
   getter macros : Hash(String, Tag::Macro::MacroFunction) = Hash(String, Tag::Macro::MacroFunction).new
@@ -17,11 +23,11 @@ class Crinja::Template
   # Returns the root node of this template's abstract syntax tree.
   getter nodes : AST::NodeList
 
-  # Environment in which this template is loaded.
-  getter env : Environment
+  # Crinja environment in which this template is loaded.
+  getter env : Crinja
 
   # Creates a new template.
-  def initialize(@source : String, @env : Environment = Environment.new, @name : String = "", @filename : String? = nil, run_parser = true)
+  def initialize(@source : String, @env : Crinja = Crinja.new, @name : String = "", @filename : String? = nil, run_parser = true)
     @source = @source.rchop '\n' unless env.config.keep_trailing_newline
 
     @nodes = AST::NodeList.new([] of AST::TemplateNode, false)
@@ -58,7 +64,7 @@ class Crinja::Template
 
   # Renders this template to *io* in the environment *env*.
   # This method might return unexpected results if *env* differs from the original environment this template was parsed with.
-  def render(io : IO, env : Environment)
+  def render(io : IO, env : Crinja)
     renderer = Renderer.new(self)
     renderer.render(io, self)
   rescue e : Crinja::Error

@@ -109,7 +109,7 @@ class Crinja::Tag::For < Crinja::Tag
     include Iterator(Value)
     include IteratorWrapper
 
-    def initialize(@iterator : Iterator(Value), @condition : AST::ExpressionNode, @env : Environment, @item_vars : Array(String))
+    def initialize(@iterator : Iterator(Value), @condition : AST::ExpressionNode, @env : Crinja, @item_vars : Array(String))
     end
 
     def next

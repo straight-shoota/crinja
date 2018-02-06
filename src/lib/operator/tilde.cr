@@ -3,7 +3,7 @@ class Crinja::Operator
     include Binary
     name "~"
 
-    def value(env : Environment, op1, op2)
+    def value(env : Crinja, op1, op2)
       op1.to_s + op2.to_s
     end
   end

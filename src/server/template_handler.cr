@@ -1,7 +1,7 @@
 module Crinja::Server::TemplateHandler
   include HTTP::Handler
 
-  def initialize(@env : Environment, @logger : Logger)
+  def initialize(@env : Crinja, @logger : Logger)
   end
 
   def load_template(path)

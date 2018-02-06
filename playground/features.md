@@ -6,7 +6,7 @@ Example with macro `Crinja.filter`:
 
 ```playground
 require "./crinja"
-env = Crinja::Environment.new
+env = Crinja.new
 
 myfilter = Crinja.filter({ attribute: nil }) do
   "#{target} is #{arguments[:attribute]}!"
@@ -22,7 +22,7 @@ Or you can define a class for more complex features:
 
 ```playground
 require "./crinja"
-env = Crinja::Environment.new
+env = Crinja.new
 
 class Customfilter
   include Crinja::Callable

@@ -14,9 +14,9 @@ class Crinja::Tag::From < Crinja::Tag
     template_name = env.evaluate(source_expression).to_s
 
     child = if with_context
-              Environment.new(env)
+              Crinja.new(env)
             else
-              Environment.new(config: env.config, loader: env.loader)
+              Crinja.new(config: env.config, loader: env.loader)
             end
 
     template = child.get_template(template_name)
