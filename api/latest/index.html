@@ -280,11 +280,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Environment" data-name="crinja::environment">
-      <a href="Crinja/Environment.html">Environment</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Error" data-name="crinja::error">
       <a href="Crinja/Error.html">Error</a>
       
@@ -1049,7 +1044,7 @@ template.render({<span class="s">&quot;name&quot;</span> => <span class="s">&quo
 
 <pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
 
-env <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Environment</span>.<span class="k">new</span>
+env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
 env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>(<span class="s">&quot;views/&quot;</span>)
 template <span class="o">=</span> env.get_template(<span class="s">&quot;index.html.j2&quot;</span>)
 template.render <span class="c"># =&gt; &quot;Hello, World!&quot;</span>
@@ -1072,7 +1067,7 @@ Command to start the server: <code>cd examples/server && crystal server.cr</code
 
 <h3>Configuration</h3>
 
-<p>Currently the following configuration options for <code><a href="Crinja/Config.html">Config</a></code> are supported:</p>
+<p>Currently the following configuration options for <code>Config</code> are supported:</p>
 
 <p>&lt;dl>
   &lt;dt>autoescape&lt;/dt>
@@ -1096,15 +1091,15 @@ Command to start the server: <code>cd examples/server && crystal server.cr</code
   &lt;p>Note: &lt;em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.&lt;/em>&lt;/p>
   &lt;/dd>
   &lt;dt>disabled_filters&lt;/dt>
-  &lt;dd>A list of <em>disabled_filters</em> that will raise a <code><a href="Crinja/SecurityError.html">SecurityError</a></code> when invoked.&lt;/dd>
+  &lt;dd>A list of <em>disabled_filters</em> that will raise a <code>SecurityError</code> when invoked.&lt;/dd>
   &lt;dt>disabled_functions&lt;/dt>
-  &lt;dd>A list of <em>disabled_functions</em> that will raise a <code><a href="Crinja/SecurityError.html">SecurityError</a></code> when invoked.&lt;/dd>
+  &lt;dd>A list of <em>disabled_functions</em> that will raise a <code>SecurityError</code> when invoked.&lt;/dd>
   &lt;dt>disabled_operators&lt;/dt>
-  &lt;dd>A list of <em>disabled_operators</em> that will raise a <code><a href="Crinja/SecurityError.html">SecurityError</a></code> when invoked.&lt;/dd>
+  &lt;dd>A list of <em>disabled_operators</em> that will raise a <code>SecurityError</code> when invoked.&lt;/dd>
   &lt;dt>disabled_tags&lt;/dt>
-  &lt;dd>A list of <em>disabled_tags</em> that will raise a <code><a href="Crinja/SecurityError.html">SecurityError</a></code> when invoked.&lt;/dd>
+  &lt;dd>A list of <em>disabled_tags</em> that will raise a <code>SecurityError</code> when invoked.&lt;/dd>
   &lt;dt>disabled_tests&lt;/dt>
-  &lt;dd>A list of <em>disabled_tests</em> that will raise a <code><a href="Crinja/SecurityError.html">SecurityError</a></code> when invoked.&lt;/dd>
+  &lt;dd>A list of <em>disabled_tests</em> that will raise a <code>SecurityError</code> when invoked.&lt;/dd>
   &lt;dt>keep_trailing_newline&lt;/dt>
   &lt;dd>Preserve the trailing newline when rendering templates. If set to <code>false</code>, a single newline, if present, will be stripped from the end of the template. Default: &lt;code>false&lt;/code>&lt;/dd>
   &lt;dt>trim_blocks&lt;/dt>
@@ -1125,7 +1120,7 @@ Command to start the server: <code>cd examples/server && crystal server.cr</code
 
 <p>Example with macro <code>Crinja.filter</code>:</p>
 
-<pre><code class='language-crystal'>env <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Environment</span>.<span class="k">new</span>
+<pre><code class='language-crystal'>env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
 
 myfilter <span class="o">=</span> <span class="t">Crinja</span>.filter({ attribute: <span class="n">nil</span> }) <span class="k">do</span>
   <span class="s">&quot;</span><span class="i">#{</span></span>target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>!&quot;</span>
@@ -1138,7 +1133,7 @@ template.render <span class="o">=</span> <span class="s">&quot;Hello World is su
 
 <p>Or you can define a class for more complex features:</p>
 
-<pre><code class='language-crystal'>env <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Environment</span>.<span class="k">new</span>
+<pre><code class='language-crystal'>env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
 
 <span class="k">class</span> <span class="t">Customfilter</span>
   <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Callable</span>
@@ -1158,7 +1153,7 @@ env.filters <span class="o"><<</span> <span class="t">Customfilter</span>.<span 
 template <span class="o">=</span> env.from_string(<span class="s">%({{ &quot;Hello World&quot; | customfilter(attribute=&quot;super&quot;) }})</span>)
 template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span></code></pre>
 
-<p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> and  <code><a href="Crinja.html">Crinja</a>:<a href="Crinja/Tag.html">Tag</a></code> and adding an instance to the feature library defaults (<code><a href="Crinja/Operator.html">Crinja::Operator</a>::Library.defaults << MyTag.new</code>) or to a specific environment (<code>env.tags << MyTag.new</code>).</p>
+<p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> and  <code><a href="Crinja.html">Crinja</a>:Tag</code> and adding an instance to the feature library defaults (<code><a href="Crinja/Operator.html">Crinja::Operator</a>::Library.defaults << MyTag.new</code>) or to a specific environment (<code>env.tags << MyTag.new</code>).</p>
 
 <h2>Differences from Jinja2</h2>
 

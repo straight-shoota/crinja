@@ -280,11 +280,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Environment" data-name="crinja::environment">
-      <a href="../Crinja/Environment.html">Environment</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Error" data-name="crinja::error">
       <a href="../Crinja/Error.html">Error</a>
       
@@ -1032,12 +1027,12 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/output.cr#L1" target="_blank">runtime/output.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/b1e9e875f442400444d9a755ed7f8449363ecd25/src/runtime/output.cr#L1" target="_blank">runtime/output.cr</a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/renderer.cr#L2" target="_blank">runtime/renderer.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/b1e9e875f442400444d9a755ed7f8449363ecd25/src/runtime/renderer.cr#L2" target="_blank">runtime/renderer.cr</a>
     
     <br/>
   
@@ -1050,7 +1045,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28template%3ATemplate%2Cenv%3AEnvironment%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(template : Template, env : Environment? = <span class="n">nil</span>)</a>
+        <a href="#new%28template%3ATemplate%2Cenv%3ACrinja%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(template : Template, env : Crinja? = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Creates a new evaluator for the template <em>template</em> with optional environment <em>env</em>.</p></div>
         
@@ -1076,7 +1071,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#env%3AEnvironment-instance-method" class="signature"><strong>#env</strong> : Environment</a>
+        <a href="#env%3ACrinja-instance-method" class="signature"><strong>#env</strong> : Crinja</a>
         
           <div class="summary"><p>Returns the environment.</p></div>
         
@@ -1135,12 +1130,12 @@
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new(template:Template,env:Environment?=nil)-class-method">
+    <div class="entry-detail" id="new(template:Template,env:Crinja?=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(template : <a href="../Crinja/Template.html">Template</a>, env : <a href="../Crinja/Environment.html">Environment</a>? = <span class="n">nil</span>)
+        def self.<strong>new</strong>(template : <a href="../Crinja/Template.html">Template</a>, env : <a href="../Crinja.html">Crinja</a>? = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28template%3ATemplate%2Cenv%3AEnvironment%3F%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28template%3ATemplate%2Cenv%3ACrinja%3F%3Dnil%29-class-method">#</a>
       </div>
       
         <div class="doc"><p>Creates a new evaluator for the template <em>template</em> with optional environment <em>env</em>. If no
@@ -1149,7 +1144,7 @@ environment is provided, the environment of the template is used.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/renderer.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b1e9e875f442400444d9a755ed7f8449363ecd25/src/runtime/renderer.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1170,7 +1165,7 @@ environment is provided, the environment of the template is used.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/renderer.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b1e9e875f442400444d9a755ed7f8449363ecd25/src/runtime/renderer.cr#L73" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1180,12 +1175,12 @@ environment is provided, the environment of the template is used.</p></div>
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="env:Environment-instance-method">
+    <div class="entry-detail" id="env:Crinja-instance-method">
       <div class="signature">
         
-        def <strong>env</strong> : <a href="../Crinja/Environment.html">Environment</a>
+        def <strong>env</strong> : <a href="../Crinja.html">Crinja</a>
 
-        <a class="method-permalink" href="#env%3AEnvironment-instance-method">#</a>
+        <a class="method-permalink" href="#env%3ACrinja-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns the environment.</p></div>
@@ -1193,7 +1188,7 @@ environment is provided, the environment of the template is used.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/renderer.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b1e9e875f442400444d9a755ed7f8449363ecd25/src/runtime/renderer.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1209,7 +1204,7 @@ environment is provided, the environment of the template is used.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/renderer.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b1e9e875f442400444d9a755ed7f8449363ecd25/src/runtime/renderer.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1225,7 +1220,7 @@ environment is provided, the environment of the template is used.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/renderer.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b1e9e875f442400444d9a755ed7f8449363ecd25/src/runtime/renderer.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1241,7 +1236,7 @@ environment is provided, the environment of the template is used.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/renderer.cr#L65" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b1e9e875f442400444d9a755ed7f8449363ecd25/src/runtime/renderer.cr#L65" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1257,7 +1252,7 @@ environment is provided, the environment of the template is used.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/renderer.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b1e9e875f442400444d9a755ed7f8449363ecd25/src/runtime/renderer.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>

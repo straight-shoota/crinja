@@ -57,7 +57,7 @@ It can be loaded with a `FileSystemLoader`:
 ```crystal
 require "crinja"
 
-env = Crinja::Environment.new
+env = Crinja.new
 env.loader = Crinja::Loader::FileSystemLoader.new("views/")
 template = env.get_template("index.html.j2")
 template.render # => "Hello, World!"
@@ -133,7 +133,7 @@ You can provide custom tags, filters, functions, operators and tests. Create an 
 Example with macro `Crinja.filter`:
 
 ```crystal
-env = Crinja::Environment.new
+env = Crinja.new
 
 myfilter = Crinja.filter({ attribute: nil }) do
   "#{target} is #{arguments[:attribute]}!"
@@ -147,7 +147,7 @@ template.render = "Hello World is super!"
 
 Or you can define a class for more complex features:
 ```crystal
-env = Crinja::Environment.new
+env = Crinja.new
 
 class Customfilter
   include Crinja::Callable
