@@ -172,6 +172,14 @@ struct Crinja::SafeString
     new self.escaped(string)
   end
 
+  # Yields a builder which automatically escapes.
+  #
+  # TODO: Implement stream IO.
+  def self.escape
+    string = String.build { |io| yield io }
+    escape string
+  end
+
   # Returns an escaped string.
   # TODO: Replace with HTML.escape when crystal-lang/crystal#4555 gets merged
   def self.escaped(string)

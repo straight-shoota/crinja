@@ -36,11 +36,9 @@ module Crinja::Filter
 
     indent = arguments.fetch(:indent, 0).to_i
 
-    json = JsonBuilder.to_json(raw, indent)
-
-    string = SafeString.escape(json)
-
-    string
+    SafeString.escape do |io|
+      JsonBuilder.to_json(io, raw, indent)
+    end
   end
 
   Crinja.filter({autoescape: true}, :xmlattr) do

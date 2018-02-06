@@ -1,13 +1,9 @@
 require "json"
 
 struct Crinja::JsonBuilder
-  protected def initialize(value, indent = 0)
-    @io = IO::Memory.new
+  protected def initialize(@io : IO, indent = 0)
     @json = JSON::Builder.new(@io)
     @json.indent = indent
-    @json.start_document
-    dump(value)
-    @json.end_document
   end
 
   private def dump(value : Crinja::Callable)
@@ -44,11 +40,19 @@ struct Crinja::JsonBuilder
     end
   end
 
-  protected def to_string
-    @io.to_s
+  protected def to_json(value)
+    @json.start_document
+    dump(value)
+    @json.end_document
   end
 
   def self.to_json(value, indent = 0)
-    new(value, indent).to_string
+    String.build do |io|
+      to_json(value, io, indent)
+    end
+  end
+
+  def self.to_json(io : IO, value, indent = 0)
+    new(io, indent).to_json(value)
   end
 end
