@@ -13,8 +13,8 @@ Crinja.function({
 
   # TODO: Use a stlib implementation or implement a custom sequence class. ::Range currently does
   # not support descending ranges.
-  # start.step(to: stop, by: step).to_a.map(&.as(Type))
-  Crinja::Function::RangeIterator(Int32, Int32).new(Range.new(start, stop, true), step).to_a.map(&.as(Type))
+  # start.step(to: stop, by: step).to_a.map(&.as(Crinja::Type))
+  Crinja::Function::RangeIterator(Int32, Int32).new(Range.new(start, stop, true), step).to_a.map(&.as(Crinja::Type))
 end
 
 class Crinja::Function::RangeIterator(B, N)

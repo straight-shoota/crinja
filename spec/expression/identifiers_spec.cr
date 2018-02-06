@@ -21,7 +21,7 @@ describe "expressions with identifiers" do
   end
 
   it "shows lookup name if undefined" do
-    undefined = evaluate_expression_raw(%(posts[0].user.name), {"posts" => [{"user" => nil}]}).as(Undefined)
+    undefined = evaluate_expression_raw(%(posts[0].user.name), {"posts" => [{"user" => nil}]}).as(Crinja::Undefined)
     undefined.name.should eq "posts[0].user.name"
   end
 end

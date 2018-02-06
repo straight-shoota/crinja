@@ -20,7 +20,7 @@ private class User
     when "age"
       age.days / 365
     else
-      Undefined.new(attr.to_s)
+      Crinja::Undefined.new(attr.to_s)
     end
   end
 
@@ -36,7 +36,7 @@ private class User
     if attr.responds_to?(:to_i)
       @name[attr.to_i].to_s
     else
-      Undefined.new(attr.to_s)
+      Crinja::Undefined.new(attr.to_s)
     end
   end
 end

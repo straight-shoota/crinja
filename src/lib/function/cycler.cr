@@ -1,5 +1,5 @@
 Crinja.function(:cycler) do
-  Function::Cycler.new(arguments.varargs)
+  Crinja::Function::Cycler.new(arguments.varargs)
 end
 
 class Crinja::Function::Cycler

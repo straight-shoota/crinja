@@ -4,7 +4,7 @@ require "../../src/runtime/bindings"
 
 describe Crinja::Bindings do
   it "casts simple hash" do
-    Crinja::Bindings.cast_variables({"foo" => "bar"}).should eq Variables{ "foo" => "bar" }
+    Crinja::Bindings.cast_variables({"foo" => "bar"}).should eq Crinja::Variables{ "foo" => "bar" }
   end
 
   it "casts complex hash" do

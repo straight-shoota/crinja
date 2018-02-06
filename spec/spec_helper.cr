@@ -13,7 +13,7 @@ def parse_expression(string)
     lexer = Crinja::Parser::ExpressionLexer.new(env.config, string)
     parser = Crinja::Parser::ExpressionParser.new(lexer)
     parser.parse
-  rescue e : TemplateError
+  rescue e : Crinja::TemplateError
     e.template = Crinja::Template.new(string, env, run_parser: false)
     raise e
   end
@@ -53,8 +53,8 @@ end
 def evaluate_expression_raw(string, bindings = nil, autoescape = nil)
   env = Crinja::Environment.new
   env.context.autoescape = autoescape unless autoescape.nil?
-  lexer = Parser::ExpressionLexer.new(env.config, string)
-  parser = Parser::ExpressionParser.new(lexer)
+  lexer = Crinja::Parser::ExpressionLexer.new(env.config, string)
+  parser = Crinja::Parser::ExpressionParser.new(lexer)
 
   expression = parser.parse
 

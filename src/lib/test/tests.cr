@@ -1,5 +1,3 @@
-include Crinja
-
 # Return whether the object is callable.
 Crinja.test(:callable) { target.callable? }
 
@@ -20,7 +18,7 @@ Crinja.test(:nil) { target.raw.nil? }
 Crinja.test(:mapping) { target.mapping? }
 
 # Check if a variable is divisible by a number.
-Crinja.test({num: UNDEFINED}, :divisibleby) { target.to_i % arguments[:num].to_i == 0 }
+Crinja.test({num: Crinja::UNDEFINED}, :divisibleby) { target.to_i % arguments[:num].to_i == 0 }
 
 # Check if an object has the same value as another object:
 # ```
@@ -32,10 +30,10 @@ Crinja.test({num: UNDEFINED}, :divisibleby) { target.to_i % arguments[:num].to_i
 # ```
 # {{ users | selectattr("email", "equalto", "foo@bar.invalid") }}
 # ```
-Crinja.test({other: UNDEFINED}, :equalto) { target == arguments[:other] }
+Crinja.test({other: Crinja::UNDEFINED}, :equalto) { target == arguments[:other] }
 
 # Checks if an object points to the same memory address than another object:
-Crinja.test({other: UNDEFINED}, :sameas) { target.sameas? arguments[:other] }
+Crinja.test({other: Crinja::UNDEFINED}, :sameas) { target.sameas? arguments[:other] }
 
 # Returns `true` if the variable is lowercased.
 Crinja.test(:lower) { target.to_s.chars.all?(&.lowercase?) }
@@ -47,7 +45,7 @@ Crinja.test(:upper) { target.to_s.chars.all?(&.uppercase?) }
 Crinja.test(:string) { target.string? }
 
 # Returns `true` if the variable is a string.
-Crinja.test(:escaped) { target.raw.is_a?(SafeString) }
+Crinja.test(:escaped) { target.raw.is_a?(Crinja::SafeString) }
 
 # Returns `true` if the variable is a number.
 Crinja.test(:number) { target.number? }
@@ -71,7 +69,7 @@ Crinja.test({other: 0}, :lessthan) { target.to_i.<(arguments[:other].to_i) }
 Crinja.test({other: 0}, :greaterthan) { target.to_i.>(arguments[:other].to_i) }
 
 # Check if value is in seq.
-Crinja.test({seq: Array(Type).new}, :in) {
+Crinja.test({seq: Array(Crinja::Type).new}, :in) {
   seq = arguments[:seq]
   raw = seq.raw
   case raw

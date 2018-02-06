@@ -2,7 +2,7 @@ require "../spec_helper"
 
 describe Crinja::Value do
   it "compare pytuple" do
-    PyTuple.new("foo", 1).should eq PyTuple.new("foo", 1)
+    Crinja::PyTuple.new("foo", 1).should eq Crinja::PyTuple.new("foo", 1)
   end
 
   describe "raw_each" do
@@ -15,9 +15,9 @@ describe Crinja::Value do
       hash = Crinja::Dictionary.new
       hash["foo"] = 1
       hash["bar"] = 3
-      arr = [] of Type
-      arr << PyTuple.new("foo", 1)
-      arr << PyTuple.new("bar", 3)
+      arr = [] of Crinja::Type
+      arr << Crinja::PyTuple.new("foo", 1)
+      arr << Crinja::PyTuple.new("bar", 3)
       Crinja::Value.new(hash).raw_each.to_a.should eq arr
     end
   end

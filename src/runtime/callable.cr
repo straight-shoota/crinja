@@ -21,7 +21,7 @@ module Crinja
       {% name = defaults %}
     {% end %}
 
-    %instance = Callable::Instance.new(%block, %defaults, {{ name.is_a?(NilLiteral) ? nil : name.id.stringify }})
+    %instance = Crinja::Callable::Instance.new(%block, %defaults, {{ name.is_a?(NilLiteral) ? nil : name.id.stringify }})
 
     {% unless name.is_a?(NilLiteral) %}
     {{ kind }}::Library.defaults << %instance

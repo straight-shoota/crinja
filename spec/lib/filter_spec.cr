@@ -147,7 +147,7 @@ describe Crinja::Filter do
   # NOTE: Jinja2 encodes '"' as '&#34;' instead of '&quot;'
   it "escape" do
     evaluate_expression(%('<">&'|escape)).should eq "&lt;&quot;&gt;&amp;"
-    evaluate_expression(%(x|escape), {x: SafeString.new("<div />")}).should eq "<div />"
+    evaluate_expression(%(x|escape), {x: Crinja::SafeString.new("<div />")}).should eq "<div />"
   end
 
   it "strips tags" do
@@ -251,7 +251,7 @@ describe Crinja::Filter do
       evaluate_expression(%([1, 2, 3, 4]|length)).should eq "4"
     end
     it "number" do
-      expect_raises(TypeError) do
+      expect_raises(Crinja::TypeError) do
         evaluate_expression(%(1234|length)).should eq ""
       end
     end
@@ -492,11 +492,11 @@ describe Crinja::Filter do
     evaluate_expression(%(string|replace("o", 42)), {string: "<foo>"}).should eq "<f4242>"
     evaluate_expression(%(string|replace("o", 42)), {string: "<foo>"}, autoescape: true).should eq "&lt;f4242&gt;"
     evaluate_expression(%(string|replace("<", 42)), {string: "<foo>"}, autoescape: true).should eq "42foo&gt;"
-    evaluate_expression(%(string|replace("o", ">x<")), {string: SafeString.new("foo")}, autoescape: true).should eq "f&gt;x&lt;&gt;x&lt;"
+    evaluate_expression(%(string|replace("o", ">x<")), {string: Crinja::SafeString.new("foo")}, autoescape: true).should eq "f&gt;x&lt;&gt;x&lt;"
   end
 
   it "forceescape" do
-    evaluate_expression(%(x|forceescape), {x: SafeString.new("<div />")}).should eq "&lt;div /&gt;"
+    evaluate_expression(%(x|forceescape), {x: Crinja::SafeString.new("<div />")}).should eq "&lt;div /&gt;"
   end
 
   it "safe" do

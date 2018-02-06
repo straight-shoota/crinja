@@ -3,10 +3,10 @@ Crinja.function({sep: ", "}, :joiner) do
   sep = arguments[:sep].to_s
   ->(_args : Crinja::Callable::Arguments) {
     (if called
-      sep.as(Type)
+      sep.as(Crinja::Type)
     else
       called = true
-      "".as(Type)
-    end).as(Type)
-  }.as(Type)
+      "".as(Crinja::Type)
+    end).as(Crinja::Type)
+  }.as(Crinja::Type)
 end

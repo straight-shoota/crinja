@@ -71,7 +71,7 @@ module Crinja::PyObject
         {% end %}
       {% end %}
 
-      Undefined.new(attr.to_s)
+      Crinja::Undefined.new(attr.to_s)
     end
   end
 
@@ -84,7 +84,7 @@ module Crinja::PyObject
         end
       {% end %}
 
-      Undefined.new(attr.to_s)
+      Crinja::Undefined.new(attr.to_s)
     end
   end
 end
