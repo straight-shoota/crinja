@@ -1028,7 +1028,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L1" target="_blank">runtime/safe_string.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L3" target="_blank">runtime/safe_string.cr</a>
     
     <br/>
   
@@ -1042,11 +1042,6 @@
     
       <dt class="entry-const" id="NIL">
         <strong>NIL</strong> = <code>plain(<span class="n">nil</span>)</code>
-      </dt>
-      
-    
-      <dt class="entry-const" id="SUBSTITUTIONS">
-        <strong>SUBSTITUTIONS</strong> = <code>{<span class="s">'>'</span> => <span class="s">&quot;&amp;gt;&quot;</span>, <span class="s">'<'</span> => <span class="s">&quot;&amp;lt;&quot;</span>, <span class="s">'&'</span> => <span class="s">&quot;&amp;amp;&quot;</span>, <span class="s">'"'</span> => <span class="s">&quot;&amp;quot;&quot;</span>, <span class="s">'\''</span> => <span class="s">&quot;&amp;#x27;&quot;</span>}</code>
       </dt>
       
     
@@ -1124,9 +1119,9 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#escaped%28string%29-class-method" class="signature"><strong>.escaped</strong>(string)</a>
+        <a href="#escape%28%26block%29-class-method" class="signature"><strong>.escape</strong>(&block)</a>
         
-          <div class="summary"><p>Returns an escaped string.</p></div>
+          <div class="summary"><p>Yields a builder which automatically escapes.</p></div>
         
       </li>
     
@@ -1325,7 +1320,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L135" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L129" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1341,7 +1336,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1362,7 +1357,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L113" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L115" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1380,7 +1375,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L140" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L134" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1398,7 +1393,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L145" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L139" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1416,7 +1411,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L150" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L144" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1434,7 +1429,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L155" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L149" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1452,7 +1447,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L163" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L157" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1470,27 +1465,27 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L171" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L165" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="escaped(string)-class-method">
+    <div class="entry-detail" id="escape(&amp;block)-class-method">
       <div class="signature">
         
-        def self.<strong>escaped</strong>(string)
+        def self.<strong>escape</strong>(&block)
 
-        <a class="method-permalink" href="#escaped%28string%29-class-method">#</a>
+        <a class="method-permalink" href="#escape%28%26block%29-class-method">#</a>
       </div>
       
-        <div class="doc"><p>Returns an escaped string.</p>
+        <div class="doc"><p>Yields a builder which automatically escapes.</p>
 
-<p><span class="flag orange">TODO</span>  Replace with HTML.escape when crystal-lang/crystal#4555 gets merged</p></div>
+<p><span class="flag orange">TODO</span>  Implement stream IO.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L177" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L172" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1508,7 +1503,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L120" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L122" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1529,7 +1524,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1545,7 +1540,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1561,7 +1556,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1577,7 +1572,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1593,7 +1588,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L33" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1609,7 +1604,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L107" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1625,7 +1620,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1641,7 +1636,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1657,7 +1652,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L99" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L101" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1673,7 +1668,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1689,7 +1684,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L64" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1705,7 +1700,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L105" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1721,7 +1716,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1737,7 +1732,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1753,7 +1748,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L95" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L97" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1769,7 +1764,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L68" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L70" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1785,7 +1780,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L77" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L79" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1801,7 +1796,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1817,7 +1812,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1833,7 +1828,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1849,7 +1844,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1865,7 +1860,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1881,7 +1876,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1897,7 +1892,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1913,7 +1908,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/safe_string.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/runtime/safe_string.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>

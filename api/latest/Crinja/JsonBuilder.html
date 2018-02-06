@@ -1028,7 +1028,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/util/json_builder.cr#L3" target="_blank">util/json_builder.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/util/json_builder.cr#L3" target="_blank">util/json_builder.cr</a>
     
     <br/>
   
@@ -1041,7 +1041,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28value%2Cindent%3D0%29-class-method" class="signature"><strong>.new</strong>(value, indent = <span class="n">0</span>)</a>
+        <a href="#new%28io%3AIO%2Cindent%3D0%29-class-method" class="signature"><strong>.new</strong>(io : IO, indent = <span class="n">0</span>)</a>
         
       </li>
     
@@ -1051,6 +1051,11 @@
 
   <h2>Class Method Summary</h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#to_json%28io%3AIO%2Cvalue%2Cindent%3D0%29-class-method" class="signature"><strong>.to_json</strong>(io : IO, value, indent = <span class="n">0</span>)</a>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#to_json%28value%2Cindent%3D0%29-class-method" class="signature"><strong>.to_json</strong>(value, indent = <span class="n">0</span>)</a>
@@ -1102,18 +1107,18 @@
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new(value,indent=0)-class-method">
+    <div class="entry-detail" id="new(io:IO,indent=0)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(value, indent = <span class="n">0</span>)
+        def self.<strong>new</strong>(io : IO, indent = <span class="n">0</span>)
 
-        <a class="method-permalink" href="#new%28value%2Cindent%3D0%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28io%3AIO%2Cindent%3D0%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/util/json_builder.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/util/json_builder.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1122,6 +1127,22 @@
 
 
   <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="to_json(io:IO,value,indent=0)-class-method">
+      <div class="signature">
+        
+        def self.<strong>to_json</strong>(io : IO, value, indent = <span class="n">0</span>)
+
+        <a class="method-permalink" href="#to_json%28io%3AIO%2Cvalue%2Cindent%3D0%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/util/json_builder.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
   
     <div class="entry-detail" id="to_json(value,indent=0)-class-method">
       <div class="signature">
@@ -1134,7 +1155,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/util/json_builder.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0c35f1eb925e7d62569908ba5efc03af227d7362/src/util/json_builder.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
