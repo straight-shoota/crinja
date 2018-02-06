@@ -1,4 +1,5 @@
 require "uri"
+require "html"
 require "../../util/json_builder"
 
 module Crinja::Filter
@@ -46,7 +47,7 @@ module Crinja::Filter
       target.as_h.each_with_index do |(key, value), i|
         next if value.nil? || value.is_a?(Undefined)
 
-        io << sprintf %( %s="%s"), SafeString.escaped(key), SafeString.escaped(value)
+        io << sprintf %( %s="%s"), HTML.escape(key.to_s), HTML.escape(value.to_s)
       end
     end
 
@@ -67,10 +68,10 @@ module Crinja::Util
 
   def self.urlize(text, trim_url_limit, rel, target)
     rel_attr = ""
-    rel_attr = %( rel="%s") % SafeString.escaped(rel.join(' ')) unless rel.empty?
+    rel_attr = %( rel="%s") % HTML.escape(rel.join(' ')) unless rel.empty?
 
     target_attr = ""
-    target_attr = %( target="%s") % SafeString.escaped(target) unless target.nil? || target.empty?
+    target_attr = %( target="%s") % HTML.escape(target) unless target.nil? || target.empty?
 
     SafeString.build do |io|
       text.each_line do |line|

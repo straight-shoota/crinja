@@ -1,3 +1,5 @@
+require "html"
+
 struct Crinja::SafeString
   def initialize(@string : String, @plain_value = false)
   end
@@ -123,14 +125,6 @@ struct Crinja::SafeString
 
   NIL = plain(nil)
 
-  SUBSTITUTIONS = {
-    '>'  => "&gt;",
-    '<'  => "&lt;",
-    '&'  => "&amp;",
-    '"'  => "&quot;",
-    '\'' => "&#x27;",
-  }
-
   # Escapes value and wraps it in a `SafeString`.
   def self.escape(value : Value) : SafeString
     escape(value.raw)
@@ -169,7 +163,7 @@ struct Crinja::SafeString
 
   # ditto
   def self.escape(string)
-    new self.escaped(string)
+    new HTML.escape string.to_s
   end
 
   # Yields a builder which automatically escapes.
@@ -178,11 +172,5 @@ struct Crinja::SafeString
   def self.escape
     string = String.build { |io| yield io }
     escape string
-  end
-
-  # Returns an escaped string.
-  # TODO: Replace with HTML.escape when crystal-lang/crystal#4555 gets merged
-  def self.escaped(string)
-    string.to_s.gsub(SUBSTITUTIONS)
   end
 end

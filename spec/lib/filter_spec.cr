@@ -596,7 +596,7 @@ describe Crinja::Filter do
       # evaluate_expression(%(x|tojson), {x: {"foo" => "bar"}}, autoescape: true).should eq "{&#34;foo&#34;: &#34;bar&#34;}"
       evaluate_expression(%(x|tojson), {x: {"foo" => "bar"}}, autoescape: true).should eq "{\n&quot;foo&quot;: &quot;bar&quot;\n}"
       # evaluate_expression(%(x|tojson), {x: %("bar')}, autoescape: true).should eq "&#34;&#34;bar\u0027&#34;"
-      evaluate_expression(%(x|tojson), {x: %("bar')}, autoescape: true).should eq "&quot;\\&quot;bar&#x27;&quot;"
+      evaluate_expression(%(x|tojson), {x: %("bar')}, autoescape: true).should eq "&quot;\\&quot;bar&#39;&quot;"
     end
 
     pending "policies" do
