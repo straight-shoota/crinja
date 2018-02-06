@@ -1,6 +1,6 @@
 require "../error"
 
-module Crinja
+class Crinja
   # :nodoc:
   macro callable(kind, defaults = nil, name = nil)
     %defaults = Crinja::Variables.new

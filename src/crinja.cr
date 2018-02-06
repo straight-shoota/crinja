@@ -1,9 +1,15 @@
-# This is the main namespace for Crinja template engine.
-# It contains macros to easily define custom template features such as filters, tests
-# and functions.
+# This class represents the core component of the Crinja template engine.
 #
-# The most important class for using the Crinja API is `Crinja::Environment`.
-module Crinja
+# It contains the *runtime environment* including configuration, global variables
+# as well as loading and rendering templates.
+#
+# Instances of this class may be modified if they are not shared and if no template
+# was loaded so far. Modifications on environments after the first template was
+# loaded will lead to surprising effects and undefined behavior.
+#
+# It also contains macros to easily define custom template features such as filters, tests
+# and functions.
+class Crinja
   VERSION = {{ `shards version #{__DIR__}`.chomp.stringify }}
 
   # Tries to cast any value to `Crinja::Type`.

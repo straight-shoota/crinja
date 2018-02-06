@@ -1,4 +1,4 @@
-module Crinja
+class Crinja
   UNDEFINED = Undefined.new("UNDEFINED")
 
   # The default undefined type.

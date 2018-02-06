@@ -4,8 +4,8 @@ require "./loader"
 require "./runtime/resolver"
 require "logger"
 
-# The core component of Crinja is the `Environment`. It contains configuration, global variables and provides an API for template loading and rendering. Instances of this class may be modified if they are not shared and if no template was loaded so far. Modifications on environments after the first template was loaded will lead to surprising effects and undefined behavior.
-class Crinja::Environment
+class Crinja
+  alias Environment = self
   # The current context in which evaluation happens. It can only be changed by `#with_context`.
   getter context : Context
 

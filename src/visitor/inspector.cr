@@ -1,6 +1,6 @@
 require "./visitor"
 
-module Crinja
+class Crinja
   # This visitor prints the node tree into an xml-like string for debugging purposes.
   class Visitor::Inspector < Visitor(AST::ASTNode)
     def initialize(@io : IO, @indent = 0)

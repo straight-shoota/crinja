@@ -1,4 +1,4 @@
-module Crinja
+class Crinja
   # :nodoc:
   alias TypeNumber = Float64 | Int64 | Int32
   # :nodoc:

@@ -1,6 +1,6 @@
 require "./source"
 
-module Crinja
+class Crinja
   class Visitor::HTML < Visitor::Source
     private def visit_content(token)
       case token.kind
