@@ -4,10 +4,8 @@ require "./undefined"
 require "./safe_string"
 require "./callable"
 
-# was intended to be a struct, but that crashes iterator
-
 # Value is a value object inside the Crinja runtime.
-class Crinja::Value
+struct Crinja::Value
   include Enumerable(self)
   include Iterable(self)
   include Comparable(self)
