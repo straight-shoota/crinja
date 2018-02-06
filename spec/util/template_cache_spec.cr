@@ -2,7 +2,7 @@ require "../spec_helper.cr"
 
 private module CacheTest
   class_property env
-  @@env = Crinja::Environment.new
+  @@env = Crinja.new
   class_property template_a
   @@template_a = Crinja::Template.new(source, env, name, file_name)
   class_property template_b

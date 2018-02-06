@@ -46,7 +46,7 @@ users = [
   User.new("peter", Time.new(2002, 4, 1))
 ]
 
-env = Crinja::Environment.new
+env = Crinja.new
 
 template = env.from_string <<-'TEMPLATE'
   {%- for user in users -%}

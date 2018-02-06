@@ -9,7 +9,7 @@ COMPAT_SUITE_EXPECTED_PATH  = "#{COMPAT_SUITE_PATH}/expected"
 COMPAT_SUITE_LOADER         = Crinja::Loader::FileSystemLoader.new(File.join(__DIR__, COMPAT_SUITE_TEMPLATES_PATH))
 
 private def create_compat_suite_env
-  env = Crinja::Environment.new(loader: COMPAT_SUITE_LOADER)
+  env = Crinja.new(loader: COMPAT_SUITE_LOADER)
   env.functions["url_for"] = Crinja.function({name: Crinja::UNDEFINED}) do
     case arguments[:name].as_s!
     when "home"

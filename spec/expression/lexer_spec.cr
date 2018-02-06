@@ -2,7 +2,7 @@ require "../spec_helper"
 
 describe Crinja::Parser::ExpressionLexer do
   it "tokenizes a simple statement" do
-    env = Crinja::Environment.new
+    env = Crinja.new
     lexer = Crinja::Parser::ExpressionLexer.new(env.config, %("foo" | upper ~ 12))
     tokens = lexer.tokenize
     tokens.map do |token|

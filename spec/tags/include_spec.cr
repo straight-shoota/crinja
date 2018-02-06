@@ -54,7 +54,7 @@ describe Crinja::Tag::Include do
   end
 
   it "context include with override" do
-    env = Crinja::Environment.new
+    env = Crinja.new
     env.loader = Crinja::Loader::HashLoader.new({
       "main" => "{% for item in [1, 2, 3] %}{% include 'item' %}{% endfor %}",
       "item" => "{{ item }}",

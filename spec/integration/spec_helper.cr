@@ -5,7 +5,7 @@ FIXTURES       = "spec/fixtures"
 FIXTURE_LOADER = Crinja::Loader::FileSystemLoader.new(FIXTURES)
 
 def render_file(file, bindings, autoescape = nil, trim_blocks = nil)
-  env = Crinja::Environment.new
+  env = Crinja.new
   env.loader = FIXTURE_LOADER
   env.config.autoescape.default = autoescape unless autoescape.nil?
   env.config.trim_blocks = trim_blocks unless trim_blocks.nil?

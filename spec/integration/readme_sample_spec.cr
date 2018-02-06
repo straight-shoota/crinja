@@ -15,7 +15,7 @@ end
 
 describe "README.md" do
   it "example code works" do
-    env = Crinja::Environment.new
+    env = Crinja.new
 
     env.filters << Customfilter.new
 

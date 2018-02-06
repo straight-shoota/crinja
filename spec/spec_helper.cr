@@ -8,7 +8,7 @@ def parse(string)
 end
 
 def parse_expression(string)
-  env = Crinja::Environment.new
+  env = Crinja.new
   begin
     lexer = Crinja::Parser::ExpressionLexer.new(env.config, string)
     parser = Crinja::Parser::ExpressionParser.new(lexer)
@@ -20,7 +20,7 @@ def parse_expression(string)
 end
 
 def render(string, bindings = nil, autoescape = nil, loader = nil, trim_blocks = nil, lstrip_blocks = nil)
-  env = Crinja::Environment.new
+  env = Crinja.new
   env.loader = loader unless loader.nil?
   env.config.autoescape.default_for_string = autoescape unless autoescape.nil?
   env.config.trim_blocks = trim_blocks unless trim_blocks.nil?
@@ -31,7 +31,7 @@ def render(string, bindings = nil, autoescape = nil, loader = nil, trim_blocks =
 end
 
 def load(name, autoescape = nil, loader = nil, trim_blocks = nil, lstrip_blocks = nil)
-  env = Crinja::Environment.new
+  env = Crinja.new
   env.loader = loader unless loader.nil?
   env.context.autoescape = autoescape unless autoescape.nil?
   env.config.trim_blocks = trim_blocks unless trim_blocks.nil?
@@ -44,14 +44,14 @@ def render_load(name, bindings = nil, autoescape = nil, loader = nil, trim_block
 end
 
 def evaluate_expression(string, bindings = nil, autoescape = nil)
-  env = Crinja::Environment.new
+  env = Crinja.new
   env.config.autoescape.default_for_string = autoescape unless autoescape.nil?
 
   env.evaluate(string, bindings)
 end
 
 def evaluate_expression_raw(string, bindings = nil, autoescape = nil)
-  env = Crinja::Environment.new
+  env = Crinja.new
   env.context.autoescape = autoescape unless autoescape.nil?
   lexer = Crinja::Parser::ExpressionLexer.new(env.config, string)
   parser = Crinja::Parser::ExpressionParser.new(lexer)

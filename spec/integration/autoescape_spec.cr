@@ -9,7 +9,7 @@ describe "autoescape" do
   end
 
   it "renders template *.xml" do
-    env = Crinja::Environment.new
+    env = Crinja.new
     env.config.autoescape.disabled_extensions = ["txt"]
     env.config.autoescape.default = false
     Crinja::Template.new("{{ variable }}", env, filename: "hello_world.XML").render({
@@ -18,7 +18,7 @@ describe "autoescape" do
   end
 
   it "renders template *.xml.jinja" do
-    env = Crinja::Environment.new
+    env = Crinja.new
     env.config.autoescape.disabled_extensions = ["txt"]
     env.config.autoescape.default = false
     Crinja::Template.new("{{ variable }}", env, filename: "hello_world.xml.jinja").render({
@@ -27,7 +27,7 @@ describe "autoescape" do
   end
 
   it "renders template *.xml.j2" do
-    env = Crinja::Environment.new
+    env = Crinja.new
     env.config.autoescape.disabled_extensions = ["txt"]
     Crinja::Template.new("{{ variable }}", env, filename: "hello_world.xml.j2").render({
       "variable" => "Value with <unsafe> data",
@@ -35,7 +35,7 @@ describe "autoescape" do
   end
 
   it "renders template *.txt" do
-    env = Crinja::Environment.new
+    env = Crinja.new
     env.config.autoescape.disabled_extensions = ["txt"]
     Crinja::Template.new("{{ variable }}", env, filename: "hello_world.txt").render({
       "variable" => "Value with <unsafe> data",
@@ -43,7 +43,7 @@ describe "autoescape" do
   end
 
   it "renders template *.txt.jinja" do
-    env = Crinja::Environment.new
+    env = Crinja.new
     env.config.autoescape.disabled_extensions = ["txt"]
     Crinja::Template.new("{{ variable }}", env, filename: "hello_world.txt.jinja").render({
       "variable" => "Value with <unsafe> data",
@@ -51,7 +51,7 @@ describe "autoescape" do
   end
 
   it "renders template *.txt.j2" do
-    env = Crinja::Environment.new
+    env = Crinja.new
     env.config.autoescape.disabled_extensions = ["txt"]
     Crinja::Template.new("{{ variable }}", env, filename: "hello_world.TXT.J2").render({
       "variable" => "Value with <unsafe> data",

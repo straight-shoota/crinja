@@ -8,7 +8,7 @@ module Crinja::CLI
     @@logger ||= Logger.new(STDOUT)
   end
 
-  @@env = Crinja::Environment.new
+  @@env = Crinja.new
   @@loader = Crinja::Loader::FileSystemLoader.new("")
   @@env.loader = @@loader
   @@template_string : String?

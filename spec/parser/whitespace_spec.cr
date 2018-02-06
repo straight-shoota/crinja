@@ -53,7 +53,7 @@ describe "whitespace" do
   end
 
   it "trims around blocks with `trim_blocks`" do
-    env = Crinja::Environment.new
+    env = Crinja.new
     env.config.trim_blocks = true
     string = %(  {%- for item in item_list -%}\n    {{ item }}{% if not loop.last %},{% endif %}\n  {%- endfor -%})
     template = Crinja::Template.new(string)

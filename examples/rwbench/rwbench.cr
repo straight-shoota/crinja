@@ -1,7 +1,7 @@
 require "benchmark"
 require "crinja"
 
-env = Crinja::Environment.new
+env = Crinja.new
 
 env.filters[:dateformat] = Crinja.filter { target.as_time.to_s("%Y-%m-%d") }
 env.loader = Crinja::Loader::FileSystemLoader.new(File.join(FileUtils.pwd, "crinja"))

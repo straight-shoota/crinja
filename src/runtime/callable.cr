@@ -41,7 +41,7 @@ class Crinja
   # The macro takes a *block* which will be the main body for the proc. There, the following
   # variables are available:
   # * *arguments* : `Crinja::Arguments` - Call arguments from the caller including *defaults*.
-  # * *env* : `Crinja::Environment` - The current environment.
+  # * *env* : `Crinja` - The current environment.
   # * *target* : `Crinja::Value` - The subject of the test. Short cut for `arguments.target`.
   macro test(defaults = nil, name = nil, &block)
     Crinja.callable(Crinja::Test, {{ defaults }}, {{ name }}) do
@@ -61,7 +61,7 @@ class Crinja
   # The macro takes a *block* which will be the main body for the proc. There, the following
   # variables are available:
   # * *arguments* : `Crinja::Arguments` - Call arguments from the caller including *defaults*.
-  # * *env* : `Crinja::Environment` - The current environment.
+  # * *env* : `Crinja` - The current environment.
   # * *target* : `Crinja::Value` - The value which is to be filtered. Short cut for `arguments.target`.
   macro filter(defaults = nil, name = nil, &block)
     Crinja.callable(Crinja::Filter, {{ defaults }}, {{ name }}) do
@@ -81,7 +81,7 @@ class Crinja
   # The macro takes a *block* which will be the main body for the proc. There, the following
   # variables are available:
   # * *arguments* : `Crinja::Arguments` - Call arguments from the caller including *defaults*.
-  # * *env* : `Crinja::Environment` - The current environment.
+  # * *env* : `Crinja` - The current environment.
   macro function(defaults = nil, name = nil, &block)
     Crinja.callable(Crinja::Function, {{ defaults }}, {{ name }}) do
       ({{ yield }}).as(Crinja::Type)

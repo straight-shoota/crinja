@@ -135,7 +135,7 @@ describe Crinja::Tag::Extends do
       "master2" => "MASTER2{% block x %}{% endblock %}",
       "child"   => "{% extends master %}{% block x %}CHILD{% endblock %}",
     })
-    env = Crinja::Environment.new
+    env = Crinja.new
     env.loader = loader
     template = env.get_template("child")
     [1, 2].each do |m|
@@ -150,7 +150,7 @@ describe Crinja::Tag::Extends do
       "child"   => "{% if master %}{% extends master %}{% else %}{% extends" \
                  "'master1' %}{% endif %}{% block x %}CHILD{% endblock %}",
     })
-    env = Crinja::Environment.new
+    env = Crinja.new
     env.loader = loader
     template = env.get_template("child")
     template.render({"master" => "master2"}).should eq "MASTER2CHILD"

@@ -5,7 +5,7 @@ require "crinja/loader/baked_file_loader"
 
 module Crinja
   macro embed(filename, io_name, *args)
-    env = Crinja::Environment.new(loader: Crinja::Loader::BakedFileLoader.new(KiltTemplateFileSystem))
+    env = Crinja.new(loader: Crinja::Loader::BakedFileLoader.new(KiltTemplateFileSystem))
     bindings = {} of String => Crinja::Type
 
     env.get_template({{ filename }}).render({{ io_name.id }}, {{ *args }})

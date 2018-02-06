@@ -127,7 +127,7 @@ describe Crinja::Test do
     items = [] of Tuple(String, String)
     matching = Crinja.test({x: nil}) { items << {target.as_s!, arguments[:x].as_s!}; false }
 
-    env = Crinja::Environment.new
+    env = Crinja.new
     env.tests["matching"] = matching
     tmpl = env.from_string("{{ ('us-west-1' is matching '(us-east-1|ap-northeast-1)') " \
                            "or 'stage' is matching '(dev|stage)' }}"

@@ -9,7 +9,7 @@ describe Crinja::Parser::ExpressionParser do
   it "" do
     expression = parse_expression(%(1 + 2))
     expression.should be_a(Crinja::AST::BinaryExpression)
-    Crinja::Environment.new.evaluate(expression).should eq 3
+    Crinja.new.evaluate(expression).should eq 3
   end
 
   it "parses member operator" do

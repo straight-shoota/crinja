@@ -1,7 +1,7 @@
 require "kemal"
 require "crinja"
 
-crinja = Crinja::Environment.new(loader: Crinja::Loader::FileSystemLoader.new("pages"))
+crinja = Crinja.new(loader: Crinja::Loader::FileSystemLoader.new("pages"))
 
 logger = Logger.new(STDERR)
 
@@ -44,7 +44,7 @@ get "/*" do |env|
 end
 
 class Crinja::Server::SourceRenderer
-  def initialize(@env : Crinja::Environment)
+  def initialize(@env : Crinja)
   end
 
   def render(template)

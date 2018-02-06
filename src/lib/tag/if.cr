@@ -31,7 +31,7 @@ class Crinja::Tag::If < Crinja::Tag
     end
   end
 
-  def evaluate_node(tag_node, env : Crinja::Environment)
+  def evaluate_node(tag_node, env : Crinja)
     if tag_node.name == "else"
       return true
     end

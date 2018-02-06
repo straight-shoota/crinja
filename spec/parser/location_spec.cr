@@ -2,7 +2,7 @@ require "../spec_helper"
 
 describe Crinja::Parser::TemplateParser do
   it "fixed string" do
-    parser = Crinja::Parser::TemplateParser.new(Crinja::Environment.new, "Hallo Welt!")
+    parser = Crinja::Parser::TemplateParser.new(Crinja.new, "Hallo Welt!")
     tree = parser.parse
 
     fixed_string = tree.children.first
@@ -11,7 +11,7 @@ describe Crinja::Parser::TemplateParser do
   end
 
   it "fixed string and expression" do
-    parser = Crinja::Parser::TemplateParser.new(Crinja::Environment.new, "Hallo Welt {{ name }}!")
+    parser = Crinja::Parser::TemplateParser.new(Crinja.new, "Hallo Welt {{ name }}!")
     tree = parser.parse
 
     hello = tree.children[0]

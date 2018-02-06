@@ -60,7 +60,7 @@ describe Crinja::Tag::Macro do
   end
 
   it "macro_api" do
-    tmpl = Crinja::Environment.new.from_string(<<-'TPL'
+    tmpl = Crinja.new.from_string(<<-'TPL'
          {% macro foo(a, b) %}{% endmacro %}
          {% macro bar() %}{{ varargs }}{{ kwargs }}{% endmacro %}
          {% macro baz() %}{{ caller() }}{% endmacro %}
@@ -78,7 +78,7 @@ describe Crinja::Tag::Macro do
   # TODO: Inspect macro body for usage of `varargs`, `kwargs` and `caller()` -> Tree Traversal
   # TODO: Create macro functions without calling render
   pending "macro_api_ctd" do
-    tmpl = Crinja::Environment.new.from_string(<<-'TPL'
+    tmpl = Crinja.new.from_string(<<-'TPL'
          {% macro foo(a, b) %}{% endmacro %}
          {% macro bar() %}{{ varargs }}{{ kwargs }}{% endmacro %}
          {% macro baz() %}{{ caller() }}{% endmacro %}
@@ -97,7 +97,7 @@ describe Crinja::Tag::Macro do
   # TODO: Ignore context outside macro for execution
   # TODO: Apply argument values as default for others (`b=x`)
   pending "macro_defaults_self_ref" do
-    env = Crinja::Environment.new
+    env = Crinja.new
     tmpl = env.from_string(<<-'TPL'
          {%- set x = 42 %}
          {%- macro m(a, b=x, x=23) %}{{ a }}|{{ b }}|{{ x }}{% endmacro -%}

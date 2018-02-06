@@ -7,9 +7,9 @@ class Crinja::ResolvedDict(T)
   end
 
   getter dictionary : Hash(YAML::Type, YAML::Type)
-  getter env : Crinja::Environment
+  getter env : Crinja
 
-  def initialize(@dictionary, @env = Crinja::Environment.new)
+  def initialize(@dictionary, @env = Crinja.new)
   end
 
   delegate keys, to: dictionary

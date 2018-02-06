@@ -196,7 +196,7 @@ class Crinja
   # :nodoc:
   def inspect(io : IO)
     io << "<"
-    io << "Crinja::Environment"
+    io << "Crinja"
     io << " @libraries="
     {% for library in ["operators", "functions", "filters", "tags"] %}
     io << " " << {{ library.id.stringify }} << "=["

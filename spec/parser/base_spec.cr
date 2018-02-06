@@ -2,7 +2,7 @@ require "../spec_helper"
 
 describe Crinja::Parser::TemplateParser do
   it "parses a simple template string" do
-    parser = Crinja::Parser::TemplateParser.new(Crinja::Environment.new, "Hallo Welt")
+    parser = Crinja::Parser::TemplateParser.new(Crinja.new, "Hallo Welt")
     tree = parser.parse
 
     tree.should be_a(Crinja::AST::NodeList)

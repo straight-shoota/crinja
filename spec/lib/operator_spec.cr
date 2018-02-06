@@ -141,14 +141,14 @@ describe Crinja::Operator do
       evaluate_expression("true and none").should eq("false")
     end
     it "evaluates right branch if first is true" do
-      env = Crinja::Environment.new
+      env = Crinja.new
       test_called = false
       env.functions["test"] = Crinja.function { test_called = true }
       env.evaluate("true and test()")
       test_called.should be_true
     end
     it "does not evaluate right branch if first is false" do
-      env = Crinja::Environment.new
+      env = Crinja.new
       test_called = false
       env.functions["test"] = Crinja.function { test_called = true }
       env.evaluate("false and test()")
@@ -164,14 +164,14 @@ describe Crinja::Operator do
       evaluate_expression("true or none").should eq("true")
     end
     it "evaluates right branch if first is false" do
-      env = Crinja::Environment.new
+      env = Crinja.new
       test_called = false
       env.functions["test"] = Crinja.function { test_called = true }
       env.evaluate("false or test()")
       test_called.should be_true
     end
     it "does not evaluate right branch if first is true" do
-      env = Crinja::Environment.new
+      env = Crinja.new
       test_called = false
       env.functions["test"] = Crinja.function { test_called = true }
       env.evaluate("true or test()")

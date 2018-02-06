@@ -58,7 +58,7 @@ end
 
 describe Crinja::Filter do
   it "calling" do
-    Crinja::Environment.new.call_filter("sum", [1, 2, 3]).should eq 6
+    Crinja.new.call_filter("sum", [1, 2, 3]).should eq 6
   end
 
   it "capitalize" do
@@ -344,7 +344,7 @@ describe Crinja::Filter do
     end
 
     it "urlize rel policy" do
-      env = Crinja::Environment.new
+      env = Crinja.new
       env.policies["urlize.rel"] = nil
       env.evaluate(%("foo http://www.example.com/ bar"|urlize)).should eq \
         %(foo <a href="http://www.example.com/">http://www.example.com/</a> bar)
@@ -600,7 +600,7 @@ describe Crinja::Filter do
     end
 
     pending "policies" do
-      env = Crinja::Environment.new
+      env = Crinja.new
       env.config.autoescape = true
       env.policies["json.dumps_function"] = Crinja.function do
         arguments.kwargs.should eq({"foo", "bar"})

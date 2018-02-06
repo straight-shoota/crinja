@@ -23,7 +23,7 @@ class Crinja::Server::PlayHandler
         name: "mat"
       END
 
-  def initialize(@env : Crinja::Environment, @logger : Logger)
+  def initialize(@env : Crinja, @logger : Logger)
   end
 
   def call(context)
