@@ -275,6 +275,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Dictionary" data-name="crinja::dictionary">
+      <a href="Crinja/Dictionary.html">Dictionary</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Environment" data-name="crinja::environment">
       <a href="Crinja/Environment.html">Environment</a>
       
@@ -955,6 +960,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Variables" data-name="crinja::variables">
+      <a href="Crinja/Variables.html">Variables</a>
+      
+    </li>
+  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Visitor" data-name="crinja::visitor(t)">
       <a href="Crinja/Visitor.html">Visitor</a>
       
@@ -1025,8 +1035,8 @@
 
 <pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
 
-template <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Template</span>.<span class="k">new</span>(<span class="s">&quot;Hello, &#123;&#123; name &#125;&#125;&#33;&quot;</span>)
-template.render({<span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span>}) <span class="c"># &#61;&gt; &quot;Hello, John&#33;&quot;</span></code></pre>
+template <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Template</span>.<span class="k">new</span>(<span class="s">&quot;Hello, {{ name }}!&quot;</span>)
+template.render({<span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span>}) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
 
 <h3>File loader</h3>
 
@@ -1042,8 +1052,8 @@ template.render({<span class="s">&quot;name&quot;</span> => <span class="s">&quo
 env <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Environment</span>.<span class="k">new</span>
 env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>(<span class="s">&quot;views/&quot;</span>)
 template <span class="o">=</span> env.get_template(<span class="s">&quot;index.html.j2&quot;</span>)
-template.render <span class="c"># &#61;&gt; &quot;Hello, World&#33;&quot;</span>
-template.render({ <span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span> }) <span class="c"># &#61;&gt; &quot;Hello, John&#33;&quot;</span></code></pre>
+template.render <span class="c"># =&gt; &quot;Hello, World!&quot;</span>
+template.render({ <span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span> }) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
 
 <h3>Examples</h3>
 
@@ -1074,11 +1084,11 @@ Command to start the server: <code>cd examples/server && crystal server.cr</code
   &lt;dl></p>
 
 <pre><code><span class="o"><</span>dt<span class="o">></span>enabled_extensions<span class="o"><</span><span class="s">/dt&gt;
-&lt;dd&gt;List of filename extensions that autoescape should be enabled for. Default: &lt;code&gt;&#91;&quot;html&quot;, &quot;htm&quot;, &quot;xml&quot;&#93;&lt;/</span>code<span class="o">></span><span class="o"><</span><span class="s">/dd&gt;
+&lt;dd&gt;List of filename extensions that autoescape should be enabled for. Default: &lt;code&gt;[&quot;html&quot;, &quot;htm&quot;, &quot;xml&quot;]&lt;/</span>code<span class="o">></span><span class="o"><</span><span class="s">/dd&gt;
 &lt;dt&gt;disabled_extensions&lt;/</span>dt<span class="o">></span>
 <span class="o"><</span>dd<span class="o">></span><span class="t">List</span> <span class="k">of</span> filename extensions that autoescape should be disabled <span class="k">for</span>. <span class="t">Default</span>: <span class="o"><</span>code<span class="o">></span><span class="o">[]</span> <span class="k">of</span> <span class="t">String</span><span class="o"><</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">></span>
 <span class="o"><</span>dt<span class="o">></span>default_for_string<span class="o"><</span><span class="s">/dt&gt;
-&lt;dd&gt;Determines autoescape default value for templates loaded from a string &#40;without a filename&#41;. Default: &lt;code&gt;false&lt;/</span>code<span class="o">></span><span class="o"><</span><span class="s">/dd&gt;
+&lt;dd&gt;Determines autoescape default value for templates loaded from a string (without a filename). Default: &lt;code&gt;false&lt;/</span>code<span class="o">></span><span class="o"><</span><span class="s">/dd&gt;
 &lt;dt&gt;default&lt;/</span>dt<span class="o">></span>
 <span class="o"><</span>dd<span class="o">></span><span class="t">If</span> nothing matches, this will be the default autoescape value. <span class="t">Default</span>: <span class="o"><</span>code<span class="o">></span><span class="n">false</span><span class="o"><</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">></span></code></pre>
 
@@ -1118,13 +1128,13 @@ Command to start the server: <code>cd examples/server && crystal server.cr</code
 <pre><code class='language-crystal'>env <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Environment</span>.<span class="k">new</span>
 
 myfilter <span class="o">=</span> <span class="t">Crinja</span>.filter({ attribute: <span class="n">nil</span> }) <span class="k">do</span>
-  <span class="s">&quot;</span><span class="i">#{</span></span>target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>&#33;&quot;</span>
+  <span class="s">&quot;</span><span class="i">#{</span></span>target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>!&quot;</span>
 <span class="k">end</span>
 
 env.filters[<span class="s">&quot;customfilter&quot;</span>] <span class="o">=</span> myfilter
 
-template <span class="o">=</span> env.from_string(<span class="s">&#37;&#40;&#123;&#123; &quot;Hello World&quot; | customfilter&#40;attribute&#61;&quot;super&quot;&#41; &#125;&#125;&#41;</span>)
-template.render <span class="o">=</span> <span class="s">&quot;Hello World is super&#33;&quot;</span></code></pre>
+template <span class="o">=</span> env.from_string(<span class="s">%({{ &quot;Hello World&quot; | customfilter(attribute=&quot;super&quot;) }})</span>)
+template.render <span class="o">=</span> <span class="s">&quot;Hello World is super!&quot;</span></code></pre>
 
 <p>Or you can define a class for more complex features:</p>
 
@@ -1140,13 +1150,13 @@ template.render <span class="o">=</span> <span class="s">&quot;Hello World is su
   } <span class="k">of</span> <span class="t">String</span> => <span class="t">Crinja</span><span class="t">::</span><span class="t">Type</span>
 
   <span class="k">def</span> <span class="m">call</span>(arguments)
-    <span class="s">&quot;</span><span class="i">#{</span></span>arguments.target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>&#33;&quot;</span>
+    <span class="s">&quot;</span><span class="i">#{</span></span>arguments.target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>!&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span>
 env.filters <span class="o"><<</span> <span class="t">Customfilter</span>.<span class="k">new</span>
 
-template <span class="o">=</span> env.from_string(<span class="s">&#37;&#40;&#123;&#123; &quot;Hello World&quot; | customfilter&#40;attribute&#61;&quot;super&quot;&#41; &#125;&#125;&#41;</span>)
-template.render <span class="c"># &#61;&gt; &quot;Hello World is super&#33;&quot;</span></code></pre>
+template <span class="o">=</span> env.from_string(<span class="s">%({{ &quot;Hello World&quot; | customfilter(attribute=&quot;super&quot;) }})</span>)
+template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span></code></pre>
 
 <p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> and  <code><a href="Crinja.html">Crinja</a>:<a href="Crinja/Tag.html">Tag</a></code> and adding an instance to the feature library defaults (<code><a href="Crinja/Operator.html">Crinja::Operator</a>::Library.defaults << MyTag.new</code>) or to a specific environment (<code>env.tags << MyTag.new</code>).</p>
 

@@ -275,6 +275,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Dictionary" data-name="crinja::dictionary">
+      <a href="../../Crinja/Dictionary.html">Dictionary</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Environment" data-name="crinja::environment">
       <a href="../../Crinja/Environment.html">Environment</a>
       
@@ -955,6 +960,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Variables" data-name="crinja::variables">
+      <a href="../../Crinja/Variables.html">Variables</a>
+      
+    </li>
+  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Visitor" data-name="crinja::visitor(t)">
       <a href="../../Crinja/Visitor.html">Visitor</a>
       
@@ -1032,7 +1042,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/parser/expression_parser.cr#L4" target="_blank">crinja/parser/expression_parser.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/parser/expression_parser.cr#L4" target="_blank">parser/expression_parser.cr</a>
     
     <br/>
   
@@ -1196,7 +1206,7 @@
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new&#40;stream,config&#61;Config.new&#41;-class-method">
+    <div class="entry-detail" id="new(stream,config=Config.new)-class-method">
       <div class="signature">
         
         def self.<strong>new</strong>(stream, config = <span class="t">Config</span>.<span class="k">new</span>)
@@ -1207,7 +1217,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/parser/expression_parser.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/parser/expression_parser.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1230,12 +1240,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/parser/expression_parser.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/parser/expression_parser.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="parse&#40;expected_end_token:Kind&#61;Kind::EOF&#41;-instance-method">
+    <div class="entry-detail" id="parse(expected_end_token:Kind=Kind::EOF)-instance-method">
       <div class="signature">
         
         def <strong>parse</strong>(expected_end_token : Kind = <span class="t">Kind</span><span class="t">::</span><span class="t">EOF</span>)
@@ -1246,7 +1256,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/parser/expression_parser.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/parser/expression_parser.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1262,12 +1272,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/parser/expression_parser.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/parser/expression_parser.cr#L73" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="parse_expressions&#40;expected_end_token:Kind&#61;Kind::EOF&#41;-instance-method">
+    <div class="entry-detail" id="parse_expressions(expected_end_token:Kind=Kind::EOF)-instance-method">
       <div class="signature">
         
         def <strong>parse_expressions</strong>(expected_end_token : Kind = <span class="t">Kind</span><span class="t">::</span><span class="t">EOF</span>)
@@ -1278,12 +1288,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/parser/expression_parser.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/parser/expression_parser.cr#L56" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="parse_keyword_list&#40;end_tokens:Array&#40;Kind&#41;&#61;&#91;Kind::EOF&#93;,keyword_separator_token:Kind&#61;Kind::KW_ASSIGN,keyword&#61;nil&#41;-instance-method">
+    <div class="entry-detail" id="parse_keyword_list(end_tokens:Array(Kind)=[Kind::EOF],keyword_separator_token:Kind=Kind::KW_ASSIGN,keyword=nil)-instance-method">
       <div class="signature">
         
         def <strong>parse_keyword_list</strong>(end_tokens : Array(Kind) = [<span class="t">Kind</span><span class="t">::</span><span class="t">EOF</span>], keyword_separator_token : Kind = <span class="t">Kind</span><span class="t">::</span><span class="t">KW_ASSIGN</span>, keyword = <span class="n">nil</span>)
@@ -1294,7 +1304,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/parser/expression_parser.cr#L342" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/parser/expression_parser.cr#L342" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1304,7 +1314,7 @@
 
   <h2>Macro Detail</h2>
   
-    <div class="entry-detail" id="parse_operator&#40;name,next_operator,*operators&#41;-macro">
+    <div class="entry-detail" id="parse_operator(name,next_operator,*operators)-macro">
       <div class="signature">
         
         macro <strong>parse_operator</strong>(name, next_operator, *operators)
@@ -1317,7 +1327,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/parser/expression_parser.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/parser/expression_parser.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>

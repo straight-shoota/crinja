@@ -275,6 +275,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Dictionary" data-name="crinja::dictionary">
+      <a href="../Crinja/Dictionary.html">Dictionary</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Environment" data-name="crinja::environment">
       <a href="../Crinja/Environment.html">Environment</a>
       
@@ -955,6 +960,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Variables" data-name="crinja::variables">
+      <a href="../Crinja/Variables.html">Variables</a>
+      
+    </li>
+  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Visitor" data-name="crinja::visitor(t)">
       <a href="../Crinja/Visitor.html">Visitor</a>
       
@@ -1023,7 +1033,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L1" target="_blank">crinja/runtime/resolver.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L1" target="_blank">runtime/resolver.cr</a>
     
     <br/>
   
@@ -1141,7 +1151,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#execute_call%28callable%2Cvarargs%3AArray%28Type%29%2Ckwargs%3AHash%28String%2CType%29%2Ctarget%3AValue%3F%3Dnil%29-instance-method" class="signature"><strong>#execute_call</strong>(callable, varargs : Array(Type), kwargs : Hash(String, Type), target : Value? = <span class="n">nil</span>)</a>
+        <a href="#execute_call%28callable%2Cvarargs%3AArray%28Type%29%2Ckwargs%3AVariables%2Ctarget%3AValue%3F%3Dnil%29-instance-method" class="signature"><strong>#execute_call</strong>(callable, varargs : Array(Type), kwargs : Variables, target : Value? = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -1197,7 +1207,7 @@
 
   <h2>Class Method Detail</h2>
   
-    <div class="entry-detail" id="resolve_attribute&#40;name,value:Value&#41;-class-method">
+    <div class="entry-detail" id="resolve_attribute(name,value:Value)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_attribute</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
@@ -1208,12 +1218,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L66" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_attribute&#40;name,object&#41;-class-method">
+    <div class="entry-detail" id="resolve_attribute(name,object)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_attribute</strong>(name, object)
@@ -1227,12 +1237,12 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_dig&#40;name:String,object:Type&#41;-class-method">
+    <div class="entry-detail" id="resolve_dig(name:String,object:Type)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_dig</strong>(name : String, object : <a href="../Crinja/Type.html">Type</a>)
@@ -1245,12 +1255,12 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L113" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L113" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_dig&#40;name,object:Type&#41;-class-method">
+    <div class="entry-detail" id="resolve_dig(name,object:Type)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_dig</strong>(name, object : <a href="../Crinja/Type.html">Type</a>)
@@ -1263,12 +1273,12 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L125" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L125" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_dig&#40;name,value:Value&#41;-class-method">
+    <div class="entry-detail" id="resolve_dig(name,value:Value)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_dig</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
@@ -1281,12 +1291,12 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L130" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L130" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_getattr&#40;name,value:Value&#41;-class-method">
+    <div class="entry-detail" id="resolve_getattr(name,value:Value)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_getattr</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
@@ -1297,12 +1307,12 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L79" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L79" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_getattr&#40;name,object&#41;-class-method">
+    <div class="entry-detail" id="resolve_getattr(name,object)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_getattr</strong>(name, object)
@@ -1313,12 +1323,12 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L70" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L70" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_getitem&#40;name,value:Value&#41;-class-method">
+    <div class="entry-detail" id="resolve_getitem(name,value:Value)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_getitem</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
@@ -1331,12 +1341,12 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_getitem&#40;name,object&#41;-class-method">
+    <div class="entry-detail" id="resolve_getitem(name,object)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_getitem</strong>(name, object)
@@ -1349,12 +1359,12 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_item&#40;name,value:Value&#41;-class-method">
+    <div class="entry-detail" id="resolve_item(name,value:Value)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_item</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
@@ -1368,12 +1378,12 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_item&#40;name,object&#41;-class-method">
+    <div class="entry-detail" id="resolve_item(name,object)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_item</strong>(name, object)
@@ -1387,12 +1397,12 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_method&#40;name,value:Value&#41;-class-method">
+    <div class="entry-detail" id="resolve_method(name,value:Value)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_method</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
@@ -1403,12 +1413,12 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L92" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L92" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_method&#40;name,object&#41;:Callable|Callable::Proc?-class-method">
+    <div class="entry-detail" id="resolve_method(name,object):Callable|Callable::Proc?-class-method">
       <div class="signature">
         
         def self.<strong>resolve_method</strong>(name, object) : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>?
@@ -1419,12 +1429,12 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L83" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_with_hash_accessor&#40;name,object:Type&#41;-class-method">
+    <div class="entry-detail" id="resolve_with_hash_accessor(name,object:Type)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_with_hash_accessor</strong>(name, object : <a href="../Crinja/Type.html">Type</a>)
@@ -1435,12 +1445,12 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L96" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L96" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_with_hash_accessor&#40;name,value:Value&#41;-class-method">
+    <div class="entry-detail" id="resolve_with_hash_accessor(name,value:Value)-class-method">
       <div class="signature">
         
         def self.<strong>resolve_with_hash_accessor</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
@@ -1451,7 +1461,7 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L108" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L108" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1461,7 +1471,7 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="call_filter&#40;name,target,*args&#41;-instance-method">
+    <div class="entry-detail" id="call_filter(name,target,*args)-instance-method">
       <div class="signature">
         
         def <strong>call_filter</strong>(name, target, *args)
@@ -1472,28 +1482,28 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L171" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L171" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="execute_call&#40;callable,varargs:Array&#40;Type&#41;,kwargs:Hash&#40;String,Type&#41;,target:Value?&#61;nil&#41;-instance-method">
+    <div class="entry-detail" id="execute_call(callable,varargs:Array(Type),kwargs:Variables,target:Value?=nil)-instance-method">
       <div class="signature">
         
-        def <strong>execute_call</strong>(callable, varargs : Array(<a href="../Crinja/Type.html">Type</a>), kwargs : Hash(String, <a href="../Crinja/Type.html">Type</a>), target : <a href="../Crinja/Value.html">Value</a>? = <span class="n">nil</span>)
+        def <strong>execute_call</strong>(callable, varargs : Array(<a href="../Crinja/Type.html">Type</a>), kwargs : <a href="../Crinja/Variables.html">Variables</a>, target : <a href="../Crinja/Value.html">Value</a>? = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#execute_call%28callable%2Cvarargs%3AArray%28Type%29%2Ckwargs%3AHash%28String%2CType%29%2Ctarget%3AValue%3F%3Dnil%29-instance-method">#</a>
+        <a class="method-permalink" href="#execute_call%28callable%2Cvarargs%3AArray%28Type%29%2Ckwargs%3AVariables%2Ctarget%3AValue%3F%3Dnil%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L144" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L144" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="execute_call&#40;callable,varargs:Array&#40;Value&#41;&#61;&#91;&#93;ofValue,kwargs:Hash&#40;String,Value&#41;&#61;&#123;&#125;ofString&#61;&gt;Value,target:Value?&#61;nil&#41;-instance-method">
+    <div class="entry-detail" id="execute_call(callable,varargs:Array(Value)=[]ofValue,kwargs:Hash(String,Value)={}ofString=&gt;Value,target:Value?=nil)-instance-method">
       <div class="signature">
         
         def <strong>execute_call</strong>(callable, varargs : Array(<a href="../Crinja/Value.html">Value</a>) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs : Hash(String, <a href="../Crinja/Value.html">Value</a>) = {} <span class="k">of</span> <span class="t">String</span> => <span class="t">Value</span>, target : <a href="../Crinja/Value.html">Value</a>? = <span class="n">nil</span>)
@@ -1504,12 +1514,12 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L154" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L154" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="execute_call&#40;callable:Callable|Callable::Proc,arguments:Callable::Arguments&#41;-instance-method">
+    <div class="entry-detail" id="execute_call(callable:Callable|Callable::Proc,arguments:Callable::Arguments)-instance-method">
       <div class="signature">
         
         def <strong>execute_call</strong>(callable : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>, arguments : <a href="../Crinja/Callable/Arguments.html">Callable::Arguments</a>)
@@ -1520,12 +1530,12 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L163" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L163" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve&#40;name:String&#41;-instance-method">
+    <div class="entry-detail" id="resolve(name:String)-instance-method">
       <div class="signature">
         
         def <strong>resolve</strong>(name : String)
@@ -1538,12 +1548,12 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L135" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L135" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_callable&#40;identifier&#41;-instance-method">
+    <div class="entry-detail" id="resolve_callable(identifier)-instance-method">
       <div class="signature">
         
         def <strong>resolve_callable</strong>(identifier)
@@ -1554,12 +1564,12 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L181" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L181" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_callable&#33;&#40;identifier:Callable|Callable::Proc&#41;-instance-method">
+    <div class="entry-detail" id="resolve_callable!(identifier:Callable|Callable::Proc)-instance-method">
       <div class="signature">
         
         def <strong>resolve_callable!</strong>(identifier : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>)
@@ -1570,12 +1580,12 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L189" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L189" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_callable&#33;&#40;callable:Value&#41;-instance-method">
+    <div class="entry-detail" id="resolve_callable!(callable:Value)-instance-method">
       <div class="signature">
         
         def <strong>resolve_callable!</strong>(callable : <a href="../Crinja/Value.html">Value</a>)
@@ -1586,12 +1596,12 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L208" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L208" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_callable&#33;&#40;identifier&#41;:Callable|Callable::Proc-instance-method">
+    <div class="entry-detail" id="resolve_callable!(identifier):Callable|Callable::Proc-instance-method">
       <div class="signature">
         
         def <strong>resolve_callable!</strong>(identifier) : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>
@@ -1602,7 +1612,7 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/resolver.cr#L193" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/resolver.cr#L193" target="_blank">View source</a>]
         
       </div>
     </div>

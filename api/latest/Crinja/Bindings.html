@@ -275,6 +275,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Dictionary" data-name="crinja::dictionary">
+      <a href="../Crinja/Dictionary.html">Dictionary</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Environment" data-name="crinja::environment">
       <a href="../Crinja/Environment.html">Environment</a>
       
@@ -955,6 +960,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Variables" data-name="crinja::variables">
+      <a href="../Crinja/Variables.html">Variables</a>
+      
+    </li>
+  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Visitor" data-name="crinja::visitor(t)">
       <a href="../Crinja/Visitor.html">Visitor</a>
       
@@ -1021,7 +1031,7 @@ to Crinja datastructures like <code>Array(<a href="../Crinja/Type.html">Crinja::
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/bindings.cr#L3" target="_blank">crinja/runtime/bindings.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/bindings.cr#L3" target="_blank">runtime/bindings.cr</a>
     
     <br/>
   
@@ -1036,16 +1046,9 @@ to Crinja datastructures like <code>Array(<a href="../Crinja/Type.html">Crinja::
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#cast_bindings%28bindings%29-class-method" class="signature"><strong>.cast_bindings</strong>(bindings)</a>
+        <a href="#cast_dictionary%28value%29%3ACrinja%3A%3AType-class-method" class="signature"><strong>.cast_dictionary</strong>(value) : Crinja::Type</a>
         
-          <div class="summary"><p>Casts an object with hash-like interface to <code>Hash(String, <a href="../Crinja/Type.html">Crinja::Type</a>)</code>, which can be used for name lookup.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#cast_hash%28value%29%3ACrinja%3A%3AType-class-method" class="signature"><strong>.cast_hash</strong>(value) : Crinja::Type</a>
-        
-          <div class="summary"><p>Casts an object with hash-like interface to <code>Hash(<a href="../Crinja/Type.html">Crinja::Type</a>, <a href="../Crinja/Type.html">Crinja::Type</a>)</code>.</p></div>
+          <div class="summary"><p>Casts an object with hash-like interface to <code><a href="../Crinja/Dictionary.html">Dictionary</a></code>.</p></div>
         
       </li>
     
@@ -1059,7 +1062,7 @@ to Crinja datastructures like <code>Array(<a href="../Crinja/Type.html">Crinja::
       <li class="entry-summary">
         <a href="#cast_named_tuple%28value%29%3ACrinja%3A%3AType-class-method" class="signature"><strong>.cast_named_tuple</strong>(value) : Crinja::Type</a>
         
-          <div class="summary"><p>Casts a <code>NamedTuple</code> to <code>Hash(<a href="../Crinja/Type.html">Crinja::Type</a>, <a href="../Crinja/Type.html">Crinja::Type</a>)</code>, converting symbol keys to strings.</p></div>
+          <div class="summary"><p>Casts a <code>NamedTuple</code> to <code><a href="../Crinja/Dictionary.html">Dictionary</a></code>, converting symbol keys to strings.</p></div>
         
       </li>
     
@@ -1074,6 +1077,13 @@ to Crinja datastructures like <code>Array(<a href="../Crinja/Type.html">Crinja::
         <a href="#cast_value%28value%29%3ACrinja%3A%3AType-class-method" class="signature"><strong>.cast_value</strong>(value) : Crinja::Type</a>
         
           <div class="summary"><p>Casts any value to <code><a href="../Crinja/Type.html">Crinja::Type</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cast_variables%28variables%29%3AVariables-class-method" class="signature"><strong>.cast_variables</strong>(variables) : Variables</a>
+        
+          <div class="summary"><p>Casts an object with hash-like interface to <code><a href="../Crinja/Variables.html">Variables</a></code>, which can be used for name lookup.</p></div>
         
       </li>
     
@@ -1094,44 +1104,25 @@ to Crinja datastructures like <code>Array(<a href="../Crinja/Type.html">Crinja::
 
   <h2>Class Method Detail</h2>
   
-    <div class="entry-detail" id="cast_bindings&#40;bindings&#41;-class-method">
+    <div class="entry-detail" id="cast_dictionary(value):Crinja::Type-class-method">
       <div class="signature">
         
-        def self.<strong>cast_bindings</strong>(bindings)
+        def self.<strong>cast_dictionary</strong>(value) : <a href="../Crinja/Type.html">Crinja::Type</a>
 
-        <a class="method-permalink" href="#cast_bindings%28bindings%29-class-method">#</a>
+        <a class="method-permalink" href="#cast_dictionary%28value%29%3ACrinja%3A%3AType-class-method">#</a>
       </div>
       
-        <div class="doc"><p>Casts an object with hash-like interface to <code>Hash(String, <a href="../Crinja/Type.html">Crinja::Type</a>)</code>, which can be
-used for name lookup.</p></div>
+        <div class="doc"><p>Casts an object with hash-like interface to <code><a href="../Crinja/Dictionary.html">Dictionary</a></code>.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/bindings.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/bindings.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="cast_hash&#40;value&#41;:Crinja::Type-class-method">
-      <div class="signature">
-        
-        def self.<strong>cast_hash</strong>(value) : <a href="../Crinja/Type.html">Crinja::Type</a>
-
-        <a class="method-permalink" href="#cast_hash%28value%29%3ACrinja%3A%3AType-class-method">#</a>
-      </div>
-      
-        <div class="doc"><p>Casts an object with hash-like interface to <code>Hash(<a href="../Crinja/Type.html">Crinja::Type</a>, <a href="../Crinja/Type.html">Crinja::Type</a>)</code>.</p></div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/bindings.cr#L43" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="cast_list&#40;array&#41;:Crinja::Type-class-method">
+    <div class="entry-detail" id="cast_list(array):Crinja::Type-class-method">
       <div class="signature">
         
         def self.<strong>cast_list</strong>(array) : <a href="../Crinja/Type.html">Crinja::Type</a>
@@ -1144,12 +1135,12 @@ used for name lookup.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/bindings.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/bindings.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="cast_named_tuple&#40;value&#41;:Crinja::Type-class-method">
+    <div class="entry-detail" id="cast_named_tuple(value):Crinja::Type-class-method">
       <div class="signature">
         
         def self.<strong>cast_named_tuple</strong>(value) : <a href="../Crinja/Type.html">Crinja::Type</a>
@@ -1157,17 +1148,17 @@ used for name lookup.</p></div>
         <a class="method-permalink" href="#cast_named_tuple%28value%29%3ACrinja%3A%3AType-class-method">#</a>
       </div>
       
-        <div class="doc"><p>Casts a <code>NamedTuple</code> to <code>Hash(<a href="../Crinja/Type.html">Crinja::Type</a>, <a href="../Crinja/Type.html">Crinja::Type</a>)</code>, converting symbol keys to strings.</p></div>
+        <div class="doc"><p>Casts a <code>NamedTuple</code> to <code><a href="../Crinja/Dictionary.html">Dictionary</a></code>, converting symbol keys to strings.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/bindings.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/bindings.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="cast_tuple&#40;tuple&#41;:Crinja::Type-class-method">
+    <div class="entry-detail" id="cast_tuple(tuple):Crinja::Type-class-method">
       <div class="signature">
         
         def self.<strong>cast_tuple</strong>(tuple) : <a href="../Crinja/Type.html">Crinja::Type</a>
@@ -1180,12 +1171,12 @@ used for name lookup.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/bindings.cr#L68" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/bindings.cr#L68" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="cast_value&#40;value&#41;:Crinja::Type-class-method">
+    <div class="entry-detail" id="cast_value(value):Crinja::Type-class-method">
       <div class="signature">
         
         def self.<strong>cast_value</strong>(value) : <a href="../Crinja/Type.html">Crinja::Type</a>
@@ -1198,7 +1189,26 @@ used for name lookup.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/bindings.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/bindings.cr#L15" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cast_variables(variables):Variables-class-method">
+      <div class="signature">
+        
+        def self.<strong>cast_variables</strong>(variables) : <a href="../Crinja/Variables.html">Variables</a>
+
+        <a class="method-permalink" href="#cast_variables%28variables%29%3AVariables-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Casts an object with hash-like interface to <code><a href="../Crinja/Variables.html">Variables</a></code>, which can be
+used for name lookup.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/bindings.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>

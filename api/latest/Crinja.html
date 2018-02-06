@@ -20,7 +20,7 @@
 
   <ul>
   
-  <li class="parent current" data-id="github.com/straight-shoota/crinja/Crinja" data-name="crinja">
+  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja" data-name="crinja">
       <a href="Crinja.html">Crinja</a>
       
         <ul>
@@ -272,6 +272,11 @@
   
 </ul>
 
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Dictionary" data-name="crinja::dictionary">
+      <a href="Crinja/Dictionary.html">Dictionary</a>
       
     </li>
   
@@ -955,6 +960,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Variables" data-name="crinja::variables">
+      <a href="Crinja/Variables.html">Variables</a>
+      
+    </li>
+  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Visitor" data-name="crinja::visitor(t)">
       <a href="Crinja/Visitor.html">Visitor</a>
       
@@ -1024,37 +1034,32 @@ and functions.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja.cr#L6" target="_blank">crinja.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/crinja.cr#L6" target="_blank">crinja.cr</a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/type.cr#L1" target="_blank">crinja/runtime/type.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/type.cr#L1" target="_blank">runtime/type.cr</a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/undefined.cr#L1" target="_blank">crinja/runtime/undefined.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/undefined.cr#L1" target="_blank">runtime/undefined.cr</a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/callable.cr#L3" target="_blank">crinja/runtime/callable.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/callable.cr#L3" target="_blank">runtime/callable.cr</a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/version.cr#L1" target="_blank">crinja/version.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/visitor/html.cr#L3" target="_blank">visitor/html.cr</a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/visitor/html.cr#L3" target="_blank">crinja/visitor/html.cr</a>
-    
-    <br/>
-  
-    
-      <a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/visitor/inspector.cr#L3" target="_blank">crinja/visitor/inspector.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/visitor/inspector.cr#L3" target="_blank">visitor/inspector.cr</a>
     
     <br/>
   
@@ -1072,7 +1077,7 @@ and functions.</p>
       
     
       <dt class="entry-const" id="VERSION">
-        <strong>VERSION</strong> = <code><span class="s">&quot;0.2.0&quot;</span></code>
+        <strong>VERSION</strong> = <code>{{ (<span class="s">`shards version /home/travis/build/straight-shoota/crinja/src`</span>).chomp.stringify }}</code>
       </dt>
       
     
@@ -1086,9 +1091,9 @@ and functions.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#cast_hash%28value%29-class-method" class="signature"><strong>.cast_hash</strong>(value)</a>
+        <a href="#cast_dictionary%28value%29%3ADictionary-class-method" class="signature"><strong>.cast_dictionary</strong>(value) : Dictionary</a>
         
-          <div class="summary"><p>Tries to cast any value to <code>Hash(<a href="Crinja/Type.html">Crinja::Type</a> => <a href="Crinja/Type.html">Crinja::Type</a>)</code>.</p></div>
+          <div class="summary"><p>Tries to cast any hash-like value to <code><a href="Crinja/Dictionary.html">Dictionary</a></code>.</p></div>
         
       </li>
     
@@ -1096,6 +1101,13 @@ and functions.</p>
         <a href="#cast_type%28value%29-class-method" class="signature"><strong>.cast_type</strong>(value)</a>
         
           <div class="summary"><p>Tries to cast any value to <code><a href="Crinja/Type.html">Crinja::Type</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#cast_variables%28value%29%3AVariables-class-method" class="signature"><strong>.cast_variables</strong>(value) : Variables</a>
+        
+          <div class="summary"><p>Tries to cast any hash-like value to <code><a href="Crinja/Variables.html">Variables</a></code>.</p></div>
         
       </li>
     
@@ -1142,25 +1154,25 @@ and functions.</p>
 
   <h2>Class Method Detail</h2>
   
-    <div class="entry-detail" id="cast_hash&#40;value&#41;-class-method">
+    <div class="entry-detail" id="cast_dictionary(value):Dictionary-class-method">
       <div class="signature">
         
-        def self.<strong>cast_hash</strong>(value)
+        def self.<strong>cast_dictionary</strong>(value) : <a href="Crinja/Dictionary.html">Dictionary</a>
 
-        <a class="method-permalink" href="#cast_hash%28value%29-class-method">#</a>
+        <a class="method-permalink" href="#cast_dictionary%28value%29%3ADictionary-class-method">#</a>
       </div>
       
-        <div class="doc"><p>Tries to cast any value to <code>Hash(<a href="Crinja/Type.html">Crinja::Type</a> => <a href="Crinja/Type.html">Crinja::Type</a>)</code>.</p></div>
+        <div class="doc"><p>Tries to cast any hash-like value to <code><a href="Crinja/Dictionary.html">Dictionary</a></code>.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/crinja.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="cast_type&#40;value&#41;-class-method">
+    <div class="entry-detail" id="cast_type(value)-class-method">
       <div class="signature">
         
         def self.<strong>cast_type</strong>(value)
@@ -1173,7 +1185,25 @@ and functions.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/crinja.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="cast_variables(value):Variables-class-method">
+      <div class="signature">
+        
+        def self.<strong>cast_variables</strong>(value) : <a href="Crinja/Variables.html">Variables</a>
+
+        <a class="method-permalink" href="#cast_variables%28value%29%3AVariables-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Tries to cast any hash-like value to <code><a href="Crinja/Variables.html">Variables</a></code>.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/crinja.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1185,7 +1215,7 @@ and functions.</p>
 
   <h2>Macro Detail</h2>
   
-    <div class="entry-detail" id="filter&#40;defaults&#61;nil,name&#61;nil&#41;-macro">
+    <div class="entry-detail" id="filter(defaults=nil,name=nil)-macro">
       <div class="signature">
         
         macro <strong>filter</strong>(defaults = nil, name = nil)
@@ -1209,12 +1239,12 @@ variables are available:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/callable.cr#L66" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/callable.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="function&#40;defaults&#61;nil,name&#61;nil&#41;-macro">
+    <div class="entry-detail" id="function(defaults=nil,name=nil)-macro">
       <div class="signature">
         
         macro <strong>function</strong>(defaults = nil, name = nil)
@@ -1238,12 +1268,12 @@ variables are available:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/callable.cr#L85" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/callable.cr#L85" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="test&#40;defaults&#61;nil,name&#61;nil&#41;-macro">
+    <div class="entry-detail" id="test(defaults=nil,name=nil)-macro">
       <div class="signature">
         
         macro <strong>test</strong>(defaults = nil, name = nil)
@@ -1267,7 +1297,7 @@ variables are available:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/runtime/callable.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/runtime/callable.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>

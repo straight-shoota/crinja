@@ -275,6 +275,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Dictionary" data-name="crinja::dictionary">
+      <a href="../../Crinja/Dictionary.html">Dictionary</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Environment" data-name="crinja::environment">
       <a href="../../Crinja/Environment.html">Environment</a>
       
@@ -955,6 +960,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Variables" data-name="crinja::variables">
+      <a href="../../Crinja/Variables.html">Variables</a>
+      
+    </li>
+  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Visitor" data-name="crinja::visitor(t)">
       <a href="../../Crinja/Visitor.html">Visitor</a>
       
@@ -1025,7 +1035,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/server/play_handler.cr#L3" target="_blank">crinja/server/play_handler.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/server/play_handler.cr#L3" target="_blank">server/play_handler.cr</a>
     
     <br/>
   
@@ -1038,7 +1048,7 @@
   <dl>
     
       <dt class="entry-const" id="DEFAULT_TEMPLATE">
-        <strong>DEFAULT_TEMPLATE</strong> = <code><span class="s">&quot;&lt;ul&gt;\n  &#123;&#37;- for user in users | sort&#40;attribute&#61;\&quot;name\&quot;&#41; -&#37;&#125;\n  &lt;li&gt;&lt;a href&#61;\&quot;/users/&#123;&#123; user.id &#125;&#125;\&quot;&gt;&#123;&#123; user.name &#125;&#125;&lt;/a&gt;&lt;/li&gt;\n  &#123;&#37;- endfor -&#37;&#125;\n&lt;/ul&gt;&quot;</span></code>
+        <strong>DEFAULT_TEMPLATE</strong> = <code><span class="s">&quot;&lt;ul&gt;\n  {%- for user in users | sort(attribute=\&quot;name\&quot;) -%}\n  &lt;li&gt;&lt;a href=\&quot;/users/{{ user.id }}\&quot;&gt;{{ user.name }}&lt;/a&gt;&lt;/li&gt;\n  {%- endfor -%}\n&lt;/ul&gt;&quot;</span></code>
       </dt>
       
     
@@ -1116,7 +1126,7 @@
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new&#40;env:Crinja::Environment,logger:Logger&#41;-class-method">
+    <div class="entry-detail" id="new(env:Crinja::Environment,logger:Logger)-class-method">
       <div class="signature">
         
         def self.<strong>new</strong>(env : <a href="../../Crinja/Environment.html">Crinja::Environment</a>, logger : Logger)
@@ -1127,7 +1137,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/server/play_handler.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/server/play_handler.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1139,7 +1149,7 @@
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="call&#40;context&#41;-instance-method">
+    <div class="entry-detail" id="call(context)-instance-method">
       <div class="signature">
         
         def <strong>call</strong>(context)
@@ -1150,7 +1160,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5d1d5af8e2f582702f5b85877b6d9e6c213eefee/src/crinja/server/play_handler.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6d31b723263fb2d69cd39fee094bdd5c6ef98d95/src/server/play_handler.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
