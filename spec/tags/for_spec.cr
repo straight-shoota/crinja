@@ -57,6 +57,16 @@ describe Crinja::Tag::For do
     render(%({% for item in iter %}{{ item }}{% endfor %}), {"iter" => iter}).should eq("01234")
   end
 
+  it "iterator issue" do
+    iter = (0..4).each
+    index = 0
+    Crinja::Tag::For::ForLoop.new(Crinja::Value.new(iter)).each do |value|
+      value.should eq index
+      index += 1
+    end
+    index.should eq 5
+  end
+
   it "noniter" do
     expect_raises(Crinja::TypeError) do
       render(%({% for item in none %}...{% endfor %}))

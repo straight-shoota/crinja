@@ -1,12 +1,12 @@
 Crinja.function({sep: ", "}, :joiner) do
   called = false
-  sep = arguments[:sep].to_s
-  ->(_args : Crinja::Callable::Arguments) {
-    (if called
-      sep.as(Crinja::Type)
+  sep = arguments[:sep]
+  ->(_args : Crinja::Callable::Arguments) do
+    if called
+      sep
     else
       called = true
-      "".as(Crinja::Type)
-    end).as(Crinja::Type)
-  }.as(Crinja::Type)
+      Crinja::Value.new ""
+    end
+  end
 end

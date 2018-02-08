@@ -20,9 +20,9 @@ module Crinja::Filter
     if target.iterable?
       target.map do |item|
         if item.iterable? && item.size == 2
-          [URI.escape(item[0].to_s), "=", URI.escape(item[1].to_s)].join.as(Type)
+          [URI.escape(item[0].to_s), "=", URI.escape(item[1].to_s)].join
         else
-          URI.escape(item.to_s).as(Type)
+          URI.escape(item.to_s)
         end
       end.join("&")
     else
@@ -45,7 +45,7 @@ module Crinja::Filter
   Crinja.filter({autoescape: true}, :xmlattr) do
     string = SafeString.build do |io|
       target.as_h.each_with_index do |(key, value), i|
-        next if value.nil? || value.is_a?(Undefined)
+        next if value.none? || value.undefined?
 
         io << sprintf %( %s="%s"), HTML.escape(key.to_s), HTML.escape(value.to_s)
       end

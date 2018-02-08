@@ -5,7 +5,7 @@ module Crinja::Filter
   }, :dictsort) do
     case_sensitive = arguments[:case_sensitive].truthy?
 
-    array = target.each.to_a
+    array = target.to_a
 
     compare = ->(a : Value, b : Value) do
       if !case_sensitive && a.string? && b.string?
@@ -21,7 +21,7 @@ module Crinja::Filter
       array = array.sort { |a, b| compare.call(a[0], b[0]) }
     end
 
-    array.map(&.raw.as(Type)).as(Type)
+    array
   end
 
   Crinja.filter({
@@ -31,7 +31,7 @@ module Crinja::Filter
   }, :sort) do
     case_sensitive = arguments[:case_sensitive].truthy?
 
-    array = target.each.to_a
+    array = target.to_a
 
     attribute = nil
 
@@ -56,6 +56,6 @@ module Crinja::Filter
       array = array.reverse
     end
 
-    array.map(&.raw.as(Type)).as(Type)
+    array
   end
 end

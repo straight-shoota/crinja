@@ -1,116 +1,115 @@
 module Crinja::Resolver
   # Resolves an objects item. Tries `resolve_getattr` it `getitem` returns undefined.
   # Analogous to `__getitem__` in Jinja2.
-  def self.resolve_item(name, object)
-    raise UndefinedError.new(name.to_s) if object.is_a?(Undefined)
+  def self.resolve_item(name : Value, object : Value) : Value
+    raise UndefinedError.new(name.to_s) if object.undefined?
 
     value = resolve_getitem(name, object)
 
-    if value.is_a?(Undefined)
+    if value.undefined?
       value = self.resolve_getattr(name, object)
     end
 
-    cast_type value, name
-  end
-
-  # ditto
-  def self.resolve_item(name, value : Value)
-    self.resolve_item(name, value.raw)
-  end
-
-  # Resolve an objects item.
-  def self.resolve_getitem(name, object)
-    value = Undefined.new(name.to_s)
-
-    if object.responds_to?(:__getitem__)
-      value = object.__getitem__(name)
-    end
-    if object.is_a?(Indexable) && name.responds_to?(:to_i)
-      value = object[name.to_i]
-    end
     value
   end
 
+  # ditto
+  def self.resolve_item(name, raw) : Value
+    self.resolve_item(Value.new(name), Value.new(raw))
+  end
+
+  # Resolve an objects item.
+  def self.resolve_getitem(name : Value, object : Value) : Value
+    value = Undefined.new(name.to_s)
+
+    raw_object = object.raw
+    if raw_object.responds_to?(:__getitem__)
+      value = raw_object.__getitem__(name)
+    end
+
+    raw = name.raw
+    if object.indexable? && raw.responds_to?(:to_i)
+      begin
+        value = object[raw.to_i]
+      rescue IndexError
+        value = Undefined.new(name.to_s)
+      end
+    end
+
+    Value.new value
+  end
+
   # :ditto:
-  def self.resolve_getitem(name, value : Value)
-    self.resolve_getitem(name, value.raw)
+  def self.resolve_getitem(name, value) : Value
+    self.resolve_getitem(Value.new(name), Value.new(value))
   end
 
   # Resolves an objects attribute. Tries `resolve_getitem` it `getitem` returns undefined.
   # Analogous to `getattr` in Jinja2.
-  def self.resolve_attribute(name, object)
-    raise UndefinedError.new(name.to_s, "#{object.class} is undefined") if object.is_a?(Undefined)
+  def self.resolve_attribute(name, object : Value) : Value
+    raise UndefinedError.new(name.to_s) if object.undefined?
 
     value = self.resolve_getattr(name, object)
 
-    if value.is_a?(Undefined)
+    if value.undefined?
       value = self.resolve_getitem(name, object)
     end
 
-    cast_type value, name
-  end
-
-  private def self.cast_type(value, name)
-    if value.is_a?(Value)
-      value = value.raw
-    end
-
-    if value.is_a?(Type)
-      value
-    else
-      raise TypeError.new("#{name} is of type #{value.class}, can't cast to Crinja::Type")
-    end
+    value
   end
 
   # ditto
-  def self.resolve_attribute(name, value : Value)
-    self.resolve_attribute(name, value.raw)
+  def self.resolve_attribute(name, value) : Value
+    self.resolve_attribute(name, Value.new value)
   end
 
-  def self.resolve_getattr(name, object)
+  def self.resolve_getattr(name : Value, value : Value) : Value
+    object = value.raw
     if object.responds_to?(:getattr)
-      object.getattr(name)
+      Value.new object.getattr(name)
     else
-      self.resolve_with_hash_accessor(name, object)
+      self.resolve_with_hash_accessor(name, value)
     end
   end
 
   # ditto
-  def self.resolve_getattr(name, value : Value)
-    self.resolve_getattr(name, value.raw)
+  def self.resolve_getattr(name, value) : Value
+    resolve_getattr(Value.new(name), Value.new(value))
   end
 
   def self.resolve_method(name, object) : Callable | Callable::Proc?
-    if object.responds_to? :__call__
-      object.__call__(name).as(Callable | Callable::Proc)
-    else
-      nil
+    if object.responds_to?(:__call__) && (callable = object.__call__(name))
+      return ->(arguments : Callable::Arguments) do
+        # wrap the return value of the proc as a Value
+        Value.new callable.not_nil!.call(arguments)
+      end.as(Callable::Proc)
     end
   end
 
   # ditto
-  def self.resolve_method(name, value : Value)
+  def self.resolve_method(name, value : Value) : Callable | Callable::Proc?
     self.resolve_method(name, value.raw)
   end
 
-  def self.resolve_with_hash_accessor(name, object : Type)
+  def self.resolve_with_hash_accessor(name : Value, value : Value) : Value
+    object = value.raw
     if object.responds_to?(:[]) && !object.is_a?(Array) && !object.is_a?(PyTuple) && !object.is_a?(String | SafeString)
       begin
-        return object[name.to_s]
+        return Value.new object[name.to_s]
       rescue KeyError
       end
     end
 
-    Undefined.new(name.to_s)
+    Value.new Undefined.new(name.to_s)
   end
 
   # ditto
-  def self.resolve_with_hash_accessor(name, value : Value)
+  def self.resolve_with_hash_accessor(name, value : Value) : Value
     self.resolve_with_hash_accessor(name, value.raw)
   end
 
   # Resolves a dig.
-  def self.resolve_dig(name : String, object : Type)
+  def self.resolve_dig(name : String, object) : Value
     identifier, _, rest = name.partition('.')
 
     resolved = resolve_attribute(identifier, object)
@@ -122,90 +121,72 @@ module Crinja::Resolver
   end
 
   # :ditto:
-  def self.resolve_dig(name, object : Type)
+  def self.resolve_dig(name, object) : Value
     resolve_attribute(name, object)
   end
 
   # :ditto:
-  def self.resolve_dig(name, value : Value)
+  def self.resolve_dig(name, value : Value) : Value
     self.resolve_dig(name, value.raw)
   end
 
   # Resolves a variable in the current context.
-  def resolve(name : String)
+  def resolve(name : String) : Value
     if functions.has_key?(name)
-      value = functions[name]
+      Value.new functions[name]
     else
-      value = context[name]
+      context[name]
     end
-    value
-  end
-
-  def execute_call(callable, varargs : Array(Type), kwargs : Variables, target : Value? = nil)
-    execute_call(callable,
-      varargs.map { |a| Value.new(a) },
-      kwargs.each_with_object(Hash(String, Value).new) do |(k, v), hash|
-        hash[k] = Value.new(v)
-      end,
-      target: target
-    )
   end
 
   def execute_call(callable,
                    varargs : Array(Value) = [] of Value,
-                   kwargs : Hash(String, Value) = {} of String => Value,
-                   target : Value? = nil)
+                   kwargs : Variables = Variables.new,
+                   target : Value? = nil) : Value
     arguments = Callable::Arguments.new(self, varargs, kwargs, target: target)
     callable = resolve_callable!(callable)
     execute_call callable, arguments
   end
 
-  def execute_call(callable : Callable | Callable::Proc, arguments : Callable::Arguments)
+  def execute_call(callable : Callable | Callable::Proc, arguments : Callable::Arguments) : Value
     if callable.responds_to?(:defaults)
       arguments.defaults = callable.defaults
     end
 
-    callable.call(arguments)
+    Value.new callable.call(arguments)
   end
 
-  def call_filter(name, target, *args)
-    unless target.is_a?(Value)
-      unless target.is_a?(Type)
-        target = Crinja.cast_type(target)
-      end
-      target = Value.new(target)
-    end
+  def call_filter(name, target : Value, *args) : Value
     execute_call(filters[name], *args, target: target)
   end
 
-  def resolve_callable(identifier)
-    if context.has_macro?(identifier.to_s)
-      context.macro(identifier.to_s)
+  def resolve_callable(identifier) : Value
+    identifier = identifier.to_s
+    if context.has_macro?(identifier)
+      Value.new context.macro(identifier)
     else
-      resolve(identifier.to_s)
+      resolve(identifier)
     end
   end
 
-  def resolve_callable!(identifier : Callable | Callable::Proc)
+  def resolve_callable!(identifier : Callable | Callable::Proc) : Callable | Callable::Proc
     identifier
   end
 
-  def resolve_callable!(identifier) : Callable | Callable::Proc
+  def resolve_callable!(identifier : Value) : Callable | Callable::Proc
+    return identifier.as_callable.as(Callable | Callable::Proc) if identifier.callable?
+
     callable = resolve_callable(identifier)
 
-    if callable.is_a? Undefined
-      raise TypeError.new(Value.new(callable), "#{identifier.inspect} is undefined")
+    if callable.undefined?
+      raise TypeError.new(callable, "#{identifier.as_undefined.name} is undefined")
     end
 
-    if callable.is_a? Callable
+    if callable.callable?
       # FIXME: Explicit cast should not be necessary.
-      return callable.as(Callable | Callable::Proc)
+      return callable.as_callable.as(Callable | Callable::Proc)
     else
-      raise TypeError.new(Value.new(callable), "`#{identifier.inspect}` is not callable")
+      raise TypeError.new(callable, "`#{identifier.inspect}` is not callable")
     end
-  end
-
-  def resolve_callable!(callable : Value)
-    resolve_callable!(callable.raw)
   end
 end

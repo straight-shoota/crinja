@@ -58,7 +58,7 @@ end
 
 describe Crinja::Filter do
   it "calling" do
-    Crinja.new.call_filter("sum", [1, 2, 3]).should eq 6
+    Crinja.new.call_filter("sum", Crinja::Value.new [1, 2, 3]).should eq 6
   end
 
   it "capitalize" do
@@ -268,7 +268,7 @@ describe Crinja::Filter do
     evaluate_expression(%("hello world" | lower)).should eq("hello world")
   end
 
-  it "pprint" do
+  pending "pprint" do
     data = Range.new(0, 1000, true)
     evaluate_expression(%(data|pprint), {data: data}).should eq data.to_a.pretty_inspect
   end
@@ -345,7 +345,7 @@ describe Crinja::Filter do
 
     it "urlize rel policy" do
       env = Crinja.new
-      env.policies["urlize.rel"] = nil
+      env.policies["urlize.rel"] = Crinja::Value.new nil
       env.evaluate(%("foo http://www.example.com/ bar"|urlize)).should eq \
         %(foo <a href="http://www.example.com/">http://www.example.com/</a> bar)
     end

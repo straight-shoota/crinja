@@ -13,8 +13,8 @@ private class User
     (Time.new(2017, 6, 8) - @dob)
   end
 
-  def getattr(attr)
-    case attr
+  def getattr(attr : Crinja::Value)
+    case attr.to_string
     when "name"
       name
     when "age"
@@ -24,17 +24,18 @@ private class User
     end
   end
 
-  def __call__(name)
+  def __call__(name : String)
     if name == "days_old"
       ->(arguments : Crinja::Callable::Arguments) do
-        self.age.days.as(Crinja::Type)
+        self.age.days
       end
     end
   end
 
-  def __getitem__(attr)
-    if attr.responds_to?(:to_i)
-      @name[attr.to_i].to_s
+  def __getitem__(attr : Crinja::Value)
+    raw = attr.raw
+    if raw.responds_to?(:to_i)
+      @name[raw.to_i].to_s
     else
       Crinja::Undefined.new(attr.to_s)
     end
@@ -42,6 +43,11 @@ private class User
 end
 
 describe Crinja::PyObject do
+  it "resolves __getitem__" do
+    user = User.new("Tom", Time.new(1974, 3, 28))
+    evaluate_expression_raw(%(user[0]), {user: user}).should eq "T"
+  end
+
   it do
     user = User.new("Tom", Time.new(1974, 3, 28))
     render(%({{ user[0] | lower }}/{{ user.name }}: {{ user.age }} ({{ user.days_old() }} days)), {user: user}).should eq "t/Tom: 43 (15778 days)"

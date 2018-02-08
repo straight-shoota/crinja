@@ -16,7 +16,7 @@ class Crinja::Tag::Filter < Crinja::Tag
     parser = Parser.new(tag_node.arguments, renderer.env.config)
     placeholder, expression = parser.parse_filter_tag
 
-    placeholder.value = renderer.render(tag_node.block).value
+    placeholder.value = Value.new renderer.render(tag_node.block).value
 
     result = renderer.env.evaluate(expression)
 
@@ -25,7 +25,7 @@ class Crinja::Tag::Filter < Crinja::Tag
 
   private class Parser < ArgumentsParser
     def parse_filter_tag
-      placeholder = left = AST::ValuePlaceholder.new(nil).at(current_token.location)
+      placeholder = left = AST::ValuePlaceholder.new(Value.new nil).at(current_token.location)
 
       while true
         identifier = parse_identifier

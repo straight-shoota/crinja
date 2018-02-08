@@ -58,7 +58,7 @@ def evaluate_expression_raw(string, bindings = nil, autoescape = nil)
 
   expression = parser.parse
 
-  env.evaluate expression, bindings
+  env.evaluate(expression, bindings).raw
 end
 
 module Spec

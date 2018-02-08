@@ -5,21 +5,25 @@ require "html"
 # but with a few adjustments compared to Crystal standard `to_s` methods.
 struct Crinja::Finalizer
   def self.stringify(raw, escape = false, in_struct = false)
-    builder = new(escape, in_struct)
-    builder.stringify(raw)
-    builder.to_string
+    String.build do |io|
+      stringify(io, raw, escape, in_struct)
+    end
+  end
+
+  def self.stringify(io : IO, raw, escape = false, in_struct = false)
+    new(io, escape, in_struct).stringify(raw)
   end
 
   # :nodoc:
-  protected def initialize(@escape = false, @inside_struct = false)
-    @io = IO::Memory.new
+  protected def initialize(@io : IO, @escape = false, @inside_struct = false)
   end
 
-  protected def to_string
-    @io.to_s
+  # Convert a `Value` to string.
+  protected def stringify(value : Value)
+    stringify(value.raw)
   end
 
-  # Convert a `Type` to stringitg.
+  # Convert any type to string.
   protected def stringify(raw)
     raw.to_s(@io)
   end

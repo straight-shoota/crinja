@@ -21,10 +21,13 @@ class Crinja::Tag::For < Crinja::Tag
     runner = Runner.new(renderer, tag_node, item_vars)
 
     collection = env.evaluator.value(collection_expr)
+    pp collection, "A", if_expr
 
     if if_expr
       collection = ConditionalIterator.new(collection.each, if_expr, env, item_vars)
     end
+
+    pp collection, "B", recursive
 
     if recursive
       looper = ForLoop::Recursive.new runner, collection
@@ -80,7 +83,7 @@ class Crinja::Tag::For < Crinja::Tag
       Renderer::OutputList.new.tap do |output|
         looper.each do |value|
           @renderer.env.with_scope({LOOP_VARIABLE => looper}) do |context|
-            context.unpack @item_vars, value.raw
+            context.unpack @item_vars, value
             output << render_children
           end
         end
@@ -114,9 +117,9 @@ class Crinja::Tag::For < Crinja::Tag
 
     def next
       loop do
-        value = wrapped_next
+        value = wrapped_next.as(Value)
         @env.context[LOOP_VARIABLE] = StrictUndefined.new(LOOP_VARIABLE)
-        @env.context.unpack(@item_vars, value.raw)
+        @env.context.unpack(@item_vars, value)
 
         if @env.evaluator.value(@condition).truthy?
           return value

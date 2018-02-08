@@ -142,7 +142,7 @@ module Crinja::AST
     children : Hash(ExpressionNode, ExpressionNode)
 
   expression_node ValuePlaceholder,
-    value : Type
+    value : Value
 
   template_node NodeList,
     children : Array(TemplateNode),

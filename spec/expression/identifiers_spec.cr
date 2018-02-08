@@ -14,13 +14,29 @@ describe "expressions with identifiers" do
     evaluate_expression(%(posts[0].user.name), {"posts" => [{"user" => {"name" => "Barry"}}]}).should eq("Barry")
   end
 
-  it "shows lookup name if undefined" do
+  it "resolves IndexExpression" do
+    evaluate_expression_raw(%(posts[0]), {"posts" => [true]}).should be_true
+  end
+
+  it "raises with lookup name if undefined (IndexExpression)" do
     expect_raises(Crinja::UndefinedError, "posts is undefined") do
       evaluate_expression(%(posts[0].user.name))
     end
   end
 
-  it "shows lookup name if undefined" do
+  it "raises with lookup name if undefined (MemberExpression)" do
+    expect_raises(Crinja::UndefinedError, "posts[0] is undefined") do
+      undefined = evaluate_expression_raw(%(posts[0].user.name), {"posts" => [] of Crinja::Value})
+    end
+  end
+
+  it "raises with lookup name if undefined (MemberExpression, MemberExpression)" do
+    expect_raises(Crinja::UndefinedError, "posts[0].user is undefined") do
+      undefined = evaluate_expression_raw(%(posts[0].user.name), {"posts" => [true]})
+    end
+  end
+
+  it "returns lookup name in Undefined" do
     undefined = evaluate_expression_raw(%(posts[0].user.name), {"posts" => [{"user" => nil}]}).as(Crinja::Undefined)
     undefined.name.should eq "posts[0].user.name"
   end

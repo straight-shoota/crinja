@@ -17,10 +17,6 @@ module Crinja::Filter
 
   # TODO: Use to_json?
   Crinja.filter({verbose: false}, :pprint) do
-    if arguments[:verbose].truthy?
-      target.pretty_inspect
-    else
-      target.pretty_inspect
-    end
+    env.stringify target, pretty: true
   end
 end
