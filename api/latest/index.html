@@ -195,11 +195,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Bindings" data-name="crinja::bindings">
-      <a href="Crinja/Bindings.html">Bindings</a>
-      
-    </li>
-  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
       <a href="Crinja/Callable.html">Callable</a>
       
@@ -407,11 +402,6 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Binary" data-name="crinja::operator::binary">
       <a href="Crinja/Operator/Binary.html">Binary</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Comparator" data-name="crinja::operator::comparator">
-      <a href="Crinja/Operator/Comparator.html">Comparator</a>
       
     </li>
   
@@ -910,11 +900,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Type" data-name="crinja::type">
-      <a href="Crinja/Type.html">Type</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TypeError" data-name="crinja::typeerror">
       <a href="Crinja/TypeError.html">TypeError</a>
       
@@ -950,8 +935,18 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
       <a href="Crinja/Value.html">Value</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value/Iterator" data-name="crinja::value::iterator(t)">
+      <a href="Crinja/Value/Iterator.html">Iterator</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -1030,8 +1025,7 @@
 
 <pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
 
-template <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Template</span>.<span class="k">new</span>(<span class="s">&quot;Hello, {{ name }}!&quot;</span>)
-template.render({<span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span>}) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
+<span class="t">Crinja</span>.render(<span class="s">&quot;Hello, {{ name }}!&quot;</span>, {<span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span>}) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
 
 <h3>File loader</h3>
 
@@ -1129,25 +1123,25 @@ myfilter <span class="o">=</span> <span class="t">Crinja</span>.filter({ attribu
 env.filters[<span class="s">&quot;customfilter&quot;</span>] <span class="o">=</span> myfilter
 
 template <span class="o">=</span> env.from_string(<span class="s">%({{ &quot;Hello World&quot; | customfilter(attribute=&quot;super&quot;) }})</span>)
-template.render <span class="o">=</span> <span class="s">&quot;Hello World is super!&quot;</span></code></pre>
+template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span></code></pre>
 
 <p>Or you can define a class for more complex features:</p>
 
-<pre><code class='language-crystal'>env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
-
-<span class="k">class</span> <span class="t">Customfilter</span>
+<pre><code class='language-crystal'><span class="k">class</span> <span class="t">Customfilter</span>
   <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Callable</span>
 
   getter name <span class="o">=</span> <span class="s">&quot;customfilter&quot;</span>
 
-  getter defaults <span class="o">=</span> {
+  getter defaults <span class="o">=</span> <span class="t">Crinja</span>.variables({
     <span class="s">&quot;attribute&quot;</span> => <span class="s">&quot;great&quot;</span>
-  } <span class="k">of</span> <span class="t">String</span> => <span class="t">Crinja</span><span class="t">::</span><span class="t">Type</span>
+  })
 
   <span class="k">def</span> <span class="m">call</span>(arguments)
     <span class="s">&quot;</span><span class="i">#{</span></span>arguments.target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>!&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span>
+
+env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
 env.filters <span class="o"><<</span> <span class="t">Customfilter</span>.<span class="k">new</span>
 
 template <span class="o">=</span> env.from_string(<span class="s">%({{ &quot;Hello World&quot; | customfilter(attribute=&quot;super&quot;) }})</span>)

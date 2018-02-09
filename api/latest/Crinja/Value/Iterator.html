@@ -5,7 +5,7 @@
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
   <link href="../../css/style.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="../../js/doc.js"></script>
-  <title>Crinja::Operator::Comparator - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Value::Iterator(T) - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -192,11 +192,6 @@
   
 </ul>
 
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Bindings" data-name="crinja::bindings">
-      <a href="../../Crinja/Bindings.html">Bindings</a>
       
     </li>
   
@@ -395,7 +390,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Operator" data-name="crinja::operator">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Operator" data-name="crinja::operator">
       <a href="../../Crinja/Operator.html">Operator</a>
       
         <ul>
@@ -407,11 +402,6 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Binary" data-name="crinja::operator::binary">
       <a href="../../Crinja/Operator/Binary.html">Binary</a>
-      
-    </li>
-  
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Operator/Comparator" data-name="crinja::operator::comparator">
-      <a href="../../Crinja/Operator/Comparator.html">Comparator</a>
       
     </li>
   
@@ -910,11 +900,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Type" data-name="crinja::type">
-      <a href="../../Crinja/Type.html">Type</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TypeError" data-name="crinja::typeerror">
       <a href="../../Crinja/TypeError.html">TypeError</a>
       
@@ -950,8 +935,18 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
+  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
       <a href="../../Crinja/Value.html">Value</a>
+      
+        <ul>
+  
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Value/Iterator" data-name="crinja::value::iterator(t)">
+      <a href="../../Crinja/Value/Iterator.html">Iterator</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -997,11 +992,12 @@
 <div id="main-content">
 <h1 class="type-name">
 
-  <span class="kind">module</span> Crinja::Operator::Comparator
+  <span class="kind">class</span> Crinja::Value::Iterator(T)
 
 </h1>
 
 
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Value/Iterator.html">Crinja::Value::Iterator(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -1010,11 +1006,12 @@
 
 
 
-
-  <h2>Extended Modules</h2>
+  <h2>Included Modules</h2>
   <ul class="other-types-list">
   
-    <li class="other-type"><a href="../../Crinja/Operator/Comparator.html">Crinja::Operator::Comparator</a></li>
+    <li class="other-type">Iterator(<a href="../../Crinja/Value.html">Crinja::Value</a>)</li>
+  
+    <li class="other-type">Iterator::IteratorWrapper</li>
   
   </ul>
 
@@ -1022,22 +1019,7 @@
 
 
 
-  <h2>Direct including types</h2>
-  <ul class="other-types-list">
-  
-    <li class="other-type"><a href="../../Crinja/Operator/Equals.html">Crinja::Operator::Equals</a></li>
-  
-    <li class="other-type"><a href="../../Crinja/Operator/GreaterThan.html">Crinja::Operator::GreaterThan</a></li>
-  
-    <li class="other-type"><a href="../../Crinja/Operator/GreaterThanEquals.html">Crinja::Operator::GreaterThanEquals</a></li>
-  
-    <li class="other-type"><a href="../../Crinja/Operator/LowerThan.html">Crinja::Operator::LowerThan</a></li>
-  
-    <li class="other-type"><a href="../../Crinja/Operator/LowerThanEquals.html">Crinja::Operator::LowerThanEquals</a></li>
-  
-    <li class="other-type"><a href="../../Crinja/Operator/NotEquals.html">Crinja::Operator::NotEquals</a></li>
-  
-  </ul>
+
 
 
 
@@ -1045,7 +1027,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/lib/operator/comparator.cr#L2" target="_blank">lib/operator/comparator.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/value.cr#L282" target="_blank">runtime/value.cr</a>
     
     <br/>
   
@@ -1053,6 +1035,16 @@
 
 
 
+
+  <h2>Constructors</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28iterator%3AT%29-class-method" class="signature"><strong>.new</strong>(iterator : T)</a>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -1062,12 +1054,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#compare%28a%3AType%2Cb%3AType%29-instance-method" class="signature"><strong>#compare</strong>(a : Type, b : Type)</a>
+        <a href="#%3D%3D%28other%3AIterator%29-instance-method" class="signature"><strong>#==</strong>(other : Iterator)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#compare_array%28a%3AArray%28Type%29%2Cb%3AArray%28Type%29%29-instance-method" class="signature"><strong>#compare_array</strong>(a : Array(Type), b : Array(Type))</a>
+        <a href="#next%3AValue%7CIterator%3A%3AStop-instance-method" class="signature"><strong>#next</strong> : Value | Iterator::Stop</a>
         
       </li>
     
@@ -1079,8 +1071,77 @@
 
 <div class="methods-inherited">
   
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
 </div>
 
+
+  <h2>Constructor Detail</h2>
+  
+    <div class="entry-detail" id="new(iterator:T)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(iterator : T)
+
+        <a class="method-permalink" href="#new%28iterator%3AT%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/value.cr#L288" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
@@ -1088,34 +1149,34 @@
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="compare(a:Type,b:Type)-instance-method">
+    <div class="entry-detail" id="==(other:Iterator)-instance-method">
       <div class="signature">
         
-        def <strong>compare</strong>(a : <a href="../../Crinja/Type.html">Type</a>, b : <a href="../../Crinja/Type.html">Type</a>)
+        def <strong>==</strong>(other : <a href="../../Crinja/Value/Iterator.html">Iterator</a>)
 
-        <a class="method-permalink" href="#compare%28a%3AType%2Cb%3AType%29-instance-method">#</a>
+        <a class="method-permalink" href="#%3D%3D%28other%3AIterator%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/lib/operator/comparator.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/value.cr#L291" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="compare_array(a:Array(Type),b:Array(Type))-instance-method">
+    <div class="entry-detail" id="next:Value|Iterator::Stop-instance-method">
       <div class="signature">
         
-        def <strong>compare_array</strong>(a : Array(<a href="../../Crinja/Type.html">Type</a>), b : Array(<a href="../../Crinja/Type.html">Type</a>))
+        def <strong>next</strong> : <a href="../../Crinja/Value.html">Value</a> | Iterator::Stop
 
-        <a class="method-permalink" href="#compare_array%28a%3AArray%28Type%29%2Cb%3AArray%28Type%29%29-instance-method">#</a>
+        <a class="method-permalink" href="#next%3AValue%7CIterator%3A%3AStop-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/lib/operator/comparator.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/value.cr#L295" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -195,11 +195,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Bindings" data-name="crinja::bindings">
-      <a href="../Crinja/Bindings.html">Bindings</a>
-      
-    </li>
-  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
       <a href="../Crinja/Callable.html">Callable</a>
       
@@ -407,11 +402,6 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Binary" data-name="crinja::operator::binary">
       <a href="../Crinja/Operator/Binary.html">Binary</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Comparator" data-name="crinja::operator::comparator">
-      <a href="../Crinja/Operator/Comparator.html">Comparator</a>
       
     </li>
   
@@ -910,11 +900,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Type" data-name="crinja::type">
-      <a href="../Crinja/Type.html">Type</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TypeError" data-name="crinja::typeerror">
       <a href="../Crinja/TypeError.html">TypeError</a>
       
@@ -950,8 +935,18 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
       <a href="../Crinja/Value.html">Value</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value/Iterator" data-name="crinja::value::iterator(t)">
+      <a href="../Crinja/Value/Iterator.html">Iterator</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -1010,7 +1005,7 @@
   <p>Include this module into your classes to make them available as values in Crinja.
 There are three types of properties you can expose to the Crinja runtime:</p>
 
-<ol><li><code><a href="../Crinja/PyObject.html#getattr%28%2Awhitelist%29-macro">#getattr(name : Crinja::Type)</a> : <a href="../Crinja/Type.html">Crinja::Type</a></code>: Access an attribute (e.g. an instance property) of this class.</li><li><code>#__getitem__(name : Crinja::Type) : <a href="../Crinja/Type.html">Crinja::Type</a></code>: Access an item (e.g. an array member) of this class.</li><li><code>#__call__(name : String) : <a href="../Crinja/Callable.html">Crinja::Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a></code>: Expose a callable as method of this class.</li></ol>
+<ol><li><code><a href="../Crinja/PyObject.html#getattr%28%2Awhitelist%29-macro">#getattr(name : Crinja::Value)</a> : <a href="../Crinja/Value.html">Crinja::Value</a></code>: Access an attribute (e.g. an instance property) of this class.</li><li><code>#__getitem__(name : Crinja::Value) : <a href="../Crinja/Value.html">Crinja::Value</a></code>: Access an item (e.g. an array member) of this class.</li><li><code>#__call__(name : String) : <a href="../Crinja/Callable.html">Crinja::Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a></code>: Expose a callable as method of this class.</li></ol>
 
 <p>Through the static comilation it is not possible to access properties or methods of an object
 directly from inside the Crinja runtime. These methods allow to define a name-based lookup and
@@ -1054,7 +1049,7 @@ attributes, items or methods defined.</p>
   <span class="k">def</span> <span class="m">__call__</span>(name)
     <span class="k">if</span> name <span class="o">==</span> <span class="s">&quot;days_old&quot;</span>
       ->(arguments : <span class="t">Crinja</span><span class="t">::</span><span class="t">Arguments</span>) <span class="k">do</span>
-        <span class="k">self</span>.age.days.<span class="k">as</span>(<span class="t">Crinja</span><span class="t">::</span><span class="t">Type</span>)
+        <span class="k">self</span>.age.days
       <span class="k">end</span>
     <span class="k">end</span>
   <span class="k">end</span>
@@ -1089,7 +1084,7 @@ attributes, items or methods defined.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_object.cr#L57" target="_blank">runtime/py_object.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_object.cr#L57" target="_blank">runtime/py_object.cr</a>
     
     <br/>
   
@@ -1151,7 +1146,7 @@ attributes, items or methods defined.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_object.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_object.cr#L59" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1169,7 +1164,7 @@ attributes, items or methods defined.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_object.cr#L79" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_object.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>

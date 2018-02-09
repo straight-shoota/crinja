@@ -195,11 +195,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Bindings" data-name="crinja::bindings">
-      <a href="../../Crinja/Bindings.html">Bindings</a>
-      
-    </li>
-  
   <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
       <a href="../../Crinja/Callable.html">Callable</a>
       
@@ -407,11 +402,6 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Binary" data-name="crinja::operator::binary">
       <a href="../../Crinja/Operator/Binary.html">Binary</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Comparator" data-name="crinja::operator::comparator">
-      <a href="../../Crinja/Operator/Comparator.html">Comparator</a>
       
     </li>
   
@@ -910,11 +900,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Type" data-name="crinja::type">
-      <a href="../../Crinja/Type.html">Type</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TypeError" data-name="crinja::typeerror">
       <a href="../../Crinja/TypeError.html">TypeError</a>
       
@@ -950,8 +935,18 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
       <a href="../../Crinja/Value.html">Value</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value/Iterator" data-name="crinja::value::iterator(t)">
+      <a href="../../Crinja/Value/Iterator.html">Iterator</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -1030,7 +1025,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/callable.cr#L102" target="_blank">runtime/callable.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/callable.cr#L106" target="_blank">runtime/callable.cr</a>
     
     <br/>
   
@@ -1043,7 +1038,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28proc%2Cdefaults%3D%7B%7DofString%3D%3EType%2Cname%3Dnil%29-class-method" class="signature"><strong>.new</strong>(proc, defaults = {} <span class="k">of</span> <span class="t">String</span> => <span class="t">Type</span>, name = <span class="n">nil</span>)</a>
+        <a href="#new%28proc%2Cdefaults%3D%7B%7DofString%3D%3EValue%2Cname%3Dnil%29-class-method" class="signature"><strong>.new</strong>(proc, defaults = {} <span class="k">of</span> <span class="t">String</span> => <span class="t">Value</span>, name = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -1133,18 +1128,18 @@
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new(proc,defaults={}ofString=&gt;Type,name=nil)-class-method">
+    <div class="entry-detail" id="new(proc,defaults={}ofString=&gt;Value,name=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(proc, defaults = {} <span class="k">of</span> <span class="t">String</span> => <span class="t">Type</span>, name = <span class="n">nil</span>)
+        def self.<strong>new</strong>(proc, defaults = {} <span class="k">of</span> <span class="t">String</span> => <span class="t">Value</span>, name = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28proc%2Cdefaults%3D%7B%7DofString%3D%3EType%2Cname%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28proc%2Cdefaults%3D%7B%7DofString%3D%3EValue%2Cname%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/callable.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/callable.cr#L113" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1167,7 +1162,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/callable.cr#L112" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/callable.cr#L116" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1183,7 +1178,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/callable.cr#L106" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/callable.cr#L110" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1199,7 +1194,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/callable.cr#L107" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/callable.cr#L111" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1215,7 +1210,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/callable.cr#L105" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/callable.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>

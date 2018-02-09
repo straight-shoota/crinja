@@ -195,11 +195,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Bindings" data-name="crinja::bindings">
-      <a href="../Crinja/Bindings.html">Bindings</a>
-      
-    </li>
-  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
       <a href="../Crinja/Callable.html">Callable</a>
       
@@ -407,11 +402,6 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Binary" data-name="crinja::operator::binary">
       <a href="../Crinja/Operator/Binary.html">Binary</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Comparator" data-name="crinja::operator::comparator">
-      <a href="../Crinja/Operator/Comparator.html">Comparator</a>
       
     </li>
   
@@ -910,11 +900,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Type" data-name="crinja::type">
-      <a href="../Crinja/Type.html">Type</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TypeError" data-name="crinja::typeerror">
       <a href="../Crinja/TypeError.html">TypeError</a>
       
@@ -950,8 +935,18 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
       <a href="../Crinja/Value.html">Value</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value/Iterator" data-name="crinja::value::iterator(t)">
+      <a href="../Crinja/Value/Iterator.html">Iterator</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -1028,7 +1023,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L1" target="_blank">runtime/resolver.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L1" target="_blank">runtime/resolver.cr</a>
     
     <br/>
   
@@ -1043,78 +1038,80 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#resolve_attribute%28name%2Cvalue%3AValue%29-class-method" class="signature"><strong>.resolve_attribute</strong>(name, value : Value)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#resolve_attribute%28name%2Cobject%29-class-method" class="signature"><strong>.resolve_attribute</strong>(name, object)</a>
+        <a href="#resolve_attribute%28name%2Cobject%3AValue%29%3AValue-class-method" class="signature"><strong>.resolve_attribute</strong>(name, object : Value) : Value</a>
         
           <div class="summary"><p>Resolves an objects attribute.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_dig%28name%3AString%2Cobject%3AType%29-class-method" class="signature"><strong>.resolve_dig</strong>(name : String, object : Type)</a>
+        <a href="#resolve_attribute%28name%2Cvalue%29%3AValue-class-method" class="signature"><strong>.resolve_attribute</strong>(name, value) : Value</a>
+        
+          <div class="summary"><p>Resolves an objects attribute.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#resolve_dig%28name%3AString%2Cobject%29%3AValue-class-method" class="signature"><strong>.resolve_dig</strong>(name : String, object) : Value</a>
         
           <div class="summary"><p>Resolves a dig.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_dig%28name%2Cobject%3AType%29-class-method" class="signature"><strong>.resolve_dig</strong>(name, object : Type)</a>
+        <a href="#resolve_dig%28name%3AValue%2Cvalue%3AValue%29%3AValue-class-method" class="signature"><strong>.resolve_dig</strong>(name : Value, value : Value) : Value</a>
         
           <div class="summary"><p>Resolves a dig.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_dig%28name%2Cvalue%3AValue%29-class-method" class="signature"><strong>.resolve_dig</strong>(name, value : Value)</a>
+        <a href="#resolve_dig%28name%2Cobject%29%3AValue-class-method" class="signature"><strong>.resolve_dig</strong>(name, object) : Value</a>
         
           <div class="summary"><p>Resolves a dig.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_getattr%28name%2Cvalue%3AValue%29-class-method" class="signature"><strong>.resolve_getattr</strong>(name, value : Value)</a>
+        <a href="#resolve_getattr%28name%3AValue%2Cvalue%3AValue%29%3AValue-class-method" class="signature"><strong>.resolve_getattr</strong>(name : Value, value : Value) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_getattr%28name%2Cobject%29-class-method" class="signature"><strong>.resolve_getattr</strong>(name, object)</a>
+        <a href="#resolve_getattr%28name%2Cvalue%29%3AValue-class-method" class="signature"><strong>.resolve_getattr</strong>(name, value) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_getitem%28name%2Cvalue%3AValue%29-class-method" class="signature"><strong>.resolve_getitem</strong>(name, value : Value)</a>
+        <a href="#resolve_getitem%28name%3AValue%2Cobject%3AValue%29%3AValue-class-method" class="signature"><strong>.resolve_getitem</strong>(name : Value, object : Value) : Value</a>
         
           <div class="summary"><p>Resolve an objects item.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_getitem%28name%2Cobject%29-class-method" class="signature"><strong>.resolve_getitem</strong>(name, object)</a>
+        <a href="#resolve_getitem%28name%2Cvalue%29%3AValue-class-method" class="signature"><strong>.resolve_getitem</strong>(name, value) : Value</a>
         
           <div class="summary"><p>Resolve an objects item.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_item%28name%2Cvalue%3AValue%29-class-method" class="signature"><strong>.resolve_item</strong>(name, value : Value)</a>
+        <a href="#resolve_item%28name%3AValue%2Cobject%3AValue%29%3AValue-class-method" class="signature"><strong>.resolve_item</strong>(name : Value, object : Value) : Value</a>
         
           <div class="summary"><p>Resolves an objects item.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_item%28name%2Cobject%29-class-method" class="signature"><strong>.resolve_item</strong>(name, object)</a>
+        <a href="#resolve_item%28name%2Craw%29%3AValue-class-method" class="signature"><strong>.resolve_item</strong>(name, raw) : Value</a>
         
           <div class="summary"><p>Resolves an objects item.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_method%28name%2Cvalue%3AValue%29-class-method" class="signature"><strong>.resolve_method</strong>(name, value : Value)</a>
+        <a href="#resolve_method%28name%2Cvalue%3AValue%29%3ACallable%7CCallable%3A%3AProc%3F-class-method" class="signature"><strong>.resolve_method</strong>(name, value : Value) : Callable | Callable::Proc?</a>
         
       </li>
     
@@ -1124,12 +1121,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_with_hash_accessor%28name%2Cobject%3AType%29-class-method" class="signature"><strong>.resolve_with_hash_accessor</strong>(name, object : Type)</a>
+        <a href="#resolve_with_hash_accessor%28name%3AValue%2Cvalue%3AValue%29%3AValue-class-method" class="signature"><strong>.resolve_with_hash_accessor</strong>(name : Value, value : Value) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_with_hash_accessor%28name%2Cvalue%3AValue%29-class-method" class="signature"><strong>.resolve_with_hash_accessor</strong>(name, value : Value)</a>
+        <a href="#resolve_with_hash_accessor%28name%2Cvalue%3AValue%29%3AValue-class-method" class="signature"><strong>.resolve_with_hash_accessor</strong>(name, value : Value) : Value</a>
         
       </li>
     
@@ -1141,49 +1138,44 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#call_filter%28name%2Ctarget%2C%2Aargs%29-instance-method" class="signature"><strong>#call_filter</strong>(name, target, *args)</a>
+        <a href="#call_filter%28name%3AString%2Ctarget%3AValue%2Cvarargs%3D%5B%5DofValue%2Ckwargs%3DVariables.new%29%3AValue-instance-method" class="signature"><strong>#call_filter</strong>(name : String, target : Value, varargs = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs = <span class="t">Variables</span>.<span class="k">new</span>) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#execute_call%28callable%2Cvarargs%3AArray%28Type%29%2Ckwargs%3AVariables%2Ctarget%3AValue%3F%3Dnil%29-instance-method" class="signature"><strong>#execute_call</strong>(callable, varargs : Array(Type), kwargs : Variables, target : Value? = <span class="n">nil</span>)</a>
+        <a href="#call_filter%28name%3AString%2Ctarget%29%3AValue-instance-method" class="signature"><strong>#call_filter</strong>(name : String, target) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#execute_call%28callable%2Cvarargs%3AArray%28Value%29%3D%5B%5DofValue%2Ckwargs%3AHash%28String%2CValue%29%3D%7B%7DofString%3D%3EValue%2Ctarget%3AValue%3F%3Dnil%29-instance-method" class="signature"><strong>#execute_call</strong>(callable, varargs : Array(Value) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs : Hash(String, Value) = {} <span class="k">of</span> <span class="t">String</span> => <span class="t">Value</span>, target : Value? = <span class="n">nil</span>)</a>
+        <a href="#execute_call%28callable%2Cvarargs%3AArray%28Value%29%3D%5B%5DofValue%2Ckwargs%3AVariables%3DVariables.new%2Ctarget%3AValue%3F%3Dnil%29%3AValue-instance-method" class="signature"><strong>#execute_call</strong>(callable, varargs : Array(Value) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs : Variables = <span class="t">Variables</span>.<span class="k">new</span>, target : Value? = <span class="n">nil</span>) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#execute_call%28callable%3ACallable%7CCallable%3A%3AProc%2Carguments%3ACallable%3A%3AArguments%29-instance-method" class="signature"><strong>#execute_call</strong>(callable : Callable | Callable::Proc, arguments : Callable::Arguments)</a>
+        <a href="#execute_call%28callable%3ACallable%7CCallable%3A%3AProc%2Carguments%3ACallable%3A%3AArguments%29%3AValue-instance-method" class="signature"><strong>#execute_call</strong>(callable : Callable | Callable::Proc, arguments : Callable::Arguments) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve%28name%3AString%29-instance-method" class="signature"><strong>#resolve</strong>(name : String)</a>
+        <a href="#resolve%28name%3AString%29%3AValue-instance-method" class="signature"><strong>#resolve</strong>(name : String) : Value</a>
         
           <div class="summary"><p>Resolves a variable in the current context.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_callable%28identifier%29-instance-method" class="signature"><strong>#resolve_callable</strong>(identifier)</a>
+        <a href="#resolve_callable%28identifier%29%3AValue-instance-method" class="signature"><strong>#resolve_callable</strong>(identifier) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_callable%21%28identifier%3ACallable%7CCallable%3A%3AProc%29-instance-method" class="signature"><strong>#resolve_callable!</strong>(identifier : Callable | Callable::Proc)</a>
+        <a href="#resolve_callable%21%28identifier%3ACallable%7CCallable%3A%3AProc%29%3ACallable%7CCallable%3A%3AProc-instance-method" class="signature"><strong>#resolve_callable!</strong>(identifier : Callable | Callable::Proc) : Callable | Callable::Proc</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#resolve_callable%21%28callable%3AValue%29-instance-method" class="signature"><strong>#resolve_callable!</strong>(callable : Value)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#resolve_callable%21%28identifier%29%3ACallable%7CCallable%3A%3AProc-instance-method" class="signature"><strong>#resolve_callable!</strong>(identifier) : Callable | Callable::Proc</a>
+        <a href="#resolve_callable%21%28identifier%3AValue%29%3ACallable%7CCallable%3A%3AProc-instance-method" class="signature"><strong>#resolve_callable!</strong>(identifier : Value) : Callable | Callable::Proc</a>
         
       </li>
     
@@ -1202,47 +1194,50 @@
 
   <h2>Class Method Detail</h2>
   
-    <div class="entry-detail" id="resolve_attribute(name,value:Value)-class-method">
+    <div class="entry-detail" id="resolve_attribute(name,object:Value):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_attribute</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
+        def self.<strong>resolve_attribute</strong>(name, object : <a href="../Crinja/Value.html">Value</a>) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_attribute%28name%2Cvalue%3AValue%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_attribute%28name%2Cobject%3AValue%29%3AValue-class-method">#</a>
       </div>
       
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L66" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="resolve_attribute(name,object)-class-method">
-      <div class="signature">
-        
-        def self.<strong>resolve_attribute</strong>(name, object)
-
-        <a class="method-permalink" href="#resolve_attribute%28name%2Cobject%29-class-method">#</a>
-      </div>
-      
-        <div class="doc"><p>Resolves an objects attribute. Tries <code><a href="../Crinja/Resolver.html#resolve_getitem%28name%2Cvalue%3AValue%29-class-method">.resolve_getitem</a></code> it <code>getitem</code> returns undefined.
+        <div class="doc"><p>Resolves an objects attribute. Tries <code><a href="../Crinja/Resolver.html#resolve_getitem%28name%3AValue%2Cobject%3AValue%29%3AValue-class-method">.resolve_getitem</a></code> it <code>getitem</code> returns undefined.
 Analogous to <code>getattr</code> in Jinja2.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_dig(name:String,object:Type)-class-method">
+    <div class="entry-detail" id="resolve_attribute(name,value):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_dig</strong>(name : String, object : <a href="../Crinja/Type.html">Type</a>)
+        def self.<strong>resolve_attribute</strong>(name, value) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_dig%28name%3AString%2Cobject%3AType%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_attribute%28name%2Cvalue%29%3AValue-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>Resolves an objects attribute. Tries <code><a href="../Crinja/Resolver.html#resolve_getitem%28name%3AValue%2Cobject%3AValue%29%3AValue-class-method">.resolve_getitem</a></code> it <code>getitem</code> returns undefined.
+Analogous to <code>getattr</code> in Jinja2.</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="resolve_dig(name:String,object):Value-class-method">
+      <div class="signature">
+        
+        def self.<strong>resolve_dig</strong>(name : String, object) : <a href="../Crinja/Value.html">Value</a>
+
+        <a class="method-permalink" href="#resolve_dig%28name%3AString%2Cobject%29%3AValue-class-method">#</a>
       </div>
       
         <div class="doc"><p>Resolves a dig.</p></div>
@@ -1250,17 +1245,17 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L113" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L112" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_dig(name,object:Type)-class-method">
+    <div class="entry-detail" id="resolve_dig(name:Value,value:Value):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_dig</strong>(name, object : <a href="../Crinja/Type.html">Type</a>)
+        def self.<strong>resolve_dig</strong>(name : <a href="../Crinja/Value.html">Value</a>, value : <a href="../Crinja/Value.html">Value</a>) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_dig%28name%2Cobject%3AType%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_dig%28name%3AValue%2Cvalue%3AValue%29%3AValue-class-method">#</a>
       </div>
       
         <div class="doc"><p>Resolves a dig.</p></div>
@@ -1268,17 +1263,17 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L125" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L129" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_dig(name,value:Value)-class-method">
+    <div class="entry-detail" id="resolve_dig(name,object):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_dig</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
+        def self.<strong>resolve_dig</strong>(name, object) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_dig%28name%2Cvalue%3AValue%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_dig%28name%2Cobject%29%3AValue-class-method">#</a>
       </div>
       
         <div class="doc"><p>Resolves a dig.</p></div>
@@ -1286,49 +1281,49 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L130" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L124" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_getattr(name,value:Value)-class-method">
+    <div class="entry-detail" id="resolve_getattr(name:Value,value:Value):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_getattr</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
+        def self.<strong>resolve_getattr</strong>(name : <a href="../Crinja/Value.html">Value</a>, value : <a href="../Crinja/Value.html">Value</a>) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_getattr%28name%2Cvalue%3AValue%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_getattr%28name%3AValue%2Cvalue%3AValue%29%3AValue-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L79" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_getattr(name,object)-class-method">
+    <div class="entry-detail" id="resolve_getattr(name,value):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_getattr</strong>(name, object)
+        def self.<strong>resolve_getattr</strong>(name, value) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_getattr%28name%2Cobject%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_getattr%28name%2Cvalue%29%3AValue-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L70" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L76" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_getitem(name,value:Value)-class-method">
+    <div class="entry-detail" id="resolve_getitem(name:Value,object:Value):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_getitem</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
+        def self.<strong>resolve_getitem</strong>(name : <a href="../Crinja/Value.html">Value</a>, object : <a href="../Crinja/Value.html">Value</a>) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_getitem%28name%2Cvalue%3AValue%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_getitem%28name%3AValue%2Cobject%3AValue%29%3AValue-class-method">#</a>
       </div>
       
         <div class="doc"><p>Resolve an objects item.</p></div>
@@ -1336,17 +1331,17 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_getitem(name,object)-class-method">
+    <div class="entry-detail" id="resolve_getitem(name,value):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_getitem</strong>(name, object)
+        def self.<strong>resolve_getitem</strong>(name, value) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_getitem%28name%2Cobject%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_getitem%28name%2Cvalue%29%3AValue-class-method">#</a>
       </div>
       
         <div class="doc"><p>Resolve an objects item.</p></div>
@@ -1354,61 +1349,61 @@ Analogous to <code>getattr</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_item(name,value:Value)-class-method">
+    <div class="entry-detail" id="resolve_item(name:Value,object:Value):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_item</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
+        def self.<strong>resolve_item</strong>(name : <a href="../Crinja/Value.html">Value</a>, object : <a href="../Crinja/Value.html">Value</a>) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_item%28name%2Cvalue%3AValue%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_item%28name%3AValue%2Cobject%3AValue%29%3AValue-class-method">#</a>
       </div>
       
-        <div class="doc"><p>Resolves an objects item. Tries <code><a href="../Crinja/Resolver.html#resolve_getattr%28name%2Cvalue%3AValue%29-class-method">.resolve_getattr</a></code> it <code>getitem</code> returns undefined.
+        <div class="doc"><p>Resolves an objects item. Tries <code><a href="../Crinja/Resolver.html#resolve_getattr%28name%3AValue%2Cvalue%3AValue%29%3AValue-class-method">.resolve_getattr</a></code> it <code>getitem</code> returns undefined.
 Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_item(name,object)-class-method">
+    <div class="entry-detail" id="resolve_item(name,raw):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_item</strong>(name, object)
+        def self.<strong>resolve_item</strong>(name, raw) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_item%28name%2Cobject%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_item%28name%2Craw%29%3AValue-class-method">#</a>
       </div>
       
-        <div class="doc"><p>Resolves an objects item. Tries <code><a href="../Crinja/Resolver.html#resolve_getattr%28name%2Cvalue%3AValue%29-class-method">.resolve_getattr</a></code> it <code>getitem</code> returns undefined.
+        <div class="doc"><p>Resolves an objects item. Tries <code><a href="../Crinja/Resolver.html#resolve_getattr%28name%3AValue%2Cvalue%3AValue%29%3AValue-class-method">.resolve_getattr</a></code> it <code>getitem</code> returns undefined.
 Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_method(name,value:Value)-class-method">
+    <div class="entry-detail" id="resolve_method(name,value:Value):Callable|Callable::Proc?-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_method</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
+        def self.<strong>resolve_method</strong>(name, value : <a href="../Crinja/Value.html">Value</a>) : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>?
 
-        <a class="method-permalink" href="#resolve_method%28name%2Cvalue%3AValue%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_method%28name%2Cvalue%3AValue%29%3ACallable%7CCallable%3A%3AProc%3F-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L92" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L90" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1424,39 +1419,39 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L80" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_with_hash_accessor(name,object:Type)-class-method">
+    <div class="entry-detail" id="resolve_with_hash_accessor(name:Value,value:Value):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_with_hash_accessor</strong>(name, object : <a href="../Crinja/Type.html">Type</a>)
+        def self.<strong>resolve_with_hash_accessor</strong>(name : <a href="../Crinja/Value.html">Value</a>, value : <a href="../Crinja/Value.html">Value</a>) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_with_hash_accessor%28name%2Cobject%3AType%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_with_hash_accessor%28name%3AValue%2Cvalue%3AValue%29%3AValue-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L96" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L94" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_with_hash_accessor(name,value:Value)-class-method">
+    <div class="entry-detail" id="resolve_with_hash_accessor(name,value:Value):Value-class-method">
       <div class="signature">
         
-        def self.<strong>resolve_with_hash_accessor</strong>(name, value : <a href="../Crinja/Value.html">Value</a>)
+        def self.<strong>resolve_with_hash_accessor</strong>(name, value : <a href="../Crinja/Value.html">Value</a>) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_with_hash_accessor%28name%2Cvalue%3AValue%29-class-method">#</a>
+        <a class="method-permalink" href="#resolve_with_hash_accessor%28name%2Cvalue%3AValue%29%3AValue-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L108" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1466,76 +1461,76 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="call_filter(name,target,*args)-instance-method">
+    <div class="entry-detail" id="call_filter(name:String,target:Value,varargs=[]ofValue,kwargs=Variables.new):Value-instance-method">
       <div class="signature">
         
-        def <strong>call_filter</strong>(name, target, *args)
+        def <strong>call_filter</strong>(name : String, target : <a href="../Crinja/Value.html">Value</a>, varargs = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs = <span class="t">Variables</span>.<span class="k">new</span>) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#call_filter%28name%2Ctarget%2C%2Aargs%29-instance-method">#</a>
+        <a class="method-permalink" href="#call_filter%28name%3AString%2Ctarget%3AValue%2Cvarargs%3D%5B%5DofValue%2Ckwargs%3DVariables.new%29%3AValue-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L171" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L163" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="execute_call(callable,varargs:Array(Type),kwargs:Variables,target:Value?=nil)-instance-method">
+    <div class="entry-detail" id="call_filter(name:String,target):Value-instance-method">
       <div class="signature">
         
-        def <strong>execute_call</strong>(callable, varargs : Array(<a href="../Crinja/Type.html">Type</a>), kwargs : <a href="../Crinja/Variables.html">Variables</a>, target : <a href="../Crinja/Value.html">Value</a>? = <span class="n">nil</span>)
+        def <strong>call_filter</strong>(name : String, target) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#execute_call%28callable%2Cvarargs%3AArray%28Type%29%2Ckwargs%3AVariables%2Ctarget%3AValue%3F%3Dnil%29-instance-method">#</a>
+        <a class="method-permalink" href="#call_filter%28name%3AString%2Ctarget%29%3AValue-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L144" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L159" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="execute_call(callable,varargs:Array(Value)=[]ofValue,kwargs:Hash(String,Value)={}ofString=&gt;Value,target:Value?=nil)-instance-method">
+    <div class="entry-detail" id="execute_call(callable,varargs:Array(Value)=[]ofValue,kwargs:Variables=Variables.new,target:Value?=nil):Value-instance-method">
       <div class="signature">
         
-        def <strong>execute_call</strong>(callable, varargs : Array(<a href="../Crinja/Value.html">Value</a>) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs : Hash(String, <a href="../Crinja/Value.html">Value</a>) = {} <span class="k">of</span> <span class="t">String</span> => <span class="t">Value</span>, target : <a href="../Crinja/Value.html">Value</a>? = <span class="n">nil</span>)
+        def <strong>execute_call</strong>(callable, varargs : Array(<a href="../Crinja/Value.html">Value</a>) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs : <a href="../Crinja/Variables.html">Variables</a> = <span class="t">Variables</span>.<span class="k">new</span>, target : <a href="../Crinja/Value.html">Value</a>? = <span class="n">nil</span>) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#execute_call%28callable%2Cvarargs%3AArray%28Value%29%3D%5B%5DofValue%2Ckwargs%3AHash%28String%2CValue%29%3D%7B%7DofString%3D%3EValue%2Ctarget%3AValue%3F%3Dnil%29-instance-method">#</a>
+        <a class="method-permalink" href="#execute_call%28callable%2Cvarargs%3AArray%28Value%29%3D%5B%5DofValue%2Ckwargs%3AVariables%3DVariables.new%2Ctarget%3AValue%3F%3Dnil%29%3AValue-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L154" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L142" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="execute_call(callable:Callable|Callable::Proc,arguments:Callable::Arguments)-instance-method">
+    <div class="entry-detail" id="execute_call(callable:Callable|Callable::Proc,arguments:Callable::Arguments):Value-instance-method">
       <div class="signature">
         
-        def <strong>execute_call</strong>(callable : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>, arguments : <a href="../Crinja/Callable/Arguments.html">Callable::Arguments</a>)
+        def <strong>execute_call</strong>(callable : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>, arguments : <a href="../Crinja/Callable/Arguments.html">Callable::Arguments</a>) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#execute_call%28callable%3ACallable%7CCallable%3A%3AProc%2Carguments%3ACallable%3A%3AArguments%29-instance-method">#</a>
+        <a class="method-permalink" href="#execute_call%28callable%3ACallable%7CCallable%3A%3AProc%2Carguments%3ACallable%3A%3AArguments%29%3AValue-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L163" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L151" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve(name:String)-instance-method">
+    <div class="entry-detail" id="resolve(name:String):Value-instance-method">
       <div class="signature">
         
-        def <strong>resolve</strong>(name : String)
+        def <strong>resolve</strong>(name : String) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve%28name%3AString%29-instance-method">#</a>
+        <a class="method-permalink" href="#resolve%28name%3AString%29%3AValue-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Resolves a variable in the current context.</p></div>
@@ -1543,71 +1538,55 @@ Analogous to <code>__getitem__</code> in Jinja2.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L135" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L134" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_callable(identifier)-instance-method">
+    <div class="entry-detail" id="resolve_callable(identifier):Value-instance-method">
       <div class="signature">
         
-        def <strong>resolve_callable</strong>(identifier)
+        def <strong>resolve_callable</strong>(identifier) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#resolve_callable%28identifier%29-instance-method">#</a>
+        <a class="method-permalink" href="#resolve_callable%28identifier%29%3AValue-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L181" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L167" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_callable!(identifier:Callable|Callable::Proc)-instance-method">
+    <div class="entry-detail" id="resolve_callable!(identifier:Callable|Callable::Proc):Callable|Callable::Proc-instance-method">
       <div class="signature">
         
-        def <strong>resolve_callable!</strong>(identifier : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>)
+        def <strong>resolve_callable!</strong>(identifier : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>) : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>
 
-        <a class="method-permalink" href="#resolve_callable%21%28identifier%3ACallable%7CCallable%3A%3AProc%29-instance-method">#</a>
+        <a class="method-permalink" href="#resolve_callable%21%28identifier%3ACallable%7CCallable%3A%3AProc%29%3ACallable%7CCallable%3A%3AProc-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L189" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L176" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="resolve_callable!(callable:Value)-instance-method">
+    <div class="entry-detail" id="resolve_callable!(identifier:Value):Callable|Callable::Proc-instance-method">
       <div class="signature">
         
-        def <strong>resolve_callable!</strong>(callable : <a href="../Crinja/Value.html">Value</a>)
+        def <strong>resolve_callable!</strong>(identifier : <a href="../Crinja/Value.html">Value</a>) : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>
 
-        <a class="method-permalink" href="#resolve_callable%21%28callable%3AValue%29-instance-method">#</a>
+        <a class="method-permalink" href="#resolve_callable%21%28identifier%3AValue%29%3ACallable%7CCallable%3A%3AProc-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L208" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="resolve_callable!(identifier):Callable|Callable::Proc-instance-method">
-      <div class="signature">
-        
-        def <strong>resolve_callable!</strong>(identifier) : <a href="../Crinja/Callable.html">Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a>
-
-        <a class="method-permalink" href="#resolve_callable%21%28identifier%29%3ACallable%7CCallable%3A%3AProc-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/resolver.cr#L193" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/resolver.cr#L180" target="_blank">View source</a>]
         
       </div>
     </div>

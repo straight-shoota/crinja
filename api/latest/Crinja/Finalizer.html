@@ -195,11 +195,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Bindings" data-name="crinja::bindings">
-      <a href="../Crinja/Bindings.html">Bindings</a>
-      
-    </li>
-  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
       <a href="../Crinja/Callable.html">Callable</a>
       
@@ -407,11 +402,6 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Binary" data-name="crinja::operator::binary">
       <a href="../Crinja/Operator/Binary.html">Binary</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Comparator" data-name="crinja::operator::comparator">
-      <a href="../Crinja/Operator/Comparator.html">Comparator</a>
       
     </li>
   
@@ -910,11 +900,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Type" data-name="crinja::type">
-      <a href="../Crinja/Type.html">Type</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TypeError" data-name="crinja::typeerror">
       <a href="../Crinja/TypeError.html">TypeError</a>
       
@@ -950,8 +935,18 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
       <a href="../Crinja/Value.html">Value</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value/Iterator" data-name="crinja::value::iterator(t)">
+      <a href="../Crinja/Value/Iterator.html">Iterator</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -1029,7 +1024,7 @@ but with a few adjustments compared to Crystal standard <code>to_s</code> method
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/finalizer.cr#L6" target="_blank">runtime/finalizer.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/finalizer.cr#L6" target="_blank">runtime/finalizer.cr</a>
     
     <br/>
   
@@ -1042,6 +1037,11 @@ but with a few adjustments compared to Crystal standard <code>to_s</code> method
 
   <h2>Class Method Summary</h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#stringify%28io%3AIO%2Craw%2Cescape%3Dfalse%2Cin_struct%3Dfalse%29-class-method" class="signature"><strong>.stringify</strong>(io : IO, raw, escape = <span class="n">false</span>, in_struct = <span class="n">false</span>)</a>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#stringify%28raw%2Cescape%3Dfalse%2Cin_struct%3Dfalse%29-class-method" class="signature"><strong>.stringify</strong>(raw, escape = <span class="n">false</span>, in_struct = <span class="n">false</span>)</a>
@@ -1095,6 +1095,22 @@ but with a few adjustments compared to Crystal standard <code>to_s</code> method
 
   <h2>Class Method Detail</h2>
   
+    <div class="entry-detail" id="stringify(io:IO,raw,escape=false,in_struct=false)-class-method">
+      <div class="signature">
+        
+        def self.<strong>stringify</strong>(io : IO, raw, escape = <span class="n">false</span>, in_struct = <span class="n">false</span>)
+
+        <a class="method-permalink" href="#stringify%28io%3AIO%2Craw%2Cescape%3Dfalse%2Cin_struct%3Dfalse%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/finalizer.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="stringify(raw,escape=false,in_struct=false)-class-method">
       <div class="signature">
         
@@ -1106,7 +1122,7 @@ but with a few adjustments compared to Crystal standard <code>to_s</code> method
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/finalizer.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/finalizer.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>

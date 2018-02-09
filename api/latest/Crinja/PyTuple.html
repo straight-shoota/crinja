@@ -195,11 +195,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Bindings" data-name="crinja::bindings">
-      <a href="../Crinja/Bindings.html">Bindings</a>
-      
-    </li>
-  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
       <a href="../Crinja/Callable.html">Callable</a>
       
@@ -407,11 +402,6 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Binary" data-name="crinja::operator::binary">
       <a href="../Crinja/Operator/Binary.html">Binary</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Operator/Comparator" data-name="crinja::operator::comparator">
-      <a href="../Crinja/Operator/Comparator.html">Comparator</a>
       
     </li>
   
@@ -910,11 +900,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Type" data-name="crinja::type">
-      <a href="../Crinja/Type.html">Type</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TypeError" data-name="crinja::typeerror">
       <a href="../Crinja/TypeError.html">TypeError</a>
       
@@ -950,8 +935,18 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Value" data-name="crinja::value">
       <a href="../Crinja/Value.html">Value</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Value/Iterator" data-name="crinja::value::iterator(t)">
+      <a href="../Crinja/Value/Iterator.html">Iterator</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -1022,7 +1017,7 @@
   
     <li class="other-type"><a href="../Crinja/PyObject.html">Crinja::PyObject</a></li>
   
-    <li class="other-type">Indexable(<a href="../Crinja/Type.html">Crinja::Type</a>)</li>
+    <li class="other-type">Indexable(<a href="../Crinja/Value.html">Crinja::Value</a>)</li>
   
   </ul>
 
@@ -1038,7 +1033,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L4" target="_blank">runtime/py_tuple.cr</a>
+      <a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L4" target="_blank">runtime/py_tuple.cr</a>
     
     <br/>
   
@@ -1051,7 +1046,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28data%3AArray%28Type%29%3DArray%28Type%29.new%29-class-method" class="signature"><strong>.new</strong>(data : Array(Type) = <span class="t">Array</span>(<span class="t">Type</span>).<span class="k">new</span>)</a>
+        <a href="#new%28data%3AArray%28Value%29%3DArray%28Value%29.new%29-class-method" class="signature"><strong>.new</strong>(data : Array(Value) = <span class="t">Array</span>(<span class="t">Value</span>).<span class="k">new</span>)</a>
         
       </li>
     
@@ -1068,7 +1063,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#from%28data%3AIterable%28Type%29%2C%2Aadd%29-class-method" class="signature"><strong>.from</strong>(data : Iterable(Type), *add)</a>
+        <a href="#from%28data%3AIterable%2C%2Aadd%29-class-method" class="signature"><strong>.from</strong>(data : Iterable, *add)</a>
         
       </li>
     
@@ -1080,12 +1075,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#%2B%28other%3APyTuple%29-instance-method" class="signature"><strong>#+</strong>(other : PyTuple)</a>
+        <a href="#%2B%28item%3AValue%29-instance-method" class="signature"><strong>#+</strong>(item : Value)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%2B%28item%3AType%29-instance-method" class="signature"><strong>#+</strong>(item : Type)</a>
+        <a href="#%2B%28other%3APyTuple%29-instance-method" class="signature"><strong>#+</strong>(other : PyTuple)</a>
         
       </li>
     
@@ -1237,18 +1232,18 @@
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new(data:Array(Type)=Array(Type).new)-class-method">
+    <div class="entry-detail" id="new(data:Array(Value)=Array(Value).new)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(data : Array(<a href="../Crinja/Type.html">Type</a>) = <span class="t">Array</span>(<span class="t">Type</span>).<span class="k">new</span>)
+        def self.<strong>new</strong>(data : Array(<a href="../Crinja/Value.html">Value</a>) = <span class="t">Array</span>(<span class="t">Value</span>).<span class="k">new</span>)
 
-        <a class="method-permalink" href="#new%28data%3AArray%28Type%29%3DArray%28Type%29.new%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28data%3AArray%28Value%29%3DArray%28Value%29.new%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1264,7 +1259,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1274,18 +1269,18 @@
 
   <h2>Class Method Detail</h2>
   
-    <div class="entry-detail" id="from(data:Iterable(Type),*add)-class-method">
+    <div class="entry-detail" id="from(data:Iterable,*add)-class-method">
       <div class="signature">
         
-        def self.<strong>from</strong>(data : Iterable(<a href="../Crinja/Type.html">Type</a>), *add)
+        def self.<strong>from</strong>(data : Iterable, *add)
 
-        <a class="method-permalink" href="#from%28data%3AIterable%28Type%29%2C%2Aadd%29-class-method">#</a>
+        <a class="method-permalink" href="#from%28data%3AIterable%2C%2Aadd%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1294,6 +1289,22 @@
 
 
   <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="+(item:Value)-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(item : <a href="../Crinja/Value.html">Value</a>)
+
+        <a class="method-permalink" href="#%2B%28item%3AValue%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
   
     <div class="entry-detail" id="+(other:PyTuple)-instance-method">
       <div class="signature">
@@ -1306,23 +1317,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L18" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="+(item:Type)-instance-method">
-      <div class="signature">
-        
-        def <strong>+</strong>(item : <a href="../Crinja/Type.html">Type</a>)
-
-        <a class="method-permalink" href="#%2B%28item%3AType%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1338,7 +1333,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1354,7 +1349,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1370,7 +1365,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1386,7 +1381,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1402,7 +1397,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1418,7 +1413,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1434,7 +1429,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1450,7 +1445,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1466,7 +1461,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1482,7 +1477,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1498,7 +1493,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1514,7 +1509,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1530,7 +1525,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/480499784aebfcb9bc9c08461b9d9302ab0fa660/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0fce049ab71bd9def5bf76ab0f0a740672ec7c1d/src/runtime/py_tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
