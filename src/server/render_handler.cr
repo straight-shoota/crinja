@@ -20,6 +20,6 @@ class Crinja::Server::RenderHandler
   end
 
   def default_variables
-    {} of String => Type
+    Variables.new
   end
 end

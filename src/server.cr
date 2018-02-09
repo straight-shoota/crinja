@@ -22,7 +22,7 @@ class Crinja::Server
   def initialize(@env = Crinja.new)
   end
 
-  def start
+  def setup
     return unless @server.nil?
 
     raise "template_dir `template_dir` does not exist" unless File.directory?(template_dir)
@@ -41,12 +41,15 @@ class Crinja::Server
     ]
 
     @server = HTTP::Server.new(host, port, handlers)
+  end
+
+  def start
+    setup
 
     server.bind
 
     url = "http://#{host}:#{port}".colorize(:cyan)
     puts "Crinja server is listening on #{url}"
-
     server.listen
   end
 
@@ -60,7 +63,7 @@ class Crinja::Server
   end
 
   def templates
-    loader.list_templates.map(&.as(Type))
+    loader.list_templates
   end
 end
 
