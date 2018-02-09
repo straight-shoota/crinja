@@ -4,17 +4,23 @@ require "./undefined"
 require "./safe_string"
 require "./callable"
 
-# was intended to be a struct, but that crashes iterator
-
 # Value is a value object inside the Crinja runtime.
-class Crinja::Value
+struct Crinja::Value
   include Enumerable(self)
   include Iterable(self)
   include Comparable(self)
 
-  getter raw : Type
+  getter raw : TypeValue | TypeContainer
 
-  def initialize(@raw)
+  def self.new(value : self) : self
+    value
+  end
+
+  def self.new(value) : self
+    Bindings.cast_value(value)
+  end
+
+  def initialize(@raw : TypeValue | TypeContainer)
   end
 
   # Assumes the underlying value responds to `size` and returns
@@ -102,52 +108,69 @@ class Crinja::Value
 
   # Returns an iterator for the underlying value if it is an `Iterable`, `String` or `Undefined`
   # which iterates through the items as `Value`.
-  def each
-    ValueIterator.new raw_each
-  end
-
-  # Assumes the underlying value is an `Iterable` and yields each
-  # of the elements or key/values, always as `Value`.
-  def each
-    each.each do |a|
-      yield a
+  def raw_each : ::Iterator
+    case object = @raw
+    when Hash
+      HashTupleIterator.new(object.each)
+    when Iterable(Value)
+      RawIterator.new(object.each)
+    when Iterable
+      object.each
+    when ::Iterator(Value)
+      RawIterator.new(object)
+    when ::Iterator
+      object
+    when String
+      object.each_char.map { |char| char.to_s }
+    when StrictUndefined
+      raise TypeError.new(self, "can't iterate over undefined")
+    when Undefined
+      ([] of Nil).each
+    else
+      raise TypeError.new(self, "#{object.class} is not iterable")
     end
   end
 
   # Returns an iterator for the underlying value if it is an `Iterable`, `String` or `Undefined`
-  # which iterates through the items as `Type`.
-  def raw_each : Iterator(Type)
+  # which iterates through the items as `Value`.
+  def each
+    Iterator.new(raw_each)
+  end
+
+  # Assumes the underlying value is an `Iterable` and yields each
+  # of the elements or key/values, always as `Value`.
+  def raw_each
     case object = @raw
     when Hash
-      HashTupleIterator.new(object.each)
-    when Iterable(Type)
-      object.each.as(Iterator(Type))
-    when Iterator(Type)
-      object
+      object.each { |key, value| yield PyTuple.from({key, value}) }
+    when Iterable(Value), ::Iterator(Value)
+      object.each { |value| yield value.as(Value).raw }
+    when Iterable, ::Iterator
+      object.each { |value| yield value }
     when String
-      object.chars.map(&.to_s.as(Type)).each
+      object.each_char { |char| yield char.to_s }
     when StrictUndefined
       raise TypeError.new(self, "can't iterate over undefined")
     when Undefined
-      ([] of Type).each
     else
       raise TypeError.new(self, "#{object.class} is not iterable")
     end
   end
 
   # Assumes the underlying value is an `Iterable` and yields each
-  # of the elements or key/values, always as `Type`.
-  def raw_each
-    raw_each.each do |a|
-      yield a
+  # of the elements or key/values, always as `Value`.
+  def each
+    raw_each do |raw|
+      yield Value.new raw
     end
   end
 
-  private class ValueIterator
-    include Iterator(Value)
+  # :nodoc:
+  class RawIterator
+    include ::Iterator(TypeValue | TypeContainer)
     include IteratorWrapper
 
-    def initialize(@iterator : Iterator(Type))
+    def initialize(@iterator : ::Iterator(Value))
     end
 
     def next
@@ -155,32 +178,37 @@ class Crinja::Value
 
       case value
       when Value
-        value
-      when Type
-        Value.new value
+        value.raw
       when stop
         stop
       else
         # TODO: should never be reached, maybe raise?
-        Value.undefined
+        Crinja::UNDEFINED
       end
     end
   end
 
-  private class HashTupleIterator
-    include Iterator(Type)
+  class Iterator(T)
+    include ::Iterator(Value)
     include IteratorWrapper
 
-    def initialize(@iterator : Iterator(Tuple(Type, Type)))
+    @iterator : T
+
+    def initialize(@iterator : T)
     end
 
-    def next
-      tuple = wrapped_next
+    def ==(other : Iterator)
+      @iterator == other.@iterator
+    end
 
-      if tuple.is_a?(Tuple)
-        PyTuple.from tuple
-      else
+    def next : Value | Iterator::Stop
+      value = wrapped_next
+
+      case value
+      when Iterator::Stop
         stop
+      else
+        Value.new(value)
       end
     end
   end
@@ -215,7 +243,7 @@ class Crinja::Value
   end
 
   # Checks that the underlying value is `Array`, and returns its value. Raises otherwise.
-  def as_a : Array(Type)
+  def as_a : Array(Value)
     raise_undefined!
     @raw.as(Array)
   end
@@ -250,10 +278,36 @@ class Crinja::Value
     @raw.as(Indexable)
   end
 
+  # Checks that the underlaying value is a `Callable | Callable::Proc` and retuns its value. Raises otherwise.
+  def as_callable
+    raise_undefined!
+    @raw.as(Callable | Callable::Proc)
+  end
+
+  def as_undefined
+    @raw.as(Undefined)
+  end
+
+  def to_bool
+    !!@raw
+  end
+
   private def raise_undefined!
     if (undefined = @raw).is_a?(Undefined)
       raise UndefinedError.new(undefined)
     end
+  end
+
+  def to_a
+    if (raw = @raw).is_a?(Array)
+      return raw
+    end
+
+    array = [] of Value
+    each do |item|
+      array << item
+    end
+    array
   end
 
   # :nodoc:
@@ -314,6 +368,38 @@ class Crinja::Value
     end
   end
 
+  def <=>(other : Value)
+    compare raw, other.raw
+  end
+
+  private def compare(a, b)
+    if a.is_a?(Array)
+      if b.is_a?(Array)
+        compare_array(a, b)
+      else
+        raise TypeError.new "Cannot compare Array with #{b.class}"
+      end
+    elsif a.is_a?(Bool) || b.is_a?(Bool)
+      raise TypeError.new "Cannot compare Bool value"
+    elsif a.is_a?(Number) && b.is_a?(Number)
+      a <=> b
+    elsif a.is_a?(String | SafeString) || a.is_a?(String | SafeString)
+      a.to_s <=> b.to_s
+    else
+      raise TypeError.new("cannot compare #{a.class} with #{b.class}")
+    end
+  end
+
+  private def compare_array(a : Array, b : Array)
+    # reimplement Array#<=>
+    min_size = Math.min(a.size, b.size)
+    0.upto(min_size - 1) do |i|
+      n = a[i] <=> b[i]
+      return n if n != 0
+    end
+    a.size <=> b.size
+  end
+
   # :nodoc:
   def hash
     raw.hash
@@ -351,7 +437,7 @@ class Crinja::Value
 
   # Returns `true` if this value is a `Undefined`
   def undefined?
-    self.class.undefined? @raw
+    @raw.is_a?(Undefined)
   end
 
   # :ditto:
@@ -434,6 +520,28 @@ class Crinja::Value
       TRUE
     else
       FALSE
+    end
+  end
+end
+
+require "./py_tuple"
+
+struct Crinja::Value
+  private class HashTupleIterator
+    include ::Iterator(Crinja::PyTuple)
+    include IteratorWrapper
+
+    def initialize(@iterator : ::Iterator(Tuple(Value, Value)))
+    end
+
+    def next
+      tuple = wrapped_next
+
+      if tuple.is_a?(Tuple)
+        PyTuple.from tuple
+      else
+        stop
+      end
     end
   end
 end

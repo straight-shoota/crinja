@@ -5,16 +5,18 @@ class Crinja
   macro callable(kind, defaults = nil, name = nil)
     %defaults = Crinja::Variables.new
     {% if defaults.is_a?(NamedTupleLiteral) || defaults.is_a?(HashLiteral) %}
-    {% for key in defaults.keys %}
-      %defaults[{{ key.id.stringify }}] = {{ defaults[key] }}
-    {% end %}
+      {% for key in defaults.keys %}
+        %defaults[{{ key.id.stringify }}] = Crinja::Value.new({{ defaults[key] }})
+      {% end %}
     {% else %}
       {% name = defaults %}
     {% end %}
 
     %block = ->(arguments : Crinja::Callable::Arguments) do
       env = arguments.env
-      {{ yield }}.as(Crinja::Type)
+      Crinja::Value.new begin
+        {{ yield }}
+      end
     end
 
     {% if defaults.is_a?(StringLiteral) %}
@@ -46,7 +48,8 @@ class Crinja
   macro test(defaults = nil, name = nil, &block)
     Crinja.callable(Crinja::Test, {{ defaults }}, {{ name }}) do
       target = arguments.target!
-      ({{ block.body }}).as(Crinja::Type)
+
+      {{ block.body }}
     end
   end
 
@@ -66,7 +69,8 @@ class Crinja
   macro filter(defaults = nil, name = nil, &block)
     Crinja.callable(Crinja::Filter, {{ defaults }}, {{ name }}) do
       target = arguments.target!
-      ({{ yield }}).as(Crinja::Type)
+
+      {{ yield }}
     end
   end
 
@@ -84,7 +88,7 @@ class Crinja
   # * *env* : `Crinja` - The current environment.
   macro function(defaults = nil, name = nil, &block)
     Crinja.callable(Crinja::Function, {{ defaults }}, {{ name }}) do
-      ({{ yield }}).as(Crinja::Type)
+      {{ block.body }}
     end
   end
 
@@ -97,7 +101,7 @@ class Crinja
   module Callable
     abstract def call(arguments : Arguments) : Value
 
-    alias Proc = Arguments -> Type
+    alias Proc = Arguments -> Value
 
     class Instance
       include Callable
@@ -106,7 +110,7 @@ class Crinja
       getter defaults : Variables
       getter name : String?
 
-      def initialize(@proc, @defaults = {} of String => Type, @name = nil)
+      def initialize(@proc, @defaults = {} of String => Value, @name = nil)
       end
 
       def call(arguments : Arguments)
@@ -166,8 +170,12 @@ class Crinja
         end
       end
 
-      def fetch(name, default : Type = nil)
+      def fetch(name, default : Value)
         fetch(name) { default }
+      end
+
+      def fetch(name, default = nil)
+        fetch name, Value.new(default)
       end
 
       def fetch(name)
@@ -217,14 +225,14 @@ class Crinja
     end
 
     class ArgumentError < RuntimeError
-      property callee : Callable | Callable::Proc | Operator?
+      property callee
       property argument : String?
 
       def self.new(argument : Symbol | String, msg = nil, cause = nil)
         new nil, msg, cause, argument: argument
       end
 
-      def initialize(@callee, msg = nil, cause = nil, @argument = nil)
+      def initialize(@callee : Callable | Callable::Proc | Operator?, msg = nil, cause = nil, @argument = nil)
         super msg, cause
       end
 

@@ -52,9 +52,20 @@ describe Crinja::Tag::For do
     render(%({% for item in seq %}{% endfor %}{{ item }}), {"seq" => (0..1)}).should eq("")
   end
 
-  it "varlen" do
-    iter = (0..4).each
-    render(%({% for item in iter %}{{ item }}{% endfor %}), {"iter" => iter}).should eq("01234")
+  pending "https://github.com/crystal-lang/crystal/issues/5694" do
+    it "varlen" do
+      iter = (0..4).each
+      render(%({% for item in iter %}{{ item }}{% endfor %}), {"iter" => iter}).should eq("01234")
+    end
+
+    it "iterator issue" do
+      index = 0
+      Crinja::Tag::For::ForLoop.new(Crinja::Value.new((0..4).each)).each do |value|
+        value.should eq index
+        index += 1
+      end
+      index.should eq 5
+    end
   end
 
   it "noniter" do

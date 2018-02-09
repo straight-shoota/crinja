@@ -69,7 +69,7 @@ Crinja.test({other: 0}, :lessthan) { target.to_i.<(arguments[:other].to_i) }
 Crinja.test({other: 0}, :greaterthan) { target.to_i.>(arguments[:other].to_i) }
 
 # Check if value is in seq.
-Crinja.test({seq: Array(Crinja::Type).new}, :in) {
+Crinja.test({seq: Array(Crinja::Value).new}, :in) {
   seq = arguments[:seq]
   raw = seq.raw
   case raw

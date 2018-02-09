@@ -4,11 +4,18 @@ class Crinja
   # :nodoc:
   alias TypeValue = TypeNumber | String | Bool | Time | PyObject | Undefined | Callable | Callable::Proc | SafeString | Nil
   # :nodoc:
-  alias TypeContainer = Dictionary | Array(Type) | Iterator(Type)
+  alias TypeContainer = Dictionary | Array(Value) | Iterator(Value)
 
-  alias Type = TypeValue | TypeContainer
+  alias Dictionary = Hash(Value, Value)
+  # class Dictionary < Hash(Value, Value)
+  #   def []=(key, value)
+  #     self[Value.new(key)] = Value.new value
+  #   end
 
-  alias Dictionary = Hash(Type, Type)
+  #   def [](key)
+  #     self[Value.new(key)]
+  #   end
+  # end
 
-  alias Variables = Hash(String, Type)
+  alias Variables = Hash(String, Value)
 end

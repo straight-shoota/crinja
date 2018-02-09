@@ -6,7 +6,7 @@ require "./value"
 # Contexts form a hierarchical structure, where sub-contexts inherit from their parents, but don't
 # pollute the outer contexts with local scoped values.
 # Creating instances is not useful as it’s created automatically at various stages of the template evaluation and should not be created by hand.
-class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
+class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Value)
   AUTOESCAPE_DEFAULT = false
 
   getter extend_path_stack, import_path_stack, include_path_stack, macro_stack
@@ -75,7 +75,7 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
 
   # Merges values in *bindings* into local scope.
   def merge!(bindings)
-    super(Crinja::Bindings.cast_variables(bindings))
+    super Crinja::Bindings.cast_variables(bindings)
   end
 
   # Set variable *key* to value *value* in local scope.
@@ -83,9 +83,19 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
     self[key] = Crinja::Bindings.cast_variables(value)
   end
 
+  # Set variable *key* to value *value* in local scope.
+  def []=(key : String, value : Value)
+    super
+  end
+
+  # Set variable *key* to value *value* in local scope.
+  def []=(key : String, value)
+    self[key] = Value.new(value)
+  end
+
   # Returns an undefined value.
   def undefined
-    Undefined.new
+    Value.undefined
   end
 
   # Determines if autoescape is enabled in this or any parent context.
@@ -101,7 +111,7 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
     end
   end
 
-  def unpack(vars : Array(String), values : Iterable(Type) | Iterator(Type))
+  def unpack(vars : Array(String), values : Iterable(Value) | Iterator(Value))
     if vars.size == 1
       self[vars.first] = values
     else
@@ -121,13 +131,13 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Type)
     end
   end
 
-  def unpack(vars : Array(String), values : Array(Value))
-    unpack(vars, values.map(&.raw))
-  end
-
   def unpack(vars : Array(String), values : TypeValue | Dictionary)
     raise RuntimeError.new("cannot unpack multiple values of type #{values.class}") if vars.size > 1
-    self[vars.first] = values.as(Type)
+    self[vars.first] = Value.new values
+  end
+
+  def unpack(vars : Array(String), values : Value)
+    unpack vars, values.raw
   end
 
   def block_context

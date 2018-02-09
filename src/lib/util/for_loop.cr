@@ -11,8 +11,14 @@ class Crinja::Tag::For::ForLoop
   @length : Int32 = Int32::MIN
   @revindex0 : Int32 = Int32::MIN
 
-  def self.new(collection)
-    new(collection.each, collection.size)
+  def self.new(collection : Value) : self
+    raw = collection.raw
+
+    if raw.is_a?(Iterator(Value))
+      new(raw)
+    else
+      new(collection.each, collection.size)
+    end
   end
 
   def initialize(iterator : Iterator(Value), @length : Int32)
@@ -77,8 +83,8 @@ class Crinja::Tag::For::ForLoop
     def initialize(@loop : ForLoop)
     end
 
-    def call(arguments : Callable::Arguments) : Type
-      arguments.varargs[@loop.index0 % arguments.varargs.size].raw
+    def call(arguments : Callable::Arguments) : Value
+      arguments.varargs[@loop.index0 % arguments.varargs.size]
     end
   end
 
@@ -92,8 +98,13 @@ class Crinja::Tag::For::ForLoop
 
     @loop_runner : Crinja::Tag::For::Runner
 
-    def initialize(loop_runner, collection)
-      initialize(loop_runner, collection.each, collection.size)
+    def self.new(loop_runner, collection : Value) : self
+      raw = collection.raw
+      if raw.is_a?(Iterator(Value))
+        new(loop_runner, raw)
+      else
+        new(loop_runner, collection.each, collection.size)
+      end
     end
 
     def initialize(@loop_runner, iterator : Iterator(Value), length : Int32)

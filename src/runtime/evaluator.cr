@@ -6,21 +6,21 @@ class Crinja::Evaluator
   end
 
   # Evaluates an expression inside this evaluatores environment and returns a `Value` object.
-  def value(expression)
-    Value.new self.evaluate(expression)
+  def value(expression) : Value
+    Value.new evaluate(expression)
   end
 
-  # Evaluates an expression inside this evaluatores environment and returns a `Type` object.
+  # Evaluates an expression inside this evaluatores environment and returns a `Value` object.
   def evaluate(expression)
     raise expression.inspect
   end
 
-  # Evaluates an expression inside this evaluatores environment and returns a `Type` object.
+  # Evaluates an expression inside this evaluatores environment and returns a `Value` object.
   # Raises if the expression returns an `Undefined`.
-  def evaluate!(expression)
-    value = evaluate(expression)
+  def value!(expression) : Value
+    value = value(expression)
 
-    if value.is_a?(Undefined)
+    if value.undefined?
       raise UndefinedError.new(name_for_expression(expression))
     end
 
@@ -34,7 +34,8 @@ class Crinja::Evaluator
                                   "AST::#{type.id}"
                                 end).join(" | ").id
                               }})
-      ({{ yield }}).as(Type)
+
+      {{ yield }}
     rescue exc : Crinja::Error
       # Add location info to runtime exception.
       exc.at(expression) unless exc.has_location?
@@ -52,7 +53,7 @@ class Crinja::Evaluator
 
     case op
     when Operator::Logic
-      op.value(@env, Value.new(left)) { Value.new(evaluate expression.right) }
+      op.value(@env, Value.new(left)) { value(expression.right) }
     when Operator::Binary
       right = evaluate expression.right
       op.value(@env, Value.new(left), Value.new(right))
@@ -71,15 +72,19 @@ class Crinja::Evaluator
     identifier = expression.identifier
 
     # First check if there is a literal function or macro registered (like "function" or "group.function").
-    callable_name = identifier_or_member(identifier)
-
-    callable = @env.resolve_callable(callable_name) if callable_name
-
-    if !callable.is_a?(Callable | Callable::Proc) && identifier.is_a?(AST::MemberExpression)
-      callable = call_on_member(identifier)
+    if callable_name = identifier_or_member(identifier)
+      value = @env.resolve_callable(callable_name)
+      if value.callable?
+        callable = value.as_callable.as(Callable | Callable::Proc)
+      end
     end
 
-    unless callable.is_a?(Callable | Callable::Proc)
+    if !callable && identifier.is_a?(AST::MemberExpression)
+      callable = call_on_member(identifier)
+      # raise UndefinedError.new(name_for_expression(expression.identifier)) unless callable
+    end
+
+    unless callable
       begin
         callable = @env.resolve_callable!(value(identifier))
       rescue e : TypeError
@@ -88,9 +93,15 @@ class Crinja::Evaluator
       end
     end
 
-    argumentlist = evaluate(expression.argumentlist).as(Array(Type))
-    keyword_arguments = expression.keyword_arguments.each_with_object(Hash(String, Type).new) do |(keyword, value), args|
-      args[keyword.name] = evaluate value
+    # FIXME: Shouldn't be needed.
+    callable = callable.not_nil!
+
+    argumentlist = evaluate(expression.argumentlist).as(Array(Value))
+
+    keyword_arguments = Variables.new.tap do |args|
+      expression.keyword_arguments.each do |(keyword, value_expression)|
+        args[keyword.name] = value value_expression
+      end
     end
 
     @env.execute_call(callable, argumentlist, keyword_arguments)
@@ -122,13 +133,16 @@ class Crinja::Evaluator
   end
 
   visit TestExpression do
-    !!evaluate_filter @env.tests[expression.identifier.name], expression
+    evaluate_filter(@env.tests[expression.identifier.name], expression).to_bool
   end
 
   private def evaluate_filter(callable, expression)
-    argumentlist = evaluate(expression.argumentlist).as(Array(Type)).map { |a| Value.new a }
-    keyword_arguments = expression.keyword_arguments.each_with_object(Hash(String, Value).new) do |(keyword, value), args|
-      args[keyword.name] = value(value)
+    argumentlist = evaluate(expression.argumentlist)
+
+    keyword_arguments = Variables.new.tap do |args|
+      expression.keyword_arguments.each do |(keyword, value_expression)|
+        args[keyword.name] = value value_expression
+      end
     end
 
     target = value expression.target
@@ -136,34 +150,37 @@ class Crinja::Evaluator
   end
 
   visit MemberExpression do
-    identifier = evaluate! expression.identifier
+    object = value! expression.identifier
     member = expression.member.name
 
     begin
-      value = Resolver.resolve_attribute(member, identifier)
+      value = Resolver.resolve_attribute(member, object)
     rescue exc : UndefinedError
       raise UndefinedError.new(name_for_expression(expression))
     end
 
-    if value.is_a?(Undefined)
-      value.name = name_for_expression(expression)
+    if value.undefined?
+      value.as_undefined.name = name_for_expression(expression)
     end
 
     value
   end
 
   visit IndexExpression do
-    identifier = evaluate! expression.identifier
+    object = value! expression.identifier
     argument = evaluate expression.argument
 
     begin
-      value = Resolver.resolve_item(argument, identifier)
+      value = Resolver.resolve_item(argument, object)
     rescue exc : UndefinedError
       raise UndefinedError.new(name_for_expression(expression))
     end
 
-    if value.is_a?(Undefined)
-      value.name = name_for_expression(expression)
+    # FIXME
+    value = value.not_nil!
+
+    if value.undefined?
+      value.as_undefined.name = name_for_expression(expression)
     end
 
     value
@@ -186,17 +203,18 @@ class Crinja::Evaluator
   end
 
   visit ExpressionList do
-    values = [] of Type
+    values = [] of Value
     expression.children.each do |child|
       if child.is_a?(AST::SplashOperator)
-        splash = evaluate(child.right)
-        if splash.is_a?(Array(Type))
-          values += splash
+        splash_value = value(child.right)
+        raw = splash_value.raw
+        if raw.is_a?(Array(Value))
+          values += raw
         else
-          raise TypeError.new(Value.new(splash), "#{child.right} needs to be an array for splash operator").at(expression)
+          raise TypeError.new(splash_value, "#{child.right} needs to be an array for splash operator").at(expression)
         end
       else
-        values << evaluate child
+        values << value child
       end
     end
     values
@@ -222,21 +240,17 @@ class Crinja::Evaluator
     expression.value
   end
 
-  visit ArrayLiteral do
+  visit ArrayLiteral, TupleLiteral do
     expression.children.map do |child|
-      self.evaluate(child).as(Type)
-    end
-  end
-
-  visit TupleLiteral do
-    expression.children.map do |child|
-      self.evaluate(child).as(Type)
+      value(child).as(Value)
     end
   end
 
   visit DictLiteral do
-    expression.children.each_with_object(Dictionary.new) do |(keyword, value), args|
-      args[evaluate keyword] = self.evaluate(value)
+    Dictionary.new.tap do |dict|
+      expression.children.each do |(keyword, value)|
+        dict[value keyword] = value value
+      end
     end
   end
 

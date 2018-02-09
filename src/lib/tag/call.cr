@@ -32,7 +32,7 @@ class Crinja::Tag::Call < Crinja::Tag
       instance.defaults[key] = if value.is_a?(AST::ExpressionNode)
                                  env.evaluate(value)
                                else
-                                 value
+                                 Value.new value
                                end
     end
 

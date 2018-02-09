@@ -1,8 +1,8 @@
 # Include this module into your classes to make them available as values in Crinja.
 # There are three types of properties you can expose to the Crinja runtime:
 #
-# 1. `#getattr(name : Crinja::Type) : Crinja::Type`: Access an attribute (e.g. an instance property) of this class.
-# 2. `#__getitem__(name : Crinja::Type) : Crinja::Type`: Access an item (e.g. an array member) of this class.
+# 1. `#getattr(name : Crinja::Value) : Crinja::Value`: Access an attribute (e.g. an instance property) of this class.
+# 2. `#__getitem__(name : Crinja::Value) : Crinja::Value`: Access an item (e.g. an array member) of this class.
 # 3. `#__call__(name : String) : Crinja::Callable | Callable::Proc`: Expose a callable as method of this class.
 #
 # Through the static comilation it is not possible to access properties or methods of an object
@@ -48,7 +48,7 @@
 #   def __call__(name)
 #     if name == "days_old"
 #       ->(arguments : Crinja::Arguments) do
-#         self.age.days.as(Crinja::Type)
+#         self.age.days
 #       end
 #     end
 #   end
@@ -57,34 +57,44 @@
 module Crinja::PyObject
   # This macro creates a lookup list for `getattr` including all publicly visible properties.
   macro getattr
-    def getattr(attr : Crinja::Type) : Crinja::Type
+    def getattr(attr : Crinja::Value) : Crinja::Value
       # TODO: Change from methods to instance variables
-      {% for method in @type.methods %}
-        {% if method.visibility == :public &&
-                (method.name != "each" && method.name != "iterator") &&
-                (method.block_arg.class_name == "Nop") &&
-                # (method.return_type == Type || method.return_type.class_name == "Nop") &&
-                (method.args.empty?) %}
-          if {{ method.name.stringify }} == attr
-            return Crinja.cast_type(self.{{ method.name }})
-          end
-        {% end %}
+      {% begin %}
+        value = case attr.to_string
+          {% for method in @type.methods %}
+            {% if method.visibility == :public &&
+                    (method.name != "each" && method.name != "iterator") &&
+                    (method.block_arg.class_name == "Nop") &&
+                    # (method.return_type == Value || method.return_type.class_name == "Nop") &&
+                    (method.args.empty?) %}
+              when {{ method.name.stringify }}
+                self.{{ method.name }}
+            {% end %}
+          {% end %}
+        else
+          Crinja::Undefined.new(attr.to_s)
+        end
       {% end %}
 
-      Crinja::Undefined.new(attr.to_s)
+      Crinja::Value.new(value)
     end
   end
 
   # This macro creates a lookup list for `getattr` including only whitelisted properties.
   macro getattr(*whitelist)
-    def getattr(attr : Crinja::Type) : Crinja::Type
-      {% for method in whitelist %}
-        if {{ method.id.stringify }} == attr
-          return Crinja.cast_type(self.{{ method.id }})
+    def getattr(attr : Crinja::Value) : Crinja::Value
+      {% begin %}
+        value = case attr.to_string
+        {% for method in whitelist %}
+          when {{ method.id.stringify }}
+              self.{{ method.id }}
+        {% end %}
+        else
+          Crinja::Undefined.new(attr.to_s)
         end
       {% end %}
 
-      Crinja::Undefined.new(attr.to_s)
+      Crinja::Value.new(value)
     end
   end
 end

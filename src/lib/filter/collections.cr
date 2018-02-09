@@ -4,26 +4,36 @@ module Crinja::Filter
 
     case value
     when String
-      value.chars.map(&.to_s.as(Type))
+      value.chars
     when Array
       value
     when .responds_to?(:to_a)
-      value.to_a
+      target.to_a
     else
       raise TypeError.new("target for list filter cannot be converted to list")
     end
   end
 
   Crinja.filter({linecount: 2, fill_with: nil}, :batch) do
-    fill_with = arguments[:fill_with].raw
+    fill_with = arguments[:fill_with]
     linecount = arguments[:linecount].to_i
 
     if target.sequence?
-      array = Array(Type).new
+      array = [] of Value
+      batch = [] of Value
 
-      target.raw_each.each_slice(linecount) do |slice|
-        (linecount - slice.size).times { slice << fill_with } unless fill_with.nil?
-        array << slice
+      target.each do |item|
+        batch << item
+
+        if batch.size == linecount
+          array << Value.new batch
+          batch = [] of Value
+        end
+      end
+
+      unless batch.empty?
+        (linecount - batch.size).times { batch << fill_with } unless fill_with.none?
+        array << Value.new batch
       end
 
       array
@@ -33,28 +43,33 @@ module Crinja::Filter
   end
 
   Crinja.filter({slices: 2, fill_with: nil}, :slice) do
-    fill_with = arguments[:fill_with].raw
+    fill_with = arguments[:fill_with]
     slices = arguments[:slices].to_i
 
     if target.sequence?
-      values = target.raw_each.to_a
-      array = Array(Type).new
+      array = [] of Value
+      slice = [] of Value
 
       num_full_slices = target.size % slices
       per_slice = target.size / slices
+      per_full_slice = per_slice + 1
 
-      num_full_slices.times do |i|
-        slice = Array(Type).new
-        values[i * (per_slice + 1), per_slice + 1].each do |v|
-          slice << v.as(Type)
+      target.each do |item|
+        slice << item
+
+        if array.size < num_full_slices ? slice.size == per_full_slice : slice.size == per_slice
+          array << Value.new slice
+
+          if array.size > num_full_slices
+            slice << fill_with unless fill_with.none?
+          end
+
+          slice = [] of Value
         end
-        array << slice
       end
 
-      (slices - num_full_slices).times do |i|
-        slice = values[(num_full_slices + i) * per_slice + num_full_slices, per_slice]
-        slice << fill_with unless fill_with.nil?
-        array << slice
+      unless slice.empty?
+        array << Value.new slice
       end
 
       array
@@ -85,17 +100,22 @@ module Crinja::Filter
     attribute = arguments[:attribute].as_s?
 
     start = arguments[:start].as_number
-    target.raw_each.reduce(start) do |memo, item|
+    sum = start
+
+    target.each do |value|
       unless attribute.nil?
-        item = Resolver.resolve_dig(attribute, item)
+        value = Resolver.resolve_dig(attribute, value)
       end
 
-      if item.is_a?(Crinja::TypeNumber)
-        memo + item
+      raw = value.raw
+      if raw.is_a?(Crinja::TypeNumber)
+        sum += raw
       else
-        raise TypeError.new("cannot add #{item.class} to sum, value: #{item.inspect}")
+        raise TypeError.new("cannot add #{raw.class} to sum, value: #{raw.inspect}")
       end
     end
+
+    sum
   end
 
   Crinja.filter(:random) do
@@ -108,8 +128,8 @@ module Crinja::Filter
     elsif arguments.is_set?("attribute")
       attribute = arguments[:attribute].raw
       target.map do |item|
-        Resolver.resolve_getattr(attribute, item).as(Type)
-      end.as(Type)
+        Resolver.resolve_getattr(attribute, item)
+      end
     else
       varargs = arguments.varargs
       filter = env.filters[varargs.shift.as_s!]
@@ -117,7 +137,7 @@ module Crinja::Filter
 
       target.map do |item|
         args.target = item
-        arguments.env.execute_call(filter, args).as(Type)
+        arguments.env.execute_call(filter, args)
       end
     end
   end
@@ -125,22 +145,21 @@ module Crinja::Filter
   # :nodoc:
   macro select_reject_attr(func)
     varargs = arguments.varargs
-    iterable = target.as_iterable
 
-    attribute = varargs.shift.raw
+    attribute = varargs.shift
 
     if varargs.size == 0
       # select based on attribute value, no filter
-      iterable.{{ func.id }} do |item|
-        Value.truthy? Resolver.resolve_getattr(attribute, item)
+      target.{{ func.id }} do |item|
+        Resolver.resolve_getattr(attribute, item).truthy?
       end
     else
       test = env.tests[varargs.shift.as_s!]
       args = Callable::Arguments.new(env, varargs, arguments.kwargs)
 
-      iterable.{{ func.id }} do |item|
-        args.target = Value.new Resolver.resolve_getattr(attribute, item)
-        Value.truthy? env.execute_call(test, args)
+      target.{{ func.id }} do |item|
+        args.target = Resolver.resolve_getattr(attribute, item)
+        env.execute_call(test, args).truthy?
       end
     end
   end
@@ -148,20 +167,17 @@ module Crinja::Filter
   # :nodoc:
   macro select_reject(func)
     varargs = arguments.varargs
-    iterable = target.as_iterable
 
     if varargs.size == 0
       # select based on actual value, no filter
-      iterable.{{ func.id }} do |item|
-        Value.truthy? item
-      end
+      target.{{ func.id }} &.truthy?
     else
       test = env.tests[varargs.shift.as_s!]
       args = Callable::Arguments.new(env, varargs, arguments.kwargs)
 
-      iterable.{{ func.id }} do |item|
-        args.target = Value.new item
-        Value.truthy? env.execute_call(test, args)
+      target.{{ func.id }} do |item|
+        args.target = item
+        env.execute_call(test, args).truthy?
       end
     end
   end
@@ -183,17 +199,17 @@ module Crinja::Filter
   end
 
   Crinja.filter({attribute: UNDEFINED}, :groupby) do
-    attribute = arguments[:attribute].raw
+    attribute = arguments[:attribute]
 
-    h = Dictionary.new
-    target.raw_each do |item|
-      value = Resolver.resolve_dig(attribute, item)
-      if h.has_key?(value)
-        h[value].as(Array).push(item)
-      else
-        h[value] = [item.as(Type)].as(Type)
+    Dictionary.new.tap do |dict|
+      target.each do |item|
+        value = Crinja::Value.new Resolver.resolve_dig(attribute, item)
+        if dict.has_key?(value)
+          dict[value].as_a.push(item)
+        else
+          dict[value] = Crinja::Value.new [item] of Value
+        end
       end
     end
-    h
   end
 end

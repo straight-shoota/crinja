@@ -1,9 +1,9 @@
 Crinja.function(:cycler) do
-  Crinja::Function::Cycler.new(arguments.varargs)
+  Crinja::Function::Cycler.new(arguments.varargs).as(Iterator(Crinja::Value))
 end
 
 class Crinja::Function::Cycler
-  include Iterator(Type)
+  include Iterator(Value)
   include PyObject
 
   getattr :next, :rewind, :reset, :current
@@ -35,9 +35,9 @@ class Crinja::Function::Cycler
   def __call__(method)
     case method
     when "next"
-      ->(arguments : Callable::Arguments) { self.next.as(Type) }
+      ->(arguments : Callable::Arguments) { self.next }
     when "reset", "rewind"
-      ->(arguments : Callable::Arguments) { reset.as(Type) }
+      ->(arguments : Callable::Arguments) { reset }
     end
   end
 end

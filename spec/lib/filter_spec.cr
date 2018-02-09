@@ -256,7 +256,7 @@ describe Crinja::Filter do
       end
     end
     it "object" do
-      evaluate_expression(%({ a: 1, b: 2, c: 3, d: 4 }|length)).should eq "4"
+      evaluate_expression(%({ "a": 1, "b": 2, "c": 3, "d": 4 }|length)).should eq "4"
     end
     it "number" do
       evaluate_expression(%('1234'|length)).should eq "4"
@@ -345,7 +345,7 @@ describe Crinja::Filter do
 
     it "urlize rel policy" do
       env = Crinja.new
-      env.policies["urlize.rel"] = nil
+      env.policies["urlize.rel"] = Crinja::Value.new nil
       env.evaluate(%("foo http://www.example.com/ bar"|urlize)).should eq \
         %(foo <a href="http://www.example.com/">http://www.example.com/</a> bar)
     end

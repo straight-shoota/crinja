@@ -12,7 +12,7 @@
 class Crinja
   VERSION = {{ `shards version #{__DIR__}`.chomp.stringify }}
 
-  # Tries to cast any value to `Crinja::Type`.
+  # Tries to cast any value to `Crinja::Value`.
   def self.cast_type(value)
     Bindings.cast_value(value)
   end

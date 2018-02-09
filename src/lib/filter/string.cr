@@ -42,7 +42,7 @@ module Crinja::Filter
     string.gsub(/\n/, nl)
   end
 
-  Crinja.filter(:string) { target.to_s }
+  Crinja.filter(:string) { env.stringify target }
 
   Crinja.filter(:title) do
     target.to_s.gsub(/[^#{Crinja::Util::REGEX_WORD.source}]+/, &.capitalize)

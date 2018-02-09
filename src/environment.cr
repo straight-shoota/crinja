@@ -100,14 +100,14 @@ class Crinja
   end
 
   # Evaluates a Crinja expression with `#evaluator` and returns the resulting raw value.
-  def evaluate(expression : AST::ExpressionNode, bindings) : Type
+  def evaluate(expression : AST::ExpressionNode, bindings) : Value
     with_scope(bindings) do
       evaluate(expression)
     end
   end
 
-  def evaluate(expression : AST::ExpressionNode) : Type
-    evaluator.evaluate(expression)
+  def evaluate(expression : AST::ExpressionNode) : Value
+    evaluator.value(expression)
   end
 
   # Parses and evaluates a Crinja expression with `#evaluator`. Returns a string which will be
@@ -183,13 +183,13 @@ class Crinja
   end
 
   # Turns *object* into a string represenation using `Crinja::Finalizer`.
-  def stringify(object)
+  def stringify(object, pretty = false)
     @finalizer.stringify(object, context.autoescape?)
   end
 
   # Creates a new `undefined`.
   def undefined(name = nil)
-    Undefined.new(name)
+    Value.new Undefined.new(name)
   end
 
   # :nodoc:
