@@ -40,7 +40,7 @@ dependencies:
 ```crystal
 require "crinja"
 
-Crinja.render("Hello, {{#123;{{#123; name }}!", {"name" => "John"}) # => "Hello, John!"
+Crinja.render("Hello, &#123;&#123; name }}!", {"name" => "John"}) # => "Hello, John!"
 ```
 
 ### File loader
@@ -48,7 +48,7 @@ Crinja.render("Hello, {{#123;{{#123; name }}!", {"name" => "John"}) # => "Hello,
 With this template file:
 ```html
 # views/index.html.j2
-<p>Hello {{#123;{{#123; name | default('World') }}</p>
+<p>Hello &#123;&#123; name | default('World') }}</p>
 ```
 
 It can be loaded with a `FileSystemLoader`:
@@ -72,60 +72,60 @@ The original [Jinja2 template reference](http://jinja.pocoo.org/docs/2.9/templat
 
 ### Expressions
 
-In a template, **expressions** inside double curly braces (`{{#123;{{#123;` ... `}}`) will be evaluated and printed to the template output.
+In a template, **expressions** inside double curly braces (`&#123;&#123;` ... `}}`) will be evaluated and printed to the template output.
 
 Assuming there is a variable `name` with value `"World"`, the following template renders `Hello, World!`.
 
 ```html+jinja
-Hello, {{#123;{{#123; name }}!
+Hello, &#123;&#123; name }}!
 ```
 
 Properties of an object can be accessed by dot (`.`) or square brackets (`[]`). Filters modify the value of an expression.
 
 ```html+jinja
-Hello, {{#123;{{#123; current_user.name | default("World") | titelize }}!
+Hello, &#123;&#123; current_user.name | default("World") | titelize }}!
 ```
 
 Tests are similar to filters, but are used in the context of a boolean expression, for example as condition of an `if` tag.
 
 ```html+jinja
-{%#123;% if current_user is logged_in %}
-  Hello, {{#123;{{#123; current_user.name }}!
-{%#123;% else %}
+&#123;% if current_user is logged_in %}
+  Hello, &#123;&#123; current_user.name }}!
+&#123;% else %}
   Hey, stranger!
-{%#123;% end %}
+&#123;% end %}
 ```
 
 ### Tags
 
-**Tags** control the logic of the template. They are enclosed in `{%#123;%` and `%}`.
+**Tags** control the logic of the template. They are enclosed in `&#123;%` and `%}`.
 
 ```html+jinja
-{%#123;% if is_morning %}
-  Good Moring, {{#123;{{#123; name }}!
-{%#123;% else %}
-  Hello, {{#123;{{#123; name }}!
-{%#123;% end %}
+&#123;% if is_morning %}
+  Good Moring, &#123;&#123; name }}!
+&#123;% else %}
+  Hello, &#123;&#123; name }}!
+&#123;% end %}
 ```
 
 The `for` tag allows looping over a collection.
 
 ```html+jinja
-{%#123;% for name in users %}
-  {{#123;{{#123; user.name }}
-{%#123;% endfor %}
+&#123;% for name in users %}
+  &#123;&#123; user.name }}
+&#123;% endfor %}
 ```
 
 Other templates can be included using the `include` tag:
 
 ```html+jinja
-{%#123;% include "header.html" %}
+&#123;% include "header.html" %}
 
 <main>
   Content
 </main>
 
-{%#123;% include "header.html" %}
+&#123;% include "header.html" %}
 ```
 
 ### Macros
@@ -133,9 +133,9 @@ Other templates can be included using the `include` tag:
 Macros are similar to functions in other programming languages.
 
 ```html+jinja
-{%#123;% macro say_hello(name) %}Hello, {{#123;{{#123; name | default("stranger") }}!{%#123;% endmacro %}
-{{#123;{{#123; say_hello('Peter') }}
-{{#123;{{#123; say_hello('Paul') }}
+&#123;% macro say_hello(name) %}Hello, &#123;&#123; name | default("stranger") }}!&#123;% endmacro %}
+&#123;&#123; say_hello('Peter') }}
+&#123;&#123; say_hello('Paul') }}
 ```
 
 ### Template Inheritance
@@ -144,35 +144,35 @@ Templates inheritance enables the use of `block` tags in parent templates that c
 ```html+jinja
 {# layout.html #}
 
-<h1>{%#123;% block page_title %}{%#123;% endblock %}</h1>
+<h1>&#123;% block page_title %}&#123;% endblock %}</h1>
 
 <main>
-  {%#123;% block body}
+  &#123;% block body}
     {# This block is typically overwritten by child templates #}
-  {%#123;% endblock %}
+  &#123;% endblock %}
 </main>
 
-{%#123;% block footer %}
-  {%#123;% include "footer.html" %}
-{%#123;% endblock %}
+&#123;% block footer %}
+  &#123;% include "footer.html" %}
+&#123;% endblock %}
 ```
 
 ```html+jinja
 {# page.html #}
-{%#123;% extends "layout.html" %}
+&#123;% extends "layout.html" %}
 
-{%#123;% block page_title %}Blog Index{%#123;% endblock %}
-{%#123;% block body %}
+&#123;% block page_title %}Blog Index&#123;% endblock %}
+&#123;% block body %}
   <ul>
-    {%#123;% for article in articles if article.published %}
+    &#123;% for article in articles if article.published %}
     <div class="article">
       <li>
-        <a href="{{#123;{{#123; article.href | escape }}">{{#123;{{#123; article.title | escape }}</a>
-        written by <a href="{{#123;{{#123; article.user.href | escape}}">{{#123;{{#123; article.user.username | escape }}</a>
+        <a href="&#123;&#123; article.href | escape }}">&#123;&#123; article.title | escape }}</a>
+        written by <a href="&#123;&#123; article.user.href | escape}}">&#123;&#123; article.user.username | escape }}</a>
       </li>
-    {%#123;%- endfor %}
+    &#123;%- endfor %}
   </ul>
-{%#123;% endblock %}
+&#123;% endblock %}
 ```
 
 ## Examples
@@ -252,7 +252,7 @@ end
 
 env.filters["customfilter"] = myfilter
 
-template = env.from_string(%({{#123;{{#123; "Hello World" | customfilter(attribute="super") }}))
+template = env.from_string(%(&#123;&#123; "Hello World" | customfilter(attribute="super") }}))
 template.render # => "Hello World is super!"
 ```
 
@@ -275,7 +275,7 @@ end
 env = Crinja.new
 env.filters << Customfilter.new
 
-template = env.from_string(%({{#123;{{#123; "Hello World" | customfilter(attribute="super") }}))
+template = env.from_string(%(&#123;&#123; "Hello World" | customfilter(attribute="super") }}))
 template.render # => "Hello World is super!"
 ```
 
@@ -287,8 +287,8 @@ This is an incomplete list of **Differences to the original Jinja2**:
 
 * **Python expressions:** Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib like `Dict#iteritems()` which is often used to make dicts iterable.
 * **Line statements and line comments**: Are not supported, because their usecase is negligible.
-* **String representation:** Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like `{{#123;{{#123; ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 and as `['foo', 'bar']` in Crinja.
-* **Double escape:** `{{#123;{{#123; '<html>'|escape|escape }}` will render as `&lt;html&gt;` in Jinja2, but `&amp;lt;html&amp;gt;`. Should we change that behaviour?
+* **String representation:** Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like `&#123;&#123; ["foo", "bar"] }}` will render as `[u'foo', u'bar']` in Jinja2 and as `['foo', 'bar']` in Crinja.
+* **Double escape:** `&#123;&#123; '<html>'|escape|escape }}` will render as `&lt;html&gt;` in Jinja2, but `&amp;lt;html&amp;gt;`. Should we change that behaviour?
 * **Complex numbers**: Complex numbers are not supported yet.
 * **Configurable syntax**: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.
 
