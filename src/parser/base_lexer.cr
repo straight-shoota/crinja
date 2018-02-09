@@ -1,3 +1,4 @@
+# :nodoc:
 module Crinja::Parser
   abstract class BaseLexer
     # :nodoc:

@@ -191,7 +191,7 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Value)
     end
   end
 
-  class CallStack
+  private class CallStack
     @stack : Array(String) = [] of String
 
     def initialize(@kind : Symbol, @parent : CallStack?)

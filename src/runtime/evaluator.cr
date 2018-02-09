@@ -1,5 +1,7 @@
 # The evaluator traverses through an abstract syntax tree to evaluate all expressions and return a
 # final value.
+
+# :nodoc:
 class Crinja::Evaluator
   # Creates a new evaluator for the environment *env*.
   def initialize(@env : Crinja)

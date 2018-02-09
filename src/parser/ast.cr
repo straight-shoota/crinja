@@ -1,5 +1,6 @@
 require "./character_stream"
 
+# :nodoc:
 module Crinja::AST
   class ASTNode
     property! location_start : Parser::StreamPosition?

@@ -1,4 +1,6 @@
 # The renderer traverses through an abstract syntax tree to render all template nodes to a string or IO.
+
+# :nodoc:
 class Crinja::Renderer
   getter template
 

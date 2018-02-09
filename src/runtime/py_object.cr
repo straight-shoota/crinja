@@ -71,9 +71,9 @@ module Crinja::PyObject
                 self.{{ method.name }}
             {% end %}
           {% end %}
-        else
-          Crinja::Undefined.new(attr.to_s)
-        end
+          else
+            Crinja::Undefined.new(attr.to_s)
+          end
       {% end %}
 
       Crinja::Value.new(value)
