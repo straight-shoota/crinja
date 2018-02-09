@@ -91,9 +91,7 @@ abstract class Crinja::Loader
     end
 
     private def list_templates(path, list = [] of String)
-      Dir.foreach(path) do |file|
-        next if file == "." || file == ".."
-
+      Dir.each_child(path) do |file|
         file_path = File.join(path, file)
         if File.directory?(file_path)
           list_templates(file_path, list)
