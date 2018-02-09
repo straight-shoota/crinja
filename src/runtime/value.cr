@@ -258,7 +258,13 @@ class Crinja::Value
 
   # :nodoc:
   def inspect(io)
+    io << "Crinja::Value<"
     @raw.inspect(io)
+    io << ">"
+  end
+
+  def pretty_print(pp : Crinja::PrettyPrint)
+    @raw.pretty_print(pp)
   end
 
   # :nodoc:
@@ -279,11 +285,6 @@ class Crinja::Value
   def to_string
     raise_undefined!
     Finalizer.stringify(@raw)
-  end
-
-  # :nodoc:
-  def pretty_print(pp)
-    @raw.pretty_print(pp)
   end
 
   # Returns `true` if both `self` and *other*'s raw object are equal.

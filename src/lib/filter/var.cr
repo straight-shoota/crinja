@@ -15,12 +15,20 @@ module Crinja::Filter
     Resolver.resolve_getattr(arguments[:name].raw, target)
   end
 
-  # TODO: Use to_json?
   Crinja.filter({verbose: false}, :pprint) do
-    if arguments[:verbose].truthy?
-      target.pretty_inspect
-    else
-      target.pretty_inspect
+    verbose = arguments[:verbose].truthy?
+
+    String.build do |io|
+      target.pretty_print(Crinja::PrettyPrint.new(io, verbose: verbose))
     end
+  end
+end
+
+# :nodoc:
+class Crinja::PrettyPrint < ::PrettyPrint
+  property verbose : Bool
+
+  def initialize(output : IO, maxwidth = 79, newline = "\n", indent = 0, @verbose = false)
+    super(output, maxwidth, newline, indent)
   end
 end
