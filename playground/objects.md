@@ -6,8 +6,8 @@ To make custom objects usable in Crinja, they need to include `Crinja::PyObject`
 
 Classes *may* implement the following methods to make properties accessbile:
 
-1. `#getattr(name : Crinja::Type) : Crinja::Type`: Access an attribute (e.g. an instance property) of this class.
-2. `#__getitem__(name : Crinja::Type) : Crinja::Type`: Access an item (e.g. an array member) of this class.
+1. `#getattr(name : Crinja::Value)`: Access an attribute (e.g. an instance property) of this class.
+2. `#__getitem__(name : Crinja::Value)`: Access an item (e.g. an array member) of this class.
 3. `#__call__(name : String) : Crinja::Callable | Callable::Proc`: Expose a callable as method of this class.
 
 They *must* return an `Undefined` if there is no attribute or item of that name.
@@ -16,7 +16,7 @@ They *must* return an `Undefined` if there is no attribute or item of that name.
 require "./crinja"
 
 class User
-  include PyObject
+  include Crinja::PyObject
 
   property name : String
   property dob : Time
@@ -28,14 +28,14 @@ class User
     Time.now - @dob
   end
 
-  def getattr(attr)
-     case attr
+  def getattr(attr : Crinja::Value)
+     case attr.to_s
      when "name"
        name
      when "age"
        age.days / 365
      else
-       Undefined.new(attr.to_s)
+       Crinja::Undefined.new(attr.to_s)
      end
   end
 end
@@ -46,13 +46,9 @@ users = [
   User.new("peter", Time.new(2002, 4, 1))
 ]
 
-env = Crinja.new
-
-template = env.from_string <<-'TEMPLATE'
+Crinja.render STDOUT, <<-'TEMPLATE'
   {%- for user in users -%}
   *  {{ user.name }} ({{ user.age }})
   {% endfor -%}
-  TEMPLATE
-
-puts template.render({users: users})
+  TEMPLATE, {users: users}
 ```

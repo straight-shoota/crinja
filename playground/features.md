@@ -29,9 +29,9 @@ class Customfilter
 
   getter name = "customfilter"
 
-  getter defaults = {
+  getter defaults = Crinja.variables({
     "attribute" => "great"
-  } of String => Crinja::Type
+  })
 
   def call(arguments)
     "#{arguments.target} is #{arguments[:attribute]}!"

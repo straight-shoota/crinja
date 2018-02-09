@@ -141,26 +141,26 @@ end
 env.filters["customfilter"] = myfilter
 
 template = env.from_string(%({{ "Hello World" | customfilter(attribute="super") }}))
-template.render = "Hello World is super!"
+template.render # => "Hello World is super!"
 ```
 
 Or you can define a class for more complex features:
 ```crystal
-env = Crinja.new
-
 class Customfilter
   include Crinja::Callable
 
   getter name = "customfilter"
 
-  getter defaults = {
+  getter defaults = Crinja.variables({
     "attribute" => "great"
-  } of String => Crinja::Type
+  })
 
   def call(arguments)
     "#{arguments.target} is #{arguments[:attribute]}!"
   end
 end
+
+env = Crinja.new
 env.filters << Customfilter.new
 
 template = env.from_string(%({{ "Hello World" | customfilter(attribute="super") }}))
