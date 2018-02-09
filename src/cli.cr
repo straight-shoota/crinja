@@ -44,17 +44,22 @@ module Crinja::CLI
       end
       puts
     end
-    exit
   end
 
   def self.run
     OptionParser.parse! do |opts|
       path = Dir.current
 
+      library_defaults = false
+      only_names = false
+
       opts.on("--version", "show version info") { puts Crinja::VERSION; exit }
-      opts.on("--library-defaults[=only-names]", "print all default filters, tests, functions, tags and operators in stdlib") { |names|
-        print_library_defaults(names == "only-names")
-      }
+      opts.on("--library-defaults", "print all default filters, tests, functions, tags and operators in stdlib") do
+        library_defaults = true
+      end
+      opts.on("--only-names", "show only names of library defaults (combined with --library defaults)") do
+        only_names = true
+      end
       opts.missing_option do |option|
         case option
         when "--library-defaults"
@@ -78,8 +83,13 @@ module Crinja::CLI
       opts.unknown_args do |args, options|
         if !(string = @@template_string).nil?
           # read template from args
-          puts string.inspect
           template = env.from_string(string)
+        elsif library_defaults
+          print_library_defaults(only_names)
+          exit
+        elsif only_names
+          puts "Can't use flag --only-names without --library-defaults"
+          exit 1
         elsif args.empty?
           self.display_help_and_exit(opts)
           exit
