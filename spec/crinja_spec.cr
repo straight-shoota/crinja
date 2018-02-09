@@ -1,6 +1,10 @@
 require "./spec_helper"
 
 describe Crinja do
+  it ".render" do
+    Crinja.render("Hello {{ name }}!", {name: "World"}).should eq "Hello World!"
+  end
+
   it "renders a simple template without any template syntax" do
     render("Hello World").should eq("Hello World")
   end

@@ -11,6 +11,42 @@
 # and functions.
 class Crinja
   VERSION = {{ `shards version #{__DIR__}`.chomp.stringify }}
+
+  # Render Crinja template *template* to a String.
+  #
+  # Variables for the template can be assigned as parameter *variables*.
+  #
+  # This uses default *loader* and *config* unless these are provided as
+  # optional parameters.
+  #
+  # A new `Crinja` instance will be created for each invocation and it will
+  # parse the *template*. To parse the same template once and invoke it multiple
+  # times, it needs to be created directly (using `Crinja#from_string` or
+  # `Template.new`) and stored in a variable.
+  def self.render(template, variables = nil, loader = nil, config = nil) : String
+    String.build do |io|
+      render io, template, variables, loader, config
+    end
+  end
+
+  # Render Crinja template *template* to an `IO` *io*.
+  #
+  # Variables for the template can be assigned as parameter *variables*.
+  #
+  # This uses default *loader* and *config* unless these are provided as
+  # optional parameters.
+  #
+  # A new `Crinja` instance will be created for each invocation and it will
+  # parse the *template*. To parse the same template once and invoke it multiple
+  # times, it needs to be created directly (using `Crinja#from_string` or
+  # `Template.new`) and stored in a variable.
+  def self.render(io : IO, template, variables = nil, loader = nil, config = nil)
+    env = Crinja.new
+    env.loader = loader unless loader.nil?
+    env.config = config unless config.nil?
+
+    env.from_string(template.to_s).render(io, variables)
+  end
 end
 
 require "./util/*"

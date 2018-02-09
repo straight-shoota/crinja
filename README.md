@@ -40,8 +40,7 @@ dependencies:
 ```crystal
 require "crinja"
 
-template = Crinja::Template.new("Hello, {{ name }}!")
-template.render({"name" => "John"}) # => "Hello, John!"
+Crinja.render("Hello, {{ name }}!", {"name" => "John"}) # => "Hello, John!"
 ```
 
 ### File loader
