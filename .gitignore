@@ -1,9 +1,9 @@
-/doc/
+/docs/
 /lib/
 /build/
 .shards/
 /examples/*/lib/
-/examples/*/doc/
+/examples/*/docs/
 /examples/*/bin/
 
 *.rendered.html
