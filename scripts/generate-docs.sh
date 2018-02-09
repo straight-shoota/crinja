@@ -9,5 +9,5 @@ crystal doc
 
 echo -e "Copying README.md and TEMPLATE_SYNTAX.md"
 # "{{" and "{%"" need to be escaped, otherise Jekyll might interpret the expressions (on Github Pages)
-sed 's/{{/&#123;&#123;/g; s/{%/&#123;%/g' README.md > "${GENERATED_DOCS_DIR}/README.md"
-sed 's/{{/&#123;&#123;/g; s/{%/&#123;%/g' TEMPLATE_SYNTAX.md > "${GENERATED_DOCS_DIR}/TEMPLATE_SYNTAX.md"
+sed 's/{{/\&#123;\&#123;/g; s/{\%/\&#123;\%/g' README.md > "${GENERATED_DOCS_DIR}/README.md"
+sed 's/{{/\&#123;\&#123;/g; s/{\%/\&#123;\%/g' TEMPLATE_SYNTAX.md > "${GENERATED_DOCS_DIR}/TEMPLATE_SYNTAX.md"
