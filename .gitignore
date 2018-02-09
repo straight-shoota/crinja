@@ -2,6 +2,7 @@
 /tmp/
 /lib/
 /build/
+/bin/
 .shards/
 /examples/*/lib/
 /examples/*/docs/
