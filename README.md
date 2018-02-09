@@ -20,7 +20,7 @@ Crinja tries to stay close to the Jinja2 language design and implementation. It 
 * autoescape by default
 * template cache
 
-From Jinja2 all builtin [control structures (tags)](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures), [tests](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests), [global functions](http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions), [operators](http://jinja.pocoo.org/docs/2.9/templates/#expressions) and [filters](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters) have been ported to Crinja. See `Crinja::Filter`, `Crinja::Test`, `Crinja::Function`, `Crinja::Tag`, `Crinja::Operator` for lists of builin features.
+From Jinja2 all builtin [control structures (tags)](http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures), [tests](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests), [global functions](http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions), [operators](http://jinja.pocoo.org/docs/2.9/templates/#expressions) and [filters](http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters) have been ported to Crinja. See `Crinja::Filter`, `Crinja::Test`, `Crinja::Function`, `Crinja::Tag`, `Crinja::Operator` for lists of builtin features.
 
 Currently, template errors fail fast raising an exception. It is considered to change this behaviour to collect multiple errors, similar to what Jinjava does.
 
