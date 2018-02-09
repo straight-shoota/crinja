@@ -10,6 +10,7 @@ class Crinja
   alias Raw = Number | String | Bool | Time | PyObject | Undefined | Callable | Callable::Proc | SafeString | Dictionary | Array(Value) | Iterator(Value) | Nil
 
   alias Dictionary = Hash(Value, Value)
+
   # FIXME
   # class Dictionary < Hash(Value, Value)
   #   def []=(key, value)
@@ -22,6 +23,7 @@ class Crinja
   # end
 
   alias Variables = Hash(String, Value)
+
   # FIXME
   # class Variables < Hash(String, Value)
   #   def []=(key : String, value)
@@ -314,10 +316,6 @@ struct Crinja::Value
     @raw.as(Undefined)
   end
 
-  def to_bool
-    !!@raw
-  end
-
   private def raise_undefined!
     if (undefined = @raw).is_a?(Undefined)
       raise UndefinedError.new(undefined)
@@ -457,22 +455,12 @@ struct Crinja::Value
 
   # Returns `true` unless this value is `false`, `0`, `nil` or `#undefined?`
   def truthy?
-    self.class.truthy? @raw
-  end
-
-  # :ditto:
-  def self.truthy?(raw)
-    raw != false && raw != 0 && !raw.nil? && !self.undefined?(raw)
+    !(@raw == false || @raw == 0 || @raw.nil? || undefined?)
   end
 
   # Returns `true` if this value is a `Undefined`
   def undefined?
     @raw.is_a?(Undefined)
-  end
-
-  # :ditto:
-  def self.undefined?(raw)
-    raw.is_a?(Undefined)
   end
 
   # Returns `true` if this value is a `Callable`
@@ -535,23 +523,7 @@ struct Crinja::Value
     end
   end
 
-  # Returns an array wrapping an instance of `Undefined`
-  def self.undefined
-    UNDEFINED
-  end
-
-  TRUE      = new(true)
-  FALSE     = new(false)
   UNDEFINED = new(Undefined.new)
-
-  # Returns a value representing boolean values `true` or `false`.
-  def self.bool(bool)
-    if bool
-      TRUE
-    else
-      FALSE
-    end
-  end
 end
 
 require "./py_tuple"

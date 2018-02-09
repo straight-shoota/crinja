@@ -133,7 +133,7 @@ class Crinja::Evaluator
   end
 
   visit TestExpression do
-    evaluate_filter(@env.tests[expression.identifier.name], expression).to_bool
+    evaluate_filter(@env.tests[expression.identifier.name], expression).truthy?
   end
 
   private def evaluate_filter(callable, expression)

@@ -95,7 +95,7 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Value)
 
   # Returns an undefined value.
   def undefined
-    Value.undefined
+    Value::UNDEFINED
   end
 
   # Determines if autoescape is enabled in this or any parent context.

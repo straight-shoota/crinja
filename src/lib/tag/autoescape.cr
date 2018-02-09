@@ -21,7 +21,7 @@ class Crinja::Tag::Autoescape < Crinja::Tag
     args = ArgumentsParser.new(tag_node.arguments, renderer.env.config)
     expression = args.parse_expression
 
-    is_activated = Value.truthy? renderer.env.evaluate(expression)
+    is_activated = renderer.env.evaluate(expression).truthy?
 
     previous_value = renderer.env.context.autoescape?
 
