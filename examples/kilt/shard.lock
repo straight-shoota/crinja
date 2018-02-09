@@ -2,7 +2,11 @@ version: 1.0
 shards:
   baked_file_system:
     github: schovi/baked_file_system
-    version: 0.9.4
+    version: 0.9.5
+
+  crinja:
+    path: ../../
+    version: 0.2.1
 
   kilt:
     github: jeromegn/kilt
