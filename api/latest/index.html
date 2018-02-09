@@ -749,16 +749,111 @@ template <span class="o">=</span> env.get_template(<span class="s">&quot;index.h
 template.render <span class="c"># =&gt; &quot;Hello, World!&quot;</span>
 template.render({ <span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span> }) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
 
-<h3>Examples</h3>
+<h2>Template Syntax</h2>
 
-<p>You can run <code>crystal play</code> inside this repostitory to run a <strong>Crystal playground</strong> server with prepared examples of Crinja usage (in the <code>Workbooks</code> section).</p>
+<p>The following is a quick overview of the template language to get you started.</p>
+
+<p>More details can be found in <strong><a href="./TEMPLATE_SYNTAX.md" target="_blank">the template guide</a></strong>.
+The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank">Jinja2 template reference</a> can also be helpful, Crinja templates are mostly similar.</p>
+
+<h3>Expressions</h3>
+
+<p>In a template, <strong>expressions</strong> inside double curly braces (<code>{{</code> ... <code>}}</code>) will be evaluated and printed to the template output.</p>
+
+<p>Assuming there is a variable <code>name</code> with value <code>"World"</code>, the following template renders <code>Hello, World!</code>.</p>
+
+<pre><code class='language-html+jinja'>Hello, {{ name }}!</code></pre>
+
+<p>Properties of an object can be accessed by dot (<code>.</code>) or square brackets (<code>[]</code>). Filters modify the value of an expression.</p>
+
+<pre><code class='language-html+jinja'>Hello, {{ current_user.name | default("World") | titelize }}!</code></pre>
+
+<p>Tests are similar to filters, but are used in the context of a boolean expression, for example as condition of an <code>if</code> tag.</p>
+
+<pre><code class='language-html+jinja'>{% if current_user is logged_in %}
+  Hello, {{ current_user.name }}!
+{% else %}
+  Hey, stranger!
+{% end %}</code></pre>
+
+<h3>Tags</h3>
+
+<p><strong>Tags</strong> control the logic of the template. They are enclosed in <code>{%</code> and <code>%}</code>.</p>
+
+<pre><code class='language-html+jinja'>{% if is_morning %}
+  Good Moring, {{ name }}!
+{% else %}
+  Hello, {{ name }}!
+{% end %}</code></pre>
+
+<p>The <code>for</code> tag allows looping over a collection.</p>
+
+<pre><code class='language-html+jinja'>{% for name in users %}
+  {{ user.name }}
+{% endfor %}</code></pre>
+
+<p>Other templates can be included using the <code>include</code> tag:</p>
+
+<pre><code class='language-html+jinja'>{% include "header.html" %}
+
+&lt;main>
+  Content
+&lt;/main>
+
+{% include "header.html" %}</code></pre>
+
+<h3>Macros</h3>
+
+<p>Macros are similar to functions in other programming languages.</p>
+
+<pre><code class='language-html+jinja'>{% macro say_hello(name) %}Hello, {{ name | default("stranger") }}!{% endmacro %}
+{{ say_hello('Peter') }}
+{{ say_hello('Paul') }}</code></pre>
+
+<h3>Template Inheritance</h3>
+
+<p>Templates inheritance enables the use of <code>block</code> tags in parent templates that can be overwritten by child templates. This is useful for implementating layouts:</p>
+
+<pre><code class='language-html+jinja'>{# layout.html #}
+
+&lt;h1>{% block page_title %}{% endblock %}&lt;/h1>
+
+&lt;main>
+  {% block body}
+    {# This block is typically overwritten by child templates #}
+  {% endblock %}
+&lt;/main>
+
+{% block footer %}
+  {% include "footer.html" %}
+{% endblock %}</code></pre>
+
+<pre><code class='language-html+jinja'>{# page.html #}
+{% extends "layout.html" %}
+
+{% block page_title %}Blog Index{% endblock %}
+{% block body %}
+  &lt;ul>
+    {% for article in articles if article.published %}
+    &lt;div class="article">
+      &lt;li>
+        &lt;a href="{{ article.href | escape }}">{{ article.title | escape }}&lt;/a>
+        written by &lt;a href="{{ article.user.href | escape}}">{{ article.user.username | escape }}&lt;/a>
+      &lt;/li>
+    {%- endfor %}
+  &lt;/ul>
+{% endblock %}</code></pre>
+
+<h2>Examples</h2>
 
 <p>The <strong>Crinja Example Server</strong> in <a href="https://github.com/straight-shoota/crinja/tree/master/examples/server" target="_blank"><code>examples/server</code></a> is an HTTP server which renders Crinja templates from <code>examples/server/pages</code>. It has also an interactive playground for Crinja template testing at <code>/play</code>.
 Command to start the server: <code>cd examples/server && crystal server.cr</code></p>
 
 <p>Other examples can be found in the <a href="https://github.com/straight-shoota/crinja/tree/master/examples" target="_blank"><code>examples</code> folder</a>.</p>
 
-<h2>API</h2>
+<p>You can run <code>crystal play</code> inside this repostitory to run a <strong>Crystal playground</strong> server with prepared examples of using Crinja's API (check the <code>Workbooks</code> section).</p>
+
+<h2>Crystal API</h2>
 
 <p>The API tries to stick ot the original <a href="http://jinja.pocoo.org/docs/2.9/api/" target="_blank">Jinja2 API</a> which is written in Python.</p>
 
