@@ -66,7 +66,7 @@ class Crinja
       Value.new PyTuple.from(value)
     when Array
       array = value.map do |item|
-        value(item)
+        value(item).as(Value)
       end
       Value.new array
     when Range

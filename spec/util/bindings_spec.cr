@@ -20,4 +20,8 @@ describe Crinja do
     iterator = (0..4).each
     Crinja.variables({"items" => iterator}).["items"].raw.should eq Crinja::Value::Iterator.new(iterator)
   end
+
+  it "casts array" do
+    Crinja::Value.new([1]).should eq Crinja::Value.new([Crinja::Value.new(1)])
+  end
 end
