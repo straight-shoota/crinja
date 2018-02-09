@@ -108,7 +108,7 @@ module Crinja::Filter
       end
 
       raw = value.raw
-      if raw.is_a?(Crinja::TypeNumber)
+      if raw.is_a?(Crinja::Number)
         sum += raw
       else
         raise TypeError.new("cannot add #{raw.class} to sum, value: #{raw.inspect}")

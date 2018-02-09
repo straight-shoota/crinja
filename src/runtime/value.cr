@@ -1,8 +1,34 @@
-require "./type"
 require "./py_object"
 require "./undefined"
 require "./safe_string"
 require "./callable"
+
+class Crinja
+  # :nodoc:
+  alias Number = Float64 | Int64 | Int32
+  # :nodoc:
+  alias Raw = Number | String | Bool | Time | PyObject | Undefined | Callable | Callable::Proc | SafeString | Dictionary | Array(Value) | Iterator(Value) | Nil
+
+  alias Dictionary = Hash(Value, Value)
+  # FIXME
+  # class Dictionary < Hash(Value, Value)
+  #   def []=(key, value)
+  #     self[Value.new(key)] = Value.new value
+  #   end
+
+  #   def [](key)
+  #     self[Value.new(key)]
+  #   end
+  # end
+
+  alias Variables = Hash(String, Value)
+  # FIXME
+  # class Variables < Hash(String, Value)
+  #   def []=(key : String, value)
+  #     self[key] = Value.new value
+  #   end
+  # end
+end
 
 # Value is a value object inside the Crinja runtime.
 struct Crinja::Value
@@ -10,7 +36,7 @@ struct Crinja::Value
   include Iterable(self)
   include Comparable(self)
 
-  getter raw : TypeValue | TypeContainer
+  getter raw : Raw
 
   def self.new(value : self) : self
     value
@@ -20,7 +46,7 @@ struct Crinja::Value
     Bindings.cast_value(value)
   end
 
-  def initialize(@raw : TypeValue | TypeContainer)
+  def initialize(@raw : Raw)
   end
 
   # Assumes the underlying value responds to `size` and returns
@@ -167,7 +193,7 @@ struct Crinja::Value
 
   # :nodoc:
   class RawIterator
-    include ::Iterator(TypeValue | TypeContainer)
+    include ::Iterator(Raw)
     include IteratorWrapper
 
     def initialize(@iterator : ::Iterator(Value))
@@ -254,10 +280,10 @@ struct Crinja::Value
     @raw.as(Hash)
   end
 
-  # Checks that the underlying value is a `TypeNumber`, and returns its value. Raises otherwise.
-  def as_number : TypeNumber
+  # Checks that the underlying value is a `Crinja::Number`, and returns its value. Raises otherwise.
+  def as_number : Number
     raise_undefined!
-    @raw.as(TypeNumber)
+    @raw.as(Number)
   end
 
   # Checks that the underlaying value is a `Time` object and retuns its value. Raises otherwise.
@@ -333,6 +359,10 @@ struct Crinja::Value
     else
       super
     end
+  end
+
+  def to_json(builder : JSON::Builder)
+    Crinja::JsonBuilder.to_json(builder, self)
   end
 
   # Transform the value into a string representation.
@@ -450,9 +480,9 @@ struct Crinja::Value
     @raw.is_a?(Callable | Callable::Proc)
   end
 
-  # Returns `true` if this value is a `TypeNumber`
+  # Returns `true` if this value is a `Number`
   def number?
-    @raw.is_a?(TypeNumber)
+    @raw.is_a?(Number)
   end
 
   # Returns `true` if the value is a sequence.

@@ -111,33 +111,34 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Value)
     end
   end
 
-  def unpack(vars : Array(String), values : Iterable(Value) | Iterator(Value))
+  def unpack(vars : Array(String), values : Value)
+    raise RuntimeError.new("no variables to unpack to") if vars.size < 1
+
     if vars.size == 1
-      self[vars.first] = values
+      if values.iterable?
+        self[vars.first] = values
+      else
+        self[vars.first] = values
+      end
     else
       # FIXME: undefined constant U // def zip(other : Iterator(U)) forall U
       # vars.each.zip(values).each do |var, value|
       #   self[var] = value
       # end
-      values = values.each if values.is_a?(Iterable)
-      vars.each do |var|
-        value = values.next
-        self[var] = if value.is_a?(Iterator::Stop)
-                      raise RuntimeError.new("Missing value for unpack")
-                    else
-                      value
-                    end
+      if values.iterable?
+        values = values.each if values.is_a?(Iterable)
+        vars.each do |var|
+          value = values.next
+          self[var] = if value.is_a?(Iterator::Stop)
+                        raise RuntimeError.new("Missing value for unpack")
+                      else
+                        value
+                      end
+        end
+      else
+        raise RuntimeError.new("cannot unpack multiple values of type #{values.class}")
       end
     end
-  end
-
-  def unpack(vars : Array(String), values : TypeValue | Dictionary)
-    raise RuntimeError.new("cannot unpack multiple values of type #{values.class}") if vars.size > 1
-    self[vars.first] = Value.new values
-  end
-
-  def unpack(vars : Array(String), values : Value)
-    unpack vars, values.raw
   end
 
   def block_context
