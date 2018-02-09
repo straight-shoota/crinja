@@ -54,10 +54,11 @@ class Crinja::Config
 
   # Initializes a configuration object.
   def initialize(
-                 @autoescape = Autoescape.new,
-                 @keep_trailing_newline = false,
-                 @trim_blocks = false,
-                 @lstrip_blocks = false)
+    @autoescape = Autoescape.new,
+    @keep_trailing_newline = false,
+    @trim_blocks = false,
+    @lstrip_blocks = false
+  )
   end
 
   # This class holds configuration values for autoescape config.
@@ -81,10 +82,11 @@ class Crinja::Config
 
     # Initializes the default autoescape configuration.
     def initialize(
-                   enabled_extensions = ["html", "htm", "xml"],
-                   disabled_extensions = [] of String,
-                   @default_for_string = false,
-                   @default = false)
+      enabled_extensions = ["html", "htm", "xml"],
+      disabled_extensions = [] of String,
+      @default_for_string = false,
+      @default = false
+    )
       self.enabled_extensions = enabled_extensions
       self.disabled_extensions = disabled_extensions
     end
