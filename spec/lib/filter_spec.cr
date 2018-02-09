@@ -606,7 +606,7 @@ describe Crinja::Filter do
         arguments.kwargs.should eq({"foo", "bar"})
         42
       end
-      env.policies["json.dumps_kwargs"] = Crinja::Bindings.cast_value({"foo" => "bar"})
+      env.policies["json.dumps_kwargs"] = Crinja.value({"foo" => "bar"})
       env.evaluate(%(x|tojson), {x: 23}).should eq "42"
     end
   end

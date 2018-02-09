@@ -1,6 +1,10 @@
 require "../spec_helper"
 
-describe Crinja::Bindings do
+describe Crinja do
+  pending "variables constructor" do
+    Crinja::Variables{"foo" => "bar"}.should eq Crinja::Variables{"foo" => Crinja::Value.new("bar")}
+  end
+
   it "casts simple hash" do
     Crinja.variables({"foo" => "bar"}).should eq Crinja::Variables{"foo" => Crinja::Value.new("bar")}
   end

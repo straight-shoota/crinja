@@ -49,9 +49,53 @@ class Crinja
       end
     end
   end
+
+  def self.value(value) : Value
+    # This methods cast datastructures with Crystal types like `Array(String)`
+    # to Crinja::Value.
+    case value
+    when Hash
+      Value.new Crinja.dictionary(value)
+    when NamedTuple
+      dict = Dictionary.new
+      value.each do |k, v|
+        dict[Value.new k.to_s] = value(v)
+      end
+      Value.new dict
+    when Tuple
+      Value.new PyTuple.from(value)
+    when Array
+      array = value.map do |item|
+        value(item)
+      end
+      Value.new array
+    when Range
+      # TODO: Implement range trough pyobject `getitem`
+      Value.new value.to_a
+    when Iterator(Value)
+      Value.new value
+    when Iterator
+      Value.new Value::Iterator.new(value)
+    when Char
+      Value.new value.to_s
+    when Value
+      value
+    when Raw
+      Value.new value
+    when .responds_to? :raw
+      # match JSON::Any | YAML::Any without including json and yaml
+      value value.raw
+    else
+      raise "type error: can't wrap #{value.class} in Crinja::Value"
+    end
+  end
 end
 
-# Value is a value object inside the Crinja runtime.
+# `Value` represents an object inside the Crinja runtime.
+#
+# It wraps a Crystal value in `#raw` and defines methods to access
+# properties of the wrapped value while being agnostic about the
+# actual type of the wrapped raw value.
 struct Crinja::Value
   include Enumerable(self)
   include Iterable(self)
@@ -64,7 +108,7 @@ struct Crinja::Value
   end
 
   def self.new(value) : self
-    Bindings.cast_value(value)
+    Crinja.value(value)
   end
 
   def initialize(@raw : Raw)
