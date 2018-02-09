@@ -1,3 +1,3 @@
 Crinja.function(:dict) do
-  Crinja.cast_dictionary arguments.kwargs
+  Crinja.dictionary arguments.kwargs
 end

@@ -4,7 +4,7 @@ private class Customfilter
   include Crinja::Callable
   getter name = "customfilter"
 
-  getter defaults : Crinja::Variables = Crinja::Bindings.cast_variables({
+  getter defaults : Crinja::Variables = Crinja.variables({
     attribute: "great",
   })
 

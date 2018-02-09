@@ -22,6 +22,15 @@ class Crinja
   #   end
   # end
 
+  # Casts an object with hash-like interface to `Dictionary`.
+  def self.dictionary(object) : Dictionary
+    Dictionary.new.tap do |dict|
+      object.each do |key, value|
+        dict[Value.new(key)] = Value.new value
+      end
+    end
+  end
+
   alias Variables = Hash(String, Value)
 
   # FIXME
@@ -30,6 +39,16 @@ class Crinja
   #     self[key] = Value.new value
   #   end
   # end
+
+  # Casts an object with hash-like interface to `Variables`, which can be
+  # used for name lookup.
+  def self.variables(object) : Variables
+    Variables.new.tap do |variables|
+      object.each do |k, v|
+        variables[k.to_s] = Value.new v
+      end
+    end
+  end
 end
 
 # Value is a value object inside the Crinja runtime.
