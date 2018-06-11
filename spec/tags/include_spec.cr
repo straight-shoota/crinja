@@ -63,7 +63,7 @@ describe Crinja::Tag::Include do
   end
 
   it "unoptimized_scopes" do
-    render(<<-'TPL'
+    render(<<-'TPL',
             {% macro outer(o) %}
             {% macro inner() %}
             {% include "o_printer" %}
@@ -71,7 +71,7 @@ describe Crinja::Tag::Include do
             {{ inner() }}
             {% endmacro %}
             {{ outer("FOO") }}
-            TPL,
+            TPL
       loader: Crinja::Loader::HashLoader.new({"o_printer" => "({{ o }})"})).strip.should eq "(FOO)"
   end
 

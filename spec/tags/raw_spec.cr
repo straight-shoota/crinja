@@ -2,7 +2,7 @@ require "../spec_helper.cr"
 
 describe Crinja::Tag::Raw do
   it "ignores raw content" do
-    render(<<-'TPL'
+    render(<<-'TPL').should eq <<-'RENDERED'
         {% raw %}
             <ul>
             {% for item in seq %}
@@ -10,7 +10,7 @@ describe Crinja::Tag::Raw do
             {% endfor %}
             </ul>
         {% endraw %}
-        TPL).should eq <<-'RENDERED'
+        TPL
 
             <ul>
             {% for item in seq %}
