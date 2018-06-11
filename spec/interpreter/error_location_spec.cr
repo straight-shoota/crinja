@@ -27,11 +27,11 @@ describe "error locations" do
 
   it "complex expression" do
     exc = expect_raises(Crinja::UndefinedError, "site.authors[johannes] is undefined.") do
-      render <<-'TPL_HTML'
+      render <<-'TPL_HTML', {"post" => {"author" => "johannes"}, "site" => {"authors" => {} of String => String}}
           <header>
           <div class="meta">
             {% if post.author %} by <span class="post-author">{{ site.authors[post.author].name }}</span>{% endif %}
-          TPL_HTML, {"post" => {"author" => "johannes"}, "site" => {"authors" => {} of String => String}}
+          TPL_HTML
     end
 
     exc.variable_name.should eq "site.authors[johannes]"

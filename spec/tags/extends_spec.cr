@@ -2,37 +2,37 @@ require "../spec_helper"
 # test based on https://github.com/pallets/jinja/blob/master/tests/test_inheritance.py
 
 INHERITANCE_TEST_LOADER = Crinja::Loader::HashLoader.new({
-  "layout" => <<-'TPL'
+  "layout" => <<-'TPL',
     |{% block block1 %}block 1 from layout{% endblock %}
     |{% block block2 %}block 2 from layout{% endblock %}
     |{% block block3 %}
     {% block block4 %}nested block 4 from layout{% endblock %}
     {% endblock %}|
-    TPL,
+    TPL
 
-  "level1" => <<-'TPL'
+  "level1" => <<-'TPL',
     {% extends "layout" %}
     {% block block1 %}block 1 from level1{% endblock %}
-    TPL,
+    TPL
 
-  "level2" => <<-'TPL'
+  "level2" => <<-'TPL',
     {% extends "level1" %}
     {% block block2 %}{% block block5 %}nested block 5 from level2{%
     endblock %}{% endblock %}
-    TPL,
+    TPL
 
-  "level3" => <<-'TPL'
+  "level3" => <<-'TPL',
     {% extends "level2" %}
     {% block block5 %}block 5 from level3{% endblock %}
     {% block block4 %}block 4 from level3{% endblock %}
-    TPL,
+    TPL
 
-  "level4" => <<-'TPL'
+  "level4" => <<-'TPL',
     {% extends "level3" %}
     {% block block3 %}block 3 from level4{% endblock %}
-    TPL,
+    TPL
 
-  "working" => <<-'TPL'
+  "working" => <<-'TPL',
     {% extends "layout" %}
     {% block block1 %}
     {% if false %}
@@ -41,9 +41,9 @@ INHERITANCE_TEST_LOADER = Crinja::Loader::HashLoader.new({
     {% endblock %}
     {% endif %}
     {% endblock %}
-    TPL,
+    TPL
 
-  "doublee" => <<-'TPL'
+  "doublee" => <<-'TPL',
     {% extends "layout" %}
     {% extends "layout" %}
     {% block block1 %}
@@ -53,7 +53,7 @@ INHERITANCE_TEST_LOADER = Crinja::Loader::HashLoader.new({
     {% endblock %}
     {% endif %}
     {% endblock %}
-    TPL,
+    TPL
 })
 
 describe Crinja::Tag::Extends do
@@ -180,10 +180,10 @@ describe Crinja::Tag::Extends do
 
   it "scoped_block_after_inheritance" do
     loader = Crinja::Loader::HashLoader.new({
-      "layout.html" => <<-'TPL'
+      "layout.html" => <<-'TPL',
         {% block useless %}*{% endblock %}
-        TPL,
-      "index.html" => <<-'TPL'
+        TPL
+      "index.html" => <<-'TPL',
         {%- extends 'layout.html' %}
         {% from 'helpers.html' import foo with context %}
         {% block useless %}
@@ -193,10 +193,10 @@ describe Crinja::Tag::Extends do
             {% endblock %}
           {% endfor %}
         {% endblock %}
-        TPL,
-      "helpers.html" => <<-'TPL'
+        TPL
+      "helpers.html" => <<-'TPL',
         {% macro foo(x) %}{{ the_foo + x }}{% endmacro %}
-        TPL,
+        TPL
     })
     render_load("index.html", {"the_foo" => 42}, loader: loader).split.should eq ["43", "44", "45"]
   end

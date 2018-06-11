@@ -118,19 +118,21 @@ describe Crinja::Filter do
     end
 
     it "size-and-fill" do
-      render(<<-'TPL'
+      render(<<-'TPL',
         {% for row in items|batch(3, '-') -%}
         {% for column in row %} {{ column }} {% endfor %} |
         {% endfor %}
-        TPL, {items: ["a", "b", "c", "d", "e", "f", "g"]}).should eq " a  b  c  |\n d  e  f  |\n g  -  -  |\n"
+        TPL
+        {items: ["a", "b", "c", "d", "e", "f", "g"]}).should eq " a  b  c  |\n d  e  f  |\n g  -  -  |\n"
     end
 
     it "size-only" do
-      render(<<-'TPL'
+      render(<<-'TPL',
         {% for row in items|batch(3) -%}
         {% for column in row %} {{ column }} {% endfor %} |
         {% endfor %}
-        TPL, {items: ["a", "b", "c", "d", "e", "f", "g"]}).should eq " a  b  c  |\n d  e  f  |\n g  |\n"
+        TPL
+        {items: ["a", "b", "c", "d", "e", "f", "g"]}).should eq " a  b  c  |\n d  e  f  |\n g  |\n"
     end
   end
 
@@ -453,12 +455,13 @@ describe Crinja::Filter do
                                   {'foo': 3, 'bar': 4}]|groupby('foo') -%}
         {{ grouper }}{% for x in list %}: {{ x.foo }}, {{ x.bar }}{% endfor %}|
         {%- endfor %}
-        TPL).split("|\n").should eq [
-        "1: 1, 2: 1, 1",
-        "2: 2, 3",
-        "3: 3, 4",
-        "",
-      ]
+        TPL
+        ).split("|\n").should eq [
+          "1: 1, 2: 1, 1",
+          "2: 2, 3",
+          "3: 3, 4",
+          "",
+        ]
     end
 
     it "tuple_index" do
@@ -466,7 +469,8 @@ describe Crinja::Filter do
         {%- for grouper, list in [('a', 1), ('a', 2), ('b', 1)]|groupby(0) -%}
         {{ grouper }}{% for x in list %}:{{ x.1 }}{% endfor %}|
         {%- endfor %}
-        TPL).should eq "a:1:2|\nb:1|\n"
+        TPL
+        ).should eq "a:1:2|\nb:1|\n"
     end
 
     it "multidot" do
@@ -476,11 +480,12 @@ describe Crinja::Filter do
         Article.new("really?", 3, 1, 1970),
         Article.new("totally not", 1, 1, 1971),
       ]
-      render(<<-'TPL'
+      render(<<-'TPL',
         {%- for year, list in articles|groupby('date.year') -%}
         {{ year }}{% for x in list %}[{{ x.title }}]{% endfor %}|
         {%- endfor %}
-        TPL, {articles: articles}).split("|\n").should eq [
+        TPL
+        {articles: articles}).split("|\n").should eq [
         "1970[aha][interesting][really?]",
         "1971[totally not]",
         "",

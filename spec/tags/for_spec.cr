@@ -75,11 +75,12 @@ describe Crinja::Tag::For do
   end
 
   it "recursive" do
-    render(<<-'TPL'
+    render(<<-'TPL',
       {% for item in seq recursive -%}
       [{{ item.a }}{% if item.b %}<{{ loop(item.b) }}>{% endif %}]
       {%- endfor %}
-      TPL, {"seq" => [
+      TPL
+      {"seq" => [
       {"a" => 1, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 2, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 3, "b" => [{"a" => "a"}]},
@@ -91,11 +92,12 @@ describe Crinja::Tag::For do
     [{{ loop.depth0 }}:{{ item.a }}{% if item.b %}<{{ loop(item.b) }}>{% endif %}]
     {%- endfor %})
 
-    render(<<-'TPL'
+    render(<<-'TPL',
       {% for item in seq recursive -%}
       [{{ loop.depth0 }}:{{ item.a }}{% if item.b %}<{{ loop(item.b) }}>{% endif %}]
       {%- endfor %}
-      TPL, {"seq" => [
+      TPL
+      {"seq" => [
       {"a" => 1, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 2, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 3, "b" => [{"a" => 'a'}]},
@@ -106,11 +108,12 @@ describe Crinja::Tag::For do
     %({% for item in seq recursive -%}
       [{{ loop.depth }}:{{ item.a }}{% if item.b %}<{{ loop(item.b) }}>{% endif %}]
         {%- endfor %})
-    render(<<-'TPL'
+    render(<<-'TPL',
       {% for item in seq recursive -%}
       [{{ loop.depth }}:{{ item.a }}{% if item.b %}<{{ loop(item.b) }}>{% endif %}]
       {%- endfor %}
-      TPL, {"seq" => [
+      TPL
+      {"seq" => [
       {"a" => 1, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 2, "b" => [{"a" => 1}, {"a" => 2}]},
       {"a" => 3, "b" => [{"a" => "a"}]},
@@ -118,14 +121,15 @@ describe Crinja::Tag::For do
   end
 
   it "looploop" do
-    render(<<-'TPL'
+    render(<<-'TPL',
       {% for row in table -%}
       {%- set rowloop = loop -%}
       {%- for cell in row -%}
       [{{ rowloop.index }}|{{ loop.index }}]
       {%- endfor %}
       {%- endfor %}
-      TPL, {"table" => ["ab", "cd"]}, trim_blocks: true, lstrip_blocks: true).should eq "[1|1][1|2][2|1][2|2]"
+      TPL
+      {"table" => ["ab", "cd"]}, trim_blocks: true, lstrip_blocks: true).should eq "[1|1][1|2][2|1][2|2]"
   end
 
   it "loop_errors" do
@@ -162,7 +166,7 @@ describe Crinja::Tag::For do
   end
 
   pending "call_in_loop" do
-    render(<<-'TPL'
+    render(<<-'TPL').should eq "[1][2][3]"
         {%- macro do_something() -%}
             [{{ caller() }}]
         {%- endmacro %}
@@ -171,15 +175,15 @@ describe Crinja::Tag::For do
                 {{ i }}
             {%- endcall %}
         {%- endfor -%}
-        TPL).should eq "[1][2][3]"
+        TPL
   end
 
   it "scoping_bug" do
-    render(<<-'TPL'
+    render(<<-'TPL', {"foo" => [1]}).should eq "...1......2..."
         {%- for item in foo %}...{{ item }}...{% endfor -%}
         {%- macro item(a) %}...{{ a }}...{% endmacro -%}
         {{- item(2) -}}
-        TPL, {"foo" => [1]}).should eq "...1......2..."
+        TPL
   end
 
   it "unpacking" do

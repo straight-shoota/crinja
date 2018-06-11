@@ -2,13 +2,13 @@ require "../spec_helper.cr"
 
 private def test_loader_from
   Crinja::Loader::HashLoader.new({
-    "foomacro.html" => <<-'TPL'
+    "foomacro.html" => <<-'TPL',
       {% macro foomacro() %}foo{%endmacro%}
-      TPL,
-    "foobarmacros.html" => <<-'TPL'
+      TPL
+    "foobarmacros.html" => <<-'TPL',
       {% macro foomacro() %}foo{%endmacro%}
       {% macro barmacro() %}bar{%endmacro%}
-      TPL,
+      TPL
   })
 end
 
