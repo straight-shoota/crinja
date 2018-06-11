@@ -1,13 +1,22 @@
 # Introduction to Crinja Templates
 
-The template features supported by Crinja are a close resemblance of the [Jinja2 template language](http://jinja.pocoo.org) which is originally written in Python.
+The template features supported by Crinja are based on the [Jinja2 template language](http://jinja.pocoo.org) which is originally written in Python.
 
 **[API Documentation](https://straight-shoota.github.io/crinja/api/latest/)** ·
 **[Github Repo](https://github.com/straight-shoota/crinja)**
 
 ## Overview
 
-When a template is rendered, **expressions** inside double curly braces (`{{` ... `}}`) will be evaluated and printed to the template output.
+Crinja template syntax can be embedded in any text content and individual templates features are enclosed in delimiters:
+
+```html+jinja
+{{ }} - print
+{% %} - tag
+{# #} - comment
+```
+
+When a template is rendered, **print statements** enclosed by double curly braces (`{{` ... `}}`) print their inner value to the template output.
+Template **expressions** inside will be evaluated.
 
 Assuming there is a variable `name` with value `"World"`, the following template expands to `Hello, World!`.
 
@@ -32,12 +41,18 @@ Hello 🌍!
 {% endif %}
 ```
 
-**Comments** are enclosed in `{#` and `#}`. They will not be included in the template output.
+**Comments** are enclosed in `{#` and `#}`. They are not parsed as template content and will not included in the template output.
 
 ## Variables
 
-Template variables are defined in the context of each template. They can be populated externally by the application.
+Template variables are defined in the context of each template.
+Varibales can be populated externally by the application calling the template, or dynamically defined within.
 The [`set` tag](#set-tag) allows to set or modify variables inside the template.
+
+```html+jinja
+{% set name = "World" %}
+Hello, {{ name }}! -> Hello, World!
+```
 
 Members of objects can be traversed by a dot (`.`). `foo.bar` resolves the property `bar` of object `foo`.
 Another option are square brackets (`[]`) where the name of the member equals to the value between the brackets. Above expression would be equal to `foo["bar"]`.
@@ -48,14 +63,14 @@ If the value of a variable or expression simply does not exist at all, it will b
 
 ## Filters
 
-Filters modify the value of an expression. They can be appended to any expression using a pipe symobl (`|`) followed by the name of the filter. `name | upper` applies the filter `upper` to the value of the variable `name`.
+Filters transform or alter a value. They are appended to any expression using a pipe symobl (`|`) followed by the name of the filter. `name | upper` applies the filter `upper` to the value of the variable `name`.
 
-Arguments can be added in parenthesis: `names | join(', ')`.
+Arguments are added in parenthesis: `names | join(', ')`.
 
 Filters can be chained and the outputs will be used in sequence:
 
 ```html+jinja
-Hello, {{ current_user.name | default("World") | titelize }}!
+Hello, {{ name | default("World") | titelize }}! -> Hello, WORLD!
 ```
 
 ## Tests
@@ -107,14 +122,25 @@ Other templates can be included using the `include` tag:
 {% include "header.html" %}
 ```
 
-### Macros
+## Macros
 
-Macros are similar to functions in other programming languages.
+Macros can define re-usable template instructions that can be included in different places in the template.
+They are similar to functions in other programming languages.
+
+When a macro is called, the output produced by the macro is assigned as the return value of the expression.
 
 ```html+jinja
+{# define macro: #}
 {% macro say_hello(name) %}Hello, {{ name | default("stranger") }}!{% endmacro %}
-{{ say_hello('Peter') }}
-{{ say_hello('Paul') }}
+{# invoke macro #}
+{{ say_hello('Peter') }} -> Hello, Peter!
+
+{# print to a variable #}
+{% set hello_paul = say_hello('Paul') %}
+{{ hello_paul }} -> Hello, Paul!
+
+{# invoke with default value %}
+{{ say_hello() }} -> Hello, stranger!
 ```
 
 ### Template Inheritance
