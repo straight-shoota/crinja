@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.25.0">
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "";
+</script>
+
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="js/doc.js"></script>
   <title>README - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
-<div id="types-list">
-  <div id="search-box">
-    <input type="search" id="search-input" placeholder="Search...">
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+    </div>
+
+    <div class="repository-links">
+      <a href="index.html">README</a>
+    </div>
   </div>
 
-  <ul>
-    <li class="current"><a href="index.html">README</a></li>
-  </ul>
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
 
-  <ul>
+  <div class="types-list">
+    <ul>
   
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja" data-name="crinja">
       <a href="Crinja.html">Crinja</a>
@@ -692,9 +708,11 @@
   
 </ul>
 
+  </div>
 </div>
 
-<div id="main-content">
+
+<div class="main-content">
 <h1>crinja</h1>
 
 <p><a href="https://travis-ci.org/straight-shoota/crinja" target="_blank"><img src="https://travis-ci.org/straight-shoota/crinja.svg?branch=master" alt="Build Status"/></a>
@@ -722,7 +740,7 @@
 
 <p>Add this to your application's <code>shard.yml</code>:</p>
 
-<pre><code class='language-yaml'>dependencies:
+<pre><code class="language-yaml">dependencies:
   crinja:
     github: straight-shoota/crinja</code></pre>
 
@@ -730,7 +748,7 @@
 
 <h3>Simple string template</h3>
 
-<pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
 
 <span class="t">Crinja</span>.render(<span class="s">&quot;Hello, {{ name }}!&quot;</span>, {<span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span>}) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
 
@@ -738,12 +756,12 @@
 
 <p>With this template file:</p>
 
-<pre><code class='language-html'># views/index.html.j2
+<pre><code class="language-html"># views/index.html.j2
 &lt;p>Hello {{ name | default('World') }}&lt;/p></code></pre>
 
 <p>It can be loaded with a <code>FileSystemLoader</code>:</p>
 
-<pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
 
 env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
 env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>(<span class="s">&quot;views/&quot;</span>)
@@ -764,15 +782,15 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
 
 <p>Assuming there is a variable <code>name</code> with value <code>"World"</code>, the following template renders <code>Hello, World!</code>.</p>
 
-<pre><code class='language-html+jinja'>Hello, {{ name }}!</code></pre>
+<pre><code class="language-html+jinja">Hello, {{ name }}!</code></pre>
 
 <p>Properties of an object can be accessed by dot (<code>.</code>) or square brackets (<code>[]</code>). Filters modify the value of an expression.</p>
 
-<pre><code class='language-html+jinja'>Hello, {{ current_user.name | default("World") | titelize }}!</code></pre>
+<pre><code class="language-html+jinja">Hello, {{ current_user.name | default("World") | titelize }}!</code></pre>
 
 <p>Tests are similar to filters, but are used in the context of a boolean expression, for example as condition of an <code>if</code> tag.</p>
 
-<pre><code class='language-html+jinja'>{% if current_user is logged_in %}
+<pre><code class="language-html+jinja">{% if current_user is logged_in %}
   Hello, {{ current_user.name }}!
 {% else %}
   Hey, stranger!
@@ -782,7 +800,7 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
 
 <p><strong>Tags</strong> control the logic of the template. They are enclosed in <code>{%</code> and <code>%}</code>.</p>
 
-<pre><code class='language-html+jinja'>{% if is_morning %}
+<pre><code class="language-html+jinja">{% if is_morning %}
   Good Moring, {{ name }}!
 {% else %}
   Hello, {{ name }}!
@@ -790,13 +808,13 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
 
 <p>The <code>for</code> tag allows looping over a collection.</p>
 
-<pre><code class='language-html+jinja'>{% for name in users %}
+<pre><code class="language-html+jinja">{% for name in users %}
   {{ user.name }}
 {% endfor %}</code></pre>
 
 <p>Other templates can be included using the <code>include</code> tag:</p>
 
-<pre><code class='language-html+jinja'>{% include "header.html" %}
+<pre><code class="language-html+jinja">{% include "header.html" %}
 
 &lt;main>
   Content
@@ -808,7 +826,7 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
 
 <p>Macros are similar to functions in other programming languages.</p>
 
-<pre><code class='language-html+jinja'>{% macro say_hello(name) %}Hello, {{ name | default("stranger") }}!{% endmacro %}
+<pre><code class="language-html+jinja">{% macro say_hello(name) %}Hello, {{ name | default("stranger") }}!{% endmacro %}
 {{ say_hello('Peter') }}
 {{ say_hello('Paul') }}</code></pre>
 
@@ -816,7 +834,7 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
 
 <p>Templates inheritance enables the use of <code>block</code> tags in parent templates that can be overwritten by child templates. This is useful for implementating layouts:</p>
 
-<pre><code class='language-html+jinja'>{# layout.html #}
+<pre><code class="language-html+jinja">{# layout.html #}
 
 &lt;h1>{% block page_title %}{% endblock %}&lt;/h1>
 
@@ -830,7 +848,7 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
   {% include "footer.html" %}
 {% endblock %}</code></pre>
 
-<pre><code class='language-html+jinja'>{# page.html #}
+<pre><code class="language-html+jinja">{# page.html #}
 {% extends "layout.html" %}
 
 {% block page_title %}Blog Index{% endblock %}
@@ -874,14 +892,14 @@ Command to start the server: <code>cd examples/server && crystal server.cr</code
   It also allows more detailed configuration:&lt;/p>
   &lt;dl></p>
 
-<pre><code><span class="o"><</span>dt<span class="o">></span>enabled_extensions<span class="o"><</span><span class="s">/dt&gt;
-&lt;dd&gt;List of filename extensions that autoescape should be enabled for. Default: &lt;code&gt;[&quot;html&quot;, &quot;htm&quot;, &quot;xml&quot;]&lt;/</span>code<span class="o">></span><span class="o"><</span><span class="s">/dd&gt;
-&lt;dt&gt;disabled_extensions&lt;/</span>dt<span class="o">></span>
-<span class="o"><</span>dd<span class="o">></span><span class="t">List</span> <span class="k">of</span> filename extensions that autoescape should be disabled <span class="k">for</span>. <span class="t">Default</span>: <span class="o"><</span>code<span class="o">></span><span class="o">[]</span> <span class="k">of</span> <span class="t">String</span><span class="o"><</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">></span>
-<span class="o"><</span>dt<span class="o">></span>default_for_string<span class="o"><</span><span class="s">/dt&gt;
-&lt;dd&gt;Determines autoescape default value for templates loaded from a string (without a filename). Default: &lt;code&gt;false&lt;/</span>code<span class="o">></span><span class="o"><</span><span class="s">/dd&gt;
-&lt;dt&gt;default&lt;/</span>dt<span class="o">></span>
-<span class="o"><</span>dd<span class="o">></span><span class="t">If</span> nothing matches, this will be the default autoescape value. <span class="t">Default</span>: <span class="o"><</span>code<span class="o">></span><span class="n">false</span><span class="o"><</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">></span></code></pre>
+<pre><code><span class="o">&lt;</span>dt<span class="o">&gt;</span>enabled_extensions<span class="o">&lt;</span><span class="s">/dt&gt;
+&lt;dd&gt;List of filename extensions that autoescape should be enabled for. Default: &lt;code&gt;[&quot;html&quot;, &quot;htm&quot;, &quot;xml&quot;]&lt;/</span>code<span class="o">&gt;</span><span class="o">&lt;</span><span class="s">/dd&gt;
+&lt;dt&gt;disabled_extensions&lt;/</span>dt<span class="o">&gt;</span>
+<span class="o">&lt;</span>dd<span class="o">&gt;</span><span class="t">List</span> <span class="k">of</span> filename extensions that autoescape should be disabled <span class="k">for</span>. <span class="t">Default</span>: <span class="o">&lt;</span>code<span class="o">&gt;</span><span class="o">[]</span> <span class="k">of</span> <span class="t">String</span><span class="o">&lt;</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">&gt;</span>
+<span class="o">&lt;</span>dt<span class="o">&gt;</span>default_for_string<span class="o">&lt;</span><span class="s">/dt&gt;
+&lt;dd&gt;Determines autoescape default value for templates loaded from a string (without a filename). Default: &lt;code&gt;false&lt;/</span>code<span class="o">&gt;</span><span class="o">&lt;</span><span class="s">/dd&gt;
+&lt;dt&gt;default&lt;/</span>dt<span class="o">&gt;</span>
+<span class="o">&lt;</span>dd<span class="o">&gt;</span><span class="t">If</span> nothing matches, this will be the default autoescape value. <span class="t">Default</span>: <span class="o">&lt;</span>code<span class="o">&gt;</span><span class="n">false</span><span class="o">&lt;</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">&gt;</span></code></pre>
 
 <p>&lt;/dl>
   &lt;p>Note: &lt;em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.&lt;/em>&lt;/p>
@@ -916,10 +934,10 @@ Command to start the server: <code>cd examples/server && crystal server.cr</code
 
 <p>Example with macro <code>Crinja.filter</code>:</p>
 
-<pre><code class='language-crystal'>env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
+<pre><code class="language-crystal">env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
 
 myfilter <span class="o">=</span> <span class="t">Crinja</span>.filter({ attribute: <span class="n">nil</span> }) <span class="k">do</span>
-  <span class="s">&quot;</span><span class="i">#{</span></span>target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>!&quot;</span>
+  <span class="s">&quot;</span><span class="i">#{</span>target<span class="i">}</span><span class="s"> is </span><span class="i">#{</span>arguments[<span class="n">:attribute</span>]<span class="i">}</span><span class="s">!&quot;</span>
 <span class="k">end</span>
 
 env.filters[<span class="s">&quot;customfilter&quot;</span>] <span class="o">=</span> myfilter
@@ -929,7 +947,7 @@ template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span>
 
 <p>Or you can define a class for more complex features:</p>
 
-<pre><code class='language-crystal'><span class="k">class</span> <span class="t">Customfilter</span>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Customfilter</span>
   <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Callable</span>
 
   getter name <span class="o">=</span> <span class="s">&quot;customfilter&quot;</span>
@@ -939,17 +957,17 @@ template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span>
   })
 
   <span class="k">def</span> <span class="m">call</span>(arguments)
-    <span class="s">&quot;</span><span class="i">#{</span></span>arguments.target<span class="s"><span class="i">}</span> is </span><span class="i">#{</span></span>arguments[<span class="n">:attribute</span>]<span class="s"><span class="i">}</span>!&quot;</span>
+    <span class="s">&quot;</span><span class="i">#{</span>arguments.target<span class="i">}</span><span class="s"> is </span><span class="i">#{</span>arguments[<span class="n">:attribute</span>]<span class="i">}</span><span class="s">!&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
 env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
-env.filters <span class="o"><<</span> <span class="t">Customfilter</span>.<span class="k">new</span>
+env.filters <span class="o">&lt;&lt;</span> <span class="t">Customfilter</span>.<span class="k">new</span>
 
 template <span class="o">=</span> env.from_string(<span class="s">%({{ &quot;Hello World&quot; | customfilter(attribute=&quot;super&quot;) }})</span>)
 template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span></code></pre>
 
-<p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> and  <code><a href="Crinja.html">Crinja</a>:Tag</code> and adding an instance to the feature library defaults (<code><a href="Crinja/Operator.html">Crinja::Operator</a>::Library.defaults << MyTag.new</code>) or to a specific environment (<code>env.tags << MyTag.new</code>).</p>
+<p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> and  <code><a href="Crinja.html">Crinja</a>:Tag</code> and adding an instance to the feature library defaults (<code>Crinja::Operator::Library.defaults << MyTag.new</code>) or to a specific environment (<code>env.tags << MyTag.new</code>).</p>
 
 <h2>Differences from Jinja2</h2>
 
