@@ -8,7 +8,8 @@
 Crinja is an implementation of the [Jinja2 template engine](http://jinja.pocoo.org) written in [Crystal](http://crystallang.org). Templates are parsed and evaluated at runtime (see [Background](#background)). It includes a script runtime for evaluation of dynamic python-like expressions used by the Jinja2 syntax.
 
 **[API Documentation](https://straight-shoota.github.io/crinja/api/latest/)** ·
-**[Github Repo](https://github.com/straight-shoota/crinja)**
+**[Github Repo](https://github.com/straight-shoota/crinja)** ·
+**[Template Syntax](https://github.com/straight-shoota/crinja/blob/master/TEMPLATE_SYNTAX.md)**
 
 ## Features
 
@@ -68,7 +69,7 @@ template.render({ "name" => "John" }) # => "Hello, John!"
 
 The following is a quick overview of the template language to get you started.
 
-More details can be found in **[the template guide](./TEMPLATE_SYNTAX.md)**.
+More details can be found in **[the template guide](https://github.com/straight-shoota/crinja/blob/master/TEMPLATE_SYNTAX.md)**.
 The original [Jinja2 template reference](http://jinja.pocoo.org/docs/2.9/templates/) can also be helpful, Crinja templates are mostly similar.
 
 ### Expressions
