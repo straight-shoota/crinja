@@ -76,6 +76,8 @@ class Crinja
       Value.new value
     when Iterator
       Value.new Value::Iterator.new(value)
+    when Symbol
+      Value.new value.to_s
     when Char
       Value.new value.to_s
     when Value
