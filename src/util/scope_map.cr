@@ -8,7 +8,7 @@ class Crinja::Util::ScopeMap(K, V)
     merge!(scope) unless scope.nil?
   end
 
-  delegate :[]=, :delete, :clear, :merge!, to: scope
+  delegate :delete, :clear, :merge!, to: scope
 
   def size
     keys.size
@@ -34,6 +34,10 @@ class Crinja::Util::ScopeMap(K, V)
     end
 
     parent.try(&.[key]) || undefined
+  end
+
+  def []=(key : K, value : V)
+    scope[key] = value
   end
 
   def undefined
