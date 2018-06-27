@@ -57,7 +57,7 @@ class Crinja::Server::PlayHandler
       template = @env.from_string template_source
 
       begin
-        rendered_result = template.render(bindings)
+        rendered_result = template.render(bindings.as_h)
       rescue e : Crinja::Error
         e.template = template
         rendered_result = e.to_s
