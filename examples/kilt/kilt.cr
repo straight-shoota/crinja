@@ -20,9 +20,9 @@ module KiltTemplateFileSystem
 end
 
 puts Kilt.render("test.j2", {
-    from:      "Crinja",
-    messenger: "Kilt",
-    crinja:    {
-      version: Crinja::VERSION,
-    },
-  })
+  from:      "Crinja",
+  messenger: "Kilt",
+  crinja:    {
+    version: Crinja::VERSION,
+  },
+})
