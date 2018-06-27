@@ -7,5 +7,5 @@ env:
 
 script:
 - crystal spec
-- crystal tool format src spec
+- crystal tool format --check src spec
 - "if [ $TRAVIS_TEST_RESULT -eq 0 ]; then scripts/generate-docs.sh && curl https://raw.githubusercontent.com/straight-shoota/autodeploy-docs/master/autodeploy-docs.sh | bash; fi"
