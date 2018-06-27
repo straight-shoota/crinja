@@ -40,15 +40,15 @@ class Crinja::Server
       HTTP::StaticFileHandler.new(public_dir),
     ]
 
-    @server = HTTP::Server.new(host, port, handlers)
+    @server = HTTP::Server.new(handlers)
   end
 
   def start
     setup
 
-    server.bind
+    address = server.bind_tcp(host, port)
 
-    url = "http://#{host}:#{port}".colorize(:cyan)
+    url = "http://#{address}".colorize(:cyan)
     puts "Crinja server is listening on #{url}"
     server.listen
   end
