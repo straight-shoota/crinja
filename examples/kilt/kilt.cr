@@ -14,7 +14,9 @@ end
 Kilt.register_engine("j2", Crinja.embed)
 
 module KiltTemplateFileSystem
-  BakedFileSystem.load("pages", __DIR__)
+  extend BakedFileSystem
+
+  bake_folder("pages")
 end
 
 puts Kilt.render("test.j2", {

@@ -10,5 +10,6 @@ dependencies:
     github: jeromegn/kilt
   baked_file_system:
     github: schovi/baked_file_system
+    branch: master
   crinja:
     path: ../../
