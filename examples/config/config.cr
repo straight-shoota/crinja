@@ -3,10 +3,10 @@ require "yaml"
 
 class Crinja::ResolvedDict(T)
   def self.from_yaml(source)
-    new YAML.parse(source).raw.as(Hash(YAML::Type, YAML::Type))
+    new YAML.parse(source).as_h
   end
 
-  getter dictionary : Hash(YAML::Type, YAML::Type)
+  getter dictionary : Hash(YAML::Any, YAML::Any)
   getter env : Crinja
 
   def initialize(@dictionary, @env = Crinja.new)
@@ -19,10 +19,18 @@ class Crinja::ResolvedDict(T)
   end
 
   def []=(key, value)
+    self[YAML::Any.new key] = YAML::Any.new value
+  end
+
+  def []=(key : YAML::Any, value : YAML::Any)
     @dictionary[key] = value
   end
 
   def raw(key)
+    raw(YAML::Any.new key)
+  end
+
+  def raw(key : YAML::Any)
     @dictionary[key]
   end
 
