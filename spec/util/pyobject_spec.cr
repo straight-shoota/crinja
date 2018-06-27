@@ -10,7 +10,7 @@ private class User
   end
 
   def age
-    (Time.new(2017, 6, 8) - @dob)
+    (Time.utc(2017, 6, 8) - @dob)
   end
 
   def getattr(attr : Crinja::Value)
@@ -44,12 +44,12 @@ end
 
 describe Crinja::PyObject do
   it "resolves __getitem__" do
-    user = User.new("Tom", Time.new(1974, 3, 28))
+    user = User.new("Tom", Time.utc(1974, 3, 28))
     evaluate_expression_raw(%(user[0]), {user: user}).should eq "T"
   end
 
   it do
-    user = User.new("Tom", Time.new(1974, 3, 28))
+    user = User.new("Tom", Time.utc(1974, 3, 28))
     render(%({{ user[0] | lower }}/{{ user.name }}: {{ user.age }} ({{ user.days_old() }} days)), {user: user}).should eq "t/Tom: 43 (15778 days)"
   end
 end
