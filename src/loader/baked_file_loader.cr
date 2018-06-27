@@ -36,11 +36,14 @@ class Crinja::Loader::BakedFileLoader(T) < Crinja::Loader
   def initialize(@file_system : T)
   end
 
-  def get_source(env, template)
-    file = @file_system.get(template)
-    return file.read, file.path
-  rescue e : BakedFileSystem::NoSuchFileError
-    raise TemplateNotFoundError.new(template, self, e.message, e)
+  def get_source(env : Crinja, template : String) : {String, String}
+    file = @file_system.get?(template)
+
+    raise TemplateNotFoundError.new(template, self.class.to_s) unless file
+
+    content = file.gets_to_end
+    file.rewind
+    return content, file.path
   end
 
   def list_templates
