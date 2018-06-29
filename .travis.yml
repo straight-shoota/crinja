@@ -5,7 +5,15 @@ env:
     GIT_COMMITTER_NAME: travis-ci
     GIT_COMMITTER_EMAIL: travis@travis-ci.org
 
+addons:
+  apt:
+    sources:
+    - sourceline: 'ppa:duggan/bats'
+    packages:
+    - bats
+
 script:
 - crystal spec
 - crystal tool format --check src spec
+- bats examples_test.bats
 - "if [ $TRAVIS_TEST_RESULT -eq 0 ]; then scripts/generate-docs.sh && curl https://raw.githubusercontent.com/straight-shoota/autodeploy-docs/master/autodeploy-docs.sh | bash; fi"
