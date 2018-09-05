@@ -1,0 +1,71 @@
+version: 2
+
+dry:
+  restore_shards_cache: &restore_shards_cache
+    # Use {{ checksum "shard.yml" }} if developing a shard instead of an app
+    keys:
+      - shards-cache-v1-{{ .Branch }}-{{ checksum "shard.yml" }}
+      - shards-cache-v1-{{ .Branch }}
+      - shards-cache-v1
+
+  save_shards_cache: &save_shards_cache
+    # Use {{ checksum "shard.yml" }} if developing a shard instead of an app
+    key: shards-cache-v1-{{ .Branch }}-{{ checksum "shard.yml" }}
+    paths:
+      - ./shards-cache
+
+jobs:
+  test:
+    docker:
+      # Use crystallang/crystal:latest or specific crystallang/crystal:VERSION
+      - image: crystallang/crystal:latest
+        environment:
+          SHARDS_CACHE_PATH: ./shards-cache
+    steps:
+      - run: crystal --version
+
+      - checkout
+
+      - restore_cache: *restore_shards_cache
+      - run: shards
+      - save_cache: *save_shards_cache
+
+      - run: crystal spec
+        #- run:
+        #  name: Install bats
+        #  command: |
+        #    curl -L https://github.com/sstephenson/bats/archive/v0.4.0.tar.gz | tar -xz
+        #    ./bats-0.4.0/install.sh /usr/local
+
+  test-on-nightly:
+    docker:
+      - image: crystallang/crystal:nightly
+        environment:
+          SHARDS_CACHE_PATH: ./shards-cache
+    steps:
+      - run: crystal --version
+
+      - checkout
+
+      - restore_cache: *restore_shards_cache
+      - run: shards
+
+      - run: crystal spec
+
+workflows:
+  version: 2
+  # Run tests on every single commit
+  ci:
+    jobs:
+      - test
+  # Run tests every night using crystal nightly
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 2 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - test-on-nightly
