@@ -32,6 +32,8 @@ jobs:
 
       - run: crystal spec
 
+      - run: crystal tool format --check spec src
+
   test-on-nightly:
     docker:
       - image: crystallang/crystal:nightly
@@ -56,6 +58,8 @@ jobs:
       - run:
           name: Test examples
           command: bats examples_test.bats
+
+      - run: crystal tool format --check spec src
 
 workflows:
   version: 2
