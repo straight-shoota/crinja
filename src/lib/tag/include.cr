@@ -21,8 +21,8 @@ class Crinja::Tag::Include < Crinja::Tag
     rescue error : UndefinedError
       if renderer.env.config.liquid_compatibility_mode
         # enables use of `{% include file.name %}` => `source = "file.name"`
-        source = Value.new(String.build do |io|
-          Visitor::Source.new(io).visit(tag_node.arguments)
+        source = Value.new(String.build do |str|
+          Visitor::Source.new(str).visit(tag_node.arguments)
         end.strip)
       else
         raise error
@@ -39,8 +39,6 @@ class Crinja::Tag::Include < Crinja::Tag
     end
 
     context = env.global_context unless with_context
-
-    env_context = env.context
 
     begin
       env.logger.debug "loading include #{include_name}"

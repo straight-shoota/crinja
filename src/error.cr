@@ -58,10 +58,8 @@ module Crinja::SourceAttached
 
       if i == location_start.line
         io << " " * (linowidth == 0 ? 1 : linowidth) << LINE_MARKER << " | "
-        previous_width = (linowidth + 4 + location_start.column)
         io << " " * (location_start.column - 1).clamp(0, linelength)
         io << "^"
-        previous_width = previous_width + 1
         if location_end.line == location_start.line
           io << "~" * (location_end.column - location_start.column - 1).clamp(0, linelength)
         end

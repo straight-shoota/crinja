@@ -5,7 +5,7 @@ describe "errors" do
     error = expect_raises(Crinja::TemplateSyntaxError) do
       render("{% block")
     end
-    # error.location_start.should eq({0, 8})
+    error.location_start.should eq({1, 9})
   end
 
   describe "unexpected EOF" do

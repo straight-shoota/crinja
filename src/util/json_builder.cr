@@ -24,9 +24,9 @@ struct Crinja::JsonBuilder
       end
     when Hash
       @json.object do
-        value.each do |key, value|
+        value.each do |key, item|
           @json.field key.to_s do
-            dump(value)
+            dump(item)
           end
         end
       end

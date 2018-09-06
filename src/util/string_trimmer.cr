@@ -11,7 +11,6 @@ module Crinja::Util::StringTrimmer
   def self.trim(string, left = true, right = true, strip_newline_left = false, strip_newline_right = false)
     return string unless left || right
 
-    orig = string
     String.build do |io|
       if left
         first_line, nl_first, string = string.partition("\n")

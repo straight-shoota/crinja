@@ -41,7 +41,7 @@ module Crinja::Parser::ParserHelper
 
   # :nodoc:
   private def unexpected_token(expected : Token::Kind? = nil, value : String? = nil)
-    unless current_token.kind == Token::Kind::EOF
+    if current_token.kind != Token::Kind::EOF
       if expected && value
         error_message = "Expected #{value}, got #{current_token.kind}"
       elsif expected

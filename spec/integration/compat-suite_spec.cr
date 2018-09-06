@@ -66,15 +66,13 @@ struct EqualStringExpectation(T)
           io << s
         end
       end
-      if false
-        print_char_reading @expected_value, actual_value
-        pp @expected_value <=> actual_value
-        pp @expected_value.chars, @expected_value.to_slice
-        pp actual_value.chars, actual_value.to_slice
-        puts "---"
-        puts str
-        puts "---"
-      end
+      # print_char_reading @expected_value, actual_value
+      # pp @expected_value <=> actual_value
+      # pp @expected_value.chars, @expected_value.to_slice
+      # pp actual_value.chars, actual_value.to_slice
+      # puts "---"
+      # puts str
+      # puts "---"
       str
     end
   end

@@ -48,8 +48,6 @@ module Crinja::CLI
 
   def self.run
     OptionParser.parse! do |opts|
-      path = Dir.current
-
       library_defaults = false
       only_names = false
 
@@ -80,7 +78,7 @@ module Crinja::CLI
         env.context[key] = value
       end
 
-      opts.unknown_args do |args, options|
+      opts.unknown_args do |args, _|
         if !(string = @@template_string).nil?
           # read template from args
           template = env.from_string(string)

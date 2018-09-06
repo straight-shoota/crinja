@@ -66,9 +66,9 @@ class Crinja
     end
 
     def inspect_children(node : Node)
-      node.children.each do |node|
+      node.children.each do |child_node|
         nl
-        node.accept(self)
+        child_node.accept(self)
       end
     end
 

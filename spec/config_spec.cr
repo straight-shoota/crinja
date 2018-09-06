@@ -5,7 +5,8 @@ private def restricted_env
   config.disabled_functions = ["debug"]
   config.disabled_filters = ["pprint"]
   config.disabled_tags = ["set"]
-  env = Crinja.new(config)
+
+  Crinja.new(config)
 end
 
 describe Crinja::Config do

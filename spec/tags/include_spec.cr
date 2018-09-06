@@ -3,7 +3,7 @@ require "../spec_helper"
 # tests based on https://github.com/pallets/jinja/blob/master/tests/test_core_tags.py
 
 def test_loader
-  loader = Crinja::Loader::HashLoader.new({
+  Crinja::Loader::HashLoader.new({
     "header" => "[{{ foo }}|{{ 23 }}]",
   })
 end
@@ -13,15 +13,9 @@ describe Crinja::Tag::Include do
     render(%({% include "header" %}), {"foo" => 42}, loader: test_loader).should eq "[42|23]"
   end
   it "incude with context" do
-    loader = Crinja::Loader::HashLoader.new({
-      "header" => "[{{ foo }}|{{ 23 }}]",
-    })
     render(%({% include "header" with context %}), {"foo" => 42}, loader: test_loader).should eq "[42|23]"
   end
   it "includes without context" do
-    loader = Crinja::Loader::HashLoader.new({
-      "header" => "[{{ foo }}|{{ 23 }}]",
-    })
     render(%({% include "header" without context %}), {"foo" => 42}, loader: test_loader).should eq "[|23]"
   end
 

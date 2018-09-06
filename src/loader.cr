@@ -144,10 +144,14 @@ abstract class Crinja::Loader
     end
 
     def get_source(env : Crinja, template : String)
-      prefix, slash, rest = template.partition(@delimiter)
+      pos = template.index(@delimiter)
 
-      if loader = mapping[prefix]?
-        return loader.get_source(env, template)
+      if pos
+        prefix = template[0...pos]
+
+        if loader = mapping[prefix]?
+          return loader.get_source(env, template)
+        end
       end
 
       raise TemplateNotFoundError.new(template, self, "no mapping for prefix #{prefix}")

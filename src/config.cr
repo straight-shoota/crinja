@@ -10,9 +10,9 @@ class Crinja::Config
 
   def autoescape=(flag : Bool)
     if flag
-      autoescape = Autoescape::DISABLED
+      @autoescape = Autoescape::DISABLED
     else
-      autoescape = Autoescape::ENABLED
+      @autoescape = Autoescape::ENABLED
     end
   end
 

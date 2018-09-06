@@ -83,9 +83,6 @@ class Crinja::Renderer
   end
 
   visit FixedString do
-    trim_blocks = env.config.trim_blocks
-    lstrip_blocks = env.config.lstrip_blocks
-
     RenderedOutput.new Crinja::Renderer.trim_text(node, env.config.trim_blocks, env.config.lstrip_blocks)
   end
 
@@ -119,7 +116,9 @@ class Crinja::Renderer
   private def render_super(expression)
     block_context = env.context.block_context
 
-    unless block_context.nil?
+    if block_context.nil?
+      RenderedOutput.new("")
+    else
       block_context = {name: block_context[:name], index: block_context[:index] + 1}
       block_chain = @blocks[block_context[:name]]
 
@@ -131,8 +130,6 @@ class Crinja::Renderer
       env.context.block_context = block_context
 
       self.render(super_block)
-    else
-      RenderedOutput.new("")
     end
   end
 

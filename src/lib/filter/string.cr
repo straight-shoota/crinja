@@ -111,11 +111,11 @@ module Crinja::Filter
         first_line = false
         while line.size > width
           newline = line[0, width]
-          unless break_long_words
+          if break_long_words
+            io << newline
+          else
             newline, s, _ = newline.rpartition(/\s/)
             io << newline << s
-          else
-            io << newline
           end
           io << wrapstring
           line = line[newline.size..-1]

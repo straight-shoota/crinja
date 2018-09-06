@@ -111,7 +111,7 @@ describe Crinja::Tag::Extends do
   end
 
   it "working" do
-    tmpl = render_load("working", loader: INHERITANCE_TEST_LOADER)
+    render_load("working", loader: INHERITANCE_TEST_LOADER)
   end
 
   # self.block() requires extension to the current output node model

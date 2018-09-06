@@ -157,7 +157,7 @@ module Crinja::Parser
       whitespace = String.build do |io|
         while true
           if Symbol::WHITESPACE.includes?(current_char)
-            skipped_whitespace = true
+            @skipped_whitespace = true
             io << current_char
             next_char
           else

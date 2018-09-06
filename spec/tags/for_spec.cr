@@ -45,7 +45,7 @@ describe Crinja::Tag::For do
   it "renders cycle" do
     render(%({% for item in seq %}{{
             loop.cycle('<1>', '<2>') }}{% endfor %}{%
-            for item in seq %}{{ loop.cycle(*through) }}{% endfor %}), {"seq" => (0..3), "through" => ["<1>", "<2>"]}, autoescape = false).should eq("<1><2>" * 4)
+            for item in seq %}{{ loop.cycle(*through) }}{% endfor %}), {"seq" => (0..3), "through" => ["<1>", "<2>"]}, autoescape: false).should eq("<1><2>" * 4)
   end
 
   it "renders with correct scoping" do

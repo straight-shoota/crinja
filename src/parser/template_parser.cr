@@ -27,8 +27,7 @@ class Crinja::Parser::TemplateParser
     list = parse_node_list
 
     if @stack.size > 0
-      parent, expected_end_name = @stack.last
-      raise TemplateSyntaxError.new(parent, "Unclosed tag, missing: #{@stack.map(&.[1]).join ", "}")
+      raise TemplateSyntaxError.new(@stack.last[0], "Unclosed tag, missing: #{@stack.map(&.[1]).join ", "}")
     end
 
     list

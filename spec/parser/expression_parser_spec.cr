@@ -29,6 +29,7 @@ describe Crinja::Parser::ExpressionParser do
 
   it "parse double parenthesis" do
     expression = parse_expression("dict(foo=(1, 2))")
+    expression.should be_a(Crinja::AST::CallExpression)
   end
 
   it "parses expression as named argument value" do

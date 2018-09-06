@@ -13,12 +13,12 @@ class Crinja::Tag::Filter < Crinja::Tag
 
   def interpret_output(renderer : Renderer, tag_node : TagNode)
     env = renderer.env
-    parser = Parser.new(tag_node.arguments, renderer.env.config)
+    parser = Parser.new(tag_node.arguments, env.config)
     placeholder, expression = parser.parse_filter_tag
 
     placeholder.value = Value.new renderer.render(tag_node.block).value
 
-    result = renderer.env.evaluate(expression)
+    result = env.evaluate(expression)
 
     Renderer::RenderedOutput.new(SafeString.new(result.to_s).to_s)
   end

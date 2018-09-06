@@ -26,13 +26,13 @@ describe "expressions with identifiers" do
 
   it "raises with lookup name if undefined (MemberExpression)" do
     expect_raises(Crinja::UndefinedError, "posts[0] is undefined") do
-      undefined = evaluate_expression_raw(%(posts[0].user.name), {"posts" => [] of Crinja::Value})
+      evaluate_expression_raw(%(posts[0].user.name), {"posts" => [] of Crinja::Value})
     end
   end
 
   it "raises with lookup name if undefined (MemberExpression, MemberExpression)" do
     expect_raises(Crinja::UndefinedError, "posts[0].user is undefined") do
-      undefined = evaluate_expression_raw(%(posts[0].user.name), {"posts" => [true]})
+      evaluate_expression_raw(%(posts[0].user.name), {"posts" => [true]})
     end
   end
 

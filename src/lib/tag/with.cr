@@ -29,14 +29,14 @@ class Crinja::Tag::With < Crinja::Tag
 
   def interpret_output(renderer : Crinja::Renderer, tag_node : TagNode)
     env = renderer.env
-    args = Parser.new(tag_node.arguments, renderer.env.config)
+    args = Parser.new(tag_node.arguments, env.config)
 
     var_defs = Variables.new
     args.parse_with_tag_arguments.each do |variable, expression|
-      var_defs[variable.name] = renderer.env.evaluate(expression)
+      var_defs[variable.name] = env.evaluate(expression)
     end
 
-    renderer.env.with_scope(var_defs) do
+    env.with_scope(var_defs) do
       renderer.render(tag_node.block)
     end
   end

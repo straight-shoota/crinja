@@ -105,13 +105,13 @@ abstract class Crinja::Tag
     def expect_identifier
       unless current_token.kind == Kind::IDENTIFIER
         raise TemplateSyntaxError.new(current_token, "Unexpected #{current_token}, expected identifier expression")
-      else
-        name = current_token.value
-
-        next_token
-
-        return name
       end
+
+      name = current_token.value
+
+      next_token
+
+      name
     end
 
     def expect_identifier(name)

@@ -44,7 +44,7 @@ module Crinja::Filter
 
   Crinja.filter({autoescape: true}, :xmlattr) do
     string = SafeString.build do |io|
-      target.as_h.each_with_index do |(key, value), i|
+      target.as_h.each do |key, value|
         next if value.none? || value.undefined?
 
         io << sprintf %( %s="%s"), HTML.escape(key.to_s), HTML.escape(value.to_s)
@@ -76,7 +76,7 @@ module Crinja::Util
     SafeString.build do |io|
       text.each_line do |line|
         io << line.gsub(AUTO_LINK_RE) do
-          scheme, all = $1, $~
+          all = $~
           url = all[0]
           display = url
           unless trim_url_limit.nil? || display.size < trim_url_limit
