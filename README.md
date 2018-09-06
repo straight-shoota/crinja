@@ -1,6 +1,7 @@
 # crinja
 
 [![Build Status](https://travis-ci.org/straight-shoota/crinja.svg?branch=master)](https://travis-ci.org/straight-shoota/crinja)
+[![CircleCI](https://circleci.com/gh/straight-shoota/crinja.svg?style=svg)](https://circleci.com/gh/straight-shoota/crinja)
 [![Dependency Status](https://shards.rocks/badge/github/straight-shoota/crinja/status.svg)](https://shards.rocks/github/straight-shoota/crinja)
 [![devDependency Status](https://shards.rocks/badge/github/straight-shoota/crinja/dev_status.svg)](https://shards.rocks/github/straight-shoota/crinja)
 [![Open Source Helpers](https://www.codetriage.com/straight-shoota/crinja/badges/users.svg)](https://www.codetriage.com/straight-shoota/crinja)
