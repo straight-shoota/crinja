@@ -1,4 +1,4 @@
-require "xml"
+{% unless flag?(:win32) %}require "xml"{% end %}
 
 module Crinja::Filter
   Crinja.filter(:upper) { target.to_s.upcase }
@@ -24,10 +24,12 @@ module Crinja::Filter
     end
   end
 
+  {% unless flag?(:win32) %}
   Crinja.filter :striptags do
     xml = XML.parse_html target.to_s
     xml.inner_text.gsub(/\s+/, " ").strip
   end
+  {% end %}
 
   Crinja.filter(:format) { sprintf target.to_s, arguments.varargs }
 
