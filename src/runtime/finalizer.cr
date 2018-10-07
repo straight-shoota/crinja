@@ -72,8 +72,8 @@ struct Crinja::Finalizer
     @io << "}"
   end
 
-  # Convert an `PyTuple` to string.
-  protected def stringify(array : PyTuple)
+  # Convert an `Crinja::Tuple` to string.
+  protected def stringify(array : Crinja::Tuple)
     @inside_struct = true
     @io << "("
     array.join(", ", @io) { |item| stringify(item) }

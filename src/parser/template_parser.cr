@@ -13,7 +13,7 @@ class Crinja::Parser::TemplateParser
     @token_stream = TokenStream.new(TemplateLexer.new(@env.config, source))
     @logger = @env.logger
     @expression_parser = ExpressionParser.new(@token_stream, @env.config)
-    @stack = [] of Tuple(AST::TagNode, String)
+    @stack = [] of ::Tuple(AST::TagNode, String)
   end
 
   def config
@@ -22,7 +22,7 @@ class Crinja::Parser::TemplateParser
 
   # Parses a template.
   def parse
-    @stack = [] of Tuple(AST::TagNode, String)
+    @stack = [] of ::Tuple(AST::TagNode, String)
 
     list = parse_node_list
 

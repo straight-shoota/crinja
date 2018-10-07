@@ -62,8 +62,8 @@ class Crinja
         dict[Value.new k.to_s] = value(v)
       end
       Value.new dict
-    when Tuple
-      Value.new PyTuple.from(value)
+    when ::Tuple
+      Value.new Crinja::Tuple.from(value)
     when Array
       array = value.map do |item|
         value(item).as(Value)
@@ -173,7 +173,7 @@ struct Crinja::Value
   def first
     case object = @raw
     when Dictionary
-      Value.new(PyTuple.new(object.first_key, object.first_value))
+      Value.new(Crinja::Tuple.new(object.first_key, object.first_value))
     when Iterable
       Value.new object.first
     when String
@@ -233,7 +233,7 @@ struct Crinja::Value
   def raw_each
     case object = @raw
     when Hash
-      object.each { |key, value| yield PyTuple.from({key, value}) }
+      object.each { |key, value| yield Crinja::Tuple.from({key, value}) }
     when Iterable(Value), ::Iterator(Value)
       object.each { |value| yield value.as(Value).raw }
     when Iterable, ::Iterator
@@ -589,21 +589,21 @@ struct Crinja::Value
   UNDEFINED = new(Undefined.new)
 end
 
-require "./py_tuple"
+require "./tuple"
 
 struct Crinja::Value
   private class HashTupleIterator
-    include ::Iterator(Crinja::PyTuple)
+    include ::Iterator(Crinja::Tuple)
     include IteratorWrapper
 
-    def initialize(@iterator : ::Iterator(Tuple(Value, Value)))
+    def initialize(@iterator : ::Iterator(::Tuple(Value, Value)))
     end
 
     def next
       tuple = wrapped_next
 
-      if tuple.is_a?(Tuple)
-        PyTuple.from tuple
+      if tuple.is_a?(::Tuple)
+        Crinja::Tuple.from tuple
       else
         stop
       end
