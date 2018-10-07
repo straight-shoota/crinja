@@ -107,50 +107,50 @@ describe Crinja::Object do
   describe Crinja::Attribute do
     it "simple" do
       gutta = SimpleAttributes.new
-      gutta.getattr(Crinja::Value.new("foo")).should eq Crinja::Value.new("foo")
-      gutta.getattr(Crinja::Value.new("other_name")).should eq Crinja::Value.new("this_name")
-      gutta.getattr(Crinja::Value.new("nonexist")).should eq Crinja::Value.new(Crinja::Undefined.new("nonexist"))
-      gutta.getattr(Crinja::Value.new("ignore")).should eq Crinja::Value.new(Crinja::Undefined.new("ignore"))
+      gutta.crinja_attribute(Crinja::Value.new("foo")).should eq Crinja::Value.new("foo")
+      gutta.crinja_attribute(Crinja::Value.new("other_name")).should eq Crinja::Value.new("this_name")
+      gutta.crinja_attribute(Crinja::Value.new("nonexist")).should eq Crinja::Value.new(Crinja::Undefined.new("nonexist"))
+      gutta.crinja_attribute(Crinja::Value.new("ignore")).should eq Crinja::Value.new(Crinja::Undefined.new("ignore"))
     end
 
     pending "with getter" do
       gutta = SimpleAttributes.new
-      gutta.getattr(Crinja::Value.new("with_getter")).should eq Crinja::Value.new("with_getter")
+      gutta.crinja_attribute(Crinja::Value.new("with_getter")).should eq Crinja::Value.new("with_getter")
     end
 
     it "complex" do
       gutta = ComplexAttributes.new
-      gutta.getattr(Crinja::Value.new("optional_argument")).should eq Crinja::Value.new("optional_argument")
-      gutta.getattr(Crinja::Value.new("protected_method")).should eq Crinja::Value.new("protected_method")
+      gutta.crinja_attribute(Crinja::Value.new("optional_argument")).should eq Crinja::Value.new("optional_argument")
+      gutta.crinja_attribute(Crinja::Value.new("protected_method")).should eq Crinja::Value.new("protected_method")
     end
 
     it "inherited attributes" do
       gutta = InheritedAttributes.new
-      gutta.getattr(Crinja::Value.new("child_only")).should eq Crinja::Value.new("child_only")
-      gutta.getattr(Crinja::Value.new("foo")).should eq Crinja::Value.new("foo")
-      gutta.getattr(Crinja::Value.new("other_name")).should eq Crinja::Value.new("this_name")
-      gutta.getattr(Crinja::Value.new("nonexist")).should eq Crinja::Value.new(Crinja::Undefined.new("nonexist"))
-      gutta.getattr(Crinja::Value.new("ignore")).should eq Crinja::Value.new(Crinja::Undefined.new("ignore"))
+      gutta.crinja_attribute(Crinja::Value.new("child_only")).should eq Crinja::Value.new("child_only")
+      gutta.crinja_attribute(Crinja::Value.new("foo")).should eq Crinja::Value.new("foo")
+      gutta.crinja_attribute(Crinja::Value.new("other_name")).should eq Crinja::Value.new("this_name")
+      gutta.crinja_attribute(Crinja::Value.new("nonexist")).should eq Crinja::Value.new(Crinja::Undefined.new("nonexist"))
+      gutta.crinja_attribute(Crinja::Value.new("ignore")).should eq Crinja::Value.new(Crinja::Undefined.new("ignore"))
     end
   end
 
   describe Crinja::Attributes do
     it "exposes all" do
       gutta = ExposeAllAttributes.new
-      gutta.getattr(Crinja::Value.new("foo")).should eq Crinja::Value.new("foo")
-      gutta.getattr(Crinja::Value.new("other_name")).should eq Crinja::Value.new("this_name")
-      gutta.getattr(Crinja::Value.new("with_getter")).should eq Crinja::Value.new("with_getter")
-      gutta.getattr(Crinja::Value.new("nonexist")).should eq Crinja::Value.new(Crinja::Undefined.new("nonexist"))
-      gutta.getattr(Crinja::Value.new("ignore")).should eq Crinja::Value.new(Crinja::Undefined.new("ignore"))
+      gutta.crinja_attribute(Crinja::Value.new("foo")).should eq Crinja::Value.new("foo")
+      gutta.crinja_attribute(Crinja::Value.new("other_name")).should eq Crinja::Value.new("this_name")
+      gutta.crinja_attribute(Crinja::Value.new("with_getter")).should eq Crinja::Value.new("with_getter")
+      gutta.crinja_attribute(Crinja::Value.new("nonexist")).should eq Crinja::Value.new(Crinja::Undefined.new("nonexist"))
+      gutta.crinja_attribute(Crinja::Value.new("ignore")).should eq Crinja::Value.new(Crinja::Undefined.new("ignore"))
     end
 
     it "exposes selected" do
       gutta = ExposeSelectedAttributes.new
-      gutta.getattr(Crinja::Value.new("exposed")).should eq Crinja::Value.new("exposed")
-      gutta.getattr(Crinja::Value.new("exposed_getter")).should eq Crinja::Value.new("exposed_getter")
-      gutta.getattr(Crinja::Value.new("ignored")).should eq Crinja::Value.new(Crinja::Undefined.new("ignored"))
-      gutta.getattr(Crinja::Value.new("other_name")).should eq Crinja::Value.new("ignore_name")
-      gutta.getattr(Crinja::Value.new("not_exposed")).should eq Crinja::Value.new(Crinja::Undefined.new("not_exposed"))
+      gutta.crinja_attribute(Crinja::Value.new("exposed")).should eq Crinja::Value.new("exposed")
+      gutta.crinja_attribute(Crinja::Value.new("exposed_getter")).should eq Crinja::Value.new("exposed_getter")
+      gutta.crinja_attribute(Crinja::Value.new("ignored")).should eq Crinja::Value.new(Crinja::Undefined.new("ignored"))
+      gutta.crinja_attribute(Crinja::Value.new("other_name")).should eq Crinja::Value.new("ignore_name")
+      gutta.crinja_attribute(Crinja::Value.new("not_exposed")).should eq Crinja::Value.new(Crinja::Undefined.new("not_exposed"))
     end
   end
 end

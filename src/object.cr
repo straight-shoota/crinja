@@ -11,9 +11,9 @@ module Crinja::Object
   include Crinja::PyObject
 
   module Auto
-    include Crinja::Object
+    include ::Crinja::Object
 
-    def getattr(attr : ::Crinja::Value) : ::Crinja::Value
+    def crinja_attribute(attr : ::Crinja::Value) : ::Crinja::Value
       {% begin %}
         {% exposed = [] of _ %}
         value = case attr.to_string

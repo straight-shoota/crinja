@@ -13,7 +13,7 @@ private class User
     (Time.utc(2017, 6, 8) - @dob)
   end
 
-  def getattr(attr : Crinja::Value)
+  def crinja_attribute(attr : Crinja::Value)
     case attr.to_string
     when "name"
       name

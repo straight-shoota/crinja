@@ -559,7 +559,7 @@ struct Crinja::Value
 
   # Returns `true` if the object is a mapping (Hash or PyObject).
   def mapping?
-    @raw.is_a?(Hash) || @raw.responds_to?(:getattr)
+    @raw.is_a?(Hash) || @raw.responds_to?(:crinja_attribute)
   end
 
   # Returns `true` if the value is a time object.

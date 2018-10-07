@@ -25,8 +25,8 @@ module Crinja::Resolver
 
   def self.resolve_getattr(name : Value, value : Value) : Value
     object = value.raw
-    if object.responds_to?(:getattr)
-      Value.new object.getattr(name)
+    if object.responds_to?(:crinja_attribute)
+      Value.new object.crinja_attribute(name)
     else
       self.resolve_with_hash_accessor(name, value)
     end
