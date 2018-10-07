@@ -6,8 +6,9 @@ require "./callable"
 class Crinja
   # :nodoc:
   alias Number = Float64 | Int64 | Int32
-  # :nodoc:
-  alias Raw = Number | String | Bool | Time | PyObject | Undefined | Callable | Callable::Proc | SafeString | Dictionary | Array(Value) | Iterator(Value) | Nil
+
+  # Raw type wrapped by `Value`.
+  alias Raw = Number | String | Bool | Time | Crinja::Object | Undefined | Callable | Callable::Proc | SafeString | Dictionary | Array(Value) | Iterator(Value) | Nil
 
   alias Dictionary = Hash(Value, Value)
 
@@ -557,7 +558,7 @@ struct Crinja::Value
     @raw.is_a?(String | SafeString)
   end
 
-  # Returns `true` if the object is a mapping (Hash or PyObject).
+  # Returns `true` if the object is a mapping (Hash or Crinja::Object).
   def mapping?
     @raw.is_a?(Hash) || @raw.responds_to?(:crinja_attribute)
   end

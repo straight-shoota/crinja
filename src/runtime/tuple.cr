@@ -4,7 +4,7 @@ require "./value"
 class Crinja::Tuple
   include Comparable(Crinja::Tuple)
   include Indexable(Value)
-  include PyObject
+  include Object
 
   def initialize(@data : Array(Value) = Array(Value).new)
   end
