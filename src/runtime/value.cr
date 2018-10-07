@@ -537,7 +537,7 @@ struct Crinja::Value
   end
 
   # Returns `true` if the value is a sequence.
-  # TODO: Improve implementation based on __getitem__
+  # TODO: Improve implementation based on crinja_item
   def sequence?
     @raw.is_a?(Iterable) || @raw.responds_to?(:each) || string?
   end
