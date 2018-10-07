@@ -38,7 +38,7 @@ module Crinja::Resolver
   end
 
   def self.resolve_method(name, object) : Callable | Callable::Proc?
-    if object.responds_to?(:__call__) && (callable = object.__call__(name))
+    if object.responds_to?(:crinja_call) && (callable = object.crinja_call(name))
       return ->(arguments : Arguments) do
         # wrap the return value of the proc as a Value
         Value.new callable.not_nil!.call(arguments)
