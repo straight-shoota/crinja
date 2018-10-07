@@ -124,7 +124,7 @@ describe Crinja::Test do
   end
 
   it "test_custom_test" do
-    items = [] of Tuple(String, String)
+    items = [] of ::Tuple(String, String)
     matching = Crinja.test({x: nil}) { items << {target.as_s!, arguments[:x].as_s!}; false }
 
     env = Crinja.new

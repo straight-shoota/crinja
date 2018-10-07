@@ -1,8 +1,8 @@
 require "./value"
 
 # Implementation of a Python Tuple
-class Crinja::PyTuple
-  include Comparable(PyTuple)
+class Crinja::Tuple
+  include Comparable(Crinja::Tuple)
   include Indexable(Value)
   include PyObject
 
@@ -12,14 +12,14 @@ class Crinja::PyTuple
   delegate size, unsafe_at, :<=>, to_s, :==, to: @data
 
   def +(item : Value)
-    PyTuple.from(@data, item)
+    Crinja::Tuple.from(@data, item)
   end
 
-  def +(other : PyTuple)
-    PyTuple.from(@data + other.@data)
+  def +(other : Crinja::Tuple)
+    Crinja::Tuple.from(@data + other.@data)
   end
 
-  def ==(other : PyTuple)
+  def ==(other : Crinja::Tuple)
     self == other.@data
   end
 

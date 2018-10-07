@@ -57,11 +57,11 @@ module Crinja::Parser
     property line : Int32 = 1
     property column : Int32 = 1
 
-    def ==(other : Tuple(Int, Int))
+    def ==(other : ::Tuple(Int, Int))
       {line, column} == other
     end
 
-    def ==(other : Tuple(Int, Int, Int))
+    def ==(other : ::Tuple(Int, Int, Int))
       {line, column, pos} == other
     end
 
