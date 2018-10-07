@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
-  <title>Crinja::TemplateSyntaxError - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Object - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -236,7 +236,7 @@
       
     </li>
   
-  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Object" data-name="crinja::object">
+  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Object" data-name="crinja::object">
       <a href="../Crinja/Object.html">Object</a>
       
         <ul>
@@ -626,7 +626,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/TemplateSyntaxError" data-name="crinja::templatesyntaxerror">
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TemplateSyntaxError" data-name="crinja::templatesyntaxerror">
       <a href="../Crinja/TemplateSyntaxError.html">TemplateSyntaxError</a>
       
     </li>
@@ -740,12 +740,72 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::TemplateSyntaxError
+  <span class="kind">module</span> Crinja::Object
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Crinja/TemplateSyntaxError.html">Crinja::TemplateSyntaxError</a></li><li class="superclass"><a href="../Crinja/TemplateError.html">Crinja::TemplateError</a></li><li class="superclass"><a href="../Crinja/Error.html">Crinja::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+  <h2>Overview</h2>
+
+  <p>This module can be included into custom types to make their instances available
+as values inside the Crinja runtime.</p>
+
+<p>There are three types of properties that can be exposed to the Crinja runtime:</p>
+
+<ol><li><code>#crinja_attribute(name : Crinja::Value) : <a href="../Crinja/Value.html">Crinja::Value</a></code>: Access an attribute (e.g. an instance property) of this class.</li><li><code>#crinja_item(name : Crinja::Value) : <a href="../Crinja/Value.html">Crinja::Value</a></code>: Access an item (e.g. an array member) of this class.</li><li><code>#crinja_call(name : String) : <a href="../Crinja/Callable.html">Crinja::Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a> | Nil</code>: Expose a callable as method of this class.</li></ol>
+
+<p>Through the static comilation it is not possible to access properties or methods of an object
+directly from inside the Crinja runtime. These methods allow to define a name-based lookup and
+return the corresponding values. If the looked-up name is not defined, the return value for <code>crinja_call</code>
+should be <code>nil</code>.  should return <code><a href="../Crinja/Undefined.html">Crinja::Undefined</a></code>.</p>
+
+<p><code>crinja_attribute</code> and <code>crinja_item</code> <em>must</em> return an <code><a href="../Crinja/Undefined.html">Crinja::Undefined</a></code> if there is no attribute or item of that name.
+In this case, <code><a href="../Crinja/Resolver.html">Crinja::Resolver</a></code> may try other methods of accessing the attribute or item depending on the type
+of lookup (see <a href="http://jinja.pocoo.org/docs/2.9/templates/#notes-on-subscriptions" target="_blank"><em>Notes on Subscription</em></a> for Jinja2).</p>
+
+<p>Implementing classes <em>do not need</em> to implement these methods. They will only be accessed if an
+instance of <code><a href="../Crinja/Object.html">Crinja::Object</a></code> responds to them. Otherwise it will be considered as if there are no
+attributes, items or methods defined.</p>
+
+<p>Example:</p>
+
+<pre><code><span class="k">class</span> <span class="t">User</span>
+  <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Object</span>
+
+  property name : <span class="t">String</span>
+  property dob : <span class="t">Time</span>
+
+  <span class="k">def</span> <span class="m">initialize</span>(@name, @dob)
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">age</span>
+    (<span class="t">Time</span>.now <span class="o">-</span> @dob)
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">crinja_attribute</span>(attr : <span class="t">Crinja</span><span class="t">::</span><span class="t">Value</span>) : <span class="t">Crinja</span><span class="t">::</span><span class="t">Value</span>
+    value <span class="o">=</span> <span class="k">case</span> attr.to_string
+            <span class="k">when</span> <span class="s">&quot;name&quot;</span>
+              name
+            <span class="k">when</span> <span class="s">&quot;age&quot;</span>
+              age.days <span class="o">/</span> <span class="n">365</span>
+            <span class="k">else</span>
+              <span class="t">Undefined</span>.<span class="k">new</span>(attr.to_s)
+            <span class="k">end</span>
+
+    <span class="t">Crinja</span><span class="t">::</span><span class="t">Value</span>.<span class="k">new</span>(value)
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">crinja_call</span>(name : <span class="t">String</span>) : <span class="t">Crinja</span><span class="t">::</span><span class="t">Callable</span> <span class="o">|</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Callable</span><span class="t">::</span><span class="t">Proc</span> <span class="o">|</span> <span class="t">Nil</span>
+    <span class="k">if</span> name <span class="o">==</span> <span class="s">&quot;days_old&quot;</span>
+      ->(arguments : <span class="t">Crinja</span><span class="t">::</span><span class="t">Arguments</span>) <span class="k">do</span>
+        <span class="k">self</span>.age.days
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
 
 
 
@@ -757,8 +817,16 @@
 
 
 
-
-
+  <h2>Direct including types</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../Crinja/Object/Attributes.html">Crinja::Object::Attributes</a></li>
+  
+    <li class="other-type"><a href="../Crinja/PyTuple.html">Crinja::PyTuple</a></li>
+  
+    <li class="other-type"><a href="../Crinja/Tag/For/ForLoop.html">Crinja::Tag::For::ForLoop</a></li>
+  
+  </ul>
 
 
 
@@ -766,8 +834,8 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/9c339db3fc7f4020f946c4d6745e81de6a71b1a4/src/error.cr#L126" target="_blank">
-        error.cr
+      <a href="https://github.com/straight-shoota/crinja/blob/9c339db3fc7f4020f946c4d6745e81de6a71b1a4/src/object.cr#L69" target="_blank">
+        object.cr
       </a>
     
     <br/>
@@ -786,123 +854,6 @@
 
 
 <div class="methods-inherited">
-  
-    
-
-
-    
-
-  <h3>Constructor methods inherited from class <code><a href="../Crinja/TemplateError.html">Crinja::TemplateError</a></code></h3>
-  
-  
-    <a href="../Crinja/TemplateError.html#new%28token%3AParser%3A%3AToken%2Ccause%3AException%3F%3Dnil%2Ctemplate%3Dnil%29-class-method" class="tooltip">
-      <span>new(token : Parser::Token, cause : Exception? = <span class="n">nil</span>, template = <span class="n">nil</span>)<br/>new(message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>)<br/>new(token : Parser::Token, message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>, template = <span class="n">nil</span>)<br/>new(node : AST::ASTNode, message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>, template = <span class="n">nil</span>)</span>
-    new</a>
-    
-  
-
-
-    
-
-
-  
-    
-
-  <h3>Instance methods inherited from class <code><a href="../Crinja/Error.html">Crinja::Error</a></code></h3>
-  
-  
-    <a href="../Crinja/Error.html#at%28location_start%2Clocation_end%29-instance-method" class="tooltip">
-      <span>at(location_start, location_end)<br/>at(node)</span>
-    at</a>, 
-    
-  
-    <a href="../Crinja/Error.html#has_location%3F-instance-method" class="tooltip">
-      <span>has_location?</span>
-    has_location?</a>, 
-    
-  
-    <a href="../Crinja/Error.html#location_end%3AParser%3A%3AStreamPosition%3F-instance-method" class="tooltip">
-      <span>location_end : Parser::StreamPosition?</span>
-    location_end</a>, 
-    
-  
-    <a href="../Crinja/Error.html#location_start%3AParser%3A%3AStreamPosition%3F-instance-method" class="tooltip">
-      <span>location_start : Parser::StreamPosition?</span>
-    location_start</a>, 
-    
-  
-    <a href="../Crinja/Error.html#template%3ATemplate%3F-instance-method" class="tooltip">
-      <span>template : Template?</span>
-    template</a>, 
-    
-  
-    <a href="../Crinja/Error.html#template%3D%28template%3ATemplate%3F%29-instance-method" class="tooltip">
-      <span>template=(template : Template?)</span>
-    template=</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-  <h3>Instance methods inherited from module <code><a href="../Crinja/SourceAttached.html">Crinja::SourceAttached</a></code></h3>
-  
-  
-    <a href="../Crinja/SourceAttached.html#highlight_source_code%28io%2Clines_before%3D2%2Clines_after%3D2%29-instance-method" class="tooltip">
-      <span>highlight_source_code(io, lines_before = <span class="n">2</span>, lines_after = <span class="n">2</span>)</span>
-    highlight_source_code</a>, 
-    
-  
-    <a href="../Crinja/SourceAttached.html#message-instance-method" class="tooltip">
-      <span>message</span>
-    message</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
   
 </div>
 

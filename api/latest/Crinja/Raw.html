@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
-  <title>Crinja::TemplateSyntaxError - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Raw - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -371,7 +371,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Raw" data-name="crinja::raw">
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Raw" data-name="crinja::raw">
       <a href="../Crinja/Raw.html">Raw</a>
       
     </li>
@@ -626,7 +626,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/TemplateSyntaxError" data-name="crinja::templatesyntaxerror">
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TemplateSyntaxError" data-name="crinja::templatesyntaxerror">
       <a href="../Crinja/TemplateSyntaxError.html">TemplateSyntaxError</a>
       
     </li>
@@ -740,17 +740,22 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::TemplateSyntaxError
+  <span class="kind">alias</span> Crinja::Raw
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Crinja/TemplateSyntaxError.html">Crinja::TemplateSyntaxError</a></li><li class="superclass"><a href="../Crinja/TemplateError.html">Crinja::TemplateError</a></li><li class="superclass"><a href="../Crinja/Error.html">Crinja::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
+  <h2>Overview</h2>
+
+  <p>Raw type wrapped by <code>Value</code>.</p>
 
 
+
+  <h2>Alias Definition</h2>
+  <code>Array(<a href="../Crinja/Value.html">Crinja::Value</a>) | Bool | <a href="../Crinja/Callable.html">Crinja::Callable</a> | <a href="../Crinja/Object.html">Crinja::Object</a> | <a href="../Crinja/SafeString.html">Crinja::SafeString</a> | <a href="../Crinja/Undefined.html">Crinja::Undefined</a> | Float64 | Hash(<a href="../Crinja/Value.html">Crinja::Value</a>, <a href="../Crinja/Value.html">Crinja::Value</a>) | Int32 | Int64 | Iterator(<a href="../Crinja/Value.html">Crinja::Value</a>) | <a href="../Crinja/Callable/Arguments.html">Crinja::Callable::Arguments</a> -> <a href="../Crinja/Value.html">Crinja::Value</a> | String | Time | Nil</code>
 
 
 
@@ -766,8 +771,8 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/9c339db3fc7f4020f946c4d6745e81de6a71b1a4/src/error.cr#L126" target="_blank">
-        error.cr
+      <a href="https://github.com/straight-shoota/crinja/blob/9c339db3fc7f4020f946c4d6745e81de6a71b1a4/src/runtime/value.cr#L11" target="_blank">
+        runtime/value.cr
       </a>
     
     <br/>
@@ -786,123 +791,6 @@
 
 
 <div class="methods-inherited">
-  
-    
-
-
-    
-
-  <h3>Constructor methods inherited from class <code><a href="../Crinja/TemplateError.html">Crinja::TemplateError</a></code></h3>
-  
-  
-    <a href="../Crinja/TemplateError.html#new%28token%3AParser%3A%3AToken%2Ccause%3AException%3F%3Dnil%2Ctemplate%3Dnil%29-class-method" class="tooltip">
-      <span>new(token : Parser::Token, cause : Exception? = <span class="n">nil</span>, template = <span class="n">nil</span>)<br/>new(message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>)<br/>new(token : Parser::Token, message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>, template = <span class="n">nil</span>)<br/>new(node : AST::ASTNode, message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>, template = <span class="n">nil</span>)</span>
-    new</a>
-    
-  
-
-
-    
-
-
-  
-    
-
-  <h3>Instance methods inherited from class <code><a href="../Crinja/Error.html">Crinja::Error</a></code></h3>
-  
-  
-    <a href="../Crinja/Error.html#at%28location_start%2Clocation_end%29-instance-method" class="tooltip">
-      <span>at(location_start, location_end)<br/>at(node)</span>
-    at</a>, 
-    
-  
-    <a href="../Crinja/Error.html#has_location%3F-instance-method" class="tooltip">
-      <span>has_location?</span>
-    has_location?</a>, 
-    
-  
-    <a href="../Crinja/Error.html#location_end%3AParser%3A%3AStreamPosition%3F-instance-method" class="tooltip">
-      <span>location_end : Parser::StreamPosition?</span>
-    location_end</a>, 
-    
-  
-    <a href="../Crinja/Error.html#location_start%3AParser%3A%3AStreamPosition%3F-instance-method" class="tooltip">
-      <span>location_start : Parser::StreamPosition?</span>
-    location_start</a>, 
-    
-  
-    <a href="../Crinja/Error.html#template%3ATemplate%3F-instance-method" class="tooltip">
-      <span>template : Template?</span>
-    template</a>, 
-    
-  
-    <a href="../Crinja/Error.html#template%3D%28template%3ATemplate%3F%29-instance-method" class="tooltip">
-      <span>template=(template : Template?)</span>
-    template=</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-  <h3>Instance methods inherited from module <code><a href="../Crinja/SourceAttached.html">Crinja::SourceAttached</a></code></h3>
-  
-  
-    <a href="../Crinja/SourceAttached.html#highlight_source_code%28io%2Clines_before%3D2%2Clines_after%3D2%29-instance-method" class="tooltip">
-      <span>highlight_source_code(io, lines_before = <span class="n">2</span>, lines_after = <span class="n">2</span>)</span>
-    highlight_source_code</a>, 
-    
-  
-    <a href="../Crinja/SourceAttached.html#message-instance-method" class="tooltip">
-      <span>message</span>
-    message</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
   
 </div>
 
