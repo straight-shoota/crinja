@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
-  <title>Crinja::Tuple - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Attribute - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -40,6 +40,16 @@
       <a href="../Crinja.html">Crinja</a>
       
         <ul>
+  
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Attribute" data-name="crinja::attribute">
+      <a href="../Crinja/Attribute.html">Attribute</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Attributes" data-name="crinja::attributes">
+      <a href="../Crinja/Attributes.html">Attributes</a>
+      
+    </li>
   
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
       <a href="../Crinja/Callable.html">Callable</a>
@@ -226,6 +236,21 @@
       
     </li>
   
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Object" data-name="crinja::object">
+      <a href="../Crinja/Object.html">Object</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Object/Attributes" data-name="crinja::object::attributes">
+      <a href="../Crinja/Object/Attributes.html">Attributes</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Operator" data-name="crinja::operator">
       <a href="../Crinja/Operator.html">Operator</a>
       
@@ -341,8 +366,13 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/PyObject" data-name="crinja::pyobject">
-      <a href="../Crinja/PyObject.html">PyObject</a>
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/PyTuple" data-name="crinja::pytuple">
+      <a href="../Crinja/PyTuple.html">PyTuple</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Raw" data-name="crinja::raw">
+      <a href="../Crinja/Raw.html">Raw</a>
       
     </li>
   
@@ -616,11 +646,6 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Tuple" data-name="crinja::tuple">
-      <a href="../Crinja/Tuple.html">Tuple</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TypeError" data-name="crinja::typeerror">
       <a href="../Crinja/TypeError.html">TypeError</a>
       
@@ -715,34 +740,22 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Tuple
+  <span class="kind">annotation</span> Crinja::Attribute
 
 </h1>
 
-
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Crinja/Tuple.html">Crinja::Tuple</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
 
   <h2>Overview</h2>
 
-  <p>Implementation of a Python Tuple</p>
+  <p>Method annotation used by <code><a href="../Crinja/Object/Attributes.html">Crinja::Object::Attributes</a></code> to expose the
+annotated method as property in the Crinja runtime.</p>
 
 
 
 
-
-  <h2>Included Modules</h2>
-  <ul class="other-types-list">
-  
-    <li class="other-type">Comparable(<a href="../Crinja/Tuple.html">Crinja::Tuple</a>)</li>
-  
-    <li class="other-type"><a href="../Crinja/PyObject.html">Crinja::PyObject</a></li>
-  
-    <li class="other-type">Indexable(<a href="../Crinja/Value.html">Crinja::Value</a>)</li>
-  
-  </ul>
 
 
 
@@ -756,8 +769,8 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L4" target="_blank">
-        runtime/tuple.cr
+      <a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/object.cr#L5" target="_blank">
+        object.cr
       </a>
     
     <br/>
@@ -767,109 +780,9 @@
 
 
 
-  <h2>Constructors</h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new%28data%3AArray%28Value%29%3DArray%28Value%29.new%29-class-method" class="signature"><strong>.new</strong>(data : Array(Value) = <span class="t">Array</span>(<span class="t">Value</span>).<span class="k">new</span>)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#new%28%2Adata%29-class-method" class="signature"><strong>.new</strong>(*data)</a>
-        
-      </li>
-    
-  </ul>
 
 
 
-  <h2>Class Method Summary</h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#from%28data%3AIterable%2C%2Aadd%29-class-method" class="signature"><strong>.from</strong>(data : Iterable, *add)</a>
-        
-      </li>
-    
-  </ul>
-
-
-
-  <h2>Instance Method Summary</h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#%2B%28item%3AValue%29-instance-method" class="signature"><strong>#+</strong>(item : Value)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#%2B%28other%3ACrinja%3A%3ATuple%29-instance-method" class="signature"><strong>#+</strong>(other : Crinja::Tuple)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#<=></strong>(*args, **options)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#<=></strong>(*args, **options, &block)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#%3D%3D%28other%3ACrinja%3A%3ATuple%29-instance-method" class="signature"><strong>#==</strong>(other : Crinja::Tuple)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#%3D%3D%28arg%29-instance-method" class="signature"><strong>#==</strong>(arg)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#pretty_print%28pp%29%3ANil-instance-method" class="signature"><strong>#pretty_print</strong>(pp) : Nil</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#size%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#size</strong>(*args, **options)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#size%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#size</strong>(*args, **options, &block)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to_s%28io%29-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to_s%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#to_s</strong>(*args, **options)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to_s%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#to_s</strong>(*args, **options, &block)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#unsafe_at%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#unsafe_at</strong>(*args, **options)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#unsafe_at%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method" class="signature"><strong>#unsafe_at</strong>(*args, **options, &block)</a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -877,363 +790,12 @@
 
 <div class="methods-inherited">
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
 
-  <h2>Constructor Detail</h2>
-  
-    <div class="entry-detail" id="new(data:Array(Value)=Array(Value).new)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(data : Array(<a href="../Crinja/Value.html">Value</a>) = <span class="t">Array</span>(<span class="t">Value</span>).<span class="k">new</span>)
-
-        <a class="method-permalink" href="#new%28data%3AArray%28Value%29%3DArray%28Value%29.new%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L9" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="new(*data)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(*data)
-
-        <a class="method-permalink" href="#new%28%2Adata%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L49" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
-  <h2>Class Method Detail</h2>
-  
-    <div class="entry-detail" id="from(data:Iterable,*add)-class-method">
-      <div class="signature">
-        
-        def self.<strong>from</strong>(data : Iterable, *add)
-
-        <a class="method-permalink" href="#from%28data%3AIterable%2C%2Aadd%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L41" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
-
-
-  <h2>Instance Method Detail</h2>
-  
-    <div class="entry-detail" id="+(item:Value)-instance-method">
-      <div class="signature">
-        
-        def <strong>+</strong>(item : <a href="../Crinja/Value.html">Value</a>)
-
-        <a class="method-permalink" href="#%2B%28item%3AValue%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L14" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="+(other:Crinja::Tuple)-instance-method">
-      <div class="signature">
-        
-        def <strong>+</strong>(other : <a href="../Crinja/Tuple.html">Crinja::Tuple</a>)
-
-        <a class="method-permalink" href="#%2B%28other%3ACrinja%3A%3ATuple%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L18" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="(*args,**options)-instance-method">
-      <div class="signature">
-        
-        def <strong><=></strong>(*args, **options)
-
-        <a class="method-permalink" href="#%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="(*args,**options,&amp;block)-instance-method">
-      <div class="signature">
-        
-        def <strong><=></strong>(*args, **options, &block)
-
-        <a class="method-permalink" href="#%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="==(other:Crinja::Tuple)-instance-method">
-      <div class="signature">
-        
-        def <strong>==</strong>(other : <a href="../Crinja/Tuple.html">Crinja::Tuple</a>)
-
-        <a class="method-permalink" href="#%3D%3D%28other%3ACrinja%3A%3ATuple%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L22" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="==(arg)-instance-method">
-      <div class="signature">
-        
-        def <strong>==</strong>(arg)
-
-        <a class="method-permalink" href="#%3D%3D%28arg%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="pretty_print(pp):Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>pretty_print</strong>(pp) : Nil
-
-        <a class="method-permalink" href="#pretty_print%28pp%29%3ANil-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L37" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="size(*args,**options)-instance-method">
-      <div class="signature">
-        
-        def <strong>size</strong>(*args, **options)
-
-        <a class="method-permalink" href="#size%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="size(*args,**options,&amp;block)-instance-method">
-      <div class="signature">
-        
-        def <strong>size</strong>(*args, **options, &block)
-
-        <a class="method-permalink" href="#size%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to_s(io)-instance-method">
-      <div class="signature">
-        
-        def <strong>to_s</strong>(io)
-
-        <a class="method-permalink" href="#to_s%28io%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L26" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to_s(*args,**options)-instance-method">
-      <div class="signature">
-        
-        def <strong>to_s</strong>(*args, **options)
-
-        <a class="method-permalink" href="#to_s%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to_s(*args,**options,&amp;block)-instance-method">
-      <div class="signature">
-        
-        def <strong>to_s</strong>(*args, **options, &block)
-
-        <a class="method-permalink" href="#to_s%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="unsafe_at(*args,**options)-instance-method">
-      <div class="signature">
-        
-        def <strong>unsafe_at</strong>(*args, **options)
-
-        <a class="method-permalink" href="#unsafe_at%28%2Aargs%2C%2A%2Aoptions%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="unsafe_at(*args,**options,&amp;block)-instance-method">
-      <div class="signature">
-        
-        def <strong>unsafe_at</strong>(*args, **options, &block)
-
-        <a class="method-permalink" href="#unsafe_at%28%2Aargs%2C%2A%2Aoptions%2C%26block%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 

@@ -41,6 +41,16 @@
       
         <ul>
   
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Attribute" data-name="crinja::attribute">
+      <a href="../../../../Crinja/Attribute.html">Attribute</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Attributes" data-name="crinja::attributes">
+      <a href="../../../../Crinja/Attributes.html">Attributes</a>
+      
+    </li>
+  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
       <a href="../../../../Crinja/Callable.html">Callable</a>
       
@@ -226,6 +236,21 @@
       
     </li>
   
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Object" data-name="crinja::object">
+      <a href="../../../../Crinja/Object.html">Object</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Object/Attributes" data-name="crinja::object::attributes">
+      <a href="../../../../Crinja/Object/Attributes.html">Attributes</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Operator" data-name="crinja::operator">
       <a href="../../../../Crinja/Operator.html">Operator</a>
       
@@ -341,8 +366,13 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/PyObject" data-name="crinja::pyobject">
-      <a href="../../../../Crinja/PyObject.html">PyObject</a>
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/PyTuple" data-name="crinja::pytuple">
+      <a href="../../../../Crinja/PyTuple.html">PyTuple</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Raw" data-name="crinja::raw">
+      <a href="../../../../Crinja/Raw.html">Raw</a>
       
     </li>
   
@@ -616,11 +646,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tuple" data-name="crinja::tuple">
-      <a href="../../../../Crinja/Tuple.html">Tuple</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/TypeError" data-name="crinja::typeerror">
       <a href="../../../../Crinja/TypeError.html">TypeError</a>
       
@@ -748,7 +773,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/lib/util/for_loop.cr#L91" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/util/for_loop.cr#L144" target="_blank">
         lib/util/for_loop.cr
       </a>
     
@@ -792,6 +817,11 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#crinja_attribute%28attr%3AValue%29%3AValue-instance-method" class="signature"><strong>#crinja_attribute</strong>(attr : Value) : Value</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#depth-instance-method" class="signature"><strong>#depth</strong></a>
         
       </li>
@@ -803,11 +833,6 @@
     
       <li class="entry-summary">
         <a href="#depth0%3D%28depth0%3AInt32%29-instance-method" class="signature"><strong>#depth0=</strong>(depth0 : Int32)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#getattr%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method" class="signature"><strong>#getattr</strong>(attr : Crinja::Value) : Crinja::Value</a>
         
       </li>
     
@@ -848,6 +873,11 @@
   <h3>Instance methods inherited from class <code><a href="../../../../Crinja/Tag/For/ForLoop.html">Crinja::Tag::For::ForLoop</a></code></h3>
   
   
+    <a href="../../../../Crinja/Tag/For/ForLoop.html#crinja_attribute%28attr%3AValue%29%3AValue-instance-method" class="tooltip">
+      <span>crinja_attribute(attr : Value) : Value</span>
+    crinja_attribute</a>, 
+    
+  
     <a href="../../../../Crinja/Tag/For/ForLoop.html#cycle-instance-method" class="tooltip">
       <span>cycle</span>
     cycle</a>, 
@@ -861,11 +891,6 @@
     <a href="../../../../Crinja/Tag/For/ForLoop.html#first%3ABool-instance-method" class="tooltip">
       <span>first : Bool</span>
     first</a>, 
-    
-  
-    <a href="../../../../Crinja/Tag/For/ForLoop.html#getattr%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method" class="tooltip">
-      <span>getattr(attr : Crinja::Value) : Crinja::Value</span>
-    getattr</a>, 
     
   
     <a href="../../../../Crinja/Tag/For/ForLoop.html#index-instance-method" class="tooltip">
@@ -967,7 +992,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/lib/util/for_loop.cr#L110" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/util/for_loop.cr#L178" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -983,7 +1008,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/lib/util/for_loop.cr#L101" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/util/for_loop.cr#L169" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -999,7 +1024,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/lib/util/for_loop.cr#L114" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/util/for_loop.cr#L182" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1022,7 +1047,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/lib/util/for_loop.cr#L118" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/util/for_loop.cr#L186" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="crinja_attribute(attr:Value):Value-instance-method">
+      <div class="signature">
+        
+        def <strong>crinja_attribute</strong>(attr : <a href="../../../../Crinja/Value.html">Value</a>) : <a href="../../../../Crinja/Value.html">Value</a>
+
+        <a class="method-permalink" href="#crinja_attribute%28attr%3AValue%29%3AValue-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/util/for_loop.cr#L149" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1038,7 +1079,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/lib/util/for_loop.cr#L129" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/util/for_loop.cr#L198" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1054,7 +1095,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/lib/util/for_loop.cr#L94" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/util/for_loop.cr#L163" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1070,23 +1111,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/lib/util/for_loop.cr#L94" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="getattr(attr:Crinja::Value):Crinja::Value-instance-method">
-      <div class="signature">
-        
-        def <strong>getattr</strong>(attr : <a href="../../../../Crinja/Value.html">Crinja::Value</a>) : <a href="../../../../Crinja/Value.html">Crinja::Value</a>
-
-        <a class="method-permalink" href="#getattr%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/af825b4e156adf98a6082fd4d5377a5757ab5315/src/lib/util/for_loop.cr#L97" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/util/for_loop.cr#L147" target="_blank">View source</a>]
         
       </div>
     </div>

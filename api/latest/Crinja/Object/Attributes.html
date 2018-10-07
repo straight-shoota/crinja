@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
-  <title>Crinja::Tag::Filter - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Object::Attributes - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -236,12 +236,12 @@
       
     </li>
   
-  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Object" data-name="crinja::object">
+  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Object" data-name="crinja::object">
       <a href="../../Crinja/Object.html">Object</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Object/Attributes" data-name="crinja::object::attributes">
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Object/Attributes" data-name="crinja::object::attributes">
       <a href="../../Crinja/Object/Attributes.html">Attributes</a>
       
     </li>
@@ -436,7 +436,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Tag" data-name="crinja::tag">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Tag" data-name="crinja::tag">
       <a href="../../Crinja/Tag.html">Tag</a>
       
         <ul>
@@ -471,7 +471,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Tag/Filter" data-name="crinja::tag::filter">
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Filter" data-name="crinja::tag::filter">
       <a href="../../Crinja/Tag/Filter.html">Filter</a>
       
     </li>
@@ -740,26 +740,51 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Tag::Filter
+  <span class="kind">module</span> Crinja::Object::Attributes
 
 </h1>
 
-
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Tag/Filter.html">Crinja::Tag::Filter</a></li><li class="superclass"><a href="../../Crinja/Tag.html">Crinja::Tag</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
 
   <h2>Overview</h2>
 
-  <p>Filter sections allow you to apply regular <code><a href="../../Crinja/Filter.html">Crinja::Filter</a></code> filters on a block of template data.
-Just wrap the code in the special filter block:</p>
+  <p>When this module is included, it defines a <code><a href="../../Crinja/Object/Attributes.html#crinja_attribute%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method">#crinja_attribute</a></code> method (see <code><a href="../../Crinja/Object.html">Crinja::Object</a></code> for its purpose)
+with dynamic accessors to all methods exposed using an annotation.</p>
 
-<pre><code>{% filter upper %}
-    <span class="t">This</span> text becomes uppercase
-{% endfilter %}</code></pre>
+<ul><li><code>@[Crystal::Attribute]</code> (method annotation): Exposes the annotated method.
+  Options:</li><ul><li><code>ignore</code>: Don't expose this method (useful to exclude specific methods from <code>Crystal::Attributes</code>)</li><li><code>name</code>: Expose the method under a different name.</li></ul><li><code>@[Crystal::Attributes]</code> (type annotation): Exposes all methods in the annotated type.
+  Only methods with valid signatures are exposed (can be called without arguments).
+  Options:</li><ul><li><code>expose</code>: A whitelist of methods to expose. If not defined, all methods will be exposed (unless the method itself is annotated as <code>@[<a href="../../Crinja/Attribute.html">Crinja::Attribute</a>(ignore: true)]</code>)</li></ul></ul>
 
-<p>See <a href="http://jinja.pocoo.org/docs/2.9/templates/#id11" target="_blank">Jinja2 Template Documentation</a> for details.</p>
+<p>Example:</p>
+
+<pre><code>@[<span class="t">Crinja</span><span class="t">::</span><span class="t">Attributes</span>(expose: [name, age])]
+<span class="k">class</span> <span class="t">User</span>
+  <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Object</span><span class="t">::</span><span class="t">Attributes</span>
+
+  property name : <span class="t">String</span>
+  property dob : <span class="t">Time</span>
+
+  <span class="k">def</span> <span class="m">initialize</span>(@name, @dob)
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">age</span>
+    (<span class="t">Time</span>.now <span class="o">-</span> @dob).year
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+
+
+
+
+
+  <h2>Included Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../../Crinja/Object.html">Crinja::Object</a></li>
+  
+  </ul>
 
 
 
@@ -767,9 +792,14 @@ Just wrap the code in the special filter block:</p>
 
 
 
-
-
-
+  <h2>Direct including types</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../../Crinja/Function/Cycler.html">Crinja::Function::Cycler</a></li>
+  
+    <li class="other-type"><a href="../../Crinja/Server.html">Crinja::Server</a></li>
+  
+  </ul>
 
 
 
@@ -777,8 +807,8 @@ Just wrap the code in the special filter block:</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/tag/filter.cr#L11" target="_blank">
-        lib/tag/filter.cr
+      <a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/object.cr#L105" target="_blank">
+        object.cr
       </a>
     
     <br/>
@@ -796,17 +826,7 @@ Just wrap the code in the special filter block:</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#end_tag%3AString%3F-instance-method" class="signature"><strong>#end_tag</strong> : String?</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#interpret_output%28renderer%3ARenderer%2Ctag_node%3ATagNode%29-instance-method" class="signature"><strong>#interpret_output</strong>(renderer : Renderer, tag_node : TagNode)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        <a href="#crinja_attribute%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method" class="signature"><strong>#crinja_attribute</strong>(attr : Crinja::Value) : Crinja::Value</a>
         
       </li>
     
@@ -817,50 +837,6 @@ Just wrap the code in the special filter block:</p>
 
 
 <div class="methods-inherited">
-  
-    
-
-  <h3>Instance methods inherited from class <code><a href="../../Crinja/Tag.html">Crinja::Tag</a></code></h3>
-  
-  
-    <a href="../../Crinja/Tag.html#end_tag%3AString%3F-instance-method" class="tooltip">
-      <span>end_tag : String?</span>
-    end_tag</a>, 
-    
-  
-    <a href="../../Crinja/Tag.html#has_block%3F%28node%3ATagNode%29-instance-method" class="tooltip">
-      <span>has_block?(node : TagNode)</span>
-    has_block?</a>, 
-    
-  
-    <a href="../../Crinja/Tag.html#interpret_output%28renderer%3ARenderer%2Ctag_node%3ATagNode%29-instance-method" class="tooltip">
-      <span>interpret_output(renderer : Renderer, tag_node : TagNode)</span>
-    interpret_output</a>, 
-    
-  
-    <a href="../../Crinja/Tag.html#to_s%28io%29-instance-method" class="tooltip">
-      <span>to_s(io)</span>
-    to_s</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
   
     
 
@@ -881,50 +857,18 @@ Just wrap the code in the special filter block:</p>
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="end_tag:String?-instance-method">
+    <div class="entry-detail" id="crinja_attribute(attr:Crinja::Value):Crinja::Value-instance-method">
       <div class="signature">
         
-        def <strong>end_tag</strong> : String?
+        def <strong>crinja_attribute</strong>(attr : <a href="../../Crinja/Value.html">Crinja::Value</a>) : <a href="../../Crinja/Value.html">Crinja::Value</a>
 
-        <a class="method-permalink" href="#end_tag%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#crinja_attribute%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/tag/filter.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="interpret_output(renderer:Renderer,tag_node:TagNode)-instance-method">
-      <div class="signature">
-        
-        def <strong>interpret_output</strong>(renderer : Renderer, tag_node : TagNode)
-
-        <a class="method-permalink" href="#interpret_output%28renderer%3ARenderer%2Ctag_node%3ATagNode%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/tag/filter.cr#L14" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="name:String-instance-method">
-      <div class="signature">
-        
-        def <strong>name</strong> : String
-
-        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/lib/tag/filter.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/7a2bd4c4169dc4e77040f8e6a706e6169d1ae9a2/src/object.cr#L108" target="_blank">View source</a>]
         
       </div>
     </div>
