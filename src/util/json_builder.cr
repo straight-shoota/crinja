@@ -30,7 +30,7 @@ struct Crinja::JsonBuilder
           end
         end
       end
-    when PyObject
+    when Crinja::Object
       # FIXME: We need to detect if the class has a #to_json(JSON::Builder) method
       # pending https://github.com/crystal-lang/crystal/issues/5695
       @json.null

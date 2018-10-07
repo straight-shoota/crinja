@@ -1,7 +1,7 @@
 require "../spec_helper.cr"
 
 private class User
-  include Crinja::PyObject
+  include Crinja::Object
 
   property name : String
   property dob : Time
@@ -38,7 +38,7 @@ private class User
   end
 end
 
-describe Crinja::PyObject do
+describe Crinja::Object do
   it "resolves dynamic attribute" do
     user = User.new("Tom", Time.utc(1974, 3, 28))
     evaluate_expression_raw(%(user[0]), {user: user}).should eq "T"
