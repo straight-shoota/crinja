@@ -1,8 +1,8 @@
 # Include this module into your classes to make them available as values in Crinja.
 # There are three types of properties you can expose to the Crinja runtime:
 #
-# 1. `#crinja_attribute(name : Crinja::Value) : Crinja::Value`: Access an attribute (e.g. an instance property) of this class.
-# 3. `#__call__(name : String) : Crinja::Callable | Callable::Proc`: Expose a callable as method of this class.
+# * `#crinja_attribute(name : Crinja::Value) : Crinja::Value`: Access an attribute (e.g. an instance property) of this class.
+# * `#__call__(name : String) : Crinja::Callable | Callable::Proc`: Expose a callable as method of this class.
 #
 # Through the static comilation it is not possible to access properties or methods of an object
 # directly from inside the Crinja runtime. These methods allow to define a name-based lookup and
@@ -45,7 +45,7 @@
 #     end
 #   end
 #
-#   def __call__(name)
+#   def crinja_call(name)
 #     if name == "days_old"
 #       ->(arguments : Crinja::Arguments) do
 #         self.age.days

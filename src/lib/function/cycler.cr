@@ -34,7 +34,7 @@ class Crinja::Function::Cycler
     rewind
   end
 
-  def __call__(method)
+  def crinja_call(method)
     case method
     when "next"
       ->(arguments : Arguments) { self.next }
