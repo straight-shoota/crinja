@@ -1,16 +1,17 @@
 # Include this module into your classes to make them available as values in Crinja.
 # There are three types of properties you can expose to the Crinja runtime:
 #
-# * `#getattr(name : Crinja::Value) : Crinja::Value`: Access an attribute (e.g. an instance property) of this class.
+# * `#crinja_attribute(name : Crinja::Value) : Crinja::Value`: Access an attribute (e.g. an instance property) of this class.
 # * `#__call__(name : String) : Crinja::Callable | Callable::Proc`: Expose a callable as method of this class.
 #
 # Through the static comilation it is not possible to access properties or methods of an object
 # directly from inside the Crinja runtime. These methods allow to define a name-based lookup and
 # return the corresponding values. If the looked-up name is not defined, the return value for `__call__`
-# should be `nil`. If `getattr` returns `nil`, this will be a valid return value.
+# should be `nil`.
 #
-# They *must* return an `Undefined` if there is no attribute or item of that name. In this case,
-# `Crinja::Resolver` may try other methods of accessing the attribute or item depending on the type
+# `crinja_attribute` *must* return an `Undefined` if there is no attribute or item of that name as `nil` is a valid return
+# value that will be automatically wrapped in `Crinja::Value`.
+# When it returnes undefined, `Crinja::Resolver` may try other methods of accessing the attribute or item depending on the type
 # of lookup (see [*Notes on Subscription*](http://jinja.pocoo.org/docs/2.9/templates/#notes-on-subscriptions) for Jinja2).
 #
 # Implementing classes *do not need* to implement these methods. They will only be accessed if an
@@ -33,7 +34,7 @@
 #     (Time.now - @dob)
 #   end
 #
-#   def getattr(attr)
+#   def crinja_attribute(attr)
 #     case attr
 #     when "name"
 #       name
@@ -54,9 +55,9 @@
 # end
 # ```
 module Crinja::PyObject
-  # This macro creates a lookup list for `getattr` including all publicly visible properties.
-  macro getattr
-    def getattr(attr : Crinja::Value) : Crinja::Value
+  # This macro creates a lookup list for `crinja_attribute` including all publicly visible properties.
+  macro crinja_attribute
+    def crinja_attribute(attr : Crinja::Value) : Crinja::Value
       # TODO: Change from methods to instance variables
       {% begin %}
         value = case attr.to_string
@@ -79,9 +80,9 @@ module Crinja::PyObject
     end
   end
 
-  # This macro creates a lookup list for `getattr` including only whitelisted properties.
-  macro getattr(*whitelist)
-    def getattr(attr : Crinja::Value) : Crinja::Value
+  # This macro creates a lookup list for `crinja_attribute` including only whitelisted properties.
+  macro crinja_attribute(*whitelist)
+    def crinja_attribute(attr : Crinja::Value) : Crinja::Value
       {% begin %}
         value = case attr.to_string
         {% for method in whitelist %}
