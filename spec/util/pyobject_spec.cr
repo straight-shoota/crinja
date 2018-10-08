@@ -31,7 +31,7 @@ private class User
 
   def __call__(name : String)
     if name == "days_old"
-      ->(arguments : Crinja::Callable::Arguments) do
+      ->(arguments : Crinja::Arguments) do
         self.age.days
       end
     end

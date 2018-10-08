@@ -9,7 +9,7 @@ class Crinja::Operator
       elsif op1.raw.is_a?(String) && op2.raw.is_a?(Float64 | Int32)
         op1.raw.as(String) * op2.to_i
       else
-        raise Callable::ArgumentError.new(self, "Both operators need to be numeric")
+        raise Arguments::ArgumentError.new(self, "Both operators need to be numeric")
       end
     end
   end

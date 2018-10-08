@@ -39,7 +39,7 @@ module Crinja::Resolver
 
   def self.resolve_method(name, object) : Callable | Callable::Proc?
     if object.responds_to?(:__call__) && (callable = object.__call__(name))
-      return ->(arguments : Callable::Arguments) do
+      return ->(arguments : Arguments) do
         # wrap the return value of the proc as a Value
         Value.new callable.not_nil!.call(arguments)
       end.as(Callable::Proc)
@@ -103,12 +103,12 @@ module Crinja::Resolver
                    varargs : Array(Value) = [] of Value,
                    kwargs : Variables = Variables.new,
                    target : Value? = nil) : Value
-    arguments = Callable::Arguments.new(self, varargs, kwargs, target: target)
+    arguments = Arguments.new(self, varargs, kwargs, target: target)
     callable = resolve_callable!(callable)
     execute_call callable, arguments
   end
 
-  def execute_call(callable : Callable | Callable::Proc, arguments : Callable::Arguments) : Value
+  def execute_call(callable : Callable | Callable::Proc, arguments : Arguments) : Value
     if callable.responds_to?(:defaults)
       arguments.defaults = callable.defaults
     end

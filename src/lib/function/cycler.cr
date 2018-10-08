@@ -35,9 +35,9 @@ class Crinja::Function::Cycler
   def __call__(method)
     case method
     when "next"
-      ->(arguments : Callable::Arguments) { self.next }
+      ->(arguments : Arguments) { self.next }
     when "reset", "rewind"
-      ->(arguments : Callable::Arguments) { reset }
+      ->(arguments : Arguments) { reset }
     end
   end
 end
