@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
-  <title>Crinja::Arguments::Error - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Server::TemplateHandler - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -41,30 +41,20 @@
       
         <ul>
   
-  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Arguments" data-name="crinja::arguments">
-      <a href="../../Crinja/Arguments.html">Arguments</a>
-      
-        <ul>
-  
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Arguments/Error" data-name="crinja::arguments::error">
-      <a href="../../Crinja/Arguments/Error.html">Error</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Arguments/UnknownArgumentError" data-name="crinja::arguments::unknownargumenterror">
-      <a href="../../Crinja/Arguments/UnknownArgumentError.html">UnknownArgumentError</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
       <a href="../../Crinja/Callable.html">Callable</a>
       
         <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/ArgumentError" data-name="crinja::callable::argumenterror">
+      <a href="../../Crinja/Callable/ArgumentError.html">ArgumentError</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/Arguments" data-name="crinja::callable::arguments">
+      <a href="../../Crinja/Callable/Arguments.html">Arguments</a>
+      
+    </li>
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/Instance" data-name="crinja::callable::instance">
       <a href="../../Crinja/Callable/Instance.html">Instance</a>
@@ -73,6 +63,11 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/Proc" data-name="crinja::callable::proc">
       <a href="../../Crinja/Callable/Proc.html">Proc</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/UnknownArgumentException" data-name="crinja::callable::unknownargumentexception">
+      <a href="../../Crinja/Callable/UnknownArgumentException.html">UnknownArgumentException</a>
       
     </li>
   
@@ -200,6 +195,11 @@
       <a href="../../Crinja/Loader.html">Loader</a>
       
         <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/BakedFileLoader" data-name="crinja::loader::bakedfileloader(t)">
+      <a href="../../Crinja/Loader/BakedFileLoader.html">BakedFileLoader</a>
+      
+    </li>
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/ChoiceLoader" data-name="crinja::loader::choiceloader">
       <a href="../../Crinja/Loader/ChoiceLoader.html">ChoiceLoader</a>
@@ -363,6 +363,36 @@
   
   <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/SecurityError" data-name="crinja::securityerror">
       <a href="../../Crinja/SecurityError.html">SecurityError</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Server" data-name="crinja::server">
+      <a href="../../Crinja/Server.html">Server</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Server/PlayHandler" data-name="crinja::server::playhandler">
+      <a href="../../Crinja/Server/PlayHandler.html">PlayHandler</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Server/RenderHandler" data-name="crinja::server::renderhandler">
+      <a href="../../Crinja/Server/RenderHandler.html">RenderHandler</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Server/SourceHandler" data-name="crinja::server::sourcehandler">
+      <a href="../../Crinja/Server/SourceHandler.html">SourceHandler</a>
+      
+    </li>
+  
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Server/TemplateHandler" data-name="crinja::server::templatehandler">
+      <a href="../../Crinja/Server/TemplateHandler.html">TemplateHandler</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -685,12 +715,11 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Arguments::Error
+  <span class="kind">module</span> Crinja::Server::TemplateHandler
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Arguments/Error.html">Crinja::Arguments::Error</a></li><li class="superclass"><a href="../../Crinja/RuntimeError.html">Crinja::RuntimeError</a></li><li class="superclass"><a href="../../Crinja/Error.html">Crinja::Error</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -698,12 +727,27 @@
 
 
 
+  <h2>Included Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type">HTTP::Handler</li>
+  
+  </ul>
 
 
 
 
 
 
+
+  <h2>Direct including types</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../../Crinja/Server/RenderHandler.html">Crinja::Server::RenderHandler</a></li>
+  
+    <li class="other-type"><a href="../../Crinja/Server/SourceHandler.html">Crinja::Server::SourceHandler</a></li>
+  
+  </ul>
 
 
 
@@ -711,8 +755,8 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/2edeaa025b39a26d2a4cbe91862507884bba6743/src/arguments.cr#L94" target="_blank">
-        arguments.cr
+      <a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/server/template_handler.cr#L1" target="_blank">
+        server/template_handler.cr
       </a>
     
     <br/>
@@ -726,12 +770,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28argument%3ASymbol%7CString%2Cmsg%3Dnil%2Ccause%3Dnil%29-class-method" class="signature"><strong>.new</strong>(argument : Symbol | String, msg = <span class="n">nil</span>, cause = <span class="n">nil</span>)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#new%28callee%3ACallable%7CCallable%3A%3AProc%7COperator%3F%2Cmsg%3Dnil%2Ccause%3Dnil%2Cargument%3Dnil%29-class-method" class="signature"><strong>.new</strong>(callee : Callable | Callable::Proc | Operator?, msg = <span class="n">nil</span>, cause = <span class="n">nil</span>, argument = <span class="n">nil</span>)</a>
+        <a href="#new%28env%3ACrinja%2Clogger%3ALogger%29-class-method" class="signature"><strong>.new</strong>(env : Crinja, logger : Logger)</a>
         
       </li>
     
@@ -745,27 +784,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#argument%3AString%3F-instance-method" class="signature"><strong>#argument</strong> : String?</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#argument%3D%28argument%3AString%3F%29-instance-method" class="signature"><strong>#argument=</strong>(argument : String?)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#callee%3ACrinja%3A%3ACallable%7CCrinja%3A%3AOperator%7CCrinja%3A%3AArguments-%3ECrinja%3A%3AValue%7CNil-instance-method" class="signature"><strong>#callee</strong> : Crinja::Callable | Crinja::Operator | Crinja::Arguments -> Crinja::Value | Nil</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#callee%3D%28callee%29-instance-method" class="signature"><strong>#callee=</strong>(callee)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#message-instance-method" class="signature"><strong>#message</strong></a>
+        <a href="#load_template%28path%29-instance-method" class="signature"><strong>#load_template</strong>(path)</a>
         
       </li>
     
@@ -787,137 +806,23 @@
 
 
   
-    
-
-  <h3>Instance methods inherited from class <code><a href="../../Crinja/Error.html">Crinja::Error</a></code></h3>
-  
-  
-    <a href="../../Crinja/Error.html#at%28location_start%2Clocation_end%29-instance-method" class="tooltip">
-      <span>at(location_start, location_end)<br/>at(node)</span>
-    at</a>, 
-    
-  
-    <a href="../../Crinja/Error.html#has_location%3F-instance-method" class="tooltip">
-      <span>has_location?</span>
-    has_location?</a>, 
-    
-  
-    <a href="../../Crinja/Error.html#location_end%3AParser%3A%3AStreamPosition%3F-instance-method" class="tooltip">
-      <span>location_end : Parser::StreamPosition?</span>
-    location_end</a>, 
-    
-  
-    <a href="../../Crinja/Error.html#location_start%3AParser%3A%3AStreamPosition%3F-instance-method" class="tooltip">
-      <span>location_start : Parser::StreamPosition?</span>
-    location_start</a>, 
-    
-  
-    <a href="../../Crinja/Error.html#template%3ATemplate%3F-instance-method" class="tooltip">
-      <span>template : Template?</span>
-    template</a>, 
-    
-  
-    <a href="../../Crinja/Error.html#template%3D%28template%3ATemplate%3F%29-instance-method" class="tooltip">
-      <span>template=(template : Template?)</span>
-    template=</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-  <h3>Instance methods inherited from module <code><a href="../../Crinja/SourceAttached.html">Crinja::SourceAttached</a></code></h3>
-  
-  
-    <a href="../../Crinja/SourceAttached.html#highlight_source_code%28io%2Clines_before%3D2%2Clines_after%3D2%29-instance-method" class="tooltip">
-      <span>highlight_source_code(io, lines_before = <span class="n">2</span>, lines_after = <span class="n">2</span>)</span>
-    highlight_source_code</a>, 
-    
-  
-    <a href="../../Crinja/SourceAttached.html#message-instance-method" class="tooltip">
-      <span>message</span>
-    message</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new(argument:Symbol|String,msg=nil,cause=nil)-class-method">
+    <div class="entry-detail" id="new(env:Crinja,logger:Logger)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(argument : Symbol | String, msg = <span class="n">nil</span>, cause = <span class="n">nil</span>)
+        def self.<strong>new</strong>(env : <a href="../../Crinja.html">Crinja</a>, logger : Logger)
 
-        <a class="method-permalink" href="#new%28argument%3ASymbol%7CString%2Cmsg%3Dnil%2Ccause%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28env%3ACrinja%2Clogger%3ALogger%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/2edeaa025b39a26d2a4cbe91862507884bba6743/src/arguments.cr#L98" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="new(callee:Callable|Callable::Proc|Operator?,msg=nil,cause=nil,argument=nil)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(callee : <a href="../../Crinja/Callable.html">Callable</a> | <a href="../../Crinja/Callable/Proc.html">Callable::Proc</a> | <a href="../../Crinja/Operator.html">Operator</a>?, msg = <span class="n">nil</span>, cause = <span class="n">nil</span>, argument = <span class="n">nil</span>)
-
-        <a class="method-permalink" href="#new%28callee%3ACallable%7CCallable%3A%3AProc%7COperator%3F%2Cmsg%3Dnil%2Ccause%3Dnil%2Cargument%3Dnil%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/2edeaa025b39a26d2a4cbe91862507884bba6743/src/arguments.cr#L102" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/server/template_handler.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -929,82 +834,18 @@
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="argument:String?-instance-method">
+    <div class="entry-detail" id="load_template(path)-instance-method">
       <div class="signature">
         
-        def <strong>argument</strong> : String?
+        def <strong>load_template</strong>(path)
 
-        <a class="method-permalink" href="#argument%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#load_template%28path%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/2edeaa025b39a26d2a4cbe91862507884bba6743/src/arguments.cr#L96" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="argument=(argument:String?)-instance-method">
-      <div class="signature">
-        
-        def <strong>argument=</strong>(argument : String?)
-
-        <a class="method-permalink" href="#argument%3D%28argument%3AString%3F%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/2edeaa025b39a26d2a4cbe91862507884bba6743/src/arguments.cr#L96" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="callee:Crinja::Callable|Crinja::Operator|Crinja::Arguments-&gt;Crinja::Value|Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>callee</strong> : <a href="../../Crinja/Callable.html">Crinja::Callable</a> | <a href="../../Crinja/Operator.html">Crinja::Operator</a> | <a href="../../Crinja/Arguments.html">Crinja::Arguments</a> -> <a href="../../Crinja/Value.html">Crinja::Value</a> | Nil
-
-        <a class="method-permalink" href="#callee%3ACrinja%3A%3ACallable%7CCrinja%3A%3AOperator%7CCrinja%3A%3AArguments-%3ECrinja%3A%3AValue%7CNil-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/2edeaa025b39a26d2a4cbe91862507884bba6743/src/arguments.cr#L95" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="callee=(callee)-instance-method">
-      <div class="signature">
-        
-        def <strong>callee=</strong>(callee)
-
-        <a class="method-permalink" href="#callee%3D%28callee%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/2edeaa025b39a26d2a4cbe91862507884bba6743/src/arguments.cr#L95" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="message-instance-method">
-      <div class="signature">
-        
-        def <strong>message</strong>
-
-        <a class="method-permalink" href="#message-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/2edeaa025b39a26d2a4cbe91862507884bba6743/src/arguments.cr#L106" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/server/template_handler.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>

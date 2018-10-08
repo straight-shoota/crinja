@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
-  <title>Crinja::Config::Autoescape - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Callable::Arguments - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -41,7 +41,7 @@
       
         <ul>
   
-  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
+  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Callable" data-name="crinja::callable">
       <a href="../../Crinja/Callable.html">Callable</a>
       
         <ul>
@@ -51,7 +51,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Callable/Arguments" data-name="crinja::callable::arguments">
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Callable/Arguments" data-name="crinja::callable::arguments">
       <a href="../../Crinja/Callable/Arguments.html">Arguments</a>
       
     </li>
@@ -81,12 +81,12 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Config" data-name="crinja::config">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Config" data-name="crinja::config">
       <a href="../../Crinja/Config.html">Config</a>
       
         <ul>
   
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Config/Autoescape" data-name="crinja::config::autoescape">
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Config/Autoescape" data-name="crinja::config::autoescape">
       <a href="../../Crinja/Config/Autoescape.html">Autoescape</a>
       
     </li>
@@ -715,22 +715,19 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Config::Autoescape
+  <span class="kind">struct</span> Crinja::Callable::Arguments
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Config/Autoescape.html">Crinja::Config::Autoescape</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Callable/Arguments.html">Crinja::Callable::Arguments</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
 
   <h2>Overview</h2>
 
-  <p>This class holds configuration values for autoescape config.</p>
-
-<p>It accepts the same settings as <code><a href="http://jinja.pocoo.org/docs/2.9/api/#jinja2.select_autoescape" target="_blank">select_autoescape</a></code> in Jinja 2.9.
-It intelligently sets the initial value of autoescaping based on the filename of the template.</p>
+  <p>This holds arguments and environment information for function, filter, test and macro calls.</p>
 
 
 
@@ -748,8 +745,8 @@ It intelligently sets the initial value of autoescaping based on the filename of
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/config.cr#L68" target="_blank">
-        config.cr
+      <a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L144" target="_blank">
+        runtime/callable.cr
       </a>
     
     <br/>
@@ -757,40 +754,13 @@ It intelligently sets the initial value of autoescaping based on the filename of
 
 
 
-  
-    <h2>Constant Summary</h2>
-  
-  <dl>
-    
-      <dt class="entry-const" id="DISABLED">
-        <strong>DISABLED</strong> = <code><span class="t">Autoescape</span>.<span class="k">new</span>(enabled_extensions: <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, default_for_string: <span class="n">false</span>, default: <span class="n">false</span>)</code>
-      </dt>
-      
-      <dd class="entry-const-doc">
-        <p>Configuration settings where autoescape is deactivated by default for any kind of template.</p>
-      </dd>
-      
-    
-      <dt class="entry-const" id="ENABLED">
-        <strong>ENABLED</strong> = <code><span class="t">Autoescape</span>.<span class="k">new</span>(disabled_extensions: <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, default_for_string: <span class="n">true</span>, default: <span class="n">true</span>)</code>
-      </dt>
-      
-      <dd class="entry-const-doc">
-        <p>Configuration settings where autoescape is activated by default for any kind of template.</p>
-      </dd>
-      
-    
-  </dl>
-
 
 
   <h2>Constructors</h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28enabled_extensions%3D%5B%26quot%3Bhtml%26quot%3B%2C%26quot%3Bhtm%26quot%3B%2C%26quot%3Bxml%26quot%3B%5D%2Cdisabled_extensions%3D%5B%5DofString%2Cdefault_for_string%3Dfalse%2Cdefault%3Dfalse%29-class-method" class="signature"><strong>.new</strong>(enabled_extensions = [<span class="s">&quot;html&quot;</span>, <span class="s">&quot;htm&quot;</span>, <span class="s">&quot;xml&quot;</span>], disabled_extensions = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, default_for_string = <span class="n">false</span>, default = <span class="n">false</span>)</a>
-        
-          <div class="summary"><p>Initializes the default autoescape configuration.</p></div>
+        <a href="#new%28env%2Cvarargs%3D%5B%5DofValue%2Ckwargs%3DHash%28String%2CValue%29.new%2Cdefaults%3DVariables.new%2Ctarget%3Dnil%29-class-method" class="signature"><strong>.new</strong>(env, varargs = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs = <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Value</span>).<span class="k">new</span>, defaults = <span class="t">Variables</span>.<span class="k">new</span>, target = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -804,61 +774,122 @@ It intelligently sets the initial value of autoescaping based on the filename of
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#autoescape%3F%28filename%3AString%3F%3Dnil%29-instance-method" class="signature"><strong>#autoescape?</strong>(filename : String? = <span class="n">nil</span>)</a>
-        
-          <div class="summary"><p>Determines if a template with <em>filename</em> should have autoescape enabled or not.</p></div>
+        <a href="#%5B%5D%28name%3ASymbol%29%3AValue-instance-method" class="signature"><strong>#[]</strong>(name : Symbol) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#default%3ABool-instance-method" class="signature"><strong>#default</strong> : Bool</a>
-        
-          <div class="summary"><p>If nothing matches, this will be the default autoescape value.</p></div>
+        <a href="#%5B%5D%28name%3AString%29%3AValue-instance-method" class="signature"><strong>#[]</strong>(name : String) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#default%3D%28default%3ABool%29-instance-method" class="signature"><strong>#default=</strong>(default : Bool)</a>
-        
-          <div class="summary"><p>If nothing matches, this will be the default autoescape value.</p></div>
+        <a href="#default%28name%3AString%29-instance-method" class="signature"><strong>#default</strong>(name : String)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#default_for_string%3ABool-instance-method" class="signature"><strong>#default_for_string</strong> : Bool</a>
-        
-          <div class="summary"><p>Determines autoescape default value for templates loaded from a string (without a filename).</p></div>
+        <a href="#default%28name%3ASymbol%29-instance-method" class="signature"><strong>#default</strong>(name : Symbol)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#default_for_string%3D%28default_for_string%3ABool%29-instance-method" class="signature"><strong>#default_for_string=</strong>(default_for_string : Bool)</a>
-        
-          <div class="summary"><p>Determines autoescape default value for templates loaded from a string (without a filename).</p></div>
+        <a href="#defaults%3AVariables-instance-method" class="signature"><strong>#defaults</strong> : Variables</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#disabled_extensions%3AArray%28String%29-instance-method" class="signature"><strong>#disabled_extensions</strong> : Array(String)</a>
-        
-          <div class="summary"><p>List of filename extensions that autoescape should be disabled for.</p></div>
+        <a href="#defaults%3D%28defaults%3AVariables%29-instance-method" class="signature"><strong>#defaults=</strong>(defaults : Variables)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#disabled_extensions%3D%28extensions%3AArray%28String%29%29-instance-method" class="signature"><strong>#disabled_extensions=</strong>(extensions : Array(String))</a>
+        <a href="#env%3ACrinja-instance-method" class="signature"><strong>#env</strong> : Crinja</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#enabled_extensions%3AArray%28String%29-instance-method" class="signature"><strong>#enabled_extensions</strong> : Array(String)</a>
-        
-          <div class="summary"><p>List of filename extensions that autoescape should be enabled for.</p></div>
+        <a href="#env%3D%28env%3ACrinja%29-instance-method" class="signature"><strong>#env=</strong>(env : Crinja)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#enabled_extensions%3D%28extensions%3AArray%28String%29%29-instance-method" class="signature"><strong>#enabled_extensions=</strong>(extensions : Array(String))</a>
+        <a href="#fetch%28name%2C%26block%29-instance-method" class="signature"><strong>#fetch</strong>(name, &block)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fetch%28name%2Cdefault%3Dnil%29-instance-method" class="signature"><strong>#fetch</strong>(name, default = <span class="n">nil</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fetch%28name%2Cdefault%3AValue%29-instance-method" class="signature"><strong>#fetch</strong>(name, default : Value)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#is_set%3F%28name%3AString%29-instance-method" class="signature"><strong>#is_set?</strong>(name : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#is_set%3F%28name%3ASymbol%29-instance-method" class="signature"><strong>#is_set?</strong>(name : Symbol)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#kwargs%3AHash%28String%2CValue%29-instance-method" class="signature"><strong>#kwargs</strong> : Hash(String, Value)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#kwargs%3D%28kwargs%3AHash%28String%2CValue%29%29-instance-method" class="signature"><strong>#kwargs=</strong>(kwargs : Hash(String, Value))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#renderer-instance-method" class="signature"><strong>#renderer</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#renderer%3D%28renderer%3ARenderer%29-instance-method" class="signature"><strong>#renderer=</strong>(renderer : Renderer)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#renderer%3F%3ACrinja%3A%3ARenderer%3F-instance-method" class="signature"><strong>#renderer?</strong> : Crinja::Renderer?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#target%3AValue%3F-instance-method" class="signature"><strong>#target</strong> : Value?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#target%21-instance-method" class="signature"><strong>#target!</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#target%3D%28target%3AValue%3F%29-instance-method" class="signature"><strong>#target=</strong>(target : Value?)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_h-instance-method" class="signature"><strong>#to_h</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#varargs%3AArray%28Value%29-instance-method" class="signature"><strong>#varargs</strong> : Array(Value)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#varargs%3D%28varargs%3AArray%28Value%29%29-instance-method" class="signature"><strong>#varargs=</strong>(varargs : Array(Value))</a>
         
       </li>
     
@@ -890,25 +921,33 @@ It intelligently sets the initial value of autoescaping based on the filename of
 
 
   
+    
+
+
+    
+
+
+    
+
+
+  
 </div>
 
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new(enabled_extensions=[&amp;quot;html&amp;quot;,&amp;quot;htm&amp;quot;,&amp;quot;xml&amp;quot;],disabled_extensions=[]ofString,default_for_string=false,default=false)-class-method">
+    <div class="entry-detail" id="new(env,varargs=[]ofValue,kwargs=Hash(String,Value).new,defaults=Variables.new,target=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(enabled_extensions = [<span class="s">&quot;html&quot;</span>, <span class="s">&quot;htm&quot;</span>, <span class="s">&quot;xml&quot;</span>], disabled_extensions = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, default_for_string = <span class="n">false</span>, default = <span class="n">false</span>)
+        def self.<strong>new</strong>(env, varargs = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs = <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Value</span>).<span class="k">new</span>, defaults = <span class="t">Variables</span>.<span class="k">new</span>, target = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28enabled_extensions%3D%5B%26quot%3Bhtml%26quot%3B%2C%26quot%3Bhtm%26quot%3B%2C%26quot%3Bxml%26quot%3B%5D%2Cdisabled_extensions%3D%5B%5DofString%2Cdefault_for_string%3Dfalse%2Cdefault%3Dfalse%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28env%2Cvarargs%3D%5B%5DofValue%2Ckwargs%3DHash%28String%2CValue%29.new%2Cdefaults%3DVariables.new%2Ctarget%3Dnil%29-class-method">#</a>
       </div>
-      
-        <div class="doc"><p>Initializes the default autoescape configuration.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/config.cr#L84" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L152" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -920,160 +959,382 @@ It intelligently sets the initial value of autoescaping based on the filename of
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="autoescape?(filename:String?=nil)-instance-method">
+    <div class="entry-detail" id="[](name:Symbol):Value-instance-method">
       <div class="signature">
         
-        def <strong>autoescape?</strong>(filename : String? = <span class="n">nil</span>)
+        def <strong>[]</strong>(name : Symbol) : <a href="../../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#autoescape%3F%28filename%3AString%3F%3Dnil%29-instance-method">#</a>
+        <a class="method-permalink" href="#%5B%5D%28name%3ASymbol%29%3AValue-instance-method">#</a>
       </div>
-      
-        <div class="doc"><p>Determines if a template with <em>filename</em> should have autoescape enabled or not.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/config.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L155" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="default:Bool-instance-method">
+    <div class="entry-detail" id="[](name:String):Value-instance-method">
       <div class="signature">
         
-        def <strong>default</strong> : Bool
+        def <strong>[]</strong>(name : String) : <a href="../../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#default%3ABool-instance-method">#</a>
+        <a class="method-permalink" href="#%5B%5D%28name%3AString%29%3AValue-instance-method">#</a>
       </div>
-      
-        <div class="doc"><p>If nothing matches, this will be the default autoescape value.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/config.cr#L76" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L159" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="default=(default:Bool)-instance-method">
+    <div class="entry-detail" id="default(name:String)-instance-method">
       <div class="signature">
         
-        def <strong>default=</strong>(default : Bool)
+        def <strong>default</strong>(name : String)
 
-        <a class="method-permalink" href="#default%3D%28default%3ABool%29-instance-method">#</a>
+        <a class="method-permalink" href="#default%28name%3AString%29-instance-method">#</a>
       </div>
-      
-        <div class="doc"><p>If nothing matches, this will be the default autoescape value.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/config.cr#L76" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L216" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="default_for_string:Bool-instance-method">
+    <div class="entry-detail" id="default(name:Symbol)-instance-method">
       <div class="signature">
         
-        def <strong>default_for_string</strong> : Bool
+        def <strong>default</strong>(name : Symbol)
 
-        <a class="method-permalink" href="#default_for_string%3ABool-instance-method">#</a>
+        <a class="method-permalink" href="#default%28name%3ASymbol%29-instance-method">#</a>
       </div>
-      
-        <div class="doc"><p>Determines autoescape default value for templates loaded from a string (without a filename).</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/config.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L212" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="default_for_string=(default_for_string:Bool)-instance-method">
+    <div class="entry-detail" id="defaults:Variables-instance-method">
       <div class="signature">
         
-        def <strong>default_for_string=</strong>(default_for_string : Bool)
+        def <strong>defaults</strong> : <a href="../../Crinja/Variables.html">Variables</a>
 
-        <a class="method-permalink" href="#default_for_string%3D%28default_for_string%3ABool%29-instance-method">#</a>
+        <a class="method-permalink" href="#defaults%3AVariables-instance-method">#</a>
       </div>
-      
-        <div class="doc"><p>Determines autoescape default value for templates loaded from a string (without a filename).</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/config.cr#L74" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L148" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="disabled_extensions:Array(String)-instance-method">
+    <div class="entry-detail" id="defaults=(defaults:Variables)-instance-method">
       <div class="signature">
         
-        def <strong>disabled_extensions</strong> : Array(String)
+        def <strong>defaults=</strong>(defaults : <a href="../../Crinja/Variables.html">Variables</a>)
 
-        <a class="method-permalink" href="#disabled_extensions%3AArray%28String%29-instance-method">#</a>
+        <a class="method-permalink" href="#defaults%3D%28defaults%3AVariables%29-instance-method">#</a>
       </div>
-      
-        <div class="doc"><p>List of filename extensions that autoescape should be disabled for.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/config.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L148" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="disabled_extensions=(extensions:Array(String))-instance-method">
+    <div class="entry-detail" id="env:Crinja-instance-method">
       <div class="signature">
         
-        def <strong>disabled_extensions=</strong>(extensions : Array(String))
+        def <strong>env</strong> : <a href="../../Crinja.html">Crinja</a>
 
-        <a class="method-permalink" href="#disabled_extensions%3D%28extensions%3AArray%28String%29%29-instance-method">#</a>
+        <a class="method-permalink" href="#env%3ACrinja-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/config.cr#L98" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L149" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="enabled_extensions:Array(String)-instance-method">
+    <div class="entry-detail" id="env=(env:Crinja)-instance-method">
       <div class="signature">
         
-        def <strong>enabled_extensions</strong> : Array(String)
+        def <strong>env=</strong>(env : <a href="../../Crinja.html">Crinja</a>)
 
-        <a class="method-permalink" href="#enabled_extensions%3AArray%28String%29-instance-method">#</a>
+        <a class="method-permalink" href="#env%3D%28env%3ACrinja%29-instance-method">#</a>
       </div>
-      
-        <div class="doc"><p>List of filename extensions that autoescape should be enabled for.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/config.cr#L70" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L149" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="enabled_extensions=(extensions:Array(String))-instance-method">
+    <div class="entry-detail" id="fetch(name,&amp;block)-instance-method">
       <div class="signature">
         
-        def <strong>enabled_extensions=</strong>(extensions : Array(String))
+        def <strong>fetch</strong>(name, &block)
 
-        <a class="method-permalink" href="#enabled_extensions%3D%28extensions%3AArray%28String%29%29-instance-method">#</a>
+        <a class="method-permalink" href="#fetch%28name%2C%26block%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/config.cr#L94" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L181" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fetch(name,default=nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>fetch</strong>(name, default = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#fetch%28name%2Cdefault%3Dnil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L177" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fetch(name,default:Value)-instance-method">
+      <div class="signature">
+        
+        def <strong>fetch</strong>(name, default : <a href="../../Crinja/Value.html">Value</a>)
+
+        <a class="method-permalink" href="#fetch%28name%2Cdefault%3AValue%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L173" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="is_set?(name:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>is_set?</strong>(name : String)
+
+        <a class="method-permalink" href="#is_set%3F%28name%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L208" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="is_set?(name:Symbol)-instance-method">
+      <div class="signature">
+        
+        def <strong>is_set?</strong>(name : Symbol)
+
+        <a class="method-permalink" href="#is_set%3F%28name%3ASymbol%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L204" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="kwargs:Hash(String,Value)-instance-method">
+      <div class="signature">
+        
+        def <strong>kwargs</strong> : Hash(String, <a href="../../Crinja/Value.html">Value</a>)
+
+        <a class="method-permalink" href="#kwargs%3AHash%28String%2CValue%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L147" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="kwargs=(kwargs:Hash(String,Value))-instance-method">
+      <div class="signature">
+        
+        def <strong>kwargs=</strong>(kwargs : Hash(String, <a href="../../Crinja/Value.html">Value</a>))
+
+        <a class="method-permalink" href="#kwargs%3D%28kwargs%3AHash%28String%2CValue%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L147" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="renderer-instance-method">
+      <div class="signature">
+        
+        def <strong>renderer</strong>
+
+        <a class="method-permalink" href="#renderer-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="renderer=(renderer:Renderer)-instance-method">
+      <div class="signature">
+        
+        def <strong>renderer=</strong>(renderer : Renderer)
+
+        <a class="method-permalink" href="#renderer%3D%28renderer%3ARenderer%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L150" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="renderer?:Crinja::Renderer?-instance-method">
+      <div class="signature">
+        
+        def <strong>renderer?</strong> : Crinja::Renderer?
+
+        <a class="method-permalink" href="#renderer%3F%3ACrinja%3A%3ARenderer%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="target:Value?-instance-method">
+      <div class="signature">
+        
+        def <strong>target</strong> : <a href="../../Crinja/Value.html">Value</a>?
+
+        <a class="method-permalink" href="#target%3AValue%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L146" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="target!-instance-method">
+      <div class="signature">
+        
+        def <strong>target!</strong>
+
+        <a class="method-permalink" href="#target%21-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L190" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="target=(target:Value?)-instance-method">
+      <div class="signature">
+        
+        def <strong>target=</strong>(target : <a href="../../Crinja/Value.html">Value</a>?)
+
+        <a class="method-permalink" href="#target%3D%28target%3AValue%3F%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L146" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_h-instance-method">
+      <div class="signature">
+        
+        def <strong>to_h</strong>
+
+        <a class="method-permalink" href="#to_h-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L198" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="varargs:Array(Value)-instance-method">
+      <div class="signature">
+        
+        def <strong>varargs</strong> : Array(<a href="../../Crinja/Value.html">Value</a>)
+
+        <a class="method-permalink" href="#varargs%3AArray%28Value%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L145" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="varargs=(varargs:Array(Value))-instance-method">
+      <div class="signature">
+        
+        def <strong>varargs=</strong>(varargs : Array(<a href="../../Crinja/Value.html">Value</a>))
+
+        <a class="method-permalink" href="#varargs%3D%28varargs%3AArray%28Value%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/114f47086a6fbe9360215d90985c69c135d62cab/src/runtime/callable.cr#L145" target="_blank">View source</a>]
         
       </div>
     </div>
