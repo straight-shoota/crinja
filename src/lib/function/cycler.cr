@@ -32,12 +32,14 @@ class Crinja::Function::Cycler
     rewind
   end
 
-  def __call__(method)
+  def __call__(method : String) : Crinja::Value?
     case method
     when "next"
-      ->(arguments : Callable::Arguments) { self.next }
+      yield
+      Value.new self.next
     when "reset", "rewind"
-      ->(arguments : Callable::Arguments) { reset }
+      yield
+      Value.new reset
     end
   end
 end

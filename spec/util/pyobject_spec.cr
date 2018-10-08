@@ -24,11 +24,10 @@ private class User
     end
   end
 
-  def __call__(name : String)
+  def __call__(name : String) : Crinja::Value?
     if name == "days_old"
-      ->(arguments : Crinja::Callable::Arguments) do
-        self.age.days
-      end
+      yield
+      Crinja::Value.new self.age.days
     end
   end
 

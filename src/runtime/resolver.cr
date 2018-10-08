@@ -77,18 +77,18 @@ module Crinja::Resolver
     resolve_getattr(Value.new(name), Value.new(value))
   end
 
-  def self.resolve_method(name, object) : Callable | Callable::Proc?
-    if object.responds_to?(:__call__) && (callable = object.__call__(name))
-      return ->(arguments : Callable::Arguments) do
-        # wrap the return value of the proc as a Value
-        Value.new callable.not_nil!.call(arguments)
-      end.as(Callable::Proc)
+  def self.resolve_method(name, object, &block : -> Callable::Arguments) : Value?
+    if object.responds_to?(:__call__)
+      object.__call__(name) do
+        # Arguments are lazy evaluated
+        yield
+      end
     end
   end
 
   # ditto
-  def self.resolve_method(name, value : Value) : Callable | Callable::Proc?
-    self.resolve_method(name, value.raw)
+  def self.resolve_method(name, value : Value, &block : -> Callable::Arguments) : Value?
+    self.resolve_method(name, value.raw) { yield }
   end
 
   def self.resolve_with_hash_accessor(name : Value, value : Value) : Value
