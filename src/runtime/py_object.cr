@@ -3,7 +3,7 @@
 #
 # 1. `#getattr(name : Crinja::Value) : Crinja::Value`: Access an attribute (e.g. an instance property) of this class.
 # 2. `#__getitem__(name : Crinja::Value) : Crinja::Value`: Access an item (e.g. an array member) of this class.
-# 3. `#__call__(name : String) : Crinja::Callable | Callable::Proc`: Expose a callable as method of this class.
+# 3. `#__call__(name : String, &block : -> Crinja::Callable::Attributes) : Crinja::Value?`: Expose a callable as method of this class.
 #
 # Through the static comilation it is not possible to access properties or methods of an object
 # directly from inside the Crinja runtime. These methods allow to define a name-based lookup and
@@ -45,11 +45,10 @@
 #     end
 #   end
 #
-#   def __call__(name)
+#   def __call__(name : String) : Crinja::Value?
 #     if name == "days_old"
-#       ->(arguments : Crinja::Arguments) do
-#         self.age.days
-#       end
+#       yield
+#       Value.new self.age.days
 #     end
 #   end
 # end

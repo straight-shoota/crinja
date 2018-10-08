@@ -82,8 +82,14 @@ class Crinja::Evaluator
     end
 
     if !callable && identifier.is_a?(AST::MemberExpression)
-      callable = call_on_member(identifier)
-      # raise UndefinedError.new(name_for_expression(expression.identifier)) unless callable
+      object = evaluate identifier.identifier
+      member = identifier.member.name
+
+      result = Resolver.resolve_method(member, object) do
+        build_arguments(expression)
+      end
+
+      return result if result
     end
 
     unless callable
@@ -98,21 +104,19 @@ class Crinja::Evaluator
     # FIXME: Shouldn't be needed.
     callable = callable.not_nil!
 
-    argumentlist = evaluate(expression.argumentlist).as(Array(Value))
+    @env.execute_call(callable, build_arguments(expression))
+  end
 
-    keyword_arguments = Variables.new.tap do |args|
+  private def build_arguments(expression)
+    varargs = evaluate(expression.argumentlist).as(Array(Value))
+
+    kwargs = Variables.new.tap do |args|
       expression.keyword_arguments.each do |(keyword, value_expression)|
         args[keyword.name] = value value_expression
       end
     end
 
-    @env.execute_call(callable, argumentlist, keyword_arguments)
-  end
-
-  private def call_on_member(expression : AST::MemberExpression)
-    identifier = evaluate expression.identifier
-    member = expression.member.name
-    Resolver.resolve_method(member, identifier)
+    Callable::Arguments.new(@env, varargs, kwargs)
   end
 
   private def identifier_or_member(identifier : AST::IdentifierLiteral)
