@@ -12,7 +12,7 @@ class Crinja
       {% name = defaults %}
     {% end %}
 
-    %block = ->(arguments : Crinja::Callable::Arguments) do
+    %block = ->(arguments : Crinja::Arguments) do
       env = arguments.env
       Crinja::Value.new begin
         {{ yield }}

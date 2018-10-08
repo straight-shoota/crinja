@@ -1,7 +1,7 @@
 Crinja.function({sep: ", "}, :joiner) do
   called = false
   sep = arguments[:sep]
-  ->(_args : Crinja::Callable::Arguments) do
+  ->(_args : Crinja::Arguments) do
     if called
       sep
     else

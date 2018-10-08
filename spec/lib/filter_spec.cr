@@ -398,7 +398,7 @@ describe Crinja::Filter do
     end
 
     it "fails with string" do
-      expect_raises(Crinja::Callable::ArgumentError) do
+      expect_raises(Crinja::Arguments::ArgumentError) do
         evaluate_expression(%("1" | abs))
       end
     end

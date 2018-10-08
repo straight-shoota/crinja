@@ -83,7 +83,7 @@ class Crinja::Tag::For::ForLoop
     def initialize(@loop : ForLoop)
     end
 
-    def call(arguments : Callable::Arguments) : Value
+    def call(arguments : Arguments) : Value
       arguments.varargs[@loop.index0 % arguments.varargs.size]
     end
   end
@@ -115,7 +115,7 @@ class Crinja::Tag::For::ForLoop
       super(iterator)
     end
 
-    def call(arguments : Callable::Arguments)
+    def call(arguments : Arguments)
       sub_iterator = arguments.varargs.first
 
       sub_loop = self.class.new(@loop_runner, sub_iterator)
