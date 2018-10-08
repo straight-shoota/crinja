@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
-  <title>Crinja::Tag::Macro - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Object::Auto - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -236,12 +236,12 @@
       
     </li>
   
-  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Object" data-name="crinja::object">
+  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Object" data-name="crinja::object">
       <a href="../../Crinja/Object.html">Object</a>
       
         <ul>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Object/Auto" data-name="crinja::object::auto">
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Object/Auto" data-name="crinja::object::auto">
       <a href="../../Crinja/Object/Auto.html">Auto</a>
       
     </li>
@@ -431,7 +431,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Tag" data-name="crinja::tag">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Tag" data-name="crinja::tag">
       <a href="../../Crinja/Tag.html">Tag</a>
       
         <ul>
@@ -551,7 +551,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/straight-shoota/crinja/Crinja/Tag/Macro" data-name="crinja::tag::macro">
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Tag/Macro" data-name="crinja::tag::macro">
       <a href="../../Crinja/Tag/Macro.html">Macro</a>
       
         <ul>
@@ -740,30 +740,51 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Tag::Macro
+  <span class="kind">module</span> Crinja::Object::Auto
 
 </h1>
 
-
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Tag/Macro.html">Crinja::Tag::Macro</a></li><li class="superclass"><a href="../../Crinja/Tag.html">Crinja::Tag</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
 
   <h2>Overview</h2>
 
-  <p>Macros are comparable with functions in regular programming languages. They are useful to put
-often used idioms into reusable functions to not repeat yourself (“DRY”).</p>
+  <p>When this module is included, it defines a <code><a href="../../Crinja/Object/Auto.html#crinja_attribute%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method">#crinja_attribute</a></code> method (see <code><a href="../../Crinja/Object.html">Crinja::Object</a></code> for its purpose)
+with dynamic accessors to all methods exposed using an annotation.</p>
 
-<p>Here’s a small example of a macro that renders a form element:</p>
+<ul><li><code>@[Crystal::Attribute]</code> (method annotation): Exposes the annotated method.
+  Options:</li><ul><li><code>ignore</code>: Don't expose this method (useful to exclude specific methods from <code>Crystal::Attributes</code>)</li><li><code>name</code>: Expose the method under a different name.</li></ul><li><code>@[Crystal::Attributes]</code> (type annotation): Exposes all methods in the annotated type.
+  Only methods with valid signatures are exposed (can be called without arguments).
+  Options:</li><ul><li><code>expose</code>: A whitelist of methods to expose. If not defined, all methods will be exposed (unless the method itself is annotated as <code>@[<a href="../../Crinja/Attribute.html">Crinja::Attribute</a>(ignore: true)]</code>)</li></ul></ul>
 
-<pre><code>{% <span class="k">macro</span> input(name, value<span class="o">=</span></code></pre>
+<p>Example:</p>
 
-<p>The macro can then be called like a function in the namespace:</p>
+<pre><code>@[<span class="t">Crinja</span><span class="t">::</span><span class="t">Attributes</span>(expose: [name, age])]
+<span class="k">class</span> <span class="t">User</span>
+  <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Object</span><span class="t">::</span><span class="t">Auto</span>
 
-<pre><code>{{ input(</code></pre>
+  property name : <span class="t">String</span>
+  property dob : <span class="t">Time</span>
 
-<p>See <a href="http://jinja.pocoo.org/docs/2.9/templates/#macros" target="_blank">Jinja2 Template Documentation</a> for details.</p>
+  <span class="k">def</span> <span class="m">initialize</span>(@name, @dob)
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">age</span>
+    (<span class="t">Time</span>.now <span class="o">-</span> @dob).year
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+
+
+
+
+
+  <h2>Included Modules</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../../Crinja/Object.html">Crinja::Object</a></li>
+  
+  </ul>
 
 
 
@@ -771,9 +792,14 @@ often used idioms into reusable functions to not repeat yourself (“DRY”).</p
 
 
 
-
-
-
+  <h2>Direct including types</h2>
+  <ul class="other-types-list">
+  
+    <li class="other-type"><a href="../../Crinja/Function/Cycler.html">Crinja::Function::Cycler</a></li>
+  
+    <li class="other-type"><a href="../../Crinja/Server.html">Crinja::Server</a></li>
+  
+  </ul>
 
 
 
@@ -781,8 +807,8 @@ often used idioms into reusable functions to not repeat yourself (“DRY”).</p
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/48914406f68c5565b769da44a7046d34e9f8a1e3/src/lib/tag/macro.cr#L20" target="_blank">
-        lib/tag/macro.cr
+      <a href="https://github.com/straight-shoota/crinja/blob/48914406f68c5565b769da44a7046d34e9f8a1e3/src/object.cr#L105" target="_blank">
+        object.cr
       </a>
     
     <br/>
@@ -800,17 +826,7 @@ often used idioms into reusable functions to not repeat yourself (“DRY”).</p
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#end_tag%3AString%3F-instance-method" class="signature"><strong>#end_tag</strong> : String?</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#interpret_output%28renderer%3ARenderer%2Ctag_node%3ATagNode%29-instance-method" class="signature"><strong>#interpret_output</strong>(renderer : Renderer, tag_node : TagNode)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        <a href="#crinja_attribute%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method" class="signature"><strong>#crinja_attribute</strong>(attr : Crinja::Value) : Crinja::Value</a>
         
       </li>
     
@@ -821,50 +837,6 @@ often used idioms into reusable functions to not repeat yourself (“DRY”).</p
 
 
 <div class="methods-inherited">
-  
-    
-
-  <h3>Instance methods inherited from class <code><a href="../../Crinja/Tag.html">Crinja::Tag</a></code></h3>
-  
-  
-    <a href="../../Crinja/Tag.html#end_tag%3AString%3F-instance-method" class="tooltip">
-      <span>end_tag : String?</span>
-    end_tag</a>, 
-    
-  
-    <a href="../../Crinja/Tag.html#has_block%3F%28node%3ATagNode%29-instance-method" class="tooltip">
-      <span>has_block?(node : TagNode)</span>
-    has_block?</a>, 
-    
-  
-    <a href="../../Crinja/Tag.html#interpret_output%28renderer%3ARenderer%2Ctag_node%3ATagNode%29-instance-method" class="tooltip">
-      <span>interpret_output(renderer : Renderer, tag_node : TagNode)</span>
-    interpret_output</a>, 
-    
-  
-    <a href="../../Crinja/Tag.html#to_s%28io%29-instance-method" class="tooltip">
-      <span>to_s(io)</span>
-    to_s</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
   
     
 
@@ -885,50 +857,18 @@ often used idioms into reusable functions to not repeat yourself (“DRY”).</p
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="end_tag:String?-instance-method">
+    <div class="entry-detail" id="crinja_attribute(attr:Crinja::Value):Crinja::Value-instance-method">
       <div class="signature">
         
-        def <strong>end_tag</strong> : String?
+        def <strong>crinja_attribute</strong>(attr : <a href="../../Crinja/Value.html">Crinja::Value</a>) : <a href="../../Crinja/Value.html">Crinja::Value</a>
 
-        <a class="method-permalink" href="#end_tag%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#crinja_attribute%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/48914406f68c5565b769da44a7046d34e9f8a1e3/src/lib/tag/macro.cr#L21" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="interpret_output(renderer:Renderer,tag_node:TagNode)-instance-method">
-      <div class="signature">
-        
-        def <strong>interpret_output</strong>(renderer : Renderer, tag_node : TagNode)
-
-        <a class="method-permalink" href="#interpret_output%28renderer%3ARenderer%2Ctag_node%3ATagNode%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/48914406f68c5565b769da44a7046d34e9f8a1e3/src/lib/tag/macro.cr#L23" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="name:String-instance-method">
-      <div class="signature">
-        
-        def <strong>name</strong> : String
-
-        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/48914406f68c5565b769da44a7046d34e9f8a1e3/src/lib/tag/macro.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/48914406f68c5565b769da44a7046d34e9f8a1e3/src/object.cr#L108" target="_blank">View source</a>]
         
       </div>
     </div>
