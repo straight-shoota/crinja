@@ -8,26 +8,32 @@ module Crinja::Filter
   end
 
   Crinja.filter({default: 0.0}, :float) do
-    begin
-      target.to_f
-    rescue ArgumentError
-      arguments[:default].to_f
+    raw = target.raw
+    if raw.responds_to?(:to_f?) && (result = raw.to_f?)
+      return Value.new result
     end
+
+    arguments[:default].to_f
   end
 
   Crinja.filter({default: 0, base: 10}, :int) do
-    begin
-      if arguments.target!.string?
-        string = arguments.target!.as_s
-        if string['.']?
-          string.to_f(arguments[:base].to_i).to_i
-        else
-          string.to_i(arguments[:base].to_i, prefix: true)
-        end
+    raw = target.raw
+    raw = raw.to_s if raw.is_a?(SafeString)
+    if raw.is_a?(String)
+      if raw['.']?
+        result = raw.to_f?(arguments[:base].to_i).try &.to_i
       else
-        target.to_i
+        result = raw.to_i?(arguments[:base].to_i, prefix: true)
       end
-    rescue ArgumentError
+    elsif raw.responds_to?(:to_i?)
+      result = raw.to_i?
+    elsif raw.responds_to?(:to_i)
+      result = raw.to_i
+    end
+
+    if result
+      Value.new result
+    else
       arguments[:default].to_i
     end
   end
