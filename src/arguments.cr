@@ -3,12 +3,23 @@ require "./error"
 
 # This holds arguments and environment information for function, filter, test and macro calls.
 struct Crinja::Arguments
-  property varargs : Array(Value)
-  property target : Value?
-  property kwargs : Hash(String, Value)
-  property defaults : Variables
-  property env : Crinja
-  property! renderer : Renderer
+  # Returns the variable arguments of the call.
+  getter varargs : Array(Value)
+
+  # Returns the target of the call (if any).
+  getter target : Value?
+
+  # Returns the keyword arguments of the call.
+  getter kwargs : Hash(String, Value)
+
+  # Default argument values defined by the call implementation.
+  getter defaults : Variables
+
+  # :nodoc:
+  setter defaults : Variables
+
+  # Returns the crinja environment.
+  getter env : Crinja
 
   def initialize(@env, @varargs = [] of Value, @kwargs = Hash(String, Value).new, @defaults = Variables.new, @target = nil)
   end
