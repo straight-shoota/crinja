@@ -5,7 +5,7 @@ echo -e "Clearing ${GENERATED_DOCS_DIR} directory"
 rm -rf "${GENERATED_DOCS_DIR}"
 
 echo -e "Running `crystal docs`..."
-crystal doc
+crystal doc src/cli.cr
 
 echo -e "Copying README.md and TEMPLATE_SYNTAX.md"
 # "{{" and "{%"" need to be escaped, otherise Jekyll might interpret the expressions (on Github Pages)
