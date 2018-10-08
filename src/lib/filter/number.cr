@@ -3,7 +3,7 @@ module Crinja::Filter
     if target.number?
       target.as_number.abs
     else
-      raise Arguments::ArgumentError.new("abs", "Cannot render abs value for #{target.raw.class}, only accepts numbers")
+      raise Arguments::Error.new("abs", "Cannot render abs value for #{target.raw.class}, only accepts numbers")
     end
   end
 
@@ -95,7 +95,7 @@ module Crinja::Filter
       multi = base ** precision
       (value * multi).floor.to_f / multi
     else
-      raise Arguments::ArgumentError.new("method", "argument `method` for filter `round` must be 'common', 'ceil' or 'floor'")
+      raise Arguments::Error.new("method", "argument `method` for filter `round` must be 'common', 'ceil' or 'floor'")
     end
   end
 end

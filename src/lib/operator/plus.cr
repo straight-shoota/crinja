@@ -23,7 +23,7 @@ class Crinja::Operator
       if op.number?
         op.as_number
       else
-        raise Arguments::ArgumentError.new(self, "Operators needs to be numeric")
+        raise Arguments::Error.new(self, "Operators needs to be numeric")
       end
     end
   end

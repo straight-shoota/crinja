@@ -84,7 +84,7 @@ struct Crinja::Arguments
     end
   end
 
-  class ArgumentError < RuntimeError
+  class Error < RuntimeError
     property callee
     property argument : String?
 
