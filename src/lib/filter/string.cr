@@ -9,7 +9,7 @@ module Crinja::Filter
 
   Crinja.filter({width: 80}, :center) do
     string = target.to_s
-    width = arguments[:width].to_i
+    width = arguments["width"].to_i
     if string.size >= width
       string
     else
@@ -37,10 +37,10 @@ module Crinja::Filter
     width:       4,
     indentfirst: false,
   }, :indent) do
-    indent = " " * arguments[:width].to_i
+    indent = " " * arguments["width"].to_i
     nl = "\n" + indent
     string = target.to_s
-    string = indent + string if arguments[:indentfirst].truthy?
+    string = indent + string if arguments["indentfirst"].truthy?
     string.gsub(/\n/, nl)
   end
 
@@ -51,13 +51,13 @@ module Crinja::Filter
   end
 
   Crinja.filter({length: 255, killwords: false, end: "...", leeway: nil}, :truncate) do
-    length = arguments[:length].to_i
-    append = arguments[:end].to_s
+    length = arguments["length"].to_i
+    append = arguments["end"].to_s
     end_size = append.size
     raise "expected length >= #{end_size}, got #{length}" if length < end_size
-    leeway = arguments.fetch(:leeway) { env.policies.fetch("truncate.leeway", 5) }.to_i
+    leeway = arguments.fetch("leeway") { env.policies.fetch("truncate.leeway", 5) }.to_i
     raise "expected leeway >= 0, got #{leeway}" if leeway < 0
-    killwords = arguments[:killwords].truthy?
+    killwords = arguments["killwords"].truthy?
 
     if leeway >= length
       # if string has very short length, don't use leeway and kill words
@@ -80,9 +80,9 @@ module Crinja::Filter
   end
 
   Crinja.filter({old: UNDEFINED, new: UNDEFINED, count: nil}, :replace) do
-    search = arguments[:old].to_s
-    replace = arguments[:new]
-    count = arguments[:count]
+    search = arguments["old"].to_s
+    replace = arguments["new"]
+    count = arguments["count"]
 
     if count.raw.nil?
       target.as_s.gsub(search, replace)
@@ -102,9 +102,9 @@ module Crinja::Filter
   end
 
   Crinja.filter({width: 79, break_long_words: true, wrapstring: nil}, :wordwrap) do
-    width = arguments[:width].to_i
-    break_long_words = arguments[:break_long_words].truthy?
-    wrapstring = arguments.fetch(:wrapstring, "\n").to_s
+    width = arguments["width"].to_i
+    break_long_words = arguments["break_long_words"].truthy?
+    wrapstring = arguments.fetch("wrapstring", "\n").to_s
 
     String.build do |io|
       first_line = true

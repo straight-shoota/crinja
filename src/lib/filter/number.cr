@@ -13,7 +13,7 @@ module Crinja::Filter
       return Value.new result
     end
 
-    arguments[:default].to_f
+    arguments["default"].to_f
   end
 
   Crinja.filter({default: 0, base: 10}, :int) do
@@ -21,9 +21,9 @@ module Crinja::Filter
     raw = raw.to_s if raw.is_a?(SafeString)
     if raw.is_a?(String)
       if raw['.']?
-        result = raw.to_f?(arguments[:base].to_i).try &.to_i
+        result = raw.to_f?(arguments["base"].to_i).try &.to_i
       else
-        result = raw.to_i?(arguments[:base].to_i, prefix: true)
+        result = raw.to_i?(arguments["base"].to_i, prefix: true)
       end
     elsif raw.responds_to?(:to_i?)
       result = raw.to_i?
@@ -34,12 +34,12 @@ module Crinja::Filter
     if result
       Value.new result
     else
-      arguments[:default].to_i
+      arguments["default"].to_i
     end
   end
 
   Crinja.filter({binary: false}, :filesizeformat) do
-    Crinja::Filter::Filesizeformat.filesize_to_human(target.to_f, arguments[:binary].truthy?)
+    Crinja::Filter::Filesizeformat.filesize_to_human(target.to_f, arguments["binary"].truthy?)
   end
 
   class Filesizeformat
@@ -80,12 +80,12 @@ module Crinja::Filter
   end
 
   Crinja.filter({precision: 0, method: "common", base: 10}, :round) do
-    precision = arguments[:precision].to_i
+    precision = arguments["precision"].to_i
     value = target.as_number
-    base = arguments[:base].as_number
+    base = arguments["base"].as_number
     base = base.to_f if precision < 0
 
-    case arguments[:method].as_s
+    case arguments["method"].as_s
     when "common"
       value.round(precision, base)
     when "ceil"

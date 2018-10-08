@@ -3,7 +3,7 @@ module Crinja::Filter
     case_sensitive: false,
     by:             "key",
   }, :dictsort) do
-    case_sensitive = arguments[:case_sensitive].truthy?
+    case_sensitive = arguments["case_sensitive"].truthy?
 
     array = target.to_a
 
@@ -15,7 +15,7 @@ module Crinja::Filter
       end
     end
 
-    if arguments[:by].to_s == "value"
+    if arguments["by"].to_s == "value"
       array = array.sort { |a, b| compare.call(a[1], b[1]) }
     else
       array = array.sort { |a, b| compare.call(a[0], b[0]) }
@@ -29,14 +29,14 @@ module Crinja::Filter
     case_sensitive: false,
     attribute:      nil,
   }, :sort) do
-    case_sensitive = arguments[:case_sensitive].truthy?
+    case_sensitive = arguments["case_sensitive"].truthy?
 
     array = target.to_a
 
     attribute = nil
 
-    if arguments[:attribute].string?
-      attribute = arguments[:attribute].as_s!
+    if arguments["attribute"].string?
+      attribute = arguments["attribute"].as_s!
     end
 
     array = array.sort do |a, b|
@@ -52,7 +52,7 @@ module Crinja::Filter
       end
     end
 
-    if arguments[:reverse].truthy?
+    if arguments["reverse"].truthy?
       array = array.reverse
     end
 

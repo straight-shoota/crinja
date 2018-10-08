@@ -15,8 +15,8 @@ module Crinja::Filter
   end
 
   Crinja.filter({linecount: 2, fill_with: nil}, :batch) do
-    fill_with = arguments[:fill_with]
-    linecount = arguments[:linecount].to_i
+    fill_with = arguments["fill_with"]
+    linecount = arguments["linecount"].to_i
 
     if target.sequence?
       array = [] of Value
@@ -43,8 +43,8 @@ module Crinja::Filter
   end
 
   Crinja.filter({slices: 2, fill_with: nil}, :slice) do
-    fill_with = arguments[:fill_with]
-    slices = arguments[:slices].to_i
+    fill_with = arguments["fill_with"]
+    slices = arguments["slices"].to_i
 
     if target.sequence?
       array = [] of Value
@@ -97,9 +97,9 @@ module Crinja::Filter
   end
 
   Crinja.filter({attribute: nil, start: 0}, :sum) do
-    attribute = arguments[:attribute].as_s?
+    attribute = arguments["attribute"].as_s?
 
-    start = arguments[:start].as_number
+    start = arguments["start"].as_number
     sum = start
 
     target.each do |value|
@@ -126,7 +126,7 @@ module Crinja::Filter
     if target.none?
       ""
     elsif arguments.is_set?("attribute")
-      attribute = arguments[:attribute].raw
+      attribute = arguments["attribute"].raw
       target.map do |item|
         Resolver.resolve_getattr(attribute, item)
       end
@@ -196,7 +196,7 @@ module Crinja::Filter
   end
 
   Crinja.filter({attribute: UNDEFINED}, :groupby) do
-    attribute = arguments[:attribute]
+    attribute = arguments["attribute"]
 
     Dictionary.new.tap do |dict|
       target.each do |item|

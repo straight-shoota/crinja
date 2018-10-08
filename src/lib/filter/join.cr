@@ -1,7 +1,7 @@
 module Crinja::Filter
   Crinja.filter({separator: "", attribute: nil}, :join) do
-    separator = arguments[:separator].to_string
-    attribute = arguments[:attribute]
+    separator = arguments["separator"].to_string
+    attribute = arguments["attribute"]
 
     if target.sequence?
       # TODO: Compiler fails with nil assertion if `when Enumerable`

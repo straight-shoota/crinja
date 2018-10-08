@@ -24,10 +24,6 @@ struct Crinja::Arguments
   def initialize(@env, @varargs = [] of Value, @kwargs = Hash(String, Value).new, @defaults = Variables.new, @target = nil)
   end
 
-  def [](name : Symbol) : Value
-    self.[name.to_s]
-  end
-
   def [](name : String) : Value
     if kwargs.has_key?(name)
       kwargs[name]
@@ -51,7 +47,7 @@ struct Crinja::Arguments
   end
 
   def fetch(name)
-    value = self.[name]
+    value = self[name]
     if value.raw.nil?
       Value.new(yield)
     else

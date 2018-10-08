@@ -18,7 +18,7 @@ Crinja.test(:nil) { target.raw.nil? }
 Crinja.test(:mapping) { target.mapping? }
 
 # Check if a variable is divisible by a number.
-Crinja.test({num: Crinja::UNDEFINED}, :divisibleby) { target.to_i % arguments[:num].to_i == 0 }
+Crinja.test({num: Crinja::UNDEFINED}, :divisibleby) { target.to_i % arguments["num"].to_i == 0 }
 
 # Check if an object has the same value as another object:
 # ```
@@ -30,10 +30,10 @@ Crinja.test({num: Crinja::UNDEFINED}, :divisibleby) { target.to_i % arguments[:n
 # ```
 # {{ users | selectattr("email", "equalto", "foo@bar.invalid") }}
 # ```
-Crinja.test({other: Crinja::UNDEFINED}, :equalto) { target == arguments[:other] }
+Crinja.test({other: Crinja::UNDEFINED}, :equalto) { target == arguments["other"] }
 
 # Checks if an object points to the same memory address than another object:
-Crinja.test({other: Crinja::UNDEFINED}, :sameas) { target.sameas? arguments[:other] }
+Crinja.test({other: Crinja::UNDEFINED}, :sameas) { target.sameas? arguments["other"] }
 
 # Returns `true` if the variable is lowercased.
 Crinja.test(:lower) { target.to_s.chars.all?(&.lowercase?) }
@@ -63,14 +63,14 @@ Crinja.test(:even) { target.to_i.even? }
 Crinja.test(:odd) { target.to_i.odd? }
 
 # Checks if value is less than other.
-Crinja.test({other: 0}, :lessthan) { target.to_i.<(arguments[:other].to_i) }
+Crinja.test({other: 0}, :lessthan) { target.to_i.<(arguments["other"].to_i) }
 
 # Checks if value is greater than other.
-Crinja.test({other: 0}, :greaterthan) { target.to_i.>(arguments[:other].to_i) }
+Crinja.test({other: 0}, :greaterthan) { target.to_i.>(arguments["other"].to_i) }
 
 # Check if value is in seq.
 Crinja.test({seq: Array(Crinja::Value).new}, :in) {
-  seq = arguments[:seq]
+  seq = arguments["seq"]
   raw = seq.raw
   case raw
   when Hash

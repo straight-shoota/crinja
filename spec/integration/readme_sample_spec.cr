@@ -9,7 +9,7 @@ private class Customfilter
   })
 
   def call(arguments)
-    "#{arguments.target} is #{arguments[:attribute]}!"
+    "#{arguments.target} is #{arguments["attribute"]}!"
   end
 end
 
