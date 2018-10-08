@@ -7,7 +7,7 @@ class Crinja::Operator
       if op1.number? && op2.number?
         op1.to_i / op2.to_i
       else
-        raise Arguments::ArgumentError.new(self, "Both operators need to be numeric")
+        raise Arguments::Error.new(self, "Both operators need to be numeric")
       end
     end
   end

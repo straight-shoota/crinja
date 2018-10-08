@@ -27,7 +27,7 @@ module Crinja::Parser
         @reader.pos = original_pos
         char
       else
-        raise ArgumentError.new("lookahead must be >= 0, was #{lookahead}")
+        raise Arguments::Error.new("lookahead must be >= 0, was #{lookahead}")
       end
     rescue IndexError
       Char::ZERO
