@@ -1,4 +1,4 @@
-require "./py_object"
+require "../object"
 require "./undefined"
 require "./safe_string"
 require "./callable"

@@ -97,14 +97,14 @@ struct EqualStringExpectation(T)
   end
 end
 
+@[Crinja::Attributes]
 private record Product, name = "Moto G", manufacturer = "Motorala", summary = "A phone", price = 100 do
-  include Crinja::PyObject
-  getattr
+  include Crinja::Object::Auto
 end
 
+@[Crinja::Attributes]
 private record Review, title = "My review", paragraphs = ["A", "B", "C"] do
-  include Crinja::PyObject
-  getattr
+  include Crinja::Object::Auto
 end
 
 private def assert_render(file, bindings = nil)

@@ -2,6 +2,7 @@ require "http/server"
 require "colorize"
 require "benchmark"
 
+@[Crinja::Attributes(expose: [host, port, template_dir, public_dir, templates])]
 class Crinja::Server
   DEFAULT_HOST = "0.0.0.0"
   DEFAULT_PORT = 7645
@@ -16,8 +17,7 @@ class Crinja::Server
   getter! server : HTTP::Server
   getter! loader : Crinja::Loader
 
-  include Crinja::PyObject
-  getattr host, port, template_dir, public_dir, templates
+  include Crinja::Object::Auto
 
   def initialize(@env = Crinja.new)
   end
