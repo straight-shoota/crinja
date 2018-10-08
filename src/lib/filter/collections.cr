@@ -133,10 +133,9 @@ module Crinja::Filter
     else
       varargs = arguments.varargs
       filter = env.filters[varargs.shift.as_s!]
-      args = Arguments.new(env, varargs, arguments.kwargs)
 
       target.map do |item|
-        args.target = item
+        args = Arguments.new(env, varargs, arguments.kwargs, target: item)
         arguments.env.execute_call(filter, args)
       end
     end
@@ -155,10 +154,9 @@ module Crinja::Filter
       end
     else
       test = env.tests[varargs.shift.as_s!]
-      args = Arguments.new(env, varargs, arguments.kwargs)
 
       target.{{ func.id }} do |item|
-        args.target = Resolver.resolve_getattr(attribute, item)
+        args = Arguments.new(env, varargs, arguments.kwargs, target: Resolver.resolve_getattr(attribute, item))
         env.execute_call(test, args).truthy?
       end
     end
@@ -173,10 +171,9 @@ module Crinja::Filter
       target.{{ func.id }} &.truthy?
     else
       test = env.tests[varargs.shift.as_s!]
-      args = Arguments.new(env, varargs, arguments.kwargs)
 
       target.{{ func.id }} do |item|
-        args.target = item
+        args = Arguments.new(env, varargs, arguments.kwargs, target: item)
         env.execute_call(test, args).truthy?
       end
     end
