@@ -27,7 +27,7 @@ struct Crinja::Arguments
         default(name)
       end
     else
-      raise UnknownArgumentException.new(name, self)
+      raise UnknownArgumentError.new(name, self)
     end
   end
 
@@ -78,7 +78,7 @@ struct Crinja::Arguments
     Value.new defaults[name]
   end
 
-  class UnknownArgumentException < RuntimeError
+  class UnknownArgumentError < RuntimeError
     def initialize(name, arguments)
       super "unknown argument \"#{name}\" for #{arguments.inspect}"
     end
