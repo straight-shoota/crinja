@@ -11,6 +11,8 @@ class Crinja
     def to_s(io)
     end
 
+    def_equals_and_hash @name
+
     def to_json(json : JSON::Builder)
       json.null
     end

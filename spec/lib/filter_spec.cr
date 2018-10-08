@@ -3,8 +3,9 @@ require "../spec_helper"
 # These specs are derived from the original Jinja2 filter specs
 # https://github.com/pallets/jinja/blob/bbe0a4174c2846487bef4328b309fddd8638da39/tests/test_filters.py
 
+@[Crinja::Attributes]
 private class User
-  include Crinja::PyObject
+  include Crinja::Object::Auto
 
   getter username, is_active
 
@@ -14,12 +15,11 @@ private class User
   def to_s(io)
     io << username
   end
-
-  getattr
 end
 
+@[Crinja::Attributes]
 private class IdUser
-  include Crinja::PyObject
+  include Crinja::Object::Auto
 
   getter id, name
 
@@ -29,27 +29,25 @@ private class IdUser
   def to_s(io)
     io << name
   end
-
-  getattr
 end
 
+@[Crinja::Attributes]
 private class Date
-  include Crinja::PyObject
+  include Crinja::Object::Auto
+
   getter day : Int32
   getter month : Int32
   getter year : Int32
-
-  getattr
 
   def initialize(@day, @month, @year)
   end
 end
 
+@[Crinja::Attributes]
 private class Article
-  include Crinja::PyObject
+  include Crinja::Object::Auto
   getter title : String
   getter date : Date
-  getattr
 
   def initialize(@title, *date)
     @date = Date.new(*date)

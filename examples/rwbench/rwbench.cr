@@ -9,10 +9,10 @@ env.loader = Crinja::Loader::FileSystemLoader.new(File.join(FileUtils.pwd, "crin
 users = ["John Doe", "Jane Doe", "Peter Somewhat"].map { |n| User.new(n) }
 articles = (0..20).map { |i| Article.new(i, users.sample) }
 
+@[Crinja::Attributes]
 private class Article
-  include Crinja::PyObject
+  include Crinja::Object::Auto
   getter id, href, title, user, body, pub_date, published
-  getattr
 
   def initialize(@id : Int32, @user : User)
     @href = "/article/#{@id}"
@@ -23,10 +23,10 @@ private class Article
   end
 end
 
+@[Crinja::Attributes]
 private class User
-  include Crinja::PyObject
+  include Crinja::Object::Auto
   getter username, href
-  getattr
 
   def initialize(@username : String)
     @href = "/user/#{username}"

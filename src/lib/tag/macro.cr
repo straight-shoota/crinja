@@ -99,7 +99,6 @@ class Crinja::Tag::Macro < Crinja::Tag
 
   class MacroFunction
     include Callable
-    # include PyWrapper
 
     getter name, defaults, children, catch_kwargs, catch_varargs, caller
 
@@ -126,7 +125,5 @@ class Crinja::Tag::Macro < Crinja::Tag
     def arguments
       defaults.keys
     end
-
-    # getattr name, arguments, defaults, catch_kwargs, catch_arguments
   end
 end
