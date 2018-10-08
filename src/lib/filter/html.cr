@@ -4,14 +4,14 @@ require "../../util/json_builder"
 
 module Crinja::Filter
   Crinja.filter({trim_url_limit: nil, nofollow: false, target: nil, rel: nil}, :urlize) do
-    rel = arguments[:rel].to_s.split(' ')
+    rel = arguments["rel"].to_s.split(' ')
 
-    rel << "nofollow" if arguments[:nofollow].truthy?
+    rel << "nofollow" if arguments["nofollow"].truthy?
     rel |= env.policies.fetch("urlize.rel", "noopener").to_s.split(' ')
     rel = rel.reject(&.empty?).to_set
 
-    target_attr = arguments.fetch(:target) { env.policies.fetch("urlize.target", nil) }.raw.as(String?)
-    trim_url_limit = arguments[:trim_url_limit].raw.as(Int32?)
+    target_attr = arguments.fetch("target") { env.policies.fetch("urlize.target", nil) }.raw.as(String?)
+    trim_url_limit = arguments["trim_url_limit"].raw.as(Int32?)
 
     Crinja::Util.urlize(target.to_s, trim_url_limit, rel, target_attr)
   end
@@ -35,7 +35,7 @@ module Crinja::Filter
   Crinja.filter({indent: nil}, :tojson) do
     raw = target.raw
 
-    indent = arguments.fetch(:indent, 0).to_i
+    indent = arguments.fetch("indent", 0).to_i
 
     SafeString.escape do |io|
       JsonBuilder.to_json(io, raw, indent)
@@ -51,7 +51,7 @@ module Crinja::Filter
       end
     end
 
-    if string.size > 0 && !arguments[:autoescape].truthy?
+    if string.size > 0 && !arguments["autoescape"].truthy?
       string = string[1..-1]
     end
 

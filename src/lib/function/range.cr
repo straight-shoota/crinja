@@ -3,9 +3,9 @@ Crinja.function({
   :stop  => 0,
   :step  => 1,
 }, :range) do
-  start = arguments[:start].as_number.to_i
-  stop = arguments[:stop].as_number.to_i
-  step = arguments[:step].as_number.to_i
+  start = arguments["start"].as_number.to_i
+  stop = arguments["stop"].as_number.to_i
+  step = arguments["step"].as_number.to_i
   unless arguments.is_set?(:stop)
     stop = start
     start = arguments.default(:stop).as_number.to_i

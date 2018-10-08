@@ -3,7 +3,7 @@ module Crinja::Filter
 
   Crinja.filter({string: UNDEFINED}, :prepend) do
     String.build do |io|
-      io << arguments[:string]
+      io << arguments["string"]
       io << target
     end
   end
@@ -11,11 +11,11 @@ module Crinja::Filter
   Crinja.filter({string: UNDEFINED}, :append) do
     String.build do |io|
       io << target
-      io << arguments[:string]
+      io << arguments["string"]
     end
   end
 
   Crinja.filter({format: Crinja::UNDEFINED}, :date) do
-    target.as_time.to_s(arguments[:format].to_s)
+    target.as_time.to_s(arguments["format"].to_s)
   end
 end

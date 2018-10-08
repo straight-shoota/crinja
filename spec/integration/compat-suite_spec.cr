@@ -11,7 +11,7 @@ COMPAT_SUITE_LOADER         = Crinja::Loader::FileSystemLoader.new(File.join(__D
 private def create_compat_suite_env
   env = Crinja.new(loader: COMPAT_SUITE_LOADER)
   env.functions["url_for"] = Crinja.function({name: Crinja::UNDEFINED}) do
-    case arguments[:name].as_s!
+    case arguments["name"].as_s!
     when "home"
       "vincent.is"
     else

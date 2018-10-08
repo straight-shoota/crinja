@@ -250,7 +250,7 @@ Example with macro `Crinja.filter`:
 env = Crinja.new
 
 myfilter = Crinja.filter({ attribute: nil }) do
-  "#{target} is #{arguments[:attribute]}!"
+  "#{target} is #{arguments["attribute"]}!"
 end
 
 env.filters["customfilter"] = myfilter
@@ -271,7 +271,7 @@ class Customfilter
   })
 
   def call(arguments)
-    "#{arguments.target} is #{arguments[:attribute]}!"
+    "#{arguments.target} is #{arguments["attribute"]}!"
   end
 end
 
