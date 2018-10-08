@@ -6,11 +6,10 @@ To make custom objects usable in Crinja, they need to include `Crinja::PyObject`
 
 Classes *may* implement the following methods to make properties accessbile:
 
-1. `#getattr(name : Crinja::Value)`: Access an attribute (e.g. an instance property) of this class.
-2. `#__getitem__(name : Crinja::Value)`: Access an item (e.g. an array member) of this class.
-3. `#__call__(name : String) : Crinja::Callable | Callable::Proc`: Expose a callable as method of this class.
+* `#getattr(name : Crinja::Value)`: Access an attribute (e.g. an instance property) of this class.
+* `#__call__(name : String) : Crinja::Callable | Callable::Proc`: Expose a callable as method of this class.
 
-They *must* return an `Undefined` if there is no attribute or item of that name.
+`getattr` must return an `Undefined` if there is no attribute of that name.
 
 ```playground
 require "./crinja"

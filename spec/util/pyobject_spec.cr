@@ -20,7 +20,12 @@ private class User
     when "age"
       age.days / 365
     else
-      Crinja::Undefined.new(attr.to_s)
+      raw = attr.raw
+      if raw.responds_to?(:to_i)
+        @name[raw.to_i].to_s
+      else
+        Crinja::Undefined.new(attr.to_s)
+      end
     end
   end
 
@@ -31,19 +36,10 @@ private class User
       end
     end
   end
-
-  def __getitem__(attr : Crinja::Value)
-    raw = attr.raw
-    if raw.responds_to?(:to_i)
-      @name[raw.to_i].to_s
-    else
-      Crinja::Undefined.new(attr.to_s)
-    end
-  end
 end
 
 describe Crinja::PyObject do
-  it "resolves __getitem__" do
+  it "resolves dynamic attribute" do
     user = User.new("Tom", Time.utc(1974, 3, 28))
     evaluate_expression_raw(%(user[0]), {user: user}).should eq "T"
   end

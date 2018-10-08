@@ -1,14 +1,13 @@
 # Include this module into your classes to make them available as values in Crinja.
 # There are three types of properties you can expose to the Crinja runtime:
 #
-# 1. `#getattr(name : Crinja::Value) : Crinja::Value`: Access an attribute (e.g. an instance property) of this class.
-# 2. `#__getitem__(name : Crinja::Value) : Crinja::Value`: Access an item (e.g. an array member) of this class.
-# 3. `#__call__(name : String) : Crinja::Callable | Callable::Proc`: Expose a callable as method of this class.
+# * `#getattr(name : Crinja::Value) : Crinja::Value`: Access an attribute (e.g. an instance property) of this class.
+# * `#__call__(name : String) : Crinja::Callable | Callable::Proc`: Expose a callable as method of this class.
 #
 # Through the static comilation it is not possible to access properties or methods of an object
 # directly from inside the Crinja runtime. These methods allow to define a name-based lookup and
 # return the corresponding values. If the looked-up name is not defined, the return value for `__call__`
-# should be `nil`. If `getattr` or `__getitem__` return `nil`, this will be a valid return value.
+# should be `nil`. If `getattr` returns `nil`, this will be a valid return value.
 #
 # They *must* return an `Undefined` if there is no attribute or item of that name. In this case,
 # `Crinja::Resolver` may try other methods of accessing the attribute or item depending on the type
