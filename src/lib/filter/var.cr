@@ -12,7 +12,7 @@ module Crinja::Filter
   Crinja::Filter::Library.alias :d, :default
 
   Crinja.filter({name: UNDEFINED}, :attr) do
-    Resolver.resolve_getattr(arguments[:name].raw, target)
+    Resolver.resolve_getattr(arguments[:name], target)
   end
 
   Crinja.filter({verbose: false}, :pprint) do

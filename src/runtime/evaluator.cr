@@ -173,7 +173,7 @@ class Crinja::Evaluator
     argument = evaluate expression.argument
 
     begin
-      value = Resolver.resolve_item(argument, object)
+      value = Resolver.resolve_attribute(argument, object)
     rescue exc : UndefinedError
       raise UndefinedError.new(name_for_expression(expression))
     end

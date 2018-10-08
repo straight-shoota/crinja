@@ -1,50 +1,5 @@
 module Crinja::Resolver
-  # Resolves an objects item. Tries `resolve_getattr` it `getitem` returns undefined.
-  # Analogous to `__getitem__` in Jinja2.
-  def self.resolve_item(name : Value, object : Value) : Value
-    raise UndefinedError.new(name.to_s) if object.undefined?
-
-    value = resolve_getitem(name, object)
-
-    if value.undefined?
-      value = self.resolve_getattr(name, object)
-    end
-
-    value
-  end
-
-  # ditto
-  def self.resolve_item(name, raw) : Value
-    self.resolve_item(Value.new(name), Value.new(raw))
-  end
-
-  # Resolve an objects item.
-  def self.resolve_getitem(name : Value, object : Value) : Value
-    value = Undefined.new(name.to_s)
-
-    raw_object = object.raw
-    if raw_object.responds_to?(:__getitem__)
-      value = raw_object.__getitem__(name)
-    end
-
-    raw = name.raw
-    if object.indexable? && raw.responds_to?(:to_i)
-      begin
-        value = object[raw.to_i]
-      rescue IndexError
-        value = Undefined.new(name.to_s)
-      end
-    end
-
-    Value.new value
-  end
-
-  # :ditto:
-  def self.resolve_getitem(name, value) : Value
-    self.resolve_getitem(Value.new(name), Value.new(value))
-  end
-
-  # Resolves an objects attribute. Tries `resolve_getitem` it `getitem` returns undefined.
+  # Resolves an objects attribute. Tries `resolve_getattr`.
   # Analogous to `getattr` in Jinja2.
   def self.resolve_attribute(name, object : Value) : Value
     raise UndefinedError.new(name.to_s) if object.undefined?
@@ -52,7 +7,12 @@ module Crinja::Resolver
     value = self.resolve_getattr(name, object)
 
     if value.undefined?
-      value = self.resolve_getitem(name, object)
+      if object.indexable? && name.responds_to?(:to_i)
+        begin
+          return Value.new object[name.to_i]
+        rescue IndexError
+        end
+      end
     end
 
     value

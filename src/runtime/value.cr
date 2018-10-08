@@ -70,7 +70,7 @@ class Crinja
       end
       Value.new array
     when Range
-      # TODO: Implement range trough pyobject `getitem`
+      # TODO: Implement range trough pyobject `getattr`
       Value.new value.to_a
     when Iterator(Value)
       Value.new value
