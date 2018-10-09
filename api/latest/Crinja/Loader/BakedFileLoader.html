@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
-  <title>Crinja::Loader::HashLoader - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Loader::BakedFileLoader(T) - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -211,7 +211,7 @@
       
         <ul>
   
-  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/BakedFileLoader" data-name="crinja::loader::bakedfileloader(t)">
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Loader/BakedFileLoader" data-name="crinja::loader::bakedfileloader(t)">
       <a href="../../Crinja/Loader/BakedFileLoader.html">BakedFileLoader</a>
       
     </li>
@@ -226,7 +226,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Loader/HashLoader" data-name="crinja::loader::hashloader">
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Loader/HashLoader" data-name="crinja::loader::hashloader">
       <a href="../../Crinja/Loader/HashLoader.html">HashLoader</a>
       
     </li>
@@ -715,19 +715,46 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Loader::HashLoader
+  <span class="kind">class</span> Crinja::Loader::BakedFileLoader(T)
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Loader/HashLoader.html">Crinja::Loader::HashLoader</a></li><li class="superclass"><a href="../../Crinja/Loader.html">Crinja::Loader</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Loader/BakedFileLoader.html">Crinja::Loader::BakedFileLoader(T)</a></li><li class="superclass"><a href="../../Crinja/Loader.html">Crinja::Loader</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
 
   <h2>Overview</h2>
 
-  <p>Load templates from a hash in memory.</p>
+  <p>A loader that retrieves templates from a <a href="https://github.com/schovi/baked_file_system" target="_blank">Baked File System</a>.
+This way templates can be baked directly into the executable, so there is no need to provide
+separate templates files. However, this prevents modifying templates at runtime.
+Both can be accomplished by using a <code><a href="../../Crinja/Loader/ChoiceLoader.html">ChoiceLoader</a></code> to combine a <code><a href="../../Crinja/Loader/FileSystemLoader.html">FileSystemLoader</a></code> with
+baked files as a fallback/default template loader.</p>
+
+<p>Usage depends on the shard <a href="https://github.com/schovi/baked_file_system" target="_blank">schovi/baked_file_system</a>
+and this class must be explicitly required as <code>crinja/loader/baked_file_loader</code>.</p>
+
+<h2>Usage:</h2>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;crinja/loader/baked_file_loader&quot;</span>
+
+<span class="k">module</span> <span class="t">MyBakedTemplateFileSystem</span>
+  <span class="t">BakedFileSystem</span>.load(<span class="s">&quot;templates&quot;</span>, __DIR__)
+<span class="k">end</span>
+
+env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">BakedFileLoader</span>.<span class="k">new</span>(<span class="t">MyBakedTemplateFileSystem</span>)
+
+<span class="c"># with choice loader:</span>
+env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Loader</span><span class="t">::</span><span class="t">ChoiceLoader</span>.<span class="k">new</span>([
+  <span class="t">Crinja</span><span class="t">::</span><span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>(<span class="s">&quot;/path/to/user/templates&quot;</span>),
+  <span class="t">Crinja</span><span class="t">::</span><span class="t">Loader</span><span class="t">::</span><span class="t">BakedFileLoader</span>.<span class="k">new</span>(<span class="t">MyBakedTemplateFileSystem</span>),
+])</code></pre>
+
+<p>See <code>examples/kilt/kilt.cr</code> for a practical example in conjunction with <code>Kilt</code>.</p>
+
+<p>A baked file system can also be used as a default</p>
 
 
 
@@ -745,8 +772,8 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/c42efeff38fdde39b2a0400b7e6eebb56f03f979/src/loader.cr#L107" target="_blank">
-        loader.cr
+      <a href="https://github.com/straight-shoota/crinja/blob/c42efeff38fdde39b2a0400b7e6eebb56f03f979/src/loader/baked_file_loader.cr#L33" target="_blank">
+        loader/baked_file_loader.cr
       </a>
     
     <br/>
@@ -760,7 +787,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28data%29-class-method" class="signature"><strong>.new</strong>(data)</a>
+        <a href="#new%28file_system%3AT%29-class-method" class="signature"><strong>.new</strong>(file_system : T)</a>
         
       </li>
     
@@ -774,17 +801,22 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#data%3AHash%28String%2CString%29-instance-method" class="signature"><strong>#data</strong> : Hash(String, String)</a>
+        <a href="#file_system%3AT-instance-method" class="signature"><strong>#file_system</strong> : T</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String)</a>
+        <a href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%29-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String)</a>
         
       </li>
     
       <li class="entry-summary">
         <a href="#list_templates-instance-method" class="signature"><strong>#list_templates</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s%28io%29-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
         
       </li>
     
@@ -850,18 +882,18 @@
 
   <h2>Constructor Detail</h2>
   
-    <div class="entry-detail" id="new(data)-class-method">
+    <div class="entry-detail" id="new(file_system:T)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(data)
+        def self.<strong>new</strong>(file_system : T)
 
-        <a class="method-permalink" href="#new%28data%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28file_system%3AT%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/c42efeff38fdde39b2a0400b7e6eebb56f03f979/src/loader.cr#L110" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/c42efeff38fdde39b2a0400b7e6eebb56f03f979/src/loader/baked_file_loader.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -873,34 +905,34 @@
 
   <h2>Instance Method Detail</h2>
   
-    <div class="entry-detail" id="data:Hash(String,String)-instance-method">
+    <div class="entry-detail" id="file_system:T-instance-method">
       <div class="signature">
         
-        def <strong>data</strong> : Hash(String, String)
+        def <strong>file_system</strong> : T
 
-        <a class="method-permalink" href="#data%3AHash%28String%2CString%29-instance-method">#</a>
+        <a class="method-permalink" href="#file_system%3AT-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/c42efeff38fdde39b2a0400b7e6eebb56f03f979/src/loader.cr#L108" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/c42efeff38fdde39b2a0400b7e6eebb56f03f979/src/loader/baked_file_loader.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="get_source(env:Crinja,template:String)-instance-method">
+    <div class="entry-detail" id="get_source(env:Crinja,template:String):::Tuple(String,String)-instance-method">
       <div class="signature">
         
-        def <strong>get_source</strong>(env : <a href="../../Crinja.html">Crinja</a>, template : String)
+        def <strong>get_source</strong>(env : <a href="../../Crinja.html">Crinja</a>, template : String) : ::Tuple(String, String)
 
-        <a class="method-permalink" href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29-instance-method">#</a>
+        <a class="method-permalink" href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/c42efeff38fdde39b2a0400b7e6eebb56f03f979/src/loader.cr#L113" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/c42efeff38fdde39b2a0400b7e6eebb56f03f979/src/loader/baked_file_loader.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -916,7 +948,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/c42efeff38fdde39b2a0400b7e6eebb56f03f979/src/loader.cr#L119" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/c42efeff38fdde39b2a0400b7e6eebb56f03f979/src/loader/baked_file_loader.cr#L49" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io)
+
+        <a class="method-permalink" href="#to_s%28io%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/c42efeff38fdde39b2a0400b7e6eebb56f03f979/src/loader/baked_file_loader.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
