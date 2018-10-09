@@ -30,7 +30,7 @@ jobs:
       - run: shards
       - save_cache: *save_shards_cache
 
-      - run: crystal spec
+      - run: make test
 
       - run: crystal tool format --check spec src
 
@@ -47,7 +47,7 @@ jobs:
       - restore_cache: *restore_shards_cache
       - run: shards
 
-      - run: crystal spec
+      - run: make test
 
       - run:
           name: Install bats
@@ -57,7 +57,7 @@ jobs:
 
       - run:
           name: Test examples
-          command: bats examples_test.bats
+          command: make integration-test
 
       - run: crystal tool format --check spec src
 

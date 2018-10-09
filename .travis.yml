@@ -13,7 +13,7 @@ addons:
     - bats
 
 script:
-- crystal spec
+- make test
 - crystal tool format --check src spec
-- bats examples_test.bats
-- "if [ $TRAVIS_PULL_REQUEST = false ] && [ $TRAVIS_BRACH -eq "master" ] && [ $TRAVIS_TEST_RESULT -eq 0 ]; then scripts/generate-docs.sh && curl https://raw.githubusercontent.com/straight-shoota/autodeploy-docs/master/autodeploy-docs.sh | bash; fi"
+- make integration-test
+- "if [ $TRAVIS_PULL_REQUEST = false ] && [ $TRAVIS_BRACH -eq "master" ] && [ $TRAVIS_TEST_RESULT -eq 0 ]; then make clean-docs deploy-docs; fi"
