@@ -14,7 +14,7 @@ end
 
 env.filters["customfilter"] = myfilter
 
-template = env.from_string(%({{ "Hello World" | customfilter(attribute="super") }}))
+template = env.from_string(%({{"{{"}} "Hello World" | customfilter(attribute="super") }}))
 puts template.render
 ```
 
@@ -39,6 +39,6 @@ class Customfilter
 end
 env.filters << Customfilter.new
 
-template = env.from_string(%({{ "Hello World" | customfilter(attribute="super") }}))
+template = env.from_string(%({{"{{"}} "Hello World" | customfilter(attribute="super") }}))
 puts template.render
 ```
