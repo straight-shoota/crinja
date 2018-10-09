@@ -34,6 +34,23 @@ jobs:
 
       - run: crystal tool format --check spec src
 
+  deploy-docs:
+    docker:
+      # Use crystallang/crystal:latest or specific crystallang/crystal:VERSION
+      - image: crystallang/crystal:latest
+        environment:
+          SHARDS_CACHE_PATH: ./shards-cache
+    steps:
+      - run: crystal --version
+
+      - checkout
+
+      - restore_cache: *restore_shards_cache
+      - run: shards
+      - save_cache: *save_shards_cache
+
+      - run: make clean-docs deploy-docs
+
   test-on-nightly:
     docker:
       - image: crystallang/crystal:nightly
@@ -67,6 +84,14 @@ workflows:
   ci:
     jobs:
       - test
+      # Build and depoy docs only on master branch
+      - deploy-docs:
+          requires:
+            - test
+          filters: &master-only
+            branches:
+              only:
+                - master
   # Run tests every night using crystal nightly
   nightly:
     triggers:
