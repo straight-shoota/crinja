@@ -74,6 +74,8 @@ Run the **Crystal playground** inside this repostitory and the server is prepare
 $ crystal play
 ```
 
+You can also browse the examples and documentation online (without the interactive playground): [objects](https://straight-shoota.github.io/crinja/api/latest/playground/objects.html) & [features](https://straight-shoota.github.io/crinja/api/latest/playground/features.html)
+
 ### Crinja Playground
 
 The **Crinja Example Server** in [`examples/server`](https://github.com/straight-shoota/crinja/tree/master/examples/server) is an HTTP server which renders Crinja templates from `examples/server/pages`. It has also an interactive playground for Crinja template testing at `/play`.
