@@ -10,35 +10,35 @@ The template features supported by Crinja are based on the [Jinja2 template lang
 Crinja template syntax can be embedded in any text content and individual templates features are enclosed in delimiters:
 
 ```html+jinja
-&#123;&#123; }} - print
-&#123;% %} - tag
+{{ }} - print
+{% %} - tag
 {# #} - comment
 ```
 
-When a template is rendered, **print statements** enclosed by double curly braces (`&#123;&#123;` ... `}}`) print their inner value to the template output.
+When a template is rendered, **print statements** enclosed by double curly braces (`{{` ... `}}`) print their inner value to the template output.
 Template **expressions** inside will be evaluated.
 
 Assuming there is a variable `name` with value `"World"`, the following template expands to `Hello, World!`.
 
 ```html+jinja
-Hello, &#123;&#123; name }}!
+Hello, {{ name }}!
 ```
 
-**Tags** control the logic of the template. They are enclosed in `&#123;%` and `%}`.
+**Tags** control the logic of the template. They are enclosed in `{%` and `%}`.
 
 The `set` tag for example is used for assigments:
 ```html+jinja
-&#123;% set name = "John" %}
-Hello, &#123;&#123; name }}!
+{% set name = "John" %}
+Hello, {{ name }}!
 ```
 
 Most tags expect a content which spans between an opening tag and a closing tag. The latter has the same name name as the opening tag prefixed with `end`.
 Tags can be nested.
 
 ```html+jinja
-&#123;% if name == "World" %}
+{% if name == "World" %}
 Hello 🌍!
-&#123;% endif %}
+{% endif %}
 ```
 
 **Comments** are enclosed in `{#` and `#}`. They are not parsed as template content and will not included in the template output.
@@ -50,8 +50,8 @@ Varibales can be populated externally by the application calling the template, o
 The [`set` tag](#set-tag) allows to set or modify variables inside the template.
 
 ```html+jinja
-&#123;% set name = "World" %}
-Hello, &#123;&#123; name }}! -> Hello, World!
+{% set name = "World" %}
+Hello, {{ name }}! -> Hello, World!
 ```
 
 Members of objects can be traversed by a dot (`.`). `foo.bar` resolves the property `bar` of object `foo`.
@@ -70,7 +70,7 @@ Arguments are added in parenthesis: `names | join(', ')`.
 Filters can be chained and the outputs will be used in sequence:
 
 ```html+jinja
-Hello, &#123;&#123; name | default("World") | titelize }}! -> Hello, WORLD!
+Hello, {{ name | default("World") | titelize }}! -> Hello, WORLD!
 ```
 
 ## Tests
@@ -83,43 +83,43 @@ For example, the expression `name is defined` returns `true` if the variable `na
 Test can accept arguments as well. If the test only takes one argument, the parentheses can be omitted: `9 is divisible by 3`.
 
 ```html+jinja
-&#123;% if current_user is logged_in %}
-  Hello, &#123;&#123; current_user.name }}!
-&#123;% else %}
+{% if current_user is logged_in %}
+  Hello, {{ current_user.name }}!
+{% else %}
   Hey, stranger!
-&#123;% end %}
+{% end %}
 ```
 
 ## Tags
 
-**Tags** control the logic of the template. They are enclosed in `&#123;%` and `%}`.
+**Tags** control the logic of the template. They are enclosed in `{%` and `%}`.
 
 ```html+jinja
-&#123;% if is_morning %}
-  Good Moring, &#123;&#123; name }}!
-&#123;% else %}
-  Hello, &#123;&#123; name }}!
-&#123;% end %}
+{% if is_morning %}
+  Good Moring, {{ name }}!
+{% else %}
+  Hello, {{ name }}!
+{% end %}
 ```
 
 The `for` tag allows looping over a collection.
 
 ```html+jinja
-&#123;% for name in users %}
-  &#123;&#123; user.name }}
-&#123;% endfor %}
+{% for name in users %}
+  {{ user.name }}
+{% endfor %}
 ```
 
 Other templates can be included using the `include` tag:
 
 ```html+jinja
-&#123;% include "header.html" %}
+{% include "header.html" %}
 
 <main>
   Content
 </main>
 
-&#123;% include "header.html" %}
+{% include "header.html" %}
 ```
 
 ## Macros
@@ -131,16 +131,16 @@ When a macro is called, the output produced by the macro is assigned as the retu
 
 ```html+jinja
 {# define macro: #}
-&#123;% macro say_hello(name) %}Hello, &#123;&#123; name | default("stranger") }}!&#123;% endmacro %}
+{% macro say_hello(name) %}Hello, {{ name | default("stranger") }}!{% endmacro %}
 {# invoke macro #}
-&#123;&#123; say_hello('Peter') }} -> Hello, Peter!
+{{ say_hello('Peter') }} -> Hello, Peter!
 
 {# print to a variable #}
-&#123;% set hello_paul = say_hello('Paul') %}
-&#123;&#123; hello_paul }} -> Hello, Paul!
+{% set hello_paul = say_hello('Paul') %}
+{{ hello_paul }} -> Hello, Paul!
 
 {# invoke with default value %}
-&#123;&#123; say_hello() }} -> Hello, stranger!
+{{ say_hello() }} -> Hello, stranger!
 ```
 
 ### Template Inheritance
@@ -149,33 +149,33 @@ Templates inheritance enables the use of `block` tags in parent templates that c
 ```html+jinja
 {# layout.html #}
 
-<h1>&#123;% block page_title %}&#123;% endblock %}</h1>
+<h1>{% block page_title %}{% endblock %}</h1>
 
 <main>
-  &#123;% block body}
+  {% block body}
     {# This block is typically overwritten by child templates #}
-  &#123;% endblock %}
+  {% endblock %}
 </main>
 
-&#123;% block footer %}
-  &#123;% include "footer.html" %}
-&#123;% endblock %}
+{% block footer %}
+  {% include "footer.html" %}
+{% endblock %}
 ```
 
 ```html+jinja
 {# page.html #}
-&#123;% extends "layout.html" %}
+{% extends "layout.html" %}
 
-&#123;% block page_title %}Blog Index&#123;% endblock %}
-&#123;% block body %}
+{% block page_title %}Blog Index{% endblock %}
+{% block body %}
   <ul>
-    &#123;% for article in articles if article.published %}
+    {% for article in articles if article.published %}
     <div class="article">
       <li>
-        <a href="&#123;&#123; article.href | escape }}">&#123;&#123; article.title | escape }}</a>
-        written by <a href="&#123;&#123; article.user.href | escape}}">&#123;&#123; article.user.username | escape }}</a>
+        <a href="{{ article.href | escape }}">{{ article.title | escape }}</a>
+        written by <a href="{{ article.user.href | escape}}">{{ article.user.username | escape }}</a>
       </li>
-    &#123;%- endfor %}
+    {%- endfor %}
   </ul>
-&#123;% endblock %}
+{% endblock %}
 ```
