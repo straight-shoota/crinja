@@ -1,0 +1,11 @@
+version: 2.0
+
+jobs:
+  build:
+    docker:
+      - image: "alpine:3.7"
+    steps:
+      - run: echo "no test"
+    branches:
+      ignore:
+      - gh-pages
