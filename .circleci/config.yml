@@ -49,7 +49,12 @@ jobs:
       - run: shards
       - save_cache: *save_shards_cache
 
-      - run: make clean-docs deploy-docs
+      - run: apt update && apt install -y curl
+      - run:
+          command: make clean-docs deploy-docs
+          environment:
+            GIT_COMMITTER_NAME: cirlceci
+            GIT_COMMITTER_EMAIL: circle@circleci.com
 
   test-on-nightly:
     docker:
