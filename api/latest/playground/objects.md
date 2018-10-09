@@ -1,3 +1,6 @@
+---
+---
+
 # Using custom objects
 
 To make custom objects usable in Crinja, they need to include `Crinja::Object`.
