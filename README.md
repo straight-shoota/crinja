@@ -66,6 +66,26 @@ template.render # => "Hello, World!"
 template.render({ "name" => "John" }) # => "Hello, John!"
 ```
 
+### Crystal Playground
+
+Run the **Crystal playground** inside this repostitory and the server is prepared with examples of using Crinja's API (check the `Workbooks` section).
+
+```shell
+$ crystal play
+```
+
+You can also browse the examples and documentation online (without the interactive playground): [objects](https://straight-shoota.github.io/crinja/api/latest/playground/objects.html) & [features](https://straight-shoota.github.io/crinja/api/latest/playground/features.html)
+
+### Crinja Playground
+
+The **Crinja Example Server** in [`examples/server`](https://github.com/straight-shoota/crinja/tree/master/examples/server) is an HTTP server which renders Crinja templates from `examples/server/pages`. It has also an interactive playground for Crinja template testing at `/play`.
+
+```shell
+$ cd examples/server && crystal server.cr
+```
+
+Other examples can be found in the [`examples` folder](https://github.com/straight-shoota/crinja/tree/master/examples).
+
 ## Template Syntax
 
 The following is a quick overview of the template language to get you started.
@@ -177,15 +197,6 @@ Templates inheritance enables the use of `block` tags in parent templates that c
   </ul>
 {% endblock %}
 ```
-
-## Examples
-
-The **Crinja Example Server** in [`examples/server`](https://github.com/straight-shoota/crinja/tree/master/examples/server) is an HTTP server which renders Crinja templates from `examples/server/pages`. It has also an interactive playground for Crinja template testing at `/play`.
-Command to start the server: `cd examples/server && crystal server.cr`
-
-Other examples can be found in the [`examples` folder](https://github.com/straight-shoota/crinja/tree/master/examples).
-
-You can run `crystal play` inside this repostitory to run a **Crystal playground** server with prepared examples of using Crinja's API (check the `Workbooks` section).
 
 ## Crystal API
 
@@ -326,10 +337,10 @@ Jinja derived from the [Django Template Language](http://docs.djangoproject.com/
 
 ## Contributing
 
-1. Fork it ( https://github.com/straight-shoota/crinja/fork )
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
+1. Fork it (<https://github.com/straight-shoota/crinja/fork>)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
 ## Contributors
