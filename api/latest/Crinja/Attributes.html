@@ -14,7 +14,7 @@
 </script>
 
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
-  <title>Crinja::PyObject - github.com/straight-shoota/crinja</title>
+  <title>Crinja::Attributes - github.com/straight-shoota/crinja</title>
 </head>
 <body>
 
@@ -58,6 +58,16 @@
   
 </ul>
 
+      
+    </li>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Attribute" data-name="crinja::attribute">
+      <a href="../Crinja/Attribute.html">Attribute</a>
+      
+    </li>
+  
+  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/Attributes" data-name="crinja::attributes">
+      <a href="../Crinja/Attributes.html">Attributes</a>
       
     </li>
   
@@ -226,6 +236,21 @@
       
     </li>
   
+  <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Object" data-name="crinja::object">
+      <a href="../Crinja/Object.html">Object</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Object/Auto" data-name="crinja::object::auto">
+      <a href="../Crinja/Object/Auto.html">Auto</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
   <li class="parent " data-id="github.com/straight-shoota/crinja/Crinja/Operator" data-name="crinja::operator">
       <a href="../Crinja/Operator.html">Operator</a>
       
@@ -341,8 +366,8 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/straight-shoota/crinja/Crinja/PyObject" data-name="crinja::pyobject">
-      <a href="../Crinja/PyObject.html">PyObject</a>
+  <li class=" " data-id="github.com/straight-shoota/crinja/Crinja/Raw" data-name="crinja::raw">
+      <a href="../Crinja/Raw.html">Raw</a>
       
     </li>
   
@@ -685,7 +710,7 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">module</span> Crinja::PyObject
+  <span class="kind">annotation</span> Crinja::Attributes
 
 </h1>
 
@@ -695,58 +720,8 @@
 
   <h2>Overview</h2>
 
-  <p>Include this module into your classes to make them available as values in Crinja.
-There are three types of properties you can expose to the Crinja runtime:</p>
-
-<ul><li><code><a href="../Crinja/PyObject.html#getattr%28%2Awhitelist%29-macro">#getattr(name : Crinja::Value)</a> : <a href="../Crinja/Value.html">Crinja::Value</a></code>: Access an attribute (e.g. an instance property) of this class.</li><li><code>#__call__(name : String) : <a href="../Crinja/Callable.html">Crinja::Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a></code>: Expose a callable as method of this class.</li></ul>
-
-<p>Through the static comilation it is not possible to access properties or methods of an object
-directly from inside the Crinja runtime. These methods allow to define a name-based lookup and
-return the corresponding values. If the looked-up name is not defined, the return value for <code>__call__</code>
-should be <code>nil</code>. If <code><a href="../Crinja/PyObject.html#getattr-macro">getattr</a></code> returns <code>nil</code>, this will be a valid return value.</p>
-
-<p>They <em>must</em> return an <code><a href="../Crinja/Undefined.html">Undefined</a></code> if there is no attribute or item of that name. In this case,
-<code><a href="../Crinja/Resolver.html">Crinja::Resolver</a></code> may try other methods of accessing the attribute or item depending on the type
-of lookup (see <a href="http://jinja.pocoo.org/docs/2.9/templates/#notes-on-subscriptions" target="_blank"><em>Notes on Subscription</em></a> for Jinja2).</p>
-
-<p>Implementing classes <em>do not need</em> to implement these methods. They will only be accessed if an
-instance of <code><a href="../Crinja/PyObject.html">PyObject</a></code> responds to them. Otherwise it will be considered as if there are no
-attributes, items or methods defined.</p>
-
-<p>Example:</p>
-
-<pre><code><span class="k">class</span> <span class="t">User</span>
-  <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">PyObject</span>
-
-  property name : <span class="t">String</span>
-  property dob : <span class="t">Time</span>
-
-  <span class="k">def</span> <span class="m">initialize</span>(@name, @dob)
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="m">age</span>
-    (<span class="t">Time</span>.now <span class="o">-</span> @dob)
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="m">getattr</span>(attr)
-    <span class="k">case</span> attr
-    <span class="k">when</span> <span class="s">&quot;name&quot;</span>
-      name
-    <span class="k">when</span> <span class="s">&quot;age&quot;</span>
-      age.days <span class="o">/</span> <span class="n">365</span>
-    <span class="k">else</span>
-      <span class="t">Undefined</span>.<span class="k">new</span>(attr.to_s)
-    <span class="k">end</span>
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="m">__call__</span>(name)
-    <span class="k">if</span> name <span class="o">==</span> <span class="s">&quot;days_old&quot;</span>
-      ->(arguments : <span class="t">Crinja</span><span class="t">::</span><span class="t">Arguments</span>) <span class="k">do</span>
-        <span class="k">self</span>.age.days
-      <span class="k">end</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span></code></pre>
+  <p>Type annotation used by <code><a href="../Crinja/Object/Auto.html">Crinja::Object::Auto</a></code> to expose all
+methods defined in the annotated type as properties in the Crinja runtime.</p>
 
 
 
@@ -757,17 +732,6 @@ attributes, items or methods defined.</p>
 
 
 
-
-  <h2>Direct including types</h2>
-  <ul class="other-types-list">
-  
-    <li class="other-type"><a href="../Crinja/Function/Cycler.html">Crinja::Function::Cycler</a></li>
-  
-    <li class="other-type"><a href="../Crinja/Tag/For/ForLoop.html">Crinja::Tag::For::ForLoop</a></li>
-  
-    <li class="other-type"><a href="../Crinja/Tuple.html">Crinja::Tuple</a></li>
-  
-  </ul>
 
 
 
@@ -775,8 +739,8 @@ attributes, items or methods defined.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/b3d0cb6843fdbed21bf00fb086f53ae399c1018e/src/runtime/py_object.cr#L56" target="_blank">
-        runtime/py_object.cr
+      <a href="https://github.com/straight-shoota/crinja/blob/4578212801a29f833ffad4da91b940ce12c35d69/src/object.cr#L10" target="_blank">
+        object.cr
       </a>
     
     <br/>
@@ -792,25 +756,6 @@ attributes, items or methods defined.</p>
 
 
 
-  <h2>Macro Summary</h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#getattr-macro" class="signature"><strong>getattr</strong></a>
-        
-          <div class="summary"><p>This macro creates a lookup list for <code><a href="../Crinja/PyObject.html#getattr-macro">getattr</a></code> including all publicly visible properties.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#getattr%28%2Awhitelist%29-macro" class="signature"><strong>getattr</strong>(*whitelist)</a>
-        
-          <div class="summary"><p>This macro creates a lookup list for <code><a href="../Crinja/PyObject.html#getattr-macro">getattr</a></code> including only whitelisted properties.</p></div>
-        
-      </li>
-    
-  </ul>
-
 
 
 <div class="methods-inherited">
@@ -823,45 +768,6 @@ attributes, items or methods defined.</p>
 
 
 
-
-  <h2>Macro Detail</h2>
-  
-    <div class="entry-detail" id="getattr-macro">
-      <div class="signature">
-        
-        macro <strong>getattr</strong>
-
-        <a class="method-permalink" href="#getattr-macro">#</a>
-      </div>
-      
-        <div class="doc"><p>This macro creates a lookup list for <code><a href="../Crinja/PyObject.html#getattr-macro">getattr</a></code> including all publicly visible properties.</p></div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/b3d0cb6843fdbed21bf00fb086f53ae399c1018e/src/runtime/py_object.cr#L58" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="getattr(*whitelist)-macro">
-      <div class="signature">
-        
-        macro <strong>getattr</strong>(*whitelist)
-
-        <a class="method-permalink" href="#getattr%28%2Awhitelist%29-macro">#</a>
-      </div>
-      
-        <div class="doc"><p>This macro creates a lookup list for <code><a href="../Crinja/PyObject.html#getattr-macro">getattr</a></code> including only whitelisted properties.</p></div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/b3d0cb6843fdbed21bf00fb086f53ae399c1018e/src/runtime/py_object.cr#L83" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 </div>
