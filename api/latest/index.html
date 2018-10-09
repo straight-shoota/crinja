@@ -770,6 +770,20 @@ template <span class="o">=</span> env.get_template(<span class="s">&quot;index.h
 template.render <span class="c"># =&gt; &quot;Hello, World!&quot;</span>
 template.render({ <span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span> }) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
 
+<h3>Crystal Playground</h3>
+
+<p>Run the <strong>Crystal playground</strong> inside this repostitory and the server is prepared with examples of using Crinja's API (check the <code>Workbooks</code> section).</p>
+
+<pre><code class="language-shell">$ crystal play</code></pre>
+
+<h3>Crinja Playground</h3>
+
+<p>The <strong>Crinja Example Server</strong> in <a href="https://github.com/straight-shoota/crinja/tree/master/examples/server" target="_blank"><code>examples/server</code></a> is an HTTP server which renders Crinja templates from <code>examples/server/pages</code>. It has also an interactive playground for Crinja template testing at <code>/play</code>.</p>
+
+<pre><code class="language-shell">$ cd examples/server && crystal server.cr</code></pre>
+
+<p>Other examples can be found in the <a href="https://github.com/straight-shoota/crinja/tree/master/examples" target="_blank"><code>examples</code> folder</a>.</p>
+
 <h2>Template Syntax</h2>
 
 <p>The following is a quick overview of the template language to get you started.</p>
@@ -864,15 +878,6 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
     {%- endfor %}
   &lt;/ul>
 {% endblock %}</code></pre>
-
-<h2>Examples</h2>
-
-<p>The <strong>Crinja Example Server</strong> in <a href="https://github.com/straight-shoota/crinja/tree/master/examples/server" target="_blank"><code>examples/server</code></a> is an HTTP server which renders Crinja templates from <code>examples/server/pages</code>. It has also an interactive playground for Crinja template testing at <code>/play</code>.
-Command to start the server: <code>cd examples/server && crystal server.cr</code></p>
-
-<p>Other examples can be found in the <a href="https://github.com/straight-shoota/crinja/tree/master/examples" target="_blank"><code>examples</code> folder</a>.</p>
-
-<p>You can run <code>crystal play</code> inside this repostitory to run a <strong>Crystal playground</strong> server with prepared examples of using Crinja's API (check the <code>Workbooks</code> section).</p>
 
 <h2>Crystal API</h2>
 
@@ -997,7 +1002,7 @@ template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span>
 
 <h2>Contributing</h2>
 
-<ol><li>Fork it ( https://github.com/straight-shoota/crinja/fork )</li><li>Create your feature branch (git checkout -b my-new-feature)</li><li>Commit your changes (git commit -am 'Add some feature')</li><li>Push to the branch (git push origin my-new-feature)</li><li>Create a new Pull Request</li></ol>
+<ol><li>Fork it (&lt;https://github.com/straight-shoota/crinja/fork>)</li><li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li><li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li><li>Push to the branch (<code>git push origin my-new-feature</code>)</li><li>Create a new Pull Request</li></ol>
 
 <h2>Contributors</h2>
 
