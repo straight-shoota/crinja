@@ -1,10 +1,14 @@
+#! /usr/bin/env bash
+
+set -e
+
 GENERATED_DOCS_DIR="./docs"
 
 echo -e "Building docs into ${GENERATED_DOCS_DIR}"
 echo -e "Clearing ${GENERATED_DOCS_DIR} directory"
 rm -rf "${GENERATED_DOCS_DIR}"
 
-echo -e "Running `crystal docs`..."
+echo -e "Running \`crystal docs\`..."
 crystal doc src/cli.cr
 
 echo -e "Copying README.md and TEMPLATE_SYNTAX.md"
