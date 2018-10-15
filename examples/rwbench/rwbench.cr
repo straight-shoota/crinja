@@ -14,11 +14,22 @@ private class Article
   include Crinja::Object::Auto
   getter id, href, title, user, body, pub_date, published
 
+  # TODO: Remove after Crystal 0.27.0
+  @pub_date : Time
+
   def initialize(@id : Int32, @user : User)
     @href = "/article/#{@id}"
     @title = "Lorem Ipsum #{id}"
     @body = "Lorem Ipsum dolor... #{id}"
-    @pub_date = Time.epoch(Random.new.rand((10 ** 9)..(2 * 10 ** 9)))
+
+    # TODO: Remove second branch after Crystal 0.27.0
+    time = Time
+    if time.responds_to? :unix
+      @pub_date = time.unix(Random.new.rand((10 ** 9)..(2 * 10 ** 9)))
+    else
+      @pub_date = time.epoch(Random.new.rand((10 ** 9)..(2 * 10 ** 9)))
+    end
+
     @published = true
   end
 end
