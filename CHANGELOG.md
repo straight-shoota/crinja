@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to Crinja will be documented in this file.
 
+## 0.4.1 (2019-01-01)
+
+This release doesn't add any new features but fixes compatibility with Crystal 0.27.0.
+
 ## 0.4.0 (2018-10-16)
 
 This release comes with some refactorings of the public API to make it easier to use.
