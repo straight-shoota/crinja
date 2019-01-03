@@ -1,7 +1,7 @@
 class Crinja
   def self.liquid_support(config = Config.new) : Crinja
     config.liquid_compatibility_mode = true
-    #config.undefined_members = true
+    # config.undefined_members = true
 
     crinja = new(config)
 
