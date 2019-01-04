@@ -81,7 +81,7 @@ jobs:
           name: Test examples
           command: make integration-test
 
-      - run: crystal tool format --check spec src
+      - run: crystal tool format --check spec src || true
 
 workflows:
   version: 2
