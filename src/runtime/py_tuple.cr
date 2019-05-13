@@ -9,7 +9,7 @@ class Crinja::PyTuple
   def initialize(@data : Array(Value) = Array(Value).new)
   end
 
-  delegate size, unsafe_at, :<=>, to_s, :==, to: @data
+  delegate size, unsafe_fetch, :<=>, to_s, :==, to: @data
 
   def +(item : Value)
     PyTuple.from(@data, item)
