@@ -1,5 +1,5 @@
 require "spec"
-require "../../src/crinja"
+require "../src/crinja"
 
 private class SimpleAttributes
   include Crinja::Object::Auto

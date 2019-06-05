@@ -209,7 +209,7 @@ describe Crinja::Filter do
       evaluate_expression(%("0x4d32"|int(0, 8))).should eq "19762"
     end
     it "base-8" do
-      evaluate_expression(%("011"|int(0, 8))).should eq "9"
+      evaluate_expression(%("0o11"|int(0, 8))).should eq "9"
     end
     it "custom-fallback" do
       evaluate_expression(%(""|int(5))).should eq "5"
