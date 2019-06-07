@@ -18,7 +18,7 @@ private class User
     when "name"
       name
     when "age"
-      age.days / 365
+      age.days // 365
     else
       raw = attr.raw
       if raw.responds_to?(:to_i)

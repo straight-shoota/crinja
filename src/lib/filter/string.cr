@@ -14,7 +14,7 @@ module Crinja::Filter
       string
     else
       pad_width = width - string.size
-      left_pad = (pad_width / 2).floor
+      left_pad = pad_width // 2
 
       String.build do |io|
         io << " " * left_pad
