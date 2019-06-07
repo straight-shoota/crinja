@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to Crinja will be documented in this file.
 
+## 0.5.0 (2019-06-07)
+
+This release brings compatibility with Crystal 0.29.0
+
+* Rename `FeatureLibrary#aliasses` to `#aliases`
+* Add experimental support for liquid syntax with `Crinja.liquid_support`
+
 ## 0.4.1 (2019-01-01)
 
 This release doesn't add any new features but fixes compatibility with Crystal 0.27.0.
