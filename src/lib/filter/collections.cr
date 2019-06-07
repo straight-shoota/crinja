@@ -51,7 +51,7 @@ module Crinja::Filter
       slice = [] of Value
 
       num_full_slices = target.size % slices
-      per_slice = target.size / slices
+      per_slice = target.size // slices
       per_full_slice = per_slice + 1
 
       target.each do |item|

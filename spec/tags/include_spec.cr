@@ -67,7 +67,6 @@ describe Crinja::Tag::Include do
             {{ outer("FOO") }}
             TPL
 
-
       loader: Crinja::Loader::HashLoader.new({"o_printer" => "({{ o }})"})).strip.should eq "(FOO)"
   end
 
