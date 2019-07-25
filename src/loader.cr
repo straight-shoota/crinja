@@ -4,13 +4,13 @@ require "file_utils"
 abstract class Crinja::Loader
   # Get the template source, filename and reload helper for a template.
   # It's passed the environment and template name and has to return a
-  # tuple in the form ``{source, filename, uptodate}`` or raise a
+  # tuple in the form ``{source : String, filename : String?}`` or raise a
   # `TemplateNotFoundError` if it can't locate the template.
   # The source part of the returned tuple must be the source of the
   # template as string. The filename should be the name of the file on
   # the filesystem if it was loaded from there, otherwise `nil`.
   # The filename is used for the tracebacks if no loader extension is used.
-  abstract def get_source(env : Crinja, template : String) : {String, String}
+  abstract def get_source(env : Crinja, template : String) : {String, String?}
 
   # Iterates over all templates. If the loader does not support that
   # it should raise a `TypeError` which is the default behavior.
@@ -65,7 +65,7 @@ abstract class Crinja::Loader
       io << ")"
     end
 
-    def get_source(env : Crinja, template : String)
+    def get_source(env : Crinja, template : String) : {String, String}
       pieces = split_template_path(template)
       searchpaths.each do |searchpath|
         file_name = File.join(searchpath, File.join(pieces))
@@ -110,7 +110,7 @@ abstract class Crinja::Loader
     def initialize(@data)
     end
 
-    def get_source(env : Crinja, template : String)
+    def get_source(env : Crinja, template : String) : {String, String?}
       raise TemplateNotFoundError.new(template, self) unless data.has_key?(template)
 
       {data[template], nil}
@@ -143,7 +143,7 @@ abstract class Crinja::Loader
     def initialize(@mapping, @delimiter = "/")
     end
 
-    def get_source(env : Crinja, template : String)
+    def get_source(env : Crinja, template : String) : {String, String?}
       pos = template.index(@delimiter)
 
       if pos
@@ -179,7 +179,7 @@ abstract class Crinja::Loader
       new choices.map { |loader| loader.as(Loader) }
     end
 
-    def get_source(env : Crinja, template : String)
+    def get_source(env : Crinja, template : String) : {String, String?}
       choices.each do |loader|
         begin
           return loader.get_source(env, template)
