@@ -95,11 +95,12 @@ class Crinja
   # A Callable is a Crinja type object that can be called from an expression call. These include
   # functions, macros, tests and filters.
   # It can be implemented by an object or module which inherits from `CallableMod` or using a proc.
-  # In either way, the callable must respond to `#call(arguments : Arguments)` and return a `Value`
-  # and must be added to the environments feature library to be useable from template.
+  # In either way, the callable must respond to `#call(arguments : Arguments)` and return `Value` or
+  # a value accepted by `Crinja.value`.
+  # It must be added to the environment's feature library to be useable from template.
   # There are macros in `Crinja` which allow an easy implementation as a proc.
   module Callable
-    abstract def call(arguments : Arguments) : Value
+    abstract def call(arguments : Arguments)
 
     alias Proc = Arguments -> Value
 
@@ -113,7 +114,7 @@ class Crinja
       def initialize(@proc, @defaults = {} of String => Value, @name = nil)
       end
 
-      def call(arguments : Arguments)
+      def call(arguments : Arguments) : Crinja::Value
         @proc.call(arguments)
       end
     end
