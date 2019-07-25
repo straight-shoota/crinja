@@ -41,7 +41,7 @@ abstract class Crinja::Operator
       true
     end
 
-    abstract def value(env : Crinja, op1 : Value, op2 : Value) : Value
+    abstract def value(env : Crinja, op1 : Value, op2 : Value)
   end
 
   module Unary
@@ -49,7 +49,7 @@ abstract class Crinja::Operator
       true
     end
 
-    abstract def value(env : Crinja, op : Value) : Value
+    abstract def value(env : Crinja, op : Value)
   end
 
   module Logic
@@ -57,7 +57,7 @@ abstract class Crinja::Operator
       true
     end
 
-    abstract def value(env : Crinja, op1 : Value, &block : -> Value) : Value
+    abstract def value(env : Crinja, op1 : Value, &block : -> Value)
   end
 end
 
