@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.29.0">
+<meta name="generator" content="Crystal Docs 0.30.1">
 
 
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -748,7 +748,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/error.cr#L94" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/error.cr#L94" target="_blank">
         error.cr
       </a>
     
@@ -763,22 +763,22 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28token%3AParser%3A%3AToken%2Ccause%3AException%3F%3Dnil%2Ctemplate%3Dnil%29-class-method" class="signature"><strong>.new</strong>(token : Parser::Token, cause : Exception? = <span class="n">nil</span>, template = <span class="n">nil</span>)</a>
+        <a href="#new(token:Parser::Token,cause:Exception?=nil,template=nil)-class-method" class="signature"><strong>.new</strong>(token : Parser::Token, cause : Exception? = <span class="n">nil</span>, template = <span class="n">nil</span>)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28message%3AString%3F%3Dnil%2Ccause%3Dnil%29-class-method" class="signature"><strong>.new</strong>(message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>)</a>
+        <a href="#new(message:String?=nil,cause=nil)-class-method" class="signature"><strong>.new</strong>(message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28token%3AParser%3A%3AToken%2Cmessage%3AString%3F%3Dnil%2Ccause%3Dnil%2Ctemplate%3Dnil%29-class-method" class="signature"><strong>.new</strong>(token : Parser::Token, message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>, template = <span class="n">nil</span>)</a>
+        <a href="#new(token:Parser::Token,message:String?=nil,cause=nil,template=nil)-class-method" class="signature"><strong>.new</strong>(token : Parser::Token, message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>, template = <span class="n">nil</span>)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28node%3AAST%3A%3AASTNode%2Cmessage%3AString%3F%3Dnil%2Ccause%3Dnil%2Ctemplate%3Dnil%29-class-method" class="signature"><strong>.new</strong>(node : AST::ASTNode, message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>, template = <span class="n">nil</span>)</a>
+        <a href="#new(node:AST::ASTNode,message:String?=nil,cause=nil,template=nil)-class-method" class="signature"><strong>.new</strong>(node : AST::ASTNode, message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>, template = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -799,32 +799,32 @@
   <h3>Instance methods inherited from class <code><a href="../Crinja/Error.html">Crinja::Error</a></code></h3>
   
   
-    <a href="../Crinja/Error.html#at%28location_start%2Clocation_end%29-instance-method" class="tooltip">
+    <a href="../Crinja/Error.html#at(location_start,location_end)-instance-method" class="tooltip">
       <span>at(location_start, location_end)<br/>at(node)</span>
     at</a>, 
     
   
-    <a href="../Crinja/Error.html#has_location%3F-instance-method" class="tooltip">
+    <a href="../Crinja/Error.html#has_location?-instance-method" class="tooltip">
       <span>has_location?</span>
     has_location?</a>, 
     
   
-    <a href="../Crinja/Error.html#location_end%3AParser%3A%3AStreamPosition%3F-instance-method" class="tooltip">
+    <a href="../Crinja/Error.html#location_end:Parser::StreamPosition?-instance-method" class="tooltip">
       <span>location_end : Parser::StreamPosition?</span>
     location_end</a>, 
     
   
-    <a href="../Crinja/Error.html#location_start%3AParser%3A%3AStreamPosition%3F-instance-method" class="tooltip">
+    <a href="../Crinja/Error.html#location_start:Parser::StreamPosition?-instance-method" class="tooltip">
       <span>location_start : Parser::StreamPosition?</span>
     location_start</a>, 
     
   
-    <a href="../Crinja/Error.html#template%3ATemplate%3F-instance-method" class="tooltip">
+    <a href="../Crinja/Error.html#template:Template?-instance-method" class="tooltip">
       <span>template : Template?</span>
     template</a>, 
     
   
-    <a href="../Crinja/Error.html#template%3D%28template%3ATemplate%3F%29-instance-method" class="tooltip">
+    <a href="../Crinja/Error.html#template=(template:Template?)-instance-method" class="tooltip">
       <span>template=(template : Template?)</span>
     template=</a>
     
@@ -843,7 +843,7 @@
   <h3>Instance methods inherited from module <code><a href="../Crinja/SourceAttached.html">Crinja::SourceAttached</a></code></h3>
   
   
-    <a href="../Crinja/SourceAttached.html#highlight_source_code%28io%2Clines_before%3D2%2Clines_after%3D2%29-instance-method" class="tooltip">
+    <a href="../Crinja/SourceAttached.html#highlight_source_code(io,lines_before=2,lines_after=2)-instance-method" class="tooltip">
       <span>highlight_source_code(io, lines_before = <span class="n">2</span>, lines_after = <span class="n">2</span>)</span>
     highlight_source_code</a>, 
     
@@ -902,13 +902,13 @@
         
         def self.<strong>new</strong>(token : <a href="../Crinja/Parser/Token.html">Parser::Token</a>, cause : Exception? = <span class="n">nil</span>, template = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28token%3AParser%3A%3AToken%2Ccause%3AException%3F%3Dnil%2Ctemplate%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new(token:Parser::Token,cause:Exception?=nil,template=nil)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/error.cr#L95" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/error.cr#L95" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -918,13 +918,13 @@
         
         def self.<strong>new</strong>(message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28message%3AString%3F%3Dnil%2Ccause%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new(message:String?=nil,cause=nil)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/error.cr#L99" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/error.cr#L99" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -934,13 +934,13 @@
         
         def self.<strong>new</strong>(token : <a href="../Crinja/Parser/Token.html">Parser::Token</a>, message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>, template = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28token%3AParser%3A%3AToken%2Cmessage%3AString%3F%3Dnil%2Ccause%3Dnil%2Ctemplate%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new(token:Parser::Token,message:String?=nil,cause=nil,template=nil)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/error.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/error.cr#L103" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -950,13 +950,13 @@
         
         def self.<strong>new</strong>(node : <a href="../Crinja/AST/ASTNode.html">AST::ASTNode</a>, message : String? = <span class="n">nil</span>, cause = <span class="n">nil</span>, template = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28node%3AAST%3A%3AASTNode%2Cmessage%3AString%3F%3Dnil%2Ccause%3Dnil%2Ctemplate%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new(node:AST::ASTNode,message:String?=nil,cause=nil,template=nil)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/error.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/error.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.29.0">
+<meta name="generator" content="Crystal Docs 0.30.1">
 
 
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -729,7 +729,7 @@
 
   <p><code><a href="../Crinja/Value.html">Value</a></code> represents an object inside the Crinja runtime.</p>
 
-<p>It wraps a Crystal value in <code><a href="../Crinja/Value.html#raw%3ARaw-instance-method">#raw</a></code> and defines methods to access
+<p>It wraps a Crystal value in <code><a href="../Crinja/Value.html#raw:Raw-instance-method">#raw</a></code> and defines methods to access
 properties of the wrapped value while being agnostic about the
 actual type of the wrapped raw value.</p>
 
@@ -760,14 +760,14 @@ actual type of the wrapped raw value.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L100" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L100" target="_blank">
         runtime/value.cr:100
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L595" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L595" target="_blank">
         runtime/value.cr:595
       </a>
     
@@ -794,17 +794,17 @@ actual type of the wrapped raw value.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28value%3Aself%29%3Aself-class-method" class="signature"><strong>.new</strong>(value : <span class="k">self</span>) : <span class="k">self</span></a>
+        <a href="#new(value:self):self-class-method" class="signature"><strong>.new</strong>(value : <span class="k">self</span>) : <span class="k">self</span></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28raw%3ARaw%29-class-method" class="signature"><strong>.new</strong>(raw : Raw)</a>
+        <a href="#new(raw:Raw)-class-method" class="signature"><strong>.new</strong>(raw : Raw)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28value%29%3Aself-class-method" class="signature"><strong>.new</strong>(value) : <span class="k">self</span></a>
+        <a href="#new(value):self-class-method" class="signature"><strong>.new</strong>(value) : <span class="k">self</span></a>
         
       </li>
     
@@ -818,56 +818,56 @@ actual type of the wrapped raw value.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#%28other%3AValue%29-instance-method" class="signature"><strong>#<=></strong>(other : Value)</a>
+        <a href="#(other:Value)-instance-method" class="signature"><strong>#<=></strong>(other : Value)</a>
         
           <div class="summary"><p>Compares this value to <em>other</em>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%3D%3D%28other%29-instance-method" class="signature"><strong>#==</strong>(other)</a>
+        <a href="#==(other)-instance-method" class="signature"><strong>#==</strong>(other)</a>
         
           <div class="summary"><p>Returns <code>true</code> if the raw object is equal to <em>other</em>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%3D%3D%28other%3AValue%29-instance-method" class="signature"><strong>#==</strong>(other : Value)</a>
+        <a href="#==(other:Value)-instance-method" class="signature"><strong>#==</strong>(other : Value)</a>
         
           <div class="summary"><p>Returns <code>true</code> if both <code>self</code> and <em>other</em>'s raw object are equal.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%5B%5D%28index%3AInt%29%3AValue-instance-method" class="signature"><strong>#[]</strong>(index : Int) : Value</a>
+        <a href="#[](index:Int):Value-instance-method" class="signature"><strong>#[]</strong>(index : Int) : Value</a>
         
           <div class="summary"><p>Assumes the underlying value is an <code>Indexable</code> or <code>String</code> returns the element at the given index.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%5B%5D%28key%3AString%29%3AValue-instance-method" class="signature"><strong>#[]</strong>(key : String) : Value</a>
+        <a href="#[](key:String):Value-instance-method" class="signature"><strong>#[]</strong>(key : String) : Value</a>
         
           <div class="summary"><p>Assumes the underlying value has an hash-like accessor and returns the element with the given key.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%5B%5D%3F%28index%3AInt%29%3AValue%3F-instance-method" class="signature"><strong>#[]?</strong>(index : Int) : Value?</a>
+        <a href="#[]?(index:Int):Value?-instance-method" class="signature"><strong>#[]?</strong>(index : Int) : Value?</a>
         
           <div class="summary"><p>Assumes the underlying value is an <code>Indexable</code> or <code>String</code> and returns the element at the given index, or <code>nil</code> if out of bounds.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%5B%5D%3F%28key%3AString%29%3AValue%3F-instance-method" class="signature"><strong>#[]?</strong>(key : String) : Value?</a>
+        <a href="#[]?(key:String):Value?-instance-method" class="signature"><strong>#[]?</strong>(key : String) : Value?</a>
         
           <div class="summary"><p>Assumes the underlying value has an hash-like accessor returns the element with the given key, or <code>nil</code> if the key is not present.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#as_a%3AArray%28Value%29-instance-method" class="signature"><strong>#as_a</strong> : Array(Value)</a>
+        <a href="#as_a:Array(Value)-instance-method" class="signature"><strong>#as_a</strong> : Array(Value)</a>
         
           <div class="summary"><p>Checks that the underlying value is <code>Array</code>, and returns its value.</p></div>
         
@@ -881,7 +881,7 @@ actual type of the wrapped raw value.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#as_h%3ADictionary-instance-method" class="signature"><strong>#as_h</strong> : Dictionary</a>
+        <a href="#as_h:Dictionary-instance-method" class="signature"><strong>#as_h</strong> : Dictionary</a>
         
           <div class="summary"><p>Checks that the underlying value is <code>Hash</code>, and returns its value.</p></div>
         
@@ -902,14 +902,14 @@ actual type of the wrapped raw value.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#as_nil%3ANil-instance-method" class="signature"><strong>#as_nil</strong> : Nil</a>
+        <a href="#as_nil:Nil-instance-method" class="signature"><strong>#as_nil</strong> : Nil</a>
         
           <div class="summary"><p>Checks that the underlying value is <code>Nil</code>, and returns <code>nil</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#as_number%3ANumber-instance-method" class="signature"><strong>#as_number</strong> : Number</a>
+        <a href="#as_number:Number-instance-method" class="signature"><strong>#as_number</strong> : Number</a>
         
           <div class="summary"><p>Checks that the underlying value is a <code>Crinja::Number</code>, and returns its value.</p></div>
         
@@ -923,14 +923,14 @@ actual type of the wrapped raw value.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#as_s%21-instance-method" class="signature"><strong>#as_s!</strong></a>
+        <a href="#as_s!-instance-method" class="signature"><strong>#as_s!</strong></a>
         
           <div class="summary"><p>Checks that the underlying value is <code>String</code>, and returns its value.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#as_s%3F-instance-method" class="signature"><strong>#as_s?</strong></a>
+        <a href="#as_s?-instance-method" class="signature"><strong>#as_s?</strong></a>
         
           <div class="summary"><p>Checks that the underlying value is <code>String</code>, <code><a href="../Crinja/SafeString.html">SafeString</a></code> or <code>Nil</code>, and returns its value.</p></div>
         
@@ -949,14 +949,14 @@ actual type of the wrapped raw value.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#callable%3F-instance-method" class="signature"><strong>#callable?</strong></a>
+        <a href="#callable?-instance-method" class="signature"><strong>#callable?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if this value is a <code><a href="../Crinja/Callable.html">Callable</a></code></p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#each%28%26block%29-instance-method" class="signature"><strong>#each</strong>(&block)</a>
+        <a href="#each(&block)-instance-method" class="signature"><strong>#each</strong>(&block)</a>
         
           <div class="summary"><p>Assumes the underlying value is an <code>Iterable</code> and yields each of the elements or key/values, always as <code><a href="../Crinja/Value.html">Value</a></code>.</p></div>
         
@@ -977,14 +977,14 @@ actual type of the wrapped raw value.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#indexable%3F-instance-method" class="signature"><strong>#indexable?</strong></a>
+        <a href="#indexable?-instance-method" class="signature"><strong>#indexable?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if the value is a list (<code>Array</code>).</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#iterable%3F-instance-method" class="signature"><strong>#iterable?</strong></a>
+        <a href="#iterable?-instance-method" class="signature"><strong>#iterable?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if the value is iteraable.</p></div>
         
@@ -998,80 +998,80 @@ actual type of the wrapped raw value.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#mapping%3F-instance-method" class="signature"><strong>#mapping?</strong></a>
+        <a href="#mapping?-instance-method" class="signature"><strong>#mapping?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if the object is a mapping (Hash or Crinja::Object).</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#none%3F-instance-method" class="signature"><strong>#none?</strong></a>
+        <a href="#none?-instance-method" class="signature"><strong>#none?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if the value is nil.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#number%3F-instance-method" class="signature"><strong>#number?</strong></a>
+        <a href="#number?-instance-method" class="signature"><strong>#number?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if this value is a <code>Number</code></p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#pretty_print%28pp%3ACrinja%3A%3APrettyPrint%29-instance-method" class="signature"><strong>#pretty_print</strong>(pp : Crinja::PrettyPrint)</a>
+        <a href="#pretty_print(pp:Crinja::PrettyPrint)-instance-method" class="signature"><strong>#pretty_print</strong>(pp : Crinja::PrettyPrint)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#raw%3ARaw-instance-method" class="signature"><strong>#raw</strong> : Raw</a>
+        <a href="#raw:Raw-instance-method" class="signature"><strong>#raw</strong> : Raw</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#raw_each%28%26block%29-instance-method" class="signature"><strong>#raw_each</strong>(&block)</a>
+        <a href="#raw_each(&block)-instance-method" class="signature"><strong>#raw_each</strong>(&block)</a>
         
           <div class="summary"><p>Assumes the underlying value is an <code>Iterable</code> and yields each of the elements or key/values, always as <code><a href="../Crinja/Value.html">Value</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#raw_each%3A%3A%3AIterator-instance-method" class="signature"><strong>#raw_each</strong> : ::Iterator</a>
+        <a href="#raw_each:::Iterator-instance-method" class="signature"><strong>#raw_each</strong> : ::Iterator</a>
         
           <div class="summary"><p>Returns an iterator for the underlying value if it is an <code>Iterable</code>, <code>String</code> or <code><a href="../Crinja/Undefined.html">Undefined</a></code> which iterates through the items as <code><a href="../Crinja/Value.html">Value</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#sameas%3F%28other%29-instance-method" class="signature"><strong>#sameas?</strong>(other)</a>
+        <a href="#sameas?(other)-instance-method" class="signature"><strong>#sameas?</strong>(other)</a>
         
           <div class="summary"><p>Returns true if</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#sequence%3F-instance-method" class="signature"><strong>#sequence?</strong></a>
+        <a href="#sequence?-instance-method" class="signature"><strong>#sequence?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if the value is a sequence.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#size%3AInt-instance-method" class="signature"><strong>#size</strong> : Int</a>
+        <a href="#size:Int-instance-method" class="signature"><strong>#size</strong> : Int</a>
         
-          <div class="summary"><p>Assumes the underlying value responds to <code><a href="../Crinja/Value.html#size%3AInt-instance-method">#size</a></code> and returns its size.</p></div>
+          <div class="summary"><p>Assumes the underlying value responds to <code><a href="../Crinja/Value.html#size:Int-instance-method">#size</a></code> and returns its size.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#string%3F-instance-method" class="signature"><strong>#string?</strong></a>
+        <a href="#string?-instance-method" class="signature"><strong>#string?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if the value is a string.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#time%3F-instance-method" class="signature"><strong>#time?</strong></a>
+        <a href="#time?-instance-method" class="signature"><strong>#time?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if the value is a time object.</p></div>
         
@@ -1093,7 +1093,7 @@ actual type of the wrapped raw value.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#to_json%28builder%3AJSON%3A%3ABuilder%29-instance-method" class="signature"><strong>#to_json</strong>(builder : JSON::Builder)</a>
+        <a href="#to_json(builder:JSON::Builder)-instance-method" class="signature"><strong>#to_json</strong>(builder : JSON::Builder)</a>
         
       </li>
     
@@ -1105,14 +1105,14 @@ actual type of the wrapped raw value.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#truthy%3F-instance-method" class="signature"><strong>#truthy?</strong></a>
+        <a href="#truthy?-instance-method" class="signature"><strong>#truthy?</strong></a>
         
-          <div class="summary"><p>Returns <code>true</code> unless this value is <code>false</code>, <code>0</code>, <code>nil</code> or <code><a href="../Crinja/Value.html#undefined%3F-instance-method">#undefined?</a></code></p></div>
+          <div class="summary"><p>Returns <code>true</code> unless this value is <code>false</code>, <code>0</code>, <code>nil</code> or <code><a href="../Crinja/Value.html#undefined?-instance-method">#undefined?</a></code></p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#undefined%3F-instance-method" class="signature"><strong>#undefined?</strong></a>
+        <a href="#undefined?-instance-method" class="signature"><strong>#undefined?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if this value is a <code><a href="../Crinja/Undefined.html">Undefined</a></code></p></div>
         
@@ -1196,13 +1196,13 @@ actual type of the wrapped raw value.</p>
         
         def self.<strong>new</strong>(value : <span class="k">self</span>) : <span class="k">self</span>
 
-        <a class="method-permalink" href="#new%28value%3Aself%29%3Aself-class-method">#</a>
+        <a class="method-permalink" href="#new(value:self):self-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L107" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1212,13 +1212,13 @@ actual type of the wrapped raw value.</p>
         
         def self.<strong>new</strong>(raw : <a href="../Crinja/Raw.html">Raw</a>)
 
-        <a class="method-permalink" href="#new%28raw%3ARaw%29-class-method">#</a>
+        <a class="method-permalink" href="#new(raw:Raw)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L115" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L115" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1228,13 +1228,13 @@ actual type of the wrapped raw value.</p>
         
         def self.<strong>new</strong>(value) : <span class="k">self</span>
 
-        <a class="method-permalink" href="#new%28value%29%3Aself-class-method">#</a>
+        <a class="method-permalink" href="#new(value):self-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L111" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L111" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1251,7 +1251,7 @@ actual type of the wrapped raw value.</p>
         
         def <strong><=></strong>(other : <a href="../Crinja/Value.html">Value</a>)
 
-        <a class="method-permalink" href="#%28other%3AValue%29-instance-method">#</a>
+        <a class="method-permalink" href="#(other:Value)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Compares this value to <em>other</em>.</p>
@@ -1261,7 +1261,7 @@ actual type of the wrapped raw value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L463" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L463" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1271,7 +1271,7 @@ actual type of the wrapped raw value.</p>
         
         def <strong>==</strong>(other)
 
-        <a class="method-permalink" href="#%3D%3D%28other%29-instance-method">#</a>
+        <a class="method-permalink" href="#==(other)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if the raw object is equal to <em>other</em>.</p></div>
@@ -1279,7 +1279,7 @@ actual type of the wrapped raw value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L442" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L442" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1289,7 +1289,7 @@ actual type of the wrapped raw value.</p>
         
         def <strong>==</strong>(other : <a href="../Crinja/Value.html">Value</a>)
 
-        <a class="method-permalink" href="#%3D%3D%28other%3AValue%29-instance-method">#</a>
+        <a class="method-permalink" href="#==(other:Value)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if both <code>self</code> and <em>other</em>'s raw object are equal.</p></div>
@@ -1297,7 +1297,7 @@ actual type of the wrapped raw value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L437" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L437" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1307,7 +1307,7 @@ actual type of the wrapped raw value.</p>
         
         def <strong>[]</strong>(index : Int) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#%5B%5D%28index%3AInt%29%3AValue-instance-method">#</a>
+        <a class="method-permalink" href="#[](index:Int):Value-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Assumes the underlying value is an <code>Indexable</code> or <code>String</code> returns the element
@@ -1317,7 +1317,7 @@ Raises if the underlying value is not an <code>Indexable</code> or <code>String<
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L131" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L131" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1327,7 +1327,7 @@ Raises if the underlying value is not an <code>Indexable</code> or <code>String<
         
         def <strong>[]</strong>(key : String) : <a href="../Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#%5B%5D%28key%3AString%29%3AValue-instance-method">#</a>
+        <a class="method-permalink" href="#[](key:String):Value-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Assumes the underlying value has an hash-like accessor and returns the element
@@ -1337,7 +1337,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L161" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L161" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1347,7 +1347,7 @@ Raises if the underlying value is not hash-like.</p></div>
         
         def <strong>[]?</strong>(index : Int) : <a href="../Crinja/Value.html">Value</a>?
 
-        <a class="method-permalink" href="#%5B%5D%3F%28index%3AInt%29%3AValue%3F-instance-method">#</a>
+        <a class="method-permalink" href="#[]?(index:Int):Value?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Assumes the underlying value is an <code>Indexable</code> or <code>String</code> and returns the element
@@ -1357,7 +1357,7 @@ Raises if the underlying value is not an <code>Indexable</code> or <code>String<
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L145" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L145" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1367,7 +1367,7 @@ Raises if the underlying value is not an <code>Indexable</code> or <code>String<
         
         def <strong>[]?</strong>(key : String) : <a href="../Crinja/Value.html">Value</a>?
 
-        <a class="method-permalink" href="#%5B%5D%3F%28key%3AString%29%3AValue%3F-instance-method">#</a>
+        <a class="method-permalink" href="#[]?(key:String):Value?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Assumes the underlying value has an hash-like accessor returns the element
@@ -1377,7 +1377,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L168" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1387,7 +1387,7 @@ Raises if the underlying value is not hash-like.</p></div>
         
         def <strong>as_a</strong> : Array(<a href="../Crinja/Value.html">Value</a>)
 
-        <a class="method-permalink" href="#as_a%3AArray%28Value%29-instance-method">#</a>
+        <a class="method-permalink" href="#as_a:Array(Value)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Checks that the underlying value is <code>Array</code>, and returns its value. Raises otherwise.</p></div>
@@ -1395,7 +1395,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L338" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L338" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1413,7 +1413,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L374" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L374" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1423,7 +1423,7 @@ Raises if the underlying value is not hash-like.</p></div>
         
         def <strong>as_h</strong> : <a href="../Crinja/Dictionary.html">Dictionary</a>
 
-        <a class="method-permalink" href="#as_h%3ADictionary-instance-method">#</a>
+        <a class="method-permalink" href="#as_h:Dictionary-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Checks that the underlying value is <code>Hash</code>, and returns its value. Raises otherwise.</p></div>
@@ -1431,7 +1431,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L344" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L344" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1449,7 +1449,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L368" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L368" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1467,7 +1467,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L362" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L362" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1477,7 +1477,7 @@ Raises if the underlying value is not hash-like.</p></div>
         
         def <strong>as_nil</strong> : Nil
 
-        <a class="method-permalink" href="#as_nil%3ANil-instance-method">#</a>
+        <a class="method-permalink" href="#as_nil:Nil-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Checks that the underlying value is <code>Nil</code>, and returns <code>nil</code>. Raises otherwise.</p></div>
@@ -1485,7 +1485,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L309" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L309" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1495,7 +1495,7 @@ Raises if the underlying value is not hash-like.</p></div>
         
         def <strong>as_number</strong> : Number
 
-        <a class="method-permalink" href="#as_number%3ANumber-instance-method">#</a>
+        <a class="method-permalink" href="#as_number:Number-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Checks that the underlying value is a <code>Crinja::Number</code>, and returns its value. Raises otherwise.</p></div>
@@ -1503,7 +1503,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L350" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L350" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1521,7 +1521,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L315" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L315" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1531,7 +1531,7 @@ Raises if the underlying value is not hash-like.</p></div>
         
         def <strong>as_s!</strong>
 
-        <a class="method-permalink" href="#as_s%21-instance-method">#</a>
+        <a class="method-permalink" href="#as_s!-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Checks that the underlying value is <code>String</code>, and returns its value. <code><a href="../Crinja/SafeString.html">SafeString</a></code> is converted to
@@ -1540,7 +1540,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L328" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L328" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1550,7 +1550,7 @@ Raises if the underlying value is not hash-like.</p></div>
         
         def <strong>as_s?</strong>
 
-        <a class="method-permalink" href="#as_s%3F-instance-method">#</a>
+        <a class="method-permalink" href="#as_s?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Checks that the underlying value is <code>String</code>, <code><a href="../Crinja/SafeString.html">SafeString</a></code> or <code>Nil</code>, and returns its value. Raises otherwise.</p></div>
@@ -1558,7 +1558,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L321" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L321" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1576,7 +1576,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L356" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L356" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1592,7 +1592,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L379" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L379" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1602,7 +1602,7 @@ Raises if the underlying value is not hash-like.</p></div>
         
         def <strong>callable?</strong>
 
-        <a class="method-permalink" href="#callable%3F-instance-method">#</a>
+        <a class="method-permalink" href="#callable?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if this value is a <code><a href="../Crinja/Callable.html">Callable</a></code></p></div>
@@ -1610,7 +1610,7 @@ Raises if the underlying value is not hash-like.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L531" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L531" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1620,7 +1620,7 @@ Raises if the underlying value is not hash-like.</p></div>
         
         def <strong>each</strong>(&block)
 
-        <a class="method-permalink" href="#each%28%26block%29-instance-method">#</a>
+        <a class="method-permalink" href="#each(&block)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Assumes the underlying value is an <code>Iterable</code> and yields each
@@ -1629,7 +1629,7 @@ of the elements or key/values, always as <code><a href="../Crinja/Value.html">Va
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L254" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L254" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1648,7 +1648,7 @@ which iterates through the items as <code><a href="../Crinja/Value.html">Value</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L228" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L228" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1667,7 +1667,7 @@ item in the list or the first character of the string.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L174" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L174" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1677,7 +1677,7 @@ item in the list or the first character of the string.</p></div>
         
         def <strong>indexable?</strong>
 
-        <a class="method-permalink" href="#indexable%3F-instance-method">#</a>
+        <a class="method-permalink" href="#indexable?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if the value is a list (<code>Array</code>).</p></div>
@@ -1685,7 +1685,7 @@ item in the list or the first character of the string.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L547" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L547" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1695,7 +1695,7 @@ item in the list or the first character of the string.</p></div>
         
         def <strong>iterable?</strong>
 
-        <a class="method-permalink" href="#iterable%3F-instance-method">#</a>
+        <a class="method-permalink" href="#iterable?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if the value is iteraable.</p></div>
@@ -1703,7 +1703,7 @@ item in the list or the first character of the string.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L552" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L552" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1722,7 +1722,7 @@ item in the list or the last character of the string.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L189" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L189" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1732,7 +1732,7 @@ item in the list or the last character of the string.</p></div>
         
         def <strong>mapping?</strong>
 
-        <a class="method-permalink" href="#mapping%3F-instance-method">#</a>
+        <a class="method-permalink" href="#mapping?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if the object is a mapping (Hash or Crinja::Object).</p></div>
@@ -1740,7 +1740,7 @@ item in the list or the last character of the string.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L562" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L562" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1750,7 +1750,7 @@ item in the list or the last character of the string.</p></div>
         
         def <strong>none?</strong>
 
-        <a class="method-permalink" href="#none%3F-instance-method">#</a>
+        <a class="method-permalink" href="#none?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if the value is nil.</p></div>
@@ -1758,7 +1758,7 @@ item in the list or the last character of the string.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L572" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L572" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1768,7 +1768,7 @@ item in the list or the last character of the string.</p></div>
         
         def <strong>number?</strong>
 
-        <a class="method-permalink" href="#number%3F-instance-method">#</a>
+        <a class="method-permalink" href="#number?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if this value is a <code>Number</code></p></div>
@@ -1776,7 +1776,7 @@ item in the list or the last character of the string.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L536" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L536" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1786,13 +1786,13 @@ item in the list or the last character of the string.</p></div>
         
         def <strong>pretty_print</strong>(pp : Crinja::PrettyPrint)
 
-        <a class="method-permalink" href="#pretty_print%28pp%3ACrinja%3A%3APrettyPrint%29-instance-method">#</a>
+        <a class="method-permalink" href="#pretty_print(pp:Crinja::PrettyPrint)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L408" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L408" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1802,13 +1802,13 @@ item in the list or the last character of the string.</p></div>
         
         def <strong>raw</strong> : <a href="../Crinja/Raw.html">Raw</a>
 
-        <a class="method-permalink" href="#raw%3ARaw-instance-method">#</a>
+        <a class="method-permalink" href="#raw:Raw-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L107" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1818,7 +1818,7 @@ item in the list or the last character of the string.</p></div>
         
         def <strong>raw_each</strong>(&block)
 
-        <a class="method-permalink" href="#raw_each%28%26block%29-instance-method">#</a>
+        <a class="method-permalink" href="#raw_each(&block)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Assumes the underlying value is an <code>Iterable</code> and yields each
@@ -1827,7 +1827,7 @@ of the elements or key/values, always as <code><a href="../Crinja/Value.html">Va
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L234" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L234" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1837,7 +1837,7 @@ of the elements or key/values, always as <code><a href="../Crinja/Value.html">Va
         
         def <strong>raw_each</strong> : ::Iterator
 
-        <a class="method-permalink" href="#raw_each%3A%3A%3AIterator-instance-method">#</a>
+        <a class="method-permalink" href="#raw_each:::Iterator-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns an iterator for the underlying value if it is an <code>Iterable</code>, <code>String</code> or <code><a href="../Crinja/Undefined.html">Undefined</a></code>
@@ -1846,7 +1846,7 @@ which iterates through the items as <code><a href="../Crinja/Value.html">Value</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L203" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L203" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1856,7 +1856,7 @@ which iterates through the items as <code><a href="../Crinja/Value.html">Value</
         
         def <strong>sameas?</strong>(other)
 
-        <a class="method-permalink" href="#sameas%3F%28other%29-instance-method">#</a>
+        <a class="method-permalink" href="#sameas?(other)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns true if</p></div>
@@ -1864,7 +1864,7 @@ which iterates through the items as <code><a href="../Crinja/Value.html">Value</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L577" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L577" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1874,7 +1874,7 @@ which iterates through the items as <code><a href="../Crinja/Value.html">Value</
         
         def <strong>sequence?</strong>
 
-        <a class="method-permalink" href="#sequence%3F-instance-method">#</a>
+        <a class="method-permalink" href="#sequence?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if the value is a sequence.</p>
@@ -1884,7 +1884,7 @@ which iterates through the items as <code><a href="../Crinja/Value.html">Value</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L542" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L542" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1894,16 +1894,16 @@ which iterates through the items as <code><a href="../Crinja/Value.html">Value</
         
         def <strong>size</strong> : Int
 
-        <a class="method-permalink" href="#size%3AInt-instance-method">#</a>
+        <a class="method-permalink" href="#size:Int-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Assumes the underlying value responds to <code><a href="../Crinja/Value.html#size%3AInt-instance-method">#size</a></code> and returns
+        <div class="doc"><p>Assumes the underlying value responds to <code><a href="../Crinja/Value.html#size:Int-instance-method">#size</a></code> and returns
 its size.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L120" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L120" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1913,7 +1913,7 @@ its size.</p></div>
         
         def <strong>string?</strong>
 
-        <a class="method-permalink" href="#string%3F-instance-method">#</a>
+        <a class="method-permalink" href="#string?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if the value is a string.</p></div>
@@ -1921,7 +1921,7 @@ its size.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L557" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L557" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1931,7 +1931,7 @@ its size.</p></div>
         
         def <strong>time?</strong>
 
-        <a class="method-permalink" href="#time%3F-instance-method">#</a>
+        <a class="method-permalink" href="#time?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if the value is a time object.</p></div>
@@ -1939,7 +1939,7 @@ its size.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L567" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L567" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1955,7 +1955,7 @@ its size.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L389" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L389" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1971,7 +1971,7 @@ its size.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L510" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L510" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1987,7 +1987,7 @@ its size.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L500" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L500" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1997,13 +1997,13 @@ its size.</p></div>
         
         def <strong>to_json</strong>(builder : JSON::Builder)
 
-        <a class="method-permalink" href="#to_json%28builder%3AJSON%3A%3ABuilder%29-instance-method">#</a>
+        <a class="method-permalink" href="#to_json(builder:JSON::Builder)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L426" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L426" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2021,7 +2021,7 @@ its size.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L431" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L431" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2031,15 +2031,15 @@ its size.</p></div>
         
         def <strong>truthy?</strong>
 
-        <a class="method-permalink" href="#truthy%3F-instance-method">#</a>
+        <a class="method-permalink" href="#truthy?-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Returns <code>true</code> unless this value is <code>false</code>, <code>0</code>, <code>nil</code> or <code><a href="../Crinja/Value.html#undefined%3F-instance-method">#undefined?</a></code></p></div>
+        <div class="doc"><p>Returns <code>true</code> unless this value is <code>false</code>, <code>0</code>, <code>nil</code> or <code><a href="../Crinja/Value.html#undefined?-instance-method">#undefined?</a></code></p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L521" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L521" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2049,7 +2049,7 @@ its size.</p></div>
         
         def <strong>undefined?</strong>
 
-        <a class="method-permalink" href="#undefined%3F-instance-method">#</a>
+        <a class="method-permalink" href="#undefined?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if this value is a <code><a href="../Crinja/Undefined.html">Undefined</a></code></p></div>
@@ -2057,7 +2057,7 @@ its size.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L526" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L526" target="_blank">View source</a>]
         
       </div>
     </div>

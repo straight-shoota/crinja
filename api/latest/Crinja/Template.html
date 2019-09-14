@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.29.0">
+<meta name="generator" content="Crystal Docs 0.30.1">
 
 
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -730,7 +730,7 @@
   <p>This class represents a compiled template and is used to evaluate it.</p>
 
 <p>Normally the template object is generated from an <code><a href="../Crinja.html">Crinja</a></code> environment
-by <code><a href="../Crinja.html#from_string%28string%3AString%29-instance-method">Crinja#from_string</a></code> or <code><a href="../Crinja.html#get_template%28name%3AString%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method">Crinja#get_template</a></code>. But it also has a constructor
+by <code><a href="../Crinja.html#from_string(string:String)-instance-method">Crinja#from_string</a></code> or <code><a href="../Crinja.html#get_template(name:String,parent=nil,globals=nil)-instance-method">Crinja#get_template</a></code>. But it also has a constructor
 that makes it possible to create a template instance directly.</p>
 
 <p>Every template object has a few methods and members that are guaranteed to exist.
@@ -753,7 +753,7 @@ Modifications on the object are not supported.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L10" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L10" target="_blank">
         template.cr
       </a>
     
@@ -768,7 +768,7 @@ Modifications on the object are not supported.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28source%3AString%2Cenv%3ACrinja%3DCrinja.new%2Cname%3AString%3D%26quot%3B%26quot%3B%2Cfilename%3AString%3F%3Dnil%2Crun_parser%3Dtrue%29-class-method" class="signature"><strong>.new</strong>(source : String, env : Crinja = <span class="t">Crinja</span>.<span class="k">new</span>, name : String = <span class="s">&quot;&quot;</span>, filename : String? = <span class="n">nil</span>, run_parser = <span class="n">true</span>)</a>
+        <a href="#new(source:String,env:Crinja=Crinja.new,name:String=&quot;&quot;,filename:String?=nil,run_parser=true)-class-method" class="signature"><strong>.new</strong>(source : String, env : Crinja = <span class="t">Crinja</span>.<span class="k">new</span>, name : String = <span class="s">&quot;&quot;</span>, filename : String? = <span class="n">nil</span>, run_parser = <span class="n">true</span>)</a>
         
           <div class="summary"><p>Creates a new template.</p></div>
         
@@ -784,70 +784,70 @@ Modifications on the object are not supported.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#dynamic%3F-instance-method" class="signature"><strong>#dynamic?</strong></a>
+        <a href="#dynamic?-instance-method" class="signature"><strong>#dynamic?</strong></a>
         
           <div class="summary"><p>Returns <code>true</code> if this template contains a template expression.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#env%3ACrinja-instance-method" class="signature"><strong>#env</strong> : Crinja</a>
+        <a href="#env:Crinja-instance-method" class="signature"><strong>#env</strong> : Crinja</a>
         
           <div class="summary"><p>Crinja environment in which this template is loaded.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#filename%3AString%3F-instance-method" class="signature"><strong>#filename</strong> : String?</a>
+        <a href="#filename:String?-instance-method" class="signature"><strong>#filename</strong> : String?</a>
         
           <div class="summary"><p>The filename of the template on the file system if it was loaded from there.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#macros%3AHash%28String%2CTag%3A%3AMacro%3A%3AMacroFunction%29-instance-method" class="signature"><strong>#macros</strong> : Hash(String, Tag::Macro::MacroFunction)</a>
+        <a href="#macros:Hash(String,Tag::Macro::MacroFunction)-instance-method" class="signature"><strong>#macros</strong> : Hash(String, Tag::Macro::MacroFunction)</a>
         
           <div class="summary"><p>This hash gives access to all macros defined by this template.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
+        <a href="#name:String-instance-method" class="signature"><strong>#name</strong> : String</a>
         
           <div class="summary"><p>The loading name of the template.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#nodes%3AAST%3A%3ANodeList-instance-method" class="signature"><strong>#nodes</strong> : AST::NodeList</a>
+        <a href="#nodes:AST::NodeList-instance-method" class="signature"><strong>#nodes</strong> : AST::NodeList</a>
         
           <div class="summary"><p>Returns the root node of this template's abstract syntax tree.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#render%28io%3AIO%2Cenv%3ACrinja%29-instance-method" class="signature"><strong>#render</strong>(io : IO, env : Crinja)</a>
+        <a href="#render(io:IO,env:Crinja)-instance-method" class="signature"><strong>#render</strong>(io : IO, env : Crinja)</a>
         
           <div class="summary"><p>Renders this template to <em>io</em> in the environment <em>env</em>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#render%28io%3AIO%2Cbindings%3Dnil%29-instance-method" class="signature"><strong>#render</strong>(io : IO, bindings = <span class="n">nil</span>)</a>
+        <a href="#render(io:IO,bindings=nil)-instance-method" class="signature"><strong>#render</strong>(io : IO, bindings = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Renders this template to <em>io</em> using <em>bindings</em> as local variables scope.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#render%28bindings%3Dnil%29-instance-method" class="signature"><strong>#render</strong>(bindings = <span class="n">nil</span>)</a>
+        <a href="#render(bindings=nil)-instance-method" class="signature"><strong>#render</strong>(bindings = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Renders this template as a <code>String</code> using <em>bindings</em> as local variables scope.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#source%3AString-instance-method" class="signature"><strong>#source</strong> : String</a>
+        <a href="#source:String-instance-method" class="signature"><strong>#source</strong> : String</a>
         
           <div class="summary"><p>Source string of this template.</p></div>
         
@@ -891,7 +891,7 @@ Modifications on the object are not supported.</p>
         
         def self.<strong>new</strong>(source : String, env : <a href="../Crinja.html">Crinja</a> = <span class="t">Crinja</span>.<span class="k">new</span>, name : String = <span class="s">&quot;&quot;</span>, filename : String? = <span class="n">nil</span>, run_parser = <span class="n">true</span>)
 
-        <a class="method-permalink" href="#new%28source%3AString%2Cenv%3ACrinja%3DCrinja.new%2Cname%3AString%3D%26quot%3B%26quot%3B%2Cfilename%3AString%3F%3Dnil%2Crun_parser%3Dtrue%29-class-method">#</a>
+        <a class="method-permalink" href="#new(source:String,env:Crinja=Crinja.new,name:String=&quot;&quot;,filename:String?=nil,run_parser=true)-class-method">#</a>
       </div>
       
         <div class="doc"><p>Creates a new template.</p></div>
@@ -899,7 +899,7 @@ Modifications on the object are not supported.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -916,7 +916,7 @@ Modifications on the object are not supported.</p>
         
         def <strong>dynamic?</strong>
 
-        <a class="method-permalink" href="#dynamic%3F-instance-method">#</a>
+        <a class="method-permalink" href="#dynamic?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns <code>true</code> if this template contains a template expression. If <code>false</code>, this template is a fixed string and will always render the same output.</p></div>
@@ -924,7 +924,7 @@ Modifications on the object are not supported.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L76" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L76" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -934,7 +934,7 @@ Modifications on the object are not supported.</p>
         
         def <strong>env</strong> : <a href="../Crinja.html">Crinja</a>
 
-        <a class="method-permalink" href="#env%3ACrinja-instance-method">#</a>
+        <a class="method-permalink" href="#env:Crinja-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Crinja environment in which this template is loaded.</p></div>
@@ -942,7 +942,7 @@ Modifications on the object are not supported.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -952,7 +952,7 @@ Modifications on the object are not supported.</p>
         
         def <strong>filename</strong> : String?
 
-        <a class="method-permalink" href="#filename%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#filename:String?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>The filename of the template on the file system if it was loaded from there. Otherwise this is <code>nil</code>.</p></div>
@@ -960,7 +960,7 @@ Modifications on the object are not supported.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -970,7 +970,7 @@ Modifications on the object are not supported.</p>
         
         def <strong>macros</strong> : Hash(String, <a href="../Crinja/Tag/Macro/MacroFunction.html">Tag::Macro::MacroFunction</a>)
 
-        <a class="method-permalink" href="#macros%3AHash%28String%2CTag%3A%3AMacro%3A%3AMacroFunction%29-instance-method">#</a>
+        <a class="method-permalink" href="#macros:Hash(String,Tag::Macro::MacroFunction)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>This hash gives access to all macros defined by this template.</p></div>
@@ -978,7 +978,7 @@ Modifications on the object are not supported.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -988,7 +988,7 @@ Modifications on the object are not supported.</p>
         
         def <strong>name</strong> : String
 
-        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#name:String-instance-method">#</a>
       </div>
       
         <div class="doc"><p>The loading name of the template. If the template was loaded from a string this is <code>nil</code>.</p></div>
@@ -996,7 +996,7 @@ Modifications on the object are not supported.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1006,7 +1006,7 @@ Modifications on the object are not supported.</p>
         
         def <strong>nodes</strong> : <a href="../Crinja/AST/NodeList.html">AST::NodeList</a>
 
-        <a class="method-permalink" href="#nodes%3AAST%3A%3ANodeList-instance-method">#</a>
+        <a class="method-permalink" href="#nodes:AST::NodeList-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns the root node of this template's abstract syntax tree.</p></div>
@@ -1014,7 +1014,7 @@ Modifications on the object are not supported.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1024,7 +1024,7 @@ Modifications on the object are not supported.</p>
         
         def <strong>render</strong>(io : IO, env : <a href="../Crinja.html">Crinja</a>)
 
-        <a class="method-permalink" href="#render%28io%3AIO%2Cenv%3ACrinja%29-instance-method">#</a>
+        <a class="method-permalink" href="#render(io:IO,env:Crinja)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Renders this template to <em>io</em> in the environment <em>env</em>.
@@ -1033,7 +1033,7 @@ This method might return unexpected results if <em>env</em> differs from the ori
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1043,7 +1043,7 @@ This method might return unexpected results if <em>env</em> differs from the ori
         
         def <strong>render</strong>(io : IO, bindings = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#render%28io%3AIO%2Cbindings%3Dnil%29-instance-method">#</a>
+        <a class="method-permalink" href="#render(io:IO,bindings=nil)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Renders this template to <em>io</em> using <em>bindings</em> as local variables scope.</p></div>
@@ -1051,7 +1051,7 @@ This method might return unexpected results if <em>env</em> differs from the ori
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L59" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1061,7 +1061,7 @@ This method might return unexpected results if <em>env</em> differs from the ori
         
         def <strong>render</strong>(bindings = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#render%28bindings%3Dnil%29-instance-method">#</a>
+        <a class="method-permalink" href="#render(bindings=nil)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Renders this template as a <code>String</code> using <em>bindings</em> as local variables scope.</p></div>
@@ -1069,7 +1069,7 @@ This method might return unexpected results if <em>env</em> differs from the ori
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1079,7 +1079,7 @@ This method might return unexpected results if <em>env</em> differs from the ori
         
         def <strong>source</strong> : String
 
-        <a class="method-permalink" href="#source%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#source:String-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Source string of this template.</p></div>
@@ -1087,7 +1087,7 @@ This method might return unexpected results if <em>env</em> differs from the ori
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/template.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/template.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>

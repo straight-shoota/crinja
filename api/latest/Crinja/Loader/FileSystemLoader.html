@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.29.0">
+<meta name="generator" content="Crystal Docs 0.30.1">
 
 
 <link href="../../css/style.css" rel="stylesheet" type="text/css">
@@ -749,7 +749,7 @@ given order.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L46" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L46" target="_blank">
         loader.cr
       </a>
     
@@ -764,16 +764,16 @@ given order.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28searchpath%3AString%3DFileUtils.pwd%2Cencoding%3Dnil%2Cfollowlinks%3Dfalse%29-class-method" class="signature"><strong>.new</strong>(searchpath : String = <span class="t">FileUtils</span>.pwd, encoding = <span class="n">nil</span>, followlinks = <span class="n">false</span>)</a>
+        <a href="#new(searchpath:String=FileUtils.pwd,encoding=nil,followlinks=false)-class-method" class="signature"><strong>.new</strong>(searchpath : String = <span class="t">FileUtils</span>.pwd, encoding = <span class="n">nil</span>, followlinks = <span class="n">false</span>)</a>
         
-          <div class="summary"><p>The default encoding is <code>nil</code> which can be changed by setting the <code><a href="../../Crinja/Loader/FileSystemLoader.html#encoding%3AString%3F-instance-method">#encoding</a></code> parameter to something else.</p></div>
+          <div class="summary"><p>The default encoding is <code>nil</code> which can be changed by setting the <code><a href="../../Crinja/Loader/FileSystemLoader.html#encoding:String?-instance-method">#encoding</a></code> parameter to something else.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28searchpaths%2Cencoding%3Dnil%2Cfollowlinks%3Dfalse%29-class-method" class="signature"><strong>.new</strong>(searchpaths, encoding = <span class="n">nil</span>, followlinks = <span class="n">false</span>)</a>
+        <a href="#new(searchpaths,encoding=nil,followlinks=false)-class-method" class="signature"><strong>.new</strong>(searchpaths, encoding = <span class="n">nil</span>, followlinks = <span class="n">false</span>)</a>
         
-          <div class="summary"><p>The default encoding is <code>nil</code> which can be changed by setting the <code><a href="../../Crinja/Loader/FileSystemLoader.html#encoding%3AString%3F-instance-method">#encoding</a></code> parameter to something else.</p></div>
+          <div class="summary"><p>The default encoding is <code>nil</code> which can be changed by setting the <code><a href="../../Crinja/Loader/FileSystemLoader.html#encoding:String?-instance-method">#encoding</a></code> parameter to something else.</p></div>
         
       </li>
     
@@ -787,17 +787,17 @@ given order.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#encoding%3AString%3F-instance-method" class="signature"><strong>#encoding</strong> : String?</a>
+        <a href="#encoding:String?-instance-method" class="signature"><strong>#encoding</strong> : String?</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#followlinks%3ABool-instance-method" class="signature"><strong>#followlinks</strong> : Bool</a>
+        <a href="#followlinks:Bool-instance-method" class="signature"><strong>#followlinks</strong> : Bool</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%29-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String)</a>
+        <a href="#get_source(env:Crinja,template:String):::Tuple(String,String)-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String)</a>
         
       </li>
     
@@ -807,12 +807,12 @@ given order.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#searchpaths%3AArray%28String%29-instance-method" class="signature"><strong>#searchpaths</strong> : Array(String)</a>
+        <a href="#searchpaths:Array(String)-instance-method" class="signature"><strong>#searchpaths</strong> : Array(String)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s%28io%29-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
+        <a href="#to_s(io)-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
         
       </li>
     
@@ -829,17 +829,17 @@ given order.</p>
   <h3>Instance methods inherited from class <code><a href="../../Crinja/Loader.html">Crinja::Loader</a></code></h3>
   
   
-    <a href="../../Crinja/Loader.html#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%3F%29-instance-method" class="tooltip">
+    <a href="../../Crinja/Loader.html#get_source(env:Crinja,template:String):::Tuple(String,String?)-instance-method" class="tooltip">
       <span>get_source(env : Crinja, template : String) : ::Tuple(String, String?)</span>
     get_source</a>, 
     
   
-    <a href="../../Crinja/Loader.html#list_templates%3AIterable%28String%29-instance-method" class="tooltip">
+    <a href="../../Crinja/Loader.html#list_templates:Iterable(String)-instance-method" class="tooltip">
       <span>list_templates : Iterable(String)</span>
     list_templates</a>, 
     
   
-    <a href="../../Crinja/Loader.html#load%28env%2Cname%29-instance-method" class="tooltip">
+    <a href="../../Crinja/Loader.html#load(env,name)-instance-method" class="tooltip">
       <span>load(env, name)</span>
     load</a>
     
@@ -883,17 +883,17 @@ given order.</p>
         
         def self.<strong>new</strong>(searchpath : String = <span class="t">FileUtils</span>.pwd, encoding = <span class="n">nil</span>, followlinks = <span class="n">false</span>)
 
-        <a class="method-permalink" href="#new%28searchpath%3AString%3DFileUtils.pwd%2Cencoding%3Dnil%2Cfollowlinks%3Dfalse%29-class-method">#</a>
+        <a class="method-permalink" href="#new(searchpath:String=FileUtils.pwd,encoding=nil,followlinks=false)-class-method">#</a>
       </div>
       
         <div class="doc"><p>The default encoding is <code>nil</code> which can be changed
-by setting the <code><a href="../../Crinja/Loader/FileSystemLoader.html#encoding%3AString%3F-instance-method">#encoding</a></code> parameter to something else.
+by setting the <code><a href="../../Crinja/Loader/FileSystemLoader.html#encoding:String?-instance-method">#encoding</a></code> parameter to something else.
 To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</code></p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L58" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -903,17 +903,17 @@ To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</
         
         def self.<strong>new</strong>(searchpaths, encoding = <span class="n">nil</span>, followlinks = <span class="n">false</span>)
 
-        <a class="method-permalink" href="#new%28searchpaths%2Cencoding%3Dnil%2Cfollowlinks%3Dfalse%29-class-method">#</a>
+        <a class="method-permalink" href="#new(searchpaths,encoding=nil,followlinks=false)-class-method">#</a>
       </div>
       
         <div class="doc"><p>The default encoding is <code>nil</code> which can be changed
-by setting the <code><a href="../../Crinja/Loader/FileSystemLoader.html#encoding%3AString%3F-instance-method">#encoding</a></code> parameter to something else.
+by setting the <code><a href="../../Crinja/Loader/FileSystemLoader.html#encoding:String?-instance-method">#encoding</a></code> parameter to something else.
 To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</code></p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L54" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L54" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -930,13 +930,13 @@ To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</
         
         def <strong>encoding</strong> : String?
 
-        <a class="method-permalink" href="#encoding%3AString%3F-instance-method">#</a>
+        <a class="method-permalink" href="#encoding:String?-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L50" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -946,13 +946,13 @@ To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</
         
         def <strong>followlinks</strong> : Bool
 
-        <a class="method-permalink" href="#followlinks%3ABool-instance-method">#</a>
+        <a class="method-permalink" href="#followlinks:Bool-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -962,13 +962,13 @@ To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</
         
         def <strong>get_source</strong>(env : <a href="../../Crinja.html">Crinja</a>, template : String) : ::Tuple(String, String)
 
-        <a class="method-permalink" href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%29-instance-method">#</a>
+        <a class="method-permalink" href="#get_source(env:Crinja,template:String):::Tuple(String,String)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L68" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L68" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -984,7 +984,7 @@ To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L86" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L86" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -994,13 +994,13 @@ To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</
         
         def <strong>searchpaths</strong> : Array(String)
 
-        <a class="method-permalink" href="#searchpaths%3AArray%28String%29-instance-method">#</a>
+        <a class="method-permalink" href="#searchpaths:Array(String)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1010,13 +1010,13 @@ To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</
         
         def <strong>to_s</strong>(io)
 
-        <a class="method-permalink" href="#to_s%28io%29-instance-method">#</a>
+        <a class="method-permalink" href="#to_s(io)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>

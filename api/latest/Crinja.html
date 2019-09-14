@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.29.0">
+<meta name="generator" content="Crystal Docs 0.30.1">
 
 
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -762,49 +762,49 @@ and functions.</p>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/crinja.cr#L12" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/crinja.cr#L12" target="_blank">
         crinja.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/undefined.cr#L1" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/undefined.cr#L1" target="_blank">
         runtime/undefined.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/callable.cr#L3" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/callable.cr#L3" target="_blank">
         runtime/callable.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L6" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L6" target="_blank">
         runtime/value.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L7" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L7" target="_blank">
         environment.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/visitor/html.cr#L3" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/visitor/html.cr#L3" target="_blank">
         visitor/html.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/visitor/inspector.cr#L3" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/visitor/inspector.cr#L3" target="_blank">
         visitor/inspector.cr
       </a>
     
@@ -836,28 +836,28 @@ and functions.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28context%3DContext.new%2Cconfig%3DConfig.new%2Cloader%3DLoader%3A%3AFileSystemLoader.new%2Ccache%3DTemplateCache%3A%3AInMemory.new%2C%26block%29-class-method" class="signature"><strong>.new</strong>(context = <span class="t">Context</span>.<span class="k">new</span>, config = <span class="t">Config</span>.<span class="k">new</span>, loader = <span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>, cache = <span class="t">TemplateCache</span><span class="t">::</span><span class="t">InMemory</span>.<span class="k">new</span>, &block)</a>
+        <a href="#new(context=Context.new,config=Config.new,loader=Loader::FileSystemLoader.new,cache=TemplateCache::InMemory.new,&block)-class-method" class="signature"><strong>.new</strong>(context = <span class="t">Context</span>.<span class="k">new</span>, config = <span class="t">Config</span>.<span class="k">new</span>, loader = <span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>, cache = <span class="t">TemplateCache</span><span class="t">::</span><span class="t">InMemory</span>.<span class="k">new</span>, &block)</a>
         
           <div class="summary"><p>Creates a new environment and yields <code>self</code> for configuration.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28original%3ACrinja%29-class-method" class="signature"><strong>.new</strong>(original : Crinja)</a>
+        <a href="#new(original:Crinja)-class-method" class="signature"><strong>.new</strong>(original : Crinja)</a>
         
           <div class="summary"><p>Creates a new environment with the context and configuration from the <em>original</em> environment.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28config%3AConfig%2Cloader%3DLoader%3A%3AFileSystemLoader.new%2Ccache%3DTemplateCache%3A%3AInMemory.new%29-class-method" class="signature"><strong>.new</strong>(config : Config, loader = <span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>, cache = <span class="t">TemplateCache</span><span class="t">::</span><span class="t">InMemory</span>.<span class="k">new</span>)</a>
+        <a href="#new(config:Config,loader=Loader::FileSystemLoader.new,cache=TemplateCache::InMemory.new)-class-method" class="signature"><strong>.new</strong>(config : Config, loader = <span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>, cache = <span class="t">TemplateCache</span><span class="t">::</span><span class="t">InMemory</span>.<span class="k">new</span>)</a>
         
           <div class="summary"><p>Creates a new environment from <em>config</em>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28context%3DContext.new%2Cconfig%3DConfig.new%2Cloader%3DLoader%3A%3AFileSystemLoader.new%2Ccache%3DTemplateCache%3A%3AInMemory.new%29-class-method" class="signature"><strong>.new</strong>(context = <span class="t">Context</span>.<span class="k">new</span>, config = <span class="t">Config</span>.<span class="k">new</span>, loader = <span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>, cache = <span class="t">TemplateCache</span><span class="t">::</span><span class="t">InMemory</span>.<span class="k">new</span>)</a>
+        <a href="#new(context=Context.new,config=Config.new,loader=Loader::FileSystemLoader.new,cache=TemplateCache::InMemory.new)-class-method" class="signature"><strong>.new</strong>(context = <span class="t">Context</span>.<span class="k">new</span>, config = <span class="t">Config</span>.<span class="k">new</span>, loader = <span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>, cache = <span class="t">TemplateCache</span><span class="t">::</span><span class="t">InMemory</span>.<span class="k">new</span>)</a>
         
           <div class="summary"><p>Creates a new environment with default values.</p></div>
         
@@ -871,33 +871,33 @@ and functions.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#dictionary%28object%29%3ADictionary-class-method" class="signature"><strong>.dictionary</strong>(object) : Dictionary</a>
+        <a href="#dictionary(object):Dictionary-class-method" class="signature"><strong>.dictionary</strong>(object) : Dictionary</a>
         
           <div class="summary"><p>Casts an object with hash-like interface to <code><a href="Crinja/Dictionary.html">Dictionary</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#render%28io%3AIO%2Ctemplate%2Cvariables%3Dnil%2Cloader%3Dnil%2Cconfig%3Dnil%29-class-method" class="signature"><strong>.render</strong>(io : IO, template, variables = <span class="n">nil</span>, loader = <span class="n">nil</span>, config = <span class="n">nil</span>)</a>
+        <a href="#render(io:IO,template,variables=nil,loader=nil,config=nil)-class-method" class="signature"><strong>.render</strong>(io : IO, template, variables = <span class="n">nil</span>, loader = <span class="n">nil</span>, config = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Render Crinja template <em>template</em> to an <code>IO</code> <em>io</em>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#render%28template%2Cvariables%3Dnil%2Cloader%3Dnil%2Cconfig%3Dnil%29%3AString-class-method" class="signature"><strong>.render</strong>(template, variables = <span class="n">nil</span>, loader = <span class="n">nil</span>, config = <span class="n">nil</span>) : String</a>
+        <a href="#render(template,variables=nil,loader=nil,config=nil):String-class-method" class="signature"><strong>.render</strong>(template, variables = <span class="n">nil</span>, loader = <span class="n">nil</span>, config = <span class="n">nil</span>) : String</a>
         
           <div class="summary"><p>Render Crinja template <em>template</em> to a String.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#value%28value%29%3AValue-class-method" class="signature"><strong>.value</strong>(value) : Value</a>
+        <a href="#value(value):Value-class-method" class="signature"><strong>.value</strong>(value) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#variables%28object%29%3AVariables-class-method" class="signature"><strong>.variables</strong>(object) : Variables</a>
+        <a href="#variables(object):Variables-class-method" class="signature"><strong>.variables</strong>(object) : Variables</a>
         
           <div class="summary"><p>Casts an object with hash-like interface to <code><a href="Crinja/Variables.html">Variables</a></code>, which can be used for name lookup.</p></div>
         
@@ -911,57 +911,57 @@ and functions.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#cache%3ATemplateCache-instance-method" class="signature"><strong>#cache</strong> : TemplateCache</a>
+        <a href="#cache:TemplateCache-instance-method" class="signature"><strong>#cache</strong> : TemplateCache</a>
         
           <div class="summary"><p>A cache where parsed templates are stored.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#cache%3D%28cache%3ATemplateCache%29-instance-method" class="signature"><strong>#cache=</strong>(cache : TemplateCache)</a>
+        <a href="#cache=(cache:TemplateCache)-instance-method" class="signature"><strong>#cache=</strong>(cache : TemplateCache)</a>
         
           <div class="summary"><p>A cache where parsed templates are stored.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#config%3AConfig-instance-method" class="signature"><strong>#config</strong> : Config</a>
+        <a href="#config:Config-instance-method" class="signature"><strong>#config</strong> : Config</a>
         
           <div class="summary"><p>The configuration for this environment.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#context%3AContext-instance-method" class="signature"><strong>#context</strong> : Context</a>
+        <a href="#context:Context-instance-method" class="signature"><strong>#context</strong> : Context</a>
         
           <div class="summary"><p>The current context in which evaluation happens.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#errors%3AArray%28Exception%29-instance-method" class="signature"><strong>#errors</strong> : Array(Exception)</a>
+        <a href="#errors:Array(Exception)-instance-method" class="signature"><strong>#errors</strong> : Array(Exception)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#errors%3D%28errors%3AArray%28Exception%29%29-instance-method" class="signature"><strong>#errors=</strong>(errors : Array(Exception))</a>
+        <a href="#errors=(errors:Array(Exception))-instance-method" class="signature"><strong>#errors=</strong>(errors : Array(Exception))</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#evaluate%28expression%2Cbindings%3Dnil%29%3AString-instance-method" class="signature"><strong>#evaluate</strong>(expression, bindings = <span class="n">nil</span>) : String</a>
+        <a href="#evaluate(expression,bindings=nil):String-instance-method" class="signature"><strong>#evaluate</strong>(expression, bindings = <span class="n">nil</span>) : String</a>
         
           <div class="summary"><p>Parses and evaluates a Crinja expression with <code><a href="Crinja.html#evaluator-instance-method">#evaluator</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#evaluate%28expression%3AAST%3A%3AExpressionNode%29%3AValue-instance-method" class="signature"><strong>#evaluate</strong>(expression : AST::ExpressionNode) : Value</a>
+        <a href="#evaluate(expression:AST::ExpressionNode):Value-instance-method" class="signature"><strong>#evaluate</strong>(expression : AST::ExpressionNode) : Value</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#evaluate%28expression%3AAST%3A%3AExpressionNode%2Cbindings%29%3AValue-instance-method" class="signature"><strong>#evaluate</strong>(expression : AST::ExpressionNode, bindings) : Value</a>
+        <a href="#evaluate(expression:AST::ExpressionNode,bindings):Value-instance-method" class="signature"><strong>#evaluate</strong>(expression : AST::ExpressionNode, bindings) : Value</a>
         
           <div class="summary"><p>Evaluates a Crinja expression with <code><a href="Crinja.html#evaluator-instance-method">#evaluator</a></code> and returns the resulting raw value.</p></div>
         
@@ -975,126 +975,126 @@ and functions.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#filters%3ACrinja%3A%3AFilter%3A%3ALibrary-instance-method" class="signature"><strong>#filters</strong> : Crinja::Filter::Library</a>
+        <a href="#filters:Crinja::Filter::Library-instance-method" class="signature"><strong>#filters</strong> : Crinja::Filter::Library</a>
         
           <div class="summary"><p>Filter library for this environment.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#from_string%28string%3AString%29-instance-method" class="signature"><strong>#from_string</strong>(string : String)</a>
+        <a href="#from_string(string:String)-instance-method" class="signature"><strong>#from_string</strong>(string : String)</a>
         
           <div class="summary"><p>Loads a template from <em>string.</em> This parses the given string and returns a <code><a href="Crinja/Template.html">Template</a></code> object.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#functions%3ACrinja%3A%3AFunction%3A%3ALibrary-instance-method" class="signature"><strong>#functions</strong> : Crinja::Function::Library</a>
+        <a href="#functions:Crinja::Function::Library-instance-method" class="signature"><strong>#functions</strong> : Crinja::Function::Library</a>
         
           <div class="summary"><p>Function library for this environment.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#get_template%28name%3AString%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method" class="signature"><strong>#get_template</strong>(name : String, parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)</a>
+        <a href="#get_template(name:String,parent=nil,globals=nil)-instance-method" class="signature"><strong>#get_template</strong>(name : String, parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Loads a template from the loader.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#get_template%28names%3AIterable%28String%29%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method" class="signature"><strong>#get_template</strong>(names : Iterable(String), parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)</a>
+        <a href="#get_template(names:Iterable(String),parent=nil,globals=nil)-instance-method" class="signature"><strong>#get_template</strong>(names : Iterable(String), parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Works like <code>#get_template(String)</code> but tries a number of templates before it fails.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#global_context%3AContext-instance-method" class="signature"><strong>#global_context</strong> : Context</a>
+        <a href="#global_context:Context-instance-method" class="signature"><strong>#global_context</strong> : Context</a>
         
           <div class="summary"><p>The global context.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#loader%3ALoader-instance-method" class="signature"><strong>#loader</strong> : Loader</a>
+        <a href="#loader:Loader-instance-method" class="signature"><strong>#loader</strong> : Loader</a>
         
-          <div class="summary"><p>The loader through which <code><a href="Crinja.html#get_template%28name%3AString%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method">#get_template</a></code> loads a template.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#loader%3D%28loader%3ALoader%29-instance-method" class="signature"><strong>#loader=</strong>(loader : Loader)</a>
-        
-          <div class="summary"><p>The loader through which <code><a href="Crinja.html#get_template%28name%3AString%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method">#get_template</a></code> loads a template.</p></div>
+          <div class="summary"><p>The loader through which <code><a href="Crinja.html#get_template(name:String,parent=nil,globals=nil)-instance-method">#get_template</a></code> loads a template.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#logger%3ALogger-instance-method" class="signature"><strong>#logger</strong> : Logger</a>
+        <a href="#loader=(loader:Loader)-instance-method" class="signature"><strong>#loader=</strong>(loader : Loader)</a>
+        
+          <div class="summary"><p>The loader through which <code><a href="Crinja.html#get_template(name:String,parent=nil,globals=nil)-instance-method">#get_template</a></code> loads a template.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#logger:Logger-instance-method" class="signature"><strong>#logger</strong> : Logger</a>
         
           <div class="summary"><p>The logger for this environment.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#operators%3ACrinja%3A%3AOperator%3A%3ALibrary-instance-method" class="signature"><strong>#operators</strong> : Crinja::Operator::Library</a>
+        <a href="#operators:Crinja::Operator::Library-instance-method" class="signature"><strong>#operators</strong> : Crinja::Operator::Library</a>
         
           <div class="summary"><p>Operator library for this environment.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#policies%3AHash%28String%2CCrinja%3A%3AValue%29-instance-method" class="signature"><strong>#policies</strong> : Hash(String, Crinja::Value)</a>
+        <a href="#policies:Hash(String,Crinja::Value)-instance-method" class="signature"><strong>#policies</strong> : Hash(String, Crinja::Value)</a>
         
           <div class="summary"><p>Policies for this environment.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#select_template%28names%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method" class="signature"><strong>#select_template</strong>(names, parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)</a>
+        <a href="#select_template(names,parent=nil,globals=nil)-instance-method" class="signature"><strong>#select_template</strong>(names, parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Alias for <code>#get_template(Iterable(String))</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#stringify%28object%2Cpretty%3Dfalse%29-instance-method" class="signature"><strong>#stringify</strong>(object, pretty = <span class="n">false</span>)</a>
+        <a href="#stringify(object,pretty=false)-instance-method" class="signature"><strong>#stringify</strong>(object, pretty = <span class="n">false</span>)</a>
         
           <div class="summary"><p>Turns <em>object</em> into a string represenation using <code><a href="Crinja/Finalizer.html">Crinja::Finalizer</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#tags%3ACrinja%3A%3ATag%3A%3ALibrary-instance-method" class="signature"><strong>#tags</strong> : Crinja::Tag::Library</a>
+        <a href="#tags:Crinja::Tag::Library-instance-method" class="signature"><strong>#tags</strong> : Crinja::Tag::Library</a>
         
           <div class="summary"><p>Tag library for this environment.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#tests%3ACrinja%3A%3ATest%3A%3ALibrary-instance-method" class="signature"><strong>#tests</strong> : Crinja::Test::Library</a>
+        <a href="#tests:Crinja::Test::Library-instance-method" class="signature"><strong>#tests</strong> : Crinja::Test::Library</a>
         
           <div class="summary"><p>Test library for this environment.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#undefined%28name%3Dnil%29-instance-method" class="signature"><strong>#undefined</strong>(name = <span class="n">nil</span>)</a>
+        <a href="#undefined(name=nil)-instance-method" class="signature"><strong>#undefined</strong>(name = <span class="n">nil</span>)</a>
         
-          <div class="summary"><p>Creates a new <code><a href="Crinja.html#undefined%28name%3Dnil%29-instance-method">#undefined</a></code>.</p></div>
+          <div class="summary"><p>Creates a new <code><a href="Crinja.html#undefined(name=nil)-instance-method">#undefined</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#with_scope%28ctx%3AContext%2C%26block%29-instance-method" class="signature"><strong>#with_scope</strong>(ctx : Context, &block)</a>
+        <a href="#with_scope(ctx:Context,&block)-instance-method" class="signature"><strong>#with_scope</strong>(ctx : Context, &block)</a>
         
           <div class="summary"><p>Executes the block inside the context <code>ctx</code> and returns to the previous context afterwards.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#with_scope%28bindings%3Dnil%2C%26block%29-instance-method" class="signature"><strong>#with_scope</strong>(bindings = <span class="n">nil</span>, &block)</a>
+        <a href="#with_scope(bindings=nil,&block)-instance-method" class="signature"><strong>#with_scope</strong>(bindings = <span class="n">nil</span>, &block)</a>
         
           <div class="summary"><p>Executes the block inside a new sub-context with optional local scoped <em>bindings</em>.</p></div>
         
@@ -1108,21 +1108,21 @@ and functions.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#filter%28defaults%3Dnil%2Cname%3Dnil%2C%26block%29-macro" class="signature"><strong>filter</strong>(defaults = <span class="n">nil</span>, name = <span class="n">nil</span>, &block)</a>
+        <a href="#filter(defaults=nil,name=nil,&block)-macro" class="signature"><strong>filter</strong>(defaults = <span class="n">nil</span>, name = <span class="n">nil</span>, &block)</a>
         
           <div class="summary"><p>This macro returns a <code><a href="Crinja/Callable.html">Crinja::Callable</a></code> proc which implements a <code><a href="Crinja/Filter.html">Crinja::Filter</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#function%28defaults%3Dnil%2Cname%3Dnil%2C%26block%29-macro" class="signature"><strong>function</strong>(defaults = <span class="n">nil</span>, name = <span class="n">nil</span>, &block)</a>
+        <a href="#function(defaults=nil,name=nil,&block)-macro" class="signature"><strong>function</strong>(defaults = <span class="n">nil</span>, name = <span class="n">nil</span>, &block)</a>
         
           <div class="summary"><p>This macro returns a <code><a href="Crinja/Callable.html">Crinja::Callable</a></code> proc which implements a <code><a href="Crinja/Function.html">Crinja::Function</a></code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#test%28defaults%3Dnil%2Cname%3Dnil%2C%26block%29-macro" class="signature"><strong>test</strong>(defaults = <span class="n">nil</span>, name = <span class="n">nil</span>, &block)</a>
+        <a href="#test(defaults=nil,name=nil,&block)-macro" class="signature"><strong>test</strong>(defaults = <span class="n">nil</span>, name = <span class="n">nil</span>, &block)</a>
         
           <div class="summary"><p>This macro returns a <code><a href="Crinja/Callable.html">Crinja::Callable</a></code> proc which implements a <code><a href="Crinja/Test.html">Crinja::Test</a></code>.</p></div>
         
@@ -1139,27 +1139,27 @@ and functions.</p>
   <h3>Instance methods inherited from module <code><a href="Crinja/Resolver.html">Crinja::Resolver</a></code></h3>
   
   
-    <a href="Crinja/Resolver.html#call_filter%28name%3AString%2Ctarget%3AValue%2Cvarargs%3D%5B%5DofValue%2Ckwargs%3DVariables.new%29%3AValue-instance-method" class="tooltip">
+    <a href="Crinja/Resolver.html#call_filter(name:String,target:Value,varargs=[]ofValue,kwargs=Variables.new):Value-instance-method" class="tooltip">
       <span>call_filter(name : String, target : Value, varargs = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs = <span class="t">Variables</span>.<span class="k">new</span>) : Value<br/>call_filter(name : String, target) : Value</span>
     call_filter</a>, 
     
   
-    <a href="Crinja/Resolver.html#execute_call%28callable%2Cvarargs%3AArray%28Value%29%3D%5B%5DofValue%2Ckwargs%3AVariables%3DVariables.new%2Ctarget%3AValue%3F%3Dnil%29%3AValue-instance-method" class="tooltip">
+    <a href="Crinja/Resolver.html#execute_call(callable,varargs:Array(Value)=[]ofValue,kwargs:Variables=Variables.new,target:Value?=nil):Value-instance-method" class="tooltip">
       <span>execute_call(callable, varargs : Array(Value) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs : Variables = <span class="t">Variables</span>.<span class="k">new</span>, target : Value? = <span class="n">nil</span>) : Value<br/>execute_call(callable : Callable | Callable::Proc, arguments : Arguments) : Value</span>
     execute_call</a>, 
     
   
-    <a href="Crinja/Resolver.html#resolve%28name%3AString%29%3AValue-instance-method" class="tooltip">
+    <a href="Crinja/Resolver.html#resolve(name:String):Value-instance-method" class="tooltip">
       <span>resolve(name : String) : Value</span>
     resolve</a>, 
     
   
-    <a href="Crinja/Resolver.html#resolve_callable%28identifier%29%3AValue-instance-method" class="tooltip">
+    <a href="Crinja/Resolver.html#resolve_callable(identifier):Value-instance-method" class="tooltip">
       <span>resolve_callable(identifier) : Value</span>
     resolve_callable</a>, 
     
   
-    <a href="Crinja/Resolver.html#resolve_callable%21%28identifier%3ACallable%7CCallable%3A%3AProc%29%3ACallable%7CCallable%3A%3AProc-instance-method" class="tooltip">
+    <a href="Crinja/Resolver.html#resolve_callable!(identifier:Callable%7CCallable::Proc):Callable%7CCallable::Proc-instance-method" class="tooltip">
       <span>resolve_callable!(identifier : Callable | Callable::Proc) : Callable | Callable::Proc<br/>resolve_callable!(identifier : Value) : Callable | Callable::Proc</span>
     resolve_callable!</a>
     
@@ -1174,27 +1174,27 @@ and functions.</p>
   <h3>Class methods inherited from module <code><a href="Crinja/Resolver.html">Crinja::Resolver</a></code></h3>
   
   
-    <a href="Crinja/Resolver.html#resolve_attribute%28name%2Cobject%3AValue%29%3AValue-class-method" class="tooltip">
+    <a href="Crinja/Resolver.html#resolve_attribute(name,object:Value):Value-class-method" class="tooltip">
       <span>resolve_attribute(name, object : Value) : Value<br/>resolve_attribute(name, value) : Value</span>
     resolve_attribute</a>, 
     
   
-    <a href="Crinja/Resolver.html#resolve_dig%28name%3AString%2Cobject%29%3AValue-class-method" class="tooltip">
+    <a href="Crinja/Resolver.html#resolve_dig(name:String,object):Value-class-method" class="tooltip">
       <span>resolve_dig(name : String, object) : Value<br/>resolve_dig(name : Value, value : Value) : Value<br/>resolve_dig(name, object) : Value</span>
     resolve_dig</a>, 
     
   
-    <a href="Crinja/Resolver.html#resolve_getattr%28name%3AValue%2Cvalue%3AValue%29%3AValue-class-method" class="tooltip">
+    <a href="Crinja/Resolver.html#resolve_getattr(name:Value,value:Value):Value-class-method" class="tooltip">
       <span>resolve_getattr(name : Value, value : Value) : Value<br/>resolve_getattr(name, value) : Value</span>
     resolve_getattr</a>, 
     
   
-    <a href="Crinja/Resolver.html#resolve_method%28name%2Cvalue%3AValue%29%3ACallable%7CCallable%3A%3AProc%3F-class-method" class="tooltip">
+    <a href="Crinja/Resolver.html#resolve_method(name,value:Value):Callable%7CCallable::Proc?-class-method" class="tooltip">
       <span>resolve_method(name, value : Value) : Callable | Callable::Proc?<br/>resolve_method(name, object) : Callable | Callable::Proc?</span>
     resolve_method</a>, 
     
   
-    <a href="Crinja/Resolver.html#resolve_with_hash_accessor%28name%3AValue%2Cvalue%3AValue%29%3AValue-class-method" class="tooltip">
+    <a href="Crinja/Resolver.html#resolve_with_hash_accessor(name:Value,value:Value):Value-class-method" class="tooltip">
       <span>resolve_with_hash_accessor(name : Value, value : Value) : Value<br/>resolve_with_hash_accessor(name, value : Value) : Value</span>
     resolve_with_hash_accessor</a>
     
@@ -1232,7 +1232,7 @@ and functions.</p>
         
         def self.<strong>new</strong>(context = <span class="t">Context</span>.<span class="k">new</span>, config = <span class="t">Config</span>.<span class="k">new</span>, loader = <span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>, cache = <span class="t">TemplateCache</span><span class="t">::</span><span class="t">InMemory</span>.<span class="k">new</span>, &block)
 
-        <a class="method-permalink" href="#new%28context%3DContext.new%2Cconfig%3DConfig.new%2Cloader%3DLoader%3A%3AFileSystemLoader.new%2Ccache%3DTemplateCache%3A%3AInMemory.new%2C%26block%29-class-method">#</a>
+        <a class="method-permalink" href="#new(context=Context.new,config=Config.new,loader=Loader::FileSystemLoader.new,cache=TemplateCache::InMemory.new,&block)-class-method">#</a>
       </div>
       
         <div class="doc"><p>Creates a new environment and yields <code>self</code> for configuration.</p></div>
@@ -1240,7 +1240,7 @@ and functions.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L58" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1250,7 +1250,7 @@ and functions.</p>
         
         def self.<strong>new</strong>(original : <a href="Crinja.html">Crinja</a>)
 
-        <a class="method-permalink" href="#new%28original%3ACrinja%29-class-method">#</a>
+        <a class="method-permalink" href="#new(original:Crinja)-class-method">#</a>
       </div>
       
         <div class="doc"><p>Creates a new environment with the context and configuration from the <em>original</em> environment.</p></div>
@@ -1258,7 +1258,7 @@ and functions.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1268,7 +1268,7 @@ and functions.</p>
         
         def self.<strong>new</strong>(config : <a href="Crinja/Config.html">Config</a>, loader = <span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>, cache = <span class="t">TemplateCache</span><span class="t">::</span><span class="t">InMemory</span>.<span class="k">new</span>)
 
-        <a class="method-permalink" href="#new%28config%3AConfig%2Cloader%3DLoader%3A%3AFileSystemLoader.new%2Ccache%3DTemplateCache%3A%3AInMemory.new%29-class-method">#</a>
+        <a class="method-permalink" href="#new(config:Config,loader=Loader::FileSystemLoader.new,cache=TemplateCache::InMemory.new)-class-method">#</a>
       </div>
       
         <div class="doc"><p>Creates a new environment from <em>config</em>.</p></div>
@@ -1276,7 +1276,7 @@ and functions.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L92" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L92" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1286,16 +1286,16 @@ and functions.</p>
         
         def self.<strong>new</strong>(context = <span class="t">Context</span>.<span class="k">new</span>, config = <span class="t">Config</span>.<span class="k">new</span>, loader = <span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>, cache = <span class="t">TemplateCache</span><span class="t">::</span><span class="t">InMemory</span>.<span class="k">new</span>)
 
-        <a class="method-permalink" href="#new%28context%3DContext.new%2Cconfig%3DConfig.new%2Cloader%3DLoader%3A%3AFileSystemLoader.new%2Ccache%3DTemplateCache%3A%3AInMemory.new%29-class-method">#</a>
+        <a class="method-permalink" href="#new(context=Context.new,config=Config.new,loader=Loader::FileSystemLoader.new,cache=TemplateCache::InMemory.new)-class-method">#</a>
       </div>
       
-        <div class="doc"><p>Creates a new environment with default values. The <em>context</em> becomes both <code><a href="Crinja.html#global_context%3AContext-instance-method">#global_context</a></code>
+        <div class="doc"><p>Creates a new environment with default values. The <em>context</em> becomes both <code><a href="Crinja.html#global_context:Context-instance-method">#global_context</a></code>
 as well as current <code></code>#context`.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1310,7 +1310,7 @@ as well as current <code></code>#context`.</p></div>
         
         def self.<strong>dictionary</strong>(object) : <a href="Crinja/Dictionary.html">Dictionary</a>
 
-        <a class="method-permalink" href="#dictionary%28object%29%3ADictionary-class-method">#</a>
+        <a class="method-permalink" href="#dictionary(object):Dictionary-class-method">#</a>
       </div>
       
         <div class="doc"><p>Casts an object with hash-like interface to <code><a href="Crinja/Dictionary.html">Dictionary</a></code>.</p></div>
@@ -1318,7 +1318,7 @@ as well as current <code></code>#context`.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1328,7 +1328,7 @@ as well as current <code></code>#context`.</p></div>
         
         def self.<strong>render</strong>(io : IO, template, variables = <span class="n">nil</span>, loader = <span class="n">nil</span>, config = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#render%28io%3AIO%2Ctemplate%2Cvariables%3Dnil%2Cloader%3Dnil%2Cconfig%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#render(io:IO,template,variables=nil,loader=nil,config=nil)-class-method">#</a>
       </div>
       
         <div class="doc"><p>Render Crinja template <em>template</em> to an <code>IO</code> <em>io</em>.</p>
@@ -1340,13 +1340,13 @@ optional parameters.</p>
 
 <p>A new <code><a href="Crinja.html">Crinja</a></code> instance will be created for each invocation and it will
 parse the <em>template</em>. To parse the same template once and invoke it multiple
-times, it needs to be created directly (using <code><a href="Crinja.html#from_string%28string%3AString%29-instance-method">Crinja#from_string</a></code> or
+times, it needs to be created directly (using <code><a href="Crinja.html#from_string(string:String)-instance-method">Crinja#from_string</a></code> or
 <code>Template.new</code>) and stored in a variable.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/crinja.cr#L43" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/crinja.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1356,7 +1356,7 @@ times, it needs to be created directly (using <code><a href="Crinja.html#from_st
         
         def self.<strong>render</strong>(template, variables = <span class="n">nil</span>, loader = <span class="n">nil</span>, config = <span class="n">nil</span>) : String
 
-        <a class="method-permalink" href="#render%28template%2Cvariables%3Dnil%2Cloader%3Dnil%2Cconfig%3Dnil%29%3AString-class-method">#</a>
+        <a class="method-permalink" href="#render(template,variables=nil,loader=nil,config=nil):String-class-method">#</a>
       </div>
       
         <div class="doc"><p>Render Crinja template <em>template</em> to a String.</p>
@@ -1368,13 +1368,13 @@ optional parameters.</p>
 
 <p>A new <code><a href="Crinja.html">Crinja</a></code> instance will be created for each invocation and it will
 parse the <em>template</em>. To parse the same template once and invoke it multiple
-times, it needs to be created directly (using <code><a href="Crinja.html#from_string%28string%3AString%29-instance-method">Crinja#from_string</a></code> or
+times, it needs to be created directly (using <code><a href="Crinja.html#from_string(string:String)-instance-method">Crinja#from_string</a></code> or
 <code>Template.new</code>) and stored in a variable.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/crinja.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/crinja.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1384,13 +1384,13 @@ times, it needs to be created directly (using <code><a href="Crinja.html#from_st
         
         def self.<strong>value</strong>(value) : <a href="Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#value%28value%29%3AValue-class-method">#</a>
+        <a class="method-permalink" href="#value(value):Value-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L54" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L54" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1400,7 +1400,7 @@ times, it needs to be created directly (using <code><a href="Crinja.html#from_st
         
         def self.<strong>variables</strong>(object) : <a href="Crinja/Variables.html">Variables</a>
 
-        <a class="method-permalink" href="#variables%28object%29%3AVariables-class-method">#</a>
+        <a class="method-permalink" href="#variables(object):Variables-class-method">#</a>
       </div>
       
         <div class="doc"><p>Casts an object with hash-like interface to <code><a href="Crinja/Variables.html">Variables</a></code>, which can be
@@ -1409,7 +1409,7 @@ used for name lookup.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/value.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/value.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1424,7 +1424,7 @@ used for name lookup.</p></div>
         
         def <strong>cache</strong> : <a href="Crinja/TemplateCache.html">TemplateCache</a>
 
-        <a class="method-permalink" href="#cache%3ATemplateCache-instance-method">#</a>
+        <a class="method-permalink" href="#cache:TemplateCache-instance-method">#</a>
       </div>
       
         <div class="doc"><p>A cache where parsed templates are stored. Defaults to <code><a href="Crinja/TemplateCache/InMemory.html">TemplateCache::InMemory</a></code>.</p></div>
@@ -1432,7 +1432,7 @@ used for name lookup.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1442,7 +1442,7 @@ used for name lookup.</p></div>
         
         def <strong>cache=</strong>(cache : <a href="Crinja/TemplateCache.html">TemplateCache</a>)
 
-        <a class="method-permalink" href="#cache%3D%28cache%3ATemplateCache%29-instance-method">#</a>
+        <a class="method-permalink" href="#cache=(cache:TemplateCache)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>A cache where parsed templates are stored. Defaults to <code><a href="Crinja/TemplateCache/InMemory.html">TemplateCache::InMemory</a></code>.</p></div>
@@ -1450,7 +1450,7 @@ used for name lookup.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1460,7 +1460,7 @@ used for name lookup.</p></div>
         
         def <strong>config</strong> : <a href="Crinja/Config.html">Config</a>
 
-        <a class="method-permalink" href="#config%3AConfig-instance-method">#</a>
+        <a class="method-permalink" href="#config:Config-instance-method">#</a>
       </div>
       
         <div class="doc"><p>The configuration for this environment.</p></div>
@@ -1468,7 +1468,7 @@ used for name lookup.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1478,7 +1478,7 @@ used for name lookup.</p></div>
         
         def <strong>context</strong> : <a href="Crinja/Context.html">Context</a>
 
-        <a class="method-permalink" href="#context%3AContext-instance-method">#</a>
+        <a class="method-permalink" href="#context:Context-instance-method">#</a>
       </div>
       
         <div class="doc"><p>The current context in which evaluation happens. It can only be changed by <code>#with_context</code>.</p></div>
@@ -1486,7 +1486,7 @@ used for name lookup.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1496,13 +1496,13 @@ used for name lookup.</p></div>
         
         def <strong>errors</strong> : Array(Exception)
 
-        <a class="method-permalink" href="#errors%3AArray%28Exception%29-instance-method">#</a>
+        <a class="method-permalink" href="#errors:Array(Exception)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1512,13 +1512,13 @@ used for name lookup.</p></div>
         
         def <strong>errors=</strong>(errors : Array(Exception))
 
-        <a class="method-permalink" href="#errors%3D%28errors%3AArray%28Exception%29%29-instance-method">#</a>
+        <a class="method-permalink" href="#errors=(errors:Array(Exception))-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L33" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1528,7 +1528,7 @@ used for name lookup.</p></div>
         
         def <strong>evaluate</strong>(expression, bindings = <span class="n">nil</span>) : String
 
-        <a class="method-permalink" href="#evaluate%28expression%2Cbindings%3Dnil%29%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#evaluate(expression,bindings=nil):String-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Parses and evaluates a Crinja expression with <code><a href="Crinja.html#evaluator-instance-method">#evaluator</a></code>. Returns a string which will be
@@ -1537,7 +1537,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L115" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L115" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1547,13 +1547,13 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
         
         def <strong>evaluate</strong>(expression : <a href="Crinja/AST/ExpressionNode.html">AST::ExpressionNode</a>) : <a href="Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#evaluate%28expression%3AAST%3A%3AExpressionNode%29%3AValue-instance-method">#</a>
+        <a class="method-permalink" href="#evaluate(expression:AST::ExpressionNode):Value-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1563,7 +1563,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
         
         def <strong>evaluate</strong>(expression : <a href="Crinja/AST/ExpressionNode.html">AST::ExpressionNode</a>, bindings) : <a href="Crinja/Value.html">Value</a>
 
-        <a class="method-permalink" href="#evaluate%28expression%3AAST%3A%3AExpressionNode%2Cbindings%29%3AValue-instance-method">#</a>
+        <a class="method-permalink" href="#evaluate(expression:AST::ExpressionNode,bindings):Value-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Evaluates a Crinja expression with <code><a href="Crinja.html#evaluator-instance-method">#evaluator</a></code> and returns the resulting raw value.</p></div>
@@ -1571,7 +1571,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L103" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1589,7 +1589,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L98" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L98" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1599,7 +1599,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
         
         def <strong>filters</strong> : <a href="Crinja/Filter/Library.html">Crinja::Filter::Library</a>
 
-        <a class="method-permalink" href="#filters%3ACrinja%3A%3AFilter%3A%3ALibrary-instance-method">#</a>
+        <a class="method-permalink" href="#filters:Crinja::Filter::Library-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Filter library for this environment.</p>
@@ -1609,7 +1609,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L37" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1619,7 +1619,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
         
         def <strong>from_string</strong>(string : String)
 
-        <a class="method-permalink" href="#from_string%28string%3AString%29-instance-method">#</a>
+        <a class="method-permalink" href="#from_string(string:String)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Loads a template from <em>string.</em> This parses the given string and returns a <code><a href="Crinja/Template.html">Template</a></code> object.</p></div>
@@ -1627,7 +1627,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L129" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L129" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1637,7 +1637,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
         
         def <strong>functions</strong> : <a href="Crinja/Function/Library.html">Crinja::Function::Library</a>
 
-        <a class="method-permalink" href="#functions%3ACrinja%3A%3AFunction%3A%3ALibrary-instance-method">#</a>
+        <a class="method-permalink" href="#functions:Crinja::Function::Library-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Function library for this environment.</p>
@@ -1647,7 +1647,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L42" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L42" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1657,7 +1657,7 @@ auto-escaped if <code>config.autoescape?</code> is <code>true</code>.</p></div>
         
         def <strong>get_template</strong>(name : String, parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#get_template%28name%3AString%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method">#</a>
+        <a class="method-permalink" href="#get_template(name:String,parent=nil,globals=nil)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Loads a template from the loader. If a loader is configured this method ask the loader for the template and returns a <code><a href="Crinja/Template.html">Template</a></code>.
@@ -1670,7 +1670,7 @@ If the template does not exist a <code><a href="Crinja/TemplateNotFoundError.htm
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L138" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L138" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1680,7 +1680,7 @@ If the template does not exist a <code><a href="Crinja/TemplateNotFoundError.htm
         
         def <strong>get_template</strong>(names : Iterable(String), parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#get_template%28names%3AIterable%28String%29%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method">#</a>
+        <a class="method-permalink" href="#get_template(names:Iterable(String),parent=nil,globals=nil)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Works like <code>#get_template(String)</code> but tries a number of templates before it fails. If it cannot find any of the templates, it will raise a <code><a href="Crinja/TemplateNotFoundError.html">TemplateNotFoundError</a></code>.</p></div>
@@ -1688,7 +1688,7 @@ If the template does not exist a <code><a href="Crinja/TemplateNotFoundError.htm
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L143" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L143" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1698,7 +1698,7 @@ If the template does not exist a <code><a href="Crinja/TemplateNotFoundError.htm
         
         def <strong>global_context</strong> : <a href="Crinja/Context.html">Context</a>
 
-        <a class="method-permalink" href="#global_context%3AContext-instance-method">#</a>
+        <a class="method-permalink" href="#global_context:Context-instance-method">#</a>
       </div>
       
         <div class="doc"><p>The global context.</p></div>
@@ -1706,7 +1706,7 @@ If the template does not exist a <code><a href="Crinja/TemplateNotFoundError.htm
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1716,16 +1716,16 @@ If the template does not exist a <code><a href="Crinja/TemplateNotFoundError.htm
         
         def <strong>loader</strong> : <a href="Crinja/Loader.html">Loader</a>
 
-        <a class="method-permalink" href="#loader%3ALoader-instance-method">#</a>
+        <a class="method-permalink" href="#loader:Loader-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>The loader through which <code><a href="Crinja.html#get_template%28name%3AString%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method">#get_template</a></code> loads a template.
+        <div class="doc"><p>The loader through which <code><a href="Crinja.html#get_template(name:String,parent=nil,globals=nil)-instance-method">#get_template</a></code> loads a template.
 Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSystemLoader</a></code> with searchpath of the current working directory.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1735,16 +1735,16 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
         
         def <strong>loader=</strong>(loader : <a href="Crinja/Loader.html">Loader</a>)
 
-        <a class="method-permalink" href="#loader%3D%28loader%3ALoader%29-instance-method">#</a>
+        <a class="method-permalink" href="#loader=(loader:Loader)-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>The loader through which <code><a href="Crinja.html#get_template%28name%3AString%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method">#get_template</a></code> loads a template.
+        <div class="doc"><p>The loader through which <code><a href="Crinja.html#get_template(name:String,parent=nil,globals=nil)-instance-method">#get_template</a></code> loads a template.
 Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSystemLoader</a></code> with searchpath of the current working directory.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1754,7 +1754,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
         
         def <strong>logger</strong> : Logger
 
-        <a class="method-permalink" href="#logger%3ALogger-instance-method">#</a>
+        <a class="method-permalink" href="#logger:Logger-instance-method">#</a>
       </div>
       
         <div class="doc"><p>The logger for this environment.</p></div>
@@ -1762,7 +1762,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1772,7 +1772,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
         
         def <strong>operators</strong> : <a href="Crinja/Operator/Library.html">Crinja::Operator::Library</a>
 
-        <a class="method-permalink" href="#operators%3ACrinja%3A%3AOperator%3A%3ALibrary-instance-method">#</a>
+        <a class="method-permalink" href="#operators:Crinja::Operator::Library-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Operator library for this environment.</p>
@@ -1782,7 +1782,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1792,7 +1792,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
         
         def <strong>policies</strong> : Hash(String, <a href="Crinja/Value.html">Crinja::Value</a>)
 
-        <a class="method-permalink" href="#policies%3AHash%28String%2CCrinja%3A%3AValue%29-instance-method">#</a>
+        <a class="method-permalink" href="#policies:Hash(String,Crinja::Value)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Policies for this environment.</p></div>
@@ -1800,7 +1800,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L57" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L57" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1810,7 +1810,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
         
         def <strong>select_template</strong>(names, parent = <span class="n">nil</span>, globals = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#select_template%28names%2Cparent%3Dnil%2Cglobals%3Dnil%29-instance-method">#</a>
+        <a class="method-permalink" href="#select_template(names,parent=nil,globals=nil)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Alias for <code>#get_template(Iterable(String))</code>.</p></div>
@@ -1818,7 +1818,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L155" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L155" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1828,7 +1828,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
         
         def <strong>stringify</strong>(object, pretty = <span class="n">false</span>)
 
-        <a class="method-permalink" href="#stringify%28object%2Cpretty%3Dfalse%29-instance-method">#</a>
+        <a class="method-permalink" href="#stringify(object,pretty=false)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Turns <em>object</em> into a string represenation using <code><a href="Crinja/Finalizer.html">Crinja::Finalizer</a></code>.</p></div>
@@ -1836,7 +1836,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L186" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L186" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1846,7 +1846,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
         
         def <strong>tags</strong> : <a href="Crinja/Tag/Library.html">Crinja::Tag::Library</a>
 
-        <a class="method-permalink" href="#tags%3ACrinja%3A%3ATag%3A%3ALibrary-instance-method">#</a>
+        <a class="method-permalink" href="#tags:Crinja::Tag::Library-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Tag library for this environment.</p>
@@ -1856,7 +1856,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1866,7 +1866,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
         
         def <strong>tests</strong> : <a href="Crinja/Test/Library.html">Crinja::Test::Library</a>
 
-        <a class="method-permalink" href="#tests%3ACrinja%3A%3ATest%3A%3ALibrary-instance-method">#</a>
+        <a class="method-permalink" href="#tests:Crinja::Test::Library-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Test library for this environment.</p>
@@ -1876,7 +1876,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1886,15 +1886,15 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
         
         def <strong>undefined</strong>(name = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#undefined%28name%3Dnil%29-instance-method">#</a>
+        <a class="method-permalink" href="#undefined(name=nil)-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Creates a new <code><a href="Crinja.html#undefined%28name%3Dnil%29-instance-method">#undefined</a></code>.</p></div>
+        <div class="doc"><p>Creates a new <code><a href="Crinja.html#undefined(name=nil)-instance-method">#undefined</a></code>.</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L191" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L191" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1904,7 +1904,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
         
         def <strong>with_scope</strong>(ctx : <a href="Crinja/Context.html">Context</a>, &block)
 
-        <a class="method-permalink" href="#with_scope%28ctx%3AContext%2C%26block%29-instance-method">#</a>
+        <a class="method-permalink" href="#with_scope(ctx:Context,&block)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Executes the block inside the context <code>ctx</code> and returns to the previous context afterwards.</p></div>
@@ -1912,7 +1912,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L160" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L160" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1922,7 +1922,7 @@ Defaults to <code><a href="Crinja/Loader/FileSystemLoader.html">Loader::FileSyst
         
         def <strong>with_scope</strong>(bindings = <span class="n">nil</span>, &block)
 
-        <a class="method-permalink" href="#with_scope%28bindings%3Dnil%2C%26block%29-instance-method">#</a>
+        <a class="method-permalink" href="#with_scope(bindings=nil,&block)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Executes the block inside a new sub-context with optional local scoped <em>bindings</em>.
@@ -1931,7 +1931,7 @@ Returns to the previous context afterwards.</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/environment.cr#L173" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/environment.cr#L173" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1946,7 +1946,7 @@ Returns to the previous context afterwards.</p></div>
         
         macro <strong>filter</strong>(defaults = <span class="n">nil</span>, name = <span class="n">nil</span>, &block)
 
-        <a class="method-permalink" href="#filter%28defaults%3Dnil%2Cname%3Dnil%2C%26block%29-macro">#</a>
+        <a class="method-permalink" href="#filter(defaults=nil,name=nil,&block)-macro">#</a>
       </div>
       
         <div class="doc"><p>This macro returns a <code><a href="Crinja/Callable.html">Crinja::Callable</a></code> proc which implements a <code><a href="Crinja/Filter.html">Crinja::Filter</a></code>.</p>
@@ -1965,7 +1965,7 @@ variables are available:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/callable.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/callable.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1975,7 +1975,7 @@ variables are available:</p>
         
         macro <strong>function</strong>(defaults = <span class="n">nil</span>, name = <span class="n">nil</span>, &block)
 
-        <a class="method-permalink" href="#function%28defaults%3Dnil%2Cname%3Dnil%2C%26block%29-macro">#</a>
+        <a class="method-permalink" href="#function(defaults=nil,name=nil,&block)-macro">#</a>
       </div>
       
         <div class="doc"><p>This macro returns a <code><a href="Crinja/Callable.html">Crinja::Callable</a></code> proc which implements a <code><a href="Crinja/Function.html">Crinja::Function</a></code>.</p>
@@ -1994,7 +1994,7 @@ variables are available:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/callable.cr#L89" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/callable.cr#L89" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2004,7 +2004,7 @@ variables are available:</p>
         
         macro <strong>test</strong>(defaults = <span class="n">nil</span>, name = <span class="n">nil</span>, &block)
 
-        <a class="method-permalink" href="#test%28defaults%3Dnil%2Cname%3Dnil%2C%26block%29-macro">#</a>
+        <a class="method-permalink" href="#test(defaults=nil,name=nil,&block)-macro">#</a>
       </div>
       
         <div class="doc"><p>This macro returns a <code><a href="Crinja/Callable.html">Crinja::Callable</a></code> proc which implements a <code><a href="Crinja/Test.html">Crinja::Test</a></code>.</p>
@@ -2023,7 +2023,7 @@ variables are available:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/callable.cr#L48" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/callable.cr#L48" target="_blank">View source</a>]
         
       </div>
     </div>

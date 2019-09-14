@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.29.0">
+<meta name="generator" content="Crystal Docs 0.30.1">
 
 
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -728,8 +728,8 @@
   <p>A Callable is a Crinja type object that can be called from an expression call. These include
 functions, macros, tests and filters.
 It can be implemented by an object or module which inherits from <code>CallableMod</code> or using a proc.
-In either way, the callable must respond to <code><a href="../Crinja/Callable.html#call%28arguments%3AArguments%29-instance-method">#call(arguments : Arguments)</a></code> and return <code><a href="../Crinja/Value.html">Value</a></code> or
-a value accepted by <code><a href="../Crinja.html#value%28value%29%3AValue-class-method">Crinja.value</a></code>.
+In either way, the callable must respond to <code><a href="../Crinja/Callable.html#call(arguments:Arguments)-instance-method">#call(arguments : Arguments)</a></code> and return <code><a href="../Crinja/Value.html">Value</a></code> or
+a value accepted by <code><a href="../Crinja.html#value(value):Value-class-method">Crinja.value</a></code>.
 It must be added to the environment's feature library to be useable from template.
 There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow an easy implementation as a proc.</p>
 
@@ -762,7 +762,7 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/callable.cr#L102" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/callable.cr#L102" target="_blank">
         runtime/callable.cr
       </a>
     
@@ -781,12 +781,12 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#call%28arguments%3AArguments%29-instance-method" class="signature"><strong>#call</strong>(arguments : Arguments)</a>
+        <a href="#call(arguments:Arguments)-instance-method" class="signature"><strong>#call</strong>(arguments : Arguments)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s%28io%29-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
+        <a href="#to_s(io)-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
         
       </li>
     
@@ -812,13 +812,13 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
         abstract 
         def <strong>call</strong>(arguments : <a href="../Crinja/Arguments.html">Arguments</a>)
 
-        <a class="method-permalink" href="#call%28arguments%3AArguments%29-instance-method">#</a>
+        <a class="method-permalink" href="#call(arguments:Arguments)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/callable.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/callable.cr#L103" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -828,13 +828,13 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
         
         def <strong>to_s</strong>(io)
 
-        <a class="method-permalink" href="#to_s%28io%29-instance-method">#</a>
+        <a class="method-permalink" href="#to_s(io)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/callable.cr#L122" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/callable.cr#L122" target="_blank">View source</a>]
         
       </div>
     </div>

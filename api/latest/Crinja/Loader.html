@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.29.0">
+<meta name="generator" content="Crystal Docs 0.30.1">
 
 
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -760,7 +760,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L4" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L4" target="_blank">
         loader.cr
       </a>
     
@@ -779,21 +779,21 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%3F%29-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String?)</a>
+        <a href="#get_source(env:Crinja,template:String):::Tuple(String,String?)-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String?)</a>
         
           <div class="summary"><p>Get the template source, filename and reload helper for a template.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#list_templates%3AIterable%28String%29-instance-method" class="signature"><strong>#list_templates</strong> : Iterable(String)</a>
+        <a href="#list_templates:Iterable(String)-instance-method" class="signature"><strong>#list_templates</strong> : Iterable(String)</a>
         
           <div class="summary"><p>Iterates over all templates.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#load%28env%2Cname%29-instance-method" class="signature"><strong>#load</strong>(env, name)</a>
+        <a href="#load(env,name)-instance-method" class="signature"><strong>#load</strong>(env, name)</a>
         
       </li>
     
@@ -839,7 +839,7 @@
         abstract 
         def <strong>get_source</strong>(env : <a href="../Crinja.html">Crinja</a>, template : String) : ::Tuple(String, String?)
 
-        <a class="method-permalink" href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#get_source(env:Crinja,template:String):::Tuple(String,String?)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Get the template source, filename and reload helper for a template.
@@ -854,7 +854,7 @@ The filename is used for the tracebacks if no loader extension is used.</p></div
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -864,7 +864,7 @@ The filename is used for the tracebacks if no loader extension is used.</p></div
         
         def <strong>list_templates</strong> : Iterable(String)
 
-        <a class="method-permalink" href="#list_templates%3AIterable%28String%29-instance-method">#</a>
+        <a class="method-permalink" href="#list_templates:Iterable(String)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Iterates over all templates. If the loader does not support that
@@ -873,7 +873,7 @@ it should raise a <code><a href="../Crinja/TypeError.html">TypeError</a></code> 
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -883,13 +883,13 @@ it should raise a <code><a href="../Crinja/TypeError.html">TypeError</a></code> 
         
         def <strong>load</strong>(env, name)
 
-        <a class="method-permalink" href="#load%28env%2Cname%29-instance-method">#</a>
+        <a class="method-permalink" href="#load(env,name)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/loader.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/loader.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>

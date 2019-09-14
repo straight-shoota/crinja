@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.29.0">
+<meta name="generator" content="Crystal Docs 0.30.1">
 
 
 <link href="../css/style.css" rel="stylesheet" type="text/css">
@@ -750,7 +750,7 @@ Creating instances is not useful as it’s created automatically at various stag
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L9" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L9" target="_blank">
         runtime/context.cr
       </a>
     
@@ -777,12 +777,12 @@ Creating instances is not useful as it’s created automatically at various stag
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28bindings%3AVariables%29-class-method" class="signature"><strong>.new</strong>(bindings : Variables)</a>
+        <a href="#new(bindings:Variables)-class-method" class="signature"><strong>.new</strong>(bindings : Variables)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28parent%3AContext%3F%3Dnil%2Cbindings%3AVariables%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(parent : Context? = <span class="n">nil</span>, bindings : Variables? = <span class="n">nil</span>)</a>
+        <a href="#new(parent:Context?=nil,bindings:Variables?=nil)-class-method" class="signature"><strong>.new</strong>(parent : Context? = <span class="n">nil</span>, bindings : Variables? = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -796,21 +796,21 @@ Creating instances is not useful as it’s created automatically at various stag
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#%5B%5D%3D%28key%3AString%2Cvalue%29-instance-method" class="signature"><strong>#[]=</strong>(key : String, value)</a>
+        <a href="#[]=(key:String,value)-instance-method" class="signature"><strong>#[]=</strong>(key : String, value)</a>
         
           <div class="summary"><p>Set variable <em>key</em> to value <em>value</em> in local scope.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%5B%5D%3D%28key%3AString%2Cvalue%3AValue%29-instance-method" class="signature"><strong>#[]=</strong>(key : String, value : Value)</a>
+        <a href="#[]=(key:String,value:Value)-instance-method" class="signature"><strong>#[]=</strong>(key : String, value : Value)</a>
         
           <div class="summary"><p>Set variable <em>key</em> to value <em>value</em> in local scope.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#%5B%5D%3D%28key%3AString%2Cvalue%3AVariables%29-instance-method" class="signature"><strong>#[]=</strong>(key : String, value : Variables)</a>
+        <a href="#[]=(key:String,value:Variables)-instance-method" class="signature"><strong>#[]=</strong>(key : String, value : Variables)</a>
         
           <div class="summary"><p>Set variable <em>key</em> to value <em>value</em> in local scope.</p></div>
         
@@ -822,17 +822,17 @@ Creating instances is not useful as it’s created automatically at various stag
       </li>
     
       <li class="entry-summary">
-        <a href="#autoescape%3ABool%3F-instance-method" class="signature"><strong>#autoescape</strong> : Bool?</a>
+        <a href="#autoescape:Bool?-instance-method" class="signature"><strong>#autoescape</strong> : Bool?</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#autoescape%3D%28autoescape%3ABool%3F%29-instance-method" class="signature"><strong>#autoescape=</strong>(autoescape : Bool?)</a>
+        <a href="#autoescape=(autoescape:Bool?)-instance-method" class="signature"><strong>#autoescape=</strong>(autoescape : Bool?)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#autoescape%3F-instance-method" class="signature"><strong>#autoescape?</strong></a>
+        <a href="#autoescape?-instance-method" class="signature"><strong>#autoescape?</strong></a>
         
           <div class="summary"><p>Determines if autoescape is enabled in this or any parent context.</p></div>
         
@@ -844,76 +844,76 @@ Creating instances is not useful as it’s created automatically at various stag
       </li>
     
       <li class="entry-summary">
-        <a href="#block_context%3D%28block_context%3ANamedTuple%28%29%3F%29-instance-method" class="signature"><strong>#block_context=</strong>(block_context : NamedTuple()?)</a>
+        <a href="#block_context=(block_context:NamedTuple()?)-instance-method" class="signature"><strong>#block_context=</strong>(block_context : NamedTuple()?)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#extend_path_stack%3ACrinja%3A%3AContext%3A%3ACallStack-instance-method" class="signature"><strong>#extend_path_stack</strong> : Crinja::Context::CallStack</a>
+        <a href="#extend_path_stack:Crinja::Context::CallStack-instance-method" class="signature"><strong>#extend_path_stack</strong> : Crinja::Context::CallStack</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#has_macro%3F%28name%29-instance-method" class="signature"><strong>#has_macro?</strong>(name)</a>
+        <a href="#has_macro?(name)-instance-method" class="signature"><strong>#has_macro?</strong>(name)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#import_path_stack%3ACrinja%3A%3AContext%3A%3ACallStack-instance-method" class="signature"><strong>#import_path_stack</strong> : Crinja::Context::CallStack</a>
+        <a href="#import_path_stack:Crinja::Context::CallStack-instance-method" class="signature"><strong>#import_path_stack</strong> : Crinja::Context::CallStack</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#include_path_stack%3ACrinja%3A%3AContext%3A%3ACallStack-instance-method" class="signature"><strong>#include_path_stack</strong> : Crinja::Context::CallStack</a>
+        <a href="#include_path_stack:Crinja::Context::CallStack-instance-method" class="signature"><strong>#include_path_stack</strong> : Crinja::Context::CallStack</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#inspect%28io%29-instance-method" class="signature"><strong>#inspect</strong>(io)</a>
+        <a href="#inspect(io)-instance-method" class="signature"><strong>#inspect</strong>(io)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#macro%28name%29%3ACallable-instance-method" class="signature"><strong>#macro</strong>(name) : Callable</a>
+        <a href="#macro(name):Callable-instance-method" class="signature"><strong>#macro</strong>(name) : Callable</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#macro_stack%3ACrinja%3A%3AContext%3A%3ACallStack-instance-method" class="signature"><strong>#macro_stack</strong> : Crinja::Context::CallStack</a>
+        <a href="#macro_stack:Crinja::Context::CallStack-instance-method" class="signature"><strong>#macro_stack</strong> : Crinja::Context::CallStack</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#macros%3AHash%28String%2CCrinja%3A%3ATag%3A%3AMacro%3A%3AMacroFunction%29-instance-method" class="signature"><strong>#macros</strong> : Hash(String, Crinja::Tag::Macro::MacroFunction)</a>
+        <a href="#macros:Hash(String,Crinja::Tag::Macro::MacroFunction)-instance-method" class="signature"><strong>#macros</strong> : Hash(String, Crinja::Tag::Macro::MacroFunction)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#merge%21%28context%3ACrinja%3A%3AContext%29-instance-method" class="signature"><strong>#merge!</strong>(context : Crinja::Context)</a>
+        <a href="#merge!(context:Crinja::Context)-instance-method" class="signature"><strong>#merge!</strong>(context : Crinja::Context)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#merge%21%28bindings%29-instance-method" class="signature"><strong>#merge!</strong>(bindings)</a>
+        <a href="#merge!(bindings)-instance-method" class="signature"><strong>#merge!</strong>(bindings)</a>
         
           <div class="summary"><p>Merges values in <em>bindings</em> into local scope.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#parent%3AContext%3F-instance-method" class="signature"><strong>#parent</strong> : Context?</a>
+        <a href="#parent:Context?-instance-method" class="signature"><strong>#parent</strong> : Context?</a>
         
           <div class="summary"><p>Returns the parent context.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#pretty_print%28pp%29-instance-method" class="signature"><strong>#pretty_print</strong>(pp)</a>
+        <a href="#pretty_print(pp)-instance-method" class="signature"><strong>#pretty_print</strong>(pp)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#register_macro%28makro%29-instance-method" class="signature"><strong>#register_macro</strong>(makro)</a>
+        <a href="#register_macro(makro)-instance-method" class="signature"><strong>#register_macro</strong>(makro)</a>
         
       </li>
     
@@ -939,7 +939,7 @@ Creating instances is not useful as it’s created automatically at various stag
       </li>
     
       <li class="entry-summary">
-        <a href="#unpack%28vars%3AArray%28String%29%2Cvalues%3AValue%29-instance-method" class="signature"><strong>#unpack</strong>(vars : Array(String), values : Value)</a>
+        <a href="#unpack(vars:Array(String),values:Value)-instance-method" class="signature"><strong>#unpack</strong>(vars : Array(String), values : Value)</a>
         
       </li>
     
@@ -956,22 +956,22 @@ Creating instances is not useful as it’s created automatically at various stag
   <h3>Instance methods inherited from class <code><a href="../Crinja/Util/ScopeMap.html">Crinja::Util::ScopeMap</a>(String, <a href="../Crinja/Value.html">Crinja::Value</a>)</code></h3>
   
   
-    <a href="../Crinja/Util/ScopeMap.html#%5B%5D%28key%3AK%29-instance-method" class="tooltip">
+    <a href="../Crinja/Util/ScopeMap.html#[](key:K)-instance-method" class="tooltip">
       <span>[](key : K)</span>
     []</a>, 
     
   
-    <a href="../Crinja/Util/ScopeMap.html#%5B%5D%3D%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="tooltip">
+    <a href="../Crinja/Util/ScopeMap.html#[]=(*args,**options)-instance-method" class="tooltip">
       <span>[]=(*args, **options)</span>
     []=</a>, 
     
   
-    <a href="../Crinja/Util/ScopeMap.html#clear%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="tooltip">
+    <a href="../Crinja/Util/ScopeMap.html#clear(*args,**options)-instance-method" class="tooltip">
       <span>clear(*args, **options)<br/>clear(*args, **options, &block)</span>
     clear</a>, 
     
   
-    <a href="../Crinja/Util/ScopeMap.html#delete%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="tooltip">
+    <a href="../Crinja/Util/ScopeMap.html#delete(*args,**options)-instance-method" class="tooltip">
       <span>delete(*args, **options)<br/>delete(*args, **options, &block)</span>
     delete</a>, 
     
@@ -981,17 +981,17 @@ Creating instances is not useful as it’s created automatically at various stag
     entries</a>, 
     
   
-    <a href="../Crinja/Util/ScopeMap.html#has_key%3F%28key%3AK%29-instance-method" class="tooltip">
+    <a href="../Crinja/Util/ScopeMap.html#has_key?(key:K)-instance-method" class="tooltip">
       <span>has_key?(key : K)</span>
     has_key?</a>, 
     
   
-    <a href="../Crinja/Util/ScopeMap.html#has_value%3F%28value%3AV%29-instance-method" class="tooltip">
+    <a href="../Crinja/Util/ScopeMap.html#has_value?(value:V)-instance-method" class="tooltip">
       <span>has_value?(value : V)</span>
     has_value?</a>, 
     
   
-    <a href="../Crinja/Util/ScopeMap.html#inspect%28io%3AIO%29-instance-method" class="tooltip">
+    <a href="../Crinja/Util/ScopeMap.html#inspect(io:IO)-instance-method" class="tooltip">
       <span>inspect(io : IO)</span>
     inspect</a>, 
     
@@ -1001,7 +1001,7 @@ Creating instances is not useful as it’s created automatically at various stag
     keys</a>, 
     
   
-    <a href="../Crinja/Util/ScopeMap.html#merge%21%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="tooltip">
+    <a href="../Crinja/Util/ScopeMap.html#merge!(*args,**options)-instance-method" class="tooltip">
       <span>merge!(*args, **options)<br/>merge!(*args, **options, &block)</span>
     merge!</a>, 
     
@@ -1038,7 +1038,7 @@ Creating instances is not useful as it’s created automatically at various stag
   <h3>Constructor methods inherited from class <code><a href="../Crinja/Util/ScopeMap.html">Crinja::Util::ScopeMap</a>(String, <a href="../Crinja/Value.html">Crinja::Value</a>)</code></h3>
   
   
-    <a href="../Crinja/Util/ScopeMap.html#new%28parent%3Dnil%2Cscope%3Dnil%29-class-method" class="tooltip">
+    <a href="../Crinja/Util/ScopeMap.html#new(parent=nil,scope=nil)-class-method" class="tooltip">
       <span>new(parent = <span class="n">nil</span>, scope = <span class="n">nil</span>)</span>
     new</a>
     
@@ -1079,13 +1079,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def self.<strong>new</strong>(bindings : <a href="../Crinja/Variables.html">Variables</a>)
 
-        <a class="method-permalink" href="#new%28bindings%3AVariables%29-class-method">#</a>
+        <a class="method-permalink" href="#new(bindings:Variables)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1095,13 +1095,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def self.<strong>new</strong>(parent : <a href="../Crinja/Context.html">Context</a>? = <span class="n">nil</span>, bindings : <a href="../Crinja/Variables.html">Variables</a>? = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28parent%3AContext%3F%3Dnil%2Cbindings%3AVariables%3F%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new(parent:Context?=nil,bindings:Variables?=nil)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1118,7 +1118,7 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>[]=</strong>(key : String, value)
 
-        <a class="method-permalink" href="#%5B%5D%3D%28key%3AString%2Cvalue%29-instance-method">#</a>
+        <a class="method-permalink" href="#[]=(key:String,value)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Set variable <em>key</em> to value <em>value</em> in local scope.</p></div>
@@ -1126,7 +1126,7 @@ Creating instances is not useful as it’s created automatically at various stag
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L92" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L92" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1136,7 +1136,7 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>[]=</strong>(key : String, value : <a href="../Crinja/Value.html">Value</a>)
 
-        <a class="method-permalink" href="#%5B%5D%3D%28key%3AString%2Cvalue%3AValue%29-instance-method">#</a>
+        <a class="method-permalink" href="#[]=(key:String,value:Value)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Set variable <em>key</em> to value <em>value</em> in local scope.</p></div>
@@ -1144,7 +1144,7 @@ Creating instances is not useful as it’s created automatically at various stag
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L87" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1154,7 +1154,7 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>[]=</strong>(key : String, value : <a href="../Crinja/Variables.html">Variables</a>)
 
-        <a class="method-permalink" href="#%5B%5D%3D%28key%3AString%2Cvalue%3AVariables%29-instance-method">#</a>
+        <a class="method-permalink" href="#[]=(key:String,value:Variables)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Set variable <em>key</em> to value <em>value</em> in local scope.</p></div>
@@ -1162,7 +1162,7 @@ Creating instances is not useful as it’s created automatically at various stag
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L82" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L82" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1178,7 +1178,7 @@ Creating instances is not useful as it’s created automatically at various stag
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1188,13 +1188,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>autoescape</strong> : Bool?
 
-        <a class="method-permalink" href="#autoescape%3ABool%3F-instance-method">#</a>
+        <a class="method-permalink" href="#autoescape:Bool?-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1204,13 +1204,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>autoescape=</strong>(autoescape : Bool?)
 
-        <a class="method-permalink" href="#autoescape%3D%28autoescape%3ABool%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#autoescape=(autoescape:Bool?)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1220,7 +1220,7 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>autoescape?</strong>
 
-        <a class="method-permalink" href="#autoescape%3F-instance-method">#</a>
+        <a class="method-permalink" href="#autoescape?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Determines if autoescape is enabled in this or any parent context.</p></div>
@@ -1228,7 +1228,7 @@ Creating instances is not useful as it’s created automatically at various stag
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L102" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L102" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1244,7 +1244,7 @@ Creating instances is not useful as it’s created automatically at various stag
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L144" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L144" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1254,13 +1254,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>block_context=</strong>(block_context : NamedTuple()?)
 
-        <a class="method-permalink" href="#block_context%3D%28block_context%3ANamedTuple%28%29%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#block_context=(block_context:NamedTuple()?)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1270,13 +1270,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>extend_path_stack</strong> : Crinja::Context::CallStack
 
-        <a class="method-permalink" href="#extend_path_stack%3ACrinja%3A%3AContext%3A%3ACallStack-instance-method">#</a>
+        <a class="method-permalink" href="#extend_path_stack:Crinja::Context::CallStack-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1286,13 +1286,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>has_macro?</strong>(name)
 
-        <a class="method-permalink" href="#has_macro%3F%28name%29-instance-method">#</a>
+        <a class="method-permalink" href="#has_macro?(name)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L60" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L60" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1302,13 +1302,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>import_path_stack</strong> : Crinja::Context::CallStack
 
-        <a class="method-permalink" href="#import_path_stack%3ACrinja%3A%3AContext%3A%3ACallStack-instance-method">#</a>
+        <a class="method-permalink" href="#import_path_stack:Crinja::Context::CallStack-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1318,13 +1318,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>include_path_stack</strong> : Crinja::Context::CallStack
 
-        <a class="method-permalink" href="#include_path_stack%3ACrinja%3A%3AContext%3A%3ACallStack-instance-method">#</a>
+        <a class="method-permalink" href="#include_path_stack:Crinja::Context::CallStack-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1334,13 +1334,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>inspect</strong>(io)
 
-        <a class="method-permalink" href="#inspect%28io%29-instance-method">#</a>
+        <a class="method-permalink" href="#inspect(io)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L149" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L149" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1350,13 +1350,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>macro</strong>(name) : <a href="../Crinja/Callable.html">Callable</a>
 
-        <a class="method-permalink" href="#macro%28name%29%3ACallable-instance-method">#</a>
+        <a class="method-permalink" href="#macro(name):Callable-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L64" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L64" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1366,13 +1366,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>macro_stack</strong> : Crinja::Context::CallStack
 
-        <a class="method-permalink" href="#macro_stack%3ACrinja%3A%3AContext%3A%3ACallStack-instance-method">#</a>
+        <a class="method-permalink" href="#macro_stack:Crinja::Context::CallStack-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1382,13 +1382,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>macros</strong> : Hash(String, <a href="../Crinja/Tag/Macro/MacroFunction.html">Crinja::Tag::Macro::MacroFunction</a>)
 
-        <a class="method-permalink" href="#macros%3AHash%28String%2CCrinja%3A%3ATag%3A%3AMacro%3A%3AMacroFunction%29-instance-method">#</a>
+        <a class="method-permalink" href="#macros:Hash(String,Crinja::Tag::Macro::MacroFunction)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1398,13 +1398,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>merge!</strong>(context : <a href="../Crinja/Context.html">Crinja::Context</a>)
 
-        <a class="method-permalink" href="#merge%21%28context%3ACrinja%3A%3AContext%29-instance-method">#</a>
+        <a class="method-permalink" href="#merge!(context:Crinja::Context)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L72" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1414,7 +1414,7 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>merge!</strong>(bindings)
 
-        <a class="method-permalink" href="#merge%21%28bindings%29-instance-method">#</a>
+        <a class="method-permalink" href="#merge!(bindings)-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Merges values in <em>bindings</em> into local scope.</p></div>
@@ -1422,7 +1422,7 @@ Creating instances is not useful as it’s created automatically at various stag
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L77" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L77" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1432,7 +1432,7 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>parent</strong> : <a href="../Crinja/Context.html">Context</a>?
 
-        <a class="method-permalink" href="#parent%3AContext%3F-instance-method">#</a>
+        <a class="method-permalink" href="#parent:Context?-instance-method">#</a>
       </div>
       
         <div class="doc"><p>Returns the parent context. It must not be altered.</p></div>
@@ -1440,7 +1440,7 @@ Creating instances is not useful as it’s created automatically at various stag
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1450,13 +1450,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>pretty_print</strong>(pp)
 
-        <a class="method-permalink" href="#pretty_print%28pp%29-instance-method">#</a>
+        <a class="method-permalink" href="#pretty_print(pp)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L160" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L160" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1466,13 +1466,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>register_macro</strong>(makro)
 
-        <a class="method-permalink" href="#register_macro%28makro%29-instance-method">#</a>
+        <a class="method-permalink" href="#register_macro(makro)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L68" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L68" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1490,7 +1490,7 @@ Creating instances is not useful as it’s created automatically at various stag
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L44" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1508,7 +1508,7 @@ Creating instances is not useful as it’s created automatically at various stag
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1526,7 +1526,7 @@ Creating instances is not useful as it’s created automatically at various stag
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L97" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L97" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1536,13 +1536,13 @@ Creating instances is not useful as it’s created automatically at various stag
         
         def <strong>unpack</strong>(vars : Array(String), values : <a href="../Crinja/Value.html">Value</a>)
 
-        <a class="method-permalink" href="#unpack%28vars%3AArray%28String%29%2Cvalues%3AValue%29-instance-method">#</a>
+        <a class="method-permalink" href="#unpack(vars:Array(String),values:Value)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/5e658afd4b8fa2e36f1d84c2ce71daaf43566f83/src/runtime/context.cr#L114" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/e3c14c4133e323ff71dab2c729f1e51b2203ee00/src/runtime/context.cr#L114" target="_blank">View source</a>]
         
       </div>
     </div>
