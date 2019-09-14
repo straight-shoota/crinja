@@ -12,13 +12,13 @@ class Crinja::Tuple
   delegate size, :<=>, to_s, :==, to: @data
 
   {% if Indexable.has_method?(:unsafe_fetch) %}
-  def unsafe_fetch(index : Int) : Value
-    @data.unsafe_fetch(index)
-  end
+    def unsafe_fetch(index : Int) : Value
+      @data.unsafe_fetch(index)
+    end
   {% else %}
-  def unsafe_at(index : Int) : Value
-    @data.unsafe_at(index)
-  end
+    def unsafe_at(index : Int) : Value
+      @data.unsafe_at(index)
+    end
   {% end %}
 
   def +(item : Value)

@@ -25,10 +25,10 @@ module Crinja::Filter
   end
 
   {% unless flag?(:win32) %}
-  Crinja.filter :striptags do
-    xml = XML.parse_html target.to_s
-    xml.inner_text.gsub(/\s+/, " ").strip
-  end
+    Crinja.filter :striptags do
+      xml = XML.parse_html target.to_s
+      xml.inner_text.gsub(/\s+/, " ").strip
+    end
   {% end %}
 
   Crinja.filter(:format) { sprintf target.to_s, arguments.varargs }
