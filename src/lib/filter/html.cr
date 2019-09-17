@@ -20,13 +20,13 @@ module Crinja::Filter
     if target.iterable?
       target.map do |item|
         if item.iterable? && item.size == 2
-          [URI.escape(item[0].to_s), "=", URI.escape(item[1].to_s)].join
+          [URI.encode_www_form(item[0].to_s), "=", URI.encode_www_form(item[1].to_s)].join
         else
-          URI.escape(item.to_s)
+          URI.encode_www_form(item.to_s)
         end
       end.join("&")
     else
-      URI.escape(target.to_s)
+      URI.encode_www_form(target.to_s, space_to_plus: false)
     end
   end
 

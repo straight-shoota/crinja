@@ -65,7 +65,7 @@ module Crinja::Filter
       end.each do |unit, magnitude|
         if size < magnitude
           return String.build do |io|
-            converted = (size / (magnitude / (binary ? 1024 : 1000)))
+            converted = (size / (magnitude // (binary ? 1024 : 1000)))
             if unit == "Bytes"
               io << converted.to_i
             else
