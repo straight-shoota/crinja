@@ -745,7 +745,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/loader.cr#L132" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/loader.cr#L132" target="_blank">
         loader.cr
       </a>
     
@@ -777,6 +777,8 @@
     
       <li class="entry-summary">
         <a href="#get_source(env:Crinja,template:String):::Tuple(String,String?)-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String?)</a>
+        
+          <div class="summary"><p>Get the template source, filename and reload helper for a template.</p></div>
         
       </li>
     
@@ -855,7 +857,9 @@
         <a class="method-permalink" href="#new(mapping,delimiter=&quot;/&quot;)-class-method">#</a>
       </div>
       
-        <div class="doc"><p>The prefix is delimited from the template by a slash per
+        <div class="doc">
+          
+          <p>The prefix is delimited from the template by a slash per
 default, which can be changed by setting the <em>delimiter</em> argument.
  loader = PrefixLoader.new({</p>
 
@@ -864,12 +868,13 @@ default, which can be changed by setting the <em>delimiter</em> argument.
 
 <p>})
 By loading <code>app1/index.html</code> the file path <code>app1/index.html</code> is loaded
-by loading <code>app2/index.html</code> the file path <code>../otherapp/index.html</code>.</p></div>
+by loading <code>app2/index.html</code> the file path <code>../otherapp/index.html</code>.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/loader.cr#L143" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/loader.cr#L143" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -889,10 +894,26 @@ by loading <code>app2/index.html</code> the file path <code>../otherapp/index.ht
         <a class="method-permalink" href="#get_source(env:Crinja,template:String):::Tuple(String,String?)-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../../Crinja/Loader.html">Crinja::Loader</a>
+            </div>
+          
+          <p>Get the template source, filename and reload helper for a template.
+It's passed the environment and template name and has to return a
+tuple in the form <code></code>{source : String, filename : String?}<code></code> or raise a
+<code><a href="../../Crinja/TemplateNotFoundError.html">TemplateNotFoundError</a></code> if it can't locate the template.
+The source part of the returned tuple must be the source of the
+template as string. The filename should be the name of the file on
+the filesystem if it was loaded from there, otherwise <code>nil</code>.
+The filename is used for the tracebacks if no loader extension is used.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/loader.cr#L146" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/loader.cr#L146" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -908,7 +929,7 @@ by loading <code>app2/index.html</code> the file path <code>../otherapp/index.ht
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/loader.cr#L135" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/loader.cr#L135" target="_blank">View source</a>]
         
       </div>
     </div>

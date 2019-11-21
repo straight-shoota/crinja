@@ -760,7 +760,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/loader.cr#L4" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/loader.cr#L4" target="_blank">
         loader.cr
       </a>
     
@@ -842,19 +842,22 @@
         <a class="method-permalink" href="#get_source(env:Crinja,template:String):::Tuple(String,String?)-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Get the template source, filename and reload helper for a template.
+        <div class="doc">
+          
+          <p>Get the template source, filename and reload helper for a template.
 It's passed the environment and template name and has to return a
 tuple in the form <code></code>{source : String, filename : String?}<code></code> or raise a
 <code><a href="../Crinja/TemplateNotFoundError.html">TemplateNotFoundError</a></code> if it can't locate the template.
 The source part of the returned tuple must be the source of the
 template as string. The filename should be the name of the file on
 the filesystem if it was loaded from there, otherwise <code>nil</code>.
-The filename is used for the tracebacks if no loader extension is used.</p></div>
+The filename is used for the tracebacks if no loader extension is used.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/loader.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/loader.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -867,13 +870,16 @@ The filename is used for the tracebacks if no loader extension is used.</p></div
         <a class="method-permalink" href="#list_templates:Iterable(String)-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Iterates over all templates. If the loader does not support that
-it should raise a <code><a href="../Crinja/TypeError.html">TypeError</a></code> which is the default behavior.</p></div>
+        <div class="doc">
+          
+          <p>Iterates over all templates. If the loader does not support that
+it should raise a <code><a href="../Crinja/TypeError.html">TypeError</a></code> which is the default behavior.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/loader.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/loader.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -889,7 +895,7 @@ it should raise a <code><a href="../Crinja/TypeError.html">TypeError</a></code> 
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/loader.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/loader.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>

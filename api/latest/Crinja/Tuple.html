@@ -756,7 +756,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L4" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L4" target="_blank">
         runtime/tuple.cr
       </a>
     
@@ -827,6 +827,8 @@
       <li class="entry-summary">
         <a href="#==(arg)-instance-method" class="signature"><strong>#==</strong>(arg)</a>
         
+          <div class="summary"><p>Returns <code>false</code> (other can only be a <code><a href="../Crinja/Value.html">Value</a></code> here).</p></div>
+        
       </li>
     
       <li class="entry-summary">
@@ -861,6 +863,8 @@
     
       <li class="entry-summary">
         <a href="#unsafe_fetch(index:Int):Value-instance-method" class="signature"><strong>#unsafe_fetch</strong>(index : Int) : Value</a>
+        
+          <div class="summary"><p>Returns the element at the given <em>index</em>, without doing any bounds check.</p></div>
         
       </li>
     
@@ -958,7 +962,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -974,7 +978,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L59" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -995,7 +999,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1016,7 +1020,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1032,7 +1036,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1048,7 +1052,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1064,7 +1068,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1080,7 +1084,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1093,10 +1097,19 @@
         <a class="method-permalink" href="#==(arg)-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class Reference
+            </div>
+          
+          <p>Returns <code>false</code> (other can only be a <code><a href="../Crinja/Value.html">Value</a></code> here).</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1112,7 +1125,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1128,7 +1141,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1144,7 +1157,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1160,7 +1173,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1176,7 +1189,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1192,7 +1205,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1205,10 +1218,29 @@
         <a class="method-permalink" href="#unsafe_fetch(index:Int):Value-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module Indexable(<a href="../Crinja/Value.html">Crinja::Value</a>)
+            </div>
+          
+          <p>Returns the element at the given <em>index</em>, without doing any bounds check.</p>
+
+<p><code>Indexable</code> makes sure to invoke this method with <em>index</em> in <code>0..<a href="../Crinja/Tuple.html#size(*args,**options)-instance-method">.size</a></code>,
+so converting negative indices to positive ones is not needed here.</p>
+
+<p>Clients never invoke this method directly. Instead, they access
+elements with <code>#[](index)</code> and <code>#[]?(index)</code>.</p>
+
+<p>This method should only be directly invoked if you are absolutely
+sure the index is in bounds, to avoid a bounds check for a small boost
+of performance.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/runtime/tuple.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/runtime/tuple.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>

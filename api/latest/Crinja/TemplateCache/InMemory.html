@@ -745,7 +745,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/util/template_cache.cr#L16" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/util/template_cache.cr#L16" target="_blank">
         util/template_cache.cr
       </a>
     
@@ -765,6 +765,8 @@
     
       <li class="entry-summary">
         <a href="#fetch(env,name,file_name,source,&block)-instance-method" class="signature"><strong>#fetch</strong>(env, name, file_name, source, &block)</a>
+        
+          <div class="summary"><p>Try to fetch template from cache.</p></div>
         
       </li>
     
@@ -832,10 +834,21 @@
         <a class="method-permalink" href="#fetch(env,name,file_name,source,&block)-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class <a href="../../Crinja/TemplateCache.html">Crinja::TemplateCache</a>
+            </div>
+          
+          <p>Try to fetch template from cache. If not found, this method yields and in the attached block
+the template should be initialized. Implementing classes should store the value from the
+yield and return it to the caller.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/util/template_cache.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/util/template_cache.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>

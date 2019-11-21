@@ -756,7 +756,7 @@
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L1" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L1" target="_blank">
         lib/feature_library.cr
       </a>
     
@@ -860,6 +860,8 @@
       <li class="entry-summary">
         <a href="#inspect(io:IO)-instance-method" class="signature"><strong>#inspect</strong>(io : IO)</a>
         
+          <div class="summary"><p>Appends a String representation of this object which includes its class name, its object address and the values of all instance variables.</p></div>
+        
       </li>
     
       <li class="entry-summary">
@@ -947,16 +949,19 @@
         <a class="method-permalink" href="#new(register_defaults=true,disabled=[]ofString)-class-method">#</a>
       </div>
       
-        <div class="doc"><p>Creates a new feature library.
+        <div class="doc">
+          
+          <p>Creates a new feature library.
 If <em>register_defaults</em> is set to <code>false</code>, this library will be empty. Otherwise it is populated
 with registered default features.
 A list of <em>disabled</em> features can be provided, if a feature name in this list is accessed,
-it will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code>.</p></div>
+it will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code>.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L19" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -976,12 +981,15 @@ it will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></
         <a class="method-permalink" href="#%3C%3C(classes:Array(Class))-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Adds an array of classes to this library.</p></div>
+        <div class="doc">
+          
+          <p>Adds an array of classes to this library.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -994,13 +1002,16 @@ it will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></
         <a class="method-permalink" href="#%3C%3C(obj:T)-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Adds a feature object to this library.
-It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#name-instance-method">.name</a></code>.</p></div>
+        <div class="doc">
+          
+          <p>Adds a feature object to this library.
+It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#name-instance-method">.name</a></code>.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L79" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L79" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1013,12 +1024,15 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
         <a class="method-permalink" href="#%3C%3C(klass:Class)-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Adds a class to this library.</p></div>
+        <div class="doc">
+          
+          <p>Adds a class to this library.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1031,15 +1045,18 @@ It will be stored under the key <code>obj<a href="../Crinja/FeatureLibrary.html#
         <a class="method-permalink" href="#[](lookup):T-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Retrieves the feature object in this library with key or alias <em>lookup</em>.</p>
+        <div class="doc">
+          
+          <p>Retrieves the feature object in this library with key or alias <em>lookup</em>.</p>
 
 <p>If the lookup name is in the list of <code><a href="../Crinja/FeatureLibrary.html#disabled:Array(String)-instance-method">#disabled</a></code> features, a <code><a href="../Crinja/SecurityError.html">SecurityError</a></code> is raised.
-If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary/UnknownFeatureError.html">UnknownFeatureError</a></code> is raised.</p></div>
+If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary/UnknownFeatureError.html">UnknownFeatureError</a></code> is raised.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L95" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L95" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1052,12 +1069,15 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
         <a class="method-permalink" href="#[]=(name,obj:T)-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Stores a feature object <em>obj</em> under the key <em>name</em>.</p></div>
+        <div class="doc">
+          
+          <p>Stores a feature object <em>obj</em> under the key <em>name</em>.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L112" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L112" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1070,12 +1090,15 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
         <a class="method-permalink" href="#[]=(name,klass:Class)-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Stores a feature object <em>obj</em> under the key <em>name</em>.</p></div>
+        <div class="doc">
+          
+          <p>Stores a feature object <em>obj</em> under the key <em>name</em>.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L117" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L117" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1088,12 +1111,15 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
         <a class="method-permalink" href="#aliases:Hash(String,String)-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Map of aliases.</p></div>
+        <div class="doc">
+          
+          <p>Map of aliases.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1106,12 +1132,15 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
         <a class="method-permalink" href="#disabled:Array(String)-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>List of disabled features.</p></div>
+        <div class="doc">
+          
+          <p>List of disabled features.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1127,7 +1156,7 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1143,7 +1172,7 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1159,7 +1188,7 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L121" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L121" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1172,10 +1201,28 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
         <a class="method-permalink" href="#inspect(io:IO)-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class Reference
+            </div>
+          
+          <p>Appends a String representation of this object
+which includes its class name, its object address
+and the values of all instance variables.</p>
+
+<pre><code><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.<span class="k">new</span>(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).inspect <span class="c"># =&gt; #&lt;Person:0x10fd31f20 @name=&quot;John&quot;, @age=32&gt;</span></code></pre>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L127" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L127" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1191,7 +1238,7 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1207,7 +1254,7 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1223,7 +1270,7 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L131" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L131" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1236,12 +1283,15 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
         <a class="method-permalink" href="#register_defaults-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>Adds default values to this library.</p></div>
+        <div class="doc">
+          
+          <p>Adds default values to this library.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1257,7 +1307,7 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1273,7 +1323,7 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1291,12 +1341,15 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
         <a class="method-permalink" href="#register_default(default,name=nil)-macro">#</a>
       </div>
       
-        <div class="doc"><p>Register default values with this library.</p></div>
+        <div class="doc">
+          
+          <p>Register default values with this library.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/d0b50a2b966897a816f594d923fa0f0208cc83d7/src/lib/feature_library.cr#L50" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/6f3aa24bec9c6dbb7a8639e3eae2ed50658fc96a/src/lib/feature_library.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
