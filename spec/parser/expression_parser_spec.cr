@@ -1,12 +1,12 @@
 require "../spec_helper.cr"
 
 describe Crinja::Parser::ExpressionParser do
-  it "" do
+  it "parses string literals" do
     expression = parse_expression(%( "foo"))
     expression.should be_a(Crinja::AST::StringLiteral)
   end
 
-  it "" do
+  it "parses binary expressions" do
     expression = parse_expression(%(1 + 2))
     expression.should be_a(Crinja::AST::BinaryExpression)
     Crinja.new.evaluate(expression).should eq 3
@@ -40,5 +40,23 @@ describe Crinja::Parser::ExpressionParser do
   it "parses integer as member access" do
     expression = parse_expression("foo.1.bar")
     expression.should be_a(Crinja::AST::MemberExpression)
+  end
+
+  it "parses escaped backslashes" do
+    expression = parse_expression(%q("foo\\bar"))
+    expression.should be_a(Crinja::AST::StringLiteral)
+    expression.as(Crinja::AST::StringLiteral).value.should eq %q(foo\bar)
+  end
+
+  it "parses escaped newlines" do
+    expression = parse_expression(%q("foo\nbar"))
+    expression.should be_a(Crinja::AST::StringLiteral)
+    expression.as(Crinja::AST::StringLiteral).value.should eq "foo\nbar"
+  end
+
+  it "parses escaped quotes" do
+    expression = parse_expression(%q("\"foo\"\'bar\'"))
+    expression.should be_a(Crinja::AST::StringLiteral)
+    expression.as(Crinja::AST::StringLiteral).value.should eq %q("foo"'bar')
   end
 end
