@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.30.1">
+<meta name="generator" content="Crystal Docs 0.31.1">
 
-
-<link href="css/style.css" rel="stylesheet" type="text/css">
-
+<link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/doc.js"></script>
-<script type="text/javascript">
-  CrystalDoc.base_path = "";
-</script>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
 
   <meta id="repository-name" content="github.com/straight-shoota/crinja">
   <title>README - github.com/straight-shoota/crinja</title>
+  <script type="text/javascript">
+  CrystalDoc.base_path = "";
+  </script>
 </head>
 <body>
 
@@ -713,12 +717,14 @@
 
 
 <div class="main-content">
-<h1>crinja</h1>
+<h1><a id="crinja" class="anchor" href="#crinja">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>crinja</h1>
 
 <p><a href="https://travis-ci.org/straight-shoota/crinja" target="_blank"><img src="https://travis-ci.org/straight-shoota/crinja.svg?branch=master" alt="Build Status"/></a>
 <a href="https://circleci.com/gh/straight-shoota/crinja" target="_blank"><img src="https://circleci.com/gh/straight-shoota/crinja.svg?style=svg" alt="CircleCI"/></a>
-<a href="https://shards.rocks/github/straight-shoota/crinja" target="_blank"><img src="https://shards.rocks/badge/github/straight-shoota/crinja/status.svg" alt="Dependency Status"/></a>
-<a href="https://shards.rocks/github/straight-shoota/crinja" target="_blank"><img src="https://shards.rocks/badge/github/straight-shoota/crinja/dev_status.svg" alt="devDependency Status"/></a>
 <a href="https://www.codetriage.com/straight-shoota/crinja" target="_blank"><img src="https://www.codetriage.com/straight-shoota/crinja/badges/users.svg" alt="Open Source Helpers"/></a></p>
 
 <p>Crinja is an implementation of the <a href="http://jinja.pocoo.org" target="_blank">Jinja2 template engine</a> written in <a href="http://crystallang.org" target="_blank">Crystal</a>. Templates are parsed and evaluated at runtime (see <a href="#background" target="_blank">Background</a>). It includes a script runtime for evaluation of dynamic python-like expressions used by the Jinja2 syntax.</p>
@@ -727,7 +733,11 @@
 <strong><a href="https://github.com/straight-shoota/crinja" target="_blank">Github Repo</a></strong> ·
 <strong><a href="https://github.com/straight-shoota/crinja/blob/master/TEMPLATE_SYNTAX.md" target="_blank">Template Syntax</a></strong></p>
 
-<h2>Features</h2>
+<h2><a id="features" class="anchor" href="#features">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Features</h2>
 
 <p>Crinja tries to stay close to the Jinja2 language design and implementation. It currently provides most features of the original template language, such as:</p>
 
@@ -737,7 +747,11 @@
 
 <p>Currently, template errors fail fast raising an exception. It is considered to change this behaviour to collect multiple errors, similar to what Jinjava does.</p>
 
-<h2>Installation</h2>
+<h2><a id="installation" class="anchor" href="#installation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Installation</h2>
 
 <p>Add this to your application's <code>shard.yml</code>:</p>
 
@@ -745,15 +759,27 @@
   crinja:
     github: straight-shoota/crinja</code></pre>
 
-<h2>Usage</h2>
+<h2><a id="usage" class="anchor" href="#usage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage</h2>
 
-<h3>Simple string template</h3>
+<h3><a id="simple-string-template" class="anchor" href="#simple-string-template">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Simple string template</h3>
 
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
 
 <span class="t">Crinja</span>.render(<span class="s">&quot;Hello, {{ name }}!&quot;</span>, {<span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span>}) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
 
-<h3>File loader</h3>
+<h3><a id="file-loader" class="anchor" href="#file-loader">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>File loader</h3>
 
 <p>With this template file:</p>
 
@@ -770,7 +796,11 @@ template <span class="o">=</span> env.get_template(<span class="s">&quot;index.h
 template.render <span class="c"># =&gt; &quot;Hello, World!&quot;</span>
 template.render({ <span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span> }) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
 
-<h3>Crystal Playground</h3>
+<h3><a id="crystal-playground" class="anchor" href="#crystal-playground">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Crystal Playground</h3>
 
 <p>Run the <strong>Crystal playground</strong> inside this repostitory and the server is prepared with examples of using Crinja's API (check the <code>Workbooks</code> section).</p>
 
@@ -778,7 +808,11 @@ template.render({ <span class="s">&quot;name&quot;</span> => <span class="s">&qu
 
 <p>You can also browse the examples and documentation online (without the interactive playground): <a href="https://straight-shoota.github.io/crinja/api/latest/playground/objects.html" target="_blank">objects</a> & <a href="https://straight-shoota.github.io/crinja/api/latest/playground/features.html" target="_blank">features</a></p>
 
-<h3>Crinja Playground</h3>
+<h3><a id="crinja-playground" class="anchor" href="#crinja-playground">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Crinja Playground</h3>
 
 <p>The <strong>Crinja Example Server</strong> in <a href="https://github.com/straight-shoota/crinja/tree/master/examples/server" target="_blank"><code>examples/server</code></a> is an HTTP server which renders Crinja templates from <code>examples/server/pages</code>. It has also an interactive playground for Crinja template testing at <code>/play</code>.</p>
 
@@ -786,14 +820,22 @@ template.render({ <span class="s">&quot;name&quot;</span> => <span class="s">&qu
 
 <p>Other examples can be found in the <a href="https://github.com/straight-shoota/crinja/tree/master/examples" target="_blank"><code>examples</code> folder</a>.</p>
 
-<h2>Template Syntax</h2>
+<h2><a id="template-syntax" class="anchor" href="#template-syntax">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Template Syntax</h2>
 
 <p>The following is a quick overview of the template language to get you started.</p>
 
 <p>More details can be found in <strong><a href="https://github.com/straight-shoota/crinja/blob/master/TEMPLATE_SYNTAX.md" target="_blank">the template guide</a></strong>.
 The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank">Jinja2 template reference</a> can also be helpful, Crinja templates are mostly similar.</p>
 
-<h3>Expressions</h3>
+<h3><a id="expressions" class="anchor" href="#expressions">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Expressions</h3>
 
 <p>In a template, <strong>expressions</strong> inside double curly braces (<code>{{</code> ... <code>}}</code>) will be evaluated and printed to the template output.</p>
 
@@ -813,7 +855,11 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
   Hey, stranger!
 {% end %}</code></pre>
 
-<h3>Tags</h3>
+<h3><a id="tags" class="anchor" href="#tags">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Tags</h3>
 
 <p><strong>Tags</strong> control the logic of the template. They are enclosed in <code>{%</code> and <code>%}</code>.</p>
 
@@ -839,7 +885,11 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
 
 {% include "header.html" %}</code></pre>
 
-<h3>Macros</h3>
+<h3><a id="macros" class="anchor" href="#macros">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Macros</h3>
 
 <p>Macros are similar to functions in other programming languages.</p>
 
@@ -847,7 +897,11 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
 {{ say_hello('Peter') }}
 {{ say_hello('Paul') }}</code></pre>
 
-<h3>Template Inheritance</h3>
+<h3><a id="template-inheritance" class="anchor" href="#template-inheritance">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Template Inheritance</h3>
 
 <p>Templates inheritance enables the use of <code>block</code> tags in parent templates that can be overwritten by child templates. This is useful for implementating layouts:</p>
 
@@ -881,13 +935,21 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
   &lt;/ul>
 {% endblock %}</code></pre>
 
-<h2>Crystal API</h2>
+<h2><a id="crystal-api" class="anchor" href="#crystal-api">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Crystal API</h2>
 
 <p>The API tries to stick ot the original <a href="http://jinja.pocoo.org/docs/2.9/api/" target="_blank">Jinja2 API</a> which is written in Python.</p>
 
 <p><strong><a href="https://straight-shoota.github.io/crinja/api/latest/" target="_blank">API Documentation</a></strong></p>
 
-<h3>Configuration</h3>
+<h3><a id="configuration" class="anchor" href="#configuration">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Configuration</h3>
 
 <p>Currently the following configuration options for <code>Config</code> are supported:</p>
 
@@ -936,7 +998,11 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/" target="_blank
 
 <p>See also the original <a href="http://jinja.pocoo.org/docs/2.9/api/" target="_blank">Jinja2 API Documentation</a>.</p>
 
-<h3>Custom features</h3>
+<h3><a id="custom-features" class="anchor" href="#custom-features">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Custom features</h3>
 
 <p>You can provide custom tags, filters, functions, operators and tests. Create an implementation using the macros <code>Crinja.filter</code>, <code>Crinja.function</code>, <code>Crinja.test</code>. They need to be passed a block which will be converted to a Proc. Optional arguments are a <code>Hash</code> or <code>NamedTuple</code> with default arguments and a name. If a name is provided, it will be added to the feature library defaults and available in every environment which uses the registered defaults.</p>
 
@@ -977,7 +1043,11 @@ template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span>
 
 <p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> and  <code><a href="Crinja.html">Crinja</a>:Tag</code> and adding an instance to the feature library defaults (<code>Crinja::Operator::Library.defaults << MyTag.new</code>) or to a specific environment (<code>env.tags << MyTag.new</code>).</p>
 
-<h2>Differences from Jinja2</h2>
+<h2><a id="differences-from-jinja2" class="anchor" href="#differences-from-jinja2">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Differences from Jinja2</h2>
 
 <p>This is an incomplete list of <strong>Differences to the original Jinja2</strong>:</p>
 
@@ -987,7 +1057,11 @@ template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span>
 
 <ul><li>Sandboxed execution.</li><li>Some in-depth features like extended macro reflection, reusable blocks.</li></ul>
 
-<h2>Background</h2>
+<h2><a id="background" class="anchor" href="#background">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Background</h2>
 
 <p>Crystal is a great programming language with a clean syntax inspired by Ruby, but it is compiled and runs incredibly fast.</p>
 
@@ -1002,11 +1076,19 @@ template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span>
 
 <ul><li><a href="https://github.com/HubSpot/jinjava" target="_blank">Jinjava</a> - Jinja2 implementation in Java using <a href="https://uel.java.net/" target="_blank">Unified Expression Language</a> (<code>javaex.el</code>) for expression resolving. It served as an inspiration for some parts of Crinja.</li><li><a href="https://shopify.github.io/liquid/" target="_blank">Liquid</a> - Jinja2-inspired template engine in Ruby</li><li><a href="https://github.com/TechMagister/liquid.cr" target="_blank">Liquid.cr</a> - Liquid implementation in Crystal</li><li><a href="https://twig.sensiolabs.org/" target="_blank">Twig</a> - Jinja2-inspired template engine in PHP</li><li><a href="https://hackage.haskell.org/package/ginger" target="_blank">ginger</a> - Jinja2 implementation in Haskell</li><li><a href="https://github.com/sstur/jinja-js" target="_blank">Jinja-Js</a> - Jinja2-inspired template engin in Javascript</li><li><a href="https://github.com/jmoiron/jigo" target="_blank">jigo</a> - Jinja2 implementation in Go</li><li><a href="https://github.com/Keats/tera" target="_blank">tera</a> - Jinja2 implementation in Rust</li><li><a href="https://github.com/tategakibunko/jingoo" target="_blank">jingoo</a> - Jinja2 implementation in OCaml</li><li><a href="https://mozilla.github.io/nunjucks/" target="_blank">nunjucks</a> - Jinja2 inspired template engine in Javascript</li></ul>
 
-<h2>Contributing</h2>
+<h2><a id="contributing" class="anchor" href="#contributing">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributing</h2>
 
 <ol><li>Fork it (&lt;https://github.com/straight-shoota/crinja/fork>)</li><li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li><li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li><li>Push to the branch (<code>git push origin my-new-feature</code>)</li><li>Create a new Pull Request</li></ol>
 
-<h2>Contributors</h2>
+<h2><a id="contributors" class="anchor" href="#contributors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributors</h2>
 
 <ul><li><a href="https://github.com/straight-shoota" target="_blank">straight-shoota</a> Johannes Müller - creator, maintainer</li></ul>
 </div>
