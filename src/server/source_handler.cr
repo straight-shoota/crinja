@@ -14,7 +14,7 @@ class Crinja::Server::SourceHandler
     render_source(context.response, template)
   rescue e : Crinja::TemplateNotFoundError
     @logger.warn e.message
-    context.response.respond_with_error "File Not Found", 404
+    context.response.respond_with_status :not_found
   end
 
   def render_source(io, template)
