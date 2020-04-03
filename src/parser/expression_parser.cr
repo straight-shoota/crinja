@@ -1,4 +1,4 @@
-require "logger"
+require "log"
 require "./parser_helper"
 
 class Crinja::Parser::ExpressionParser

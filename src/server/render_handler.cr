@@ -13,9 +13,9 @@ class Crinja::Server::RenderHandler
       template.render(context.response, vars)
     end
 
-    @logger.info "Time to render #{path}: #{time_to_render.colorize(:yellow)}"
-  rescue e : Crinja::TemplateNotFoundError
-    @logger.warn e.message
+    @env.logger.info { "Time to render #{path}: #{time_to_render.colorize(:yellow)}" }
+  rescue exc : Crinja::TemplateNotFoundError
+    @env.logger.debug(exception: exc) { "Render handler failed" }
     call_next(context)
   end
 

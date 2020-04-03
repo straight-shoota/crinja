@@ -3,7 +3,7 @@ require "crinja"
 
 crinja = Crinja.new(loader: Crinja::Loader::FileSystemLoader.new("pages"))
 
-logger = Logger.new(STDERR)
+logger = ::Log.for("crinja.examples.kemal")
 
 source_renderer = Crinja::Server::SourceRenderer.new(crinja)
 
@@ -17,8 +17,8 @@ get "/source/*" do |env|
 
   begin
     source_renderer.render(crinja.get_template(path))
-  rescue e : Crinja::TemplateNotFoundError
-    logger.warn e.message
+  rescue exc : Crinja::TemplateNotFoundError
+    logger.warn { exc.message }
     env.response.respond_with_status :not_found
   end
 end
@@ -37,8 +37,8 @@ get "/*" do |env|
       },
     }
     template.render(vars)
-  rescue e : Crinja::TemplateNotFoundError
-    logger.warn e.message
+  rescue exc : Crinja::TemplateNotFoundError
+    logger.warn { exc.message }
     env.response.respond_with_status :not_found
   end
 end

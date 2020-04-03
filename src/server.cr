@@ -1,9 +1,12 @@
 require "http/server"
 require "colorize"
 require "benchmark"
+require "log"
 
 @[Crinja::Attributes(expose: [host, port, template_dir, public_dir, templates])]
 class Crinja::Server
+  Log = ::Log.for(self)
+
   DEFAULT_HOST = "0.0.0.0"
   DEFAULT_PORT = 7645
 
@@ -11,7 +14,6 @@ class Crinja::Server
   property port : Int32 = DEFAULT_PORT
   property template_dir : String = "pages"
   property public_dir : String = "public"
-  property logger : Logger = Logger.new(STDERR)
 
   getter env : Crinja
   getter! server : HTTP::Server
@@ -34,9 +36,9 @@ class Crinja::Server
     handlers = [
       HTTP::ErrorHandler.new,
       HTTP::LogHandler.new,
-      Crinja::Server::PlayHandler.new(@env, @logger),
-      Crinja::Server::SourceHandler.new(@env, @logger),
-      Crinja::Server::RenderHandler.new(@env, @logger),
+      Crinja::Server::PlayHandler.new(@env),
+      Crinja::Server::SourceHandler.new(@env),
+      Crinja::Server::RenderHandler.new(@env),
       HTTP::StaticFileHandler.new(public_dir),
     ]
 

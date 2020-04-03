@@ -11,7 +11,6 @@ class Crinja::Parser::TemplateParser
 
   def initialize(@env : Crinja, source)
     @token_stream = TokenStream.new(TemplateLexer.new(@env.config, source))
-    @logger = @env.logger
     @expression_parser = ExpressionParser.new(@token_stream, @env.config)
     @stack = [] of ::Tuple(AST::TagNode, String)
   end

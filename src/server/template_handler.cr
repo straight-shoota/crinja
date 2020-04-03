@@ -1,7 +1,7 @@
 module Crinja::Server::TemplateHandler
   include HTTP::Handler
 
-  def initialize(@env : Crinja, @logger : Logger)
+  def initialize(@env : Crinja)
   end
 
   def load_template(path)
@@ -13,7 +13,7 @@ module Crinja::Server::TemplateHandler
     time_to_parse = Benchmark.measure "parse #{path}" do
       template = @env.get_template(path)
     end
-    @logger.info "Time to parse #{path}: #{time_to_parse.colorize(:yellow)}"
+    @env.logger.info { "Time to parse #{path}: #{time_to_parse.colorize(:yellow)}" }
 
     template
   end

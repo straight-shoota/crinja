@@ -23,7 +23,7 @@ class Crinja::Server::PlayHandler
         name: "mat"
       END
 
-  def initialize(@env : Crinja, @logger : Logger)
+  def initialize(@env : Crinja)
   end
 
   def call(context)
@@ -58,14 +58,14 @@ class Crinja::Server::PlayHandler
 
       begin
         rendered_result = template.render(bindings.as_h)
-      rescue e : Crinja::Error
-        e.template = template
-        rendered_result = e.to_s
-        @logger.error e.to_s
+      rescue exc : Crinja::Error
+        exc.template = template
+        rendered_result = exc.to_s
+        @env.logger.error(exception: exc) { "Play handler render failed" }
       end
-    rescue e : Crinja::TemplateError
-      rendered_result = e.to_s
-      @logger.error e.to_s
+    rescue exc : Crinja::TemplateError
+      rendered_result = exc.to_s
+      @env.logger.error(exception: exc) { "Play handler template loading failed" }
     end
 
     context.response.content_type = "text/html"

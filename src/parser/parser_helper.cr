@@ -1,13 +1,11 @@
-require "logger"
+require "log"
 require "./token_stream"
 
 module Crinja::Parser::ParserHelper
   # :nodoc:
   alias Kind = Parser::Token::Kind
 
-  @logger = Logger.new(STDOUT)
-
-  getter :logger, :token_stream
+  getter :token_stream
   delegate :next_token, :next_token?, :peek_token, :peek_token?, :current_token, to: token_stream
 
   def initialize(lexer : BaseLexer)
