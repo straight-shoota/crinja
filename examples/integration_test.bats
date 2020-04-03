@@ -1,11 +1,13 @@
 #!/usr/bin/env bats
 
+CRYSTAL=${CRYSTAL:-crystal}
+
 @test "examples/config" {
   pushd "examples/config"
   shards install
 
-  crystal run config.cr
-  crystal run config.cr --release --no-debug
+  $CRYSTAL run config.cr
+  $CRYSTAL run config.cr --release --no-debug
   popd
 }
 
@@ -13,8 +15,8 @@
   pushd "examples/kemal"
   shards install
 
-  crystal build kemal.cr
-  crystal build kemal.cr --release --no-debug
+  $CRYSTAL build kemal.cr
+  $CRYSTAL build kemal.cr --release --no-debug
 
   popd
 }
@@ -23,8 +25,8 @@
   pushd "examples/kilt"
   shards install
 
-  crystal run kilt.cr
-  crystal run kilt.cr --release --no-debug
+  $CRYSTAL run kilt.cr
+  $CRYSTAL run kilt.cr --release --no-debug
 
   popd
 }
@@ -33,8 +35,8 @@
   pushd "examples/rwbench"
   shards install
 
-  crystal run rwbench.cr
-  crystal run rwbench.cr --release --no-debug
+  $CRYSTAL run rwbench.cr
+  $CRYSTAL run rwbench.cr --release --no-debug
 
   popd
 }
@@ -43,8 +45,8 @@
   pushd "examples/server"
   shards install
 
-  crystal build server.cr
-  crystal build server.cr --release --no-debug
+  $CRYSTAL build server.cr
+  $CRYSTAL build server.cr --release --no-debug
 
   popd
 }
