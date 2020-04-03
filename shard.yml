@@ -1,7 +1,7 @@
 name: crinja
-version: 0.5.1
+version: 0.6.0
 license: Apache-2.0
-crystal: 0.32.1
+crystal: 0.34.0
 
 authors:
   - Johannes Müller <straightshoota@gmail.com>
