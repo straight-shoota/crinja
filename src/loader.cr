@@ -74,7 +74,7 @@ abstract class Crinja::Loader
           begin
             source = File.read(file_name, encoding: @encoding)
             return {source, file_name}
-          rescue e : IO::Error | Errno
+          rescue e : IO::Error | File::Error
             raise TemplateNotFoundError.new(template, self, e.message, e)
           end
         end
