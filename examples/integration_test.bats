@@ -7,7 +7,6 @@ CRYSTAL=${CRYSTAL:-crystal}
   shards install
 
   $CRYSTAL run config.cr
-  $CRYSTAL run config.cr --release --no-debug
   popd
 }
 
@@ -16,7 +15,6 @@ CRYSTAL=${CRYSTAL:-crystal}
   shards install
 
   $CRYSTAL build kemal.cr
-  $CRYSTAL build kemal.cr --release --no-debug
 
   popd
 }
@@ -26,7 +24,6 @@ CRYSTAL=${CRYSTAL:-crystal}
   shards install
 
   $CRYSTAL run kilt.cr
-  $CRYSTAL run kilt.cr --release --no-debug
 
   popd
 }
@@ -36,7 +33,6 @@ CRYSTAL=${CRYSTAL:-crystal}
   shards install
 
   $CRYSTAL run rwbench.cr
-  $CRYSTAL run rwbench.cr --release --no-debug
 
   popd
 }
@@ -46,7 +42,6 @@ CRYSTAL=${CRYSTAL:-crystal}
   shards install
 
   $CRYSTAL build server.cr
-  $CRYSTAL build server.cr --release --no-debug
 
   popd
 }
