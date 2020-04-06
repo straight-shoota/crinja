@@ -13,6 +13,6 @@ addons:
     - bats
 
 script:
-- make test
+- make test/unit
 - crystal tool format --check src spec
-- make integration-test
+- make test/integration
