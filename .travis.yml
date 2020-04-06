@@ -1,3 +1,4 @@
+dist: bionic
 language: crystal
 
 env:
@@ -5,14 +6,22 @@ env:
     GIT_COMMITTER_NAME: travis-ci
     GIT_COMMITTER_EMAIL: travis@travis-ci.org
 
-addons:
-  apt:
-    sources:
-    - sourceline: 'ppa:duggan/bats'
-    packages:
-    - bats
+crystal:
+- latest
 
-script:
-- make test/unit
-- crystal tool format --check src spec
-- make test/integration
+jobs:
+- stage: test
+  name: unit tests
+  script: make test/unit
+- stage: test
+  name: format
+  script: make format CRYSTAL_OPTS=--check
+- stage: test
+  name: integration tests
+  addons:
+    apt:
+      sources:
+      - sourceline: 'ppa:duggan/bats'
+      packages:
+      - bats
+  script: make test/integration
