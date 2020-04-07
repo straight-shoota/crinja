@@ -57,6 +57,10 @@ class Crinja::Parser::TemplateLexer < Crinja::Parser::BaseLexer
       else
         next_token_tag
       end
+    when State::NOTE
+      # skip
+    else
+      raise "unreachable"
     end
 
     @token.dup
@@ -229,10 +233,11 @@ class Crinja::Parser::TemplateLexer < Crinja::Parser::BaseLexer
 
         return true
       end
+      return false
     when Char::ZERO
       raise "Unterminated #{@stack.last.name}"
+    else
+      return false
     end
-
-    return false
   end
 end

@@ -168,6 +168,8 @@ class Crinja::Parser::ExpressionParser
         next_token
         value = parse_unary_expression
         return AST::SplashOperator.new(value).at(start_location, value.location_end)
+      else
+        # continue with next rule
       end
     end
 

@@ -40,6 +40,8 @@ class Crinja::Function::Cycler
       ->(arguments : Arguments) { self.next }
     when "reset", "rewind"
       ->(arguments : Arguments) { reset }
+    else
+      nil
     end
   end
 end
