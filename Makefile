@@ -1,14 +1,11 @@
 -include Makefile.local # for optional local options
 
-BIN ::= bin
 SHARDS ::= shards # The shards command to use
 CRYSTAL ::= crystal # The crystal command to use
-BATS ::= bats
 
-DOCS_FLAGS ::= -o _docs
-
-SRC_SOURCES := $(shell find src lib -name '*.cr' 2>/dev/null)
-SPEC_SOURCES := $(shell find spec -name '*.cr' 2>/dev/null)
+SRC_SOURCES ::= $(shell find src lib -name '*.cr' 2>/dev/null)
+LIB_SOURCES ::= $(shell find lib -name '*.cr' 2>/dev/null)
+SPEC_SOURCES ::= $(shell find spec -name '*.cr' 2>/dev/null)
 
 .PHONY: test
 test: ## Run test suite
@@ -16,13 +13,13 @@ test: test/unit test/integration
 
 .PHONY: test/unit
 test/unit: ## Run unit tests
-test/unit: shard.lock
+test/unit: lib
 	$(CRYSTAL) spec
 
 .PHONY: test/integration
 test/integration: ## Run integration tests
 test/integration:
-	$(BATS) examples/integration_test.bats
+	make -C examples
 
 .PHONY: format
 format: ## Apply source code formatting
@@ -30,8 +27,11 @@ format: $(SRC_SOURCES) $(SPEC_SOURCES)
 	$(CRYSTAL) tool format src spec
 
 docs: ## Generate API docs
-docs: src/**
-	$(CRYSTAL) docs $(DOCS_FLAGS)
+docs: $(SRC_SOURCES) lib
+	$(CRYSTAL) docs
+
+lib: shard.lock
+	$(SHARDS) install
 
 shard.lock: ## Update shards
 shard.lock: shard.yml

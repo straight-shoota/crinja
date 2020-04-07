@@ -2,46 +2,37 @@
 
 CRYSTAL=${CRYSTAL:-crystal}
 
-@test "examples/config" {
-  pushd "examples/config"
-  shards install
-
-  $CRYSTAL run config.cr
+@test "config" {
+  pushd "config"
+    shards install
+    $CRYSTAL run config.cr
   popd
 }
 
-@test "examples/kemal" {
-  pushd "examples/kemal"
-  shards install
-
-  $CRYSTAL build kemal.cr
-
+@test "kemal" {
+  pushd "kemal"
+    shards install
+    $CRYSTAL build kemal.cr
   popd
 }
 
-@test "examples/kilt" {
-  pushd "examples/kilt"
-  shards install
-
-  $CRYSTAL run kilt.cr
-
+@test "kilt" {
+  pushd "kilt"
+    shards install
+    $CRYSTAL run kilt.cr
   popd
 }
 
-@test "examples/rwbench" {
-  pushd "examples/rwbench"
-  shards install
-
-  $CRYSTAL run rwbench.cr
-
+@test "rwbench" {
+  pushd "rwbench"
+    shards install
+    $CRYSTAL run rwbench.cr
   popd
 }
 
-@test "examples/server" {
-  pushd "examples/server"
-  shards install
-
-  $CRYSTAL build server.cr
-
+@test "server" {
+  pushd "server"
+    shards install
+    $CRYSTAL build server.cr
   popd
 }
