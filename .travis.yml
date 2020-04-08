@@ -8,20 +8,31 @@ env:
 
 crystal:
 - latest
+- nightly
+
+script:
+- make test/unit
+- make format CRYSTAL_OPTS=--check
 
 jobs:
-- stage: test
-  name: unit tests
-  script: make test/unit
-- stage: test
-  name: format
-  script: make format CRYSTAL_OPTS=--check
-- stage: test
-  name: integration tests
-  addons:
-    apt:
-      sources:
-      - sourceline: 'ppa:duggan/bats'
-      packages:
-      - bats
-  script: make test/integration
+  include:
+  - stage: test
+    name: integration tests
+    addons:
+      apt:
+        sources:
+        - sourceline: 'ppa:duggan/bats'
+        packages:
+        - bats
+    script: make test/integration
+    crystal: latest
+  - stage: test
+    name: integration tests
+    addons:
+      apt:
+        sources:
+        - sourceline: 'ppa:duggan/bats'
+        packages:
+        - bats
+    script: make test/integration
+    crystal: nightly
