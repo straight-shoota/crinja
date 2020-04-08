@@ -30,6 +30,12 @@ jobs:
       - run: shards
       - save_cache: *save_shards_cache
 
+      - run:
+          name: Install bats
+          command: |
+            git clone --branch v0.4.0 https://github.com/sstephenson/bats.git bats-v0.4.0
+            ./bats-v0.4.0/install.sh /usr/local
+
       - run: make test
 
       - run: crystal tool format --check spec src
@@ -69,19 +75,15 @@ jobs:
       - restore_cache: *restore_shards_cache
       - run: shards
 
-      - run: make test
-
       - run:
           name: Install bats
           command: |
             git clone --branch v0.4.0 https://github.com/sstephenson/bats.git bats-v0.4.0
             ./bats-v0.4.0/install.sh /usr/local
 
-      - run:
-          name: Test examples
-          command: make integration-test
+      - run: make test
 
-      - run: crystal tool format --check spec src || true
+      - run: crystal tool format --check spec src
 
 workflows:
   version: 2
