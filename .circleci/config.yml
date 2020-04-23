@@ -55,9 +55,11 @@ jobs:
       - run: shards
       - save_cache: *save_shards_cache
 
+      - run: make docs
+
       - run: apt update && apt install -y curl rsync
       - run:
-          command: make clean-docs deploy-docs
+          command: curl https://raw.githubusercontent.com/straight-shoota/autodeploy-docs/master/autodeploy-docs.sh | bash
           environment:
             GIT_COMMITTER_NAME: cirlceci
             GIT_COMMITTER_EMAIL: circle@circleci.com

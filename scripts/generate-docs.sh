@@ -3,14 +3,14 @@
 set -e
 
 GENERATED_DOCS_DIR="./docs"
-CRYSTAL_BIN=${CRYSTAL_BIN:-$(which crystal)}
+CRYSTAL=${CRYSTAL:-$(which crystal)}
 
 echo -e "Building docs into ${GENERATED_DOCS_DIR}"
 echo -e "Clearing ${GENERATED_DOCS_DIR} directory"
 rm -rf "${GENERATED_DOCS_DIR}"
 
-echo -e "Running \`${CRYSTAL_BIN} docs\`..."
-${CRYSTAL_BIN} docs src/docs.cr
+echo -e "Running \`${CRYSTAL} docs\`..."
+${CRYSTAL} docs src/docs.cr
 
 echo -e "Copying README.md and TEMPLATE_SYNTAX.md"
 
