@@ -9,7 +9,7 @@ module Crinja::Filter
 
     compare = ->(a : Value, b : Value) do
       if !case_sensitive && a.string? && b.string?
-        a.as_s!.compare(b.as_s!, true)
+        a.as_s.compare(b.as_s, true)
       else
         a <=> b
       end
@@ -36,7 +36,7 @@ module Crinja::Filter
     attribute = nil
 
     if arguments["attribute"].string?
-      attribute = arguments["attribute"].as_s!
+      attribute = arguments["attribute"].as_s
     end
 
     array = array.sort do |a, b|
@@ -46,7 +46,7 @@ module Crinja::Filter
       end
 
       if !case_sensitive && a.string? && b.string?
-        a.as_s!.compare(b.as_s!, true)
+        a.as_s.compare(b.as_s, true)
       else
         a <=> b
       end

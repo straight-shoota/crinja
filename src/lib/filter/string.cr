@@ -85,7 +85,7 @@ module Crinja::Filter
     count = arguments["count"]
 
     if count.raw.nil?
-      target.as_s.gsub(search, replace)
+      target.as_s_or_safe.gsub(search, replace)
     else
       string = target.to_s
       count.to_i.times do
@@ -98,7 +98,7 @@ module Crinja::Filter
   end
 
   Crinja.filter(:trim) do
-    target.as_s.strip
+    target.as_s_or_safe.strip
   end
 
   Crinja.filter({width: 79, break_long_words: true, wrapstring: nil}, :wordwrap) do

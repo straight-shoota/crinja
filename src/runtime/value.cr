@@ -310,24 +310,29 @@ struct Crinja::Value
     raw_as(Nil)
   end
 
-  # Checks that the underlying value is `String` or `SafeString`, and returns its value. Raises otherwise.
-  def as_s
+  # Checks that the underlying value is `String | SafeString`, and returns its value. Raises otherwise.
+  def as_s_or_safe
     raw_as(String | SafeString)
   end
 
-  # Checks that the underlying value is `String`, `SafeString` or `Nil`, and returns its value. Raises otherwise.
+  # Checks that the underlying value is `String | SafeString | Nil`, and returns the value as `String`. Raises otherwise.
+  #
+  # If the value is `SafeString` it is unwrapped as `String`.
   def as_s?
-    raw_as(String | SafeString | Nil)
+    @raw.as(String | SafeString | Nil).try(&.to_s)
   end
 
-  # Checks that the underlying value is `String`, and returns its value. `SafeString` is converted to
-  # `String`. Raises otherwise.
+  # Checks that the underlying value is `String`, and returns the value as `String`. Raises otherwise.
+  #
+  # If the value is `SafeString` it is unwrapped as `String`.
+  def as_s
+    @raw.as(String | SafeString).to_s
+  end
+
+  # :ditto:
+  @[Deprecated("Use `#as_s` instead")]
   def as_s!
-    if @raw.is_a?(SafeString)
-      @raw.to_s
-    else
-      raw_as(String)
-    end
+    as_s
   end
 
   # Checks that the underlying value is `Array`, and returns its value. Raises otherwise.
@@ -449,7 +454,7 @@ struct Crinja::Value
     otherraw = other.raw
 
     if @raw.is_a?(String | SafeString) || otherraw.is_a?(String | SafeString)
-      as_s! <=> other.as_s!
+      as_s <=> other.as_s
     elsif number? && other.number?
       as_number <=> other.as_number
       # elsif thisraw.is_a?(Array) && otherraw.is_a?(Array)

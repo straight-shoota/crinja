@@ -37,4 +37,16 @@ describe Crinja::Value do
       Crinja::Value.new("time").as_undefined
     end
   end
+
+  it "#as_s" do
+    Crinja::Value.new("string").as_s.should eq "string"
+    Crinja::Value.new(Crinja::SafeString.new("string")).as_s.should eq "string"
+    Crinja::Value.new(Crinja::SafeString.new("string")).as_s.should be_a String
+  end
+
+  it "#as_s_or_safe" do
+    Crinja::Value.new("string").as_s_or_safe.should eq "string"
+    Crinja::Value.new(Crinja::SafeString.new("string")).as_s_or_safe.should eq "string"
+    Crinja::Value.new(Crinja::SafeString.new("string")).as_s_or_safe.should be_a Crinja::SafeString
+  end
 end

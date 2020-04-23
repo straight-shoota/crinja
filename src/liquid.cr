@@ -14,7 +14,7 @@ class Crinja
     crinja.filters.aliases["strip_html"] = "striptags"
     crinja.filters.aliases["remove"] = "replace"
     crinja.filters["escape_once"] = Crinja.filter do
-      Value.new SafeString.new(HTML.escape(target.as_s.to_s))
+      Value.new SafeString.new(HTML.escape(target.as_s))
     end
     # TODO: Implement
     crinja.filters["truncatewords"] = Crinja.filter do
