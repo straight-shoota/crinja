@@ -15,7 +15,7 @@ ${CRYSTAL} docs src/docs.cr
 echo -e "Copying README.md and TEMPLATE_SYNTAX.md"
 
 # "{{" and "{%"" need to be escaped, otherise Jekyll might interpret the expressions (on Github Pages)
-ESCAPE_TEMPLATE='s/{{/{{"{{"}}/g; s/{\%/{{"{%"}}\%/g;'
+ESCAPE_TEMPLATE='s/{{/{{"{{"}}/g; s/{\%/{{"{%"}}/g;'
 sed "${ESCAPE_TEMPLATE}" README.md > "${GENERATED_DOCS_DIR}/README.md"
 sed "${ESCAPE_TEMPLATE}" TEMPLATE_SYNTAX.md > "${GENERATED_DOCS_DIR}/TEMPLATE_SYNTAX.md"
 
