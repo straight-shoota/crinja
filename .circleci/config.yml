@@ -55,7 +55,7 @@ jobs:
       - run: shards
       - save_cache: *save_shards_cache
 
-      - run: make docs
+      - run: scripts/generate-docs.sh
 
       - run: apt update && apt install -y curl rsync
       - run:

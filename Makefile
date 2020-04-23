@@ -28,7 +28,7 @@ format: $(SRC_SOURCES) $(SPEC_SOURCES)
 
 docs: ## Generate API docs
 docs: $(SRC_SOURCES) lib
-	CRYSTAL=$(CRYSTAL) scripts/generate-docs.sh
+	$(CRYSTAL) docs src/docs.cr
 
 lib: shard.lock
 	$(SHARDS) install
