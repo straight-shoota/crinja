@@ -130,22 +130,22 @@ struct Crinja::SafeString
     escape(value.raw)
   end
 
-  # ditto
+  # :ditto:
   def self.escape(value : Nil)
     NIL
   end
 
-  # ditto
+  # :ditto:
   def self.escape(value : SafeString)
     value
   end
 
-  # ditto
+  # :ditto:
   def self.escape(value : Number)
     plain value.to_s
   end
 
-  # ditto
+  # :ditto:
   def self.escape(value : Array)
     container = value.map do |v|
       escape(v).as(SafeString)
@@ -153,7 +153,7 @@ struct Crinja::SafeString
     plain container.to_s
   end
 
-  # ditto
+  # :ditto:
   def self.escape(value : Hash)
     hash = value.each_with_object(Hash(SafeString, SafeString).new) do |(k, v), memo|
       memo[escape(k)] = escape(v)
@@ -161,7 +161,7 @@ struct Crinja::SafeString
     plain hash.to_s
   end
 
-  # ditto
+  # :ditto:
   def self.escape(string)
     new HTML.escape string.to_s
   end

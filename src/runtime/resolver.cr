@@ -18,7 +18,7 @@ module Crinja::Resolver
     value
   end
 
-  # ditto
+  # :ditto:
   def self.resolve_attribute(name, value) : Value
     self.resolve_attribute(name, Value.new value)
   end
@@ -32,7 +32,7 @@ module Crinja::Resolver
     end
   end
 
-  # ditto
+  # :ditto:
   def self.resolve_getattr(name, value) : Value
     resolve_getattr(Value.new(name), Value.new(value))
   end
@@ -46,7 +46,7 @@ module Crinja::Resolver
     end
   end
 
-  # ditto
+  # :ditto:
   def self.resolve_method(name, value : Value) : Callable | Callable::Proc?
     self.resolve_method(name, value.raw)
   end
@@ -63,7 +63,7 @@ module Crinja::Resolver
     Value.new Undefined.new(name.to_s)
   end
 
-  # ditto
+  # :ditto:
   def self.resolve_with_hash_accessor(name, value : Value) : Value
     self.resolve_with_hash_accessor(name, value.raw)
   end

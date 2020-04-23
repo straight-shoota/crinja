@@ -54,7 +54,7 @@ abstract class Crinja::Loader
     def initialize(@searchpaths, @encoding = nil, @followlinks = false)
     end
 
-    # ditto
+    # :ditto:
     def initialize(searchpath : String = FileUtils.pwd, encoding = nil, followlinks = false)
       initialize([searchpath])
     end
