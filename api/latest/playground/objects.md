@@ -56,9 +56,9 @@ users = [
 ]
 
 Crinja.render STDOUT, <<-'TEMPLATE', {users: users}
-  {{"{%"}}%- for user in users -%}
+  {{"{%"}}- for user in users -%}
   *  {{"{{"}} user.name }} ({{"{{"}} user.age }})
-  {{"{%"}}% endfor -%}
+  {{"{%"}} endfor -%}
   TEMPLATE
 ```
 
@@ -96,8 +96,8 @@ users = [
 ]
 
 Crinja.render STDOUT, <<-'TEMPLATE', {users: users}
-  {{"{%"}}%- for user in users -%}
+  {{"{%"}}- for user in users -%}
   *  {{"{{"}} user.name }} ({{"{{"}} user.age }})
-  {{"{%"}}% endfor -%}
+  {{"{%"}} endfor -%}
   TEMPLATE
 ```

@@ -110,43 +110,43 @@ Hello, {{"{{"}} current_user.name | default("World") | titelize }}!
 Tests are similar to filters, but are used in the context of a boolean expression, for example as condition of an `if` tag.
 
 ```html+jinja
-{{"{%"}}% if current_user is logged_in %}
+{{"{%"}} if current_user is logged_in %}
   Hello, {{"{{"}} current_user.name }}!
-{{"{%"}}% else %}
+{{"{%"}} else %}
   Hey, stranger!
-{{"{%"}}% end %}
+{{"{%"}} end %}
 ```
 
 ### Tags
 
-**Tags** control the logic of the template. They are enclosed in `{{"{%"}}%` and `%}`.
+**Tags** control the logic of the template. They are enclosed in `{{"{%"}}` and `%}`.
 
 ```html+jinja
-{{"{%"}}% if is_morning %}
+{{"{%"}} if is_morning %}
   Good Moring, {{"{{"}} name }}!
-{{"{%"}}% else %}
+{{"{%"}} else %}
   Hello, {{"{{"}} name }}!
-{{"{%"}}% end %}
+{{"{%"}} end %}
 ```
 
 The `for` tag allows looping over a collection.
 
 ```html+jinja
-{{"{%"}}% for name in users %}
+{{"{%"}} for name in users %}
   {{"{{"}} user.name }}
-{{"{%"}}% endfor %}
+{{"{%"}} endfor %}
 ```
 
 Other templates can be included using the `include` tag:
 
 ```html+jinja
-{{"{%"}}% include "header.html" %}
+{{"{%"}} include "header.html" %}
 
 <main>
   Content
 </main>
 
-{{"{%"}}% include "header.html" %}
+{{"{%"}} include "header.html" %}
 ```
 
 ### Macros
@@ -154,7 +154,7 @@ Other templates can be included using the `include` tag:
 Macros are similar to functions in other programming languages.
 
 ```html+jinja
-{{"{%"}}% macro say_hello(name) %}Hello, {{"{{"}} name | default("stranger") }}!{{"{%"}}% endmacro %}
+{{"{%"}} macro say_hello(name) %}Hello, {{"{{"}} name | default("stranger") }}!{{"{%"}} endmacro %}
 {{"{{"}} say_hello('Peter') }}
 {{"{{"}} say_hello('Paul') }}
 ```
@@ -165,35 +165,35 @@ Templates inheritance enables the use of `block` tags in parent templates that c
 ```html+jinja
 {# layout.html #}
 
-<h1>{{"{%"}}% block page_title %}{{"{%"}}% endblock %}</h1>
+<h1>{{"{%"}} block page_title %}{{"{%"}} endblock %}</h1>
 
 <main>
-  {{"{%"}}% block body}
+  {{"{%"}} block body}
     {# This block is typically overwritten by child templates #}
-  {{"{%"}}% endblock %}
+  {{"{%"}} endblock %}
 </main>
 
-{{"{%"}}% block footer %}
-  {{"{%"}}% include "footer.html" %}
-{{"{%"}}% endblock %}
+{{"{%"}} block footer %}
+  {{"{%"}} include "footer.html" %}
+{{"{%"}} endblock %}
 ```
 
 ```html+jinja
 {# page.html #}
-{{"{%"}}% extends "layout.html" %}
+{{"{%"}} extends "layout.html" %}
 
-{{"{%"}}% block page_title %}Blog Index{{"{%"}}% endblock %}
-{{"{%"}}% block body %}
+{{"{%"}} block page_title %}Blog Index{{"{%"}} endblock %}
+{{"{%"}} block body %}
   <ul>
-    {{"{%"}}% for article in articles if article.published %}
+    {{"{%"}} for article in articles if article.published %}
     <div class="article">
       <li>
         <a href="{{"{{"}} article.href | escape }}">{{"{{"}} article.title | escape }}</a>
         written by <a href="{{"{{"}} article.user.href | escape}}">{{"{{"}} article.user.username | escape }}</a>
       </li>
-    {{"{%"}}%- endfor %}
+    {{"{%"}}- endfor %}
   </ul>
-{{"{%"}}% endblock %}
+{{"{%"}} endblock %}
 ```
 
 ## Crystal API

@@ -11,7 +11,7 @@ Crinja template syntax can be embedded in any text content and individual templa
 
 ```html+jinja
 {{"{{"}} }} - print
-{{"{%"}}% %} - tag
+{{"{%"}} %} - tag
 {# #} - comment
 ```
 
@@ -24,11 +24,11 @@ Assuming there is a variable `name` with value `"World"`, the following template
 Hello, {{"{{"}} name }}!
 ```
 
-**Tags** control the logic of the template. They are enclosed in `{{"{%"}}%` and `%}`.
+**Tags** control the logic of the template. They are enclosed in `{{"{%"}}` and `%}`.
 
 The `set` tag for example is used for assigments:
 ```html+jinja
-{{"{%"}}% set name = "John" %}
+{{"{%"}} set name = "John" %}
 Hello, {{"{{"}} name }}!
 ```
 
@@ -36,9 +36,9 @@ Most tags expect a content which spans between an opening tag and a closing tag.
 Tags can be nested.
 
 ```html+jinja
-{{"{%"}}% if name == "World" %}
+{{"{%"}} if name == "World" %}
 Hello 🌍!
-{{"{%"}}% endif %}
+{{"{%"}} endif %}
 ```
 
 **Comments** are enclosed in `{#` and `#}`. They are not parsed as template content and will not included in the template output.
@@ -50,7 +50,7 @@ Varibales can be populated externally by the application calling the template, o
 The [`set` tag](#set-tag) allows to set or modify variables inside the template.
 
 ```html+jinja
-{{"{%"}}% set name = "World" %}
+{{"{%"}} set name = "World" %}
 Hello, {{"{{"}} name }}! -> Hello, World!
 ```
 
@@ -83,43 +83,43 @@ For example, the expression `name is defined` returns `true` if the variable `na
 Test can accept arguments as well. If the test only takes one argument, the parentheses can be omitted: `9 is divisible by 3`.
 
 ```html+jinja
-{{"{%"}}% if current_user is logged_in %}
+{{"{%"}} if current_user is logged_in %}
   Hello, {{"{{"}} current_user.name }}!
-{{"{%"}}% else %}
+{{"{%"}} else %}
   Hey, stranger!
-{{"{%"}}% end %}
+{{"{%"}} end %}
 ```
 
 ## Tags
 
-**Tags** control the logic of the template. They are enclosed in `{{"{%"}}%` and `%}`.
+**Tags** control the logic of the template. They are enclosed in `{{"{%"}}` and `%}`.
 
 ```html+jinja
-{{"{%"}}% if is_morning %}
+{{"{%"}} if is_morning %}
   Good Moring, {{"{{"}} name }}!
-{{"{%"}}% else %}
+{{"{%"}} else %}
   Hello, {{"{{"}} name }}!
-{{"{%"}}% end %}
+{{"{%"}} end %}
 ```
 
 The `for` tag allows looping over a collection.
 
 ```html+jinja
-{{"{%"}}% for name in users %}
+{{"{%"}} for name in users %}
   {{"{{"}} user.name }}
-{{"{%"}}% endfor %}
+{{"{%"}} endfor %}
 ```
 
 Other templates can be included using the `include` tag:
 
 ```html+jinja
-{{"{%"}}% include "header.html" %}
+{{"{%"}} include "header.html" %}
 
 <main>
   Content
 </main>
 
-{{"{%"}}% include "header.html" %}
+{{"{%"}} include "header.html" %}
 ```
 
 ## Macros
@@ -131,12 +131,12 @@ When a macro is called, the output produced by the macro is assigned as the retu
 
 ```html+jinja
 {# define macro: #}
-{{"{%"}}% macro say_hello(name) %}Hello, {{"{{"}} name | default("stranger") }}!{{"{%"}}% endmacro %}
+{{"{%"}} macro say_hello(name) %}Hello, {{"{{"}} name | default("stranger") }}!{{"{%"}} endmacro %}
 {# invoke macro #}
 {{"{{"}} say_hello('Peter') }} -> Hello, Peter!
 
 {# print to a variable #}
-{{"{%"}}% set hello_paul = say_hello('Paul') %}
+{{"{%"}} set hello_paul = say_hello('Paul') %}
 {{"{{"}} hello_paul }} -> Hello, Paul!
 
 {# invoke with default value %}
@@ -149,33 +149,33 @@ Templates inheritance enables the use of `block` tags in parent templates that c
 ```html+jinja
 {# layout.html #}
 
-<h1>{{"{%"}}% block page_title %}{{"{%"}}% endblock %}</h1>
+<h1>{{"{%"}} block page_title %}{{"{%"}} endblock %}</h1>
 
 <main>
-  {{"{%"}}% block body}
+  {{"{%"}} block body}
     {# This block is typically overwritten by child templates #}
-  {{"{%"}}% endblock %}
+  {{"{%"}} endblock %}
 </main>
 
-{{"{%"}}% block footer %}
-  {{"{%"}}% include "footer.html" %}
-{{"{%"}}% endblock %}
+{{"{%"}} block footer %}
+  {{"{%"}} include "footer.html" %}
+{{"{%"}} endblock %}
 ```
 
 ```html+jinja
 {# page.html #}
-{{"{%"}}% extends "layout.html" %}
+{{"{%"}} extends "layout.html" %}
 
-{{"{%"}}% block page_title %}Blog Index{{"{%"}}% endblock %}
-{{"{%"}}% block body %}
+{{"{%"}} block page_title %}Blog Index{{"{%"}} endblock %}
+{{"{%"}} block body %}
   <ul>
-    {{"{%"}}% for article in articles if article.published %}
+    {{"{%"}} for article in articles if article.published %}
     <div class="article">
       <li>
         <a href="{{"{{"}} article.href | escape }}">{{"{{"}} article.title | escape }}</a>
         written by <a href="{{"{{"}} article.user.href | escape}}">{{"{{"}} article.user.username | escape }}</a>
       </li>
-    {{"{%"}}%- endfor %}
+    {{"{%"}}- endfor %}
   </ul>
-{{"{%"}}% endblock %}
+{{"{%"}} endblock %}
 ```
