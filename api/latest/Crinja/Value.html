@@ -785,15 +785,15 @@ actual type of the wrapped raw value.</p>
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L100" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L100" target="_blank">
         runtime/value.cr:100
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L594" target="_blank">
-        runtime/value.cr:594
+      <a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L599" target="_blank">
+        runtime/value.cr:599
       </a>
     
     <br/>
@@ -964,21 +964,32 @@ actual type of the wrapped raw value.</p>
       <li class="entry-summary">
         <a href="#as_s-instance-method" class="signature"><strong>#as_s</strong></a>
         
-          <div class="summary"><p>Checks that the underlying value is <code>String</code> or <code><a href="../Crinja/SafeString.html">SafeString</a></code>, and returns its value.</p></div>
+          <div class="summary"><p>Checks that the underlying value is <code>String</code>, and returns the value as <code>String</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#as_s!-instance-method" class="signature"><strong>#as_s!</strong></a>
         
-          <div class="summary"><p>Checks that the underlying value is <code>String</code>, and returns its value.</p></div>
+          <div class="summary"><p>Checks that the underlying value is <code>String</code>, and returns the value as <code>String</code>.</p>
+
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="../Crinja/Value.html#as_s-instance-method">#as_s</a></code> instead</p>
+
+</div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#as_s?-instance-method" class="signature"><strong>#as_s?</strong></a>
         
-          <div class="summary"><p>Checks that the underlying value is <code>String</code>, <code><a href="../Crinja/SafeString.html">SafeString</a></code> or <code>Nil</code>, and returns its value.</p></div>
+          <div class="summary"><p>Checks that the underlying value is <code>String | <a href="../Crinja/SafeString.html">SafeString</a> | Nil</code>, and returns the value as <code>String</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#as_s_or_safe-instance-method" class="signature"><strong>#as_s_or_safe</strong></a>
+        
+          <div class="summary"><p>Checks that the underlying value is <code>String | <a href="../Crinja/SafeString.html">SafeString</a></code>, and returns its value.</p></div>
         
       </li>
     
@@ -1262,7 +1273,7 @@ actual type of the wrapped raw value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L107" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1278,7 +1289,7 @@ actual type of the wrapped raw value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L115" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L115" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1294,7 +1305,7 @@ actual type of the wrapped raw value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L111" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L111" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1331,7 +1342,7 @@ actual type of the wrapped raw value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L462" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L467" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1352,7 +1363,7 @@ actual type of the wrapped raw value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L436" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L441" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1373,7 +1384,7 @@ actual type of the wrapped raw value.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L441" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L446" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1396,7 +1407,7 @@ Raises if the underlying value is not an <code>Indexable</code> or <code>String<
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L131" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L131" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1419,7 +1430,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L161" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L161" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1442,7 +1453,7 @@ Raises if the underlying value is not an <code>Indexable</code> or <code>String<
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L145" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L145" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1465,7 +1476,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L168" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1486,7 +1497,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L334" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L339" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1507,7 +1518,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L364" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L369" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1528,7 +1539,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L339" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L344" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1549,7 +1560,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L359" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L364" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1570,7 +1581,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L354" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L359" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1591,7 +1602,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L309" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L309" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1612,7 +1623,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L344" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L349" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1627,13 +1638,15 @@ Raises if the underlying value is not hash-like.</p>
       
         <div class="doc">
           
-          <p>Checks that the underlying value is <code>String</code> or <code><a href="../Crinja/SafeString.html">SafeString</a></code>, and returns its value. Raises otherwise.</p>
+          <p>Checks that the underlying value is <code>String</code>, and returns the value as <code>String</code>. Raises otherwise.</p>
+
+<p>If the value is <code><a href="../Crinja/SafeString.html">SafeString</a></code> it is unwrapped as <code>String</code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L314" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L328" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1648,14 +1661,19 @@ Raises if the underlying value is not hash-like.</p>
       
         <div class="doc">
           
-          <p>Checks that the underlying value is <code>String</code>, and returns its value. <code><a href="../Crinja/SafeString.html">SafeString</a></code> is converted to
-<code>String</code>. Raises otherwise.</p>
+          <p>Checks that the underlying value is <code>String</code>, and returns the value as <code>String</code>. Raises otherwise.</p>
+
+<p>If the value is <code><a href="../Crinja/SafeString.html">SafeString</a></code> it is unwrapped as <code>String</code>.</p>
+
+<p><span class="flag red">DEPRECATED</span>  Use <code><a href="../Crinja/Value.html#as_s-instance-method">#as_s</a></code> instead</p>
+
+
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L325" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L334" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1670,13 +1688,36 @@ Raises if the underlying value is not hash-like.</p>
       
         <div class="doc">
           
-          <p>Checks that the underlying value is <code>String</code>, <code><a href="../Crinja/SafeString.html">SafeString</a></code> or <code>Nil</code>, and returns its value. Raises otherwise.</p>
+          <p>Checks that the underlying value is <code>String | <a href="../Crinja/SafeString.html">SafeString</a> | Nil</code>, and returns the value as <code>String</code>. Raises otherwise.</p>
+
+<p>If the value is <code><a href="../Crinja/SafeString.html">SafeString</a></code> it is unwrapped as <code>String</code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L319" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L321" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="as_s_or_safe-instance-method">
+      <div class="signature">
+        
+        def <strong>as_s_or_safe</strong>
+
+        <a class="method-permalink" href="#as_s_or_safe-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Checks that the underlying value is <code>String | <a href="../Crinja/SafeString.html">SafeString</a></code>, and returns its value. Raises otherwise.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L314" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1697,7 +1738,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L349" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L354" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1713,7 +1754,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L368" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L373" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1734,7 +1775,7 @@ Raises if the underlying value is not hash-like.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L530" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L535" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1756,7 +1797,7 @@ of the elements or key/values, always as <code><a href="../Crinja/Value.html">Va
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L254" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L254" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1778,7 +1819,7 @@ which iterates through the items as <code><a href="../Crinja/Value.html">Value</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L228" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L228" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1800,7 +1841,7 @@ item in the list or the first character of the string.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L174" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L174" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1821,7 +1862,7 @@ item in the list or the first character of the string.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L546" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L551" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1842,7 +1883,7 @@ item in the list or the first character of the string.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L551" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L556" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1864,7 +1905,7 @@ item in the list or the last character of the string.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L189" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L189" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1885,7 +1926,7 @@ item in the list or the last character of the string.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L561" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L566" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1906,7 +1947,7 @@ item in the list or the last character of the string.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L571" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L576" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1927,7 +1968,7 @@ item in the list or the last character of the string.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L535" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L540" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1943,7 +1984,7 @@ item in the list or the last character of the string.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L407" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L412" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1959,7 +2000,7 @@ item in the list or the last character of the string.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L105" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L105" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1975,7 +2016,7 @@ item in the list or the last character of the string.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L372" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L377" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1997,7 +2038,7 @@ of the elements or key/values, always as <code><a href="../Crinja/Value.html">Va
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L234" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L234" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2019,7 +2060,7 @@ which iterates through the items as <code><a href="../Crinja/Value.html">Value</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L203" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L203" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2040,7 +2081,7 @@ which iterates through the items as <code><a href="../Crinja/Value.html">Value</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L576" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L581" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2063,7 +2104,7 @@ which iterates through the items as <code><a href="../Crinja/Value.html">Value</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L541" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L546" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2085,7 +2126,7 @@ its size.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L120" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L120" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2106,7 +2147,7 @@ its size.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L556" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L561" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2127,7 +2168,7 @@ its size.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L566" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L571" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2154,7 +2195,7 @@ its size.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L388" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L393" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2170,7 +2211,7 @@ its size.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L509" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L514" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2186,7 +2227,7 @@ its size.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L499" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L504" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2202,7 +2243,7 @@ its size.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L425" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L430" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2223,7 +2264,7 @@ its size.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L430" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L435" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2244,7 +2285,7 @@ its size.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L520" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L525" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -2265,7 +2306,7 @@ its size.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/be4a056eead0a213ce2ea8dc56fd10e2366a0d2c/src/runtime/value.cr#L525" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/b48abb726af0ba52aece945eb0576b5e4a15cafc/src/runtime/value.cr#L530" target="_blank">View source</a>]
         
       </div>
     </div>
