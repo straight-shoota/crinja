@@ -72,7 +72,7 @@ abstract class Crinja::Tag
             Macro, Call,
             Raw,
             Include, From, Import,
-            Extends, Block]
+            Extends, Block, Do]
 
     def register_defaults
       TAGS.each do |name|
