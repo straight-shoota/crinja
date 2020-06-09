@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to Crinja will be documented in this file.
 
+## 0.6.1 (2020-06-09)
+
+Compatibility with Crystal 0.35.0
+
 ## 0.6.0 (2020-04-03)
 
 Compatibility with Crystal 0.34.0

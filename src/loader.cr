@@ -61,7 +61,7 @@ abstract class Crinja::Loader
 
     def to_s(io)
       io << "FileSystemLoader("
-      searchpaths.join(':', io)
+      searchpaths.join(io, ':')
       io << ")"
     end
 
@@ -123,7 +123,7 @@ abstract class Crinja::Loader
     # :nodoc:
     def to_s(io)
       io << "#<HashLoader:"
-      data.keys.join(", ", io)
+      data.keys.join(io, ", ")
       io << ">"
     end
   end

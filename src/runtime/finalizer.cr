@@ -53,7 +53,7 @@ struct Crinja::Finalizer
   protected def stringify(array : Array)
     @inside_struct = true
     @io << "["
-    array.join(", ", @io) { |item| stringify(item) }
+    array.join(@io, ", ") { |item| stringify(item) }
     @io << "]"
   end
 
@@ -76,7 +76,7 @@ struct Crinja::Finalizer
   protected def stringify(array : Crinja::Tuple)
     @inside_struct = true
     @io << "("
-    array.join(", ", @io) { |item| stringify(item) }
+    array.join(@io, ", ") { |item| stringify(item) }
     @io << ")"
   end
 

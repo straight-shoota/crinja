@@ -9,7 +9,7 @@ module Crinja::Filter
       do_attribute = attribute.truthy?
       attr_name = attribute.to_s
       SafeString.build do |io|
-        target.join(separator, io) do |item|
+        target.join(io, separator) do |item|
           if do_attribute
             item = Resolver.resolve_attribute(attr_name, item)
           end
