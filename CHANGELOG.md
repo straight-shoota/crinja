@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to Crinja will be documented in this file.
 
+## 0.6.0 (2020-04-03)
+
+Compatibility with Crystal 0.34.0
+
+* Improvements to Makefile and CI setup
+* Use `Log` framework from Crystal 0.34.0
+
 ## 0.5.1 (2020-01-14)
 
 This release brings compatibility with Crystal 0.32.1
