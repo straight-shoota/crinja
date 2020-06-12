@@ -107,6 +107,6 @@ end
 begin
   Crinja::CLI.run
 rescue ex : OptionParser::InvalidOption
-  Crinja::CLI::Log.fatal ex.message
+  Crinja::CLI::Log.fatal { ex.message }
   exit 1
 end
