@@ -18,7 +18,7 @@
 </svg>
 
   <meta id="repository-name" content="crinja">
-  <title>Crinja::Function::Library - crinja master-dev</title>
+  <title>Crinja::Tag::Do - crinja master-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -191,7 +191,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="crinja/Crinja/Function" data-name="crinja::function">
+  <li class="parent " data-id="crinja/Crinja/Function" data-name="crinja::function">
       <a href="../../Crinja/Function.html">Function</a>
       
         <ul>
@@ -201,7 +201,7 @@
       
     </li>
   
-  <li class=" current" data-id="crinja/Crinja/Function/Library" data-name="crinja::function::library">
+  <li class=" " data-id="crinja/Crinja/Function/Library" data-name="crinja::function::library">
       <a href="../../Crinja/Function/Library.html">Library</a>
       
     </li>
@@ -421,7 +421,7 @@
       
     </li>
   
-  <li class="parent " data-id="crinja/Crinja/Tag" data-name="crinja::tag">
+  <li class="parent open current" data-id="crinja/Crinja/Tag" data-name="crinja::tag">
       <a href="../../Crinja/Tag.html">Tag</a>
       
         <ul>
@@ -446,7 +446,7 @@
       
     </li>
   
-  <li class=" " data-id="crinja/Crinja/Tag/Do" data-name="crinja::tag::do">
+  <li class=" current" data-id="crinja/Crinja/Tag/Do" data-name="crinja::tag::do">
       <a href="../../Crinja/Tag/Do.html">Do</a>
       
     </li>
@@ -735,15 +735,31 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Function::Library
+  <span class="kind">class</span> Crinja::Tag::Do
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Function/Library.html">Crinja::Function::Library</a></li><li class="superclass"><a href="../../Crinja/FeatureLibrary.html">Crinja::FeatureLibrary</a>(<a href="../../Crinja/Callable.html">Crinja::Callable</a>)</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Tag/Do.html">Crinja::Tag::Do</a></li><li class="superclass"><a href="../../Crinja/Tag.html">Crinja::Tag</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The <code>do</code> tag works exactly like the regular variable expression (<code>{{ ... }}</code>) except it doesn’t print anything.
+This can be used to modify lists:</p>
+
+<pre><code>{% <span class="k">do</span> navigation.append(</code></pre>
+
+<p>See <a href="http://jinja.pocoo.org/docs/2.9/templates/#expression-statement" target="_blank">Jinja2 Template Documentation</a> for details.</p>
 
 
 
@@ -772,48 +788,7 @@
 
 
 
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new(register_defaults=true,disabled=[]ofString)-class-method" class="signature"><strong>.new</strong>(register_defaults = <span class="n">true</span>, disabled = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>)</a>
-        
-          <div class="summary"><p>Creates a new feature library.</p></div>
-        
-      </li>
-    
-  </ul>
 
-
-
-  <h2>
-    <a id="class-method-summary" class="anchor" href="#class-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Class Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#alias(from,to)-class-method" class="signature"><strong>.alias</strong>(from, to)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#defaults-class-method" class="signature"><strong>.defaults</strong></a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -828,9 +803,17 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#register_defaults-instance-method" class="signature"><strong>#register_defaults</strong></a>
+        <a href="#end_tag:String?-instance-method" class="signature"><strong>#end_tag</strong> : String?</a>
         
-          <div class="summary"><p>Create a local method in a subclass to allow the usage of <code>previous_def</code>.</p></div>
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#evaluate_node(tag_node,env:Crinja)-instance-method" class="signature"><strong>#evaluate_node</strong>(tag_node, env : Crinja)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#name:String-instance-method" class="signature"><strong>#name</strong> : String</a>
         
       </li>
     
@@ -844,81 +827,32 @@
   
     
 
-  <h3>Instance methods inherited from class <code><a href="../../Crinja/FeatureLibrary.html">Crinja::FeatureLibrary</a>(<a href="../../Crinja/Callable.html">Crinja::Callable</a>)</code></h3>
+  <h3>Instance methods inherited from class <code><a href="../../Crinja/Tag.html">Crinja::Tag</a></code></h3>
   
   
-    <a href="../../Crinja/FeatureLibrary.html#%3C%3C(classes:Array(Class))-instance-method" class="tooltip">
-      <span><<(classes : Array(Class))<br/><<(obj : T)<br/><<(klass : Class)</span>
-    <<</a>, 
+    <a href="../../Crinja/Tag.html#end_tag:String?-instance-method" class="tooltip">
+      <span>end_tag : String?</span>
+    end_tag</a>, 
     
   
-    <a href="../../Crinja/FeatureLibrary.html#[](lookup):T-instance-method" class="tooltip">
-      <span>[](lookup) : T</span>
-    []</a>, 
+    <a href="../../Crinja/Tag.html#has_block?(node:TagNode)-instance-method" class="tooltip">
+      <span>has_block?(node : TagNode)</span>
+    has_block?</a>, 
     
   
-    <a href="../../Crinja/FeatureLibrary.html#[]=(name,obj:T)-instance-method" class="tooltip">
-      <span>[]=(name, obj : T)<br/>[]=(name, klass : Class)</span>
-    []=</a>, 
+    <a href="../../Crinja/Tag.html#interpret_output(renderer:Renderer,tag_node:TagNode)-instance-method" class="tooltip">
+      <span>interpret_output(renderer : Renderer, tag_node : TagNode)</span>
+    interpret_output</a>, 
     
   
-    <a href="../../Crinja/FeatureLibrary.html#aliases:Hash(String,String)-instance-method" class="tooltip">
-      <span>aliases : Hash(String, String)</span>
-    aliases</a>, 
-    
-  
-    <a href="../../Crinja/FeatureLibrary.html#disabled:Array(String)-instance-method" class="tooltip">
-      <span>disabled : Array(String)</span>
-    disabled</a>, 
-    
-  
-    <a href="../../Crinja/FeatureLibrary.html#each(*args,**options,&)-instance-method" class="tooltip">
-      <span>each(*args, **options, &)<br/>each(*args, **options)</span>
-    each</a>, 
-    
-  
-    <a href="../../Crinja/FeatureLibrary.html#has_key?(name)-instance-method" class="tooltip">
-      <span>has_key?(name)</span>
-    has_key?</a>, 
-    
-  
-    <a href="../../Crinja/FeatureLibrary.html#inspect(io:IO)-instance-method" class="tooltip">
-      <span>inspect(io : IO)</span>
-    inspect</a>, 
-    
-  
-    <a href="../../Crinja/FeatureLibrary.html#keys(*args,**options,&)-instance-method" class="tooltip">
-      <span>keys(*args, **options, &)<br/>keys(*args, **options)</span>
-    keys</a>, 
-    
-  
-    <a href="../../Crinja/FeatureLibrary.html#name-instance-method" class="tooltip">
-      <span>name</span>
-    name</a>, 
-    
-  
-    <a href="../../Crinja/FeatureLibrary.html#register_defaults-instance-method" class="tooltip">
-      <span>register_defaults</span>
-    register_defaults</a>, 
-    
-  
-    <a href="../../Crinja/FeatureLibrary.html#size(*args,**options,&)-instance-method" class="tooltip">
-      <span>size(*args, **options, &)<br/>size(*args, **options)</span>
-    size</a>
+    <a href="../../Crinja/Tag.html#to_s(io)-instance-method" class="tooltip">
+      <span>to_s(io)</span>
+    to_s</a>
     
   
 
 
     
-
-  <h3>Constructor methods inherited from class <code><a href="../../Crinja/FeatureLibrary.html">Crinja::FeatureLibrary</a>(<a href="../../Crinja/Callable.html">Crinja::Callable</a>)</code></h3>
-  
-  
-    <a href="../../Crinja/FeatureLibrary.html#new(register_defaults=true,disabled=[]ofString)-class-method" class="tooltip">
-      <span>new(register_defaults = <span class="n">true</span>, disabled = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>)</span>
-    new</a>
-    
-  
 
 
     
@@ -948,78 +882,7 @@
 </div>
 
 
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(register_defaults=true,disabled=[]ofString)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(register_defaults = <span class="n">true</span>, disabled = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>)
 
-        <a class="method-permalink" href="#new(register_defaults=true,disabled=[]ofString)-class-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Creates a new feature library.
-If <em>register_defaults</em> is set to <code>false</code>, this library will be empty. Otherwise it is populated
-with registered default features.
-A list of <em>disabled</em> features can be provided, if a feature name in this list is accessed,
-it will raise a <code><a href="../../Crinja/SecurityError.html">SecurityError</a></code>.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-
-
-
-  <h2>
-    <a id="class-method-detail" class="anchor" href="#class-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Class Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="alias(from,to)-class-method">
-      <div class="signature">
-        
-        def self.<strong>alias</strong>(from, to)
-
-        <a class="method-permalink" href="#alias(from,to)-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="defaults-class-method">
-      <div class="signature">
-        
-        def self.<strong>defaults</strong>
-
-        <a class="method-permalink" href="#defaults-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
 
 
 
@@ -1032,18 +895,41 @@ it will raise a <code><a href="../../Crinja/SecurityError.html">SecurityError</a
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="register_defaults-instance-method">
+    <div class="entry-detail" id="end_tag:String?-instance-method">
       <div class="signature">
         
-        def <strong>register_defaults</strong>
+        def <strong>end_tag</strong> : String?
 
-        <a class="method-permalink" href="#register_defaults-instance-method">#</a>
+        <a class="method-permalink" href="#end_tag:String?-instance-method">#</a>
       </div>
       
-        <div class="doc">
-          
-          <p>Create a local method in a subclass to allow the usage of <code>previous_def</code>.</p>
-        </div>
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="evaluate_node(tag_node,env:Crinja)-instance-method">
+      <div class="signature">
+        
+        def <strong>evaluate_node</strong>(tag_node, env : <a href="../../Crinja.html">Crinja</a>)
+
+        <a class="method-permalink" href="#evaluate_node(tag_node,env:Crinja)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="name:String-instance-method">
+      <div class="signature">
+        
+        def <strong>name</strong> : String
+
+        <a class="method-permalink" href="#name:String-instance-method">#</a>
+      </div>
       
       <br/>
       <div>
