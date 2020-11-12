@@ -122,8 +122,13 @@ module Crinja::Object
               {% if method.name != "initialize" %}
                 {% if !method.accepts_block? %}
                   {% if method.args.all? { |arg| arg.default_value.class_name != "Nop" } %}
-                    when {{ ((ann && ann[:name]) || method.name).id.stringify }}
-                      self.{{ method.name.id }}
+                    {% method_name = (ann && ann[:name]) || method.name %}
+                    {% if !(ann && ann[:name]) && method.name.ends_with?("?") %}
+                      when "is_{{ method_name.id[0..-2] }}", {{ method_name.id[0..-2].stringify }}
+                    {% else %}
+                      when {{ method_name.id.stringify }}
+                    {% end %}
+                    self.{{ method.name.id }}
                   {% elsif ann %}
                     {% raise "Method #{method.name} annotated as @[Crinja::Attribute] cannot be called without arguments" %}
                   {% end %}

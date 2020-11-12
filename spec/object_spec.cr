@@ -20,6 +20,11 @@ private class SimpleAttributes
   end
 
   getter with_getter = "with_getter"
+
+  @[Crinja::Attribute]
+  def predicate?
+    true
+  end
 end
 
 private class InheritedAttributes < SimpleAttributes
@@ -152,5 +157,11 @@ describe Crinja::Object do
       gutta.crinja_attribute(Crinja::Value.new("other_name")).should eq Crinja::Value.new("ignore_name")
       gutta.crinja_attribute(Crinja::Value.new("not_exposed")).should eq Crinja::Value.new(Crinja::Undefined.new("not_exposed"))
     end
+  end
+
+  it "exposes predicate methods" do
+    gutta = SimpleAttributes.new
+    gutta.crinja_attribute(Crinja::Value.new("is_predicate")).should eq Crinja::Value.new(true)
+    gutta.crinja_attribute(Crinja::Value.new("predicate")).should eq Crinja::Value.new(true)
   end
 end
