@@ -1,6 +1,6 @@
 require "spec"
 
-require "../../src/runtime/value"
+require "../../src/crinja"
 
 describe Crinja::Value do
   describe "#each" do
@@ -48,5 +48,9 @@ describe Crinja::Value do
     Crinja::Value.new("string").as_s_or_safe.should eq "string"
     Crinja::Value.new(Crinja::SafeString.new("string")).as_s_or_safe.should eq "string"
     Crinja::Value.new(Crinja::SafeString.new("string")).as_s_or_safe.should be_a Crinja::SafeString
+  end
+
+  it "accepts enum" do
+    Crinja::Value.new(Path::Kind::WINDOWS).should eq "windows"
   end
 end

@@ -83,6 +83,8 @@ class Crinja
       value
     when Raw
       Value.new value
+    when Enum
+      Value.new value.to_s.underscore
     when .responds_to? :raw
       # match JSON::Any | YAML::Any without including json and yaml
       value value.raw
