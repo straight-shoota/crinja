@@ -105,6 +105,8 @@ module Crinja::Object
   module Auto
     include ::Crinja::Object
 
+    DISABLED_METHOD_NAMES = ["initialize", "clone", "dup", "finalize"]
+
     def crinja_attribute(attr : ::Crinja::Value) : ::Crinja::Value
       {% begin %}
         {% exposed = [] of _ %}
@@ -119,7 +121,7 @@ module Crinja::Object
             {% ann = method.annotation(::Crinja::Attribute) %}
             {% expose_this_method = (expose_all || ann || exposed.includes? method.name) && (!ann || !ann[:ignore]) %}
             {% if expose_this_method %}
-              {% if method.name != "initialize" %}
+              {% if !DISABLED_METHOD_NAMES.includes?(method.name) %}
                 {% if !method.accepts_block? %}
                   {% if method.args.all? { |arg| arg.default_value.class_name != "Nop" } %}
                     {% method_name = (ann && ann[:name]) || method.name %}
