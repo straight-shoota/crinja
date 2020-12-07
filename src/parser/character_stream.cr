@@ -78,7 +78,7 @@ module Crinja::Parser
     end
 
     def to_s(io)
-      io << "[" << line << ":" << column << "]"
+      io << line << ":" << column
     end
 
     def inspect(io)

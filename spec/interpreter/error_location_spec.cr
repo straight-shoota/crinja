@@ -6,7 +6,7 @@ describe "error locations" do
       render <<-'TPL_HTML'
           <html>
             <div>{{ non_existing.prop }}</div>
-          </div>
+          </html>
           TPL_HTML
     end
 
@@ -16,11 +16,15 @@ describe "error locations" do
 
     exc.location_start.should eq({2, 11})
     exc.location_end.should eq({2, 28})
-    exc.message.should contain "template: <string>"
-    exc.message.should contain <<-'ERR'
+    exc.message.should contain "template: <string>:2:11"
+    exc.message.should eq <<-'ERR'
+       non_existing is undefined.
+       template: <string>:2:11 .. 2:28
 
+        1 | <html>
         2 |   <div>{{ non_existing.prop }}</div>
         X |           ^~~~~~~~~~~~~~~~~
+        3 | </html>
 
        ERR
   end
@@ -38,8 +42,12 @@ describe "error locations" do
 
     exc.location_start.should eq({3, 56})
     exc.location_end.should eq({3, 86})
-    exc.message.should contain <<-'ERR'
+    exc.message.should eq <<-'ERR'
+      site.authors[johannes] is undefined.
+      template: <string>:3:56 .. 3:86
 
+       1 | <header>
+       2 | <div class="meta">
        3 |   {% if post.author %} by <span class="post-author">{{ site.authors[post.author].name }}</span>{% endif %}
        X |                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
