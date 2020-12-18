@@ -152,7 +152,7 @@ Templates inheritance enables the use of `block` tags in parent templates that c
 <h1>{% block page_title %}{% endblock %}</h1>
 
 <main>
-  {% block body}
+  {% block body %}
     {# This block is typically overwritten by child templates #}
   {% endblock %}
 </main>
