@@ -123,7 +123,7 @@ Tests are similar to filters, but are used in the context of a boolean expressio
 
 ```html+jinja
 {{"{%"}} if is_morning %}
-  Good Moring, {{"{{"}} name }}!
+  Good Morning, {{"{{"}} name }}!
 {{"{%"}} else %}
   Hello, {{"{{"}} name }}!
 {{"{%"}} end %}
@@ -160,7 +160,7 @@ Macros are similar to functions in other programming languages.
 ```
 
 ### Template Inheritance
-Templates inheritance enables the use of `block` tags in parent templates that can be overwritten by child templates. This is useful for implementating layouts:
+Template inheritance enables the use of `block` tags in parent templates that can be overwritten by child templates. This is useful for implementating layouts:
 
 ```html+jinja
 {# layout.html #}
