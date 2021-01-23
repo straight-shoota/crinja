@@ -21,7 +21,7 @@ class Crinja::Server
 
         opts.on("--version", "") { puts Crinja::VERSION; exit }
         opts.on("-v", "--verbose", "") { server.env.logger.level = ::Log::Severity::Debug }
-        opts.on("-q", "--quiet", "") { server.env.logger.level = ::Log::Severity::Warning }
+        opts.on("-q", "--quiet", "") { server.env.logger.level = ::Log::Severity::Warn }
         opts.on("-h", "--help", "") { self.display_help_and_exit(opts) }
         opts.on("-b HOST", "--bind=HOST", "Bind to host (default: #{Server::DEFAULT_HOST}") do |host|
           server.host = host
