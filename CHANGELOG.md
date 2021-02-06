@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to Crinja will be documented in this file.
 
+## 0.7.0 (2021-02-06)
+
+* Improves `TagCycleException`
+* Adds `do` tag (#33, thanks @n-rodriguez)
+* Adds compatibility with Crystal >= 0.35.1 and Shards >= 0.11.0
+* Adds support for mapping predicate methods
+* Smaller cleanup and improvements
+
 ## 0.6.1 (2020-06-09)
 
 Compatibility with Crystal 0.35.0
