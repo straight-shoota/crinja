@@ -146,7 +146,7 @@ Other templates can be included using the `include` tag:
   Content
 </main>
 
-{{"{%"}} include "header.html" %}
+{{"{%"}} include "footer.html" %}
 ```
 
 ### Macros
@@ -168,7 +168,7 @@ Template inheritance enables the use of `block` tags in parent templates that ca
 <h1>{{"{%"}} block page_title %}{{"{%"}} endblock %}</h1>
 
 <main>
-  {{"{%"}} block body}
+  {{"{%"}} block body %}
     {# This block is typically overwritten by child templates #}
   {{"{%"}} endblock %}
 </main>
