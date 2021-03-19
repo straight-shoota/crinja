@@ -21,3 +21,4 @@ development_dependencies:
     branch: master
   baked_file_system:
     github: schovi/baked_file_system
+    branch: master
