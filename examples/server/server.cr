@@ -16,7 +16,7 @@ class Crinja::Server
     def self.run
       server = Crinja::Server.new
 
-      OptionParser.parse! do |opts|
+      OptionParser.parse do |opts|
         path = Dir.current
 
         opts.on("--version", "") { puts Crinja::VERSION; exit }
