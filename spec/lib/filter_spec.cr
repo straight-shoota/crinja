@@ -150,10 +150,12 @@ describe Crinja::Filter do
     evaluate_expression(%(x|escape), {x: Crinja::SafeString.new("<div />")}).should eq "<div />"
   end
 
-  it "strips tags" do
-    html = %(  <p>just a small   \n <a href="#">example</a> link</p>\n<p>to a webpage</p> <!-- <p>and some commented stuff</p> -->)
-    evaluate_expression(%(foo|striptags), {"foo" => html}).should eq "just a small example link to a webpage"
-  end
+  {% unless flag?(:win32) %}
+    it "strips tags" do
+      html = %(  <p>just a small   \n <a href="#">example</a> link</p>\n<p>to a webpage</p> <!-- <p>and some commented stuff</p> -->)
+      evaluate_expression(%(foo|striptags), {"foo" => html}).should eq "just a small example link to a webpage"
+    end
+  {% end %}
 
   describe "filesizeformat" do
     it do
