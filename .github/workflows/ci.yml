@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches:
+    - master
+    # Branches from forks have the form 'user:branch-name' so we only run
+    # this job on pull_request events for branches that look like fork
+    # branches. Without this we would end up running this job twice for non
+    # forked PRs, once for the push and then once for opening the PR.
+    - "**:**"
+  schedule:
+    - cron: '0 6 * * 1'  # Every monday 6 AM
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - os: ubuntu-latest
+          crystal: latest
+        - os: ubuntu-latest
+          crystal: 1.0.0
+        - os: ubuntu-latest
+          crystal: nightly
+        - os: macos-latest
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Download source
+        uses: actions/checkout@v2
+      - name: Install Crystal
+        uses: oprypin/install-crystal@v1
+        with:
+          crystal: ${{ matrix.crystal }}
+      - name: Install shards
+        run: shards update
+      - name: Run specs
+        run: crystal spec
+
+  integration_test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        crystal: [1.0.0, latest, nightly]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Download source
+        uses: actions/checkout@v2
+      - name: Install Crystal
+        uses: oprypin/install-crystal@v1
+        with:
+          crystal: ${{ matrix.crystal }}
+      - name: Setup BATS
+        uses: mig4/setup-bats@v1
+        with:
+          bats-version: 1.2.1
+      - name: Run integration specs
+        run: make test/integration
+
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download source
+        uses: actions/checkout@v2
+      - name: Install Crystal
+        uses: oprypin/install-crystal@v1
+        with:
+          crystal: latest
+      - name: Check formatting
+        run: crystal tool format; git diff --exit-code
