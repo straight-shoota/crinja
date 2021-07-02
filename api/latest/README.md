@@ -325,7 +325,7 @@ Jinja derived from the [Django Template Language](http://docs.djangoproject.com/
 * [Jinjava](https://github.com/HubSpot/jinjava) - Jinja2 implementation in Java using [Unified Expression Language](https://uel.java.net/) (`javaex.el`) for expression resolving. It served as an inspiration for some parts of Crinja.
 * [Liquid](https://shopify.github.io/liquid/) - Jinja2-inspired template engine in Ruby
 * [Liquid.cr](https://github.com/TechMagister/liquid.cr) - Liquid implementation in Crystal
-* [Twig](https://twig.sensiolabs.org/) - Jinja2-inspired template engine in PHP
+* [Twig](https://twig.symfony.com/) - Jinja2-inspired template engine in PHP
 * [ginger](https://hackage.haskell.org/package/ginger) - Jinja2 implementation in Haskell
 * [Jinja-Js](https://github.com/sstur/jinja-js) - Jinja2-inspired template engin in Javascript
 * [jigo](https://github.com/jmoiron/jigo) - Jinja2 implementation in Go
