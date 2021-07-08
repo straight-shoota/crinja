@@ -12,12 +12,12 @@ class Crinja::Function::Cycler
 
   @[Crinja::Attribute]
   def current
-    return "" if @index < 0 # .current called directly after initialization or rewind
-    @values[@index].raw
+    return Value::UNDEFINED if @index < 0 # .current called directly after initialization or rewind
+    @values[@index]
   end
 
   @[Crinja::Attribute]
-  def next
+  def next : Crinja::Value | ::Iterator::Stop
     @index += 1
     @index %= @values.size
     current
