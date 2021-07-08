@@ -38,7 +38,7 @@ jobs:
       - name: Install shards
         run: shards update
       - name: Run specs
-        run: crystal spec
+        run: crystal spec --error-trace
 
   integration_test:
     strategy:
