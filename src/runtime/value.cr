@@ -1,3 +1,8 @@
+class Crinja
+  struct Value
+  end
+end
+
 require "../object"
 require "./undefined"
 require "./safe_string"

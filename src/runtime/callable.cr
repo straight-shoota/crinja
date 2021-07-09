@@ -1,5 +1,3 @@
-require "../arguments"
-
 class Crinja
   # :nodoc:
   macro callable(kind, defaults = nil, name = nil)
@@ -92,6 +90,13 @@ class Crinja
     end
   end
 
+  module Callable
+  end
+end
+
+require "../arguments"
+
+class Crinja
   # A Callable is a Crinja type object that can be called from an expression call. These include
   # functions, macros, tests and filters.
   # It can be implemented by an object or module which inherits from `CallableMod` or using a proc.
