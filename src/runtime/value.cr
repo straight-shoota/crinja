@@ -88,9 +88,6 @@ class Crinja
       value
     when Raw
       Value.new value
-    when .responds_to? :raw
-      # match JSON::Any | YAML::Any without including json and yaml
-      value value.raw
     else
       raise "type error: can't wrap #{value.class} in Crinja::Value"
     end
