@@ -35,7 +35,7 @@ jobs:
       - name: Download source
         uses: actions/checkout@v2
       - name: Install Crystal
-        uses: oprypin/install-crystal@v1
+        uses: crystal-lang/install-crystal@v1
         with:
           crystal: ${{ matrix.crystal }}
       - name: Install shards
@@ -55,7 +55,7 @@ jobs:
       - name: Download source
         uses: actions/checkout@v2
       - name: Install Crystal
-        uses: oprypin/install-crystal@v1
+        uses: crystal-lang/install-crystal@v1
         with:
           crystal: ${{ matrix.crystal }}
       - name: Setup BATS
@@ -72,7 +72,7 @@ jobs:
       - name: Download source
         uses: actions/checkout@v2
       - name: Install Crystal
-        uses: oprypin/install-crystal@v1
+        uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
       - name: Check formatting
