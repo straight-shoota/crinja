@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to Crinja will be documented in this file.
 
+## 0.8.0 (2021-07-16)
+
+Compatbility with Crystal 1.1
+
+* Updates dependencies with more relaxed version restrictions
+* Removes autogeneration for predicate method without suffix to avoid duplicate when conditions
+* Fixes type bugs discovered through Crystal 1.1
+* Adds GitHub actions
+* Fixes some minor documentation bugs
+
 ## 0.7.0 (2021-02-06)
 
 * Improves `TagCycleException`
