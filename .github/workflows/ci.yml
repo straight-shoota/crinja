@@ -13,6 +13,9 @@ on:
   schedule:
     - cron: '0 6 * * 1'  # Every monday 6 AM
 
+env:
+  SHARDS_OPTS: --ignore-crystal-version
+
 jobs:
   test:
     strategy:
