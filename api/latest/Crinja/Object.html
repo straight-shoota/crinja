@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="generator" content="Crystal Docs 1.1.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -754,29 +754,26 @@
 
   <p>This module can be included into custom types to make their instances available
 as values inside the Crinja runtime.</p>
-
 <p>There are three types of properties that can be exposed to the Crinja runtime:</p>
-
-<ul><li><code>#crinja_attribute(name : Crinja::Value) : <a href="../Crinja/Value.html">Crinja::Value</a></code>:
-  Access an attribute (e.g. an instance property) of this type.</li><li><code>#crinja_item(name : Crinja::Value) : <a href="../Crinja/Value.html">Crinja::Value</a></code>:
-  Access an item (e.g. an array member) of this type.</li><li><code>#crinja_call(name : String) : <a href="../Crinja/Callable.html">Crinja::Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a> | Nil</code>:
-  Expose a callable as method of this type.</li></ul>
-
+<ul>
+<li><code>#crinja_attribute(name : Crinja::Value) : <a href="../Crinja/Value.html">Crinja::Value</a></code>:
+Access an attribute (e.g. an instance property) of this type.</li>
+<li><code>#crinja_item(name : Crinja::Value) : <a href="../Crinja/Value.html">Crinja::Value</a></code>:
+Access an item (e.g. an array member) of this type.</li>
+<li><code>#crinja_call(name : String) : <a href="../Crinja/Callable.html">Crinja::Callable</a> | <a href="../Crinja/Callable/Proc.html">Callable::Proc</a> | Nil</code>:
+Expose a callable as method of this type.</li>
+</ul>
 <p>Through the static comilation it is not possible to access properties or methods of an object
 directly from inside the Crinja runtime. These methods allow to define a name-based lookup and
 return the corresponding values. If the looked-up name is not defined, the return value for <code>crinja_call</code>
 should be <code>nil</code>.  should return <code><a href="../Crinja/Undefined.html">Crinja::Undefined</a></code>.</p>
-
 <p><code>crinja_attribute</code> and <code>crinja_item</code> <em>must</em> return an <code><a href="../Crinja/Undefined.html">Crinja::Undefined</a></code> if there is no attribute or item of that name.
 In this case, <code><a href="../Crinja/Resolver.html">Crinja::Resolver</a></code> may try other methods of accessing the attribute or item depending on the type
 of lookup (see <a href="http://jinja.pocoo.org/docs/2.9/templates/#notes-on-subscriptions"><em>Notes on Subscription</em></a> for Jinja2).</p>
-
 <p>Implementing classes <em>do not need</em> to implement these methods. They will only be accessed if an
 instance of <code><a href="../Crinja/Object.html">Crinja::Object</a></code> responds to them. Otherwise it will be considered as if there are no
 attributes, items or methods defined.</p>
-
 <p>Example:</p>
-
 <pre><code class="language-crystal"><span class="k">class</span> <span class="t">User</span>
   <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Object</span>
 
@@ -853,7 +850,7 @@ attributes, items or methods defined.</p>
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/object.cr#L77" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/object.cr#L77" target="_blank">
         object.cr
       </a>
     

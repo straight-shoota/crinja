@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="generator" content="Crystal Docs 1.1.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -752,16 +752,25 @@
     Overview
   </h2>
 
-  <p>When this module is included, it defines a <code><a href="../../Crinja/Object/Auto.html#crinja_attribute(attr:Crinja::Value):Crinja::Value-instance-method">#crinja_attribute</a></code> method (see <code><a href="../../Crinja/Object.html">Crinja::Object</a></code> for its purpose)
+  <p>When this module is included, it defines a <code><a href="../../Crinja/Object/Auto.html#crinja_attribute%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method">#crinja_attribute</a></code> method (see <code><a href="../../Crinja/Object.html">Crinja::Object</a></code> for its purpose)
 with dynamic accessors to all methods exposed using an annotation.</p>
-
-<ul><li><code>@[Crystal::Attribute]</code> (method annotation): Exposes the annotated method.
-  Options:</li><ul><li><code>ignore</code>: Don't expose this method (useful to exclude specific methods from <code>Crystal::Attributes</code>)</li><li><code>name</code>: Expose the method under a different name.</li></ul><li><code>@[Crystal::Attributes]</code> (type annotation): Exposes all methods in the annotated type.
-  Only methods with valid signatures are exposed (can be called without arguments).
-  Options:</li><ul><li><code>expose</code>: A whitelist of methods to expose. If not defined, all methods will be exposed (unless the method itself is annotated as <code>@[<a href="../../Crinja/Attribute.html">Crinja::Attribute</a>(ignore: true)]</code>)</li></ul></ul>
-
+<ul>
+<li><code>@[Crystal::Attribute]</code> (method annotation): Exposes the annotated method.
+Options:
+<ul>
+<li><code>ignore</code>: Don't expose this method (useful to exclude specific methods from <code>Crystal::Attributes</code>)</li>
+<li><code>name</code>: Expose the method under a different name.</li>
+</ul>
+</li>
+<li><code>@[Crystal::Attributes]</code> (type annotation): Exposes all methods in the annotated type.
+Only methods with valid signatures are exposed (can be called without arguments).
+Options:
+<ul>
+<li><code>expose</code>: A whitelist of methods to expose. If not defined, all methods will be exposed (unless the method itself is annotated as <code>@[<a href="../../Crinja/Attribute.html">Crinja::Attribute</a>(ignore: true)]</code>)</li>
+</ul>
+</li>
+</ul>
 <p>Example:</p>
-
 <pre><code class="language-crystal">@[<span class="t">Crinja</span><span class="t">::</span><span class="t">Attributes</span>(expose: [name, age])]
 <span class="k">class</span> <span class="t">User</span>
   <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Object</span><span class="t">::</span><span class="t">Auto</span>
@@ -828,7 +837,7 @@ with dynamic accessors to all methods exposed using an annotation.</p>
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/object.cr#L106" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/object.cr#L106" target="_blank">
         object.cr
       </a>
     
@@ -854,7 +863,7 @@ with dynamic accessors to all methods exposed using an annotation.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#crinja_attribute(attr:Crinja::Value):Crinja::Value-instance-method" class="signature"><strong>#crinja_attribute</strong>(attr : Crinja::Value) : Crinja::Value</a>
+        <a href="#crinja_attribute%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method" class="signature"><strong>#crinja_attribute</strong>(attr : Crinja::Value) : Crinja::Value</a>
         
       </li>
     
@@ -897,13 +906,13 @@ with dynamic accessors to all methods exposed using an annotation.</p>
         
         def <strong>crinja_attribute</strong>(attr : <a href="../../Crinja/Value.html">Crinja::Value</a>) : <a href="../../Crinja/Value.html">Crinja::Value</a>
 
-        <a class="method-permalink" href="#crinja_attribute(attr:Crinja::Value):Crinja::Value-instance-method">#</a>
+        <a class="method-permalink" href="#crinja_attribute%28attr%3ACrinja%3A%3AValue%29%3ACrinja%3A%3AValue-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/object.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/object.cr#L109" target="_blank">View source</a>]
         
       </div>
     </div>

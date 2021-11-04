@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="generator" content="Crystal Docs 1.1.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -755,8 +755,8 @@
   <p>A Callable is a Crinja type object that can be called from an expression call. These include
 functions, macros, tests and filters.
 It can be implemented by an object or module which inherits from <code>CallableMod</code> or using a proc.
-In either way, the callable must respond to <code><a href="../Crinja/Callable.html#call(arguments:Arguments)-instance-method">#call(arguments : Arguments)</a></code> and return <code><a href="../Crinja/Value.html">Value</a></code> or
-a value accepted by <code><a href="../Crinja.html#value(value):Value-class-method">Crinja.value</a></code>.
+In either way, the callable must respond to <code><a href="../Crinja/Callable.html#call%28arguments%3AArguments%29-instance-method">#call(arguments : Arguments)</a></code> and return <code><a href="../Crinja/Value.html">Value</a></code> or
+a value accepted by <code><a href="../Crinja.html#value%28value%29%3AValue-class-method">Crinja.value</a></code>.
 It must be added to the environment's feature library to be useable from template.
 There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow an easy implementation as a proc.</p>
 
@@ -803,14 +803,14 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/runtime/callable.cr#L93" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/runtime/callable.cr#L93" target="_blank">
         runtime/callable.cr:93
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/runtime/callable.cr#L107" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/runtime/callable.cr#L107" target="_blank">
         runtime/callable.cr:107
       </a>
     
@@ -836,12 +836,12 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#call(arguments:Arguments)-instance-method" class="signature"><strong>#call</strong>(arguments : Arguments)</a>
+        <a href="#call%28arguments%3AArguments%29-instance-method" class="signature"><strong>#call</strong>(arguments : Arguments)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s(io)-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
+        <a href="#to_s%28io%29-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
         
       </li>
     
@@ -874,13 +874,13 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
         abstract 
         def <strong>call</strong>(arguments : <a href="../Crinja/Arguments.html">Arguments</a>)
 
-        <a class="method-permalink" href="#call(arguments:Arguments)-instance-method">#</a>
+        <a class="method-permalink" href="#call%28arguments%3AArguments%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/runtime/callable.cr#L108" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/runtime/callable.cr#L108" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -890,13 +890,13 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
         
         def <strong>to_s</strong>(io)
 
-        <a class="method-permalink" href="#to_s(io)-instance-method">#</a>
+        <a class="method-permalink" href="#to_s%28io%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/runtime/callable.cr#L127" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/runtime/callable.cr#L127" target="_blank">View source</a>]
         
       </div>
     </div>

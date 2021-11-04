@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="generator" content="Crystal Docs 1.1.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -759,16 +759,13 @@ This way templates can be baked directly into the executable, so there is no nee
 separate templates files. However, this prevents modifying templates at runtime.
 Both can be accomplished by using a <code><a href="../../Crinja/Loader/ChoiceLoader.html">ChoiceLoader</a></code> to combine a <code><a href="../../Crinja/Loader/FileSystemLoader.html">FileSystemLoader</a></code> with
 baked files as a fallback/default template loader.</p>
-
 <p>Usage depends on the shard <a href="https://github.com/schovi/baked_file_system">schovi/baked_file_system</a>
 and this class must be explicitly required as <code>crinja/loader/baked_file_loader</code>.</p>
-
 <h2><a id="usage" class="anchor" href="#usage">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Usage:</h2>
-
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;crinja/loader/baked_file_loader&quot;</span>
 
 <span class="k">module</span> <span class="t">MyBakedTemplateFileSystem</span>
@@ -782,9 +779,7 @@ env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t"
   <span class="t">Crinja</span><span class="t">::</span><span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>(<span class="s">&quot;/path/to/user/templates&quot;</span>),
   <span class="t">Crinja</span><span class="t">::</span><span class="t">Loader</span><span class="t">::</span><span class="t">BakedFileLoader</span>.<span class="k">new</span>(<span class="t">MyBakedTemplateFileSystem</span>),
 ])</code></pre>
-
 <p>See <code>examples/kilt/kilt.cr</code> for a practical example in conjunction with <code>Kilt</code>.</p>
-
 <p>A baked file system can also be used as a default</p>
 
 
@@ -810,7 +805,7 @@ env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t"
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/loader/baked_file_loader.cr#L33" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/loader/baked_file_loader.cr#L33" target="_blank">
         loader/baked_file_loader.cr
       </a>
     
@@ -832,7 +827,7 @@ env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t"
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(file_system:T)-class-method" class="signature"><strong>.new</strong>(file_system : T)</a>
+        <a href="#new%28file_system%3AT%29-class-method" class="signature"><strong>.new</strong>(file_system : T)</a>
         
       </li>
     
@@ -853,12 +848,12 @@ env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t"
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#file_system:T-instance-method" class="signature"><strong>#file_system</strong> : T</a>
+        <a href="#file_system%3AT-instance-method" class="signature"><strong>#file_system</strong> : T</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#get_source(env:Crinja,template:String):::Tuple(String,String)-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String)</a>
+        <a href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%29-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String)</a>
         
           <div class="summary"><p>Get the template source, filename and reload helper for a template.</p></div>
         
@@ -872,7 +867,7 @@ env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t"
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s(io)-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
+        <a href="#to_s%28io%29-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
         
       </li>
     
@@ -889,17 +884,17 @@ env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t"
   <h3>Instance methods inherited from class <code><a href="../../Crinja/Loader.html">Crinja::Loader</a></code></h3>
   
   
-    <a href="../../Crinja/Loader.html#get_source(env:Crinja,template:String):::Tuple(String,String?)-instance-method" class="tooltip">
+    <a href="../../Crinja/Loader.html#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%3F%29-instance-method" class="tooltip">
       <span>get_source(env : Crinja, template : String) : ::Tuple(String, String?)</span>
     get_source</a>, 
     
   
-    <a href="../../Crinja/Loader.html#list_templates:Iterable(String)-instance-method" class="tooltip">
+    <a href="../../Crinja/Loader.html#list_templates%3AIterable%28String%29-instance-method" class="tooltip">
       <span>list_templates : Iterable(String)</span>
     list_templates</a>, 
     
   
-    <a href="../../Crinja/Loader.html#load(env,name)-instance-method" class="tooltip">
+    <a href="../../Crinja/Loader.html#load%28env%2Cname%29-instance-method" class="tooltip">
       <span>load(env, name)</span>
     load</a>
     
@@ -950,13 +945,13 @@ env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t"
         
         def self.<strong>new</strong>(file_system : T)
 
-        <a class="method-permalink" href="#new(file_system:T)-class-method">#</a>
+        <a class="method-permalink" href="#new%28file_system%3AT%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/loader/baked_file_loader.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/loader/baked_file_loader.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -980,13 +975,13 @@ env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t"
         
         def <strong>file_system</strong> : T
 
-        <a class="method-permalink" href="#file_system:T-instance-method">#</a>
+        <a class="method-permalink" href="#file_system%3AT-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/loader/baked_file_loader.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/loader/baked_file_loader.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -996,7 +991,7 @@ env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t"
         
         def <strong>get_source</strong>(env : <a href="../../Crinja.html">Crinja</a>, template : String) : ::Tuple(String, String)
 
-        <a class="method-permalink" href="#get_source(env:Crinja,template:String):::Tuple(String,String)-instance-method">#</a>
+        <a class="method-permalink" href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1007,7 +1002,7 @@ env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t"
           
           <p>Get the template source, filename and reload helper for a template.
 It's passed the environment and template name and has to return a
-tuple in the form <code></code>{source : String, filename : String?}<code></code> or raise a
+tuple in the form <code>{source : String, filename : String?}</code> or raise a
 <code><a href="../../Crinja/TemplateNotFoundError.html">TemplateNotFoundError</a></code> if it can't locate the template.
 The source part of the returned tuple must be the source of the
 template as string. The filename should be the name of the file on
@@ -1018,7 +1013,7 @@ The filename is used for the tracebacks if no loader extension is used.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/loader/baked_file_loader.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/loader/baked_file_loader.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1044,7 +1039,7 @@ it should raise a <code><a href="../../Crinja/TypeError.html">TypeError</a></cod
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/loader/baked_file_loader.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/loader/baked_file_loader.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1054,13 +1049,13 @@ it should raise a <code><a href="../../Crinja/TypeError.html">TypeError</a></cod
         
         def <strong>to_s</strong>(io)
 
-        <a class="method-permalink" href="#to_s(io)-instance-method">#</a>
+        <a class="method-permalink" href="#to_s%28io%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/loader/baked_file_loader.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/loader/baked_file_loader.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>

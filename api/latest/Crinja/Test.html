@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="generator" content="Crystal Docs 1.1.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -757,22 +757,39 @@ Tests can be used to test a variable against a common expression. To test a vari
 you add <code>is</code> plus the name of the test after the variable. For example, to find out if a variable
 is defined, you can do <code>name is defined</code>, which will then return true or false depending on
 whether name is defined in the current template context.</p>
-
 <p>Tests can accept arguments, too. If the test only takes one argument, you can leave out the
 parentheses. For example, the following two expressions do the same thing:</p>
-
 <pre><code class="language-crinja">{% if loop.index is divisibleby 3 %}
 {% if loop.index is divisibleby(3) %}</code></pre>
-
 <h2><a id="builtin-tests" class="anchor" href="#builtin-tests">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Builtin Tests</h2>
-
 <p>The following tests are available in the default library:</p>
-
-<ul><li><code>**[callable](http://jinja.pocoo.org/docs/2.9/templates/#callable)**(<em></em>)</code></li><li><code>**[defined](http://jinja.pocoo.org/docs/2.9/templates/#defined)**(<em></em>)</code></li><li><code>**[divisibleby](http://jinja.pocoo.org/docs/2.9/templates/#divisibleby)**(<em>num</em>)</code></li><li><code>**[equalto](http://jinja.pocoo.org/docs/2.9/templates/#equalto)**(<em>other</em>)</code></li><li><code>**[escaped](http://jinja.pocoo.org/docs/2.9/templates/#escaped)**(<em></em>)</code></li><li><code>**[even](http://jinja.pocoo.org/docs/2.9/templates/#even)**(<em></em>)</code></li><li><code>**[greaterthan](http://jinja.pocoo.org/docs/2.9/templates/#greaterthan)**(<em>other=0</em>)</code></li><li><code>**[in](http://jinja.pocoo.org/docs/2.9/templates/#in)**(<em>seq=[]</em>)</code></li><li><code>**[iterable](http://jinja.pocoo.org/docs/2.9/templates/#iterable)**(<em></em>)</code></li><li><code>**[lessthan](http://jinja.pocoo.org/docs/2.9/templates/#lessthan)**(<em>other=0</em>)</code></li><li><code>**[lower](http://jinja.pocoo.org/docs/2.9/templates/#lower)**(<em></em>)</code></li><li><code>**[mapping](http://jinja.pocoo.org/docs/2.9/templates/#mapping)**(<em></em>)</code></li><li><code>**[nil](http://jinja.pocoo.org/docs/2.9/templates/#nil)**(<em></em>)</code></li><li><code>**[none](http://jinja.pocoo.org/docs/2.9/templates/#none)**(<em></em>)</code></li><li><code>**[number](http://jinja.pocoo.org/docs/2.9/templates/#number)**(<em></em>)</code></li><li><code>**[odd](http://jinja.pocoo.org/docs/2.9/templates/#odd)**(<em></em>)</code></li><li><code>**[sameas](http://jinja.pocoo.org/docs/2.9/templates/#sameas)**(<em>other</em>)</code></li><li><code>**[sequence](http://jinja.pocoo.org/docs/2.9/templates/#sequence)**(<em></em>)</code></li><li><code>**[string](http://jinja.pocoo.org/docs/2.9/templates/#string)**(<em></em>)</code></li><li><code>**[undefined](http://jinja.pocoo.org/docs/2.9/templates/#undefined)**(<em></em>)</code></li><li><code>**[upper](http://jinja.pocoo.org/docs/2.9/templates/#upper)**(<em></em>)</code></li></ul>
+<ul>
+<li><code>**[callable](http://jinja.pocoo.org/docs/2.9/templates/#callable)**(<em></em>)</code></li>
+<li><code>**[defined](http://jinja.pocoo.org/docs/2.9/templates/#defined)**(<em></em>)</code></li>
+<li><code>**[divisibleby](http://jinja.pocoo.org/docs/2.9/templates/#divisibleby)**(<em>num</em>)</code></li>
+<li><code>**[equalto](http://jinja.pocoo.org/docs/2.9/templates/#equalto)**(<em>other</em>)</code></li>
+<li><code>**[escaped](http://jinja.pocoo.org/docs/2.9/templates/#escaped)**(<em></em>)</code></li>
+<li><code>**[even](http://jinja.pocoo.org/docs/2.9/templates/#even)**(<em></em>)</code></li>
+<li><code>**[greaterthan](http://jinja.pocoo.org/docs/2.9/templates/#greaterthan)**(<em>other=0</em>)</code></li>
+<li><code>**[in](http://jinja.pocoo.org/docs/2.9/templates/#in)**(<em>seq=[]</em>)</code></li>
+<li><code>**[iterable](http://jinja.pocoo.org/docs/2.9/templates/#iterable)**(<em></em>)</code></li>
+<li><code>**[lessthan](http://jinja.pocoo.org/docs/2.9/templates/#lessthan)**(<em>other=0</em>)</code></li>
+<li><code>**[lower](http://jinja.pocoo.org/docs/2.9/templates/#lower)**(<em></em>)</code></li>
+<li><code>**[mapping](http://jinja.pocoo.org/docs/2.9/templates/#mapping)**(<em></em>)</code></li>
+<li><code>**[nil](http://jinja.pocoo.org/docs/2.9/templates/#nil)**(<em></em>)</code></li>
+<li><code>**[none](http://jinja.pocoo.org/docs/2.9/templates/#none)**(<em></em>)</code></li>
+<li><code>**[number](http://jinja.pocoo.org/docs/2.9/templates/#number)**(<em></em>)</code></li>
+<li><code>**[odd](http://jinja.pocoo.org/docs/2.9/templates/#odd)**(<em></em>)</code></li>
+<li><code>**[sameas](http://jinja.pocoo.org/docs/2.9/templates/#sameas)**(<em>other</em>)</code></li>
+<li><code>**[sequence](http://jinja.pocoo.org/docs/2.9/templates/#sequence)**(<em></em>)</code></li>
+<li><code>**[string](http://jinja.pocoo.org/docs/2.9/templates/#string)**(<em></em>)</code></li>
+<li><code>**[undefined](http://jinja.pocoo.org/docs/2.9/templates/#undefined)**(<em></em>)</code></li>
+<li><code>**[upper](http://jinja.pocoo.org/docs/2.9/templates/#upper)**(<em></em>)</code></li>
+</ul>
 
 
 
@@ -797,7 +814,7 @@ parentheses. For example, the following two expressions do the same thing:</p>
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/lib/test.cr#L40" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/test.cr#L40" target="_blank">
         lib/test.cr
       </a>
     

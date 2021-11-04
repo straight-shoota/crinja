@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="generator" content="Crystal Docs 1.1.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -779,7 +779,7 @@
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/loader.cr#L107" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/loader.cr#L107" target="_blank">
         loader.cr
       </a>
     
@@ -801,7 +801,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(data)-class-method" class="signature"><strong>.new</strong>(data)</a>
+        <a href="#new%28data%29-class-method" class="signature"><strong>.new</strong>(data)</a>
         
       </li>
     
@@ -822,12 +822,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#data:Hash(String,String)-instance-method" class="signature"><strong>#data</strong> : Hash(String, String)</a>
+        <a href="#data%3AHash%28String%2CString%29-instance-method" class="signature"><strong>#data</strong> : Hash(String, String)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#get_source(env:Crinja,template:String):::Tuple(String,String?)-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String?)</a>
+        <a href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%3F%29-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String?)</a>
         
           <div class="summary"><p>Get the template source, filename and reload helper for a template.</p></div>
         
@@ -853,17 +853,17 @@
   <h3>Instance methods inherited from class <code><a href="../../Crinja/Loader.html">Crinja::Loader</a></code></h3>
   
   
-    <a href="../../Crinja/Loader.html#get_source(env:Crinja,template:String):::Tuple(String,String?)-instance-method" class="tooltip">
+    <a href="../../Crinja/Loader.html#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%3F%29-instance-method" class="tooltip">
       <span>get_source(env : Crinja, template : String) : ::Tuple(String, String?)</span>
     get_source</a>, 
     
   
-    <a href="../../Crinja/Loader.html#list_templates:Iterable(String)-instance-method" class="tooltip">
+    <a href="../../Crinja/Loader.html#list_templates%3AIterable%28String%29-instance-method" class="tooltip">
       <span>list_templates : Iterable(String)</span>
     list_templates</a>, 
     
   
-    <a href="../../Crinja/Loader.html#load(env,name)-instance-method" class="tooltip">
+    <a href="../../Crinja/Loader.html#load%28env%2Cname%29-instance-method" class="tooltip">
       <span>load(env, name)</span>
     load</a>
     
@@ -914,13 +914,13 @@
         
         def self.<strong>new</strong>(data)
 
-        <a class="method-permalink" href="#new(data)-class-method">#</a>
+        <a class="method-permalink" href="#new%28data%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/loader.cr#L110" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/loader.cr#L110" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -944,13 +944,13 @@
         
         def <strong>data</strong> : Hash(String, String)
 
-        <a class="method-permalink" href="#data:Hash(String,String)-instance-method">#</a>
+        <a class="method-permalink" href="#data%3AHash%28String%2CString%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/loader.cr#L108" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/loader.cr#L108" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -960,7 +960,7 @@
         
         def <strong>get_source</strong>(env : <a href="../../Crinja.html">Crinja</a>, template : String) : ::Tuple(String, String?)
 
-        <a class="method-permalink" href="#get_source(env:Crinja,template:String):::Tuple(String,String?)-instance-method">#</a>
+        <a class="method-permalink" href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%3F%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -971,7 +971,7 @@
           
           <p>Get the template source, filename and reload helper for a template.
 It's passed the environment and template name and has to return a
-tuple in the form <code></code>{source : String, filename : String?}<code></code> or raise a
+tuple in the form <code>{source : String, filename : String?}</code> or raise a
 <code><a href="../../Crinja/TemplateNotFoundError.html">TemplateNotFoundError</a></code> if it can't locate the template.
 The source part of the returned tuple must be the source of the
 template as string. The filename should be the name of the file on
@@ -982,7 +982,7 @@ The filename is used for the tracebacks if no loader extension is used.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/loader.cr#L113" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/loader.cr#L113" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1008,7 +1008,7 @@ it should raise a <code><a href="../../Crinja/TypeError.html">TypeError</a></cod
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/loader.cr#L119" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/loader.cr#L119" target="_blank">View source</a>]
         
       </div>
     </div>

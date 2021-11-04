@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="generator" content="Crystal Docs 1.1.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -733,77 +733,64 @@
 
 
 <div class="main-content">
-<h1><a id="crinja" class="anchor" href="#crinja">
-  <svg class="octicon-link" aria-hidden="true">
+<h1><a id="crinja" class="anchor" href="#crinja">  <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>crinja</h1>
-
-<p><a href="https://travis-ci.org/straight-shoota/crinja"><img src="https://travis-ci.org/straight-shoota/crinja.svg?branch=master" alt="Build Status"/></a>
-<a href="https://circleci.com/gh/straight-shoota/crinja"><img src="https://circleci.com/gh/straight-shoota/crinja.svg?style=svg" alt="CircleCI"/></a>
-<a href="https://www.codetriage.com/straight-shoota/crinja"><img src="https://www.codetriage.com/straight-shoota/crinja/badges/users.svg" alt="Open Source Helpers"/></a></p>
-
-<p>Crinja is an implementation of the <a href="http://jinja.pocoo.org">Jinja2 template engine</a> written in <a href="http://crystallang.org">Crystal</a>. Templates are parsed and evaluated at runtime (see <a href="#background">Background</a>). It includes a script runtime for evaluation of dynamic python-like expressions used by the Jinja2 syntax.</p>
-
+<p><a href="https://travis-ci.org/straight-shoota/crinja"><img src="https://travis-ci.org/straight-shoota/crinja.svg?branch=master" alt="Build Status" /></a>
+<a href="https://circleci.com/gh/straight-shoota/crinja"><img src="https://circleci.com/gh/straight-shoota/crinja.svg?style=svg" alt="CircleCI" /></a>
+<a href="https://www.codetriage.com/straight-shoota/crinja"><img src="https://www.codetriage.com/straight-shoota/crinja/badges/users.svg" alt="Open Source Helpers" /></a></p>
+<p>Crinja is an implementation of the <a href="http://jinja.pocoo.org">Jinja2 template engine</a> written in <a href="https://crystal-lang.org/">Crystal</a>. Templates are parsed and evaluated at runtime (see <a href="#background">Background</a>). It includes a script runtime for evaluation of dynamic python-like expressions used by the Jinja2 syntax.</p>
 <p><strong><a href="https://straight-shoota.github.io/crinja/api/latest/">API Documentation</a></strong> ·
 <strong><a href="https://github.com/straight-shoota/crinja">Github Repo</a></strong> ·
 <strong><a href="https://github.com/straight-shoota/crinja/blob/master/TEMPLATE_SYNTAX.md">Template Syntax</a></strong></p>
-
 <h2><a id="features" class="anchor" href="#features">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Features</h2>
-
 <p>Crinja tries to stay close to the Jinja2 language design and implementation. It currently provides most features of the original template language, such as:</p>
-
-<ul><li>all basic language features like control structures and expressions</li><li>template inheritance</li><li>block scoping</li><li>custom tags, filters, functions, operators and tests</li><li>autoescape by default</li><li>template cache</li></ul>
-
+<ul>
+<li>all basic language features like control structures and expressions</li>
+<li>template inheritance</li>
+<li>block scoping</li>
+<li>custom tags, filters, functions, operators and tests</li>
+<li>autoescape by default</li>
+<li>template cache</li>
+</ul>
 <p>From Jinja2 all builtin <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-control-structures">control structures (tags)</a>, <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-tests">tests</a>, <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-global-functions">global functions</a>, <a href="http://jinja.pocoo.org/docs/2.9/templates/#expressions">operators</a> and <a href="http://jinja.pocoo.org/docs/2.9/templates/#list-of-builtin-filters">filters</a> have been ported to Crinja. See <code><a href="Crinja/Filter.html">Crinja::Filter</a></code>, <code><a href="Crinja/Test.html">Crinja::Test</a></code>, <code><a href="Crinja/Function.html">Crinja::Function</a></code>, <code><a href="Crinja/Tag.html">Crinja::Tag</a></code>, <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> for lists of builtin features.</p>
-
 <p>Currently, template errors fail fast raising an exception. It is considered to change this behaviour to collect multiple errors, similar to what Jinjava does.</p>
-
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Installation</h2>
-
 <p>Add this to your application's <code>shard.yml</code>:</p>
-
 <pre><code class="language-yaml">dependencies:
   crinja:
     github: straight-shoota/crinja</code></pre>
-
 <h2><a id="usage" class="anchor" href="#usage">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Usage</h2>
-
 <h3><a id="simple-string-template" class="anchor" href="#simple-string-template">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Simple string template</h3>
-
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
 
 <span class="t">Crinja</span>.render(<span class="s">&quot;Hello, {{ name }}!&quot;</span>, {<span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span>}) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
-
 <h3><a id="file-loader" class="anchor" href="#file-loader">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>File loader</h3>
-
 <p>With this template file:</p>
-
 <pre><code class="language-html"># views/index.html.j2
-&lt;p>Hello {{ name | default('World') }}&lt;/p></code></pre>
-
+&lt;p&gt;Hello {{ name | default('World') }}&lt;/p&gt;</code></pre>
 <p>It can be loaded with a <code>FileSystemLoader</code>:</p>
-
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
 
 env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
@@ -811,219 +798,173 @@ env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t"
 template <span class="o">=</span> env.get_template(<span class="s">&quot;index.html.j2&quot;</span>)
 template.render <span class="c"># =&gt; &quot;Hello, World!&quot;</span>
 template.render({ <span class="s">&quot;name&quot;</span> => <span class="s">&quot;John&quot;</span> }) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
-
 <h3><a id="crystal-playground" class="anchor" href="#crystal-playground">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Crystal Playground</h3>
-
 <p>Run the <strong>Crystal playground</strong> inside this repostitory and the server is prepared with examples of using Crinja's API (check the <code>Workbooks</code> section).</p>
-
 <pre><code class="language-shell">$ crystal play</code></pre>
-
-<p>You can also browse the examples and documentation online (without the interactive playground): <a href="https://straight-shoota.github.io/crinja/api/latest/playground/objects.html">objects</a> & <a href="https://straight-shoota.github.io/crinja/api/latest/playground/features.html">features</a></p>
-
+<p>You can also browse the examples and documentation online (without the interactive playground): <a href="https://straight-shoota.github.io/crinja/api/latest/playground/objects.html">objects</a> &amp; <a href="https://straight-shoota.github.io/crinja/api/latest/playground/features.html">features</a></p>
 <h3><a id="crinja-playground" class="anchor" href="#crinja-playground">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Crinja Playground</h3>
-
 <p>The <strong>Crinja Example Server</strong> in <a href="https://github.com/straight-shoota/crinja/tree/master/examples/server"><code>examples/server</code></a> is an HTTP server which renders Crinja templates from <code>examples/server/pages</code>. It has also an interactive playground for Crinja template testing at <code>/play</code>.</p>
-
-<pre><code class="language-shell">$ cd examples/server && crystal server.cr</code></pre>
-
+<pre><code class="language-shell">$ cd examples/server &amp;&amp; crystal server.cr</code></pre>
 <p>Other examples can be found in the <a href="https://github.com/straight-shoota/crinja/tree/master/examples"><code>examples</code> folder</a>.</p>
-
 <h2><a id="template-syntax" class="anchor" href="#template-syntax">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Template Syntax</h2>
-
 <p>The following is a quick overview of the template language to get you started.</p>
-
 <p>More details can be found in <strong><a href="https://github.com/straight-shoota/crinja/blob/master/TEMPLATE_SYNTAX.md">the template guide</a></strong>.
 The original <a href="http://jinja.pocoo.org/docs/2.9/templates/">Jinja2 template reference</a> can also be helpful, Crinja templates are mostly similar.</p>
-
 <h3><a id="expressions" class="anchor" href="#expressions">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Expressions</h3>
-
 <p>In a template, <strong>expressions</strong> inside double curly braces (<code>{{</code> ... <code>}}</code>) will be evaluated and printed to the template output.</p>
-
 <p>Assuming there is a variable <code>name</code> with value <code>"World"</code>, the following template renders <code>Hello, World!</code>.</p>
-
 <pre><code class="language-html+jinja">Hello, {{ name }}!</code></pre>
-
 <p>Properties of an object can be accessed by dot (<code>.</code>) or square brackets (<code>[]</code>). Filters modify the value of an expression.</p>
-
-<pre><code class="language-html+jinja">Hello, {{ current_user.name | default("World") | titelize }}!</code></pre>
-
+<pre><code class="language-html+jinja">Hello, {{ current_user.name | default(&quot;World&quot;) | titelize }}!</code></pre>
 <p>Tests are similar to filters, but are used in the context of a boolean expression, for example as condition of an <code>if</code> tag.</p>
-
 <pre><code class="language-html+jinja">{% if current_user is logged_in %}
   Hello, {{ current_user.name }}!
 {% else %}
   Hey, stranger!
 {% end %}</code></pre>
-
 <h3><a id="tags" class="anchor" href="#tags">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Tags</h3>
-
 <p><strong>Tags</strong> control the logic of the template. They are enclosed in <code>{%</code> and <code>%}</code>.</p>
-
 <pre><code class="language-html+jinja">{% if is_morning %}
   Good Morning, {{ name }}!
 {% else %}
   Hello, {{ name }}!
 {% end %}</code></pre>
-
 <p>The <code>for</code> tag allows looping over a collection.</p>
-
 <pre><code class="language-html+jinja">{% for name in users %}
   {{ user.name }}
 {% endfor %}</code></pre>
-
 <p>Other templates can be included using the <code>include</code> tag:</p>
+<pre><code class="language-html+jinja">{% include &quot;header.html&quot; %}
 
-<pre><code class="language-html+jinja">{% include "header.html" %}
-
-&lt;main>
+&lt;main&gt;
   Content
-&lt;/main>
+&lt;/main&gt;
 
-{% include "footer.html" %}</code></pre>
-
+{% include &quot;footer.html&quot; %}</code></pre>
 <h3><a id="macros" class="anchor" href="#macros">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Macros</h3>
-
 <p>Macros are similar to functions in other programming languages.</p>
-
-<pre><code class="language-html+jinja">{% macro say_hello(name) %}Hello, {{ name | default("stranger") }}!{% endmacro %}
+<pre><code class="language-html+jinja">{% macro say_hello(name) %}Hello, {{ name | default(&quot;stranger&quot;) }}!{% endmacro %}
 {{ say_hello('Peter') }}
 {{ say_hello('Paul') }}</code></pre>
-
 <h3><a id="template-inheritance" class="anchor" href="#template-inheritance">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Template Inheritance</h3>
-
 <p>Template inheritance enables the use of <code>block</code> tags in parent templates that can be overwritten by child templates. This is useful for implementating layouts:</p>
-
 <pre><code class="language-html+jinja">{# layout.html #}
 
-&lt;h1>{% block page_title %}{% endblock %}&lt;/h1>
+&lt;h1&gt;{% block page_title %}{% endblock %}&lt;/h1&gt;
 
-&lt;main>
+&lt;main&gt;
   {% block body %}
     {# This block is typically overwritten by child templates #}
   {% endblock %}
-&lt;/main>
+&lt;/main&gt;
 
 {% block footer %}
-  {% include "footer.html" %}
+  {% include &quot;footer.html&quot; %}
 {% endblock %}</code></pre>
-
 <pre><code class="language-html+jinja">{# page.html #}
-{% extends "layout.html" %}
+{% extends &quot;layout.html&quot; %}
 
 {% block page_title %}Blog Index{% endblock %}
 {% block body %}
-  &lt;ul>
+  &lt;ul&gt;
     {% for article in articles if article.published %}
-    &lt;div class="article">
-      &lt;li>
-        &lt;a href="{{ article.href | escape }}">{{ article.title | escape }}&lt;/a>
-        written by &lt;a href="{{ article.user.href | escape}}">{{ article.user.username | escape }}&lt;/a>
-      &lt;/li>
+    &lt;div class=&quot;article&quot;&gt;
+      &lt;li&gt;
+        &lt;a href=&quot;{{ article.href | escape }}&quot;&gt;{{ article.title | escape }}&lt;/a&gt;
+        written by &lt;a href=&quot;{{ article.user.href | escape}}&quot;&gt;{{ article.user.username | escape }}&lt;/a&gt;
+      &lt;/li&gt;
     {%- endfor %}
-  &lt;/ul>
+  &lt;/ul&gt;
 {% endblock %}</code></pre>
-
 <h2><a id="crystal-api" class="anchor" href="#crystal-api">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Crystal API</h2>
-
 <p>The API tries to stick ot the original <a href="http://jinja.pocoo.org/docs/2.9/api/">Jinja2 API</a> which is written in Python.</p>
-
 <p><strong><a href="https://straight-shoota.github.io/crinja/api/latest/">API Documentation</a></strong></p>
-
 <h3><a id="configuration" class="anchor" href="#configuration">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Configuration</h3>
-
 <p>Currently the following configuration options for <code>Config</code> are supported:</p>
-
-<p>&lt;dl>
-  &lt;dt>autoescape&lt;/dt>
-  &lt;dd>
-  &lt;p>This config allows the same settings as &lt;code>&lt;a href="http://jinja.pocoo.org/docs/2.9/api/#jinja2.select_autoescape">select_autoescape&lt;/a>&lt;/code> in Jinja 2.9.&lt;/p>
-  &lt;p>It intelligently sets the initial value of autoescaping based on the filename of the template.&lt;/p>
-  &lt;p>When set to a boolean value, &lt;code>false&lt;/code> deactivates any autoescape and &lt;code>true&lt;/code> activates autoescape for any template.
-  It also allows more detailed configuration:&lt;/p>
-  &lt;dl></p>
-
-<pre><code class="language-crystal"><span class="o">&lt;</span>dt<span class="o">&gt;</span>enabled_extensions<span class="o">&lt;</span><span class="s">/dt&gt;
-&lt;dd&gt;List of filename extensions that autoescape should be enabled for. Default: &lt;code&gt;[&quot;html&quot;, &quot;htm&quot;, &quot;xml&quot;]&lt;/</span>code<span class="o">&gt;</span><span class="o">&lt;</span><span class="s">/dd&gt;
-&lt;dt&gt;disabled_extensions&lt;/</span>dt<span class="o">&gt;</span>
-<span class="o">&lt;</span>dd<span class="o">&gt;</span><span class="t">List</span> <span class="k">of</span> filename extensions that autoescape should be disabled <span class="k">for</span>. <span class="t">Default</span>: <span class="o">&lt;</span>code<span class="o">&gt;</span><span class="o">[]</span> <span class="k">of</span> <span class="t">String</span><span class="o">&lt;</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">&gt;</span>
-<span class="o">&lt;</span>dt<span class="o">&gt;</span>default_for_string<span class="o">&lt;</span><span class="s">/dt&gt;
-&lt;dd&gt;Determines autoescape default value for templates loaded from a string (without a filename). Default: &lt;code&gt;false&lt;/</span>code<span class="o">&gt;</span><span class="o">&lt;</span><span class="s">/dd&gt;
-&lt;dt&gt;default&lt;/</span>dt<span class="o">&gt;</span>
-<span class="o">&lt;</span>dd<span class="o">&gt;</span><span class="t">If</span> nothing matches, this will be the default autoescape value. <span class="t">Default</span>: <span class="o">&lt;</span>code<span class="o">&gt;</span><span class="n">false</span><span class="o">&lt;</span><span class="s">/code&gt;&lt;/</span>dd<span class="o">&gt;</span></code></pre>
-
-<p>&lt;/dl>
-  &lt;p>Note: &lt;em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.&lt;/em>&lt;/p>
-  &lt;/dd>
-  &lt;dt>disabled_filters&lt;/dt>
-  &lt;dd>A list of <em>disabled_filters</em> that will raise a <code>SecurityError</code> when invoked.&lt;/dd>
-  &lt;dt>disabled_functions&lt;/dt>
-  &lt;dd>A list of <em>disabled_functions</em> that will raise a <code>SecurityError</code> when invoked.&lt;/dd>
-  &lt;dt>disabled_operators&lt;/dt>
-  &lt;dd>A list of <em>disabled_operators</em> that will raise a <code>SecurityError</code> when invoked.&lt;/dd>
-  &lt;dt>disabled_tags&lt;/dt>
-  &lt;dd>A list of <em>disabled_tags</em> that will raise a <code>SecurityError</code> when invoked.&lt;/dd>
-  &lt;dt>disabled_tests&lt;/dt>
-  &lt;dd>A list of <em>disabled_tests</em> that will raise a <code>SecurityError</code> when invoked.&lt;/dd>
-  &lt;dt>keep_trailing_newline&lt;/dt>
-  &lt;dd>Preserve the trailing newline when rendering templates. If set to <code>false</code>, a single newline, if present, will be stripped from the end of the template. Default: &lt;code>false&lt;/code>&lt;/dd>
-  &lt;dt>trim_blocks&lt;/dt>
-  &lt;dd>If this is set to &lt;code>true&lt;/code>, the first newline after a block is removed. This only applies to blocks, not expression tags. Default: &lt;code>false&lt;/code>.&lt;/dd>
-  &lt;dt>lstrip_blocks&lt;/dt>
-  &lt;dd>If this is set to &lt;code>true&lt;/code>, leading spaces and tabs are stripped from the start of a line to a block. Default: &lt;code>false&lt;/code>.&lt;/dd>
-  &lt;td>register_defaults&lt;/td>
-  &lt;dd>If &lt;code>register_defaults&lt;/code> is set to &lt;code>true&lt;/code>, all feature libraries will be populated with the defaults (Crinja standards and registered custom features).
-  Otherwise the libraries will be empty. They can be manually populated with &lt;code>library.register_defaults&lt;/code>.
-  This setting needs to be set at the creation of an environment.&lt;/dd>
-&lt;/dl></p>
-
+<dl>
+  <dt>autoescape</dt>
+  <dd>
+  <p>This config allows the same settings as <code><a href="http://jinja.pocoo.org/docs/2.9/api/#jinja2.select_autoescape">select_autoescape</a></code> in Jinja 2.9.</p>
+  <p>It intelligently sets the initial value of autoescaping based on the filename of the template.</p>
+  <p>When set to a boolean value, <code>false</code> deactivates any autoescape and <code>true</code> activates autoescape for any template.
+  It also allows more detailed configuration:</p>
+  <dl>
+    <dt>enabled_extensions</dt>
+    <dd>List of filename extensions that autoescape should be enabled for. Default: <code>["html", "htm", "xml"]</code></dd>
+    <dt>disabled_extensions</dt>
+    <dd>List of filename extensions that autoescape should be disabled for. Default: <code>[] of String</code></dd>
+    <dt>default_for_string</dt>
+    <dd>Determines autoescape default value for templates loaded from a string (without a filename). Default: <code>false</code></dd>
+    <dt>default</dt>
+    <dd>If nothing matches, this will be the default autoescape value. Default: <code>false</code></dd>
+  </dl>
+  <p>Note: <em>The default configuration of Crinja differs from that of Jinja 2.9, that autoescape is activated by default for HTML and XML files. This will most likely be changed by Jinja2 in the future, too.</em></p>
+  </dd>
+  <dt>disabled_filters</dt>
+  <dd>A list of *disabled_filters* that will raise a `SecurityError` when invoked.</dd>
+  <dt>disabled_functions</dt>
+  <dd>A list of *disabled_functions* that will raise a `SecurityError` when invoked.</dd>
+  <dt>disabled_operators</dt>
+  <dd>A list of *disabled_operators* that will raise a `SecurityError` when invoked.</dd>
+  <dt>disabled_tags</dt>
+  <dd>A list of *disabled_tags* that will raise a `SecurityError` when invoked.</dd>
+  <dt>disabled_tests</dt>
+  <dd>A list of *disabled_tests* that will raise a `SecurityError` when invoked.</dd>
+  <dt>keep_trailing_newline</dt>
+  <dd>Preserve the trailing newline when rendering templates. If set to `false`, a single newline, if present, will be stripped from the end of the template. Default: <code>false</code></dd>
+  <dt>trim_blocks</dt>
+  <dd>If this is set to <code>true</code>, the first newline after a block is removed. This only applies to blocks, not expression tags. Default: <code>false</code>.</dd>
+  <dt>lstrip_blocks</dt>
+  <dd>If this is set to <code>true</code>, leading spaces and tabs are stripped from the start of a line to a block. Default: <code>false</code>.</dd>
+  <td>register_defaults</td>
+  <dd>If <code>register_defaults</code> is set to <code>true</code>, all feature libraries will be populated with the defaults (Crinja standards and registered custom features).
+  Otherwise the libraries will be empty. They can be manually populated with <code>library.register_defaults</code>.
+  This setting needs to be set at the creation of an environment.</dd>
+</dl>
 <p>See also the original <a href="http://jinja.pocoo.org/docs/2.9/api/">Jinja2 API Documentation</a>.</p>
-
 <h3><a id="custom-features" class="anchor" href="#custom-features">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Custom features</h3>
-
 <p>You can provide custom tags, filters, functions, operators and tests. Create an implementation using the macros <code>Crinja.filter</code>, <code>Crinja.function</code>, <code>Crinja.test</code>. They need to be passed a block which will be converted to a Proc. Optional arguments are a <code>Hash</code> or <code>NamedTuple</code> with default arguments and a name. If a name is provided, it will be added to the feature library defaults and available in every environment which uses the registered defaults.</p>
-
 <p>Example with macro <code>Crinja.filter</code>:</p>
-
 <pre><code class="language-crystal">env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
 
 myfilter <span class="o">=</span> <span class="t">Crinja</span>.filter({ attribute: <span class="n">nil</span> }) <span class="k">do</span>
@@ -1034,9 +975,7 @@ env.filters[<span class="s">&quot;customfilter&quot;</span>] <span class="o">=</
 
 template <span class="o">=</span> env.from_string(<span class="s">%({{ &quot;Hello World&quot; | customfilter(attribute=&quot;super&quot;) }})</span>)
 template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span></code></pre>
-
 <p>Or you can define a class for more complex features:</p>
-
 <pre><code class="language-crystal"><span class="k">class</span> <span class="t">Customfilter</span>
   <span class="k">include</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Callable</span>
 
@@ -1056,57 +995,71 @@ env.filters <span class="o">&lt;&lt;</span> <span class="t">Customfilter</span>.
 
 template <span class="o">=</span> env.from_string(<span class="s">%({{ &quot;Hello World&quot; | customfilter(attribute=&quot;super&quot;) }})</span>)
 template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span></code></pre>
-
 <p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> and  <code><a href="Crinja.html">Crinja</a>:Tag</code> and adding an instance to the feature library defaults (<code>Crinja::Operator::Library.defaults << MyTag.new</code>) or to a specific environment (<code>env.tags << MyTag.new</code>).</p>
-
 <h2><a id="differences-from-jinja2" class="anchor" href="#differences-from-jinja2">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Differences from Jinja2</h2>
-
 <p>This is an incomplete list of <strong>Differences to the original Jinja2</strong>:</p>
-
-<ul><li><strong>Python expressions:</strong> Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib like <code>Dict#iteritems()</code> which is often used to make dicts iterable.</li><li><strong>Line statements and line comments</strong>: Are not supported, because their usecase is negligible.</li><li><strong>String representation:</strong> Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like <code>{{ ["foo", "bar"] }}</code> will render as <code>[u'foo', u'bar']</code> in Jinja2 and as <code>['foo', 'bar']</code> in Crinja.</li><li><strong>Double escape:</strong> <code>{{ '<html>'|escape|escape }}</code> will render as <code>&lt;html&gt;</code> in Jinja2, but <code>&amp;lt;html&amp;gt;</code>. Should we change that behaviour?</li><li><strong>Complex numbers</strong>: Complex numbers are not supported yet.</li><li><strong>Configurable syntax</strong>: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.</li></ul>
-
+<ul>
+<li><strong>Python expressions:</strong> Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib like <code>Dict#iteritems()</code> which is often used to make dicts iterable.</li>
+<li><strong>Line statements and line comments</strong>: Are not supported, because their usecase is negligible.</li>
+<li><strong>String representation:</strong> Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like <code>{{ ["foo", "bar"] }}</code> will render as <code>[u'foo', u'bar']</code> in Jinja2 and as <code>['foo', 'bar']</code> in Crinja.</li>
+<li><strong>Double escape:</strong> <code>{{ '<html>'|escape|escape }}</code> will render as <code>&lt;html&gt;</code> in Jinja2, but <code>&amp;lt;html&amp;gt;</code>. Should we change that behaviour?</li>
+<li><strong>Complex numbers</strong>: Complex numbers are not supported yet.</li>
+<li><strong>Configurable syntax</strong>: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.</li>
+</ul>
 <p>The following features are not yet fully implemented, but on the <a href="ROADMAP.md">roadmap</a>:</p>
-
-<ul><li>Sandboxed execution.</li><li>Some in-depth features like extended macro reflection, reusable blocks.</li></ul>
-
+<ul>
+<li>Sandboxed execution.</li>
+<li>Some in-depth features like extended macro reflection, reusable blocks.</li>
+</ul>
 <h2><a id="background" class="anchor" href="#background">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Background</h2>
-
 <p>Crystal is a great programming language with a clean syntax inspired by Ruby, but it is compiled and runs incredibly fast.</p>
-
 <p>There are already some <a href="https://github.com/veelenga/awesome-crystal#template-engine">template engines for crystal</a>. But if you want control structures and dynamic expressions without some sort of Domain Specific Language, there is only <a href="https://crystal-lang.org/api/0.21.1/ECR.html">Embedded Crystal (ECR)</a>, which is a part of Crystal's standard library. It uses macros to convert templates to Crystal code and embed them into the source at compile time. So for every change in a template, you have to recompile the binary. This approach is certainly applicable for many projects and provides very fast template rendering. The downside is, you need a crystal build stack for template design. This makes it impossible to render dynamic, user defined templates, that can be changed at runtime.</p>
-
 <p>Jinja2 is a powerful, mature template engine with a great syntax and proven language design. Its philosophy is:</p>
-
-<blockquote>Application logic is for the controller, but don't make the template designer's life difficult by restricting functionality too much.</blockquote>
-
+<blockquote>
+<p>Application logic is for the controller, but don't make the template designer's life difficult by restricting functionality too much.</p>
+</blockquote>
 <p>Jinja derived from the <a href="http://docs.djangoproject.com/en/dev/ref/templates/builtins/">Django Template Language</a>. While it comes from web development and is heavily used there (<a href="http://flask.pocoo.org/">Flask</a>)
 <a href="https://ansible.com/">Ansible</a> and <a href="http://www.saltstack.com/">Salt</a> use it for dynamic enhancements of configuration data. It has quite a number of implementations and adaptations in other languages:</p>
-
-<ul><li><a href="https://github.com/HubSpot/jinjava">Jinjava</a> - Jinja2 implementation in Java using <a href="https://uel.java.net/">Unified Expression Language</a> (<code>javaex.el</code>) for expression resolving. It served as an inspiration for some parts of Crinja.</li><li><a href="https://shopify.github.io/liquid/">Liquid</a> - Jinja2-inspired template engine in Ruby</li><li><a href="https://github.com/TechMagister/liquid.cr">Liquid.cr</a> - Liquid implementation in Crystal</li><li><a href="https://twig.symfony.com/">Twig</a> - Jinja2-inspired template engine in PHP</li><li><a href="https://hackage.haskell.org/package/ginger">ginger</a> - Jinja2 implementation in Haskell</li><li><a href="https://github.com/sstur/jinja-js">Jinja-Js</a> - Jinja2-inspired template engin in Javascript</li><li><a href="https://github.com/jmoiron/jigo">jigo</a> - Jinja2 implementation in Go</li><li><a href="https://github.com/Keats/tera">tera</a> - Jinja2 implementation in Rust</li><li><a href="https://github.com/tategakibunko/jingoo">jingoo</a> - Jinja2 implementation in OCaml</li><li><a href="https://mozilla.github.io/nunjucks/">nunjucks</a> - Jinja2 inspired template engine in Javascript</li></ul>
-
+<ul>
+<li><a href="https://github.com/HubSpot/jinjava">Jinjava</a> - Jinja2 implementation in Java using <a href="https://uel.java.net/">Unified Expression Language</a> (<code>javaex.el</code>) for expression resolving. It served as an inspiration for some parts of Crinja.</li>
+<li><a href="https://shopify.github.io/liquid/">Liquid</a> - Jinja2-inspired template engine in Ruby</li>
+<li><a href="https://github.com/TechMagister/liquid.cr">Liquid.cr</a> - Liquid implementation in Crystal</li>
+<li><a href="https://twig.symfony.com/">Twig</a> - Jinja2-inspired template engine in PHP</li>
+<li><a href="https://hackage.haskell.org/package/ginger">ginger</a> - Jinja2 implementation in Haskell</li>
+<li><a href="https://github.com/sstur/jinja-js">Jinja-Js</a> - Jinja2-inspired template engin in Javascript</li>
+<li><a href="https://github.com/jmoiron/jigo">jigo</a> - Jinja2 implementation in Go</li>
+<li><a href="https://github.com/Keats/tera">tera</a> - Jinja2 implementation in Rust</li>
+<li><a href="https://github.com/tategakibunko/jingoo">jingoo</a> - Jinja2 implementation in OCaml</li>
+<li><a href="https://mozilla.github.io/nunjucks/">nunjucks</a> - Jinja2 inspired template engine in Javascript</li>
+</ul>
 <h2><a id="contributing" class="anchor" href="#contributing">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Contributing</h2>
-
-<ol><li>Fork it (&lt;https://github.com/straight-shoota/crinja/fork>)</li><li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li><li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li><li>Push to the branch (<code>git push origin my-new-feature</code>)</li><li>Create a new Pull Request</li></ol>
-
+<ol>
+<li>Fork it (<a href="https://github.com/straight-shoota/crinja/fork">https://github.com/straight-shoota/crinja/fork</a>)</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create a new Pull Request</li>
+</ol>
 <h2><a id="contributors" class="anchor" href="#contributors">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Contributors</h2>
-
-<ul><li><a href="https://github.com/straight-shoota">straight-shoota</a> Johannes Müller - creator, maintainer</li></ul>
+<ul>
+<li><a href="https://github.com/straight-shoota">straight-shoota</a> Johannes Müller - creator, maintainer</li>
+</ul>
 </div>
 </body>
 </html>

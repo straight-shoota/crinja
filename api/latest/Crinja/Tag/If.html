@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="generator" content="Crystal Docs 1.1.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -757,7 +757,6 @@
   <p>The <code>if</code> tag is a conditional statement. The block content will only be evaluated if the test
 condition is truthy. Condition can be an arbitrary <code>Expression</code>. <code>elif</code> and <code>else</code> allow for
 multiple branches.</p>
-
 <pre><code class="language-crystal">{% if kenny.sick %}
   Kenny is sick.
 {% elif kenny.dead %}
@@ -765,7 +764,6 @@ multiple branches.</p>
 {% else %}
   Kenny looks okay --- so far
 {% endif %}</code></pre>
-
 <p>See <a href="http://jinja.pocoo.org/docs/2.9/templates/#if">Jinja2 Template Documentation</a> for details.</p>
 
 
@@ -791,7 +789,7 @@ multiple branches.</p>
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/lib/tag/if.cr#L16" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/if.cr#L16" target="_blank">
         lib/tag/if.cr
       </a>
     
@@ -817,17 +815,17 @@ multiple branches.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#end_tag:String?-instance-method" class="signature"><strong>#end_tag</strong> : String?</a>
+        <a href="#end_tag%3AString%3F-instance-method" class="signature"><strong>#end_tag</strong> : String?</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#evaluate_node(tag_node,env:Crinja)-instance-method" class="signature"><strong>#evaluate_node</strong>(tag_node, env : Crinja)</a>
+        <a href="#evaluate_node%28tag_node%2Cenv%3ACrinja%29-instance-method" class="signature"><strong>#evaluate_node</strong>(tag_node, env : Crinja)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#name:String-instance-method" class="signature"><strong>#name</strong> : String</a>
+        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
         
       </li>
     
@@ -844,22 +842,22 @@ multiple branches.</p>
   <h3>Instance methods inherited from class <code><a href="../../Crinja/Tag.html">Crinja::Tag</a></code></h3>
   
   
-    <a href="../../Crinja/Tag.html#end_tag:String?-instance-method" class="tooltip">
+    <a href="../../Crinja/Tag.html#end_tag%3AString%3F-instance-method" class="tooltip">
       <span>end_tag : String?</span>
     end_tag</a>, 
     
   
-    <a href="../../Crinja/Tag.html#has_block?(node:TagNode)-instance-method" class="tooltip">
+    <a href="../../Crinja/Tag.html#has_block%3F%28node%3ATagNode%29-instance-method" class="tooltip">
       <span>has_block?(node : TagNode)</span>
     has_block?</a>, 
     
   
-    <a href="../../Crinja/Tag.html#interpret_output(renderer:Renderer,tag_node:TagNode)-instance-method" class="tooltip">
+    <a href="../../Crinja/Tag.html#interpret_output%28renderer%3ARenderer%2Ctag_node%3ATagNode%29-instance-method" class="tooltip">
       <span>interpret_output(renderer : Renderer, tag_node : TagNode)</span>
     interpret_output</a>, 
     
   
-    <a href="../../Crinja/Tag.html#to_s(io)-instance-method" class="tooltip">
+    <a href="../../Crinja/Tag.html#to_s%28io%29-instance-method" class="tooltip">
       <span>to_s(io)</span>
     to_s</a>
     
@@ -914,13 +912,13 @@ multiple branches.</p>
         
         def <strong>end_tag</strong> : String?
 
-        <a class="method-permalink" href="#end_tag:String?-instance-method">#</a>
+        <a class="method-permalink" href="#end_tag%3AString%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/lib/tag/if.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/if.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -930,13 +928,13 @@ multiple branches.</p>
         
         def <strong>evaluate_node</strong>(tag_node, env : <a href="../../Crinja.html">Crinja</a>)
 
-        <a class="method-permalink" href="#evaluate_node(tag_node,env:Crinja)-instance-method">#</a>
+        <a class="method-permalink" href="#evaluate_node%28tag_node%2Cenv%3ACrinja%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/lib/tag/if.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/if.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -946,13 +944,13 @@ multiple branches.</p>
         
         def <strong>name</strong> : String
 
-        <a class="method-permalink" href="#name:String-instance-method">#</a>
+        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/lib/tag/if.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/if.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>

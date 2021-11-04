@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="generator" content="Crystal Docs 1.1.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -757,23 +757,16 @@
   <p>Inside code blocks, you can also assign values to variables. Assignments at top level (outside of
 blocks, macros or loops) are exported from the template like top level macros and can be imported
 by other templates.</p>
-
 <p>Assignments use the set tag and can have multiple targets:</p>
-
 <pre><code class="language-crystal">{% set navigation = [('index.html', 'Index'), ('about.html', 'About')] %}
 {% set key, value = call_something() %}</code></pre>
-
 <p>It is also possible to use block assignments to capture the contents of a <code>set</code> block into a
 variable name. Instead of using an equals sign and a value, you just write the variable name and
 then everything until <code>{% endset %}</code> is captured.</p>
-
-<p>{% set navigation %}</p>
-
-<pre><code class="language-crystal"><li><a href="/">Index</a>
-<li><a href="/downloads">Downloads</a></code></pre>
-
-<p>{% endset %}</p>
-
+<p>{% set navigation %}
+<li><a href="/">Index</a>
+<li><a href="/downloads">Downloads</a>
+{% endset %}</p>
 <pre><code class="language-crystal">
 <span class="t">See</span> [<span class="t">Jinja2</span> <span class="t">Template</span> <span class="t">Documentation</span>](http<span class="n">://</span>jinja.pocoo.org<span class="s">/docs/</span><span class="n">2.9</span><span class="s">/templates/</span><span class="c">#assignments) for details.</span></code></pre>
 
@@ -800,7 +793,7 @@ then everything until <code>{% endset %}</code> is captured.</p>
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/lib/tag/set.cr#L23" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/set.cr#L23" target="_blank">
         lib/tag/set.cr
       </a>
     
@@ -826,17 +819,17 @@ then everything until <code>{% endset %}</code> is captured.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#end_tag:String?-instance-method" class="signature"><strong>#end_tag</strong> : String?</a>
+        <a href="#end_tag%3AString%3F-instance-method" class="signature"><strong>#end_tag</strong> : String?</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#has_block?(node:TagNode)-instance-method" class="signature"><strong>#has_block?</strong>(node : TagNode)</a>
+        <a href="#has_block%3F%28node%3ATagNode%29-instance-method" class="signature"><strong>#has_block?</strong>(node : TagNode)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#name:String-instance-method" class="signature"><strong>#name</strong> : String</a>
+        <a href="#name%3AString-instance-method" class="signature"><strong>#name</strong> : String</a>
         
       </li>
     
@@ -853,22 +846,22 @@ then everything until <code>{% endset %}</code> is captured.</p>
   <h3>Instance methods inherited from class <code><a href="../../Crinja/Tag.html">Crinja::Tag</a></code></h3>
   
   
-    <a href="../../Crinja/Tag.html#end_tag:String?-instance-method" class="tooltip">
+    <a href="../../Crinja/Tag.html#end_tag%3AString%3F-instance-method" class="tooltip">
       <span>end_tag : String?</span>
     end_tag</a>, 
     
   
-    <a href="../../Crinja/Tag.html#has_block?(node:TagNode)-instance-method" class="tooltip">
+    <a href="../../Crinja/Tag.html#has_block%3F%28node%3ATagNode%29-instance-method" class="tooltip">
       <span>has_block?(node : TagNode)</span>
     has_block?</a>, 
     
   
-    <a href="../../Crinja/Tag.html#interpret_output(renderer:Renderer,tag_node:TagNode)-instance-method" class="tooltip">
+    <a href="../../Crinja/Tag.html#interpret_output%28renderer%3ARenderer%2Ctag_node%3ATagNode%29-instance-method" class="tooltip">
       <span>interpret_output(renderer : Renderer, tag_node : TagNode)</span>
     interpret_output</a>, 
     
   
-    <a href="../../Crinja/Tag.html#to_s(io)-instance-method" class="tooltip">
+    <a href="../../Crinja/Tag.html#to_s%28io%29-instance-method" class="tooltip">
       <span>to_s(io)</span>
     to_s</a>
     
@@ -923,13 +916,13 @@ then everything until <code>{% endset %}</code> is captured.</p>
         
         def <strong>end_tag</strong> : String?
 
-        <a class="method-permalink" href="#end_tag:String?-instance-method">#</a>
+        <a class="method-permalink" href="#end_tag%3AString%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/lib/tag/set.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/set.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -939,13 +932,13 @@ then everything until <code>{% endset %}</code> is captured.</p>
         
         def <strong>has_block?</strong>(node : TagNode)
 
-        <a class="method-permalink" href="#has_block?(node:TagNode)-instance-method">#</a>
+        <a class="method-permalink" href="#has_block%3F%28node%3ATagNode%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/lib/tag/set.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/set.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -955,13 +948,13 @@ then everything until <code>{% endset %}</code> is captured.</p>
         
         def <strong>name</strong> : String
 
-        <a class="method-permalink" href="#name:String-instance-method">#</a>
+        <a class="method-permalink" href="#name%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/593fb08c6b53f661686936b0a5374e7700684e34/src/lib/tag/set.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/set.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
