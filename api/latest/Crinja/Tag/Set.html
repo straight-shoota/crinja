@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.1.1">
+<meta name="generator" content="Crystal Docs 1.2.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -758,7 +758,7 @@
 blocks, macros or loops) are exported from the template like top level macros and can be imported
 by other templates.</p>
 <p>Assignments use the set tag and can have multiple targets:</p>
-<pre><code class="language-crystal">{% set navigation = [('index.html', 'Index'), ('about.html', 'About')] %}
+<pre><code class="language-crystal">{% set navigation = [(&#39;index.html&#39;, &#39;Index&#39;), (&#39;about.html&#39;, &#39;About&#39;)] %}
 {% set key, value = call_something() %}</code></pre>
 <p>It is also possible to use block assignments to capture the contents of a <code>set</code> block into a
 variable name. Instead of using an equals sign and a value, you just write the variable name and
@@ -793,7 +793,7 @@ then everything until <code>{% endset %}</code> is captured.</p>
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/set.cr#L23" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/tag/set.cr#L23" target="_blank">
         lib/tag/set.cr
       </a>
     
@@ -922,7 +922,7 @@ then everything until <code>{% endset %}</code> is captured.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/set.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/tag/set.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -938,7 +938,7 @@ then everything until <code>{% endset %}</code> is captured.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/set.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/tag/set.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -954,7 +954,7 @@ then everything until <code>{% endset %}</code> is captured.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/set.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/tag/set.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.1.1">
+<meta name="generator" content="Crystal Docs 1.2.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -757,12 +757,12 @@
   <p>Macros are comparable with functions in regular programming languages. They are useful to put
 often used idioms into reusable functions to not repeat yourself (“DRY”).</p>
 <p>Here’s a small example of a macro that renders a form element:</p>
-<pre><code class="language-crystal">{% macro input(name, value='', type='text', size=20) -%}
-    <input type="{{ type }}" name="{{ name }}" value="{{
-        value|e }}" size="{{ size }}">
+<pre><code class="language-crystal">{% macro input(name, value=&#39;&#39;, type=&#39;text&#39;, size=20) -%}
+    &lt;input type=&quot;{{ type }}&quot; name=&quot;{{ name }}&quot; value=&quot;{{
+        value|e }}&quot; size=&quot;{{ size }}&quot;&gt;
 {%- endmacro %}</code></pre>
 <p>The macro can then be called like a function in the namespace:</p>
-<pre><code class="language-crystal">{{ input('username') }}</code></pre>
+<pre><code class="language-crystal">{{ input(&#39;username&#39;) }}</code></pre>
 <p>See <a href="http://jinja.pocoo.org/docs/2.9/templates/#macros">Jinja2 Template Documentation</a> for details.</p>
 
 
@@ -788,7 +788,7 @@ often used idioms into reusable functions to not repeat yourself (“DRY”).</p
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/macro.cr#L20" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/tag/macro.cr#L20" target="_blank">
         lib/tag/macro.cr
       </a>
     
@@ -917,7 +917,7 @@ often used idioms into reusable functions to not repeat yourself (“DRY”).</p
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/macro.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/tag/macro.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -933,7 +933,7 @@ often used idioms into reusable functions to not repeat yourself (“DRY”).</p
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/macro.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/tag/macro.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -949,7 +949,7 @@ often used idioms into reusable functions to not repeat yourself (“DRY”).</p
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0e2bebf641fc7d078adb677251b4d31e039b0ccf/src/lib/tag/macro.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/tag/macro.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
