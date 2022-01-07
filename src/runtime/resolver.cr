@@ -8,9 +8,8 @@ module Crinja::Resolver
 
     if value.undefined?
       if object.indexable? && name.responds_to?(:to_i)
-        begin
-          return Value.new object[name.to_i]
-        rescue IndexError
+        if v = object[name.to_i]?
+          return Value.new v
         end
       end
     end
@@ -54,9 +53,8 @@ module Crinja::Resolver
   def self.resolve_with_hash_accessor(name : Value, value : Value) : Value
     object = value.raw
     if object.responds_to?(:[]) && !object.is_a?(Array) && !object.is_a?(Crinja::Tuple) && !object.is_a?(String | SafeString)
-      begin
-        return Value.new object[name.to_s]
-      rescue KeyError
+      if value = object[name.to_s]?
+        return Value.new value
       end
     end
 
