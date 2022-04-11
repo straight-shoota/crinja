@@ -1,12 +1,7 @@
 require "yaml"
 
 def Crinja.value(any : YAML::Any) : Crinja::Value
-  case raw = any.raw
-  when Hash, Array
-    value
-  else
-    value(raw)
-  end
+  value any.raw
 end
 
 def Crinja.new(any : YAML::Any) : Crinja::Value

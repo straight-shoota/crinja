@@ -6,9 +6,8 @@ describe YAML::Any do
     env = Crinja.new
 
     any = YAML::Any.new({
-      YAML::Any.new("bar") => YAML::Any.new("BAR!"),
+      YAML::Any.new("bar") => YAML::Any.new [YAML::Any.new("BAR!")],
     })
-    env.from_string("{{ foo.bar }}: {{ baz }}").render({"foo" => any, "baz" => YAML::Any.new(1_i64)}).should eq "BAR!: 1"
+    env.from_string("{{ foo.bar[0] }}: {{ baz }}").render({"foo" => any, "baz" => YAML::Any.new(1_i64)}).should eq "BAR!: 1"
   end
 end
-
