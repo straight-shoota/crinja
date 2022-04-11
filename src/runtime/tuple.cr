@@ -9,7 +9,17 @@ class Crinja::Tuple
   def initialize(@data : Array(Value) = Array(Value).new)
   end
 
-  delegate size, unsafe_at, :<=>, to_s, :==, to: @data
+  delegate size, :<=>, to_s, :==, to: @data
+
+  {% if Indexable.has_method?(:unsafe_fetch) %}
+    def unsafe_fetch(index : Int) : Value
+      @data.unsafe_fetch(index)
+    end
+  {% else %}
+    def unsafe_at(index : Int) : Value
+      @data.unsafe_at(index)
+    end
+  {% end %}
 
   def +(item : Value)
     Crinja::Tuple.from(@data, item)
@@ -25,7 +35,7 @@ class Crinja::Tuple
 
   def to_s(io)
     io << "(("
-    join ", ", io, &.inspect(io)
+    join io, ", ", &.inspect(io)
     io << "))"
   end
 

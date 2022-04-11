@@ -16,12 +16,12 @@ class Crinja::Server
     def self.run
       server = Crinja::Server.new
 
-      OptionParser.parse! do |opts|
+      OptionParser.parse do |opts|
         path = Dir.current
 
         opts.on("--version", "") { puts Crinja::VERSION; exit }
-        opts.on("-v", "--verbose", "") { server.logger.level = Logger::Severity::DEBUG }
-        opts.on("-q", "--quiet", "") { server.logger.level = Logger::Severity::WARN }
+        opts.on("-v", "--verbose", "") { server.env.logger.level = ::Log::Severity::Debug }
+        opts.on("-q", "--quiet", "") { server.env.logger.level = ::Log::Severity::Warn }
         opts.on("-h", "--help", "") { self.display_help_and_exit(opts) }
         opts.on("-b HOST", "--bind=HOST", "Bind to host (default: #{Server::DEFAULT_HOST}") do |host|
           server.host = host

@@ -14,7 +14,7 @@ module Crinja::Filter
       string
     else
       pad_width = width - string.size
-      left_pad = (pad_width / 2).floor
+      left_pad = pad_width // 2
 
       String.build do |io|
         io << " " * left_pad
@@ -25,10 +25,10 @@ module Crinja::Filter
   end
 
   {% unless flag?(:win32) %}
-  Crinja.filter :striptags do
-    xml = XML.parse_html target.to_s
-    xml.inner_text.gsub(/\s+/, " ").strip
-  end
+    Crinja.filter :striptags do
+      xml = XML.parse_html target.to_s
+      xml.inner_text.gsub(/\s+/, " ").strip
+    end
   {% end %}
 
   Crinja.filter(:format) { sprintf target.to_s, arguments.varargs }
@@ -85,7 +85,7 @@ module Crinja::Filter
     count = arguments["count"]
 
     if count.raw.nil?
-      target.as_s.gsub(search, replace)
+      target.as_s_or_safe.gsub(search, replace)
     else
       string = target.to_s
       count.to_i.times do
@@ -98,7 +98,7 @@ module Crinja::Filter
   end
 
   Crinja.filter(:trim) do
-    target.as_s.strip
+    target.as_s_or_safe.strip
   end
 
   Crinja.filter({width: 79, break_long_words: true, wrapstring: nil}, :wordwrap) do

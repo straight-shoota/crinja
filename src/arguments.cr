@@ -27,7 +27,7 @@ struct Crinja::Arguments
   def [](name : String) : Value
     if kwargs.has_key?(name)
       kwargs[name]
-    elsif index = defaults.key_index(name)
+    elsif index = defaults.index { |k, v| k == name }
       if varargs.size > index
         varargs[index]
       else
@@ -74,7 +74,7 @@ struct Crinja::Arguments
   end
 
   def is_set?(name : String)
-    kwargs.has_key?(name) || (index = defaults.key_index(name)) && varargs.size > index
+    kwargs.has_key?(name) || (index = defaults.index { |k, v| k == name }) && varargs.size > index
   end
 
   def default(name : Symbol)

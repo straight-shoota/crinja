@@ -4,7 +4,7 @@ class Crinja::Renderer
   end
 
   class RenderedOutput < Output
-    getter value
+    getter value : String
 
     def initialize(@value : String)
     end

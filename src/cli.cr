@@ -1,12 +1,9 @@
 require "option_parser"
-require "logger"
+require "log"
 require "./crinja"
 
 module Crinja::CLI
-  # :nodoc:
-  def self.logger
-    @@logger ||= Logger.new(STDOUT)
-  end
+  Log = ::Log.for(self)
 
   @@env = Crinja.new
   @@loader = Crinja::Loader::FileSystemLoader.new("")
@@ -33,7 +30,7 @@ module Crinja::CLI
     [env.filters, env.tests, env.functions, env.tags, env.operators].each do |library|
       puts "#{library.name}s:"
       names = library.keys
-      names += library.aliasses.keys if only_names
+      names += library.aliases.keys if only_names
       names.sort.each do |name|
         feature = library[name]
         if only_names
@@ -68,8 +65,8 @@ module Crinja::CLI
           raise OptionParser::MissingOption.new(option)
         end
       end
-      opts.on("-v", "--verbose", "") { self.logger.level = Logger::Severity::DEBUG }
-      opts.on("-q", "--quiet", "") { self.logger.level = Logger::Severity::WARN }
+      opts.on("-v", "--verbose", "") { Log.level = :debug }
+      opts.on("-q", "--quiet", "") { Log.level = :warn }
       opts.on("-h", "--help", "") { self.display_help_and_exit(opts) }
       opts.on("-p PATH", "--path=PATH", "Add path for template lookup") { |path| loader.searchpaths << path }
       opts.on("--string=TEMPLATE", "template string") { |string| @@template_string = string }
@@ -110,6 +107,6 @@ end
 begin
   Crinja::CLI.run
 rescue ex : OptionParser::InvalidOption
-  Crinja::CLI.logger.fatal ex.message
+  Crinja::CLI::Log.fatal ex.message
   exit 1
 end

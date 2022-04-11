@@ -29,8 +29,6 @@ module Crinja::Parser
       else
         raise Arguments::Error.new("lookahead must be >= 0, was #{lookahead}")
       end
-    rescue IndexError
-      Char::ZERO
     end
 
     def next_char
@@ -78,7 +76,7 @@ module Crinja::Parser
     end
 
     def to_s(io)
-      io << "[" << line << ":" << column << "]"
+      io << line << ":" << column
     end
 
     def inspect(io)

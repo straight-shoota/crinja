@@ -73,6 +73,8 @@ module Crinja::Parser
           @token.kind = Kind::TEST
         when Symbol::OP_NOT, Symbol::OP_AND, Symbol::OP_OR
           @token.kind = Kind::OPERATOR
+        else
+          # do nothing
         end
       when Symbol::LEFT_BRACKET
         @token.kind = Kind::LEFT_BRACKET

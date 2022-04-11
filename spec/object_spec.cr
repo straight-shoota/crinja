@@ -1,5 +1,5 @@
 require "spec"
-require "../../src/crinja"
+require "../src/crinja"
 
 private class SimpleAttributes
   include Crinja::Object::Auto
@@ -20,6 +20,11 @@ private class SimpleAttributes
   end
 
   getter with_getter = "with_getter"
+
+  @[Crinja::Attribute]
+  def predicate?
+    true
+  end
 end
 
 private class InheritedAttributes < SimpleAttributes
@@ -103,6 +108,19 @@ private class ExposeSelectedAttributes
   end
 end
 
+@[Crinja::Attributes]
+private class PredicateAttributesDouble
+  include Crinja::Object::Auto
+
+  def predicate?
+    "predicate?"
+  end
+
+  def predicate
+    "predicate"
+  end
+end
+
 describe Crinja::Object do
   describe Crinja::Attribute do
     it "simple" do
@@ -152,5 +170,13 @@ describe Crinja::Object do
       gutta.crinja_attribute(Crinja::Value.new("other_name")).should eq Crinja::Value.new("ignore_name")
       gutta.crinja_attribute(Crinja::Value.new("not_exposed")).should eq Crinja::Value.new(Crinja::Undefined.new("not_exposed"))
     end
+  end
+
+  it "exposes predicate methods" do
+    gutta = SimpleAttributes.new
+    gutta.crinja_attribute(Crinja::Value.new("is_predicate")).should eq Crinja::Value.new(true)
+
+    gutta = PredicateAttributesDouble.new
+    gutta.crinja_attribute(Crinja::Value.new("predicate")).should eq Crinja::Value.new("predicate")
   end
 end

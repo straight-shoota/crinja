@@ -21,7 +21,7 @@ module Crinja::Filter
     raw = raw.to_s if raw.is_a?(SafeString)
     if raw.is_a?(String)
       if raw['.']?
-        result = raw.to_f?(arguments["base"].to_i).try &.to_i
+        result = raw.to_f?.try &.to_i
       else
         result = raw.to_i?(arguments["base"].to_i, prefix: true)
       end
@@ -65,7 +65,7 @@ module Crinja::Filter
       end.each do |unit, magnitude|
         if size < magnitude
           return String.build do |io|
-            converted = (size / (magnitude / (binary ? 1024 : 1000)))
+            converted = (size / (magnitude // (binary ? 1024 : 1000)))
             if unit == "Bytes"
               io << converted.to_i
             else

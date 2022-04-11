@@ -67,7 +67,6 @@ describe Crinja::Tag::Include do
             {{ outer("FOO") }}
             TPL
 
-
       loader: Crinja::Loader::HashLoader.new({"o_printer" => "({{ o }})"})).strip.should eq "(FOO)"
   end
 
@@ -76,5 +75,32 @@ describe Crinja::Tag::Include do
       "a" => "{% macro x() %}{{ foobar }}{% endmacro %}",
     })
     render(%({% set foobar = 42 %}{% from "a" import x with context %}{{ x() }}), loader: loader).should eq "42"
+  end
+
+  describe "TagCycleException" do
+    it "raise" do
+      loader = Crinja::Loader::HashLoader.new({
+        "template-b" => "{% import 'template-c' %}",
+        "template-c" => "{% import 'template-b' %}",
+      })
+
+      expect_raises(Crinja::Context::TagCycleException, %(Tag cycle detected: import "template-c")) do
+        render(<<-JINJA, loader: loader)
+          {% extends 'template-b' %}
+          JINJA
+      end
+    end
+
+    it "doesn't raise" do
+      loader = Crinja::Loader::HashLoader.new({
+        "template-b" => "{% import 'template-c' %}",
+        "template-c" => "Included text, won't be rendered",
+        "template-d" => "Extended text, will be rendered",
+      })
+      render(<<-JINJA, loader: loader).should eq "Extended text, will be rendered"
+        {% extends 'template-b' %}
+        {% extends 'template-d' %}
+        JINJA
+    end
   end
 end

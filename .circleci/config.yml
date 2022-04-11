@@ -30,9 +30,39 @@ jobs:
       - run: shards
       - save_cache: *save_shards_cache
 
-      - run: crystal spec
+      - run:
+          name: Install bats
+          command: |
+            git clone --branch v0.4.0 https://github.com/sstephenson/bats.git bats-v0.4.0
+            ./bats-v0.4.0/install.sh /usr/local
+
+      - run: make test
 
       - run: crystal tool format --check spec src
+
+  deploy-docs:
+    docker:
+      # Use crystallang/crystal:latest or specific crystallang/crystal:VERSION
+      - image: crystallang/crystal:latest
+        environment:
+          SHARDS_CACHE_PATH: ./shards-cache
+    steps:
+      - run: crystal --version
+
+      - checkout
+
+      - restore_cache: *restore_shards_cache
+      - run: shards
+      - save_cache: *save_shards_cache
+
+      - run: scripts/generate-docs.sh
+
+      - run: apt update && apt install -y curl rsync
+      - run:
+          command: curl https://raw.githubusercontent.com/straight-shoota/autodeploy-docs/master/autodeploy-docs.sh | bash
+          environment:
+            GIT_COMMITTER_NAME: cirlceci
+            GIT_COMMITTER_EMAIL: circle@circleci.com
 
   test-on-nightly:
     docker:
@@ -47,17 +77,13 @@ jobs:
       - restore_cache: *restore_shards_cache
       - run: shards
 
-      - run: crystal spec
-
       - run:
           name: Install bats
           command: |
             git clone --branch v0.4.0 https://github.com/sstephenson/bats.git bats-v0.4.0
             ./bats-v0.4.0/install.sh /usr/local
 
-      - run:
-          name: Test examples
-          command: bats examples_test.bats
+      - run: make test
 
       - run: crystal tool format --check spec src
 
@@ -67,11 +93,19 @@ workflows:
   ci:
     jobs:
       - test
+      # Build and depoy docs only on master branch
+      - deploy-docs:
+          requires:
+            - test
+          filters: &master-only
+            branches:
+              only:
+                - master
   # Run tests every night using crystal nightly
   nightly:
     triggers:
       - schedule:
-          cron: "0 2 * * *"
+          cron: "0 4 * * *"
           filters:
             branches:
               only:

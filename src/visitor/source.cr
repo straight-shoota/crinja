@@ -32,15 +32,13 @@ class Crinja::Visitor::Source
   end
 
   private def visit_content(token)
-    case token.kind
-    when Kind::STRING
+    if token.kind.string?
       print_string_delimiter
     end
 
     print_value token
 
-    case token.kind
-    when Kind::STRING
+    if token.kind.string?
       print_string_delimiter
     end
   end

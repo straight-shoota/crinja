@@ -17,20 +17,25 @@ module Crinja::SourceAttached
         io << c.message
       end
 
-      io << "\n\ntemplate: "
+      io << "\ntemplate: "
 
-      if (t = template).nil?
-        io << "<unknown>"
-        io << location_start
-      else
-        io << (t.filename || "<string>")
-        io << location_start << " .. " << location_end
-        io << "\n"
+      message_location(io)
 
+      if template = self.template
+        io.puts
+        io.puts
         highlight_source_code(io)
       end
+    end
+  end
 
-      io << "\n"
+  def message_location(io)
+    if template = self.template
+      io << (template.filename || "<string>")
+      io << ":" << location_start << " .. " << location_end
+    else
+      io << "<unknown>"
+      io << ":" << location_start
     end
   end
 
@@ -153,7 +158,7 @@ class Crinja::UndefinedError < Crinja::RuntimeError
   end
 
   def message
-    "#{variable_name} is undefined. #{super}"
+    "#{variable_name} is undefined.#{super}"
   end
 end
 

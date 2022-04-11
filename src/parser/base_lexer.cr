@@ -106,6 +106,10 @@ module Crinja::Parser
             @buffer << '\n'
           when '"', '\''
             @buffer << char
+          when Symbol::STRING_ESCAPE
+            @buffer << Symbol::STRING_ESCAPE
+          else
+            # ignore unknown escape
           end
         else
           escaped = false

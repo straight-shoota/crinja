@@ -2,11 +2,9 @@
 
 [![Build Status](https://travis-ci.org/straight-shoota/crinja.svg?branch=master)](https://travis-ci.org/straight-shoota/crinja)
 [![CircleCI](https://circleci.com/gh/straight-shoota/crinja.svg?style=svg)](https://circleci.com/gh/straight-shoota/crinja)
-[![Dependency Status](https://shards.rocks/badge/github/straight-shoota/crinja/status.svg)](https://shards.rocks/github/straight-shoota/crinja)
-[![devDependency Status](https://shards.rocks/badge/github/straight-shoota/crinja/dev_status.svg)](https://shards.rocks/github/straight-shoota/crinja)
 [![Open Source Helpers](https://www.codetriage.com/straight-shoota/crinja/badges/users.svg)](https://www.codetriage.com/straight-shoota/crinja)
 
-Crinja is an implementation of the [Jinja2 template engine](http://jinja.pocoo.org) written in [Crystal](http://crystallang.org). Templates are parsed and evaluated at runtime (see [Background](#background)). It includes a script runtime for evaluation of dynamic python-like expressions used by the Jinja2 syntax.
+Crinja is an implementation of the [Jinja2 template engine](http://jinja.pocoo.org) written in [Crystal](https://crystal-lang.org/). Templates are parsed and evaluated at runtime (see [Background](#background)). It includes a script runtime for evaluation of dynamic python-like expressions used by the Jinja2 syntax.
 
 **[API Documentation](https://straight-shoota.github.io/crinja/api/latest/)** ·
 **[Github Repo](https://github.com/straight-shoota/crinja)** ·
@@ -66,6 +64,26 @@ template.render # => "Hello, World!"
 template.render({ "name" => "John" }) # => "Hello, John!"
 ```
 
+### Crystal Playground
+
+Run the **Crystal playground** inside this repostitory and the server is prepared with examples of using Crinja's API (check the `Workbooks` section).
+
+```shell
+$ crystal play
+```
+
+You can also browse the examples and documentation online (without the interactive playground): [objects](https://straight-shoota.github.io/crinja/api/latest/playground/objects.html) & [features](https://straight-shoota.github.io/crinja/api/latest/playground/features.html)
+
+### Crinja Playground
+
+The **Crinja Example Server** in [`examples/server`](https://github.com/straight-shoota/crinja/tree/master/examples/server) is an HTTP server which renders Crinja templates from `examples/server/pages`. It has also an interactive playground for Crinja template testing at `/play`.
+
+```shell
+$ cd examples/server && crystal server.cr
+```
+
+Other examples can be found in the [`examples` folder](https://github.com/straight-shoota/crinja/tree/master/examples).
+
 ## Template Syntax
 
 The following is a quick overview of the template language to get you started.
@@ -105,7 +123,7 @@ Tests are similar to filters, but are used in the context of a boolean expressio
 
 ```html+jinja
 {% if is_morning %}
-  Good Moring, {{ name }}!
+  Good Morning, {{ name }}!
 {% else %}
   Hello, {{ name }}!
 {% end %}
@@ -128,7 +146,7 @@ Other templates can be included using the `include` tag:
   Content
 </main>
 
-{% include "header.html" %}
+{% include "footer.html" %}
 ```
 
 ### Macros
@@ -142,7 +160,7 @@ Macros are similar to functions in other programming languages.
 ```
 
 ### Template Inheritance
-Templates inheritance enables the use of `block` tags in parent templates that can be overwritten by child templates. This is useful for implementating layouts:
+Template inheritance enables the use of `block` tags in parent templates that can be overwritten by child templates. This is useful for implementating layouts:
 
 ```html+jinja
 {# layout.html #}
@@ -150,7 +168,7 @@ Templates inheritance enables the use of `block` tags in parent templates that c
 <h1>{% block page_title %}{% endblock %}</h1>
 
 <main>
-  {% block body}
+  {% block body %}
     {# This block is typically overwritten by child templates #}
   {% endblock %}
 </main>
@@ -177,15 +195,6 @@ Templates inheritance enables the use of `block` tags in parent templates that c
   </ul>
 {% endblock %}
 ```
-
-## Examples
-
-The **Crinja Example Server** in [`examples/server`](https://github.com/straight-shoota/crinja/tree/master/examples/server) is an HTTP server which renders Crinja templates from `examples/server/pages`. It has also an interactive playground for Crinja template testing at `/play`.
-Command to start the server: `cd examples/server && crystal server.cr`
-
-Other examples can be found in the [`examples` folder](https://github.com/straight-shoota/crinja/tree/master/examples).
-
-You can run `crystal play` inside this repostitory to run a **Crystal playground** server with prepared examples of using Crinja's API (check the `Workbooks` section).
 
 ## Crystal API
 
@@ -316,7 +325,7 @@ Jinja derived from the [Django Template Language](http://docs.djangoproject.com/
 * [Jinjava](https://github.com/HubSpot/jinjava) - Jinja2 implementation in Java using [Unified Expression Language](https://uel.java.net/) (`javaex.el`) for expression resolving. It served as an inspiration for some parts of Crinja.
 * [Liquid](https://shopify.github.io/liquid/) - Jinja2-inspired template engine in Ruby
 * [Liquid.cr](https://github.com/TechMagister/liquid.cr) - Liquid implementation in Crystal
-* [Twig](https://twig.sensiolabs.org/) - Jinja2-inspired template engine in PHP
+* [Twig](https://twig.symfony.com/) - Jinja2-inspired template engine in PHP
 * [ginger](https://hackage.haskell.org/package/ginger) - Jinja2 implementation in Haskell
 * [Jinja-Js](https://github.com/sstur/jinja-js) - Jinja2-inspired template engin in Javascript
 * [jigo](https://github.com/jmoiron/jigo) - Jinja2 implementation in Go
@@ -326,10 +335,10 @@ Jinja derived from the [Django Template Language](http://docs.djangoproject.com/
 
 ## Contributing
 
-1. Fork it ( https://github.com/straight-shoota/crinja/fork )
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
+1. Fork it (<https://github.com/straight-shoota/crinja/fork>)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
 ## Contributors

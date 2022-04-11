@@ -8,7 +8,7 @@ describe Crinja::Loader do
       env = Crinja.new
       template, path = loader.get_source(env, "hello_world.html")
 
-      template.should contain %(<title>\{\{ variable \}\}</title>)
+      template.should contain %(<title>{{ variable }}</title>)
       path.should eq File.join(__DIR__, "fixtures", "hello_world.html")
 
       expect_raises(Crinja::TemplateNotFoundError) do

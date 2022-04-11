@@ -8,10 +8,18 @@ echo -e "Building docs into ${GENERATED_DOCS_DIR}"
 echo -e "Clearing ${GENERATED_DOCS_DIR} directory"
 rm -rf "${GENERATED_DOCS_DIR}"
 
-echo -e "Running \`crystal docs\`..."
-crystal doc src/cli.cr
+echo -e "Running \`make docs\`..."
+make docs
 
 echo -e "Copying README.md and TEMPLATE_SYNTAX.md"
+
 # "{{" and "{%"" need to be escaped, otherise Jekyll might interpret the expressions (on Github Pages)
-sed 's/{{/\&#123;\&#123;/g; s/{\%/\&#123;\%/g' README.md > "${GENERATED_DOCS_DIR}/README.md"
-sed 's/{{/\&#123;\&#123;/g; s/{\%/\&#123;\%/g' TEMPLATE_SYNTAX.md > "${GENERATED_DOCS_DIR}/TEMPLATE_SYNTAX.md"
+ESCAPE_TEMPLATE='s/{{/{{"{{"}}/g; s/{\%/{{"{%"}}/g;'
+sed "${ESCAPE_TEMPLATE}" README.md > "${GENERATED_DOCS_DIR}/README.md"
+sed "${ESCAPE_TEMPLATE}" TEMPLATE_SYNTAX.md > "${GENERATED_DOCS_DIR}/TEMPLATE_SYNTAX.md"
+
+echo -e "Copying playground files"
+mkdir -p "${GENERATED_DOCS_DIR}/playground"
+for file in playground/*.md; do
+  sed "s/\`\`\`playground/\`\`\`crystal/g; ${ESCAPE_TEMPLATE}" "${file}" | cat <(echo -e "---\n---\n") - > "${GENERATED_DOCS_DIR}/${file}"
+done

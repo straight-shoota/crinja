@@ -5,8 +5,8 @@ abstract class Crinja::FeatureLibrary(T)
     end
   end
 
-  # Map of aliasses.
-  getter aliasses : Hash(String, String)
+  # Map of aliases.
+  getter aliases : Hash(String, String)
 
   # List of disabled features.
   getter disabled : Array(String)
@@ -19,7 +19,7 @@ abstract class Crinja::FeatureLibrary(T)
   def initialize(register_defaults = true, @disabled = [] of String)
     # FIXME: Move ivar initialization to property definition
     @store = {} of String => T
-    @aliasses = {} of String => String
+    @aliases = {} of String => String
 
     self.register_defaults if register_defaults
   end
@@ -35,14 +35,14 @@ abstract class Crinja::FeatureLibrary(T)
       @@defaults.each do |callable|
         self << callable
       end
-      @aliasses.merge! @@aliasses
+      @aliases.merge! @@aliases
     end
 
     class_getter defaults = [] of T
 
-    @@aliasses = {} of String => String
+    @@aliases = {} of String => String
     def self.alias(from, to)
-      @@aliasses[from.to_s] = to.to_s
+      @@aliases[from.to_s] = to.to_s
     end
   end
 
@@ -94,7 +94,7 @@ abstract class Crinja::FeatureLibrary(T)
   # If the lookup name is not registered, an `UnknownFeatureError` is raised.
   def [](lookup) : T
     lookup = lookup.to_s.downcase
-    lookup = @aliasses.fetch(lookup, lookup)
+    lookup = @aliases.fetch(lookup, lookup)
 
     feature = @store[lookup]?
 
@@ -120,7 +120,7 @@ abstract class Crinja::FeatureLibrary(T)
 
   def has_key?(name)
     lookup = name.to_s.downcase
-    lookup = @aliasses.fetch(lookup, lookup)
+    lookup = @aliases.fetch(lookup, lookup)
     @store.has_key?(lookup)
   end
 

@@ -41,7 +41,7 @@ class Crinja::Tag::Include < Crinja::Tag
     context = env.global_context unless with_context
 
     begin
-      env.logger.debug "loading include #{include_name}"
+      env.logger.debug { "loading include #{include_name}" }
       template = env.get_template(include_name)
       template.render(io, context)
     rescue error : TemplateNotFoundError

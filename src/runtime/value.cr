@@ -1,3 +1,8 @@
+class Crinja
+  struct Value
+  end
+end
+
 require "../object"
 require "./undefined"
 require "./safe_string"
@@ -304,77 +309,81 @@ struct Crinja::Value
 
   # Checks that the underlying value is `Nil`, and returns `nil`. Raises otherwise.
   def as_nil : Nil
-    raise_undefined!
-    @raw.as(Nil)
+    raw_as(Nil)
   end
 
-  # Checks that the underlying value is `String` or `SafeString`, and returns its value. Raises otherwise.
-  def as_s
-    raise_undefined!
-    @raw.as(String | SafeString)
+  # Checks that the underlying value is `String | SafeString`, and returns its value. Raises otherwise.
+  def as_s_or_safe
+    raw_as(String | SafeString)
   end
 
-  # Checks that the underlying value is `String`, `SafeString` or `Nil`, and returns its value. Raises otherwise.
+  # Checks that the underlying value is `String | SafeString | Nil`, and returns the value as `String`. Raises otherwise.
+  #
+  # If the value is `SafeString` it is unwrapped as `String`.
   def as_s?
-    raise_undefined!
-    @raw.as(String | SafeString | Nil)
+    @raw.as(String | SafeString | Nil).try(&.to_s)
   end
 
-  # Checks that the underlying value is `String`, and returns its value. `SafeString` is converted to
-  # `String`. Raises otherwise.
+  # Checks that the underlying value is `String`, and returns the value as `String`. Raises otherwise.
+  #
+  # If the value is `SafeString` it is unwrapped as `String`.
+  def as_s
+    @raw.as(String | SafeString).to_s
+  end
+
+  # :ditto:
+  @[Deprecated("Use `#as_s` instead")]
   def as_s!
-    raise_undefined!
-    if @raw.is_a?(SafeString)
-      @raw.to_s
-    else
-      @raw.as(String)
-    end
+    as_s
   end
 
   # Checks that the underlying value is `Array`, and returns its value. Raises otherwise.
   def as_a : Array(Value)
-    raise_undefined!
-    @raw.as(Array)
+    raw_as(Array)
   end
 
   # Checks that the underlying value is `Hash`, and returns its value. Raises otherwise.
   def as_h : Dictionary
-    raise_undefined!
-    @raw.as(Hash)
+    raw_as(Hash)
   end
 
   # Checks that the underlying value is a `Crinja::Number`, and returns its value. Raises otherwise.
   def as_number : Number
-    raise_undefined!
-    @raw.as(Number)
+    raw_as(Number)
   end
 
   # Checks that the underlaying value is a `Time` object and retuns its value. Raises otherwise.
   def as_time
-    raise_undefined!
-    @raw.as(Time)
+    raw_as(Time)
   end
 
   # Checks that the underlaying value is a `Iterable` and retuns its value. Raises otherwise.
   def as_iterable
-    raise_undefined!
-    @raw.as(Iterable)
+    raw_as(Iterable)
   end
 
   # Checks that the underlaying value is a `Indexable` and retuns its value. Raises otherwise.
   def as_indexable
-    raise_undefined!
-    @raw.as(Indexable)
+    raw.as(Indexable)
   end
 
   # Checks that the underlaying value is a `Callable | Callable::Proc` and retuns its value. Raises otherwise.
   def as_callable
-    raise_undefined!
-    @raw.as(Callable | Callable::Proc)
+    raw_as(Callable | Callable::Proc)
   end
 
   def as_undefined
-    @raw.as(Undefined)
+    raw_as(Undefined)
+  end
+
+  def raw_as(type : T.class) forall T
+    raise_undefined! unless type == Undefined
+
+    begin
+      @raw.as(T)
+    rescue exc : TypeCastError
+      raise Crinja::Error.new("Unexpected type in Crinja value", cause: exc)
+    end
   end
 
   private def raise_undefined!
@@ -447,7 +456,7 @@ struct Crinja::Value
     otherraw = other.raw
 
     if @raw.is_a?(String | SafeString) || otherraw.is_a?(String | SafeString)
-      as_s! <=> other.as_s!
+      as_s <=> other.as_s
     elsif number? && other.number?
       as_number <=> other.as_number
       # elsif thisraw.is_a?(Array) && otherraw.is_a?(Array)

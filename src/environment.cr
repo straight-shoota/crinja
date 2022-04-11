@@ -2,9 +2,11 @@ require "./runtime/context"
 require "./config"
 require "./loader"
 require "./runtime/resolver"
-require "logger"
+require "log"
 
 class Crinja
+  Log = ::Log.for(self)
+
   # The current context in which evaluation happens. It can only be changed by `#with_context`.
   getter context : Context
 
@@ -15,7 +17,7 @@ class Crinja
   getter config : Config
 
   # The logger for this environment.
-  getter logger : Logger
+  getter logger : ::Log = Log
 
   # The loader through which `#get_template` loads a template.
   # Defaults to `Loader::FileSystemLoader` with searchpath of the current working directory.
@@ -67,11 +69,6 @@ class Crinja
   def initialize(@context = Context.new, @config = Config.new,
                  @loader = Loader::FileSystemLoader.new, @cache = TemplateCache::InMemory.new)
     @global_context = @context
-
-    @logger = Logger.new(STDOUT)
-    {% if flag?(:logger) %}
-      @logger.level = Logger::DEBUG
-    {% end %}
     # context["self"] = BlocksResolver.new(self)
 
     @operators = Operator::Library.new(config.register_defaults, config.disabled_operators)
@@ -160,7 +157,7 @@ class Crinja
   def with_scope(ctx : Context)
     former_scope = self.context
 
-    logger.debug "new context #{ctx} is not the child of former context" if ctx.parent != @context
+    logger.debug { "new context #{ctx} is not the child of former context" } if ctx.parent != @context
     @context = ctx
 
     yield @context

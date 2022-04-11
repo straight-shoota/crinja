@@ -8,6 +8,8 @@ class Crinja
         print_tag_start
       when Kind::EXPR_START
         print_expr_start
+      else
+        # skip
       end
 
       print_open_token_tag token
@@ -21,6 +23,8 @@ class Crinja
         print_tag_end
       when Kind::EXPR_END
         print_expr_end
+      else
+        # skip
       end
     end
 

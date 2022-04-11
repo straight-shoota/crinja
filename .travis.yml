@@ -1,3 +1,4 @@
+dist: bionic
 language: crystal
 
 env:
@@ -5,15 +6,33 @@ env:
     GIT_COMMITTER_NAME: travis-ci
     GIT_COMMITTER_EMAIL: travis@travis-ci.org
 
-addons:
-  apt:
-    sources:
-    - sourceline: 'ppa:duggan/bats'
-    packages:
-    - bats
+crystal:
+- latest
+- nightly
 
 script:
-- crystal spec
-- crystal tool format --check src spec
-- bats examples_test.bats
-- "if [ $TRAVIS_PULL_REQUEST = false ] && [ $TRAVIS_BRACH -eq "master" ] && [ $TRAVIS_TEST_RESULT -eq 0 ]; then scripts/generate-docs.sh && curl https://raw.githubusercontent.com/straight-shoota/autodeploy-docs/master/autodeploy-docs.sh | bash; fi"
+- make test/unit
+- make format CRYSTAL_OPTS=--check
+
+jobs:
+  include:
+  - stage: test
+    name: integration tests
+    addons:
+      apt:
+        sources:
+        - sourceline: 'ppa:duggan/bats'
+        packages:
+        - bats
+    script: make test/integration
+    crystal: latest
+  - stage: test
+    name: integration tests
+    addons:
+      apt:
+        sources:
+        - sourceline: 'ppa:duggan/bats'
+        packages:
+        - bats
+    script: make test/integration
+    crystal: nightly

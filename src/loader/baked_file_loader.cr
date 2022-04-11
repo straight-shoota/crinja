@@ -11,7 +11,7 @@ require "baked_file_system"
 #
 # ## Usage:
 #
-# ```crystal
+# ```
 # require "crinja/loader/baked_file_loader"
 #
 # module MyBakedTemplateFileSystem
