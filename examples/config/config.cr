@@ -1,5 +1,6 @@
 require "crinja"
 require "yaml"
+require "crinja/yaml"
 
 class Crinja::ResolvedDict(T)
   def self.from_yaml(source)
