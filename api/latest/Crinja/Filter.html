@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.2.2">
+<meta name="generator" content="Crystal Docs 1.3.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -758,7 +758,7 @@ in parentheses. Multiple filters can be chained. The output of one filter is app
 <p>For example, <code>{{ name|striptags|title }}</code> will remove all HTML Tags from variable name and
 title-case the output (similar to <code>title(striptags(name))</code>).</p>
 <p>Filters that accept arguments have parentheses around the arguments, just like a function call.</p>
-<p>For example: <code>{{ listx|join(', ') }}</code> will join a list with commas (<code>list.join(", ")</code>).</p>
+<p>For example: <code>{{ listx|join(', ') }}</code> will join a list with commas (<code>list.join(&quot;, &quot;)</code>).</p>
 <h2><a id="builtin-filters" class="anchor" href="#builtin-filters">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -767,52 +767,52 @@ title-case the output (similar to <code>title(striptags(name))</code>).</p>
 <p>The following filters are available in the default library:</p>
 <ul>
 <li><code>**[abs](http://jinja.pocoo.org/docs/2.9/templates/#abs)**()</code></li>
-<li><code>**[attr](http://jinja.pocoo.org/docs/2.9/templates/#attr)**(<em>name</em>)</code></li>
-<li><code>**[batch](http://jinja.pocoo.org/docs/2.9/templates/#batch)**(<em>linecount=2, fill_with=none</em>)</code></li>
+<li><code>**[attr](http://jinja.pocoo.org/docs/2.9/templates/#attr)**(&lt;em&gt;name&lt;/em&gt;)</code></li>
+<li><code>**[batch](http://jinja.pocoo.org/docs/2.9/templates/#batch)**(&lt;em&gt;linecount=2, fill_with=none&lt;/em&gt;)</code></li>
 <li><code>**[capitalize](http://jinja.pocoo.org/docs/2.9/templates/#capitalize)**()</code></li>
-<li><code>**[center](http://jinja.pocoo.org/docs/2.9/templates/#center)**(<em>width=80</em>)</code></li>
-<li><code>**[default](http://jinja.pocoo.org/docs/2.9/templates/#default)**(<em>default_value='', boolean=false</em>)</code></li>
-<li><code>**[dictsort](http://jinja.pocoo.org/docs/2.9/templates/#dictsort)**(<em>case_sensitive=false, by='key'</em>)</code></li>
+<li><code>**[center](http://jinja.pocoo.org/docs/2.9/templates/#center)**(&lt;em&gt;width=80&lt;/em&gt;)</code></li>
+<li><code>**[default](http://jinja.pocoo.org/docs/2.9/templates/#default)**(&lt;em&gt;default_value='', boolean=false&lt;/em&gt;)</code></li>
+<li><code>**[dictsort](http://jinja.pocoo.org/docs/2.9/templates/#dictsort)**(&lt;em&gt;case_sensitive=false, by='key'&lt;/em&gt;)</code></li>
 <li><code>**[escape](http://jinja.pocoo.org/docs/2.9/templates/#escape)**()</code></li>
-<li><code>**[filesizeforma}](http://jinja.pocoo.org/docs/2.9/templates/#filesizeformat)**(<em>binary=false</em>)</code></li>
+<li><code>**[filesizeforma}](http://jinja.pocoo.org/docs/2.9/templates/#filesizeformat)**(&lt;em&gt;binary=false&lt;/em&gt;)</code></li>
 <li><code>**[first](http://jinja.pocoo.org/docs/2.9/templates/#first)**()</code></li>
-<li><code>**[float](http://jinja.pocoo.org/docs/2.9/templates/#float)**(<em>default=0.0</em>)</code></li>
+<li><code>**[float](http://jinja.pocoo.org/docs/2.9/templates/#float)**(&lt;em&gt;default=0.0&lt;/em&gt;)</code></li>
 <li><code>**[forceescape](http://jinja.pocoo.org/docs/2.9/templates/#forceescape)**()</code></li>
 <li><code>**[format](http://jinja.pocoo.org/docs/2.9/templates/#format)**()</code></li>
-<li><code>**[groupby](http://jinja.pocoo.org/docs/2.9/templates/#groupby)**(<em>attribute</em>)</code></li>
-<li><code>**[indent](http://jinja.pocoo.org/docs/2.9/templates/#indent)**(<em>width=4, indentfirst=false</em>)</code></li>
-<li><code>**[int](http://jinja.pocoo.org/docs/2.9/templates/#int)**(<em>default=0, base=10</em>)</code></li>
-<li><code>**[join](http://jinja.pocoo.org/docs/2.9/templates/#join)**(<em>separator='', attribute=none</em>)</code></li>
+<li><code>**[groupby](http://jinja.pocoo.org/docs/2.9/templates/#groupby)**(&lt;em&gt;attribute&lt;/em&gt;)</code></li>
+<li><code>**[indent](http://jinja.pocoo.org/docs/2.9/templates/#indent)**(&lt;em&gt;width=4, indentfirst=false&lt;/em&gt;)</code></li>
+<li><code>**[int](http://jinja.pocoo.org/docs/2.9/templates/#int)**(&lt;em&gt;default=0, base=10&lt;/em&gt;)</code></li>
+<li><code>**[join](http://jinja.pocoo.org/docs/2.9/templates/#join)**(&lt;em&gt;separator='', attribute=none&lt;/em&gt;)</code></li>
 <li><code>**[last](http://jinja.pocoo.org/docs/2.9/templates/#last)**()</code></li>
 <li><code>**[length](http://jinja.pocoo.org/docs/2.9/templates/#length)**()</code></li>
 <li><code>**[list](http://jinja.pocoo.org/docs/2.9/templates/#list)**()</code></li>
 <li><code>**[lower](http://jinja.pocoo.org/docs/2.9/templates/#lower)**()</code></li>
 <li><code>**[map](http://jinja.pocoo.org/docs/2.9/templates/#map)**()</code></li>
-<li><code>**[pprint](http://jinja.pocoo.org/docs/2.9/templates/#pprint)**(<em>verbose=false</em>)</code></li>
+<li><code>**[pprint](http://jinja.pocoo.org/docs/2.9/templates/#pprint)**(&lt;em&gt;verbose=false&lt;/em&gt;)</code></li>
 <li><code>**[random](http://jinja.pocoo.org/docs/2.9/templates/#random)**()</code></li>
 <li><code>**[reject](http://jinja.pocoo.org/docs/2.9/templates/#reject)**()</code></li>
 <li><code>**[rejectattr](http://jinja.pocoo.org/docs/2.9/templates/#rejectattr)**()</code></li>
-<li><code>**[replace](http://jinja.pocoo.org/docs/2.9/templates/#replace)**(<em>old, new, count=none</em>)</code></li>
+<li><code>**[replace](http://jinja.pocoo.org/docs/2.9/templates/#replace)**(&lt;em&gt;old, new, count=none&lt;/em&gt;)</code></li>
 <li><code>**[reverse](http://jinja.pocoo.org/docs/2.9/templates/#reverse)**()</code></li>
-<li><code>**[round](http://jinja.pocoo.org/docs/2.9/templates/#round)**(<em>precision=0, method='common', base=10</em>)</code></li>
+<li><code>**[round](http://jinja.pocoo.org/docs/2.9/templates/#round)**(&lt;em&gt;precision=0, method='common', base=10&lt;/em&gt;)</code></li>
 <li><code>**[safe](http://jinja.pocoo.org/docs/2.9/templates/#safe)**()</code></li>
 <li><code>**[select](http://jinja.pocoo.org/docs/2.9/templates/#select)**()</code></li>
 <li><code>**[selectattr](http://jinja.pocoo.org/docs/2.9/templates/#selectattr)**()</code></li>
-<li><code>**[slice](http://jinja.pocoo.org/docs/2.9/templates/#slice)**(<em>slices=2, fill_with=none</em>)</code></li>
-<li><code>**[sort](http://jinja.pocoo.org/docs/2.9/templates/#sort)**(<em>reverse=false, case_sensitive=false, attribute=none</em>)</code></li>
+<li><code>**[slice](http://jinja.pocoo.org/docs/2.9/templates/#slice)**(&lt;em&gt;slices=2, fill_with=none&lt;/em&gt;)</code></li>
+<li><code>**[sort](http://jinja.pocoo.org/docs/2.9/templates/#sort)**(&lt;em&gt;reverse=false, case_sensitive=false, attribute=none&lt;/em&gt;)</code></li>
 <li><code>**[string](http://jinja.pocoo.org/docs/2.9/templates/#string)**()</code></li>
 <li><code>**[striptags](http://jinja.pocoo.org/docs/2.9/templates/#striptags)**()</code></li>
-<li><code>**[sum](http://jinja.pocoo.org/docs/2.9/templates/#sum)**(<em>attribute=none, start=0</em>)</code></li>
+<li><code>**[sum](http://jinja.pocoo.org/docs/2.9/templates/#sum)**(&lt;em&gt;attribute=none, start=0&lt;/em&gt;)</code></li>
 <li><code>**[title](http://jinja.pocoo.org/docs/2.9/templates/#title)**()</code></li>
-<li><code>**[tojson](http://jinja.pocoo.org/docs/2.9/templates/#tojson)**(<em>indent=none</em>)</code></li>
+<li><code>**[tojson](http://jinja.pocoo.org/docs/2.9/templates/#tojson)**(&lt;em&gt;indent=none&lt;/em&gt;)</code></li>
 <li><code>**[trim](http://jinja.pocoo.org/docs/2.9/templates/#trim)**()</code></li>
-<li><code>**[truncate](http://jinja.pocoo.org/docs/2.9/templates/#truncate)**(<em>length=255, killwords=false, end='...', leeway=none</em>)</code></li>
+<li><code>**[truncate](http://jinja.pocoo.org/docs/2.9/templates/#truncate)**(&lt;em&gt;length=255, killwords=false, end='...', leeway=none&lt;/em&gt;)</code></li>
 <li><code>**[upper](http://jinja.pocoo.org/docs/2.9/templates/#upper)**()</code></li>
 <li><code>**[urlencode](http://jinja.pocoo.org/docs/2.9/templates/#urlencode)**()</code></li>
-<li><code>**[urlize](http://jinja.pocoo.org/docs/2.9/templates/#urlize)**(<em>trim_url_limit=none, nofollow=false, target=none, rel=none</em>)</code></li>
+<li><code>**[urlize](http://jinja.pocoo.org/docs/2.9/templates/#urlize)**(&lt;em&gt;trim_url_limit=none, nofollow=false, target=none, rel=none&lt;/em&gt;)</code></li>
 <li><code>**[wordcount](http://jinja.pocoo.org/docs/2.9/templates/#wordcount)**()</code></li>
-<li><code>**[wordwrap](http://jinja.pocoo.org/docs/2.9/templates/#wordwrap)**(<em>width=79, break_long_words=true, wrapstring=none</em>)</code></li>
-<li><code>**[xmlattr](http://jinja.pocoo.org/docs/2.9/templates/#xmlattr)**(<em>autoescape=true</em>)</code></li>
+<li><code>**[wordwrap](http://jinja.pocoo.org/docs/2.9/templates/#wordwrap)**(&lt;em&gt;width=79, break_long_words=true, wrapstring=none&lt;/em&gt;)</code></li>
+<li><code>**[xmlattr](http://jinja.pocoo.org/docs/2.9/templates/#xmlattr)**(&lt;em&gt;autoescape=true&lt;/em&gt;)</code></li>
 </ul>
 
 
@@ -838,70 +838,70 @@ title-case the output (similar to <code>title(striptags(name))</code>).</p>
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/filter.cr#L63" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/lib/filter.cr#L63" target="_blank">
         lib/filter.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/filter/collections.cr#L1" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/lib/filter/collections.cr#L1" target="_blank">
         lib/filter/collections.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/filter/escape.cr#L1" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/lib/filter/escape.cr#L1" target="_blank">
         lib/filter/escape.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/filter/html.cr#L5" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/lib/filter/html.cr#L5" target="_blank">
         lib/filter/html.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/filter/join.cr#L1" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/lib/filter/join.cr#L1" target="_blank">
         lib/filter/join.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/filter/liquid.cr#L1" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/lib/filter/liquid.cr#L1" target="_blank">
         lib/filter/liquid.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/filter/number.cr#L1" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/lib/filter/number.cr#L1" target="_blank">
         lib/filter/number.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/filter/sort.cr#L1" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/lib/filter/sort.cr#L1" target="_blank">
         lib/filter/sort.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/filter/string.cr#L3" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/lib/filter/string.cr#L3" target="_blank">
         lib/filter/string.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/c7d271600929d83f690bdd5f9a3d32d5037106ba/src/lib/filter/var.cr#L1" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/lib/filter/var.cr#L1" target="_blank">
         lib/filter/var.cr
       </a>
     

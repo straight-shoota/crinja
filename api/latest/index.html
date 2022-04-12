@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.2.2">
+<meta name="generator" content="Crystal Docs 1.3.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -828,7 +828,7 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/">Jinja2 templat
   </svg>
 </a>Expressions</h3>
 <p>In a template, <strong>expressions</strong> inside double curly braces (<code>{{</code> ... <code>}}</code>) will be evaluated and printed to the template output.</p>
-<p>Assuming there is a variable <code>name</code> with value <code>"World"</code>, the following template renders <code>Hello, World!</code>.</p>
+<p>Assuming there is a variable <code>name</code> with value <code>&quot;World&quot;</code>, the following template renders <code>Hello, World!</code>.</p>
 <pre><code class="language-html+jinja">Hello, {{ name }}!</code></pre>
 <p>Properties of an object can be accessed by dot (<code>.</code>) or square brackets (<code>[]</code>). Filters modify the value of an expression.</p>
 <pre><code class="language-html+jinja">Hello, {{ current_user.name | default(&quot;World&quot;) | titelize }}!</code></pre>
@@ -995,7 +995,7 @@ env.filters <span class="o">&lt;&lt;</span> <span class="t">Customfilter</span>.
 
 template <span class="o">=</span> env.from_string(<span class="s">%({{ &quot;Hello World&quot; | customfilter(attribute=&quot;super&quot;) }})</span>)
 template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span></code></pre>
-<p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> and  <code><a href="Crinja.html">Crinja</a>:Tag</code> and adding an instance to the feature library defaults (<code>Crinja::Operator::Library.defaults << MyTag.new</code>) or to a specific environment (<code>env.tags << MyTag.new</code>).</p>
+<p>Custom tags and operator can be implemented through subclassing <code><a href="Crinja/Operator.html">Crinja::Operator</a></code> and  <code><a href="Crinja.html">Crinja</a>:Tag</code> and adding an instance to the feature library defaults (<code>Crinja::Operator::Library.defaults &lt;&lt; MyTag.new</code>) or to a specific environment (<code>env.tags &lt;&lt; MyTag.new</code>).</p>
 <h2><a id="differences-from-jinja2" class="anchor" href="#differences-from-jinja2">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -1005,8 +1005,8 @@ template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span>
 <ul>
 <li><strong>Python expressions:</strong> Because templates are evaluated inside a compiled Crystal program, it's not possible to use ordinary Python expressions in Crinja. But it might be considered to implement some of the Python stdlib like <code>Dict#iteritems()</code> which is often used to make dicts iterable.</li>
 <li><strong>Line statements and line comments</strong>: Are not supported, because their usecase is negligible.</li>
-<li><strong>String representation:</strong> Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like <code>{{ ["foo", "bar"] }}</code> will render as <code>[u'foo', u'bar']</code> in Jinja2 and as <code>['foo', 'bar']</code> in Crinja.</li>
-<li><strong>Double escape:</strong> <code>{{ '<html>'|escape|escape }}</code> will render as <code>&lt;html&gt;</code> in Jinja2, but <code>&amp;lt;html&amp;gt;</code>. Should we change that behaviour?</li>
+<li><strong>String representation:</strong> Some objects will have slightly different representation as string or JSON. Crinja uses Crystal internals, while Jinja uses Python internals. For example, an array with strings like <code>{{ [&quot;foo&quot;, &quot;bar&quot;] }}</code> will render as <code>[u'foo', u'bar']</code> in Jinja2 and as <code>['foo', 'bar']</code> in Crinja.</li>
+<li><strong>Double escape:</strong> <code>{{ '&lt;html&gt;'|escape|escape }}</code> will render as <code>&amp;lt;html&amp;gt;</code> in Jinja2, but <code>&amp;amp;lt;html&amp;amp;gt;</code>. Should we change that behaviour?</li>
 <li><strong>Complex numbers</strong>: Complex numbers are not supported yet.</li>
 <li><strong>Configurable syntax</strong>: It is not possible to reconfigure the syntax symbols. This makes the parser less complex and faster.</li>
 </ul>
