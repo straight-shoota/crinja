@@ -41,6 +41,7 @@ abstract class Crinja::FeatureLibrary(T)
     class_getter defaults = [] of T
 
     @@aliases = {} of String => String
+
     def self.alias(from, to)
       @@aliases[from.to_s] = to.to_s
     end
