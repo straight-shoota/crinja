@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.3.2">
+<meta name="generator" content="Crystal Docs 1.4.1">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -783,7 +783,7 @@ given order.</p>
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/loader.cr#L46" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/39649f3c77c56dd195d4a4aa2e730c95473d13e1/src/loader.cr#L46" target="_blank">
         loader.cr
       </a>
     
@@ -812,7 +812,7 @@ given order.</p>
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28searchpaths%2Cencoding%3Dnil%2Cfollowlinks%3Dfalse%29-class-method" class="signature"><strong>.new</strong>(searchpaths, encoding = <span class="n">nil</span>, followlinks = <span class="n">false</span>)</a>
+        <a href="#new%28searchpaths%3AArray%28String%29%2Cencoding%3AString%3F%3Dnil%2Cfollowlinks%3ABool%3Dfalse%29-class-method" class="signature"><strong>.new</strong>(searchpaths : Array(String), encoding : String? = <span class="n">nil</span>, followlinks : Bool = <span class="n">false</span>)</a>
         
           <div class="summary"><p>The default encoding is <code>nil</code> which can be changed by setting the <code><a href="../../Crinja/Loader/FileSystemLoader.html#encoding%3AString%3F-instance-method">#encoding</a></code> parameter to something else.</p></div>
         
@@ -955,17 +955,17 @@ To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/loader.cr#L58" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/39649f3c77c56dd195d4a4aa2e730c95473d13e1/src/loader.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="new(searchpaths,encoding=nil,followlinks=false)-class-method">
+    <div class="entry-detail" id="new(searchpaths:Array(String),encoding:String?=nil,followlinks:Bool=false)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(searchpaths, encoding = <span class="n">nil</span>, followlinks = <span class="n">false</span>)
+        def self.<strong>new</strong>(searchpaths : Array(String), encoding : String? = <span class="n">nil</span>, followlinks : Bool = <span class="n">false</span>)
 
-        <a class="method-permalink" href="#new%28searchpaths%2Cencoding%3Dnil%2Cfollowlinks%3Dfalse%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28searchpaths%3AArray%28String%29%2Cencoding%3AString%3F%3Dnil%2Cfollowlinks%3ABool%3Dfalse%29-class-method">#</a>
       </div>
       
         <div class="doc">
@@ -978,7 +978,7 @@ To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/loader.cr#L54" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/39649f3c77c56dd195d4a4aa2e730c95473d13e1/src/loader.cr#L54" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1008,7 +1008,7 @@ To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/loader.cr#L48" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/39649f3c77c56dd195d4a4aa2e730c95473d13e1/src/loader.cr#L48" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1024,7 +1024,7 @@ To follow symbolic links, set the <em>followlinks</em> parameter to <code>true</
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/loader.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/39649f3c77c56dd195d4a4aa2e730c95473d13e1/src/loader.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1056,7 +1056,7 @@ The filename is used for the tracebacks if no loader extension is used.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/loader.cr#L68" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/39649f3c77c56dd195d4a4aa2e730c95473d13e1/src/loader.cr#L68" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1082,7 +1082,7 @@ it should raise a <code><a href="../../Crinja/TypeError.html">TypeError</a></cod
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/loader.cr#L86" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/39649f3c77c56dd195d4a4aa2e730c95473d13e1/src/loader.cr#L86" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1098,7 +1098,7 @@ it should raise a <code><a href="../../Crinja/TypeError.html">TypeError</a></cod
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/loader.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/39649f3c77c56dd195d4a4aa2e730c95473d13e1/src/loader.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1114,7 +1114,7 @@ it should raise a <code><a href="../../Crinja/TypeError.html">TypeError</a></cod
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/0160fa392b2bf12b475130af127f63bf389eba7a/src/loader.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/39649f3c77c56dd195d4a4aa2e730c95473d13e1/src/loader.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
