@@ -87,7 +87,7 @@ Test can accept arguments as well. If the test only takes one argument, the pare
   Hello, {{ current_user.name }}!
 {% else %}
   Hey, stranger!
-{% end %}
+{% endif %}
 ```
 
 ## Tags
