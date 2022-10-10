@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.4.1">
+<meta name="generator" content="Crystal Docs 1.5.0">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -756,21 +756,21 @@
 
   <p>The <code>with</code> statement makes it possible to create a new inner scope. Variables set within this
 scope are not visible outside of the scope.</p>
-<pre><code class="language-crystal">{% <span class="k">with</span> %}
-    {% set foo <span class="o">=</span> <span class="n">42</span> %}
-    {{ foo }}           <span class="c"># =&gt; foo is 42 here</span>
-{% endwith %}
-{{ foo }}               <span class="c"># =&gt; undefined</span></code></pre>
+<pre><code class="language-crystal"><span class="o">{%</span> <span class="k">with</span> <span class="o">%}</span>
+    <span class="o">{%</span> set foo <span class="o">=</span> <span class="n">42</span> <span class="o">%}</span>
+    <span class="o">{{</span> foo }}           <span class="c"># =&gt; foo is 42 here</span>
+<span class="o">{%</span> endwith <span class="o">%}</span>
+<span class="o">{{</span> foo }}               <span class="c"># =&gt; undefined</span></code></pre>
 <p>Because it is common to set variables at the beginning of the scope, you can do that within the
 with statement. The following two examples are equivalent:</p>
-<pre><code class="language-crystal">{% <span class="k">with</span> foo <span class="o">=</span> <span class="n">42</span> %}
-    {{ foo }}
-{% endwith %}
+<pre><code class="language-crystal"><span class="o">{%</span> <span class="k">with</span> foo <span class="o">=</span> <span class="n">42</span> <span class="o">%}</span>
+    <span class="o">{{</span> foo }}
+<span class="o">{%</span> endwith <span class="o">%}</span>
 
-{% <span class="k">with</span> %}
-    {% set foo <span class="o">=</span> <span class="n">42</span> %}
-    {{ foo }}
-{% endwith %}</code></pre>
+<span class="o">{%</span> <span class="k">with</span> <span class="o">%}</span>
+    <span class="o">{%</span> set foo <span class="o">=</span> <span class="n">42</span> <span class="o">%}</span>
+    <span class="o">{{</span> foo }}
+<span class="o">{%</span> endwith <span class="o">%}</span></code></pre>
 <p>See <a href="http://jinja.pocoo.org/docs/2.9/templates/#with-statement">Jinja2 Template Documentation</a> for details.</p>
 
 
@@ -796,7 +796,7 @@ with statement. The following two examples are equivalent:</p>
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/ef419769b08f1a8875402d3c6abc945e73b47cbe/src/lib/tag/with.cr#L27" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/47d5a1277fd4660c8e175a90963246e7e450b6ae/src/lib/tag/with.cr#L27" target="_blank">
         lib/tag/with.cr
       </a>
     
@@ -925,7 +925,7 @@ with statement. The following two examples are equivalent:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/ef419769b08f1a8875402d3c6abc945e73b47cbe/src/lib/tag/with.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/47d5a1277fd4660c8e175a90963246e7e450b6ae/src/lib/tag/with.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -941,7 +941,7 @@ with statement. The following two examples are equivalent:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/ef419769b08f1a8875402d3c6abc945e73b47cbe/src/lib/tag/with.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/47d5a1277fd4660c8e175a90963246e7e450b6ae/src/lib/tag/with.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -957,7 +957,7 @@ with statement. The following two examples are equivalent:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/ef419769b08f1a8875402d3c6abc945e73b47cbe/src/lib/tag/with.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/straight-shoota/crinja/blob/47d5a1277fd4660c8e175a90963246e7e450b6ae/src/lib/tag/with.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>

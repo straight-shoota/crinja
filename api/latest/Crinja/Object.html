@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.4.1">
+<meta name="generator" content="Crystal Docs 1.5.0">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -794,15 +794,15 @@ attributes, items or methods defined.</p>
             <span class="k">when</span> <span class="s">&quot;age&quot;</span>
               age
             <span class="k">else</span>
-              <span class="t">Undefined</span>.<span class="k">new</span>(attr.to_s)
+              <span class="t">Undefined</span>.new(attr.to_s)
             <span class="k">end</span>
 
-    <span class="t">Crinja</span><span class="t">::</span><span class="t">Value</span>.<span class="k">new</span>(value)
+    <span class="t">Crinja</span><span class="t">::</span><span class="t">Value</span>.new(value)
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="m">crinja_call</span>(name : <span class="t">String</span>) : <span class="t">Crinja</span><span class="t">::</span><span class="t">Callable</span> <span class="o">|</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Callable</span><span class="t">::</span><span class="t">Proc</span> <span class="o">|</span> <span class="t">Nil</span>
     <span class="k">if</span> name <span class="o">==</span> <span class="s">&quot;days_old&quot;</span>
-      -&gt;(arguments : <span class="t">Crinja</span><span class="t">::</span><span class="t">Arguments</span>) <span class="k">do</span>
+      <span class="o">-&gt;</span>(arguments : <span class="t">Crinja</span><span class="t">::</span><span class="t">Arguments</span>) <span class="k">do</span>
         <span class="k">self</span>.age.days
       <span class="k">end</span>
     <span class="k">end</span>
@@ -850,7 +850,7 @@ attributes, items or methods defined.</p>
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/ef419769b08f1a8875402d3c6abc945e73b47cbe/src/object.cr#L77" target="_blank">
+      <a href="https://github.com/straight-shoota/crinja/blob/47d5a1277fd4660c8e175a90963246e7e450b6ae/src/object.cr#L77" target="_blank">
         object.cr
       </a>
     

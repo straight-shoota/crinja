@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.4.1">
+<meta name="generator" content="Crystal Docs 1.5.0">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -781,7 +781,7 @@
 </a>Simple string template</h3>
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
 
-<span class="t">Crinja</span>.render(<span class="s">&quot;Hello, {{ name }}!&quot;</span>, {<span class="s">&quot;name&quot;</span> =&gt; <span class="s">&quot;John&quot;</span>}) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
+<span class="t">Crinja</span>.render(<span class="s">&quot;Hello, {{ name }}!&quot;</span>, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;John&quot;</span>}) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
 <h3><a id="file-loader" class="anchor" href="#file-loader">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -793,11 +793,11 @@
 <p>It can be loaded with a <code>FileSystemLoader</code>:</p>
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;crinja&quot;</span>
 
-env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
-env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.<span class="k">new</span>(<span class="s">&quot;views/&quot;</span>)
+env <span class="o">=</span> <span class="t">Crinja</span>.new
+env.loader <span class="o">=</span> <span class="t">Crinja</span><span class="t">::</span><span class="t">Loader</span><span class="t">::</span><span class="t">FileSystemLoader</span>.new(<span class="s">&quot;views/&quot;</span>)
 template <span class="o">=</span> env.get_template(<span class="s">&quot;index.html.j2&quot;</span>)
 template.render <span class="c"># =&gt; &quot;Hello, World!&quot;</span>
-template.render({ <span class="s">&quot;name&quot;</span> =&gt; <span class="s">&quot;John&quot;</span> }) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
+template.render({ <span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;John&quot;</span> }) <span class="c"># =&gt; &quot;Hello, John!&quot;</span></code></pre>
 <h3><a id="crystal-playground" class="anchor" href="#crystal-playground">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -965,7 +965,7 @@ The original <a href="http://jinja.pocoo.org/docs/2.9/templates/">Jinja2 templat
 </a>Custom features</h3>
 <p>You can provide custom tags, filters, functions, operators and tests. Create an implementation using the macros <code>Crinja.filter</code>, <code>Crinja.function</code>, <code>Crinja.test</code>. They need to be passed a block which will be converted to a Proc. Optional arguments are a <code>Hash</code> or <code>NamedTuple</code> with default arguments and a name. If a name is provided, it will be added to the feature library defaults and available in every environment which uses the registered defaults.</p>
 <p>Example with macro <code>Crinja.filter</code>:</p>
-<pre><code class="language-crystal">env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
+<pre><code class="language-crystal">env <span class="o">=</span> <span class="t">Crinja</span>.new
 
 myfilter <span class="o">=</span> <span class="t">Crinja</span>.filter({ attribute: <span class="n">nil</span> }) <span class="k">do</span>
   <span class="s">&quot;</span><span class="i">#{</span>target<span class="i">}</span><span class="s"> is </span><span class="i">#{</span>arguments[<span class="s">&quot;attribute&quot;</span>]<span class="i">}</span><span class="s">!&quot;</span>
@@ -982,7 +982,7 @@ template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span>
   getter name <span class="o">=</span> <span class="s">&quot;customfilter&quot;</span>
 
   getter defaults <span class="o">=</span> <span class="t">Crinja</span>.variables({
-    <span class="s">&quot;attribute&quot;</span> =&gt; <span class="s">&quot;great&quot;</span>
+    <span class="s">&quot;attribute&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;great&quot;</span>
   })
 
   <span class="k">def</span> <span class="m">call</span>(arguments)
@@ -990,8 +990,8 @@ template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
-env <span class="o">=</span> <span class="t">Crinja</span>.<span class="k">new</span>
-env.filters <span class="o">&lt;&lt;</span> <span class="t">Customfilter</span>.<span class="k">new</span>
+env <span class="o">=</span> <span class="t">Crinja</span>.new
+env.filters <span class="o">&lt;&lt;</span> <span class="t">Customfilter</span>.new
 
 template <span class="o">=</span> env.from_string(<span class="s">%({{ &quot;Hello World&quot; | customfilter(attribute=&quot;super&quot;) }})</span>)
 template.render <span class="c"># =&gt; &quot;Hello World is super!&quot;</span></code></pre>
