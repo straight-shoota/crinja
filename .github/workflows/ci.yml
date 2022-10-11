@@ -59,7 +59,7 @@ jobs:
         with:
           crystal: ${{ matrix.crystal }}
       - name: Setup BATS
-        uses: mig4/setup-bats@v1
+        uses: mig4/setup-bats@af9a00deb21b5d795cabfeaa8d9060410377686d # tag=v1
         with:
           bats-version: 1.2.1
       - name: Run integration specs
