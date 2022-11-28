@@ -191,7 +191,10 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Value)
     end
   end
 
-  private class CallStack
+  # :nodoc:
+  class CallStack
+    getter kind : Symbol
+
     @stack : Array(String) = [] of String
 
     def initialize(@kind : Symbol, @parent : CallStack?)
@@ -202,7 +205,7 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Value)
     end
 
     def <<(path : String)
-      raise TagCycleException.new(@kind, path) if includes?(path)
+      raise TagCycleException.new(self, path) if includes?(path)
 
       push_without_check(path)
     end
@@ -219,16 +222,21 @@ class Crinja::Context < Crinja::Util::ScopeMap(String, Crinja::Value)
       end
     end
 
-    def inspect(io)
-      @stack.inspect(io)
+    def to_s(io, separator = "\n")
+      @stack.join io, separator, &.inspect(io)
+      if parent = @parent
+        separator += "  "
+        io << separator
+        parent.to_s(io, separator: separator)
+      end
     end
   end
 
   class TagCycleException < RuntimeError
     getter path
 
-    def initialize(@type : Symbol, @path : String, cause = nil)
-      super "Tag cycle detected: #{type} #{@path.inspect}", cause
+    def initialize(@stack : Context::CallStack, @path : String, cause = nil)
+      super "Tag cycle detected: #{stack.kind} #{@path.inspect}\n#{stack}", cause
     end
   end
 end

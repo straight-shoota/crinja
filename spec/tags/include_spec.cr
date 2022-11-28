@@ -84,11 +84,12 @@ describe Crinja::Tag::Include do
         "template-c" => "{% import 'template-b' %}",
       })
 
-      expect_raises(Crinja::Context::TagCycleException, %(Tag cycle detected: import "template-c")) do
+      exc = expect_raises(Crinja::Context::TagCycleException, %(Tag cycle detected: import "template-c")) do
         render(<<-JINJA, loader: loader)
           {% extends 'template-b' %}
           JINJA
       end
+      exc.message.should contain(%[\n"template-c"\n"template-b"])
     end
 
     it "doesn't raise" do
