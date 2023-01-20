@@ -7,7 +7,7 @@ abstract class Crinja::TemplateCache
 
   # This cache does not cache anything.
   class NoCache < TemplateCache
-    def fetch(env, name, file_name, source)
+    def fetch(env, name, file_name, source, &)
       yield
     end
   end
@@ -16,7 +16,7 @@ abstract class Crinja::TemplateCache
   class InMemory < TemplateCache
     @cache = Hash(::Tuple(Crinja, String, String?, String), Template).new
 
-    def fetch(env, name, file_name, source)
+    def fetch(env, name, file_name, source, &)
       id = {env, name, file_name, source}
 
       @cache.fetch(id) do

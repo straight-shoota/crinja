@@ -233,7 +233,7 @@ struct Crinja::Value
 
   # Assumes the underlying value is an `Iterable` and yields each
   # of the elements or key/values, always as `Value`.
-  def raw_each
+  def raw_each(&)
     case object = @raw
     when Hash
       object.each { |key, value| yield Crinja::Tuple.from({key, value}) }
@@ -253,7 +253,7 @@ struct Crinja::Value
 
   # Assumes the underlying value is an `Iterable` and yields each
   # of the elements or key/values, always as `Value`.
-  def each
+  def each(&)
     raw_each do |raw|
       yield Value.new raw
     end

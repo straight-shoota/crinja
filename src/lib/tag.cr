@@ -133,13 +133,13 @@ abstract class Crinja::Tag
       name
     end
 
-    def if_identifier(name)
+    def if_identifier(name, &)
       if current_token.kind == Kind::IDENTIFIER && current_token.value == name
         yield
       end
     end
 
-    def if_identifier(names : Array(String))
+    def if_identifier(names : Array(String), &)
       if current_token.kind == Kind::IDENTIFIER && names.includes? current_token.value
         yield
       end

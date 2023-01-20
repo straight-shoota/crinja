@@ -58,7 +58,7 @@ class Crinja
 
   # Creates a new environment and yields `self` for configuration.
   def self.new(context = Context.new, config = Config.new,
-               loader = Loader::FileSystemLoader.new, cache = TemplateCache::InMemory.new)
+               loader = Loader::FileSystemLoader.new, cache = TemplateCache::InMemory.new, &)
     env = new(context, config, loader, cache)
     yield env
     env
@@ -154,7 +154,7 @@ class Crinja
   end
 
   # Executes the block inside the context `ctx` and returns to the previous context afterwards.
-  def with_scope(ctx : Context)
+  def with_scope(ctx : Context, &)
     former_scope = self.context
 
     logger.debug { "new context #{ctx} is not the child of former context" } if ctx.parent != @context
@@ -167,7 +167,7 @@ class Crinja
 
   # Executes the block inside a new sub-context with optional local scoped *bindings*.
   # Returns to the previous context afterwards.
-  def with_scope(bindings = nil)
+  def with_scope(bindings = nil, &)
     ctx = Context.new(self.context)
 
     unless bindings.nil?
