@@ -80,7 +80,7 @@ struct Crinja::Finalizer
     @io << ")"
   end
 
-  private def quote
+  private def quote(&)
     quotes = @inside_struct
     @io << '\'' if quotes
     yield

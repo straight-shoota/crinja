@@ -61,7 +61,7 @@ module Crinja::Parser::ParserHelper
   end
 
   # :nodoc:
-  private def assert_token(type : Token::Kind)
+  private def assert_token(type : Token::Kind, &)
     unless current_token.kind == type
       unexpected_token type
     end
@@ -70,7 +70,7 @@ module Crinja::Parser::ParserHelper
   end
 
   # :nodoc:
-  private def assert_token(type : Token::Kind, value : String)
+  private def assert_token(type : Token::Kind, value : String, &)
     unless current_token.kind == type && current_token.value == value
       unexpected_token type, value
     end
@@ -79,12 +79,12 @@ module Crinja::Parser::ParserHelper
   end
 
   # :nodoc:
-  private def if_token(type : Kind)
+  private def if_token(type : Kind, &)
     yield if current_token.kind == type
   end
 
   # :nodoc:
-  private def if_token(type : Kind, value : String)
+  private def if_token(type : Kind, value : String, &)
     yield if current_token.kind == type && current_token.value == value
   end
 

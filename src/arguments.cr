@@ -46,7 +46,7 @@ struct Crinja::Arguments
     fetch name, Value.new(default)
   end
 
-  def fetch(name)
+  def fetch(name, &)
     value = self[name]
     if value.raw.nil?
       Value.new(yield)

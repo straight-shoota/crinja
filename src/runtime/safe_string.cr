@@ -77,7 +77,7 @@ class Crinja
       result
     end
 
-    def sub(search)
+    def sub(search, &)
       all_safe = true
 
       result = @string.sub(search) do
@@ -107,13 +107,13 @@ class Crinja
       SafeString.new @string.rstrip(*args)
     end
 
-    def each_line(chomp = true)
+    def each_line(chomp = true, &)
       @string.each_line(chomp) do |line|
         yield SafeString.new(line)
       end
     end
 
-    def self.build
+    def self.build(&)
       new(String.build do |io|
         yield io
       end)
@@ -170,7 +170,7 @@ class Crinja
     # Yields a builder which automatically escapes.
     #
     # TODO: Implement stream IO.
-    def self.escape
+    def self.escape(&)
       string = String.build { |io| yield io }
       escape string
     end

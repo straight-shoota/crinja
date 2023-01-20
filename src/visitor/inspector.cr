@@ -13,7 +13,7 @@ class Crinja
       open(name) { }
     end
 
-    private def open(name)
+    private def open(name, &)
       @io << "<" << name
       yield
       @io << ">"
@@ -24,7 +24,7 @@ class Crinja
       close(name) { }
     end
 
-    private def close(name)
+    private def close(name, &)
       @indent -= 1
       nl
       @io << "</" << name

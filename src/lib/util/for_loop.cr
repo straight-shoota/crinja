@@ -89,7 +89,7 @@ class Crinja::Tag::For::ForLoop
     @last = false
   end
 
-  def each
+  def each(&)
     value = iterator.next
 
     while true
