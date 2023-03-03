@@ -129,5 +129,5 @@ module Crinja::Filter
 end
 
 module Crinja::Util
-  REGEX_WORD = /\s-\(\{\[\</
+  REGEX_WORD = /\s\-\(\{\[\</
 end
