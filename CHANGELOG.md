@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to Crinja will be documented in this file.
 
+## 0.8.0 (2023-03-06)
+
+Compatibility with PCRE2 (Crystal 1.8)
+
 ## 0.8.0 (2021-07-16)
 
 Compatbility with Crystal 1.1
