@@ -48,7 +48,9 @@ describe Crinja::Value do
     end
 
     it "raw_#each" do
-      Crinja::Value.new([1]).raw_each.should be_a(Crinja::Value::RawIterator)
+      # be_a matcher doesn't support uninstantiated generic type
+      Crinja::Value.new([1]).raw_each.is_a?(Crinja::Value::RawIterator).should be_true
+
       Crinja::Value.new([1]).raw_each.each_with_index do |item, index|
         item.should eq 1
         index.should eq 0

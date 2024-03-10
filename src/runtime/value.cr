@@ -260,11 +260,11 @@ struct Crinja::Value
   end
 
   # :nodoc:
-  class RawIterator
+  class RawIterator(T)
     include ::Iterator(Raw)
     include IteratorWrapper
 
-    def initialize(@iterator : ::Iterator(Value))
+    def initialize(@iterator : T)
     end
 
     def next
