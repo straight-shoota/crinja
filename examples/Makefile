@@ -1,5 +1,5 @@
-SHARDS ::= shards
-BATS ::= bats
+SHARDS := shards
+BATS := bats
 
 .PHONY: all
 all:
