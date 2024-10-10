@@ -1,11 +1,11 @@
 -include Makefile.local # for optional local options
 
-SHARDS ::= shards # The shards command to use
-CRYSTAL ::= crystal # The crystal command to use
+SHARDS := shards # The shards command to use
+CRYSTAL := crystal # The crystal command to use
 
-SRC_SOURCES ::= $(shell find src lib -name '*.cr' 2>/dev/null)
-LIB_SOURCES ::= $(shell find lib -name '*.cr' 2>/dev/null)
-SPEC_SOURCES ::= $(shell find spec -name '*.cr' 2>/dev/null)
+SRC_SOURCES := $(shell find src lib -name '*.cr' 2>/dev/null)
+LIB_SOURCES := $(shell find lib -name '*.cr' 2>/dev/null)
+SPEC_SOURCES := $(shell find spec -name '*.cr' 2>/dev/null)
 
 .PHONY: test
 test: ## Run test suite
