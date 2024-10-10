@@ -7,8 +7,5 @@ all:
 
 .PHONY: update
 update:
-	for i in $(find . -maxdepth 1 -mindepth 1 -type d); do
-	  pushd $i
-	    $(SHARDS) update
-	  popd
-	done
+	for i in $$(find . -maxdepth 1 -mindepth 1 -type d); do \
+	  ( cd $$i; $(SHARDS) update ); done
