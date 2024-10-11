@@ -57,7 +57,7 @@ class Crinja::Config
     @autoescape = Autoescape.new,
     @keep_trailing_newline = false,
     @trim_blocks = false,
-    @lstrip_blocks = false
+    @lstrip_blocks = false,
   )
   end
 
@@ -85,7 +85,7 @@ class Crinja::Config
       enabled_extensions = ["html", "htm", "xml"],
       disabled_extensions = [] of String,
       @default_for_string = false,
-      @default = false
+      @default = false,
     )
       self.enabled_extensions = enabled_extensions
       self.disabled_extensions = disabled_extensions
