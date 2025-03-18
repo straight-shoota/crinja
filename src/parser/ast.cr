@@ -36,9 +36,9 @@ module Crinja::AST
       {% end %}
 
       def initialize({{
-                       *properties.map do |field|
+                       properties.map do |field|
                          "@#{field.id}".id
-                       end
+                       end.splat
                      }})
       end
     end
@@ -58,9 +58,9 @@ module Crinja::AST
       {% end %}
 
       def initialize({{
-                       *properties.map do |field|
+                       properties.map do |field|
                          "@#{field.id}".id
-                       end
+                       end.splat
                      }})
       end
     end
