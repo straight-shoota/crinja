@@ -95,7 +95,7 @@ abstract class Crinja::Loader
         file_path = File.join(path, file)
         if File.directory?(file_path)
           list_templates(file_path, list)
-        elsif File.file?(file_path) && File.readable?(file_path)
+        elsif File.file?(file_path) && File::Info.readable?(file_path)
           list << file_path
         end
       end
