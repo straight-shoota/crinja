@@ -19,9 +19,9 @@ class Crinja::Parser::ExpressionParser
           if current_token.kind == Kind::OPERATOR
             case current_token.value
             when {{
-                   *operators.map { |field|
+                   operators.map { |field|
                      "Symbol::OP_#{field.id}".id
-                   }
+                   }.splat
                  }}
               operator = current_token.value
               next_token
