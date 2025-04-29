@@ -51,16 +51,11 @@ module Crinja::Parser
   end
 
   struct StreamPosition
-    property pos : Int32 = 0
-    property line : Int32 = 1
-    property column : Int32 = 1
+    property pos : Int32
+    property line : Int32
+    property column : Int32
 
-    def ==(other : ::Tuple(Int, Int))
-      {line, column} == other
-    end
-
-    def ==(other : ::Tuple(Int, Int, Int))
-      {line, column, pos} == other
+    def initialize(@line : Int32 = 1, @column : Int32 = 1, @pos : Int32 = 0)
     end
 
     def +(string : String)

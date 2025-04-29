@@ -14,8 +14,8 @@ describe "error locations" do
     exc.template.not_nil!.filename.should be_nil
     exc.variable_name.should eq "non_existing"
 
-    exc.location_start.should eq?({2, 11})
-    exc.location_end.should eq?({2, 28})
+    exc.location_start.should eq Crinja::Parser::StreamPosition.new(2, 11, 17)
+    exc.location_end.should eq Crinja::Parser::StreamPosition.new(2, 28, 34)
     exc.message.should contain "template: <string>:2:11"
     exc.message.should eq <<-'ERR'
        non_existing is undefined.
@@ -40,8 +40,8 @@ describe "error locations" do
 
     exc.variable_name.should eq "site.authors[johannes]"
 
-    exc.location_start.should eq?({3, 56})
-    exc.location_end.should eq?({3, 86})
+    exc.location_start.should eq Crinja::Parser::StreamPosition.new(3, 56, 83)
+    exc.location_end.should eq Crinja::Parser::StreamPosition.new(3, 86, 113)
     exc.message.should eq <<-'ERR'
       site.authors[johannes] is undefined.
       template: <string>:3:56 .. 3:86
