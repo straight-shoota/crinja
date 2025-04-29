@@ -7,7 +7,7 @@ describe "expressions with identifiers" do
     env = Crinja.new
     env.context.merge!({"foo" => "bar"})
 
-    env.evaluate(expression).should eq("bar")
+    env.evaluate(expression).should eq Crinja::Value.new("bar")
   end
 
   it "resolves lookup sequence" do

@@ -176,3 +176,9 @@ class Crinja
     end
   end
 end
+
+class String
+  def ==(other : Crinja::SafeString)
+    other == self
+  end
+end

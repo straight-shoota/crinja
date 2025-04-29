@@ -56,7 +56,7 @@ end
 
 describe Crinja::Filter do
   it "calling" do
-    Crinja.new.call_filter("sum", [1, 2, 3]).should eq 6
+    Crinja.new.call_filter("sum", [1, 2, 3]).should eq Crinja::Value.new(6)
   end
 
   it "capitalize" do
