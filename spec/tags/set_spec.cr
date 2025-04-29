@@ -4,7 +4,7 @@ describe Crinja::Tag::Set do
   it "normal" do
     env = Crinja.new
     env.from_string("{% set foo = 1 %}{{ foo }}").render(env).should eq("1")
-    env.resolve("foo").should eq 1
+    env.resolve("foo").should eq Crinja::Value.new(1)
   end
 
   it "block" do
@@ -12,7 +12,7 @@ describe Crinja::Tag::Set do
     template = env.from_string("{% set foo %}42{% endset %}{{ foo }}")
     ctx = env.context
     template.render(ctx).should eq "42"
-    ctx["foo"].should eq "42"
+    ctx["foo"].should eq Crinja::Value.new("42")
   end
 
   it "block_escaping" do

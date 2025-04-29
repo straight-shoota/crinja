@@ -41,12 +41,10 @@ describe Crinja::Value do
   it "#as_s" do
     Crinja::Value.new("string").as_s.should eq "string"
     Crinja::Value.new(Crinja::SafeString.new("string")).as_s.should eq "string"
-    Crinja::Value.new(Crinja::SafeString.new("string")).as_s.should be_a String
   end
 
   it "#as_s_or_safe" do
     Crinja::Value.new("string").as_s_or_safe.should eq "string"
-    Crinja::Value.new(Crinja::SafeString.new("string")).as_s_or_safe.should eq "string"
-    Crinja::Value.new(Crinja::SafeString.new("string")).as_s_or_safe.should be_a Crinja::SafeString
+    Crinja::Value.new(Crinja::SafeString.new("string")).as_s_or_safe.should eq Crinja::SafeString.new("string")
   end
 end

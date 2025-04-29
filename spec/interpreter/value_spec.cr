@@ -8,7 +8,7 @@ describe Crinja::Value do
   describe "raw_each" do
     it "array" do
       a = [1, 2, 3]
-      Crinja::Value.new(a).map(&.raw).to_a.should eq a
+      Crinja::Value.new(a).map(&.raw).to_a.should eq a.map(&.as(Crinja::Raw))
     end
 
     it "hash" do
@@ -16,7 +16,7 @@ describe Crinja::Value do
       hash[Crinja::Value.new "foo"] = Crinja::Value.new 1
       hash[Crinja::Value.new "bar"] = Crinja::Value.new 3
       arr = [Crinja::Tuple.new("foo", 1), Crinja::Tuple.new("bar", 3)]
-      Crinja::Value.new(hash).map(&.raw).to_a.should eq arr
+      Crinja::Value.new(hash).map(&.raw).to_a.should eq arr.map(&.as(Crinja::Raw))
     end
   end
 
