@@ -44,7 +44,7 @@ module Crinja::CLI
   end
 
   def self.run
-    OptionParser.parse! do |opts|
+    OptionParser.parse do |opts|
       library_defaults = false
       only_names = false
 
