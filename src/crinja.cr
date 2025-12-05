@@ -23,7 +23,7 @@ class Crinja
   # parse the *template*. To parse the same template once and invoke it multiple
   # times, it needs to be created directly (using `Crinja#from_string` or
   # `Template.new`) and stored in a variable.
-  def self.render(template, variables = nil, loader = nil, config = nil) : String
+  def self.render(template, variables = nil, loader = Loader::FileSystemLoader.new, config = Config.new) : String
     String.build do |io|
       render io, template, variables, loader, config
     end
@@ -40,10 +40,8 @@ class Crinja
   # parse the *template*. To parse the same template once and invoke it multiple
   # times, it needs to be created directly (using `Crinja#from_string` or
   # `Template.new`) and stored in a variable.
-  def self.render(io : IO, template, variables = nil, loader = nil, config = nil)
-    env = Crinja.new
-    env.loader = loader unless loader.nil?
-    env.config = config unless config.nil?
+  def self.render(io : IO, template, variables = nil, loader = Loader::FileSystemLoader.new, config = Config.new)
+    env = Crinja.new(config: config, loader: loader)
 
     env.from_string(template.to_s).render(io, variables)
   end
