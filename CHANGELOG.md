@@ -7,11 +7,13 @@ All notable changes to Crinja will be documented in this file.
 * Integrate `JSON::Any` and `YAML::Any` as `Crinja::Object` ([#18])
 * **(breaking)** Resolver uses nilable accessor method `#[]?` instead of `#[]` ([#48])
 * Windows support for `striptags` (via XML) ([#64])
+* Raise minimum supported Crystal version to 1.13 ([#96])
 
 [#94]: https://github.com/straight-shoota/crinja/pull/94
 [#18]: https://github.com/straight-shoota/crinja/pull/18
 [#48]: https://github.com/straight-shoota/crinja/pull/48
 [#64]: https://github.com/straight-shoota/crinja/pull/64
+[#96]: https://github.com/straight-shoota/crinja/pull/96
 
 ## 0.8.1 (2023-03-06)
 
