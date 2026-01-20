@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.5.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -22,9 +23,14 @@
 
 <svg class="hidden">
   <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
   </symbol>
 </svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -726,6 +732,11 @@
       
     </li>
   
+  <li class=" " data-id="crinja/String" data-name="string">
+      <a href="../../String.html">String</a>
+      
+    </li>
+  
 </ul>
 
   </div>
@@ -735,12 +746,16 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Util::ScopeMap(K, V)
+  <span class="kind">
+    class
+  </span> Crinja::<wbr>Util::<wbr>ScopeMap(K, V)
 
 </h1>
 
 
   <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Crinja/Util/ScopeMap.html">Crinja::Util::ScopeMap(K, V)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
 
 
 
@@ -782,9 +797,7 @@
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L1" target="_blank">
-        util/scope_map.cr
-      </a>
+      util/scope_map.cr
     
     <br/>
   
@@ -793,6 +806,7 @@
 
 
 
+  
   <h2>
     <a id="constructors" class="anchor" href="#constructors">
   <svg class="octicon-link" aria-hidden="true">
@@ -804,16 +818,18 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28parent%3ACrinja%3A%3AUtil%3A%3AScopeMap%28K%2CV%29%3F%3Dnil%2Cscope%3Dnil%29-class-method" class="signature"><strong>.new</strong>(parent : Crinja::Util::ScopeMap(K, V)? = <span class="n">nil</span>, scope = <span class="n">nil</span>)</a>
+        <a href="#new%28parent%3ACrinja%3A%3AUtil%3A%3AScopeMap%28K%2CV%29%7CNil%3Dnil%2Cscope%3Dnil%29-class-method" class="signature"><strong>.new</strong>(parent : Crinja::Util::ScopeMap(K, V) | Nil = <span class="n">nil</span>, scope = <span class="n">nil</span>)</a>
         
       </li>
     
   </ul>
 
 
+  
 
+  
 
-
+  
   <h2>
     <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
   <svg class="octicon-link" aria-hidden="true">
@@ -831,6 +847,11 @@
     
       <li class="entry-summary">
         <a href="#%5B%5D%3D%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="signature"><strong>#[]=</strong>(*args, **options)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5B%5D%3D%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method" class="signature"><strong>#[]=</strong>(*args, **options, &)</a>
         
       </li>
     
@@ -920,33 +941,37 @@
 
 
 
+  <div class="methods-inherited">
+    
+      
 
 
-<div class="methods-inherited">
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-</div>
-
-
   <h2>
     <a id="constructor-detail" class="anchor" href="#constructor-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -956,27 +981,27 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(parent:Crinja::Util::ScopeMap(K,V)?=nil,scope=nil)-class-method">
+    <div class="entry-detail" id="new(parent:Crinja::Util::ScopeMap(K,V)|Nil=nil,scope=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(parent : <a href="../../Crinja/Util/ScopeMap.html">Crinja::Util::ScopeMap</a>(K, V)? = <span class="n">nil</span>, scope = <span class="n">nil</span>)
+        def self.<strong>new</strong>(parent : <a href="../../Crinja/Util/ScopeMap.html">Crinja::Util::ScopeMap</a>(K, V) | Nil = <span class="n">nil</span>, scope = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28parent%3ACrinja%3A%3AUtil%3A%3AScopeMap%28K%2CV%29%3F%3Dnil%2Cscope%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28parent%3ACrinja%3A%3AUtil%3A%3AScopeMap%28K%2CV%29%7CNil%3Dnil%2Cscope%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
 
 
+  
 
+  
 
-
+  
   <h2>
     <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -997,8 +1022,6 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L31" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1013,7 +1036,19 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L11" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]=(*args,**options,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>[]=</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#%5B%5D%3D%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
@@ -1029,8 +1064,6 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L11" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1044,8 +1077,6 @@
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1061,8 +1092,6 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L11" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1076,8 +1105,6 @@
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1093,8 +1120,6 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L57" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1109,8 +1134,6 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L17" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1124,8 +1147,6 @@
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1158,8 +1179,6 @@ and the values of all instance variables.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L63" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1173,8 +1192,6 @@ and the values of all instance variables.</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1190,8 +1207,6 @@ and the values of all instance variables.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L11" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1205,8 +1220,6 @@ and the values of all instance variables.</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1222,8 +1235,6 @@ and the values of all instance variables.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L5" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1237,8 +1248,6 @@ and the values of all instance variables.</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1254,8 +1263,6 @@ and the values of all instance variables.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L13" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1269,8 +1276,6 @@ and the values of all instance variables.</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1286,12 +1291,9 @@ and the values of all instance variables.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/util/scope_map.cr#L53" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-
 
 
 

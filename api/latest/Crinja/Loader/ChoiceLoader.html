@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.5.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -22,9 +23,14 @@
 
 <svg class="hidden">
   <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
   </symbol>
 </svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -726,6 +732,11 @@
       
     </li>
   
+  <li class=" " data-id="crinja/String" data-name="string">
+      <a href="../../String.html">String</a>
+      
+    </li>
+  
 </ul>
 
   </div>
@@ -735,7 +746,9 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Loader::ChoiceLoader
+  <span class="kind">
+    class
+  </span> Crinja::<wbr>Loader::<wbr>ChoiceLoader
 
 </h1>
 
@@ -777,6 +790,8 @@ from a different location or baked-in templates (see <code><a href="../../Crinja
 
 
 
+
+
   <h2>
     <a id="defined-in" class="anchor" href="#defined-in">
   <svg class="octicon-link" aria-hidden="true">
@@ -787,9 +802,7 @@ from a different location or baked-in templates (see <code><a href="../../Crinja
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/loader.cr#L172" target="_blank">
-        loader.cr
-      </a>
+      loader.cr
     
     <br/>
   
@@ -798,6 +811,7 @@ from a different location or baked-in templates (see <code><a href="../../Crinja
 
 
 
+  
   <h2>
     <a id="constructors" class="anchor" href="#constructors">
   <svg class="octicon-link" aria-hidden="true">
@@ -821,9 +835,11 @@ from a different location or baked-in templates (see <code><a href="../../Crinja
   </ul>
 
 
+  
 
+  
 
-
+  
   <h2>
     <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
   <svg class="octicon-link" aria-hidden="true">
@@ -840,7 +856,7 @@ from a different location or baked-in templates (see <code><a href="../../Crinja
       </li>
     
       <li class="entry-summary">
-        <a href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%3F%29-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String?)</a>
+        <a href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%7CNil%29-instance-method" class="signature"><strong>#get_source</strong>(env : Crinja, template : String) : ::Tuple(String, String | Nil)</a>
         
           <div class="summary"><p>Get the template source, filename and reload helper for a template.</p></div>
         
@@ -857,17 +873,15 @@ from a different location or baked-in templates (see <code><a href="../../Crinja
 
 
 
-
-
-<div class="methods-inherited">
-  
+  <div class="methods-inherited">
     
+      
 
   <h3>Instance methods inherited from class <code><a href="../../Crinja/Loader.html">Crinja::Loader</a></code></h3>
   
   
-    <a href="../../Crinja/Loader.html#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%3F%29-instance-method" class="tooltip">
-      <span>get_source(env : Crinja, template : String) : ::Tuple(String, String?)</span>
+    <a href="../../Crinja/Loader.html#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%7CNil%29-instance-method" class="tooltip">
+      <span>get_source(env : Crinja, template : String) : ::Tuple(String, String | Nil)</span>
     get_source</a>, 
     
   
@@ -883,36 +897,45 @@ from a different location or baked-in templates (see <code><a href="../../Crinja
   
 
 
-    
+      
+
+
+      
+
+
+      
 
 
     
+      
 
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
 
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-</div>
-
-
   <h2>
     <a id="constructor-detail" class="anchor" href="#constructor-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -933,8 +956,6 @@ from a different location or baked-in templates (see <code><a href="../../Crinja
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/loader.cr#L175" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -949,16 +970,16 @@ from a different location or baked-in templates (see <code><a href="../../Crinja
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/loader.cr#L178" target="_blank">View source</a>]
-        
       </div>
     </div>
   
 
 
+  
 
+  
 
-
+  
   <h2>
     <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -979,17 +1000,15 @@ from a different location or baked-in templates (see <code><a href="../../Crinja
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/loader.cr#L173" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-    <div class="entry-detail" id="get_source(env:Crinja,template:String):::Tuple(String,String?)-instance-method">
+    <div class="entry-detail" id="get_source(env:Crinja,template:String):::Tuple(String,String|Nil)-instance-method">
       <div class="signature">
         
-        def <strong>get_source</strong>(env : <a href="../../Crinja.html">Crinja</a>, template : String) : ::Tuple(String, String?)
+        def <strong>get_source</strong>(env : <a href="../../Crinja.html">Crinja</a>, template : <a href="../../String.html">String</a>) : ::Tuple(<a href="../../String.html">String</a>, <a href="../../String.html">String</a> | Nil)
 
-        <a class="method-permalink" href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%3F%29-instance-method">#</a>
+        <a class="method-permalink" href="#get_source%28env%3ACrinja%2Ctemplate%3AString%29%3A%3A%3ATuple%28String%2CString%7CNil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1000,7 +1019,7 @@ from a different location or baked-in templates (see <code><a href="../../Crinja
           
           <p>Get the template source, filename and reload helper for a template.
 It's passed the environment and template name and has to return a
-tuple in the form <code>{source : String, filename : String?}</code> or raise a
+tuple in the form <code>{source : <a href="../../String.html">String</a>, filename : <a href="../../String.html">String</a>?}</code> or raise a
 <code><a href="../../Crinja/TemplateNotFoundError.html">TemplateNotFoundError</a></code> if it can't locate the template.
 The source part of the returned tuple must be the source of the
 template as string. The filename should be the name of the file on
@@ -1010,8 +1029,6 @@ The filename is used for the tracebacks if no loader extension is used.</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/loader.cr#L182" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1037,12 +1054,9 @@ it should raise a <code><a href="../../Crinja/TypeError.html">TypeError</a></cod
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/loader.cr#L193" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-
 
 
 

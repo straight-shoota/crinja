@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.5.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -22,9 +23,14 @@
 
 <svg class="hidden">
   <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
   </symbol>
 </svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -726,6 +732,11 @@
       
     </li>
   
+  <li class=" " data-id="crinja/String" data-name="string">
+      <a href="../String.html">String</a>
+      
+    </li>
+  
 </ul>
 
   </div>
@@ -735,7 +746,9 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">module</span> Crinja::Callable
+  <span class="kind">
+    module
+  </span> Crinja::<wbr>Callable
 
 </h1>
 
@@ -759,6 +772,8 @@ In either way, the callable must respond to <code><a href="../Crinja/Callable.ht
 a value accepted by <code><a href="../Crinja.html#value%28value%29%3AValue-class-method">Crinja.value</a></code>.
 It must be added to the environment's feature library to be useable from template.
 There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow an easy implementation as a proc.</p>
+
+
 
 
 
@@ -803,16 +818,12 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/runtime/callable.cr#L93" target="_blank">
-        runtime/callable.cr:93
-      </a>
+      runtime/callable.cr:93
     
     <br/>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/runtime/callable.cr#L107" target="_blank">
-        runtime/callable.cr:107
-      </a>
+      runtime/callable.cr:107
     
     <br/>
   
@@ -821,10 +832,13 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
 
 
 
+  
 
+  
 
+  
 
-
+  
   <h2>
     <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
   <svg class="octicon-link" aria-hidden="true">
@@ -849,17 +863,17 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
 
 
 
+  <div class="methods-inherited">
+    
+  </div>
 
-
-<div class="methods-inherited">
   
-</div>
 
+  
 
+  
 
-
-
-
+  
   <h2>
     <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -880,8 +894,6 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/runtime/callable.cr#L108" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -896,12 +908,9 @@ There are macros in <code><a href="../Crinja.html">Crinja</a></code> which allow
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/runtime/callable.cr#L127" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-
 
 
 

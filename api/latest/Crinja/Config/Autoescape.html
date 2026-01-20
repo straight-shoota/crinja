@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.5.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -22,9 +23,14 @@
 
 <svg class="hidden">
   <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
   </symbol>
 </svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -726,6 +732,11 @@
       
     </li>
   
+  <li class=" " data-id="crinja/String" data-name="string">
+      <a href="../../String.html">String</a>
+      
+    </li>
+  
 </ul>
 
   </div>
@@ -735,7 +746,9 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Crinja::Config::Autoescape
+  <span class="kind">
+    class
+  </span> Crinja::<wbr>Config::<wbr>Autoescape
 
 </h1>
 
@@ -771,6 +784,8 @@ It intelligently sets the initial value of autoescaping based on the filename of
 
 
 
+
+
   <h2>
     <a id="defined-in" class="anchor" href="#defined-in">
   <svg class="octicon-link" aria-hidden="true">
@@ -781,9 +796,7 @@ It intelligently sets the initial value of autoescaping based on the filename of
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/config.cr#L68" target="_blank">
-        config.cr
-      </a>
+      config.cr
     
     <br/>
   
@@ -824,6 +837,7 @@ It intelligently sets the initial value of autoescaping based on the filename of
 
 
 
+  
   <h2>
     <a id="constructors" class="anchor" href="#constructors">
   <svg class="octicon-link" aria-hidden="true">
@@ -844,9 +858,11 @@ It intelligently sets the initial value of autoescaping based on the filename of
   </ul>
 
 
+  
 
+  
 
-
+  
   <h2>
     <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
   <svg class="octicon-link" aria-hidden="true">
@@ -858,7 +874,7 @@ It intelligently sets the initial value of autoescaping based on the filename of
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#autoescape%3F%28filename%3AString%3F%3Dnil%29-instance-method" class="signature"><strong>#autoescape?</strong>(filename : String? = <span class="n">nil</span>)</a>
+        <a href="#autoescape%3F%28filename%3AString%7CNil%3Dnil%29-instance-method" class="signature"><strong>#autoescape?</strong>(filename : String | Nil = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Determines if a template with <em>filename</em> should have autoescape enabled or not.</p></div>
         
@@ -920,33 +936,37 @@ It intelligently sets the initial value of autoescaping based on the filename of
 
 
 
+  <div class="methods-inherited">
+    
+      
 
 
-<div class="methods-inherited">
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-</div>
-
-
   <h2>
     <a id="constructor-detail" class="anchor" href="#constructor-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -972,16 +992,16 @@ It intelligently sets the initial value of autoescaping based on the filename of
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/config.cr#L84" target="_blank">View source</a>]
-        
       </div>
     </div>
   
 
 
+  
 
+  
 
-
+  
   <h2>
     <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -991,12 +1011,12 @@ It intelligently sets the initial value of autoescaping based on the filename of
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="autoescape?(filename:String?=nil)-instance-method">
+    <div class="entry-detail" id="autoescape?(filename:String|Nil=nil)-instance-method">
       <div class="signature">
         
-        def <strong>autoescape?</strong>(filename : String? = <span class="n">nil</span>)
+        def <strong>autoescape?</strong>(filename : <a href="../../String.html">String</a> | Nil = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#autoescape%3F%28filename%3AString%3F%3Dnil%29-instance-method">#</a>
+        <a class="method-permalink" href="#autoescape%3F%28filename%3AString%7CNil%3Dnil%29-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1006,8 +1026,6 @@ It intelligently sets the initial value of autoescaping based on the filename of
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/config.cr#L103" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1028,8 +1046,6 @@ It intelligently sets the initial value of autoescaping based on the filename of
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/config.cr#L76" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1048,8 +1064,6 @@ It intelligently sets the initial value of autoescaping based on the filename of
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/config.cr#L76" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1070,8 +1084,6 @@ It intelligently sets the initial value of autoescaping based on the filename of
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/config.cr#L74" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1091,15 +1103,13 @@ It intelligently sets the initial value of autoescaping based on the filename of
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/config.cr#L74" target="_blank">View source</a>]
-        
       </div>
     </div>
   
     <div class="entry-detail" id="disabled_extensions:Array(String)-instance-method">
       <div class="signature">
         
-        def <strong>disabled_extensions</strong> : Array(String)
+        def <strong>disabled_extensions</strong> : Array(<a href="../../String.html">String</a>)
 
         <a class="method-permalink" href="#disabled_extensions%3AArray%28String%29-instance-method">#</a>
       </div>
@@ -1112,15 +1122,13 @@ It intelligently sets the initial value of autoescaping based on the filename of
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/config.cr#L72" target="_blank">View source</a>]
-        
       </div>
     </div>
   
     <div class="entry-detail" id="disabled_extensions=(extensions:Array(String))-instance-method">
       <div class="signature">
         
-        def <strong>disabled_extensions=</strong>(extensions : Array(String))
+        def <strong>disabled_extensions=</strong>(extensions : Array(<a href="../../String.html">String</a>))
 
         <a class="method-permalink" href="#disabled_extensions%3D%28extensions%3AArray%28String%29%29-instance-method">#</a>
       </div>
@@ -1128,15 +1136,13 @@ It intelligently sets the initial value of autoescaping based on the filename of
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/config.cr#L98" target="_blank">View source</a>]
-        
       </div>
     </div>
   
     <div class="entry-detail" id="enabled_extensions:Array(String)-instance-method">
       <div class="signature">
         
-        def <strong>enabled_extensions</strong> : Array(String)
+        def <strong>enabled_extensions</strong> : Array(<a href="../../String.html">String</a>)
 
         <a class="method-permalink" href="#enabled_extensions%3AArray%28String%29-instance-method">#</a>
       </div>
@@ -1149,15 +1155,13 @@ It intelligently sets the initial value of autoescaping based on the filename of
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/config.cr#L70" target="_blank">View source</a>]
-        
       </div>
     </div>
   
     <div class="entry-detail" id="enabled_extensions=(extensions:Array(String))-instance-method">
       <div class="signature">
         
-        def <strong>enabled_extensions=</strong>(extensions : Array(String))
+        def <strong>enabled_extensions=</strong>(extensions : Array(<a href="../../String.html">String</a>))
 
         <a class="method-permalink" href="#enabled_extensions%3D%28extensions%3AArray%28String%29%29-instance-method">#</a>
       </div>
@@ -1165,12 +1169,9 @@ It intelligently sets the initial value of autoescaping based on the filename of
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/config.cr#L94" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-
 
 
 

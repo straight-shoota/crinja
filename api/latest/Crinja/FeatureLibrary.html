@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.5.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -22,9 +23,14 @@
 
 <svg class="hidden">
   <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
   </symbol>
 </svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -726,6 +732,11 @@
       
     </li>
   
+  <li class=" " data-id="crinja/String" data-name="string">
+      <a href="../String.html">String</a>
+      
+    </li>
+  
 </ul>
 
   </div>
@@ -735,12 +746,16 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">abstract class</span> Crinja::FeatureLibrary(T)
+  <span class="kind">
+    abstract class
+  </span> Crinja::<wbr>FeatureLibrary(T)
 
 </h1>
 
 
   <ul class="superclass-hierarchy"><li class="superclass"><a href="../Crinja/FeatureLibrary.html">Crinja::FeatureLibrary(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
 
 
 
@@ -790,9 +805,7 @@
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L1" target="_blank">
-        lib/feature_library.cr
-      </a>
+      lib/feature_library.cr
     
     <br/>
   
@@ -801,6 +814,7 @@
 
 
 
+  
   <h2>
     <a id="constructors" class="anchor" href="#constructors">
   <svg class="octicon-link" aria-hidden="true">
@@ -821,9 +835,30 @@
   </ul>
 
 
+  
+
+  
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#register_default%28default%2Cname%3Dnil%29-macro" class="signature"><strong>register_default</strong>(default, name = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Register default values with this library.</p></div>
+        
+      </li>
+    
+  </ul>
 
 
-
+  
   <h2>
     <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
   <svg class="octicon-link" aria-hidden="true">
@@ -948,52 +983,37 @@
 
 
 
-  <h2>
-    <a id="macro-summary" class="anchor" href="#macro-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Macro Summary
-  </h2>
-  <ul class="list-summary">
+  <div class="methods-inherited">
     
-      <li class="entry-summary">
-        <a href="#register_default%28default%2Cname%3Dnil%29-macro" class="signature"><strong>register_default</strong>(default, name = <span class="n">nil</span>)</a>
-        
-          <div class="summary"><p>Register default values with this library.</p></div>
-        
-      </li>
-    
-  </ul>
+      
 
 
+      
 
-<div class="methods-inherited">
-  
-    
+
+      
+
+
+      
 
 
     
+      
+
+
+      
+
+
+      
+
+
+      
 
 
     
-
+  </div>
 
   
-    
-
-
-    
-
-
-    
-
-
-  
-</div>
-
-
   <h2>
     <a id="constructor-detail" class="anchor" href="#constructor-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -1006,7 +1026,7 @@
     <div class="entry-detail" id="new(register_defaults=true,disabled:Array(String)=[]ofString)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(register_defaults = <span class="n">true</span>, disabled : Array(String) = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>)
+        def self.<strong>new</strong>(register_defaults = <span class="n">true</span>, disabled : Array(<a href="../String.html">String</a>) = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>)
 
         <a class="method-permalink" href="#new%28register_defaults%3Dtrue%2Cdisabled%3AArray%28String%29%3D%5B%5DofString%29-class-method">#</a>
       </div>
@@ -1023,16 +1043,45 @@ it will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L19" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+
+
+  
+
+  
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="register_default(default,name=nil)-macro">
+      <div class="signature">
+        
+        macro <strong>register_default</strong>(default, name = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#register_default%28default%2Cname%3Dnil%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Register default values with this library.</p>
+        </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
   
 
 
-
-
-
+  
   <h2>
     <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -1058,8 +1107,6 @@ it will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L63" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1078,8 +1125,6 @@ it will raise a <code><a href="../Crinja/SecurityError.html">SecurityError</a></
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L70" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1100,8 +1145,6 @@ It will be stored under the key <code>obj.name</code>.</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L80" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1124,8 +1167,6 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L96" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1144,8 +1185,6 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L118" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1166,15 +1205,13 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L113" target="_blank">View source</a>]
-        
       </div>
     </div>
   
     <div class="entry-detail" id="aliases:Hash(String,String)-instance-method">
       <div class="signature">
         
-        def <strong>aliases</strong> : Hash(String, String)
+        def <strong>aliases</strong> : Hash(<a href="../String.html">String</a>, <a href="../String.html">String</a>)
 
         <a class="method-permalink" href="#aliases%3AHash%28String%2CString%29-instance-method">#</a>
       </div>
@@ -1187,15 +1224,13 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L9" target="_blank">View source</a>]
-        
       </div>
     </div>
   
     <div class="entry-detail" id="disabled:Array(String)-instance-method">
       <div class="signature">
         
-        def <strong>disabled</strong> : Array(String)
+        def <strong>disabled</strong> : Array(<a href="../String.html">String</a>)
 
         <a class="method-permalink" href="#disabled%3AArray%28String%29-instance-method">#</a>
       </div>
@@ -1207,8 +1242,6 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1224,8 +1257,6 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1240,8 +1271,6 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1255,8 +1284,6 @@ If the lookup name is not registered, an <code><a href="../Crinja/FeatureLibrary
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L122" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1289,8 +1316,6 @@ and the values of all instance variables.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L128" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1304,8 +1329,6 @@ and the values of all instance variables.</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1321,8 +1344,6 @@ and the values of all instance variables.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1336,8 +1357,6 @@ and the values of all instance variables.</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L132" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1358,8 +1377,6 @@ and the values of all instance variables.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L30" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1373,8 +1390,6 @@ and the values of all instance variables.</p>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1390,44 +1405,10 @@ and the values of all instance variables.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L27" target="_blank">View source</a>]
-        
       </div>
     </div>
   
 
-
-
-  <h2>
-    <a id="macro-detail" class="anchor" href="#macro-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Macro Detail
-  </h2>
-  
-    <div class="entry-detail" id="register_default(default,name=nil)-macro">
-      <div class="signature">
-        
-        macro <strong>register_default</strong>(default, name = <span class="n">nil</span>)
-
-        <a class="method-permalink" href="#register_default%28default%2Cname%3Dnil%29-macro">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Register default values with this library.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/lib/feature_library.cr#L51" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 </div>

@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.5.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.18.2">
 <meta name="crystal_docs.project_version" content="master">
 <meta name="crystal_docs.project_name" content="crinja">
 
@@ -22,9 +23,14 @@
 
 <svg class="hidden">
   <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
   </symbol>
 </svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
 <div class="sidebar">
   <div class="sidebar-header">
     <div class="search-box">
@@ -726,6 +732,11 @@
       
     </li>
   
+  <li class=" " data-id="crinja/String" data-name="string">
+      <a href="../String.html">String</a>
+      
+    </li>
+  
 </ul>
 
   </div>
@@ -735,7 +746,9 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">struct</span> Crinja::Arguments
+  <span class="kind">
+    struct
+  </span> Crinja::<wbr>Arguments
 
 </h1>
 
@@ -769,6 +782,8 @@
 
 
 
+
+
   <h2>
     <a id="defined-in" class="anchor" href="#defined-in">
   <svg class="octicon-link" aria-hidden="true">
@@ -779,9 +794,7 @@
   </h2>
   
     
-      <a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L5" target="_blank">
-        arguments.cr
-      </a>
+      arguments.cr
     
     <br/>
   
@@ -790,6 +803,7 @@
 
 
 
+  
   <h2>
     <a id="constructors" class="anchor" href="#constructors">
   <svg class="octicon-link" aria-hidden="true">
@@ -801,16 +815,18 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28env%3ACrinja%2Cvarargs%3AArray%28Crinja%3A%3AValue%29%3D%5B%5DofValue%2Ckwargs%3AHash%28String%2CCrinja%3A%3AValue%29%3DHash%28String%2CValue%29.new%2Cdefaults%3AHash%28String%2CCrinja%3A%3AValue%29%3DVariables.new%2Ctarget%3ACrinja%3A%3AValue%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(env : Crinja, varargs : Array(Crinja::Value) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs : Hash(String, Crinja::Value) = <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Value</span>).new, defaults : Hash(String, Crinja::Value) = <span class="t">Variables</span>.new, target : Crinja::Value? = <span class="n">nil</span>)</a>
+        <a href="#new%28env%3ACrinja%2Cvarargs%3AArray%28Crinja%3A%3AValue%29%3D%5B%5DofValue%2Ckwargs%3AHash%28String%2CCrinja%3A%3AValue%29%3DHash%28String%2CValue%29.new%2Cdefaults%3AHash%28String%2CCrinja%3A%3AValue%29%3DVariables.new%2Ctarget%3ACrinja%3A%3AValue%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(env : Crinja, varargs : Array(Crinja::Value) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs : Hash(String, Crinja::Value) = <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Value</span>).new, defaults : Hash(String, Crinja::Value) = <span class="t">Variables</span>.new, target : Crinja::Value | Nil = <span class="n">nil</span>)</a>
         
       </li>
     
   </ul>
 
 
+  
 
+  
 
-
+  
   <h2>
     <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
   <svg class="octicon-link" aria-hidden="true">
@@ -883,7 +899,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#target%3AValue%3F-instance-method" class="signature"><strong>#target</strong> : Value?</a>
+        <a href="#target%3AValue%7CNil-instance-method" class="signature"><strong>#target</strong> : Value | Nil</a>
         
           <div class="summary"><p>Returns the target of the call (if any).</p></div>
         
@@ -910,43 +926,50 @@
 
 
 
+  <div class="methods-inherited">
+    
+      
 
 
-<div class="methods-inherited">
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-</div>
-
-
   <h2>
     <a id="constructor-detail" class="anchor" href="#constructor-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -956,27 +979,27 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(env:Crinja,varargs:Array(Crinja::Value)=[]ofValue,kwargs:Hash(String,Crinja::Value)=Hash(String,Value).new,defaults:Hash(String,Crinja::Value)=Variables.new,target:Crinja::Value?=nil)-class-method">
+    <div class="entry-detail" id="new(env:Crinja,varargs:Array(Crinja::Value)=[]ofValue,kwargs:Hash(String,Crinja::Value)=Hash(String,Value).new,defaults:Hash(String,Crinja::Value)=Variables.new,target:Crinja::Value|Nil=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(env : <a href="../Crinja.html">Crinja</a>, varargs : Array(<a href="../Crinja/Value.html">Crinja::Value</a>) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs : Hash(String, <a href="../Crinja/Value.html">Crinja::Value</a>) = <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Value</span>).new, defaults : Hash(String, <a href="../Crinja/Value.html">Crinja::Value</a>) = <span class="t">Variables</span>.new, target : <a href="../Crinja/Value.html">Crinja::Value</a>? = <span class="n">nil</span>)
+        def self.<strong>new</strong>(env : <a href="../Crinja.html">Crinja</a>, varargs : Array(<a href="../Crinja/Value.html">Crinja::Value</a>) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Value</span>, kwargs : Hash(<a href="../String.html">String</a>, <a href="../Crinja/Value.html">Crinja::Value</a>) = <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">Value</span>).new, defaults : Hash(<a href="../String.html">String</a>, <a href="../Crinja/Value.html">Crinja::Value</a>) = <span class="t">Variables</span>.new, target : <a href="../Crinja/Value.html">Crinja::Value</a> | Nil = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28env%3ACrinja%2Cvarargs%3AArray%28Crinja%3A%3AValue%29%3D%5B%5DofValue%2Ckwargs%3AHash%28String%2CCrinja%3A%3AValue%29%3DHash%28String%2CValue%29.new%2Cdefaults%3AHash%28String%2CCrinja%3A%3AValue%29%3DVariables.new%2Ctarget%3ACrinja%3A%3AValue%3F%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28env%3ACrinja%2Cvarargs%3AArray%28Crinja%3A%3AValue%29%3D%5B%5DofValue%2Ckwargs%3AHash%28String%2CCrinja%3A%3AValue%29%3DHash%28String%2CValue%29.new%2Cdefaults%3AHash%28String%2CCrinja%3A%3AValue%29%3DVariables.new%2Ctarget%3ACrinja%3A%3AValue%7CNil%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
   
 
 
+  
 
+  
 
-
+  
   <h2>
     <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -989,15 +1012,13 @@
     <div class="entry-detail" id="[](name:String):Value-instance-method">
       <div class="signature">
         
-        def <strong>[]</strong>(name : String) : <a href="../Crinja/Value.html">Value</a>
+        def <strong>[]</strong>(name : <a href="../String.html">String</a>) : <a href="../Crinja/Value.html">Value</a>
 
         <a class="method-permalink" href="#%5B%5D%28name%3AString%29%3AValue-instance-method">#</a>
       </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1013,23 +1034,19 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L80" target="_blank">View source</a>]
-        
       </div>
     </div>
   
     <div class="entry-detail" id="default(name:String)-instance-method">
       <div class="signature">
         
-        def <strong>default</strong>(name : String)
+        def <strong>default</strong>(name : <a href="../String.html">String</a>)
 
         <a class="method-permalink" href="#default%28name%3AString%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1050,8 +1067,6 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L16" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1071,8 +1086,6 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L22" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1086,8 +1099,6 @@
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1103,8 +1114,6 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L45" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1118,8 +1127,6 @@
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1135,15 +1142,13 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L72" target="_blank">View source</a>]
-        
       </div>
     </div>
   
     <div class="entry-detail" id="is_set?(name:String)-instance-method">
       <div class="signature">
         
-        def <strong>is_set?</strong>(name : String)
+        def <strong>is_set?</strong>(name : <a href="../String.html">String</a>)
 
         <a class="method-permalink" href="#is_set%3F%28name%3AString%29-instance-method">#</a>
       </div>
@@ -1151,15 +1156,13 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L76" target="_blank">View source</a>]
-        
       </div>
     </div>
   
     <div class="entry-detail" id="kwargs:Hash(String,Value)-instance-method">
       <div class="signature">
         
-        def <strong>kwargs</strong> : Hash(String, <a href="../Crinja/Value.html">Value</a>)
+        def <strong>kwargs</strong> : Hash(<a href="../String.html">String</a>, <a href="../Crinja/Value.html">Value</a>)
 
         <a class="method-permalink" href="#kwargs%3AHash%28String%2CValue%29-instance-method">#</a>
       </div>
@@ -1172,17 +1175,15 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L13" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-    <div class="entry-detail" id="target:Value?-instance-method">
+    <div class="entry-detail" id="target:Value|Nil-instance-method">
       <div class="signature">
         
-        def <strong>target</strong> : <a href="../Crinja/Value.html">Value</a>?
+        def <strong>target</strong> : <a href="../Crinja/Value.html">Value</a> | Nil
 
-        <a class="method-permalink" href="#target%3AValue%3F-instance-method">#</a>
+        <a class="method-permalink" href="#target%3AValue%7CNil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -1192,8 +1193,6 @@
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1209,8 +1208,6 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L58" target="_blank">View source</a>]
-        
       </div>
     </div>
   
@@ -1224,8 +1221,6 @@
       
       <br/>
       <div>
-        
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1246,12 +1241,9 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/straight-shoota/crinja/blob/285ac01a3e25015fb06dbe61da4d5adeda268c85/src/arguments.cr#L7" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-
 
 
 
