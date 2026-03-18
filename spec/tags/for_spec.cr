@@ -195,4 +195,17 @@ describe Crinja::Tag::For do
     render(%({% for item in seq %}{{ x }}{% set x = item %}{{ x }}{% endfor %}), bindings).should eq "010203"
     render(%({% set x = 9 %}{% for item in seq %}{{ x }}{% set x = item %}{{ x }}{% endfor %}), bindings).should eq "919293"
   end
+
+  it "loop variable shadows global function of the same name" do
+    env = Crinja.new
+    env.functions["foo"] = Crinja.function do
+      Crinja::Value.new("function_result")
+    end
+
+    template = env.from_string(%({% for item in seq %}{{ item }}{% endfor %}))
+    template.render({"seq" => ["a", "b"]}).should eq "ab"
+    
+    template = env.from_string(%({% for entry in seq %}{{ item }}{% endfor %}))
+    template.render({"seq" => ["a", "b"]}).should eq "calledcalled"
+  end
 end
