@@ -199,13 +199,13 @@ describe Crinja::Tag::For do
   it "loop variable shadows global function of the same name" do
     env = Crinja.new
     env.functions["foo"] = Crinja.function do
-      Crinja::Value.new("function_result")
+      Crinja::Value.new("called")
     end
 
-    template = env.from_string(%({% for item in seq %}{{ item }}{% endfor %}))
+    template = env.from_string(%({% for foo in seq %}{{ foo }}{% endfor %}))
     template.render({"seq" => ["a", "b"]}).should eq "ab"
-    
-    template = env.from_string(%({% for entry in seq %}{{ item }}{% endfor %}))
+
+    template = env.from_string(%({% for entry in seq %}{{ foo() }}{% endfor %}))
     template.render({"seq" => ["a", "b"]}).should eq "calledcalled"
   end
 end
