@@ -24,4 +24,15 @@ describe Crinja::Tag::Set do
       render(%({% set foo %}{{ foo }}))
     end
   end
+
+  it "set variable shadows global function of the same name" do
+    env = Crinja.new
+    env.functions["foo"] = Crinja.function do
+      Crinja::Value.new("function_result")
+    end
+
+    template = env.from_string(%({% set foo = "bar" %}{{ foo }}))
+    result = template.render(env)
+    result.should eq "bar"
+  end
 end

@@ -89,11 +89,15 @@ module Crinja::Resolver
   end
 
   # Resolves a variable in the current context.
+  # Context (scope) variables take priority over global functions,
+  # matching Jinja2 semantics where loop variables and `set` assignments
+  # shadow same-named global functions.
   def resolve(name : String) : Value
-    if functions.has_key?(name)
+    value = context[name]
+    if value.undefined? && functions.has_key?(name)
       Value.new functions[name]
     else
-      context[name]
+      value
     end
   end
 
