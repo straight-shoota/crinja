@@ -1221,7 +1221,10 @@ Analogous to <code>getattr</code> in Jinja2.</p>
       
         <div class="doc">
           
-          <p>Resolves a variable in the current context.</p>
+          <p>Resolves a variable in the current context.
+Context (scope) variables take priority over global functions,
+matching Jinja2 semantics where loop variables and <code>set</code> assignments
+shadow same-named global functions.</p>
         </div>
       
       <br/>
