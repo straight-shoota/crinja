@@ -97,7 +97,7 @@ abstract class Crinja::FeatureLibrary(T)
   # If the lookup name is in the list of `#disabled` features, a `SecurityError` is raised.
   # If the lookup name is not registered, an `UnknownFeatureError` is raised.
   def [](lookup : String) : T
-    if (cached = @lookup_cache[lookup]?)
+    if cached = @lookup_cache[lookup]?
       return cached
     end
 
