@@ -93,24 +93,36 @@ class Crinja::Config
 
     def enabled_extensions=(extensions : Array(String))
       @enabled_extensions = extensions.map(&.downcase)
+      @autoescape_cache.clear
     end
 
     def disabled_extensions=(extensions : Array(String))
       @disabled_extensions = extensions.map(&.downcase)
+      @autoescape_cache.clear
     end
 
     # Determines if a template with *filename* should have autoescape enabled or not.
     def autoescape?(filename : String? = nil)
       if filename.nil? || filename.size == 0
         default_for_string
-      elsif self.class.match_extension?(enabled_extensions, filename)
-        true
-      elsif self.class.match_extension?(disabled_extensions, filename)
-        false
       else
-        default
+        # Memoize per filename: this is evaluated for every render.
+        @autoescape_cache.fetch(filename) do
+          result =
+            if self.class.match_extension?(enabled_extensions, filename)
+              true
+            elsif self.class.match_extension?(disabled_extensions, filename)
+              false
+            else
+              default
+            end
+          @autoescape_cache[filename] = result
+          result
+        end
       end
     end
+
+    @autoescape_cache = {} of String => Bool
 
     # :nodoc:
     def self.match_extension?(extensions : Array(String), filename : String)
